@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="mt-16 border-t border-white/10 bg-black">
       <div className="mx-auto grid max-w-6xl items-start gap-10 px-4 py-12 md:grid-cols-4">
         {/* Brand column */}
-        <div className="space-y-1">
+        <div className="">
           <Link href="/" className="inline-flex items-start leading-none">
             <Image
               src="/images/brand/zivel-logo.png"
