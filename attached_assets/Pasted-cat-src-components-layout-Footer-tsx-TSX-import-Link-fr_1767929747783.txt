@@ -1,3 +1,4 @@
+cat > src/components/layout/Footer.tsx <<'TSX'
 import Link from "next/link";
 import Image from "next/image";
 
@@ -101,3 +102,4 @@ export default function Footer() {
     </footer>
   );
 }
+TSX
