@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/services/cryotherapy", label: "Services" },
@@ -13,9 +14,15 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-lg font-semibold tracking-tight">Zivel</span>
-          <span className="text-sm text-white/60">Wellness</span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/brand/zivel-logo.png"
+            alt="Zivel"
+            width={140}
+            height={40}
+            priority
+            className="h-auto w-[120px] md:w-[140px]"
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
