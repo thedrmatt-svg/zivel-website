@@ -18,7 +18,7 @@ export default function Footer() {
             />
           </Link>
 
-          <p className="mt-2 text-sm text-white/70">
+          <p className="text-sm leading-relaxed text-white/70">
             Science-backed wellness for recovery, performance, and longevity.
           </p>
         </div>
