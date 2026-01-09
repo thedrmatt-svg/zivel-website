@@ -26,7 +26,7 @@ export default function HomePage() {
             Choose your location, service, and time — all in one place.
           </p>
 
-          <BookingWidget className="mt-6" locationId={14833} />
+          <BookingWidget className="mt-6" locationId={11417} />
         </div>
       </section>
 
