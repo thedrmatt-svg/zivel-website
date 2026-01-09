@@ -13,7 +13,7 @@ export default function Footer() {
               alt="Zivel"
               width={140}
               height={40}
-              className="h-auto w-[120px] -mt-1"
+              className="h-auto w-[120px] -mt-3"
               priority
             />
           </Link>
