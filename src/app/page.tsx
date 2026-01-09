@@ -1,3 +1,6 @@
+
+import BookingWidget from "@/components/booking/BookingWidget";
+
 export default function HomePage() {
   return (
     <div className="space-y-24">
@@ -23,9 +26,7 @@ export default function HomePage() {
             Choose your location, service, and time — all in one place.
           </p>
 
-          <div className="h-[500px] w-full rounded-xl border border-white/10 bg-black/40 flex items-center justify-center text-white/40">
-            Booking Widget Placeholder
-          </div>
+          <BookingWidget className="mt-6" locationId={14833} />
         </div>
       </section>
 
