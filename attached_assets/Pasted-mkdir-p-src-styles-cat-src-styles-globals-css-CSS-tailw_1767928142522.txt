@@ -1,0 +1,128 @@
+mkdir -p src/styles
+
+cat > src/styles/globals.css <<'CSS'
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------------
+   ZIVEL DESIGN SYSTEM — GLOBAL STYLES
+-------------------------------------------------- */
+
+/* CSS Variables: Brand + Theme */
+:root {
+  --zivel-black: #000000;
+  --zivel-white: #ffffff;
+  --zivel-gold: #d4af37;
+
+  --zivel-gray-900: #0b0b0b;
+  --zivel-gray-800: #141414;
+  --zivel-gray-700: #1f1f1f;
+  --zivel-gray-600: #2a2a2a;
+  --zivel-gray-500: #3a3a3a;
+
+  --zivel-text-primary: #ffffff;
+  --zivel-text-secondary: rgba(255, 255, 255, 0.75);
+  --zivel-text-muted: rgba(255, 255, 255, 0.55);
+}
+
+/* Base HTML / Body */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--zivel-black);
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--zivel-black);
+  color: var(--zivel-text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--zivel-gold);
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--zivel-text-primary);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Paragraphs */
+p {
+  color: var(--zivel-text-secondary);
+  max-width: 65ch;
+}
+
+/* Lists */
+ul,
+ol {
+  padding-left: 1.25rem;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Buttons (base reset — actual styles via components) */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Utility: Gold text */
+.text-gold {
+  color: var(--zivel-gold);
+}
+
+/* Utility: Section spacing */
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Utility: Subtle border */
+.border-subtle {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Utility: Card background */
+.bg-card {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+CSS
