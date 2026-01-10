@@ -1,3 +1,4 @@
+cat > src/content/services/cryotherapy.ts <<'TS'
 import type { Service } from "@/types/service";
 
 export const cryotherapy: Service = {
@@ -148,13 +149,17 @@ export const cryotherapy: Service = {
       "Pregnancy",
       "Severe uncontrolled hypertension",
       "Recent heart attack or serious cardiac conditions",
-      "Cold hypersensitivity conditions (e.g., Raynaud's) — discuss with staff",
+      "Cold hypersensitivity conditions (e.g., Raynaud’s) — discuss with staff",
       "Severe neuropathy or impaired sensation",
       "Any condition where cold exposure is contraindicated by your clinician",
     ],
     disclaimer:
       "This information is for educational purposes only and is not medical advice. Always consult a qualified healthcare professional regarding contraindications or medical concerns.",
   },
+
+  // SECTION 7 — BEFORE & AFTER (OPTIONAL)
+  // Cryotherapy typically does not require before/after, so we omit this section for now.
+  // If you want it later for specific outcomes, we can add it back.
 
   // SECTION 8 — TESTIMONIALS
   testimonials: {
@@ -239,7 +244,7 @@ export const cryotherapy: Service = {
       {
         question: "What should I wear?",
         answer:
-          "You'll typically wear minimal clothing with protective items provided (such as gloves and footwear). Your studio team will confirm exact requirements.",
+          "You’ll typically wear minimal clothing with protective items provided (such as gloves and footwear). Your studio team will confirm exact requirements.",
       },
       {
         question: "How often should I do cryotherapy?",
@@ -249,7 +254,7 @@ export const cryotherapy: Service = {
       {
         question: "Is cryotherapy safe?",
         answer:
-          "Cryotherapy is generally safe when supervised and performed properly. Your studio team will review contraindications and ensure you're a good candidate.",
+          "Cryotherapy is generally safe when supervised and performed properly. Your studio team will review contraindications and ensure you’re a good candidate.",
       },
       {
         question: "Can I stack cryotherapy with other services?",
@@ -291,3 +296,4 @@ export const cryotherapy: Service = {
     canonical: "/services/cryotherapy",
   },
 };
+TS
