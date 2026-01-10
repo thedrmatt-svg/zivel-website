@@ -1,0 +1,263 @@
+cat > src/content/services/red-light-therapy.ts <<'TS'
+import type { Service } from "@/types/service";
+
+export const redLightTherapy: Service = {
+  slug: "red-light-therapy",
+  name: "Red Light Therapy",
+  accent: {
+    // Used later for subtle page glow/gradients
+    name: "red",
+    hex: "#D64545",
+  },
+
+  seo: {
+    title: "Red Light Therapy | Zivel Wellness",
+    description:
+      "Red Light Therapy at Zivel supports recovery, skin health, inflammation reduction, and cellular performance. Learn what it is, what to expect, and book a session.",
+    canonical: "/services/red-light-therapy",
+  },
+
+  hero: {
+    subheadline:
+      "Boost cellular energy, support recovery, and improve skin health with targeted red and near-infrared light.",
+    primaryCTA: { label: "Book Now", href: "#book" },
+    secondaryCTA: { label: "View Locations", href: "/locations" },
+    media: {
+      type: "image",
+      // PLACEHOLDER — replace later with final photo
+      src: "/images/services/red-light-therapy/hero.jpg",
+      alt: "Client receiving red light therapy at Zivel",
+    },
+  },
+
+  intro: {
+    headline: "What is Red Light Therapy?",
+    paragraphs: [
+      "Red Light Therapy (RLT), also known as photobiomodulation, uses specific wavelengths of red and near-infrared light to support the body’s natural recovery and performance processes.",
+      "Unlike UV light, these wavelengths are non-thermal and are commonly used to help support cellular energy production (ATP), circulation, tissue recovery, and skin health.",
+      "At Zivel, sessions are designed to be comfortable, consistent, and easy to integrate into a wellness routine.",
+    ],
+    bullets: [
+      "Non-invasive and comfortable",
+      "Commonly used for recovery + skin support",
+      "Great as a stand-alone session or paired with other services",
+    ],
+    media: {
+      type: "image",
+      // PLACEHOLDER
+      src: "/images/services/red-light-therapy/intro.jpg",
+      alt: "Red light therapy equipment in a Zivel studio",
+    },
+  },
+
+  benefits: {
+    headline: "Key Benefits",
+    viewResearchCTA: { label: "View Research →", href: "/research/red-light-therapy" },
+    items: [
+      {
+        title: "Supports recovery and muscle performance",
+        description:
+          "Often used to support tissue recovery and post-exercise soreness by assisting normal inflammatory and circulation processes.",
+        citations: ["rlt-recovery-1", "rlt-recovery-2"],
+      },
+      {
+        title: "Promotes healthy skin tone and texture",
+        description:
+          "Commonly used to support collagen-related outcomes and overall skin appearance.",
+        citations: ["rlt-skin-1"],
+      },
+      {
+        title: "Supports circulation and oxygen delivery",
+        description:
+          "May support local blood flow and circulation, which can assist recovery routines.",
+        citations: ["rlt-circulation-1"],
+      },
+      {
+        title: "Supports joint comfort and mobility routines",
+        description:
+          "Frequently used as part of wellness routines aimed at maintaining mobility and comfort.",
+        citations: ["rlt-joint-1"],
+      },
+      {
+        title: "Helps support sleep and daily resilience",
+        description:
+          "Some people use RLT as part of evening routines and overall wellness habits.",
+        citations: ["rlt-sleep-1"],
+      },
+      {
+        title: "Easy to stack with other services",
+        description:
+          "Pairs well with cryotherapy, infrared sauna, compression, and dry float routines.",
+        citations: ["rlt-stacking-1"],
+      },
+    ],
+  },
+
+  howItWorks: {
+    headline: "What to Expect",
+    steps: [
+      {
+        title: "Arrival & Setup",
+        description:
+          "Check in, review any questions, and get positioned comfortably for the session.",
+      },
+      {
+        title: "During the Session",
+        description:
+          "Relax while targeted wavelengths of red + near-infrared light are delivered to support cellular function.",
+      },
+      {
+        title: "After the Session",
+        description:
+          "Most people return to normal activity immediately—many feel refreshed and more “loose” post-session.",
+      },
+      {
+        title: "Recommended Frequency",
+        description:
+          "Consistency matters: many clients start with 2–4 sessions/week, then adjust based on goals.",
+      },
+    ],
+  },
+
+  science: {
+    headline: "The Science Behind Red Light Therapy",
+    body: [
+      "Red and near-infrared light can be absorbed by cellular structures involved in energy production. This process is often discussed in the context of supporting ATP (cellular energy).",
+      "RLT is also studied for its potential to support circulation and tissue recovery through photobiomodulation mechanisms.",
+      "Zivel’s approach focuses on consistency, comfort, and combining RLT with complementary services to support outcomes.",
+    ],
+    cta: { label: "Learn More in the Science Hub", href: "/science" },
+    media: {
+      type: "image",
+      // PLACEHOLDER
+      src: "/images/services/red-light-therapy/science.jpg",
+      alt: "Diagram-style visual representing photobiomodulation",
+    },
+  },
+
+  safety: {
+    headline: "Is Red Light Therapy Safe?",
+    body: [
+      "Red Light Therapy is generally considered non-invasive and comfortable for most people. Sessions do not use UV light and are not intended to cause sunburn or skin damage.",
+      "If you have a medical condition, are pregnant, or take medications that increase photosensitivity, consult your healthcare provider before use.",
+    ],
+    contraindications: [
+      "Photosensitivity or use of photosensitizing medications",
+      "Active cancer or suspected malignancy (unless cleared by your physician)",
+      "Seizure disorders triggered by light (rare, but important to disclose)",
+      "Pregnancy (consult your physician)",
+      "Any condition where your clinician advises against light-based therapies",
+    ],
+    disclaimer:
+      "This information is for educational purposes only and is not medical advice. Always consult a qualified healthcare professional with questions about your health.",
+  },
+
+  // Red Light typically does NOT use before/after galleries on the main service page.
+  // Leave undefined unless you want to show a results carousel later.
+  // beforeAfter: { ... }
+
+  testimonials: {
+    headline: "What Clients Say",
+    items: [
+      {
+        name: "Jordan M.",
+        location: "Zivel Client",
+        quote:
+          "I added red light therapy to my weekly routine and it’s become my go-to for recovery days.",
+      },
+      {
+        name: "Taylor R.",
+        location: "Zivel Client",
+        quote:
+          "Super easy session—felt relaxed and my skin looked noticeably better after staying consistent.",
+      },
+      {
+        name: "Alex P.",
+        location: "Zivel Client",
+        quote:
+          "Great complement to my training. I stack it with compression and feel ready faster.",
+      },
+    ],
+  },
+
+  pricingPreview: {
+    headline: "Pricing & Membership Options",
+    cards: [
+      {
+        title: "Single Session",
+        priceLine: "Placeholder price",
+        details: ["Perfect for trying it once", "No commitment required"],
+        cta: { label: "View Memberships", href: "/memberships" },
+      },
+      {
+        title: "Member Rate",
+        priceLine: "Placeholder price",
+        details: ["Best value per session", "Designed for consistency"],
+        cta: { label: "View Memberships", href: "/memberships" },
+      },
+      {
+        title: "Packages",
+        priceLine: "Placeholder price",
+        details: ["Multi-session packs", "Great for goals + gifting"],
+        cta: { label: "View Memberships", href: "/memberships" },
+      },
+    ],
+  },
+
+  booking: {
+    headline: "Book Your Red Light Therapy Session",
+    subheadline:
+      "Choose a location and time that works for you. Sessions are quick, comfortable, and easy to fit into your routine.",
+    badges: ["Secure", "Fast", "No membership required"],
+    // IMPORTANT: default booking location ID — we can change later.
+    locationIdDefault: 11417,
+  },
+
+  faqs: {
+    headline: "Frequently Asked Questions",
+    items: [
+      {
+        question: "How long is a typical session?",
+        answer:
+          "Most sessions are brief and designed to fit into a busy schedule. Your location will confirm timing based on your selected service.",
+      },
+      {
+        question: "Does it hurt?",
+        answer:
+          "No—RLT is generally comfortable. Most clients relax during the session.",
+      },
+      {
+        question: "How many sessions do I need to see results?",
+        answer:
+          "Consistency matters. Many people start with 2–4 sessions per week for several weeks, then adjust based on goals.",
+      },
+      {
+        question: "Should I do red light before or after workouts?",
+        answer:
+          "Many clients use it after workouts as part of a recovery routine. Some also prefer it on rest days to stay consistent.",
+      },
+      {
+        question: "Can I stack this with other services?",
+        answer:
+          "Yes. Red light therapy stacks well with cryotherapy, infrared sauna, compression therapy, and dry float routines.",
+      },
+      {
+        question: "What should I wear?",
+        answer:
+          "Wear whatever is comfortable. Your provider may recommend specific positioning depending on goals.",
+      },
+    ],
+  },
+
+  relatedServices: {
+    headline: "Related Services",
+    slugs: ["cryotherapy", "infrared-sauna", "compression-therapy"],
+  },
+
+  finalCTA: {
+    headline: "Ready to Feel Better?",
+    primaryCTA: { label: "Book Now", href: "#book" },
+    secondaryCTA: { label: "View Memberships", href: "/memberships" },
+  },
+};
+TS
