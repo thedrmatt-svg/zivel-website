@@ -1,3 +1,4 @@
+cat > src/app/services/[slug]/page.tsx <<'TSX'
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,19 +7,16 @@ import { notFound } from "next/navigation";
 import BookingWidget from "@/components/booking/BookingWidget";
 import { getServiceBySlug, services } from "@/lib/data/services";
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
-
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }
 
-export async function generateMetadata({
+export function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const service = getServiceBySlug(slug);
+}: {
+  params: { slug: string };
+}): Metadata {
+  const service = getServiceBySlug(params.slug);
   if (!service) return {};
 
   return {
@@ -30,9 +28,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function ServicePage({ params }: PageProps) {
-  const { slug } = await params;
-  const service = getServiceBySlug(slug);
+export default function ServicePage({ params }: { params: { slug: string } }) {
+  const service = getServiceBySlug(params.slug);
   if (!service) return notFound();
 
   const researchBaseHref =
@@ -288,7 +285,7 @@ export default async function ServicePage({ params }: PageProps) {
         <div className="grid gap-8 md:grid-cols-3">
           {service.testimonials.items.map((t, idx) => (
             <div key={`${t.name}-${idx}`} className="rounded-2xl border-subtle bg-card p-6">
-              <p className="text-sm text-white/70">&quot;{t.quote}&quot;</p>
+              <p className="text-sm text-white/70">“{t.quote}”</p>
               <div className="mt-4 text-sm font-semibold text-white">{t.name}</div>
               {t.location ? <div className="text-xs text-white/60">{t.location}</div> : null}
             </div>
@@ -375,14 +372,14 @@ export default async function ServicePage({ params }: PageProps) {
         <h2 className="mb-10">{service.relatedServices.headline}</h2>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {service.relatedServices.slugs.map((relatedSlug) => {
-            const related = getServiceBySlug(relatedSlug);
-            const title = related?.name ?? relatedSlug.replaceAll("-", " ");
+          {service.relatedServices.slugs.map((slug) => {
+            const related = getServiceBySlug(slug);
+            const title = related?.name ?? slug.replaceAll("-", " ");
             const href = related ? `/services/${related.slug}` : "/services";
 
             return (
               <Link
-                key={relatedSlug}
+                key={slug}
                 href={href}
                 className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
               >
@@ -417,6 +414,10 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* SECTION 14 — FOOTER */}
+      {/* Footer is global (layout) */}
     </div>
   );
 }
+TSX
