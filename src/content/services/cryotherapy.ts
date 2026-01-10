@@ -1,0 +1,82 @@
+import type { Service } from "@/types/service";
+
+export const cryotherapy: Service = {
+  slug: "cryotherapy",
+  name: "Cryotherapy",
+  tagline: "A fast, powerful cold exposure experience designed to support recovery, inflammation control, and mental clarity.",
+  intro:
+    "Cryotherapy uses brief, controlled cold exposure to trigger natural physiological responses that can support recovery, reduce soreness, and improve overall resilience. At Zivel, sessions are quick, supervised, and designed to fit into a consistent wellness routine.",
+
+  accent: "neutral",
+
+  heroImage: {
+    src: "/images/services/cryotherapy/hero.jpg",
+    alt: "Cryotherapy at Zivel",
+  },
+
+  primaryCTA: {
+    label: "Book Cryotherapy",
+    href: "#book",
+  },
+
+  benefits: [
+    {
+      title: "Supports muscle recovery and soreness reduction",
+      description:
+        "Short-duration cold exposure may help reduce perceived soreness and support recovery routines, especially when used consistently.",
+      citations: ["cryo-001"],
+    },
+    {
+      title: "May help reduce inflammation response",
+      description:
+        "Cold exposure can influence inflammatory signaling and circulation dynamics, supporting post-training recovery strategies.",
+      citations: ["cryo-002"],
+    },
+    {
+      title: "Boosts alertness and mental resilience",
+      description:
+        "Cold exposure can increase arousal and perceived energy, helping many clients feel refreshed and focused after sessions.",
+      citations: ["cryo-003"],
+    },
+    {
+      title: "Supports overall wellness consistency",
+      description:
+        "Like training or nutrition, cryotherapy benefits tend to compound with routine use as part of a broader recovery strategy.",
+      citations: ["cryo-004"],
+    },
+  ],
+
+  faqs: [
+    {
+      question: "How long is a cryotherapy session?",
+      answer:
+        "Most sessions last about 2–3 minutes. Your team will guide you and adjust based on comfort and experience.",
+    },
+    {
+      question: "What should I wear?",
+      answer:
+        "You'll typically wear minimal clothing with protective items provided (such as gloves and footwear). Your studio team will confirm exact requirements.",
+    },
+    {
+      question: "How often should I do cryotherapy?",
+      answer:
+        "Many clients start with 2–3 sessions per week and adjust based on goals (recovery, performance, wellness routine). Consistency matters.",
+    },
+    {
+      question: "Is cryotherapy safe?",
+      answer:
+        "Cryotherapy is generally safe when supervised and performed properly. Your studio team will review contraindications and ensure you're a good candidate.",
+    },
+  ],
+
+  bookingDefaults: {
+    locationId: 11417,
+  },
+
+  seo: {
+    title: "Cryotherapy | Recovery, Performance & Wellness",
+    description:
+      "Learn how cryotherapy works and why short, controlled cold exposure may support recovery, inflammation control, and mental clarity. Book at Zivel.",
+    canonical: "/services/cryotherapy",
+  },
+};
