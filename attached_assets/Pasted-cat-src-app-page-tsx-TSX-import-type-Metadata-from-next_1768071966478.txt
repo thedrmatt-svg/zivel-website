@@ -1,3 +1,4 @@
+cat > src/app/page.tsx <<'TSX'
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ const navItems: Array<{ key: SectionKey; label: string; href: string }> = [
   { key: "science", label: "Science", href: "#science" },
 ];
 
-export default function HomePage() {
+export default function HomePage(): JSX.Element {
   return (
     <main className="space-y-24">
       {/* HERO */}
@@ -262,7 +263,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ABOUT ZIVEL (Preview Strip) */}
+      {/* 8. ABOUT ZIVEL (Preview Strip) */}
       <section id="about" className="section" aria-labelledby="home-about-title">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 rounded-2xl border-subtle bg-card p-6 md:grid-cols-12 md:p-8 md:items-center">
@@ -271,7 +272,7 @@ export default function HomePage() {
                 About Zivel Placeholder
               </h2>
               <p className="text-white/70">
-                Brief brand story placeholder. (We'll replace with final copy once approved.)
+                Brief brand story placeholder. (We’ll replace with final copy once approved.)
               </p>
               <div className="mt-6">
                 <a
@@ -323,7 +324,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SCIENCE & RECOVERY HUB PREVIEW */}
+      {/* 10. SCIENCE & RECOVERY HUB PREVIEW */}
       <section id="science" className="section" aria-labelledby="home-science-title">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -370,7 +371,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FINAL CTA STRIP */}
+      {/* 11. FINAL CTA STRIP */}
       <section className="section" aria-labelledby="home-final-cta-title">
         <div className="mx-auto max-w-6xl">
           <div className="rounded-2xl border border-white/12 bg-white/[0.06] p-6 md:p-8">
@@ -405,3 +406,4 @@ export default function HomePage() {
     </main>
   );
 }
+TSX
