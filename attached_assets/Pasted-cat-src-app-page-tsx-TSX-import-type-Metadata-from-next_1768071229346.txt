@@ -1,3 +1,4 @@
+cat > src/app/page.tsx <<'TSX'
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ const navItems: Array<{ key: SectionKey; label: string; href: string }> = [
   { key: "social-proof", label: "Reviews", href: "#reviews" },
 ];
 
-export default function HomePage() {
+export default function HomePage(): JSX.Element {
   return (
     <main className="space-y-24">
       {/* HERO */}
@@ -304,3 +305,4 @@ export default function HomePage() {
     </main>
   );
 }
+TSX
