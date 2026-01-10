@@ -1,0 +1,128 @@
+cat > src/app/services/[slug]/page.tsx <<'TSX'
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import BookingWidget from "@/components/booking/BookingWidget";
+import { getServiceBySlug, services } from "@/lib/data/services";
+
+export function generateStaticParams() {
+  return services.map((s) => ({ slug: s.slug }));
+}
+
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
+  const service = getServiceBySlug(params.slug);
+  if (!service) return {};
+
+  return {
+    title: service.seo.title,
+    description: service.seo.description,
+    alternates: {
+      canonical: service.seo.canonical ?? `/services/${service.slug}`,
+    },
+  };
+}
+
+export default function ServicePage({ params }: { params: { slug: string } }) {
+  const service = getServiceBySlug(params.slug);
+  if (!service) return notFound();
+
+  const locationId = service.bookingDefaults?.locationId ?? 11417;
+
+  return (
+    <div className="space-y-20">
+      {/* HERO */}
+      <section className="section">
+        <div className="max-w-3xl space-y-6">
+          <h1>{service.name}</h1>
+          <p className="text-lg text-white/80">{service.tagline}</p>
+          <p className="text-white/70">{service.intro}</p>
+
+          <div className="flex flex-wrap gap-3 pt-2">
+            <a
+              href={service.primaryCTA.href}
+              className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+            >
+              {service.primaryCTA.label}
+            </a>
+            <a
+              href="/research"
+              className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+            >
+              View the Science
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* BENEFITS */}
+      <section className="section">
+        <h2 className="mb-10">Benefits</h2>
+
+        <div className="grid gap-8 md:grid-cols-2">
+          {service.benefits.map((b) => (
+            <div key={b.title} className="rounded-2xl border-subtle bg-card p-6">
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="text-xl">{b.title}</h3>
+
+                {/* Citations: numbers link to research page later */}
+                {b.citations?.length ? (
+                  <div className="flex flex-wrap justify-end gap-2 text-xs text-white/60">
+                    {b.citations.map((c, idx) => (
+                      <a
+                        key={`${c}-${idx}`}
+                        href={`/research/cryotherapy#${c}`}
+                        className="rounded-full border border-white/15 bg-white/5 px-2 py-1 hover:text-[var(--zivel-gold)]"
+                        aria-label={`Citation ${idx + 1}`}
+                        title={`Citation ${idx + 1}`}
+                      >
+                        {idx + 1}
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+
+              <p className="mt-3 text-sm text-white/70">{b.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section">
+        <h2 className="mb-10">Frequently Asked Questions</h2>
+
+        <div className="space-y-4">
+          {service.faqs.map((f) => (
+            <details
+              key={f.question}
+              className="rounded-2xl border-subtle bg-card p-6"
+            >
+              <summary className="cursor-pointer text-base font-semibold text-white">
+                {f.question}
+              </summary>
+              <p className="mt-3 text-sm text-white/70">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* BOOKING */}
+      <section id="book" className="section border-subtle rounded-2xl bg-card p-8">
+        <div className="max-w-2xl">
+          <h2 className="mb-3">Book {service.name}</h2>
+          <p className="text-white/70">
+            Choose your time below. If the scheduler does not load in your browser,
+            use the button to open it directly.
+          </p>
+        </div>
+
+        <BookingWidget className="mt-8" locationId={locationId} />
+      </section>
+    </div>
+  );
+}
+TSX
