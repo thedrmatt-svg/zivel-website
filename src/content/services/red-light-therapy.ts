@@ -3,7 +3,10 @@ import type { Service } from "@/types/service";
 export const redLightTherapy: Service = {
   slug: "red-light-therapy",
   name: "Red Light Therapy",
-  accent: "red",
+  accent: {
+    name: "red",
+    hex: "#D64545",
+  },
 
   seo: {
     title: "Red Light Therapy | Zivel Wellness",

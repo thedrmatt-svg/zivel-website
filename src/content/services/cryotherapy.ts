@@ -1,10 +1,12 @@
 import type { Service } from "@/types/service";
 
 export const cryotherapy: Service = {
-  // Identity
   slug: "cryotherapy",
   name: "Cryotherapy",
-  accent: "cryo-blue",
+  accent: {
+    name: "cryo-blue",
+    hex: "#4ECDC4",
+  },
 
   // SECTION 1 — HERO
   hero: {

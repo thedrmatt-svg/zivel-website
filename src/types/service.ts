@@ -1,4 +1,4 @@
-export type Accent =
+export type AccentName =
   | "neutral"
   | "cryo-blue"
   | "red"
@@ -6,6 +6,11 @@ export type Accent =
   | "green"
   | "purple"
   | "gold";
+
+export type Accent = {
+  name: AccentName;
+  hex: string;
+};
 
 export type Media = {
   type: "image" | "video";
