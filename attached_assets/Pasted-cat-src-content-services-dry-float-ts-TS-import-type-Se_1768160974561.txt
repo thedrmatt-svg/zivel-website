@@ -1,0 +1,260 @@
+cat > src/content/services/dry-float.ts <<'TS'
+import type { Service } from "@/types/service";
+
+export const dryFloat: Service = {
+  slug: "dry-float",
+  name: "Dry Float",
+  accent: { name: "green", hex: "#22C55E" },
+
+  seo: {
+    title: "Dry Float | Deep Relaxation & Recovery | Zivel",
+    description:
+      "Experience dry float therapy at Zivel—deep relaxation without getting wet. Support recovery, stress reduction, and nervous system reset. Book a session today.",
+    canonical: "/services/dry-float",
+  },
+
+  hero: {
+    subheadline:
+      "Deep relaxation and recovery—float fully clothed in a zero-gravity environment without getting wet.",
+    media: {
+      type: "image",
+      src: "/images/services/dry-float/hero.jpg",
+      alt: "Dry float therapy session at Zivel (placeholder)",
+    },
+    primaryCTA: { label: "Book Now", href: "#book" },
+    secondaryCTA: { label: "View Locations", href: "/locations" },
+  },
+
+  intro: {
+    headline: "What is Dry Float Therapy?",
+    paragraphs: [
+      "Dry Float therapy offers many of the relaxation benefits of floating, without water or Epsom salt. You lie on a comfortable membrane while warm water below creates a weightless, zero-gravity feel.",
+      "The result is a calming, supportive environment that many clients use for stress reduction, recovery days, improved sleep routines, and mental clarity.",
+      "At Zivel, dry float is designed to be easy: you stay dry, you stay clothed, and you leave feeling reset.",
+    ],
+    bullets: [
+      "Zero-gravity feel without water contact",
+      "Comfortable, calming experience",
+      "Great on recovery days or high-stress weeks",
+    ],
+    media: {
+      type: "image",
+      src: "/images/services/dry-float/intro.jpg",
+      alt: "Dry float bed/pod in a Zivel studio (placeholder)",
+    },
+  },
+
+  benefits: {
+    headline: "Key Benefits",
+    viewResearchCTA: { label: "View Research →", href: "/research/dry-float" },
+    items: [
+      {
+        title: "Deep relaxation & stress reduction",
+        description:
+          "Many clients use dry float as a nervous system reset—quiet, calm, and restorative.",
+        citations: ["df-1"],
+      },
+      {
+        title: "Supports recovery days and soreness routines",
+        description:
+          "A weightless-feeling session can complement recovery stacks and rest days.",
+        citations: ["df-2"],
+      },
+      {
+        title: "May support sleep routines",
+        description:
+          "Often used in evening routines or high-stress weeks to promote relaxation before bed.",
+        citations: ["df-3"],
+      },
+      {
+        title: "Mental clarity & mood support",
+        description:
+          "Quiet time + sensory reduction can support a refreshed, clear-headed feeling.",
+        citations: ["df-4"],
+      },
+      {
+        title: "Comfortable and accessible",
+        description:
+          "Unlike traditional float tanks, dry float keeps you dry and fully clothed—no shower required.",
+        citations: ["df-5"],
+      },
+      {
+        title: "Stacks well with other recovery services",
+        description:
+          "Pairs well with red light therapy, compression, and sauna for a full reset.",
+        citations: ["df-6"],
+      },
+    ],
+  },
+
+  howItWorks: {
+    headline: "What to Expect",
+    steps: [
+      {
+        title: "Arrival & Setup",
+        description:
+          "Check in and get oriented. You’ll stay clothed and comfortable for the session.",
+      },
+      {
+        title: "Float Experience",
+        description:
+          "Lie back as the warmed water beneath the membrane creates a zero-gravity feel—quiet, calm, and restorative.",
+      },
+      {
+        title: "After the Session",
+        description:
+          "Most clients feel relaxed and refreshed. Hydrate and continue your day—or stack another service.",
+      },
+      {
+        title: "Recommended Frequency",
+        description:
+          "Many clients use dry float 1–2x/week for stress support, recovery days, or sleep routines.",
+      },
+    ],
+  },
+
+  science: {
+    headline: "The Science Behind Floating",
+    body: [
+      "Float-based relaxation experiences are studied for their effects on stress reduction and relaxation response. Dry float uses a similar concept—weightless feel and sensory reduction—while keeping you dry.",
+      "Zivel’s approach focuses on consistent, restorative sessions and pairing dry float with complementary modalities based on your goals.",
+    ],
+    media: {
+      type: "image",
+      src: "/images/services/dry-float/science.jpg",
+      alt: "Relaxation and recovery concept visual (placeholder)",
+    },
+    cta: { label: "Learn More in the Science Hub", href: "/science" },
+  },
+
+  safety: {
+    headline: "Is Dry Float Safe?",
+    body: [
+      "Dry float is generally comfortable and low-impact for most people. If you have conditions affected by heat, pressure sensitivity, or difficulty lying flat, your studio team can help you decide what’s appropriate.",
+      "If you have medical conditions, are pregnant, or have any concerns, consult your clinician before use.",
+    ],
+    contraindications: [
+      "Heat sensitivity or intolerance (as applicable)",
+      "Acute illness/fever",
+      "Severe claustrophobia (depending on pod style)",
+      "Conditions where your clinician advises against heat/relaxation therapies",
+      "Pregnancy (consult your clinician)",
+    ],
+    disclaimer:
+      "This information is for educational purposes only and is not medical advice. Always consult a qualified healthcare professional regarding contraindications or medical concerns.",
+  },
+
+  testimonials: {
+    headline: "What Clients Say",
+    items: [
+      {
+        name: "Morgan L.",
+        location: "Zivel Client",
+        quote:
+          "Dry float is my weekly reset. I leave feeling calm and recovered—without getting wet.",
+      },
+      {
+        name: "Chris T.",
+        location: "Zivel Client",
+        quote:
+          "Perfect on recovery days. I stack it with red light and feel like my whole system calms down.",
+      },
+      {
+        name: "Avery S.",
+        location: "Zivel Client",
+        quote:
+          "I didn’t know I needed this until I tried it. It’s like a deep exhale for my nervous system.",
+      },
+    ],
+  },
+
+  pricingPreview: {
+    headline: "Pricing & Membership Options",
+    cards: [
+      {
+        title: "Single Session",
+        priceLine: "From $X",
+        details: [
+          "Great first experience",
+          "Perfect for stress-heavy weeks",
+          "Add-on friendly",
+        ],
+      },
+      {
+        title: "Member Rate",
+        priceLine: "Save with Membership",
+        details: [
+          "Best value per session",
+          "Designed for consistency",
+          "Stacks well with other services",
+        ],
+        cta: { label: "View Memberships", href: "/memberships" },
+      },
+      {
+        title: "Packages",
+        priceLine: "Bundle & Save",
+        details: [
+          "Multi-session savings",
+          "Use on your schedule",
+          "Ideal for monthly routines",
+        ],
+      },
+    ],
+  },
+
+  booking: {
+    headline: "Book Your Dry Float Session",
+    subheadline:
+      "Choose a time that works for you. You’ll stay dry and comfortable—no shower required.",
+    badges: ["Secure", "Fast", "No membership required"],
+    locationIdDefault: 11417,
+  },
+
+  faqs: {
+    headline: "Dry Float FAQs",
+    items: [
+      {
+        question: "Do I get wet during a dry float?",
+        answer:
+          "No. You remain completely dry. You lie on a membrane surface while warm water underneath creates the floating sensation.",
+      },
+      {
+        question: "Do I need to shower before or after?",
+        answer:
+          "Typically no, since you stay dry and fully clothed. Your studio can confirm any location-specific guidance.",
+      },
+      {
+        question: "What should I wear?",
+        answer:
+          "Wear comfortable clothing. Many clients choose athletic wear or loungewear.",
+      },
+      {
+        question: "How long is a session?",
+        answer:
+          "Session lengths vary by location and protocol. Your studio will confirm the timing during booking.",
+      },
+      {
+        question: "How often should I do dry float?",
+        answer:
+          "Many clients use it 1–2 times per week for stress support, recovery days, or sleep routines.",
+      },
+      {
+        question: "Can I stack dry float with other services?",
+        answer:
+          "Yes. Dry float pairs well with red light therapy, infrared sauna, and compression depending on goals.",
+      },
+    ],
+  },
+
+  relatedServices: {
+    headline: "Related Services",
+    slugs: ["red-light-therapy", "infrared-sauna", "compression-therapy"],
+  },
+
+  finalCTA: {
+    headline: "Ready to Feel Better?",
+    primaryCTA: { label: "Book Now", href: "#book" },
+    secondaryCTA: { label: "View Memberships", href: "/memberships" },
+  },
+};
+TS
