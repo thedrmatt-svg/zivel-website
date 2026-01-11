@@ -60,6 +60,7 @@ export default async function ServicePage({ params }: PageProps) {
         ) : null}
 
         <div className="relative section py-20">
+          <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl opacity-60 md:opacity-40" style={{ background: accentHex }} />
           <div className="max-w-3xl space-y-6">
             <h1>{service.name}</h1>
             <p className="text-lg text-white/85">{service.hero.subheadline}</p>
