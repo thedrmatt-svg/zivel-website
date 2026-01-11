@@ -1,0 +1,267 @@
+cat > src/content/services/cryo-slimming.ts <<'TS'
+import type { Service } from "@/types/service";
+
+export const cryoSlimming: Service = {
+  slug: "cryo-slimming",
+  name: "Cryo Slimming",
+  accent: { name: "teal", hex: "#14B8A6" },
+
+  seo: {
+    title: "Cryo Slimming | Non-Invasive Body Contouring | Zivel",
+    description:
+      "Cryo Slimming at Zivel is a non-invasive body contouring service designed to support fat reduction and skin tightening. Learn what to expect and book a session.",
+    canonical: "/services/cryo-slimming",
+  },
+
+  hero: {
+    subheadline:
+      "A non-invasive body contouring experience designed to support fat reduction and skin tightening goals.",
+    media: {
+      type: "image",
+      src: "/images/services/cryo-slimming/hero.jpg",
+      alt: "Cryo slimming treatment at Zivel (placeholder)",
+    },
+    primaryCTA: { label: "Book Now", href: "#book" },
+    secondaryCTA: { label: "View Locations", href: "/locations" },
+  },
+
+  intro: {
+    headline: "What is Cryo Slimming?",
+    paragraphs: [
+      "Cryo Slimming is a non-invasive body contouring service that uses controlled cold temperatures to target areas where clients are looking to reduce stubborn fat.",
+      "Sessions are comfortable and do not require downtime, making Cryo Slimming a popular option for clients seeking visible changes without surgery.",
+      "At Zivel, Cryo Slimming is often paired with lifestyle consistency and other recovery services for optimal results.",
+    ],
+    bullets: [
+      "Non-invasive and no downtime",
+      "Targets stubborn areas resistant to diet and exercise",
+      "Designed for gradual, natural-looking results",
+    ],
+    media: {
+      type: "image",
+      src: "/images/services/cryo-slimming/intro.jpg",
+      alt: "Cryo slimming body contouring equipment (placeholder)",
+    },
+  },
+
+  benefits: {
+    headline: "Key Benefits",
+    viewResearchCTA: { label: "View Research →", href: "/research/cryo-slimming" },
+    items: [
+      {
+        title: "Supports fat reduction goals",
+        description:
+          "Controlled cooling is designed to target fat cells in specific treatment areas.",
+        citations: ["cs-1"],
+      },
+      {
+        title: "Non-invasive body contouring",
+        description:
+          "No needles, no surgery, and no required downtime after sessions.",
+        citations: ["cs-2"],
+      },
+      {
+        title: "Skin tightening support",
+        description:
+          "Often paired with complementary protocols aimed at improving skin appearance.",
+        citations: ["cs-3"],
+      },
+      {
+        title: "Comfortable treatment experience",
+        description:
+          "Most clients describe sessions as tolerable and relaxing.",
+        citations: ["cs-4"],
+      },
+      {
+        title: "Targeted treatment areas",
+        description:
+          "Common areas include abdomen, thighs, arms, and flanks.",
+        citations: ["cs-5"],
+      },
+      {
+        title: "Pairs well with wellness routines",
+        description:
+          "Often combined with red light therapy, compression, or sauna sessions.",
+        citations: ["cs-6"],
+      },
+    ],
+  },
+
+  howItWorks: {
+    headline: "What to Expect",
+    steps: [
+      {
+        title: "Consultation & Setup",
+        description:
+          "Discuss goals and select treatment areas with your Zivel specialist.",
+      },
+      {
+        title: "Cryo Slimming Session",
+        description:
+          "Cooling applicators are placed on targeted areas for the session duration.",
+      },
+      {
+        title: "Post-Session",
+        description:
+          "No downtime—most clients return to normal activities immediately.",
+      },
+      {
+        title: "Recommended Series",
+        description:
+          "Best results typically come from a series of sessions over several weeks.",
+      },
+    ],
+  },
+
+  science: {
+    headline: "The Science Behind Cryo Slimming",
+    body: [
+      "Cryo-based body contouring techniques are studied for their ability to target fat cells through controlled cooling.",
+      "Zivel protocols emphasize safe temperatures, proper session spacing, and realistic expectations.",
+    ],
+    media: {
+      type: "image",
+      src: "/images/services/cryo-slimming/science.jpg",
+      alt: "Cryo slimming science visualization (placeholder)",
+    },
+    cta: { label: "Learn More in the Science Hub", href: "/science" },
+  },
+
+  safety: {
+    headline: "Is Cryo Slimming Safe?",
+    body: [
+      "Cryo Slimming is generally well tolerated when administered by trained professionals following established protocols.",
+      "Clients with certain conditions should consult their healthcare provider before treatment.",
+    ],
+    contraindications: [
+      "Cold sensitivity or cold-related conditions",
+      "Pregnancy",
+      "Active skin conditions in treatment area",
+      "Circulatory disorders",
+      "Any condition your clinician advises against cold-based therapies",
+    ],
+    disclaimer:
+      "This information is for educational purposes only and is not medical advice. Results vary by individual.",
+  },
+
+  beforeAfter: {
+    headline: "Before & After Results",
+    items: [
+      {
+        beforeSrc: "/images/services/cryo-slimming/before-1.jpg",
+        afterSrc: "/images/services/cryo-slimming/after-1.jpg",
+        alt: "Cryo slimming before and after results (placeholder)",
+      },
+      {
+        beforeSrc: "/images/services/cryo-slimming/before-2.jpg",
+        afterSrc: "/images/services/cryo-slimming/after-2.jpg",
+        alt: "Cryo slimming transformation example (placeholder)",
+      },
+    ],
+    disclaimer:
+      "Results vary by individual. Images are for illustrative purposes only.",
+  },
+
+  testimonials: {
+    headline: "What Clients Say",
+    items: [
+      {
+        name: "Emily R.",
+        location: "Zivel Client",
+        quote:
+          "I noticed changes after a few sessions. It fit easily into my routine.",
+      },
+      {
+        name: "Mark T.",
+        location: "Zivel Client",
+        quote:
+          "Non-invasive and straightforward. Great experience overall.",
+      },
+      {
+        name: "Sarah L.",
+        location: "Zivel Client",
+        quote:
+          "I liked that there was no downtime and the staff explained everything clearly.",
+      },
+    ],
+  },
+
+  pricingPreview: {
+    headline: "Pricing & Membership Options",
+    cards: [
+      {
+        title: "Single Session",
+        priceLine: "From $X",
+        details: ["One treatment area", "No commitment required"],
+      },
+      {
+        title: "Packages",
+        priceLine: "Save with Packages",
+        details: ["Multi-session savings", "Best for visible results"],
+        cta: { label: "View Packages", href: "/memberships" },
+      },
+      {
+        title: "Member Rate",
+        priceLine: "Member Pricing",
+        details: ["Best per-session value", "Priority booking"],
+        cta: { label: "View Memberships", href: "/memberships" },
+      },
+    ],
+  },
+
+  booking: {
+    headline: "Book Your Cryo Slimming Session",
+    subheadline:
+      "Choose a location and time that fits your goals and schedule.",
+    badges: ["Secure", "Fast", "No membership required"],
+    locationIdDefault: 11417,
+  },
+
+  faqs: {
+    headline: "Cryo Slimming FAQs",
+    items: [
+      {
+        question: "How many sessions will I need?",
+        answer:
+          "Most clients see optimal results after a series of sessions spaced over several weeks.",
+      },
+      {
+        question: "Is there downtime?",
+        answer:
+          "No. Most clients return to normal activities immediately.",
+      },
+      {
+        question: "Does it hurt?",
+        answer:
+          "Most clients describe the sensation as tolerable and temporary.",
+      },
+      {
+        question: "When will I see results?",
+        answer:
+          "Results develop gradually as the body processes treated fat cells.",
+      },
+      {
+        question: "Who is a good candidate?",
+        answer:
+          "Cryo Slimming is intended for clients near their ideal weight looking to target stubborn areas.",
+      },
+      {
+        question: "Can I stack this with other services?",
+        answer:
+          "Yes. Many clients pair Cryo Slimming with red light therapy or compression.",
+      },
+    ],
+  },
+
+  relatedServices: {
+    headline: "Related Services",
+    slugs: ["cryo-toning", "red-light-therapy", "compression-therapy"],
+  },
+
+  finalCTA: {
+    headline: "Ready to Feel Better?",
+    primaryCTA: { label: "Book Now", href: "#book" },
+    secondaryCTA: { label: "View Memberships", href: "/memberships" },
+  },
+};
+TS
