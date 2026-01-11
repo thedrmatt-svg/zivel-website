@@ -8,7 +8,8 @@ export type AccentName =
   | "green"
   | "purple"
   | "gold"
-  | "teal";
+  | "teal"
+  | "rose";
 
 export type Accent = {
   name: AccentName;
