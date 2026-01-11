@@ -14,10 +14,10 @@ export const services: Service[] = [
   redLightTherapy,
   infraredSauna,
   dryFloat,
+  compressionTherapy,
   cryoSlimming,
   cryoToning,
   cryoLiftFacial,
-  compressionTherapy,
 ];
 
 export function getServiceBySlug(slug: string): Service | undefined {
