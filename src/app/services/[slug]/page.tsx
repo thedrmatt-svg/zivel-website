@@ -35,6 +35,9 @@ export default async function ServicePage({ params }: PageProps) {
   const service = getServiceBySlug(slug);
   if (!service) return notFound();
 
+
+  const accentHex = service.accent?.hex ?? "#C9A24D"; // fallback gold
+
   const researchBaseHref =
     service.benefits.viewResearchCTA?.href ?? "/research";
 
