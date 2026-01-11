@@ -1,6 +1,7 @@
 export type AccentName =
   | "neutral"
   | "cryo-blue"
+  | "blue"
   | "red"
   | "amber"
   | "green"
