@@ -67,7 +67,11 @@ export default async function ServicePage({ params }: PageProps) {
             <div className="flex flex-wrap gap-3 pt-2">
               <a
                 href={service.hero.primaryCTA.href}
-                className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+                style={{
+                  backgroundColor: accentHex,
+                  boxShadow: `0 0 32px ${accentHex}66`,
+                }}
+                className="rounded-xl px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
               >
                 {service.hero.primaryCTA.label}
               </a>
