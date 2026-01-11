@@ -102,7 +102,7 @@ export default async function ServicePage({ params }: PageProps) {
               <ul className="mt-4 space-y-2 text-sm text-white/70">
                 {service.intro.bullets.map((b) => (
                   <li key={b} className="flex gap-2">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)]" />
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accentHex }} />
                     <span>{b}</span>
                   </li>
                 ))}
