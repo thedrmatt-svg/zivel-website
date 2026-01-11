@@ -158,7 +158,7 @@ export default async function ServicePage({ params }: PageProps) {
                       <a
                         key={`${c}-${cIdx}`}
                         href={`${researchBaseHref}#${c}`}
-                        className="rounded-full border border-white/15 bg-white/5 px-2 py-1 hover:text-[var(--zivel-gold)]"
+                        className="rounded-full border border-white/15 bg-white/5 px-2 py-1 hover:text-[var(--zivel-gold)]" style={{ boxShadow: `0 0 0 0 rgba(0,0,0,0)` }}
                         title={`Citation ${cIdx + 1}`}
                         aria-label={`Citation ${cIdx + 1}`}
                       >
