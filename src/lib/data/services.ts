@@ -5,6 +5,7 @@ import { redLightTherapy } from "@/content/services/red-light-therapy";
 import { infraredSauna } from "@/content/services/infrared-sauna";
 import { dryFloat } from "@/content/services/dry-float";
 import { cryoSlimming } from "@/content/services/cryo-slimming";
+import { cryoToning } from "@/content/services/cryo-toning";
 
 export const services: Service[] = [
   cryotherapy,
@@ -12,6 +13,7 @@ export const services: Service[] = [
   infraredSauna,
   dryFloat,
   cryoSlimming,
+  cryoToning,
 ];
 
 export function getServiceBySlug(slug: string): Service | undefined {
