@@ -39,16 +39,7 @@ export default async function ServicePage({ params }: PageProps) {
     service.benefits.viewResearchCTA?.href ?? "/research";
 
   return (
-    <div className="space-y-24">
-
-      {/* DEBUG MARKER (remove after confirmation) */}
-      <div className="section">
-        <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs text-emerald-200">
-          DEBUG: Rendering from <code className="text-emerald-100">src/app/services/[slug]/page.tsx</code>
-        </div>
-      </div>
-
-      {/* SECTION 1 — HERO */}
+    <div className="space-y-24">{/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden">
         {/* Background media */}
         {service.hero.media?.type === "image" ? (
