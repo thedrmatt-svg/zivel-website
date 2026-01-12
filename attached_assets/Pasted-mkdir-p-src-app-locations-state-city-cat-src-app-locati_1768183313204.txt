@@ -1,3 +1,6 @@
+mkdir -p src/app/locations/\[state\]/\[city\]
+
+cat > src/app/locations/\[state\]/\[city\]/page.tsx <<'TSX'
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BookingWidget from "@/components/booking/BookingWidget";
@@ -49,7 +52,7 @@ export default function LocationCityPage({
         <h2 className="m-0">Book at Zivel {loc.name}</h2>
         <BookingWidget locationId={loc.booking.locationId} />
         <p className="text-sm text-white/60">
-          If the form doesn't load, open booking here:{" "}
+          If the form doesn’t load, open booking here:{" "}
           <a className="underline" href={loc.booking.bookingUrl} target="_blank" rel="noreferrer">
             {loc.booking.bookingUrl}
           </a>
@@ -58,3 +61,4 @@ export default function LocationCityPage({
     </main>
   );
 }
+TSX
