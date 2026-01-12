@@ -5,18 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 import { services } from "@/lib/data/services";
+import { getLocationNav } from "@/lib/data/locationNav";
 
-
-const LOCATIONS_NAV = {
-  states: [
-    { label: "Kentucky", href: "/locations/kentucky" },
-    { label: "Georgia", href: "/locations/georgia" },
-    { label: "Texas", href: "/locations/texas" },
-  ],
-  featured: [
-    { label: "Newport, KY", href: "/locations/kentucky/newport", note: "Our Newport studio" },
-  ],
-};
+const LOCATIONS_NAV = getLocationNav({ featuredCount: 4 });
 
 
 const navLinkClass =
