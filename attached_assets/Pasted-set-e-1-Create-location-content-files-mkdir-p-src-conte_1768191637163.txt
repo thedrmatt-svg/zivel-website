@@ -1,0 +1,232 @@
+set -e
+
+# ---------- 1) Create location content files ----------
+mkdir -p src/content/locations
+
+create_loc () {
+  FILE="$1"      # e.g. coral-gables-fl
+  CITY="$2"      # e.g. Coral Gables
+  STATE="$3"     # e.g. FL
+  STATE_SLUG="$4" # e.g. florida
+
+  cat > "src/content/locations/${FILE}.ts" <<TS
+import type { Location } from "@/types/location";
+
+export const ${FILE//-/_}: Location = {
+  // Identity / routing
+  name: "${CITY}",
+  state: "${STATE}",
+  stateSlug: "${STATE_SLUG}",
+  stateName: "${STATE_SLUG^}",
+  city: "${CITY}",
+  citySlug: "${FILE%-??}",
+  cityName: "${CITY}",
+
+  // SEO
+  seo: {
+    title: "Cryotherapy, Red Light & Recovery in ${CITY}, ${STATE} | Zivel",
+    description:
+      "Zivel ${CITY} offers modern recovery and wellness services including cryotherapy, red light therapy, and more in ${CITY}, ${STATE}. Book your session today.",
+    canonical: "/locations/${STATE_SLUG}/${FILE%-??}",
+  },
+
+  // HERO
+  hero: {
+    imageSrc: "/images/locations/${FILE}/hero.jpg",
+    imageAlt: "Zivel ${CITY} studio",
+    headline: "Modern Wellness & Recovery in ${CITY}, ${STATE}",
+    subheadline:
+      "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
+  },
+
+  // ABOUT
+  about: {
+    headline: "Your Local Recovery Studio in ${CITY}",
+    paragraphs: [
+      "Zivel ${CITY} brings modern wellness technology and recovery services to the ${CITY} community.",
+      "Replace this copy with local details (nearby neighborhoods, landmarks, and who we serve) for maximum GEO performance.",
+    ],
+    imageSrc: "/images/locations/${FILE}/interior.jpg",
+    imageAlt: "Inside Zivel ${CITY}",
+  },
+
+  // SERVICES AVAILABLE (local)
+  services: {
+    headline: "Services Available at This Location",
+    items: [
+      { slug: "cryotherapy", title: "Cryotherapy", description: "Cold exposure for recovery and resilience." },
+      { slug: "red-light-therapy", title: "Red Light Therapy", description: "Light-based support for recovery and skin health." },
+      { slug: "infrared-sauna", title: "Infrared Sauna", description: "Heat-based relaxation and recovery support." },
+      { slug: "dry-float", title: "Dry Float", description: "Deep relaxation without getting wet." },
+      { slug: "compression-therapy", title: "Compression Therapy", description: "Circulation support and recovery." },
+      { slug: "cryo-slimming", title: "Cryo Slimming", description: "Non-invasive body contouring support." },
+      { slug: "cryo-toning", title: "Cryo Toning", description: "Targeted cooling for toning goals." },
+      { slug: "cryo-lift-facial", title: "CryoLift Facial", description: "Cooling facial experience for glow and refresh." },
+    ],
+  },
+
+  // OWNERS
+  owners: {
+    headline: "Locally Owned & Operated",
+    items: [
+      {
+        name: "Owner Name (Placeholder)",
+        title: "Owner, Zivel ${CITY}",
+        bio:
+          "Add a short owner bio here (local connection + mission + credibility). Keep it human and specific to ${CITY}.",
+      },
+    ],
+  },
+
+  // PARTNERS
+  partners: {
+    headline: "Local Partners",
+    items: [
+      {
+        name: "Partner Name (Placeholder)",
+        type: "Fitness / Wellness",
+        description: "Add a one-line description of the partnership and who it helps locally.",
+      },
+      {
+        name: "Partner Name (Placeholder)",
+        type: "Healthcare / Recovery",
+        description: "Add a one-line description of the partnership and who it helps locally.",
+      },
+    ],
+  },
+
+  // BOOKING (placeholder until you provide set_location IDs)
+  booking: {
+    headline: "Book Your Session at Zivel ${CITY}",
+    subheadline: "Choose a service and time that fits your schedule.",
+    locationId: 11417,
+  },
+
+  // FAQS
+  faqs: {
+    headline: "Frequently Asked Questions",
+    items: [
+      {
+        question: "Do I need a membership to book?",
+        answer: "No. You can book a single session or explore memberships for better value.",
+      },
+      {
+        question: "What should I wear?",
+        answer: "Wear comfortable clothing. Your team will guide you based on the service you choose.",
+      },
+      {
+        question: "How soon will I feel results?",
+        answer: "Many people feel benefits quickly, but consistency and a personalized plan matter most.",
+      },
+    ],
+  },
+
+  // FINAL CTA
+  finalCTA: {
+    headline: "Ready to feel better?",
+  },
+};
+
+export default ${FILE//-/_};
+TS
+}
+
+# Florida
+create_loc "coral-gables-fl" "Coral Gables" "FL" "florida"
+create_loc "palm-coast-fl" "Palm Coast" "FL" "florida"
+
+# Georgia (neighborhoods)
+create_loc "buckhead-ga" "Buckhead" "GA" "georgia"
+create_loc "windermere-ga" "Windermere" "GA" "georgia"
+
+# Tennessee
+create_loc "murfreesboro-tn" "Murfreesboro" "TN" "tennessee"
+create_loc "cool-springs-tn" "Cool Springs" "TN" "tennessee"
+
+# Ohio
+create_loc "brecksville-oh" "Brecksville" "OH" "ohio"
+
+# Louisiana
+create_loc "metairie-la" "Metairie" "LA" "louisiana"
+
+# Mississippi (as provided)
+create_loc "fieldhouse-ms" "Fieldhouse" "MS" "mississippi"
+
+# Arkansas
+create_loc "bentonville-ar" "Bentonville" "AR" "arkansas"
+create_loc "rogers-ar" "Rogers" "AR" "arkansas"
+create_loc "fayetteville-ar" "Fayetteville" "AR" "arkansas"
+
+# Colorado
+create_loc "parker-co" "Parker" "CO" "colorado"
+create_loc "highlands-ranch-co" "Highlands Ranch" "CO" "colorado"
+create_loc "briargate-co" "Briargate" "CO" "colorado"
+
+echo "✅ Created 15 new location content files."
+
+# ---------- 2) Rebuild the locations registry ----------
+cat > src/lib/data/locations.ts <<'TS'
+import type { Location } from "@/types/location";
+
+import newportKy from "@/content/locations/newport-ky";
+import hollywoodFl from "@/content/locations/hollywood-fl";
+import rivertonUt from "@/content/locations/riverton-ut";
+
+import coralGablesFl from "@/content/locations/coral-gables-fl";
+import palmCoastFl from "@/content/locations/palm-coast-fl";
+
+import buckheadGa from "@/content/locations/buckhead-ga";
+import windermereGa from "@/content/locations/windermere-ga";
+
+import murfreesboroTn from "@/content/locations/murfreesboro-tn";
+import coolSpringsTn from "@/content/locations/cool-springs-tn";
+
+import brecksvilleOh from "@/content/locations/brecksville-oh";
+import metairieLa from "@/content/locations/metairie-la";
+
+import fieldhouseMs from "@/content/locations/fieldhouse-ms";
+
+import bentonvilleAr from "@/content/locations/bentonville-ar";
+import rogersAr from "@/content/locations/rogers-ar";
+import fayettevilleAr from "@/content/locations/fayetteville-ar";
+
+import parkerCo from "@/content/locations/parker-co";
+import highlandsRanchCo from "@/content/locations/highlands-ranch-co";
+import briargateCo from "@/content/locations/briargate-co";
+
+export const locations: Location[] = [
+  // Existing (keep first if you want them featured by default order)
+  newportKy,
+  hollywoodFl,
+  rivertonUt,
+
+  // New additions
+  coralGablesFl,
+  palmCoastFl,
+  buckheadGa,
+  windermereGa,
+  murfreesboroTn,
+  coolSpringsTn,
+  brecksvilleOh,
+  metairieLa,
+  fieldhouseMs,
+  bentonvilleAr,
+  rogersAr,
+  fayettevilleAr,
+  parkerCo,
+  highlandsRanchCo,
+  briargateCo,
+];
+
+export function getLocationByPath(state: string, city: string): Location | undefined {
+  const s = state.toLowerCase();
+  const c = city.toLowerCase();
+  return locations.find((l) => l.stateSlug === s && l.citySlug === c);
+}
+TS
+
+echo "✅ Updated src/lib/data/locations.ts registry."
+
+# ---------- 3) Build check ----------
+npm run build
+echo "✅ Build passed."
