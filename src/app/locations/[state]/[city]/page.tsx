@@ -40,8 +40,32 @@ export default async function LocationPage({
   const location = getLocationByPath(state, city);
   if (!location) return notFound();
 
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zivel.com";
+  const canonicalPath = location.seo?.canonical ?? `/locations/${location.stateSlug}/${location.citySlug}`;
+  const canonicalUrl = canonicalPath.startsWith("http") ? canonicalPath : `${SITE_URL}${canonicalPath}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: location.name,
+    description: location.seo.description,
+    url: canonicalUrl,
+    image: location.hero.image.startsWith("http") ? location.hero.image : `${SITE_URL}${location.hero.image}`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: location.city,
+      addressRegion: location.state,
+      addressCountry: "US",
+    },
+  };
+
   return (
-    <div className="space-y-24">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="space-y-24">
 
       {/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden">
@@ -168,5 +192,6 @@ export default async function LocationPage({
       </section>
 
     </div>
+    </>
   );
 }
