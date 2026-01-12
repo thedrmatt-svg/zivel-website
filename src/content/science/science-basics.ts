@@ -1,21 +1,21 @@
 import type { ScienceArticle } from "@/types/science";
 
-const scienceBasics: ScienceArticle = {
+const article: ScienceArticle = {
   slug: "science-basics",
-  title: "The Science Behind Modern Wellness",
-  description: "An introduction to the scientific principles that power recovery and wellness therapies.",
+  title: "How Recovery Science Works",
+  description: "A clear primer on recovery, adaptation, and consistency—built for real people, not academics.",
   category: "Science Basics",
-  publishedDate: "2024-01-15",
-  readingTimeMinutes: 5,
+  publishedDate: "2026-01-11",
+  readingTimeMinutes: 6,
+  heroImage: { src: "/images/science/science-basics.jpg", alt: "Recovery science overview" },
   body: [
-    { type: "p", content: "Modern wellness therapies are grounded in decades of scientific research. From cryotherapy to red light therapy, each modality works through specific biological mechanisms that support recovery, performance, and longevity." },
-    { type: "h2", content: "How Your Body Responds to Stress" },
-    { type: "p", content: "Controlled stress—like cold exposure or heat therapy—triggers adaptive responses in your body. This concept, known as hormesis, explains why brief, controlled stressors can strengthen your systems over time." },
-    { type: "h2", content: "Key Principles" },
-    { type: "ul", content: ["Hormesis: beneficial stress adaptation", "Photobiomodulation: light-based cellular support", "Thermoregulation: temperature-based recovery", "Mechanotransduction: pressure and movement signals"] },
-    { type: "p", content: "Understanding these principles helps you make informed decisions about which therapies may support your wellness goals." },
+    { type: "p", content: "This is a placeholder article that will be expanded. The goal is to explain recovery in plain language and build topical authority for Zivel." },
+    { type: "h2", content: "Adaptation, stress, and repair" },
+    { type: "p", content: "Explain the stimulus → recovery → adaptation loop and why consistency matters." },
+    { type: "h2", content: "How Zivel services fit in" },
+    { type: "ul", content: ["Cryotherapy: stress modulation + recovery support", "Red light therapy: cellular signaling support", "Infrared sauna: relaxation + heat adaptation support", "Dry float: nervous system downshift"] },
   ],
   relatedSlugs: ["cold-exposure", "red-light-mechanisms"],
 };
 
-export default scienceBasics;
+export default article;
