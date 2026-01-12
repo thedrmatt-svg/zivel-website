@@ -4,7 +4,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
-import { getLocationByPath } from "@/lib/data/locations";
+import { getLocationByPath, locations } from "@/lib/data/locations";
+
+export function generateStaticParams() {
+  return locations.map((loc) => ({
+    state: loc.stateSlug,
+    city: loc.citySlug,
+  }));
+}
 
 export function generateMetadata({
   params,
