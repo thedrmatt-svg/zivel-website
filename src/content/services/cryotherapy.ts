@@ -12,7 +12,7 @@ export const cryotherapy: Service = {
   hero: {
     media: {
       type: "image",
-      src: "/images/services/cryotherapy/hero.jpg",
+      src: "/images/services/cryotherapy/hero.svg",
       alt: "Cryotherapy session at Zivel",
     },
     subheadline:
@@ -42,7 +42,7 @@ export const cryotherapy: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryotherapy/intro.jpg",
+      src: "/images/services/cryotherapy/intro.svg",
       alt: "Client preparing for cryotherapy at Zivel",
     },
   },
@@ -130,7 +130,7 @@ export const cryotherapy: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryotherapy/science-diagram.jpg",
+      src: "/images/services/cryotherapy/science.svg",
       alt: "Illustration representing cold exposure physiology",
     },
     cta: {

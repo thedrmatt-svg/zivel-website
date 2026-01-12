@@ -22,7 +22,7 @@ export const redLightTherapy: Service = {
     secondaryCTA: { label: "View Locations", href: "/locations" },
     media: {
       type: "image",
-      src: "/images/services/red-light-therapy/hero.jpg",
+      src: "/images/services/red-light-therapy/hero.svg",
       alt: "Client receiving red light therapy at Zivel",
     },
   },
@@ -41,7 +41,7 @@ export const redLightTherapy: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/red-light-therapy/intro.jpg",
+      src: "/images/services/red-light-therapy/intro.svg",
       alt: "Red light therapy equipment in a Zivel studio",
     },
   },
@@ -125,7 +125,7 @@ export const redLightTherapy: Service = {
     cta: { label: "Learn More in the Science Hub", href: "/science" },
     media: {
       type: "image",
-      src: "/images/services/red-light-therapy/science.jpg",
+      src: "/images/services/red-light-therapy/science.svg",
       alt: "Diagram-style visual representing photobiomodulation",
     },
   },

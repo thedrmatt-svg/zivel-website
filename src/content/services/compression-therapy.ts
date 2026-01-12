@@ -17,7 +17,7 @@ export const compressionTherapy: Service = {
       "A recovery-focused session using rhythmic pneumatic compression to support circulation and post-workout recovery routines.",
     media: {
       type: "image",
-      src: "/images/services/compression-therapy/hero.jpg",
+      src: "/images/services/compression-therapy/hero.svg",
       alt: "Compression therapy session at Zivel (placeholder)",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
@@ -38,7 +38,7 @@ export const compressionTherapy: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/compression-therapy/intro.jpg",
+      src: "/images/services/compression-therapy/intro.svg",
       alt: "Compression boots in a recovery lounge (placeholder)",
     },
   },
@@ -120,7 +120,7 @@ export const compressionTherapy: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/compression-therapy/science.jpg",
+      src: "/images/services/compression-therapy/science.svg",
       alt: "Compression and circulation concept visual (placeholder)",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },

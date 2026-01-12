@@ -17,7 +17,7 @@ export const cryoSlimming: Service = {
       "A non-invasive body contouring experience designed to support fat reduction and skin tightening goals.",
     media: {
       type: "image",
-      src: "/images/services/cryo-slimming/hero.jpg",
+      src: "/images/services/cryo-slimming/hero.svg",
       alt: "Cryo slimming treatment at Zivel (placeholder)",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
@@ -38,7 +38,7 @@ export const cryoSlimming: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryo-slimming/intro.jpg",
+      src: "/images/services/cryo-slimming/intro.svg",
       alt: "Cryo slimming body contouring equipment (placeholder)",
     },
   },
@@ -120,7 +120,7 @@ export const cryoSlimming: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryo-slimming/science.jpg",
+      src: "/images/services/cryo-slimming/science.svg",
       alt: "Cryo slimming science visualization (placeholder)",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },

@@ -17,7 +17,7 @@ export const infraredSauna: Service = {
       "Infrared heat that helps you relax, recover, and feel lighter—without the intense heat of traditional saunas.",
     media: {
       type: "image",
-      src: "/images/services/infrared-sauna/hero.jpg",
+      src: "/images/services/infrared-sauna/hero.svg",
       alt: "Infrared sauna room at Zivel (placeholder)",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
@@ -37,7 +37,7 @@ export const infraredSauna: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/infrared-sauna/intro.jpg",
+      src: "/images/services/infrared-sauna/intro.svg",
       alt: "Infrared sauna session (placeholder)",
     },
   },
@@ -73,7 +73,7 @@ export const infraredSauna: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/infrared-sauna/science.jpg",
+      src: "/images/services/infrared-sauna/science.svg",
       alt: "Infrared heat concept illustration (placeholder)",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },

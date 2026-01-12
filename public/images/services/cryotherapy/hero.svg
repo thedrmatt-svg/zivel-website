@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1200" viewBox="0 0 2400 1200">
+  <defs>
+    <radialGradient id="g" cx="70%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.45"/>
+      <stop offset="55%" stop-color="#3B82F6" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000" stop-opacity="0.92"/>
+      <stop offset="55%" stop-color="#000" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="2400" height="1200" fill="#000"/>
+  <rect width="2400" height="1200" fill="url(#g)"/>
+  <rect width="2400" height="1200" fill="url(#fade)"/>
+  <g opacity="0.18" stroke="#3B82F6" stroke-width="2">
+    <path d="M0 940 C 420 800, 720 1120, 1200 980 C 1680 840, 1980 1040, 2400 920" fill="none"/>
+    <path d="M0 1010 C 520 860, 760 1180, 1200 1040 C 1640 900, 1980 1120, 2400 980" fill="none"/>
+  </g>
+  <text x="140" y="520" fill="#ffffff" font-family="system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="92" font-weight="700" letter-spacing="2">Cryotherapy</text>
+  <text x="140" y="610" fill="#d4d4d8" font-family="system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="34" font-weight="500">Placeholder image • Replace with your photography</text>
+  <text x="140" y="670" fill="#3B82F6" font-family="system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="22" font-weight="600">cryotherapy/hero.svg</text>
+</svg>

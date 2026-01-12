@@ -17,7 +17,7 @@ export const cryoToning: Service = {
       "A non-invasive toning experience designed to support firmer-looking skin and improved muscle definition goals.",
     media: {
       type: "image",
-      src: "/images/services/cryo-toning/hero.jpg",
+      src: "/images/services/cryo-toning/hero.svg",
       alt: "Cryo toning treatment at Zivel (placeholder)",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
@@ -38,7 +38,7 @@ export const cryoToning: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryo-toning/intro.jpg",
+      src: "/images/services/cryo-toning/intro.svg",
       alt: "Cryo toning device and session (placeholder)",
     },
   },
@@ -120,7 +120,7 @@ export const cryoToning: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryo-toning/science.jpg",
+      src: "/images/services/cryo-toning/science.svg",
       alt: "Cryo toning science concept visual (placeholder)",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },

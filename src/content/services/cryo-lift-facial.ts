@@ -17,7 +17,7 @@ export const cryoLiftFacial: Service = {
       "A cold-based facial experience designed to support firmer-looking skin, reduced puffiness, and a refreshed glow.",
     media: {
       type: "image",
-      src: "/images/services/cryo-lift-facial/hero.jpg",
+      src: "/images/services/cryo-lift-facial/hero.svg",
       alt: "CryoLift facial session at Zivel (placeholder)",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
@@ -38,7 +38,7 @@ export const cryoLiftFacial: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryo-lift-facial/intro.jpg",
+      src: "/images/services/cryo-lift-facial/intro.svg",
       alt: "Cryo facial tools and treatment room (placeholder)",
     },
   },
@@ -120,7 +120,7 @@ export const cryoLiftFacial: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryo-lift-facial/science.jpg",
+      src: "/images/services/cryo-lift-facial/science.svg",
       alt: "Skin and circulation concept visual (placeholder)",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },
