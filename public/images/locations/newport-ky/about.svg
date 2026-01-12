@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
+  <rect fill="#0a0a0a" width="600" height="450"/>
+  <circle cx="300" cy="225" r="120" fill="#C9A24D" opacity="0.12"/>
+  <circle cx="300" cy="225" r="80" fill="#C9A24D" opacity="0.08"/>
+  <text x="300" y="215" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="white" opacity="0.9">Studio Interior</text>
+  <text x="300" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="white" opacity="0.5">About Image Placeholder</text>
+</svg>

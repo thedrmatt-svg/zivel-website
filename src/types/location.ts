@@ -15,49 +15,42 @@ export type Location = {
   hero: {
     headline: string;
     subheadline: string;
-    primaryCTA: { label: string; href: string };
-    secondaryCTA?: { label: string; href: string };
+    image: string;
   };
 
-  overview: {
+  about: {
     headline: string;
     body: string[];
+    image: string;
   };
 
   services: {
-    headline: string;
-    slugs: string[];
-  };
-
-  owner?: {
-    headline: string;
+    slug: string;
     name: string;
-    bio: string[];
-    photo?: string;
-  };
+    description: string;
+  }[];
 
-  partners?: {
-    headline: string;
-    items: {
-      name: string;
-      description: string;
-    }[];
-  };
+  owners: {
+    name: string;
+    bio: string;
+  }[];
 
-  directions: {
-    address: string;
-    parking?: string;
-    mapEmbedUrl?: string;
-  };
+  partners: {
+    name: string;
+    type: string;
+  }[];
 
   booking: {
-    headline?: string;
     locationId: number;
   };
 
-  nearbyLocations?: {
+  faqs: {
+    q: string;
+    a: string;
+  }[];
+
+  finalCTA: {
     headline: string;
-    slugs: string[];
   };
 };
 

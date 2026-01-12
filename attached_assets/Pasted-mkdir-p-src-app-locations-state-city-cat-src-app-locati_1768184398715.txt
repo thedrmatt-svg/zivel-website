@@ -1,3 +1,6 @@
+mkdir -p src/app/locations/[state]/[city]
+
+cat > src/app/locations/[state]/[city]/page.tsx <<'TSX'
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -161,3 +164,4 @@ export default function LocationPage({
     </div>
   );
 }
+TSX
