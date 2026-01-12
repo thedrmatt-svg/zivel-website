@@ -1,4 +1,5 @@
 import { locations } from "@/lib/data/locations";
+import type { Location } from "@/types/location";
 
 export type LocationNavState = { label: string; href: string };
 export type LocationNavFeatured = { label: string; href: string; note?: string };
@@ -15,14 +16,11 @@ export function getLocationNav(options?: { featuredCount?: number }) {
 
   // states
   const stateMap = new Map<string, { label: string; href: string }>();
-  for (const loc of locations as any[]) {
-    const stateSlug = String(loc.stateSlug ?? "").toLowerCase();
+  for (const loc of locations) {
+    const stateSlug = loc.stateSlug.toLowerCase();
     if (!stateSlug) continue;
 
-    const label =
-      (loc.stateName as string | undefined) ??
-      titleCase(stateSlug);
-
+    const label = titleCase(stateSlug);
     stateMap.set(stateSlug, { label, href: `/locations/${stateSlug}` });
   }
 
@@ -31,21 +29,13 @@ export function getLocationNav(options?: { featuredCount?: number }) {
   );
 
   // featured: first N locations in registry order
-  const featured = (locations as any[])
+  const featured = locations
     .slice(0, featuredCount)
-    .map((loc) => {
-      const stateSlug = String(loc.stateSlug ?? "").toLowerCase();
-      const citySlug = String(loc.citySlug ?? "").toLowerCase();
-
-      const stateShort =
-        (loc.state as string | undefined) ??
-        (stateSlug.length <= 2 ? stateSlug.toUpperCase() : undefined) ??
-        "";
-
-      const cityName =
-        (loc.city as string | undefined) ??
-        (loc.cityName as string | undefined) ??
-        titleCase(citySlug);
+    .map((loc: Location) => {
+      const stateSlug = loc.stateSlug.toLowerCase();
+      const citySlug = loc.citySlug.toLowerCase();
+      const stateShort = loc.state;
+      const cityName = loc.city;
 
       return {
         label: `${cityName}${stateShort ? `, ${stateShort}` : ""}`,
