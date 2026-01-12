@@ -35,6 +35,8 @@ export type LocationServiceCard = {
 
 export type LocationPage = {
   slug: string;
+  stateSlug: string; // e.g. "ky"
+  citySlug: string; // e.g. "newport"
   name: string; // e.g. "Newport"
   city: string;
   state: string;
