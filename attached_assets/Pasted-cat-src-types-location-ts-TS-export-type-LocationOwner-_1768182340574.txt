@@ -1,0 +1,171 @@
+cat > src/types/location.ts <<'TS'
+export type LocationOwner = {
+  name: string;
+  title?: string; // e.g. "Owner", "Co-Owner"
+  photo: { src: string; alt: string };
+  bio: string[]; // 2–5 short paragraphs
+  credentials?: string[]; // bullets
+  favorites?: { label: string; href: string }[]; // optional links to services/pathways
+};
+
+export type LocationPartner = {
+  name: string;
+  category: string; // Gym / PT / Sports / Clinic / Wellness / etc.
+  logo?: { src: string; alt: string };
+  description: string; // 1–2 sentences
+  website?: { href: string; label?: string };
+  perk?: string; // optional
+};
+
+export type LocationFAQ = {
+  question: string;
+  answer: string;
+};
+
+export type LocationReview = {
+  name: string; // first name + last initial
+  locationLabel?: string; // e.g. "Zivel Newport"
+  quote: string;
+};
+
+export type LocationServiceCard = {
+  slug: string; // must match a service slug
+  labelOverride?: string;
+  descriptionOverride?: string;
+};
+
+export type LocationPage = {
+  slug: string;
+  name: string; // e.g. "Newport"
+  city: string;
+  state: string;
+  address: {
+    line1: string;
+    line2?: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    country?: string;
+  };
+  geo?: {
+    lat: number;
+    lng: number;
+  };
+
+  phone: string; // display format
+  phoneHref: string; // tel:+1...
+  booking: {
+    locationId: number; // PerformanceIQ / ClubReady location id
+    bookingUrl?: string; // fallback link
+  };
+
+  hours: {
+    label: string; // "Mon–Fri"
+    value: string; // "7am–7pm"
+  }[];
+
+  hero: {
+    headline: string; // H1
+    subheadline: string;
+    media: { src: string; alt: string };
+    primaryCTA: { label: string; href: string }; // usually "#book"
+    secondaryCTAs: { label: string; href: string }[]; // call/directions
+    trustBadges?: string[];
+  };
+
+  stickyCTA?: {
+    enabled: boolean;
+    items: { label: string; href: string }[]; // Book/Call/Directions/Services
+  };
+
+  about: {
+    headline: string;
+    paragraphs: string[];
+    bullets?: string[];
+  };
+
+  servicesAtLocation: {
+    headline: string;
+    items: LocationServiceCard[];
+  };
+
+  mostBooked?: {
+    headline: string;
+    cards: {
+      title: string;
+      description: string;
+      duration?: string;
+      cta: { label: string; href: string };
+    }[];
+  };
+
+  pricingPreview?: {
+    headline: string;
+    cards: {
+      title: string;
+      priceLine: string;
+      details: string[];
+      cta?: { label: string; href: string };
+    }[];
+    disclaimer?: string;
+  };
+
+  reviews?: {
+    headline: string;
+    items: LocationReview[];
+    cta?: { label: string; href: string };
+  };
+
+  owners?: {
+    headline: string;
+    owners: LocationOwner[];
+    cta?: { label: string; href: string };
+  };
+
+  partners?: {
+    headline: string;
+    intro: string;
+    partners: LocationPartner[];
+  };
+
+  faqs?: {
+    headline: string;
+    items: LocationFAQ[];
+  };
+
+  map?: {
+    headline: string;
+    parkingNotes?: string[];
+    nearbyLandmarks?: string[];
+  };
+
+  serviceArea?: {
+    headline: string;
+    paragraphs: string[];
+    nearbyAreas?: string[];
+    cta?: { label: string; href: string };
+  };
+
+  relatedContent?: {
+    headline: string;
+    cards: { title: string; description: string; href: string }[];
+  };
+
+  finalCTA?: {
+    headline: string;
+    primaryCTA: { label: string; href: string };
+    secondaryCTA: { label: string; href: string };
+  };
+
+  seo: {
+    title: string;
+    description: string;
+    canonical?: string;
+  };
+
+  accent?: {
+    name: string; // e.g. "gold"
+    hex: string;  // e.g. "#D4AF37"
+  };
+};
+TS
