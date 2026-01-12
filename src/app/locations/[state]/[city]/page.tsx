@@ -39,19 +39,25 @@ export default function LocationCityPage({
       <section className="rounded-2xl border-subtle bg-card p-6 space-y-3">
         <div className="text-sm font-semibold text-white">Address</div>
         <div className="text-white/70 text-sm">
-          {loc.address.line1}{loc.address.line2 ? `, ${loc.address.line2}` : ""}
-          <br />
-          {loc.address.city}, {loc.address.state} {loc.address.postalCode}
+          {loc.directions.address}
         </div>
+        {loc.directions.parking && (
+          <div className="text-white/50 text-sm">{loc.directions.parking}</div>
+        )}
       </section>
 
       <section id="book" className="rounded-2xl border-subtle bg-card p-6 space-y-4">
-        <h2 className="m-0">Book at Zivel {loc.name}</h2>
+        <h2 className="m-0">{loc.booking.headline ?? `Book at ${loc.name}`}</h2>
         <BookingWidget locationId={loc.booking.locationId} />
         <p className="text-sm text-white/60">
           If the form doesn't load, open booking here:{" "}
-          <a className="underline" href={loc.booking.bookingUrl} target="_blank" rel="noreferrer">
-            {loc.booking.bookingUrl}
+          <a
+            className="underline"
+            href={`https://zivel.myperformanceiq.com/book-appointment?set_location=${loc.booking.locationId}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open Booking
           </a>
         </p>
       </section>

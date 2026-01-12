@@ -1,3 +1,66 @@
+export type Location = {
+  name: string;
+  slug: string;
+  state: string;
+  stateSlug: string;
+  city: string;
+  citySlug: string;
+
+  seo: {
+    title: string;
+    description: string;
+    canonical?: string;
+  };
+
+  hero: {
+    headline: string;
+    subheadline: string;
+    primaryCTA: { label: string; href: string };
+    secondaryCTA?: { label: string; href: string };
+  };
+
+  overview: {
+    headline: string;
+    body: string[];
+  };
+
+  services: {
+    headline: string;
+    slugs: string[];
+  };
+
+  owner?: {
+    headline: string;
+    name: string;
+    bio: string[];
+    photo?: string;
+  };
+
+  partners?: {
+    headline: string;
+    items: {
+      name: string;
+      description: string;
+    }[];
+  };
+
+  directions: {
+    address: string;
+    parking?: string;
+    mapEmbedUrl?: string;
+  };
+
+  booking: {
+    headline?: string;
+    locationId: number;
+  };
+
+  nearbyLocations?: {
+    headline: string;
+    slugs: string[];
+  };
+};
+
 export type LocationOwner = {
   name: string;
   title?: string; // e.g. "Owner", "Co-Owner"
