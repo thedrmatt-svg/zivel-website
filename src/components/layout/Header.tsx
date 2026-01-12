@@ -6,6 +6,19 @@ import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 import { services } from "@/lib/data/services";
 
+
+const LOCATIONS_NAV = {
+  states: [
+    { label: "Kentucky", href: "/locations/kentucky" },
+    { label: "Georgia", href: "/locations/georgia" },
+    { label: "Texas", href: "/locations/texas" },
+  ],
+  featured: [
+    { label: "Newport, KY", href: "/locations/kentucky/newport", note: "Our Newport studio" },
+  ],
+};
+
+
 const navLinkClass =
   "text-sm font-medium text-white/80 hover:text-white transition-colors";
 
@@ -13,6 +26,7 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
 
   const serviceLinks = useMemo(
     () =>
@@ -87,9 +101,62 @@ export default function Header() {
               </div>
             </div>
 
-            <Link href="/locations" className={navLinkClass}>
-              Locations
-            </Link>
+            {/* Locations dropdown (desktop hover) */}
+            <div className="relative group">
+              <Link
+                href="/locations"
+                className={`${navLinkClass} inline-flex items-center gap-1 ${
+                  isActive("/locations") ? "text-white" : ""
+                }`}
+              >
+                Locations
+                <span className="text-white/50 text-xs">▾</span>
+              </Link>
+
+              <div className="invisible absolute left-0 top-full pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
+                <div className="w-[420px] rounded-2xl border border-white/10 bg-black/95 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <div className="text-xs font-semibold text-white/60 uppercase tracking-wider">Browse by State</div>
+                      <div className="mt-3 space-y-1">
+                        {LOCATIONS_NAV.states.map((s) => (
+                          <Link
+                            key={s.href}
+                            href={s.href}
+                            className="block rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white"
+                          >
+                            {s.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-white/60 uppercase tracking-wider">Featured</div>
+                      <div className="mt-3 space-y-1">
+                        {LOCATIONS_NAV.featured.map((c) => (
+                          <Link
+                            key={c.href}
+                            href={c.href}
+                            className="block rounded-xl px-3 py-2 hover:bg-white/5"
+                          >
+                            <div className="text-sm text-white/90">{c.label}</div>
+                            {c.note && <div className="text-xs text-white/55">{c.note}</div>}
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="mt-3">
+                        <Link
+                          href="/locations"
+                          className="inline-flex rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/80 hover:bg-white/10 hover:text-white"
+                        >
+                          View all locations →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <Link href="/pathways" className={navLinkClass}>
               Pathways
             </Link>
@@ -168,13 +235,51 @@ export default function Header() {
                 </div>
               ) : null}
 
-              <Link
-                href="/locations"
-                className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
-                onClick={() => setMobileOpen(false)}
+              {/* Locations accordion (mobile) */}
+              <button
+                className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
+                onClick={() => setMobileLocationsOpen((v) => !v)}
+                aria-label="Toggle locations"
               >
-                Locations
-              </Link>
+                <span>Locations</span>
+                <span className="text-white/60">
+                  {mobileLocationsOpen ? "—" : "+"}
+                </span>
+              </button>
+
+              {mobileLocationsOpen && (
+                <div className="space-y-1 px-2 pb-2">
+                  <Link
+                    href="/locations"
+                    className="block rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/5"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Browse All Locations →
+                  </Link>
+                  <div className="px-3 pt-2 text-xs font-semibold text-white/50 uppercase tracking-wider">States</div>
+                  {LOCATIONS_NAV.states.map((s) => (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      className="block rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/5"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {s.label}
+                    </Link>
+                  ))}
+                  <div className="px-3 pt-3 text-xs font-semibold text-white/50 uppercase tracking-wider">Featured</div>
+                  {LOCATIONS_NAV.featured.map((c) => (
+                    <Link
+                      key={c.href}
+                      href={c.href}
+                      className="block rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/5"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {c.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
               <Link
                 href="/pathways"
                 className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
