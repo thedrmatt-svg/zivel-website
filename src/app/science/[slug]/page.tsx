@@ -1,0 +1,63 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { getScienceBySlug, scienceArticles } from "@/lib/data/science";
+
+export function generateStaticParams() {
+  return scienceArticles.map((a) => ({ slug: a.slug }));
+}
+
+type Props = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const a = getScienceBySlug(slug);
+  if (!a) return {};
+  return { title: `${a.title} | Zivel`, description: a.description, alternates: { canonical: `/science/${a.slug}` } };
+}
+
+export default async function ScienceArticlePage({ params }: Props) {
+  const { slug } = await params;
+  const a = getScienceBySlug(slug);
+  if (!a) return notFound();
+
+  return (
+    <div className="section space-y-10">
+      <div className="space-y-3 max-w-3xl">
+        <div className="text-xs text-white/50">{a.category}</div>
+        <h1>{a.title}</h1>
+        <p className="text-white/70">{a.description}</p>
+        <div className="text-xs text-white/50">
+          Published {a.publishedDate}{a.readingTimeMinutes ? ` • ${a.readingTimeMinutes} min read` : ""}
+        </div>
+      </div>
+
+      <article className="max-w-3xl space-y-6">
+        {a.body.map((b, i) => {
+          if (b.type === "h2") return <h2 key={i} className="text-xl">{String(b.content)}</h2>;
+          if (b.type === "ul") {
+            return (
+              <ul key={i} className="list-disc pl-6 text-white/70 space-y-2">
+                {(b.content as string[]).map((li, idx) => <li key={idx}>{li}</li>)}
+              </ul>
+            );
+          }
+          return <p key={i} className="text-white/70">{String(b.content)}</p>;
+        })}
+      </article>
+
+      {a.relatedSlugs?.length ? (
+        <section className="max-w-3xl space-y-3 pt-6 border-t border-white/10">
+          <h2 className="text-lg">Related</h2>
+          <div className="flex flex-wrap gap-3">
+            {a.relatedSlugs.map((s) => (
+              <Link key={s} href={`/science/${s}`} className="text-sm text-white/70 hover:text-[var(--zivel-gold)]">
+                {s.replaceAll("-", " ")}
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
+    </div>
+  );
+}
