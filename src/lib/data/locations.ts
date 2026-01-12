@@ -1,8 +1,8 @@
 import type { Location } from "@/types/location";
-import { newportKY } from "@/content/locations/newport-ky";
+import { newportKY as newportKy } from "@/content/locations/newport-ky";
 
 export const locations: Location[] = [
-  newportKY,
+  newportKy,
 ];
 
 export function getLocationByPath(state: string, city: string): Location | undefined {
