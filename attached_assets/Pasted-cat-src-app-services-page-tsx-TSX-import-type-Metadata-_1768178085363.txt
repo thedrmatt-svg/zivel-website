@@ -1,3 +1,4 @@
+cat > src/app/services/page.tsx <<'TSX'
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import { services } from "@/lib/data/services";
 export const metadata: Metadata = {
   title: "Services | Zivel",
   description:
-    "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
+    "Explore Zivel’s science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
   alternates: { canonical: "/services" },
 };
 
@@ -28,7 +29,7 @@ export default function ServicesIndexPage() {
         <div className="max-w-3xl space-y-4">
           <h1>Services</h1>
           <p className="text-white/70">
-            Explore Zivel's modern wellness and recovery technologies. Each
+            Explore Zivel’s modern wellness and recovery technologies. Each
             service is designed to help you feel better—faster—with science-backed
             protocols and an elevated studio experience.
           </p>
@@ -148,3 +149,4 @@ export default function ServicesIndexPage() {
     </div>
   );
 }
+TSX
