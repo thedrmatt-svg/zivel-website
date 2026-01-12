@@ -110,12 +110,12 @@ export default function Header() {
               >
                 Find a Location
               </Link>
-              <a
+              <Link
                 href="/#book"
                 className="rounded-2xl bg-[var(--zivel-gold)] px-4 py-2 text-sm font-semibold text-black hover:opacity-90"
               >
                 Book Now
-              </a>
+              </Link>
             </div>
           </nav>
 
@@ -212,13 +212,13 @@ export default function Header() {
                 >
                   Find a Location
                 </Link>
-                <a
+                <Link
                   href="/#book"
                   className="rounded-2xl bg-[var(--zivel-gold)] px-4 py-3 text-sm font-semibold text-black hover:opacity-90 text-center"
                   onClick={() => setMobileOpen(false)}
                 >
                   Book Now
-                </a>
+                </Link>
               </div>
             </div>
           </div>

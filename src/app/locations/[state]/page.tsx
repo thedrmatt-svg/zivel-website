@@ -19,8 +19,9 @@ export function generateStaticParams() {
   return Array.from(states).map((state) => ({ state }));
 }
 
-export function generateMetadata({ params }: { params: { state: string } }): Metadata {
-  const state = params.state.toLowerCase();
+export async function generateMetadata({ params }: { params: Promise<{ state: string }> }): Promise<Metadata> {
+  const { state: stateParam } = await params;
+  const state = stateParam.toLowerCase();
   const stateLocations = locations.filter((l) => l.stateSlug === state);
 
   if (!stateLocations.length) return {};
@@ -34,8 +35,9 @@ export function generateMetadata({ params }: { params: { state: string } }): Met
   };
 }
 
-export default function StateLocationsPage({ params }: { params: { state: string } }) {
-  const state = params.state.toLowerCase();
+export default async function StateLocationsPage({ params }: { params: Promise<{ state: string }> }) {
+  const { state: stateParam } = await params;
+  const state = stateParam.toLowerCase();
   const stateLocations = locations
     .filter((l) => l.stateSlug === state)
     .slice()

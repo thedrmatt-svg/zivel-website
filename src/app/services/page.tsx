@@ -28,7 +28,7 @@ export default function ServicesIndexPage() {
         <div className="max-w-3xl space-y-4">
           <h1>Services</h1>
           <p className="text-white/70">
-            Explore Zivel's modern wellness and recovery technologies. Each
+            Explore Zivel&apos;s modern wellness and recovery technologies. Each
             service is designed to help you feel better—faster—with science-backed
             protocols and an elevated studio experience.
           </p>
@@ -39,12 +39,12 @@ export default function ServicesIndexPage() {
             >
               View Locations
             </Link>
-            <a
+            <Link
               href="/#book"
               className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
             >
               Book Now
-            </a>
+            </Link>
           </div>
         </div>
       </section>

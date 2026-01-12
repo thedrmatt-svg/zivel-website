@@ -13,12 +13,13 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { state: string; city: string };
-}): Metadata {
-  const location = getLocationByPath(params.state, params.city);
+  params: Promise<{ state: string; city: string }>;
+}): Promise<Metadata> {
+  const { state, city } = await params;
+  const location = getLocationByPath(state, city);
   if (!location) return {};
 
   return {
@@ -30,12 +31,13 @@ export function generateMetadata({
   };
 }
 
-export default function LocationPage({
+export default async function LocationPage({
   params,
 }: {
-  params: { state: string; city: string };
+  params: Promise<{ state: string; city: string }>;
 }) {
-  const location = getLocationByPath(params.state, params.city);
+  const { state, city } = await params;
+  const location = getLocationByPath(state, city);
   if (!location) return notFound();
 
   return (

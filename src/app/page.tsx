@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Zivel | Wellness & Recovery",
@@ -143,13 +144,13 @@ export default function HomePage() {
               </p>
             </div>
 
-            <a
+            <Link
               href="/services"
               className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
               aria-label="View all services"
             >
               View All Services
-            </a>
+            </Link>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -172,12 +173,12 @@ export default function HomePage() {
                   Brief description placeholder (benefit-driven, 1–2 lines).
                 </p>
                 <div className="mt-5">
-                  <a
+                  <Link
                     href="/services"
                     className="text-sm font-semibold underline decoration-white/20 underline-offset-4 hover:decoration-white/40"
                   >
                     Learn more →
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
@@ -229,13 +230,13 @@ export default function HomePage() {
               </p>
             </div>
 
-            <a
+            <Link
               href="/locations"
               className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
               aria-label="View all locations"
             >
               View All Locations
-            </a>
+            </Link>
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-[1fr_auto]">
@@ -271,7 +272,7 @@ export default function HomePage() {
                 About Zivel Placeholder
               </h2>
               <p className="text-white/70">
-                Brief brand story placeholder. (We'll replace with final copy once approved.)
+                Brief brand story placeholder. (We&apos;ll replace with final copy once approved.)
               </p>
               <div className="mt-6">
                 <a
