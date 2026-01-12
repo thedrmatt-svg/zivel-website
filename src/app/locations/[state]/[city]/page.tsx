@@ -59,11 +59,29 @@ export default async function LocationPage({
     },
   };
 
+  const faqItems = location.faqs || [];
+  const faqJsonLd = faqItems.length ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((f: { q: string; a: string }) => ({
+      "@type": "Question",
+      name: String(f.q ?? ""),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: String(f.a ?? ""),
+      },
+    })),
+  } : { "@type": "FAQPage", "mainEntity": [] };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="space-y-24">
 
