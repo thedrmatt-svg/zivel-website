@@ -1,0 +1,322 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+import BookingWidget from "@/components/booking/BookingWidget";
+import { getLocationByPath, locations } from "@/lib/data/locations";
+import { getServiceBySlug } from "@/lib/data/services";
+
+export function generateStaticParams() {
+  return locations.map((l) => ({ state: l.stateSlug, city: l.citySlug }));
+}
+
+export function generateMetadata({
+  params,
+}: {
+  params: { state: string; city: string };
+}): Metadata {
+  const loc = getLocationByPath(params.state, params.city);
+  if (!loc) return {};
+  return {
+    title: loc.seo.title,
+    description: loc.seo.description,
+    alternates: { canonical: loc.seo.canonical ?? `/locations/${loc.stateSlug}/${loc.citySlug}` },
+  };
+}
+
+function toJsonLd(loc: ReturnType<typeof getLocationByPath>) {
+  if (!loc) return null;
+
+  const streetAddress = [loc.address.line1, loc.address.line2].filter(Boolean).join(", ");
+
+  const jsonLd: any = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: `Zivel ${loc.name}`,
+    telephone: loc.phoneHref.replace("tel:", ""),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress,
+      addressLocality: loc.address.city,
+      addressRegion: loc.address.state,
+      postalCode: loc.address.postalCode,
+      addressCountry: loc.address.country ?? "US",
+    },
+  };
+
+  if (loc.geo?.lat && loc.geo?.lng) {
+    jsonLd.geo = {
+      "@type": "GeoCoordinates",
+      latitude: loc.geo.lat,
+      longitude: loc.geo.lng,
+    };
+  }
+
+  if (loc.hours?.length) {
+    jsonLd.openingHours = loc.hours.map((h) => `${h.label}: ${h.value}`);
+  }
+
+  return jsonLd;
+}
+
+export default function LocationPage({
+  params,
+}: {
+  params: { state: string; city: string };
+}) {
+  const loc = getLocationByPath(params.state, params.city);
+  if (!loc) return notFound();
+
+  const jsonLd = toJsonLd(loc);
+
+  return (
+    <main className="space-y-20">
+      {jsonLd ? (
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      ) : null}
+
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src={loc.hero.media.src}
+            alt={loc.hero.media.alt}
+            fill
+            priority
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/55 to-black/15" />
+        </div>
+
+        <div className="relative section py-16">
+          <div className="grid gap-10 lg:grid-cols-[1.2fr_.8fr] lg:items-start">
+            <div className="space-y-6">
+              <h1>{loc.hero.headline}</h1>
+              <p className="text-lg text-white/85 max-w-2xl">{loc.hero.subheadline}</p>
+
+              {loc.hero.trustBadges?.length ? (
+                <div className="flex flex-wrap gap-2 text-xs text-white/80">
+                  {loc.hero.trustBadges.map((b) => (
+                    <span key={b} className="rounded-full border border-white/15 bg-white/5 px-3 py-1">
+                      {b}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+
+              <div className="flex flex-wrap gap-3 pt-2">
+                <a
+                  href={loc.hero.primaryCTA.href}
+                  className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+                >
+                  {loc.hero.primaryCTA.label}
+                </a>
+                {loc.hero.secondaryCTAs.map((cta) => (
+                  <a
+                    key={cta.label}
+                    href={cta.href}
+                    className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+                  >
+                    {cta.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border-subtle bg-card p-6 space-y-4">
+              <div className="text-sm font-semibold text-white">Studio Details</div>
+
+              <div className="text-sm text-white/70">
+                <div className="font-medium text-white">Address</div>
+                <div>{loc.address.line1}{loc.address.line2 ? `, ${loc.address.line2}` : ""}</div>
+                <div>{loc.address.city}, {loc.address.state} {loc.address.postalCode}</div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={loc.phoneHref}
+                  className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm text-white hover:border-white/25 hover:bg-white/10"
+                >
+                  Call
+                </a>
+                <a
+                  href="#directions"
+                  className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm text-white hover:border-white/25 hover:bg-white/10"
+                >
+                  Directions
+                </a>
+                <a
+                  href="#book"
+                  className="rounded-xl bg-[var(--zivel-gold)] px-4 py-2 text-sm font-semibold text-black hover:opacity-90"
+                >
+                  Book
+                </a>
+              </div>
+
+              <div className="pt-2">
+                <div className="text-sm font-medium text-white">Hours</div>
+                <div className="mt-2 space-y-1 text-sm text-white/70">
+                  {loc.hours.map((h) => (
+                    <div key={h.label} className="flex items-center justify-between gap-3">
+                      <span>{h.label}</span>
+                      <span className="text-white/60">{h.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-2 text-xs text-white/50">
+                Prefer help booking? Call the studio and we'll guide you.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="section space-y-10">
+        <div className="grid gap-10 md:grid-cols-2 md:items-start">
+          <div className="space-y-4">
+            <h2>{loc.about.headline}</h2>
+            <div className="space-y-3 text-white/70">
+              {loc.about.paragraphs.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
+            </div>
+          </div>
+
+          {loc.about.bullets?.length ? (
+            <div className="rounded-2xl border-subtle bg-card p-6">
+              <div className="text-sm font-semibold text-white">Why locals choose Zivel</div>
+              <ul className="mt-4 space-y-2 text-sm text-white/70">
+                {loc.about.bullets.map((b) => (
+                  <li key={b} className="flex gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </div>
+      </section>
+
+      {/* SERVICES AT LOCATION */}
+      <section id="services" className="section space-y-10">
+        <div className="flex items-end justify-between gap-6">
+          <h2>{loc.servicesAtLocation.headline}</h2>
+          <Link href="/services" className="text-sm font-medium text-white/70 hover:text-[var(--zivel-gold)]">
+            View all services →
+          </Link>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {loc.servicesAtLocation.items.map((s) => {
+            const svc = getServiceBySlug(s.slug);
+            const title = s.labelOverride ?? svc?.name ?? s.slug;
+            const desc =
+              s.descriptionOverride ??
+              svc?.hero?.subheadline ??
+              "Explore this service and how it fits into your routine.";
+            const href = svc ? `/services/${svc.slug}` : "/services";
+
+            return (
+              <Link
+                key={s.slug}
+                href={href}
+                className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
+              >
+                <div className="text-lg font-semibold text-white">{title}</div>
+                <div className="mt-2 text-sm text-white/70">{desc}</div>
+                <div className="mt-5 inline-flex text-sm font-medium text-[var(--zivel-gold)]">
+                  Learn more →
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* BOOKING */}
+      <section id="book" className="section rounded-2xl border-subtle bg-card p-8">
+        <div className="max-w-3xl">
+          <h2>Book at Zivel {loc.name}</h2>
+          <p className="text-white/70 mt-2">
+            Select a service and time that fits your schedule.
+          </p>
+        </div>
+        <BookingWidget className="mt-8" locationId={loc.booking.locationId} />
+        {loc.booking.bookingUrl ? (
+          <p className="mt-4 text-center text-sm text-white/60">
+            If the booking form doesn't load,{" "}
+            <a className="underline hover:text-[var(--zivel-gold)]" href={loc.booking.bookingUrl} target="_blank" rel="noreferrer">
+              open booking in a new tab
+            </a>.
+          </p>
+        ) : null}
+      </section>
+
+      {/* DIRECTIONS */}
+      <section id="directions" className="section space-y-8">
+        <h2>{loc.map?.headline ?? "Directions & Parking"}</h2>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-2xl border-subtle bg-card p-6 text-sm text-white/70">
+            <div className="font-semibold text-white">Address</div>
+            <div className="mt-2">
+              {loc.address.line1}{loc.address.line2 ? `, ${loc.address.line2}` : ""}
+              <br />
+              {loc.address.city}, {loc.address.state} {loc.address.postalCode}
+            </div>
+
+            {loc.map?.parkingNotes?.length ? (
+              <div className="mt-5">
+                <div className="font-semibold text-white">Parking</div>
+                <ul className="mt-2 space-y-1">
+                  {loc.map.parkingNotes.map((n) => (
+                    <li key={n}>• {n}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {loc.map?.nearbyLandmarks?.length ? (
+              <div className="mt-5">
+                <div className="font-semibold text-white">Nearby</div>
+                <ul className="mt-2 space-y-1">
+                  {loc.map.nearbyLandmarks.map((n) => (
+                    <li key={n}>• {n}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+
+          <div className="rounded-2xl border-subtle bg-card p-6 text-sm text-white/70">
+            <div className="font-semibold text-white">Map</div>
+            <div className="mt-4 text-white/60">
+              Map embed placeholder (we'll add Google Maps embed later).
+            </div>
+            <div className="mt-6">
+              <a
+                className="inline-flex rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  `${loc.address.line1}, ${loc.address.city}, ${loc.address.state} ${loc.address.postalCode}`
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Get Directions
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
