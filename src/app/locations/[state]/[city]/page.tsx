@@ -59,6 +59,31 @@ export default async function LocationPage({
     },
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Locations",
+        item: `${SITE_URL}/locations`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: location.state,
+        item: `${SITE_URL}/locations/${location.stateSlug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: location.city,
+        item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}`,
+      },
+    ],
+  };
+
   const faqItems = location.faqs || [];
   const faqJsonLd = faqItems.length ? {
     "@context": "https://schema.org",
@@ -82,6 +107,10 @@ export default async function LocationPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="space-y-24">
 
