@@ -1,6 +1,8 @@
 import type { ScienceArticle } from "@/types/science";
 
 const article: ScienceArticle = {
+  featured: true,
+  relatedServiceSlugs: ["cryotherapy"],
   slug: "cold-exposure",
   title: "Cold Exposure: What It May Do and Why People Use It",
   description: "A science-first overview of cold exposure and how it's used in recovery and resilience routines.",
