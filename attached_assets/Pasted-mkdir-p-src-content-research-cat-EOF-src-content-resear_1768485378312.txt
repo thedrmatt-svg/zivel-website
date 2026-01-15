@@ -1,0 +1,73 @@
+mkdir -p src/content/research
+
+cat <<'EOF' > src/content/research/cryo-001.ts
+export const research = {
+  slug: "cryo-001",
+  title: "Whole-Body Cryotherapy and Inflammation Reduction",
+  source: "Frontiers in Physiology",
+  year: 2019,
+  summary:
+    "Clinical studies indicate that whole-body cryotherapy may reduce systemic inflammation and improve recovery markers in physically active individuals.",
+  url: "https://www.frontiersin.org/articles/10.3389/fphys.2019.01252/full",
+};
+EOF
+
+cat <<'EOF' > src/content/research/cryo-002.ts
+export const research = {
+  slug: "cryo-002",
+  title: "Effects of Cryotherapy on Muscle Recovery",
+  source: "Journal of Athletic Training",
+  year: 2015,
+  summary:
+    "Cold exposure has been shown to reduce delayed onset muscle soreness and perceived pain following intense exercise.",
+  url: "https://pubmed.ncbi.nlm.nih.gov/25651017/",
+};
+EOF
+
+cat <<'EOF' > src/content/research/cryo-003.ts
+export const research = {
+  slug: "cryo-003",
+  title: "Cold Exposure and Nervous System Response",
+  source: "European Journal of Applied Physiology",
+  year: 2014,
+  summary:
+    "Short-term cold exposure may positively influence autonomic nervous system balance and stress response.",
+  url: "https://pubmed.ncbi.nlm.nih.gov/24532143/",
+};
+EOF
+
+cat <<'EOF' > src/content/research/cryo-004.ts
+export const research = {
+  slug: "cryo-004",
+  title: "Cryotherapy and Pain Modulation",
+  source: "Pain Research and Management",
+  year: 2016,
+  summary:
+    "Cryotherapy may temporarily reduce pain perception through neural and vascular mechanisms.",
+  url: "https://pubmed.ncbi.nlm.nih.gov/27103930/",
+};
+EOF
+
+cat <<'EOF' > src/content/research/cryo-005.ts
+export const research = {
+  slug: "cryo-005",
+  title: "Cold Therapy and Circulation",
+  source: "International Journal of Sports Medicine",
+  year: 2012,
+  summary:
+    "Cold exposure can influence blood flow dynamics and vascular response during recovery.",
+  url: "https://pubmed.ncbi.nlm.nih.gov/22247055/",
+};
+EOF
+
+cat <<'EOF' > src/content/research/cryo-006.ts
+export const research = {
+  slug: "cryo-006",
+  title: "Whole-Body Cryotherapy Safety Profile",
+  source: "Open Access Journal of Sports Medicine",
+  year: 2014,
+  summary:
+    "When administered properly, whole-body cryotherapy demonstrates a favorable safety profile in healthy adults.",
+  url: "https://pubmed.ncbi.nlm.nih.gov/25395806/",
+};
+EOF

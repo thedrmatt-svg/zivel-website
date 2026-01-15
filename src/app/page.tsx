@@ -337,12 +337,12 @@ export default function HomePage() {
               </p>
             </div>
 
-            <a
+            <Link
               href="/science"
               className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
             >
               View All Articles
-            </a>
+            </Link>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -358,12 +358,12 @@ export default function HomePage() {
                   Short snippet placeholder (1–2 sentences).
                 </p>
                 <div className="mt-5">
-                  <a
+                  <Link
                     href="/science"
                     className="text-sm font-semibold underline decoration-white/20 underline-offset-4 hover:decoration-white/40"
                   >
                     Read More →
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
