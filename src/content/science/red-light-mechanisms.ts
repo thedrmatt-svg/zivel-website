@@ -1,6 +1,8 @@
 import type { ScienceArticle } from "@/types/science";
 
 const article: ScienceArticle = {
+  featured: true,
+  relatedServiceSlugs: ["red-light-therapy"],
   slug: "red-light-mechanisms",
   title: "Red Light Therapy: The Mechanisms People Talk About",
   description: "A practical look at proposed mechanisms and how to think about protocols without hype.",
