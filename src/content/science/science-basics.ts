@@ -1,6 +1,8 @@
 import type { ScienceArticle } from "@/types/science";
 
 const article: ScienceArticle = {
+  featured: true,
+  relatedServiceSlugs: ["cryotherapy","red-light-therapy","infrared-sauna","dry-float","compression-therapy"],
   slug: "science-basics",
   title: "How Recovery Science Works",
   description: "A clear primer on recovery, adaptation, and consistency—built for real people, not academics.",
