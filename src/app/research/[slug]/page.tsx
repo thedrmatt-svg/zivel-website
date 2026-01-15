@@ -27,7 +27,7 @@ export default async function ResearchSourcePage({ params }: Props) {
         <h1>{s.title}</h1>
         <p className="text-white/70">{s.summary}</p>
         <div className="text-xs text-white/50">
-          {s.publisher ? `${s.publisher}` : ""}{s.year ? ` • ${s.year}` : ""}
+          {s.source ?? ""}{s.year ? ` • ${s.year}` : ""}
         </div>
       </div>
 
@@ -36,15 +36,6 @@ export default async function ResearchSourcePage({ params }: Props) {
         <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--zivel-gold)] underline break-all">
           {s.url}
         </a>
-        {s.tags?.length ? (
-          <div className="flex flex-wrap gap-2 pt-2">
-            {s.tags.map((t) => (
-              <span key={t} className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/70">
-                {t}
-              </span>
-            ))}
-          </div>
-        ) : null}
       </div>
 
       <Link href="/research" className="text-sm text-white/70 hover:text-[var(--zivel-gold)]">

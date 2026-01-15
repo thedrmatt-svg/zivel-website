@@ -26,7 +26,7 @@ export default function ResearchIndexPage() {
             <div className="text-lg font-semibold text-white">{s.title}</div>
             <div className="mt-2 text-sm text-white/70">{s.summary}</div>
             <div className="mt-4 text-xs text-white/50">
-              {s.publisher ? `${s.publisher}` : ""}{s.year ? ` • ${s.year}` : ""}
+              {s.source ?? ""}{s.year ? ` • ${s.year}` : ""}
             </div>
           </Link>
         ))}

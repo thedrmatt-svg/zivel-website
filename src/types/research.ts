@@ -1,9 +1,9 @@
 export type ResearchSource = {
-  slug: string;            // e.g. "cryo-inflammation-01"
+  slug: string;
   title: string;
   summary: string;
   url: string;
-  publisher?: string;
+  source?: string;
   year?: number;
   tags?: string[];
 };
