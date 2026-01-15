@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getResearchBySlug, researchSources } from "@/lib/data/research";
 
 export function generateStaticParams() {
-  return researchSources.map((s) => ({ slug: s.slug }));
+  return researchSources.map((s) => ({ slug: s.slug ?? s.id }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
@@ -13,7 +13,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const s = getResearchBySlug(slug);
   if (!s) return {};
-  return { title: `${s.title} | Zivel Research`, description: s.summary, alternates: { canonical: `/research/${s.slug}` } };
+  const identifier = s.slug ?? s.id;
+  return { title: `${s.title} | Zivel Research`, description: s.summary, alternates: { canonical: `/research/${identifier}` } };
 }
 
 export default async function ResearchSourcePage({ params }: Props) {
@@ -26,8 +27,11 @@ export default async function ResearchSourcePage({ params }: Props) {
       <div className="space-y-2">
         <h1>{s.title}</h1>
         <p className="text-white/70">{s.summary}</p>
+        {s.authors?.length ? (
+          <div className="text-xs text-white/60">{s.authors.join(", ")}</div>
+        ) : null}
         <div className="text-xs text-white/50">
-          {s.source ?? ""}{s.year ? ` • ${s.year}` : ""}
+          {s.journal ?? s.source ?? ""}{s.year ? ` • ${s.year}` : ""}
         </div>
       </div>
 

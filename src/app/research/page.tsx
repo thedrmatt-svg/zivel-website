@@ -17,19 +17,22 @@ export default function ResearchIndexPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        {researchSources.map((s) => (
-          <Link
-            key={s.slug}
-            href={`/research/${s.slug}`}
-            className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
-          >
-            <div className="text-lg font-semibold text-white">{s.title}</div>
-            <div className="mt-2 text-sm text-white/70">{s.summary}</div>
-            <div className="mt-4 text-xs text-white/50">
-              {s.source ?? ""}{s.year ? ` • ${s.year}` : ""}
-            </div>
-          </Link>
-        ))}
+        {researchSources.map((s) => {
+          const identifier = s.slug ?? s.id;
+          return (
+            <Link
+              key={identifier}
+              href={`/research/${identifier}`}
+              className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
+            >
+              <div className="text-lg font-semibold text-white">{s.title}</div>
+              <div className="mt-2 text-sm text-white/70">{s.summary}</div>
+              <div className="mt-4 text-xs text-white/50">
+                {s.journal ?? s.source ?? ""}{s.year ? ` • ${s.year}` : ""}
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

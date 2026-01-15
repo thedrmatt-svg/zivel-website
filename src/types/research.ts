@@ -1,9 +1,12 @@
 export type ResearchSource = {
-  slug: string;
+  id?: string;
+  slug?: string;
   title: string;
   summary: string;
   url: string;
   source?: string;
+  journal?: string;
+  authors?: string[];
   year?: number;
   tags?: string[];
 };
