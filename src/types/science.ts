@@ -1,4 +1,6 @@
 export type ScienceArticle = {
+  featured?: boolean;
+  relatedServiceSlugs?: string[];
   slug: string;
   title: string;
   description: string;
