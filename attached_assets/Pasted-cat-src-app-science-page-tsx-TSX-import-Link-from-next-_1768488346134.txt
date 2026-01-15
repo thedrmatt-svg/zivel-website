@@ -1,3 +1,4 @@
+cat > src/app/science/page.tsx <<'TSX'
 import Link from "next/link";
 import { scienceArticles } from "@/lib/data/science";
 import { getServiceBySlug } from "@/lib/data/services";
@@ -21,15 +22,15 @@ const CATEGORY_BLURBS: Record<string, string> = {
     "Big-picture concepts and habits linked to long-term health: recovery capacity, consistency, and physiological resilience.",
 };
 
-function sortByFeaturedThenTitle(a: { featured?: boolean; title: string }, b: { featured?: boolean; title: string }) {
+function sortByFeaturedThenTitle(a: any, b: any) {
   const af = a.featured ? 1 : 0;
   const bf = b.featured ? 1 : 0;
-  if (af !== bf) return bf - af;
+  if (af !== bf) return bf - af; // featured first
   return String(a.title).localeCompare(String(b.title));
 }
 
 export default function ScienceIndexPage() {
-  const grouped = scienceArticles.reduce<Record<string, typeof scienceArticles>>((acc, a) => {
+  const grouped = scienceArticles.reduce<Record<string, any[]>>((acc, a) => {
     (acc[a.category] ||= []).push(a);
     return acc;
   }, {});
@@ -38,13 +39,15 @@ export default function ScienceIndexPage() {
     a.localeCompare(b)
   );
 
+  // Featured set (top of page)
   const featured = [...scienceArticles]
-    .filter((a) => a.featured)
+    .filter((a: any) => a.featured)
     .sort(sortByFeaturedThenTitle)
     .slice(0, 6);
 
   return (
     <div className="section space-y-14">
+      {/* Authority intro */}
       <header className="space-y-4 max-w-3xl">
         <h1>Science & Recovery Hub</h1>
         <p className="text-white/70">
@@ -66,11 +69,12 @@ export default function ScienceIndexPage() {
         </div>
       </header>
 
+      {/* Featured */}
       {featured.length ? (
         <section className="space-y-5">
           <h2 className="text-xl">Start here</h2>
           <div className="grid gap-6 md:grid-cols-3">
-            {featured.map((a) => (
+            {featured.map((a: any) => (
               <Link
                 key={a.slug}
                 href={`/science/${a.slug}`}
@@ -79,6 +83,7 @@ export default function ScienceIndexPage() {
                 <div className="text-lg font-semibold text-white">{a.title}</div>
                 <div className="mt-2 text-sm text-white/70">{a.description}</div>
 
+                {/* Related services (neutral cue, no CTA) */}
                 {a.relatedServiceSlugs?.length ? (
                   <div className="mt-4 text-xs text-white/55">
                     Related services:{" "}
@@ -94,7 +99,7 @@ export default function ScienceIndexPage() {
                           >
                             {label}
                           </Link>
-                          {i < (a.relatedServiceSlugs?.length ?? 0) - 1 ? ", " : ""}
+                          {i < a.relatedServiceSlugs.length - 1 ? ", " : ""}
                         </span>
                       );
                     })}
@@ -110,6 +115,7 @@ export default function ScienceIndexPage() {
         </section>
       ) : null}
 
+      {/* Categories */}
       <section className="space-y-10">
         {categoriesOrdered.map((cat) => {
           const items = [...(grouped[cat] ?? [])].sort(sortByFeaturedThenTitle);
@@ -123,7 +129,7 @@ export default function ScienceIndexPage() {
               </div>
 
               <div className="grid gap-6 md:grid-cols-3">
-                {items.map((a) => (
+                {items.map((a: any) => (
                   <Link
                     key={a.slug}
                     href={`/science/${a.slug}`}
@@ -151,7 +157,7 @@ export default function ScienceIndexPage() {
                               >
                                 {label}
                               </Link>
-                              {i < (a.relatedServiceSlugs?.length ?? 0) - 1 ? ", " : ""}
+                              {i < a.relatedServiceSlugs.length - 1 ? ", " : ""}
                             </span>
                           );
                         })}
@@ -169,6 +175,7 @@ export default function ScienceIndexPage() {
         })}
       </section>
 
+      {/* Research transparency cue (repeat at bottom) */}
       <footer className="pt-4 border-t border-white/10 text-sm text-white/60">
         Science articles reference peer-reviewed research.{" "}
         <Link
@@ -181,3 +188,6 @@ export default function ScienceIndexPage() {
     </div>
   );
 }
+TSX
+
+echo "✅ Science Hub UX upgraded"
