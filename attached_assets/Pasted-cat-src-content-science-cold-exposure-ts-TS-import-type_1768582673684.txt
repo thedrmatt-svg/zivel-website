@@ -1,3 +1,4 @@
+cat > src/content/science/cold-exposure.ts <<'TS'
 import type { ScienceArticle } from "@/types/science";
 
 const article: ScienceArticle = {
@@ -41,7 +42,7 @@ const article: ScienceArticle = {
     {
       type: "p",
       content:
-        "Studies on cryotherapy and cold exposure frequently evaluate cytokines and other inflammatory mediators, along with subjective soreness and recovery measures. Some findings suggest cold exposure can modulate inflammatory signaling and reduce perceived soreness after intense activity. However, in certain training contexts, aggressive cold exposure immediately after strength training may blunt some adaptive signals; protocol choice should be aligned with the individual's goals and training phase.",
+        "Studies on cryotherapy and cold exposure frequently evaluate cytokines and other inflammatory mediators, along with subjective soreness and recovery measures. Some findings suggest cold exposure can modulate inflammatory signaling and reduce perceived soreness after intense activity. However, in certain training contexts, aggressive cold exposure immediately after strength training may blunt some adaptive signals; protocol choice should be aligned with the individual’s goals (recovery vs. adaptation).",
     },
 
     { type: "h2", content: "Pain modulation and perception" },
@@ -66,7 +67,7 @@ const article: ScienceArticle = {
     {
       type: "p",
       content:
-        "Cold exposure is not appropriate for everyone. Contraindications may include cold hypersensitivity, certain cardiovascular conditions, uncontrolled blood pressure, Raynaud's phenomenon, and peripheral vascular disease. Appropriate screening and conservative progression are best practice, particularly for first-time users.",
+        "Cold exposure is not appropriate for everyone. Contraindications may include cold hypersensitivity, certain cardiovascular conditions, uncontrolled blood pressure, Raynaud’s phenomenon, and peripheral vascular disease. Appropriate screening and conservative progression are best practice, particularly for first-time users.",
     },
     {
       type: "ul",
@@ -89,3 +90,6 @@ const article: ScienceArticle = {
 };
 
 export default article;
+TS
+
+echo "✅ Updated Cold Exposure science article (NIH tone)"
