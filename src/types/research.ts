@@ -9,4 +9,6 @@ export type ResearchSource = {
   authors?: string[];
   year?: number;
   tags?: string[];
+  relatedServiceSlugs?: string[];
+
 };
