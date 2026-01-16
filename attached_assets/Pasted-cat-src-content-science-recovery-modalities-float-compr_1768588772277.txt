@@ -1,0 +1,107 @@
+cat > src/content/science/recovery-modalities-float-compression.ts <<'TS'
+import type { ScienceArticle } from "@/types/science";
+
+const article: ScienceArticle = {
+  slug: "recovery-modalities-float-compression",
+  title: "Recovery Modalities: Float Therapy and Compression in Evidence-Informed Practice",
+  description:
+    "An evidence-informed overview of float therapy and compression therapy, examining mechanisms, nervous system effects, recovery use cases, and practical considerations.",
+  category: "Recovery",
+  publishedDate: "2026-01-16",
+  readingTimeMinutes: 9,
+  featured: true,
+
+  heroImage: {
+    src: "/images/science/recovery-modalities.jpg",
+    alt: "Float therapy and compression recovery science",
+  },
+
+  // Cross-linking
+  relatedServiceSlugs: ["dry-float", "compression-therapy"],
+
+  body: [
+    {
+      type: "p",
+      content:
+        "Recovery modalities such as float therapy and compression therapy are commonly used to support relaxation, perceived recovery, and routine adherence in wellness and performance contexts. While these modalities operate through distinct physiological mechanisms, both are generally categorized as passive recovery interventions—approaches intended to influence autonomic balance, circulation, and sensory input rather than directly stimulating tissue adaptation.",
+    },
+
+    { type: "h2", content: "Passive recovery: conceptual overview" },
+    {
+      type: "p",
+      content:
+        "Passive recovery modalities emphasize reduction of physiological and psychological load rather than the introduction of additional stress. Unlike active recovery strategies, which involve movement or low-intensity activity, passive approaches aim to influence recovery by modulating nervous system tone, circulation, and perceived stress.",
+    },
+
+    { type: "h2", content: "Float therapy (dry float): mechanisms and evidence themes" },
+    {
+      type: "p",
+      content:
+        "Float therapy is designed to minimize external sensory input, including tactile pressure, light, and sound. Research on sensory reduction environments suggests that limiting external stimuli may facilitate shifts in autonomic nervous system activity, particularly toward parasympathetic (rest-dominant) states.",
+    },
+    {
+      type: "p",
+      content:
+        "Users commonly report deep relaxation, reduced perceived stress, and altered bodily awareness during float sessions. These effects are most consistently associated with subjective experience and nervous system regulation rather than direct musculoskeletal adaptation.",
+    },
+
+    { type: "h2", content: "Stress response and perceived recovery" },
+    {
+      type: "p",
+      content:
+        "Studies evaluating float environments often focus on stress-related outcomes such as perceived anxiety, relaxation response, and psychological well-being. While individual responses vary, repeated exposure appears more influential than single sessions for many users.",
+    },
+
+    { type: "h2", content: "Compression therapy: mechanisms and evidence themes" },
+    {
+      type: "p",
+      content:
+        "Compression therapy applies controlled external pressure to the limbs, most commonly the lower extremities. The primary physiological rationale involves effects on venous return, lymphatic movement, and interstitial fluid dynamics.",
+    },
+    {
+      type: "p",
+      content:
+        "Research commonly evaluates compression therapy in relation to limb swelling, perceived soreness, and comfort following prolonged activity or standing. Objective performance outcomes are more variable across studies and protocols.",
+    },
+
+    { type: "h2", content: "Comparing float therapy and compression therapy" },
+    {
+      type: "ul",
+      content: [
+        "Float therapy primarily targets sensory input reduction and autonomic regulation.",
+        "Compression therapy primarily targets mechanical pressure and circulatory dynamics.",
+        "Float therapy is often used for systemic relaxation and stress reduction.",
+        "Compression therapy is often used for localized physical comfort and recovery routines.",
+      ],
+    },
+
+    { type: "h2", content: "Safety and practical considerations" },
+    {
+      type: "p",
+      content:
+        "Both float therapy and compression therapy are generally well tolerated when used appropriately. Individual screening and conservative progression are recommended, particularly for first-time users or those with underlying medical considerations.",
+    },
+    {
+      type: "ul",
+      content: [
+        "Float therapy considerations include claustrophobia, sensory sensitivity, and session tolerance.",
+        "Compression therapy considerations include vascular conditions, pressure intolerance, and neuropathy risk.",
+        "Neither modality should replace foundational recovery behaviors such as sleep, nutrition, hydration, and movement.",
+      ],
+    },
+
+    { type: "h2", content: "Evidence-informed integration into wellness routines" },
+    {
+      type: "p",
+      content:
+        "From an evidence-informed perspective, float and compression therapies are best viewed as adjuncts within broader wellness and recovery routines. Their value is often highest when they support consistency, relaxation, and adherence rather than being positioned as standalone interventions.",
+    },
+  ],
+
+  relatedSlugs: ["science-basics"],
+};
+
+export default article;
+TS
+
+echo "✅ Recovery Modalities science article created"
