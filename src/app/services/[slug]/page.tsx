@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
 import { getServiceBySlug, services } from "@/lib/data/services";
+import { getArticlesForService } from "@/lib/data/science";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -401,6 +402,31 @@ export default async function ServicePage({ params }: PageProps) {
             );
           })}
         </div>
+      </section>
+
+      {/* RELATED SCIENCE (auto-driven from science/research articles) */}
+      <section className="section">
+        <h2 className="mb-10">Related Science</h2>
+        {(() => {
+          const items = getArticlesForService(service.slug) ?? [];
+          if (!items.length) return <p className="text-sm text-white/60">Additional science articles will appear here as they are added.</p>;
+          return (
+            <div className="grid gap-8 md:grid-cols-3">
+              {items.slice(0, 6).map((a) => (
+                <Link
+                  key={a.slug}
+                  href={`/science/${a.slug}`}
+                  className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
+                >
+                  <div className="text-lg font-semibold text-white">{a.title}</div>
+                  {a.description ? (
+                    <div className="mt-2 text-sm text-white/70">{a.description}</div>
+                  ) : null}
+                </Link>
+              ))}
+            </div>
+          );
+        })()}
       </section>
 
       {/* SECTION 13 — FINAL CTA STRIP */}

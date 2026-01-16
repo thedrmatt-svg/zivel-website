@@ -21,6 +21,6 @@ export function getResearchBySlug(slug: string) {
   return researchSources.find((r) => r.slug === slug || r.id === slug);
 }
 
-export function getArticlesForService(serviceSlug: string) {
-  return researchArticles.filter((a) => (a.relatedServiceSlugs ?? []).includes(serviceSlug));
+export function getResearchForService(serviceSlug: string) {
+  return researchSources.filter((r) => (r.relatedServiceSlugs ?? []).includes(serviceSlug));
 }
