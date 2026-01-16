@@ -1,0 +1,13 @@
+# 1) Add import for getServiceBySlug (only if missing)
+grep -q 'getServiceBySlug' src/app/science/\[slug\]/page.tsx || \
+perl -0777 -i -pe 's/import\s+Link\s+from\s+"next\/link";\n/import Link from "next\/link";\nimport { getServiceBySlug } from "@\/lib\/data\/services";\n/' src/app/science/\[slug\]/page.tsx
+
+# 2) Add relatedServices const (only if missing)
+grep -q 'const relatedServices' src/app/science/\[slug\]/page.tsx || \
+perl -0777 -i -pe 's/(const a = getScienceBySlug\(params\.slug\);\n  if \(!a\) return notFound\(\);\n)/$1\n  const relatedServices = (a.relatedServiceSlugs ?? []).map(getServiceBySlug).filter(Boolean);\n/' src/app/science/\[slug\]/page.tsx
+
+# 3) Inject Related Services section before the end of the page (only if missing)
+grep -q 'RELATED SERVICES (cross-linked)' src/app/science/\[slug\]/page.tsx || \
+perl -0777 -i -pe 's/(\{a\.relatedSlugs\?\.\length \? \(\n        <section[\s\S]*?<\/section>\n      \) : null\}\n)/$1\n\n      {\/\* RELATED SERVICES (cross-linked) *\/}\n      <section className=\"max-w-3xl space-y-3 pt-6 border-t border-white\\/10\">\n        <h2 className=\"text-lg\">Related Services</h2>\n        {relatedServices?.length ? (\n          <div className=\"grid gap-6 md:grid-cols-3\">\n            {relatedServices.slice(0, 6).map((svc: any) => (\n              <a\n                key={svc.slug}\n                href={`/services/${svc.slug}`}\n                className=\"rounded-2xl border-subtle bg-card p-6 hover:border-white\\/20 hover:bg-white\\/10\"\n              >\n                <div className=\"text-lg font-semibold text-white\">{svc.name}</div>\n                {svc.hero?.subheadline ? (\n                  <div className=\"mt-2 text-sm text-white\\/70\">{svc.hero.subheadline}</div>\n                ) : null}\n              </a>\n            ))}\n          </div>\n        ) : (\n          <p className=\"text-sm text-white\\/60\">Related services will appear here as cross-links are added.</p>\n        )}\n      </section>\n/' src/app/science/\[slug\]/page.tsx
+
+echo "✅ Step 5A applied to Science article page"
