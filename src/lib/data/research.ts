@@ -6,6 +6,7 @@ import { research as cryo004 } from "@/content/research/cryo-004";
 import { research as cryo005 } from "@/content/research/cryo-005";
 import { research as cryo006 } from "@/content/research/cryo-006";
 import { redLightTherapyResearch } from "@/content/research/red-light-therapy";
+import floatTherapySensoryReduction from "@/content/research/float-therapy-sensory-reduction";
 
 export const researchSources: ResearchSource[] = [
   cryo001,
@@ -15,6 +16,7 @@ export const researchSources: ResearchSource[] = [
   cryo005,
   cryo006,
   ...redLightTherapyResearch,
+  floatTherapySensoryReduction,
 ];
 
 export function getResearchBySlug(slug: string) {
