@@ -20,3 +20,7 @@ export const researchSources: ResearchSource[] = [
 export function getResearchBySlug(slug: string) {
   return researchSources.find((r) => r.slug === slug || r.id === slug);
 }
+
+export function getArticlesForService(serviceSlug: string) {
+  return researchArticles.filter((a) => (a.relatedServiceSlugs ?? []).includes(serviceSlug));
+}
