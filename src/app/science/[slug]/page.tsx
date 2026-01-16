@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getScienceBySlug, scienceArticles } from "@/lib/data/science";
+import { getServiceBySlug } from "@/lib/data/services";
 
 export function generateStaticParams() {
   return scienceArticles.map((a) => ({ slug: a.slug }));
@@ -20,6 +21,8 @@ export default async function ScienceArticlePage({ params }: Props) {
   const { slug } = await params;
   const a = getScienceBySlug(slug);
   if (!a) return notFound();
+
+  const relatedServices = (a.relatedServiceSlugs ?? []).map(getServiceBySlug).filter((s): s is NonNullable<typeof s> => Boolean(s));
 
   return (
     <div className="section space-y-10">
@@ -58,6 +61,25 @@ export default async function ScienceArticlePage({ params }: Props) {
           </div>
         </section>
       ) : null}
+
+      {/* RELATED SERVICES (cross-linked) */}
+      {relatedServices.length > 0 && (
+        <section className="max-w-3xl space-y-4 pt-6 border-t border-white/10">
+          <h2 className="text-lg">Related Services</h2>
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {relatedServices.slice(0, 6).map((svc) => (
+              <Link
+                key={svc.slug}
+                href={`/services/${svc.slug}`}
+                className="rounded-xl border-subtle bg-card p-4 hover:border-white/20 hover:bg-white/10"
+              >
+                <div className="font-semibold text-white">{svc.name}</div>
+                <div className="mt-1 text-xs text-white/60">Learn more →</div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

@@ -1,0 +1,49 @@
+bash -lc '
+set -euo pipefail
+
+patch_file () {
+  local file="$1"
+  if [ ! -f "$file" ]; then
+    echo "SKIP (missing): $file"
+    return 0
+  fi
+
+  echo "Patching: $file"
+
+  # 1) Ensure imports exist (only add if missing)
+  if ! grep -q "getServiceBySlug" "$file"; then
+    # Add after existing imports (safe: prepend at top)
+    perl -0777 -i -pe '"'"'s/^/import { getServiceBySlug } from "@\\/lib\\/data\\/services";\n/ unless /getServiceBySlug/sm'"'"' "$file"
+  fi
+
+  # 2) Detect likely page variable name used for the article/source object
+  # Common names: article, post, entry, source, item, doc
+  local var
+  var="$(perl -ne '"'"'if(/const\s+(article|post|entry|source|item|doc)\s*=/){print $1; exit}'"'"' "$file" || true)"
+  if [ -z "${var:-}" ]; then var="article"; fi
+  echo "Detected content variable: $var"
+
+  # 3) Inject relatedServices computed value once (only if not already present)
+  if ! grep -q "const relatedServices" "$file"; then
+    perl -0777 -i -pe '"'"'s/(const\s+'"'"'"$var"'"'"'\s*=\s*[\s\S]*?;\s*)/$1\n  const relatedServices = ('"'"'"$var"'"'"'.relatedServiceSlugs ?? []).map(getServiceBySlug).filter(Boolean);\n/sm'"'"' "$file" || true
+  fi
+
+  # 4) Inject JSX section near the end of the main return block (only if not already present)
+  if ! grep -q "RELATED SERVICES (cross-linked)" "$file"; then
+    perl -0777 -i -pe '"'"'s/(\n\s*\}\s*\);\s*\n\}\s*$)/\n      {\/\* RELATED SERVICES (cross-linked) *\/}\n      <section className=\"section\">\n        <h2 className=\"mb-10\">Related Services</h2>\n\n        {relatedServices?.length ? (\n          <div className=\"grid gap-8 md:grid-cols-3\">\n            {relatedServices.slice(0, 6).map((s: any) => (\n              <a\n                key={s.slug}\n                href={`/services/${s.slug}`}\n                className=\"rounded-2xl border-subtle bg-card p-6 hover:border-white\\/20 hover:bg-white\\/10\"\n              >\n                <div className=\"text-lg font-semibold text-white\">{s.name}</div>\n                {s.hero?.subheadline ? (\n                  <div className=\"mt-2 text-sm text-white\\/70\">{s.hero.subheadline}</div>\n                ) : null}\n              </a>\n            ))}\n          </div>\n        ) : (\n          <p className=\"text-sm text-white\\/60\">Related services will appear here as cross-links are added.</p>\n        )}\n      </section>\n$1/sm'"'"' "$file"
+  fi
+
+  echo "✅ Done: $file"
+}
+
+patch_file "src/app/science/[slug]/page.tsx"
+patch_file "src/app/research/[slug]/page.tsx"
+
+echo ""
+echo "==== QUICK VERIFY (search inserted markers) ===="
+grep -n "RELATED SERVICES (cross-linked)" -n src/app/science/[slug]/page.tsx || true
+grep -n "RELATED SERVICES (cross-linked)" -n src/app/research/[slug]/page.tsx || true
+
+echo ""
+echo "✅ Step 5 patches applied."
+'
