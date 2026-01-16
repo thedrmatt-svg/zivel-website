@@ -13,3 +13,7 @@ export const scienceArticles: ScienceArticle[] = [
 export function getScienceBySlug(slug: string) {
   return scienceArticles.find((a) => a.slug === slug);
 }
+
+export function getArticlesForService(serviceSlug: string) {
+  return scienceArticles.filter((a) => (a.relatedServiceSlugs ?? []).includes(serviceSlug));
+}
