@@ -5,7 +5,9 @@ import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
 import { getServiceBySlug, services } from "@/lib/data/services";
-import { getArticlesForService } from "@/lib/data/science";
+import { getLinksForServiceSlug } from "@/lib/data/serviceLinks";
+import { getScienceBySlug } from "@/lib/data/science";
+import { getResearchBySlug } from "@/lib/data/research";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -36,6 +38,9 @@ export default async function ServicePage({ params }: PageProps) {
   const service = getServiceBySlug(slug);
   if (!service) return notFound();
 
+  const links = getLinksForServiceSlug(service.slug);
+  const linkedScience = links.science.map(getScienceBySlug).filter((s): s is NonNullable<typeof s> => Boolean(s));
+  const linkedResearch = links.research.map(getResearchBySlug).filter((r): r is NonNullable<typeof r> => Boolean(r));
 
   const accentHex = service.accent?.hex ?? "#C9A24D"; // fallback gold
 
@@ -404,30 +409,52 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* RELATED SCIENCE (auto-driven from science/research articles) */}
-      <section className="section">
-        <h2 className="mb-10">Related Science</h2>
-        {(() => {
-          const items = getArticlesForService(service.slug) ?? [];
-          if (!items.length) return <p className="text-sm text-white/60">Additional science articles will appear here as they are added.</p>;
-          return (
-            <div className="grid gap-8 md:grid-cols-3">
-              {items.slice(0, 6).map((a) => (
-                <Link
-                  key={a.slug}
-                  href={`/science/${a.slug}`}
-                  className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
-                >
-                  <div className="text-lg font-semibold text-white">{a.title}</div>
-                  {a.description ? (
-                    <div className="mt-2 text-sm text-white/70">{a.description}</div>
-                  ) : null}
-                </Link>
-              ))}
-            </div>
-          );
-        })()}
-      </section>
+      {/* RELATED SCIENCE & RESEARCH (from serviceLinks) */}
+      {(linkedScience.length > 0 || linkedResearch.length > 0) ? (
+        <section className="section">
+          <h2 className="mb-10">Related Science & Research</h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            {linkedScience.length > 0 ? (
+              <div className="rounded-2xl border-subtle bg-black/20 p-6">
+                <div className="text-xs font-semibold text-white/60 mb-4">SCIENCE ARTICLES</div>
+                <div className="space-y-3">
+                  {linkedScience.map((a) => (
+                    <Link
+                      key={a.slug}
+                      href={`/science/${a.slug}`}
+                      className="block rounded-xl border border-white/10 bg-white/5 p-4 hover:border-[var(--zivel-gold)] hover:bg-white/10"
+                    >
+                      <div className="text-sm font-semibold text-white">{a.title}</div>
+                      {a.description ? (
+                        <div className="mt-1 text-xs text-white/60 line-clamp-2">{a.description}</div>
+                      ) : null}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            {linkedResearch.length > 0 ? (
+              <div className="rounded-2xl border-subtle bg-black/20 p-6">
+                <div className="text-xs font-semibold text-white/60 mb-4">RESEARCH SOURCES</div>
+                <div className="space-y-3">
+                  {linkedResearch.map((r) => (
+                    <Link
+                      key={r.slug ?? r.id}
+                      href={`/research/${r.slug ?? r.id}`}
+                      className="block rounded-xl border border-white/10 bg-white/5 p-4 hover:border-[var(--zivel-gold)] hover:bg-white/10"
+                    >
+                      <div className="text-sm font-semibold text-white">{r.title}</div>
+                      {r.journal ? (
+                        <div className="mt-1 text-xs text-white/60">{r.journal} {r.year ? `(${r.year})` : ""}</div>
+                      ) : null}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
 
       {/* SECTION 13 — FINAL CTA STRIP */}
       <section className="section rounded-2xl border-subtle bg-black/60 p-10">
