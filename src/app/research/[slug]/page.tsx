@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getResearchBySlug, researchSources } from "@/lib/data/research";
+import { getRelatedServicesForResearchSlug } from "@/lib/data/serviceLinks";
 import { getServiceBySlug } from "@/lib/data/services";
 
 export function generateStaticParams() {
@@ -23,7 +24,8 @@ export default async function ResearchSourcePage({ params }: Props) {
   const s = getResearchBySlug(slug);
   if (!s) return notFound();
 
-  const relatedServices = (s.relatedServiceSlugs ?? []).map(getServiceBySlug).filter((svc): svc is NonNullable<typeof svc> => Boolean(svc));
+  const relatedServiceSlugs = getRelatedServicesForResearchSlug(s.slug ?? s.id ?? "");
+  const relatedServices = relatedServiceSlugs.map(getServiceBySlug).filter((svc): svc is NonNullable<typeof svc> => Boolean(svc));
 
   return (
     <div className="section space-y-8 max-w-3xl">
