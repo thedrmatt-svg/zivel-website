@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getScienceBySlug, scienceArticles } from "@/lib/data/science";
+import { getRelatedServicesForScienceSlug } from "@/lib/data/serviceLinks";
 import { getServiceBySlug } from "@/lib/data/services";
 
 export function generateStaticParams() {
@@ -22,7 +23,8 @@ export default async function ScienceArticlePage({ params }: Props) {
   const a = getScienceBySlug(slug);
   if (!a) return notFound();
 
-  const relatedServices = (a.relatedServiceSlugs ?? []).map(getServiceBySlug).filter((s): s is NonNullable<typeof s> => Boolean(s));
+  const relatedServiceSlugs = getRelatedServicesForScienceSlug(a.slug);
+  const relatedServices = relatedServiceSlugs.map(getServiceBySlug).filter((s): s is NonNullable<typeof s> => Boolean(s));
 
   return (
     <div className="section space-y-10">
