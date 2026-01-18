@@ -193,7 +193,7 @@ export const cryotherapy: Service = {
         details: [
           "Great for first-time clients",
           "Flexible scheduling",
-          "Upgrade to a package anytime",
+          "Upgrade to membership anytime",
         ],
       },
       {
