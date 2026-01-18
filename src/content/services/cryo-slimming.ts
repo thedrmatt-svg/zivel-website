@@ -80,7 +80,7 @@ export const cryoSlimming: Service = {
       {
         title: "Pairs well with wellness routines",
         description:
-          "Often combined with red light therapy, compression, or sauna sessions.",
+          "Often combined with red light therapy, compression, or cryotherapy sessions.",
         citations: ["cs-6"],
       },
     ],
