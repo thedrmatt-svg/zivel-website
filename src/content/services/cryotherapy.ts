@@ -32,12 +32,12 @@ export const cryotherapy: Service = {
     headline: "What is Cryotherapy?",
     paragraphs: [
       "Cryotherapy uses short-duration, controlled cold exposure to trigger natural physiological responses that may support recovery, circulation, and overall resilience.",
-      "At Zivel, sessions are quick, supervised, and designed to fit seamlessly into a consistent wellness routine—whether your goal is recovery, performance, or feeling better day-to-day.",
+      "At Zivel, sessions are quick, supported by staff, and designed to fit seamlessly into a consistent wellness routine—whether your goal is recovery, performance, or feeling better day-to-day.",
       "Results can vary by individual and goal, but consistency and smart programming tend to produce the best outcomes.",
     ],
     bullets: [
       "Quick sessions (typically a few minutes)",
-      "Supervised, structured experience",
+      "Staff-supported, structured experience",
       "Often used in recovery and performance routines",
     ],
     media: {
@@ -126,7 +126,7 @@ export const cryotherapy: Service = {
     headline: "The Science Behind Cryotherapy",
     body: [
       "Cold exposure can initiate thermoregulatory responses and temporary changes in circulation, which may influence perceived soreness, recovery, and alertness.",
-      "Research varies by protocol and population, so Zivel focuses on consistent, supervised sessions and recovery stacks tailored to real-world routines.",
+      "Research varies by protocol and population, so Zivel focuses on consistent, staff-supported sessions and recovery stacks tailored to real-world routines.",
     ],
     media: {
       type: "image",
@@ -143,7 +143,7 @@ export const cryotherapy: Service = {
   safety: {
     headline: "Is Cryotherapy Safe?",
     body: [
-      "Cryotherapy is generally safe when performed under professional supervision and when clients are screened for contraindications.",
+      "Cryotherapy is generally safe when performed under professional staff support and when clients are screened for contraindications.",
       "Your studio team will review your health history and help determine whether cryotherapy is appropriate for you.",
     ],
     contraindications: [
@@ -251,7 +251,7 @@ export const cryotherapy: Service = {
       {
         question: "Is cryotherapy safe?",
         answer:
-          "Cryotherapy is generally safe when supervised and performed properly. Your studio team will review contraindications and ensure you're a good candidate.",
+          "Cryotherapy is generally safe when supported by staff and performed properly. Your studio team will review contraindications and ensure you're a good candidate.",
       },
       {
         question: "Can I stack cryotherapy with other services?",
