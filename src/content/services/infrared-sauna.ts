@@ -138,8 +138,8 @@ export const infraredSauna: Service = {
   faqs: {
     headline: "Infrared Sauna FAQs",
     items: [
-      { question: "How long is a session?", answer: "Most sessions run around X minutes. We'll guide you based on comfort and goals." },
-      { question: "What should I wear?", answer: "Wear comfortable clothing. Some clients prefer minimal layers depending on privacy and policy." },
+      { question: "How long is a session?", answer: "Each session is typically 20–35 minutes long. Duration may vary based on comfort and individual goals." },
+      { question: "What should I wear?", answer: "Wear what you're comfortable with; optimal results are typically achieved with greater skin exposure. Each session takes place in a private room." },
       { question: "Should I hydrate?", answer: "Yes—hydration before and after is recommended." },
       { question: "How often should I do it?", answer: "Many clients use infrared sauna 1–3x per week as part of a routine." },
       { question: "Is it safe for beginners?", answer: "Most people do well starting with shorter sessions and building up gradually." },
