@@ -31,7 +31,7 @@ export const infraredSauna: Service = {
       "At Zivel, sessions are designed to feel comfortable and restorative—whether you're looking to de-stress, support circulation, or add a recovery tool to your weekly routine.",
     ],
     bullets: [
-      "Comfortable, even heat (no stifling hot air)",
+      "Comfortable, even heat (no stifling humidity)",
       "Great add-on for recovery routines",
       "Commonly used for relaxation and stress support",
     ],
