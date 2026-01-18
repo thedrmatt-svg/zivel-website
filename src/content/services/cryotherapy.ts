@@ -251,12 +251,12 @@ export const cryotherapy: Service = {
       {
         question: "Is cryotherapy safe?",
         answer:
-          "Cryotherapy is generally safe when supported by staff and performed properly. Your studio team will review contraindications and ensure you're a good candidate.",
+          "Cryotherapy is generally safe when performed properly and used as directed. Your studio team will review contraindications and ensure you're a good candidate.",
       },
       {
         question: "Can I stack cryotherapy with other services?",
         answer:
-          "Yes. Many clients pair cryotherapy with red light therapy, compression, infrared sauna, or dry float based on goals and availability.",
+          "Yes. Many clients pair cryotherapy with red light therapy, compression, or dry float based on goals and availability.",
       },
       {
         question: "Will I feel sore afterward?",
