@@ -229,7 +229,7 @@ export const dryFloat: Service = {
       {
         question: "How long is a session?",
         answer:
-          "Session lengths vary by location and protocol. Your studio will confirm the timing during booking.",
+          "Each session varies, but most dry float sessions average between 20–30 minutes.",
       },
       {
         question: "How often should I do dry float?",
