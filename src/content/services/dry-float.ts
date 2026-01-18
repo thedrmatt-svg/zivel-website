@@ -135,7 +135,6 @@ export const dryFloat: Service = {
     contraindications: [
       "Heat sensitivity or intolerance (as applicable)",
       "Acute illness/fever",
-      "Severe claustrophobia (depending on pod style)",
       "Conditions where your clinician advises against heat/relaxation therapies",
       "Pregnancy (consult your clinician)",
     ],
