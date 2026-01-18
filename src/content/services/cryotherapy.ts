@@ -111,7 +111,7 @@ export const cryotherapy: Service = {
       {
         title: "Aftercare",
         description:
-          "Warm up naturally, hydrate, and optionally stack another service (red light, compression, sauna).",
+          "Warm up naturally, hydrate, and optionally stack another service (red light, compression).",
       },
       {
         title: "Recommended Frequency",
