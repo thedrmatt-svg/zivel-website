@@ -209,7 +209,7 @@ export const redLightTherapy: Service = {
       {
         question: "How long is a typical session?",
         answer:
-          "Most sessions are brief and designed to fit into a busy schedule. Your location will confirm timing based on your selected service.",
+          "Most sessions average about 15 minutes, depending on the protocol and goals.",
       },
       {
         question: "Does it hurt?",
@@ -234,7 +234,7 @@ export const redLightTherapy: Service = {
       {
         question: "What should I wear?",
         answer:
-          "Wear whatever is comfortable. Your provider may recommend specific positioning depending on goals.",
+          "Wear what is comfortable. Best results typically occur with maximum skin exposure to the treatment area.",
       },
     ],
   },
