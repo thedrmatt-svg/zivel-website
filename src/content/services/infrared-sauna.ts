@@ -14,7 +14,7 @@ export const infraredSauna: Service = {
 
   hero: {
     subheadline:
-      "Infrared heat that helps you relax, recover, and feel lighter—without the intense heat of traditional saunas.",
+      "Infrared heat that helps you relax, recover, and feel lighter—without the humidity of traditional saunas.",
     media: {
       type: "image",
       src: "/images/services/infrared-sauna/hero.svg",
