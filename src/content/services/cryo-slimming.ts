@@ -242,7 +242,7 @@ export const cryoSlimming: Service = {
       {
         question: "Who is a good candidate?",
         answer:
-          "Cryo Slimming is intended for clients near their ideal weight looking to target stubborn areas.",
+          "Cryo Slimming is intended for clients near their ideal weight who want to target stubborn areas, as well as individuals looking to support body contouring goals as part of a broader wellness or health journey.",
       },
       {
         question: "Can I stack this with other services?",
