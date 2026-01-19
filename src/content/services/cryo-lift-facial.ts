@@ -8,13 +8,13 @@ export const cryoLiftFacial: Service = {
   seo: {
     title: "CryoLift Facial | Skin Tightening & Glow | Zivel",
     description:
-      "CryoLift Facial at Zivel is a non-invasive facial experience designed to support firmer-looking skin, reduced puffiness, and a refreshed glow. Book a session today.",
+      "CryoLift Facial is commonly used as a non-invasive approach to support the appearance of skin firmness and tone. While some clients schedule sessions ahead of events, many incorporate CryoLift into an ongoing skin-health routine as an alternative to more aggressive cosmetic procedures.",
     canonical: "/services/cryo-lift-facial",
   },
 
   hero: {
     subheadline:
-      "A cold-based facial experience designed to support firmer-looking skin, reduced puffiness, and a refreshed glow.",
+      "Non-invasive facial cooling designed to support the appearance of skin firmness, tone, and overall skin health—used for both ongoing maintenance and event preparation.",
     media: {
       type: "image",
       src: "/images/services/cryo-lift-facial/hero.svg",
@@ -34,7 +34,7 @@ export const cryoLiftFacial: Service = {
     bullets: [
       "Non-invasive facial with no downtime",
       "Designed to support firmness and glow",
-      "Popular pre-event or routine maintenance option",
+      "Popular routine or routine maintenance option",
     ],
     media: {
       type: "image",
@@ -78,7 +78,7 @@ export const cryoLiftFacial: Service = {
         citations: ["clf-5"],
       },
       {
-        title: "Great for events and special occasions",
+        title: "Great as part of an ongoing skin routine and special occasions",
         description:
           "Many clients book before weddings, photos, travel, or nights out.",
         citations: ["clf-6"],
@@ -168,7 +168,7 @@ export const cryoLiftFacial: Service = {
         name: "Samantha J.",
         location: "Zivel Client",
         quote:
-          "My face looked less puffy and more refreshed right after. Perfect before an event.",
+          "My face looked less puffy and more refreshed right after. Perfect as part of a routine.",
       },
       {
         name: "Alyssa M.",
@@ -191,7 +191,7 @@ export const cryoLiftFacial: Service = {
       {
         title: "Single Session",
         priceLine: "From $X",
-        details: ["Great for events", "No downtime"],
+        details: ["Great as part of an ongoing skin routine", "No downtime"],
       },
       {
         title: "Packages",
@@ -235,14 +235,14 @@ export const cryoLiftFacial: Service = {
           "Most clients find it comfortable. Cold sensations are temporary and monitored by your provider.",
       },
       {
-        question: "When should I book before an event?",
+        question: "When should I book as part of a routine?",
         answer:
-          "Many clients book 1–3 days before an event, depending on their preference and schedule.",
+          "Many clients book 1–3 days as part of a routine, depending on their preference and schedule.",
       },
       {
         question: "How often should I do it?",
         answer:
-          "Many clients use it monthly for maintenance, or more frequently around events and travel.",
+          "Many clients begin with a foundation series of five sessions spaced about one week apart. After that, maintenance sessions are commonly scheduled every 4–8 weeks based on goals and response. Sessions can also be timed before events, but most long-term results are supported by consistent maintenance.",
       },
       {
         question: "Can I combine it with other services?",

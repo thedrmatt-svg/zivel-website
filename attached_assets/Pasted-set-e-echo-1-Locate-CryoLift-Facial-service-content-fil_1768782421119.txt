@@ -1,0 +1,56 @@
+set -e
+
+echo "=== 1) Locate CryoLift Facial service content file ==="
+FILE="$(grep -RIl --exclude-dir=node_modules --exclude-dir=.next \
+  -e "CryoLift" -e "Cryo Lift" -e "CryoLift Facial" \
+  src/content/services | head -n 1 || true)"
+
+if [ -z "$FILE" ]; then
+  echo "ERROR: Could not find CryoLift service file in src/content/services."
+  echo "Try: ls -la src/content/services"
+  exit 1
+fi
+
+echo "Found file:"
+echo "$FILE"
+echo
+
+echo "=== 2) Show current hero/intro + FAQ context (for sanity check) ==="
+grep -n -E "hero:|headline:|subheadline:|intro:|description:|faq:|FAQs|question:|answer:" "$FILE" | head -n 80 || true
+echo
+
+echo "=== 3) Apply copy updates (hero/intro tone + FAQs + broader positioning) ==="
+
+perl -0777 -i -pe '
+  # --- Soft de-emphasis of event-only positioning (generic cleanup) ---
+  s/\b(before (an|a) (big )?event)\b/as part of a routine/gis;
+  s/\b(pre-?event)\b/routine/gis;
+  s/\b(for (weddings|photos|photo shoots|special occasions|events))\b/as part of an ongoing skin routine/gis;
+  s/\b(quick (glow|refresh))\b/routine skin support/gis;
+  s/\b(luxury)\b/routine/gis;
+
+  # --- HERO: replace subheadline if it contains event-centric language ---
+  # Tries to find hero.subheadline (or hero.description) and rewrite it.
+  s/(hero:\s*\{.*?(subheadline|description):\s*")[^"]*(")/$1Non-invasive facial cooling designed to support the appearance of skin firmness, tone, and overall skin health—used for both ongoing maintenance and event preparation.$3/s;
+
+  # --- INTRO / ABOUT: if there is a main description/summary paragraph, rewrite it (best effort) ---
+  s/(\b(description|summary|body|text):\s*")([^"]{30,300})(")/$1CryoLift Facial is commonly used as a non-invasive approach to support the appearance of skin firmness and tone. While some clients schedule sessions ahead of events, many incorporate CryoLift into an ongoing skin-health routine as an alternative to more aggressive cosmetic procedures.$4/si
+    unless $2 =~ /CryoLift Facial is commonly used as a non-invasive approach/i;
+
+  # --- FAQ: Who is a good candidate? (update answer) ---
+  s/(question:\s*"Who is a good candidate\??"\s*,\s*answer:\s*")[^"]*(")/$1CryoLift Facial is commonly used by adults 30+ who want to support the appearance of skin firmness and tone, including those looking to address early signs of skin laxity. It may also be incorporated into broader wellness and body-care routines as a non-invasive option for ongoing skin support.$2/s;
+
+  # --- FAQ: How often should I do it? (update answer) ---
+  s/(question:\s*"How often should I do (it|this)\??"\s*,\s*answer:\s*")[^"]*(")/$1Many clients begin with a foundation series of five sessions spaced about one week apart. After that, maintenance sessions are commonly scheduled every 4–8 weeks based on goals and response. Sessions can also be timed before events, but most long-term results are supported by consistent maintenance.$3/s;
+
+' "$FILE"
+
+echo "✅ Updated copy in: $FILE"
+echo
+
+echo "=== 4) Show updated sections (hero/intro/FAQ snippets) ==="
+grep -n -E "hero:|headline:|subheadline:|intro:|description:|faq:|question:|answer:" "$FILE" | head -n 120 || true
+echo
+
+echo "=== 5) Run build (optional but recommended) ==="
+npm run build
