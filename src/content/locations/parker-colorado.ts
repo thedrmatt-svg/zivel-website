@@ -21,7 +21,7 @@ export const zivel_parker_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11680,
   },
 
   services: [

@@ -21,7 +21,7 @@ export const zivel_metairie_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11435,
   },
 
   services: [

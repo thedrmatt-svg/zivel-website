@@ -21,7 +21,7 @@ export const zivel_riverton_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11445,
   },
 
   services: [

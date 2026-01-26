@@ -55,7 +55,7 @@ const metairie_la: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11435,
   },
 
   faqs: [

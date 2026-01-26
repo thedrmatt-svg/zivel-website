@@ -21,7 +21,7 @@ export const zivel_rogers_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11442,
   },
 
   services: [

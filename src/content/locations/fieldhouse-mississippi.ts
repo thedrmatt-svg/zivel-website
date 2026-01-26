@@ -21,7 +21,7 @@ export const zivel_fieldhouse_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11441,
   },
 
   services: [

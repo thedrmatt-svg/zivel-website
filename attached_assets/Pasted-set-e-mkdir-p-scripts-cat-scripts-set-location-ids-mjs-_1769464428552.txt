@@ -1,0 +1,87 @@
+set -e
+
+mkdir -p scripts
+cat > scripts/set-location-ids.mjs <<'EOF'
+import fs from "fs";
+import path from "path";
+
+const DIR = path.join(process.cwd(), "src/content/locations");
+
+// Map: Display Name (what users see) -> locationId
+const IDS = {
+  "Zivel Bentonville": 11443,
+  "Zivel Belmont": 11472,
+  "Zivel Brecksville": 11438,
+  "Zivel Buckhead": 11537,
+  "Zivel Briargate": 11779,
+  "Zivel Coral Gables": 11432,
+  "Zivel Cumming-Windermere": 11617,
+  "Zivel Fayetteville": 11616,
+  "Zivel Fieldhouse": 11441,
+  "Zivel Franklin-Cool Springs": 11436,
+  "Zivel Highlands Ranch": 11431,
+  "Zivel Hollywood": 11433,
+  "Zivel Metairie": 11435,
+  "Zivel Murfreesboro": 11430,
+  "Zivel Newport": 11437,
+  "Zivel Palm Coast": 11434,
+  "Zivel Parker": 11680,
+  "Zivel Riverton": 11445,
+  "Zivel Rogers": 11442,
+};
+
+const files = fs.readdirSync(DIR).filter(f => f.endsWith(".ts"));
+
+function getNameFromFile(text) {
+  // matches: name: "Zivel Something",
+  const m = text.match(/\bname:\s*"([^"]+)"\s*,/);
+  return m ? m[1] : null;
+}
+
+let updated = 0;
+let skipped = 0;
+let notFound = [];
+
+for (const file of files) {
+  const full = path.join(DIR, file);
+  const text = fs.readFileSync(full, "utf8");
+  const name = getNameFromFile(text);
+
+  if (!name) {
+    skipped++;
+    continue;
+  }
+
+  const id = IDS[name];
+  if (!id) {
+    // not part of this batch
+    continue;
+  }
+
+  // Replace booking locationId whether it's null or already a number
+  // booking: { locationId: null, }
+  // booking: { locationId: 123, }
+  const replaced = text.replace(
+    /booking:\s*\{\s*locationId:\s*(null|\d+)\s*,?\s*\}/m,
+    `booking: {\n    locationId: ${id},\n  }`
+  );
+
+  if (replaced === text) {
+    notFound.push(`${name} (${file}) - booking block not matched`);
+    continue;
+  }
+
+  fs.writeFileSync(full, replaced, "utf8");
+  updated++;
+}
+
+console.log(`✅ Updated booking.locationId in ${updated} files.`);
+if (notFound.length) {
+  console.log("\n⚠️ These matched names but the booking block wasn't found:");
+  for (const n of notFound) console.log(" - " + n);
+}
+
+EOF
+
+node scripts/set-location-ids.mjs
+npm run build

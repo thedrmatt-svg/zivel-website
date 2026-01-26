@@ -55,7 +55,7 @@ const brecksville_oh: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11438,
   },
 
   faqs: [

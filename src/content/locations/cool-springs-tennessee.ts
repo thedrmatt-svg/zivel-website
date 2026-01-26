@@ -21,7 +21,7 @@ export const zivel_franklin_cool_springs_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11436,
   },
 
   services: [

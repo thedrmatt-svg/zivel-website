@@ -55,7 +55,7 @@ const buckhead_ga: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11537,
   },
 
   faqs: [

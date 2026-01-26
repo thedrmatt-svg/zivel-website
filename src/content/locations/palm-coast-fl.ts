@@ -55,7 +55,7 @@ const palm_coast_fl: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11434,
   },
 
   faqs: [

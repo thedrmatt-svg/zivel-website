@@ -55,7 +55,7 @@ export const rivertonUt: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11445,
   },
 
   faqs: [

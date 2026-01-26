@@ -21,7 +21,7 @@ export const zivel_belmont_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11472,
   },
 
   services: [

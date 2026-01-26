@@ -21,7 +21,7 @@ export const zivel_palm_coast_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11434,
   },
 
   services: [

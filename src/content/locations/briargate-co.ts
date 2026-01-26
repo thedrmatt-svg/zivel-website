@@ -55,7 +55,7 @@ const briargate_co: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11779,
   },
 
   faqs: [

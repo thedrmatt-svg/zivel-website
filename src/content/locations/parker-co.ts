@@ -55,7 +55,7 @@ const parker_co: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11680,
   },
 
   faqs: [

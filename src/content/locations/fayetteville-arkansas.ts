@@ -21,7 +21,7 @@ export const zivel_fayetteville_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11616,
   },
 
   services: [

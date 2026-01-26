@@ -55,7 +55,7 @@ const coral_gables_fl: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11432,
   },
 
   faqs: [

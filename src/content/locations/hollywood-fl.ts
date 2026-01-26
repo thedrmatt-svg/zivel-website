@@ -55,7 +55,7 @@ export const hollywoodFl: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11433,
   },
 
   faqs: [

@@ -55,7 +55,7 @@ const bentonville_ar: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11443,
   },
 
   faqs: [

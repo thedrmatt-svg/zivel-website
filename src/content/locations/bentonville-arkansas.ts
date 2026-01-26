@@ -21,7 +21,7 @@ export const zivel_bentonville_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11443,
   },
 
   services: [

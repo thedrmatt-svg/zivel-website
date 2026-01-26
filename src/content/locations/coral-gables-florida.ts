@@ -21,7 +21,7 @@ export const zivel_coral_gables_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11432,
   },
 
   services: [

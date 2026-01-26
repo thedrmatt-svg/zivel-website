@@ -21,7 +21,7 @@ export const zivel_cumming_windermere_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11617,
   },
 
   services: [

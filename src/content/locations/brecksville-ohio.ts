@@ -21,7 +21,7 @@ export const zivel_brecksville_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11438,
   },
 
   services: [

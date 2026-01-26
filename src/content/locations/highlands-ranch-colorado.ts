@@ -21,7 +21,7 @@ export const zivel_highlands_ranch_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11431,
   },
 
   services: [

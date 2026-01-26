@@ -21,7 +21,7 @@ export const zivel_newport_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11437,
   },
 
   services: [

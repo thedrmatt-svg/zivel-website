@@ -21,7 +21,7 @@ export const zivel_hollywood_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11433,
   },
 
   services: [

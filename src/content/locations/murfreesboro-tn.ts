@@ -55,7 +55,7 @@ const murfreesboro_tn: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11430,
   },
 
   faqs: [

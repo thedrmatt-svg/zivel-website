@@ -21,7 +21,7 @@ export const zivel_murfreesboro_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11430,
   },
 
   services: [

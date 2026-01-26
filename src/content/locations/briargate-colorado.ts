@@ -21,7 +21,7 @@ export const zivel_briargate_location: Location = {
   },
 
   booking: {
-    locationId: null,
+    locationId: 11779,
   },
 
   services: [

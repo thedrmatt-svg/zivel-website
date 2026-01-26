@@ -55,7 +55,7 @@ const rogers_ar: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11442,
   },
 
   faqs: [

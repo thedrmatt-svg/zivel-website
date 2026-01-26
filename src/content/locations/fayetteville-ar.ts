@@ -55,7 +55,7 @@ const fayetteville_ar: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11616,
   },
 
   faqs: [
