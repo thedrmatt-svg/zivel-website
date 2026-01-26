@@ -3,7 +3,7 @@ export type Location = {
   slug: string;
   state: string;
   stateSlug: string;
-  city: string;
+  city?: string;
   citySlug: string;
 
   seo: {
@@ -12,13 +12,20 @@ export type Location = {
     canonical?: string;
   };
 
-  hero: {
+  contact?: {
+    address?: string;
+    phone?: string;
+    parking?: string;
+    notes?: string;
+  };
+
+  hero?: {
     headline: string;
     subheadline: string;
     image: string;
   };
 
-  about: {
+  about?: {
     headline: string;
     body: string[];
     image: string;
@@ -27,29 +34,30 @@ export type Location = {
   services: {
     slug: string;
     name: string;
-    description: string;
+    description?: string;
   }[];
 
-  owners: {
+  owners?: {
     name: string;
-    bio: string;
+    bio?: string;
+    title?: string;
   }[];
 
-  partners: {
+  partners?: {
     name: string;
     type: string;
   }[];
 
-  booking: {
-    locationId: number;
+  booking?: {
+    locationId: number | null;
   };
 
-  faqs: {
+  faqs?: {
     q: string;
     a: string;
   }[];
 
-  finalCTA: {
+  finalCTA?: {
     headline: string;
   };
 };
@@ -112,7 +120,7 @@ export type LocationPage = {
   phone: string; // display format
   phoneHref: string; // tel:+1...
   booking: {
-    locationId: number; // PerformanceIQ / ClubReady location id
+    locationId: number | null; // PerformanceIQ / ClubReady location id
     bookingUrl?: string; // fallback link
   };
 

@@ -44,16 +44,21 @@ export default async function LocationPage({
   const canonicalPath = location.seo?.canonical ?? `/locations/${location.stateSlug}/${location.citySlug}`;
   const canonicalUrl = canonicalPath.startsWith("http") ? canonicalPath : `${SITE_URL}${canonicalPath}`;
 
+  const heroImage = location.hero?.image ?? "/images/placeholder-location.jpg";
+  const cityName = location.city ?? location.citySlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: location.name,
     description: location.seo.description,
     url: canonicalUrl,
-    image: location.hero.image.startsWith("http") ? location.hero.image : `${SITE_URL}${location.hero.image}`,
+    ...(location.hero?.image && {
+      image: location.hero.image.startsWith("http") ? location.hero.image : `${SITE_URL}${location.hero.image}`,
+    }),
     address: {
       "@type": "PostalAddress",
-      addressLocality: location.city,
+      addressLocality: cityName,
       addressRegion: location.state,
       addressCountry: "US",
     },
@@ -78,7 +83,7 @@ export default async function LocationPage({
       {
         "@type": "ListItem",
         position: 3,
-        name: location.city,
+        name: cityName,
         item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}`,
       },
     ],
@@ -96,7 +101,7 @@ export default async function LocationPage({
         text: String(f.a ?? ""),
       },
     })),
-  } : { "@type": "FAQPage", "mainEntity": [] };
+  } : null;
 
   return (
     <>
@@ -104,10 +109,12 @@ export default async function LocationPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -116,21 +123,25 @@ export default async function LocationPage({
 
       {/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src={location.hero.image}
-            alt={location.name}
-            fill
-            priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/10" />
-        </div>
+        {location.hero?.image && (
+          <div className="absolute inset-0">
+            <Image
+              src={heroImage}
+              alt={location.name}
+              fill
+              priority
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/10" />
+          </div>
+        )}
 
         <div className="relative section py-24">
           <div className="max-w-3xl space-y-6">
-            <h1>{location.hero.headline}</h1>
-            <p className="text-lg text-white/85">{location.hero.subheadline}</p>
+            <h1>{location.hero?.headline ?? location.name}</h1>
+            {location.hero?.subheadline && (
+              <p className="text-lg text-white/85">{location.hero.subheadline}</p>
+            )}
 
             <div className="flex flex-wrap gap-3 pt-2">
               <a
@@ -150,22 +161,47 @@ export default async function LocationPage({
         </div>
       </section>
 
-      {/* SECTION 2 — ABOUT THIS LOCATION */}
-      <section className="section grid gap-10 md:grid-cols-2 md:items-center">
-        <div className="space-y-4">
-          <h2>{location.about.headline}</h2>
-          {location.about.body.map((p, i) => (
-            <p key={i} className="text-white/70">{p}</p>
-          ))}
-        </div>
-        <Image
-          src={location.about.image}
-          alt={`${location.name} interior`}
-          width={600}
-          height={450}
-          className="rounded-2xl object-cover"
-        />
-      </section>
+      {/* SECTION 2 — ABOUT THIS LOCATION (optional) */}
+      {location.about && (
+        <section className="section grid gap-10 md:grid-cols-2 md:items-center">
+          <div className="space-y-4">
+            <h2>{location.about.headline}</h2>
+            {location.about.body.map((p, i) => (
+              <p key={i} className="text-white/70">{p}</p>
+            ))}
+          </div>
+          <Image
+            src={location.about.image}
+            alt={`${location.name} interior`}
+            width={600}
+            height={450}
+            className="rounded-2xl object-cover"
+          />
+        </section>
+      )}
+
+      {/* SECTION — CONTACT INFO (for simple locations) */}
+      {location.contact?.address && (
+        <section className="section">
+          <h2 className="mb-6">Location Details</h2>
+          <div className="rounded-2xl border-subtle bg-card p-6 space-y-3">
+            <p className="text-white/85">{location.contact.address}</p>
+            {location.contact.phone && (
+              <p>
+                <a href={`tel:${location.contact.phone}`} className="text-brand underline">
+                  {location.contact.phone}
+                </a>
+              </p>
+            )}
+            {location.contact.parking && (
+              <p className="text-white/70 text-sm">{location.contact.parking}</p>
+            )}
+            {location.contact.notes && (
+              <p className="text-white/70 text-sm">{location.contact.notes}</p>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* SECTION 3 — SERVICES AVAILABLE */}
       <section className="section">
@@ -178,65 +214,88 @@ export default async function LocationPage({
               className="rounded-2xl border-subtle bg-card p-6 hover:bg-white/10"
             >
               <h3 className="text-lg">{s.name}</h3>
-              <p className="mt-2 text-sm text-white/70">{s.description}</p>
+              {s.description && (
+                <p className="mt-2 text-sm text-white/70">{s.description}</p>
+              )}
             </Link>
           ))}
         </div>
       </section>
 
-      {/* SECTION 4 — LOCAL OWNERS */}
-      <section className="section">
-        <h2 className="mb-10">Meet the Owners</h2>
-        <div className="grid gap-8 md:grid-cols-2">
-          {location.owners.map((o) => (
-            <div key={o.name} className="rounded-2xl border-subtle bg-card p-6">
-              <h3 className="text-lg">{o.name}</h3>
-              <p className="mt-2 text-sm text-white/70">{o.bio}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* SECTION 4 — LOCAL OWNERS (optional) */}
+      {location.owners && location.owners.length > 0 && (
+        <section className="section">
+          <h2 className="mb-10">Meet the Team</h2>
+          <div className="grid gap-8 md:grid-cols-2">
+            {location.owners.map((o) => (
+              <div key={o.name} className="rounded-2xl border-subtle bg-card p-6">
+                <h3 className="text-lg">{o.name}</h3>
+                {o.title && <p className="text-sm text-brand">{o.title}</p>}
+                {o.bio && <p className="mt-2 text-sm text-white/70">{o.bio}</p>}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
-      {/* SECTION 5 — LOCAL PARTNERS */}
-      <section className="section">
-        <h2 className="mb-10">Local Partners</h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          {location.partners.map((p) => (
-            <div key={p.name} className="rounded-2xl border-subtle bg-card p-6">
-              <div className="font-semibold">{p.name}</div>
-              <div className="text-sm text-white/60">{p.type}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* SECTION 5 — LOCAL PARTNERS (optional) */}
+      {location.partners && location.partners.length > 0 && (
+        <section className="section">
+          <h2 className="mb-10">Local Partners</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {location.partners.map((p) => (
+              <div key={p.name} className="rounded-2xl border-subtle bg-card p-6">
+                <div className="font-semibold">{p.name}</div>
+                <div className="text-sm text-white/60">{p.type}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* SECTION 6 — BOOKING */}
       <section id="book" className="section rounded-2xl border-subtle bg-card p-10">
         <h2 className="mb-4">Book Your Session</h2>
-        <BookingWidget locationId={location.booking.locationId} />
+        {location.booking?.locationId ? (
+          <BookingWidget locationId={location.booking.locationId} />
+        ) : location.contact?.phone ? (
+          <p className="text-white/70">
+            Booking coming soon. Call{" "}
+            <a href={`tel:${location.contact.phone}`} className="text-brand underline">
+              {location.contact.phone}
+            </a>{" "}
+            to schedule.
+          </p>
+        ) : (
+          <p className="text-white/70">Booking coming soon.</p>
+        )}
       </section>
 
-      {/* SECTION 7 — FAQ */}
-      <section className="section">
-        <h2 className="mb-10">Frequently Asked Questions</h2>
-        {location.faqs.map((f, i) => (
-          <details key={i} className="rounded-2xl border-subtle bg-card p-6 mb-4">
-            <summary className="font-semibold cursor-pointer">{f.q}</summary>
-            <p className="mt-3 text-sm text-white/70">{f.a}</p>
-          </details>
-        ))}
-      </section>
+      {/* SECTION 7 — FAQ (optional) */}
+      {faqItems.length > 0 && (
+        <section className="section">
+          <h2 className="mb-10">Frequently Asked Questions</h2>
+          {faqItems.map((f, i) => (
+            <details key={i} className="rounded-2xl border-subtle bg-card p-6 mb-4">
+              <summary className="font-semibold cursor-pointer">{f.q}</summary>
+              <p className="mt-3 text-sm text-white/70">{f.a}</p>
+            </details>
+          ))}
+        </section>
+      )}
 
-      {/* SECTION 8 — FINAL CTA */}
-      <section className="section bg-black/60 rounded-2xl p-10">
-        <h2>{location.finalCTA.headline}</h2>
-        <a
-          href="#book"
-          className="inline-block mt-6 rounded-xl bg-[var(--zivel-gold)] px-6 py-3 font-semibold text-black"
-        >
-          Book Your Visit
-        </a>
-      </section>
+      {/* SECTION 8 — FINAL CTA (optional) */}
+      {location.finalCTA && (
+        <section className="section bg-black/60 rounded-2xl p-10">
+          <h2>{location.finalCTA.headline}</h2>
+          <a
+            href="#book"
+            className="inline-block mt-6 rounded-xl bg-[var(--zivel-gold)] px-6 py-3 font-semibold text-black"
+          >
+            Book Your Visit
+          </a>
+        </section>
+      )}
 
     </div>
     </>
