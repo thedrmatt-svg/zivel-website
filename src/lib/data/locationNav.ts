@@ -34,8 +34,8 @@ export function getLocationNav(options?: { featuredCount?: number }) {
     .map((loc: Location) => {
       const stateSlug = loc.stateSlug.toLowerCase();
       const citySlug = loc.citySlug.toLowerCase();
-      const stateShort = loc.state;
-      const cityName = loc.city;
+      const stateShort = loc.state ?? stateSlug.toUpperCase();
+      const cityName = loc.city ?? titleCase(citySlug);
 
       return {
         label: `${cityName}${stateShort ? `, ${stateShort}` : ""}`,
