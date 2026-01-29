@@ -48,7 +48,7 @@ export default async function ServicePage({ params }: PageProps) {
     service.benefits.viewResearchCTA?.href ?? "/research";
 
   return (
-    <div data-zivel-service="cryo" className="zivel-service-page zivel-service--cryo space-y-24">{/* SECTION 1 — HERO */}
+    <div className="space-y-24">{/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden">
         {/* Background media */}
         {service.hero.media?.type === "image" ? (
