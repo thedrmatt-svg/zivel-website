@@ -1,0 +1,89 @@
+set -euo pipefail
+mkdir -p scripts .backups
+
+cat > scripts/add-zivel-debug-style.mjs <<'EOF'
+import fs from "node:fs";
+import path from "node:path";
+
+const DEBUG_START = "/* ZIVEL_DEBUG_START */";
+const DEBUG_END   = "/* ZIVEL_DEBUG_END */";
+
+function backup(filePath){
+  const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+  const safe = filePath.replace(/\//g,"__");
+  const out = path.join(".backups", `${safe}.${stamp}.bak`);
+  fs.copyFileSync(filePath, out);
+  return out;
+}
+
+function findLayout(){
+  const cands = ["app/layout.tsx","app/layout.jsx","src/app/layout.tsx","src/app/layout.jsx"];
+  return cands.find(fs.existsSync) ?? null;
+}
+
+function findGlobalsFromLayout(layoutPath){
+  const dir = path.dirname(layoutPath);
+  const direct = path.join(dir, "globals.css");
+  if (fs.existsSync(direct)) return direct;
+  const cands = ["app/globals.css","src/app/globals.css","styles/globals.css","src/styles/globals.css"];
+  return cands.find(fs.existsSync) ?? null;
+}
+
+function upsertDebug(globalsPath){
+  const cssBlock = `${DEBUG_START}
+/* DEBUG: if you don't see magenta outline, wrapper/CSS isn't applying */
+.zivel-service-page{
+  outline: 4px solid magenta !important;
+  min-height: 100vh !important;
+}
+
+/* make glow VERY obvious */
+.zivel-service-page::before{
+  filter: saturate(1.3) contrast(1.05);
+  background:
+    radial-gradient(900px 650px at 10% 18%,
+      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .40) 0%,
+      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .18) 45%,
+      rgba(0,0,0,0) 72%),
+    radial-gradient(900px 650px at 90% 18%,
+      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .40) 0%,
+      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .18) 45%,
+      rgba(0,0,0,0) 72%),
+    linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.80) 60%, rgba(0,0,0,.95) 100%) !important;
+}
+
+/* ensure the overall page isn't forcing white behind it */
+body:has(.zivel-service-page){
+  background: #07090d !important;
+}
+${DEBUG_END}
+`;
+
+  let css = fs.readFileSync(globalsPath, "utf8");
+  if (css.includes(DEBUG_START) && css.includes(DEBUG_END)) {
+    css = css.replace(new RegExp(`${DEBUG_START}[\\s\\S]*?${DEBUG_END}`,"m"), cssBlock);
+  } else {
+    css = css.trimEnd() + "\n\n" + cssBlock + "\n";
+  }
+  fs.writeFileSync(globalsPath, css, "utf8");
+}
+
+function main(){
+  const layout = findLayout();
+  if (!layout) throw new Error("Could not find layout.tsx in app/ or src/app/");
+  const globals = findGlobalsFromLayout(layout);
+  if (!globals) throw new Error("Could not find globals.css near layout or in common paths");
+
+  const b = backup(globals);
+  upsertDebug(globals);
+
+  console.log("✅ Debug CSS injected into:", globals);
+  console.log("✅ Backup:", b);
+  console.log("Now refresh /services/cryotherapy and look for a MAGENTA outline around the page content.");
+}
+
+main();
+EOF
+
+node scripts/add-zivel-debug-style.mjs
+npm run build

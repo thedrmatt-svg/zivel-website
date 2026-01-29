@@ -239,31 +239,3 @@ button {
 }
 /* ZIVEL_SERVICE_THEME_END */
 
-/* ZIVEL_DEBUG_START */
-/* DEBUG: if you don't see magenta outline, wrapper/CSS isn't applying */
-.zivel-service-page{
-  outline: 4px solid magenta !important;
-  min-height: 100vh !important;
-}
-
-/* make glow VERY obvious */
-.zivel-service-page::before{
-  filter: saturate(1.3) contrast(1.05);
-  background:
-    radial-gradient(900px 650px at 10% 18%,
-      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .40) 0%,
-      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .18) 45%,
-      rgba(0,0,0,0) 72%),
-    radial-gradient(900px 650px at 90% 18%,
-      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .40) 0%,
-      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .18) 45%,
-      rgba(0,0,0,0) 72%),
-    linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.80) 60%, rgba(0,0,0,.95) 100%) !important;
-}
-
-/* ensure the overall page isn't forcing white behind it */
-body:has(.zivel-service-page){
-  background: #07090d !important;
-}
-/* ZIVEL_DEBUG_END */
-
