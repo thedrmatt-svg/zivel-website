@@ -1,0 +1,78 @@
+set -euo pipefail
+mkdir -p scripts .backups
+
+cat > scripts/cryo-cta-primary-blue.mjs <<'EOF'
+import fs from "node:fs";
+import path from "node:path";
+
+const FILE = "src/styles/globals.css";
+const START = "/* ZIVEL_SERVICE_THEME_START */";
+const END   = "/* ZIVEL_SERVICE_THEME_END */";
+
+function backup(filePath){
+  const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+  const safe = filePath.replace(/\//g,"__");
+  const out = path.join(".backups", `${safe}.${stamp}.bak`);
+  fs.copyFileSync(filePath, out);
+  return out;
+}
+
+function main(){
+  if (!fs.existsSync(FILE)) {
+    console.error("❌ Not found:", FILE);
+    process.exit(1);
+  }
+
+  const b = backup(FILE);
+  let css = fs.readFileSync(FILE, "utf8");
+
+  const blockRe = new RegExp(`${START}[\\s\\S]*?${END}`, "m");
+  const m = css.match(blockRe);
+  if (!m) {
+    console.error("❌ Theme block markers not found in src/styles/globals.css");
+    process.exit(1);
+  }
+
+  let block = m[0];
+
+  const MARK_S = "/* ZIVEL_CRYO_CTA_START */";
+  const MARK_E = "/* ZIVEL_CRYO_CTA_END */";
+
+  const inject = `${MARK_S}
+/* Cryotherapy-only: set primary theme token + force booking CTA blue */
+.zivel-service-page[data-zivel-service="cryotherapy"],
+[data-zivel-service="cryotherapy"] .zivel-service-page{
+  /* shadcn tokens are HSL triplets */
+  --primary: 215 61% 46%;              /* ~ RGB(45,100,189) */
+  --primary-foreground: 0 0% 100%;
+}
+
+/* Catch common booking CTAs by href (Link renders to <a>) */
+.zivel-service-page :where(a[href*="book" i], a[href*="booking" i], a[href*="schedule" i]){
+  background-color: rgb(45 100 189) !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,.12) !important;
+}
+.zivel-service-page :where(a[href*="book" i], a[href*="booking" i], a[href*="schedule" i]):hover{
+  background-color: rgb(36 86 170) !important;
+}
+${MARK_E}
+`;
+
+  const injRe = new RegExp(`${MARK_S}[\\s\\S]*?${MARK_E}\\s*`, "m");
+  if (injRe.test(block)) block = block.replace(injRe, inject);
+  else block = block.replace(END, `${inject}\n${END}`);
+
+  css = css.replace(blockRe, block);
+  fs.writeFileSync(FILE, css, "utf8");
+
+  console.log("✅ Cryo CTA primary override added (shadcn primary + booking href catch).");
+  console.log("File:", FILE);
+  console.log("Backup:", b);
+}
+
+main();
+EOF
+
+node scripts/cryo-cta-primary-blue.mjs
+npm run build

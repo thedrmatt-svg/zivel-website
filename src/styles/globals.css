@@ -250,5 +250,26 @@ button {
   outline-offset: 3px;
   border-radius: 12px;
 }
+
+/* ZIVEL_CRYO_CTA_START */
+/* Cryotherapy-only: set primary theme token + force booking CTA blue */
+.zivel-service-page[data-zivel-service="cryotherapy"],
+[data-zivel-service="cryotherapy"] .zivel-service-page{
+  /* shadcn tokens are HSL triplets */
+  --primary: 215 61% 46%;              /* ~ RGB(45,100,189) */
+  --primary-foreground: 0 0% 100%;
+}
+
+/* Catch common booking CTAs by href (Link renders to <a>) */
+.zivel-service-page :where(a[href*="book" i], a[href*="booking" i], a[href*="schedule" i]){
+  background-color: rgb(45 100 189) !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,.12) !important;
+}
+.zivel-service-page :where(a[href*="book" i], a[href*="booking" i], a[href*="schedule" i]):hover{
+  background-color: rgb(36 86 170) !important;
+}
+/* ZIVEL_CRYO_CTA_END */
+
 /* ZIVEL_SERVICE_THEME_END */
 
