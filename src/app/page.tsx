@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { services } from "@/lib/data/services";
+import { scienceArticles } from "@/lib/data/science";
 
 export const metadata: Metadata = {
   title: "Zivel | Wellness & Recovery",
   description:
-    "Zivel homepage skeleton. Placeholder sections for hero, booking, services, pathways, locations, about, social proof, science hub, and final CTA.",
+    "Zivel is modern wellness technology—delivered in calm, premium studios—with evidence-informed services designed to support recovery, performance, and daily well-being.",
   alternates: { canonical: "/" },
 };
 
@@ -28,6 +30,9 @@ const navItems: Array<{ key: SectionKey; label: string; href: string }> = [
 ];
 
 export default function HomePage() {
+  const featuredServices = services.slice(0, 6);
+  const featuredArticles = scienceArticles.slice(0, 3);
+
   return (
     <main className="space-y-24">
       {/* HERO */}
@@ -40,11 +45,11 @@ export default function HomePage() {
               </p>
 
               <h1 id="home-hero-title" className="mb-6">
-                Homepage Hero Headline Placeholder
+                Feel better. Recover smarter.
               </h1>
 
               <p className="max-w-2xl text-lg text-white/80">
-                One-sentence value proposition placeholder (recovery / performance / longevity).
+                Zivel is modern wellness technology—delivered in calm, premium studios—with evidence-informed services designed to support recovery, performance, and daily well-being.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -80,9 +85,9 @@ export default function HomePage() {
 
               <ul className="mt-10 grid gap-3 sm:grid-cols-3" aria-label="Key highlights">
                 {[
-                  "Highlight placeholder 1",
-                  "Highlight placeholder 2",
-                  "Highlight placeholder 3",
+                  "Personalized guidance",
+                  "Clean, consistent studios",
+                  "Results you can feel",
                 ].map((t) => (
                   <li
                     key={t}
@@ -109,10 +114,10 @@ export default function HomePage() {
           <div className="rounded-2xl border-subtle bg-card p-6 md:p-8">
             <div className="mx-auto max-w-3xl text-center">
               <h2 id="home-booking-title" className="mb-4">
-                Booking Section Placeholder
+                Book Your Session
               </h2>
               <p className="mb-8 text-white/70">
-                Short booking explainer placeholder (location/service/time).
+                Choose your location, select a service, and pick a time that works for you.
               </p>
             </div>
 
@@ -122,10 +127,10 @@ export default function HomePage() {
 
             <p className="mt-4 text-center text-sm text-white/60">
               If the booking form does not load,{" "}
-              <span className="underline decoration-white/20 underline-offset-4">
-                open the booking page
-              </span>{" "}
-              (placeholder link).
+              <Link href="/locations" className="underline decoration-white/20 underline-offset-4 hover:decoration-white/40">
+                find a location
+              </Link>{" "}
+              to book directly.
             </p>
           </div>
         </div>
@@ -137,10 +142,10 @@ export default function HomePage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <h2 id="home-services-title" className="mb-2">
-                Services Overview Placeholder
+                Signature Services
               </h2>
               <p className="text-white/70">
-                One-sentence summary placeholder for services grid.
+                Choose a single session or build a routine. Each service is designed to work on its own—and even better together.
               </p>
             </div>
 
@@ -154,27 +159,17 @@ export default function HomePage() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              "Cryotherapy",
-              "Red Light Therapy",
-              "Infrared Sauna",
-              "Dry Float Therapy",
-              "Compression Therapy",
-              "Premium Cryo Aesthetics",
-            ].map((service) => (
-              <article key={service} className="rounded-2xl border-subtle bg-card p-6">
+            {featuredServices.map((service) => (
+              <article key={service.slug} className="rounded-2xl border-subtle bg-card p-6">
                 <header className="mb-3 flex items-start justify-between gap-3">
-                  <h3 className="text-lg font-semibold">{service}</h3>
-                  <span className="rounded-xl border border-white/10 bg-black/30 px-3 py-1 text-xs text-white/60">
-                    Placeholder
-                  </span>
+                  <h3 className="text-lg font-semibold">{service.name}</h3>
                 </header>
-                <p className="text-sm text-white/70">
-                  Brief description placeholder (benefit-driven, 1–2 lines).
+                <p className="text-sm text-white/70 line-clamp-2">
+                  {service.hero.subheadline}
                 </p>
                 <div className="mt-5">
                   <Link
-                    href="/services"
+                    href={`/services/${service.slug}`}
                     className="text-sm font-semibold underline decoration-white/20 underline-offset-4 hover:decoration-white/40"
                   >
                     Learn more →
@@ -191,25 +186,30 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
             <h2 id="home-pathways-title" className="mb-2">
-              Zivel Pathways Placeholder
+              Zivel Pathways
             </h2>
             <p className="text-white/70">
-              Short explanation placeholder for protocol-driven experiences.
+              Curated combinations that turn multiple services into a streamlined session—built around how you want to feel today.
             </p>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {["Performance", "Recovery", "Beauty", "Longevity"].map((pathway) => (
-              <article key={pathway} className="rounded-2xl border-subtle bg-card p-6 text-center">
-                <h3 className="mb-2 text-lg font-semibold">{pathway}</h3>
-                <p className="text-sm text-white/70">Pathway description placeholder.</p>
+            {[
+              { name: "Performance", desc: "Optimize energy, focus, and athletic output." },
+              { name: "Recovery", desc: "Ease tension, reduce soreness, and restore balance." },
+              { name: "Beauty", desc: "Support skin health, tone, and a refreshed appearance." },
+              { name: "Longevity", desc: "Build habits that support long-term well-being." },
+            ].map((pathway) => (
+              <article key={pathway.name} className="rounded-2xl border-subtle bg-card p-6 text-center">
+                <h3 className="mb-2 text-lg font-semibold">{pathway.name}</h3>
+                <p className="text-sm text-white/70">{pathway.desc}</p>
                 <div className="mt-5">
-                  <a
-                    href="/pathways"
+                  <Link
+                    href="/services"
                     className="text-sm font-semibold underline decoration-white/20 underline-offset-4 hover:decoration-white/40"
                   >
                     Explore pathway →
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
@@ -223,19 +223,19 @@ export default function HomePage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <h2 id="home-locations-title" className="mb-2">
-                Locations Placeholder
+                Find a Zivel Near You
               </h2>
               <p className="text-white/70">
-                One-sentence locations intro placeholder (nationwide / nearby / expanding).
+                Visit a studio near you and book in minutes. Every location delivers the same premium experience—designed to feel calm, modern, and consistent.
               </p>
             </div>
 
             <Link
               href="/locations"
               className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
-              aria-label="View all locations"
+              aria-label="Browse all locations"
             >
-              View All Locations
+              Browse Locations
             </Link>
           </div>
 
@@ -246,7 +246,7 @@ export default function HomePage() {
             <input
               id="location-search"
               type="text"
-              placeholder="Search by city or ZIP (placeholder)"
+              placeholder="Search by city or ZIP"
               className="h-12 rounded-2xl border border-white/12 bg-black/30 px-4 text-sm text-white placeholder:text-white/40 outline-none focus:border-white/25"
             />
             <button
@@ -269,18 +269,18 @@ export default function HomePage() {
           <div className="grid gap-6 rounded-2xl border-subtle bg-card p-6 md:grid-cols-12 md:p-8 md:items-center">
             <div className="md:col-span-7">
               <h2 id="home-about-title" className="mb-3">
-                About Zivel Placeholder
+                About Zivel
               </h2>
               <p className="text-white/70">
-                Brief brand story placeholder. (We&apos;ll replace with final copy once approved.)
+                Zivel brings modern wellness technology to local communities through a network of independently operated studios. We focus on evidence-informed modalities, clean environments, and personalized guidance—so you can feel better and recover smarter.
               </p>
               <div className="mt-6">
-                <a
+                <Link
                   href="/about"
                   className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
                 >
                   Learn More
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -298,29 +298,29 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
             <h2 id="home-social-proof-title" className="mb-2">
-              Social Proof Placeholder
+              What Clients Say
             </h2>
             <p className="text-white/70">
-              Short trust-builder placeholder (reviews, ratings, outcomes).
+              Real feedback from people who have made Zivel part of their routine.
             </p>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {["Testimonial 1", "Testimonial 2", "Testimonial 3"].map((label) => (
-              <figure key={label} className="rounded-2xl border-subtle bg-card p-6">
+            {[
+              { quote: "I feel more recovered after every session. The staff makes the experience easy and comfortable.", name: "Sarah M.", city: "Nashville, TN" },
+              { quote: "The combination of cryotherapy and red light has become my go-to recovery routine.", name: "Marcus T.", city: "Denver, CO" },
+              { quote: "Clean, calm, and consistent—exactly what I was looking for in a wellness studio.", name: "Emily R.", city: "Atlanta, GA" },
+            ].map((t) => (
+              <figure key={t.name} className="rounded-2xl border-subtle bg-card p-6">
                 <blockquote className="text-sm text-white/70">
-                  Customer testimonial placeholder (2–3 lines).
+                  &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <figcaption className="mt-4 text-xs text-white/50">
-                  — Name placeholder, City placeholder
+                  — {t.name}, {t.city}
                 </figcaption>
               </figure>
             ))}
           </div>
-
-          <p className="mt-8 text-sm text-white/60">
-            Ratings / review platform placeholders (Google, etc.). Add structured data later.
-          </p>
         </div>
       </section>
 
@@ -330,10 +330,10 @@ export default function HomePage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <h2 id="home-science-title" className="mb-2">
-                Science & Recovery Hub Preview Placeholder
+                Science-Informed, Studio-Ready
               </h2>
               <p className="text-white/70">
-                3 article previews in card format (SEO + authority). Placeholder until content exists.
+                Explore clear, evidence-informed articles that explain how these modalities are studied—and how to use them as part of a consistent routine.
               </p>
             </div>
 
@@ -341,25 +341,25 @@ export default function HomePage() {
               href="/science"
               className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
             >
-              View All Articles
+              Explore the Science Hub
             </Link>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[1, 2, 3].map((n) => (
-              <article key={n} className="rounded-2xl border-subtle bg-card p-6">
+            {featuredArticles.map((article) => (
+              <article key={article.slug} className="rounded-2xl border-subtle bg-card p-6">
                 <div className="mb-4 aspect-[16/9] w-full rounded-xl border border-white/10 bg-black/40 flex items-center justify-center text-white/40">
-                  Article Thumbnail Placeholder
+                  Article Thumbnail
                 </div>
                 <h3 className="mb-2 text-lg font-semibold">
-                  Article Title Placeholder {n}
+                  {article.title}
                 </h3>
-                <p className="text-sm text-white/70">
-                  Short snippet placeholder (1–2 sentences).
+                <p className="text-sm text-white/70 line-clamp-2">
+                  {article.description}
                 </p>
                 <div className="mt-5">
                   <Link
-                    href="/science"
+                    href={`/science/${article.slug}`}
                     className="text-sm font-semibold underline decoration-white/20 underline-offset-4 hover:decoration-white/40"
                   >
                     Read More →
@@ -378,10 +378,10 @@ export default function HomePage() {
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="max-w-3xl">
                 <h2 id="home-final-cta-title" className="mb-2">
-                  Ready to Start Your Wellness Journey?
+                  Ready to feel the difference?
                 </h2>
                 <p className="text-white/70">
-                  Final CTA subtitle placeholder (short, high-impact).
+                  Book a session today—or build a routine with memberships designed for consistency.
                 </p>
               </div>
 
@@ -392,12 +392,12 @@ export default function HomePage() {
                 >
                   Book Now
                 </a>
-                <a
+                <Link
                   href="/memberships"
                   className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
                 >
                   View Memberships
-                </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -1,0 +1,155 @@
+import fs from "node:fs";
+import path from "node:path";
+
+const NEW_COPY = {
+  heroHeading: "Feel better. Recover smarter.",
+  heroSubheading:
+    "Zivel is modern wellness technology—delivered in calm, premium studios—with evidence-informed services designed to support recovery, performance, and daily well-being.",
+  heroPrimaryCtaLabel: "Book Now",
+  heroSecondaryCtaLabel: "Explore Services",
+  heroMicroLine: "Personalized guidance • Clean, consistent studios • Results you can feel",
+
+  servicesTitle: "Signature Services",
+  servicesIntro:
+    "Choose a single session or build a routine. Each service is designed to work on its own—and even better together.",
+
+  pathwaysTitle: "Zivel Pathways",
+  pathwaysIntro:
+    "Curated combinations that turn multiple services into a streamlined session—built around how you want to feel today.",
+
+  scienceTitle: "Science-Informed, Studio-Ready",
+  scienceIntro:
+    "Explore clear, evidence-informed articles that explain how these modalities are studied—and how to use them as part of a consistent routine.",
+  scienceCtaLabel: "Explore the Science Hub",
+
+  locationsTitle: "Find a Zivel Near You",
+  locationsIntro:
+    "Visit a studio near you and book in minutes. Every location delivers the same premium experience—designed to feel calm, modern, and consistent.",
+  locationsCtaLabel: "Browse Locations",
+
+  finalCtaHeading: "Ready to feel the difference?",
+  finalCtaSubheading:
+    "Book a session today—or build a routine with memberships designed for consistency.",
+  finalCtaPrimaryLabel: "Book Now",
+  finalCtaSecondaryLabel: "View Memberships",
+};
+
+const candidates = [
+  "src/app/page.tsx",
+  "src/app/page.jsx",
+  "app/page.tsx",
+  "app/page.jsx",
+  "app/(marketing)/page.tsx",
+  "app/(marketing)/page.jsx",
+  "app/(site)/page.tsx",
+  "app/(site)/page.jsx",
+  "app/(home)/page.tsx",
+  "app/(home)/page.jsx",
+];
+
+function exists(p) {
+  try { return fs.existsSync(p) && fs.statSync(p).isFile(); } catch { return false; }
+}
+
+function findHomepageFile() {
+  for (const c of candidates) if (exists(c)) return c;
+
+  const appDir = "src/app";
+  if (!fs.existsSync(appDir)) return null;
+
+  const hits = [];
+  const walk = (dir, depth = 0) => {
+    if (depth > 2) return;
+    for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, ent.name);
+      if (ent.isDirectory()) walk(full, depth + 1);
+      if (ent.isFile() && /^page\.(t|j)sx$/.test(ent.name)) hits.push(full);
+    }
+  };
+  walk(appDir);
+
+  hits.sort((a, b) => a.split(path.sep).length - b.split(path.sep).length);
+  return hits[0] ?? null;
+}
+
+function backupFile(filePath) {
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const base = filePath.replace(/\//g, "__");
+  const backupPath = path.join(".backups", `${base}.${stamp}.bak`);
+  fs.copyFileSync(filePath, backupPath);
+  return backupPath;
+}
+
+function replaceConstString(src, constName, newValue) {
+  const re = new RegExp(
+    `(\\bconst\\s+${constName}\\s*=\\s*)(['"\`])([\\s\\S]*?)(\\2)(\\s*;)`,
+    "m"
+  );
+
+  if (!re.test(src)) return { src, changed: false };
+
+  const next = src.replace(re, (_, pre, q, _old, _q2, post) => {
+    const escaped =
+      q === "`"
+        ? newValue.replace(/`/g, "\\`")
+        : q === '"'
+          ? newValue.replace(/\\/g, "\\\\").replace(/"/g, '\\"')
+          : newValue.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+    return `${pre}${q}${escaped}${q}${post}`;
+  });
+
+  return { src: next, changed: true };
+}
+
+function run(filePath) {
+  const original = fs.readFileSync(filePath, "utf8");
+  let updated = original;
+
+  let changedKeys = [];
+
+  for (const [key, val] of Object.entries(NEW_COPY)) {
+    const out = replaceConstString(updated, key, val);
+    if (out.changed) {
+      updated = out.src;
+      changedKeys.push(key);
+    }
+  }
+
+  return { original, updated, changedKeys };
+}
+
+function main() {
+  const dryRun = process.argv.includes("--dry-run");
+
+  const filePath = findHomepageFile();
+  if (!filePath) {
+    console.error("❌ Could not find a homepage file under /app.");
+    process.exit(1);
+  }
+
+  const { original, updated, changedKeys } = run(filePath);
+
+  if (changedKeys.length === 0) {
+    console.log(`⚠️ Found homepage file: ${filePath}`);
+    console.log("No matching copy constants were found to replace.");
+    console.log("This script only updates existing const strings like:");
+    console.log("  const heroHeading = \"...\";");
+    console.log("Next step: paste your app/page.tsx (or homepage section) here and I will generate an exact terminal patch for YOUR file.");
+    process.exit(2);
+  }
+
+  console.log(`✅ Homepage file: ${filePath}`);
+  console.log(`✅ Matched & updated constants: ${changedKeys.join(", ")}`);
+
+  if (dryRun) {
+    console.log("\n--- DRY RUN: no files written ---");
+    process.exit(0);
+  }
+
+  const backupPath = backupFile(filePath);
+  fs.writeFileSync(filePath, updated, "utf8");
+  console.log(`✅ Backup created: ${backupPath}`);
+  console.log("✅ Homepage copy updated (copy-only).");
+}
+
+main();
