@@ -1,129 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+set -euo pipefail
+mkdir -p scripts .backups
 
-/* --------------------------------------------------
-   ZIVEL DESIGN SYSTEM — GLOBAL STYLES
--------------------------------------------------- */
+cat > scripts/apply-cryo-theme-to-styles-globals.mjs <<'EOF'
+import fs from "node:fs";
+import path from "node:path";
 
-/* CSS Variables: Brand + Theme */
-:root {
-  --zivel-black: #000000;
-  --zivel-white: #ffffff;
-  --zivel-gold: #d4af37;
+const TARGET = "src/styles/globals.css";
 
-  --zivel-gray-900: #0b0b0b;
-  --zivel-gray-800: #141414;
-  --zivel-gray-700: #1f1f1f;
-  --zivel-gray-600: #2a2a2a;
-  --zivel-gray-500: #3a3a3a;
+const THEME_START = "/* ZIVEL_SERVICE_THEME_START */";
+const THEME_END   = "/* ZIVEL_SERVICE_THEME_END */";
 
-  --zivel-text-primary: #ffffff;
-  --zivel-text-secondary: rgba(255, 255, 255, 0.75);
-  --zivel-text-muted: rgba(255, 255, 255, 0.55);
+function backup(filePath){
+  const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+  const safe = filePath.replace(/\//g,"__");
+  const out = path.join(".backups", `${safe}.${stamp}.bak`);
+  fs.copyFileSync(filePath, out);
+  return out;
 }
 
-/* Base HTML / Body */
-html {
-  scroll-behavior: smooth;
-  background-color: var(--zivel-black);
-}
-
-body {
-  min-height: 100vh;
-  background-color: var(--zivel-black);
-  color: var(--zivel-text-primary);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Links */
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--zivel-gold);
-}
-
-/* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--zivel-text-primary);
-}
-
-h1 {
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  line-height: 1.15;
-}
-
-h2 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: 1.2;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-/* Paragraphs */
-p {
-  color: var(--zivel-text-secondary);
-  max-width: 65ch;
-}
-
-/* Lists */
-ul,
-ol {
-  padding-left: 1.25rem;
-}
-
-/* Images */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Buttons (base reset — actual styles via components) */
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-/* Utility: Gold text */
-.text-gold {
-  color: var(--zivel-gold);
-}
-
-/* Utility: Section spacing */
-.section {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
-/* Utility: Subtle border */
-.border-subtle {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Utility: Card background */
-.bg-card {
-  background-color: rgba(255, 255, 255, 0.04);
-}
-
-/* ZIVEL_SERVICE_THEME_START */
+function upsertTheme(css){
+  // True blue = RGB(45,100,189). Your page sets CSS vars inline already.
+  // This CSS makes the symmetric glow + makes containers/cards translucent so the glow reads on-page.
+  const PROD = `${THEME_START}
 /* Zivel Service Theme (production) — symmetric glow + UI pop (active file: src/styles/globals.css) */
 :root{
   --zivel-bg:#07090d;
@@ -211,5 +109,39 @@ button {
   outline-offset: 3px;
   border-radius: 12px;
 }
-/* ZIVEL_SERVICE_THEME_END */
+${THEME_END}
+`;
 
+  if (css.includes(THEME_START) && css.includes(THEME_END)) {
+    return css.replace(new RegExp(`${THEME_START}[\\s\\S]*?${THEME_END}`,"m"), PROD);
+  }
+  return css.trimEnd() + "\n\n" + PROD + "\n";
+}
+
+function main(){
+  if (!fs.existsSync(TARGET)) {
+    console.error("❌ Target not found:", TARGET);
+    process.exit(1);
+  }
+
+  const b = backup(TARGET);
+  let css = fs.readFileSync(TARGET, "utf8");
+  css = upsertTheme(css);
+  fs.writeFileSync(TARGET, css, "utf8");
+
+  console.log("✅ Theme written to:", TARGET);
+  console.log("✅ Backup:", b);
+}
+
+main();
+EOF
+
+node scripts/apply-cryo-theme-to-styles-globals.mjs
+
+echo ""
+echo "=== VERIFY theme block exists in src/styles/globals.css ==="
+rg -n "ZIVEL_SERVICE_THEME_START|zivel-service-page::before" src/styles/globals.css
+
+echo ""
+echo "=== BUILD ==="
+npm run build
