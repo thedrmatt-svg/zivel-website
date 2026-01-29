@@ -187,11 +187,9 @@ button {
 }
 
 /* Let glow show THROUGH common container backgrounds (but not buttons/links) */
-.zivel-service-page :where(section, main, article, div)[class*="bg-"],
-.zivel-service-page :where(section, main, article, div)[class*="bg-["]{
-  /* Make opaque sections translucent so the symmetric glow reads site-wide */
-  background-color: rgba(0,0,0,.46) !important;
-  backdrop-filter: blur(10px) saturate(1.08);
+.zivel-service-page :where(section, main, article, div)[class*="bg-"]{
+  background-color: rgba(0,0,0,.50) !important;
+  backdrop-filter: blur(9px) saturate(1.07);
 }
 
 /* shadcn tokens */
