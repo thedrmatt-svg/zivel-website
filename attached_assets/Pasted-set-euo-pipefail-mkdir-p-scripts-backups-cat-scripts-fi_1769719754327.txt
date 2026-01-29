@@ -1,0 +1,165 @@
+set -euo pipefail
+mkdir -p scripts .backups
+
+cat > scripts/finalize-cryo-theme.mjs <<'EOF'
+import fs from "node:fs";
+import path from "node:path";
+
+const THEME_START = "/* ZIVEL_SERVICE_THEME_START */";
+const THEME_END   = "/* ZIVEL_SERVICE_THEME_END */";
+const DEBUG_START = "/* ZIVEL_DEBUG_START */";
+const DEBUG_END   = "/* ZIVEL_DEBUG_END */";
+
+function backup(filePath){
+  const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+  const safe = filePath.replace(/\//g,"__");
+  const out = path.join(".backups", `${safe}.${stamp}.bak`);
+  fs.copyFileSync(filePath, out);
+  return out;
+}
+
+function findLayout(){
+  const cands = ["app/layout.tsx","app/layout.jsx","src/app/layout.tsx","src/app/layout.jsx"];
+  return cands.find(fs.existsSync) ?? null;
+}
+
+function findGlobalsFromLayout(layoutPath){
+  const dir = path.dirname(layoutPath);
+  const direct = path.join(dir, "globals.css");
+  if (fs.existsSync(direct)) return direct;
+  const cands = ["app/globals.css","src/app/globals.css","styles/globals.css","src/styles/globals.css"];
+  return cands.find(fs.existsSync) ?? null;
+}
+
+function stripDebug(css){
+  if (css.includes(DEBUG_START) && css.includes(DEBUG_END)) {
+    return css.replace(new RegExp(`${DEBUG_START}[\\s\\S]*?${DEBUG_END}\\s*`,"m"), "");
+  }
+  return css;
+}
+
+function upsertTheme(css){
+  const PROD = `${THEME_START}
+/* Zivel Service Theme (production) — symmetric glow + UI pop */
+:root{
+  --zivel-bg:#07090d;
+  --zivel-fg:#f6f7f8;
+
+  /* UI pop */
+  --zivel-card-bg: rgba(255,255,255,.055);
+  --zivel-card-bg-hover: rgba(255,255,255,.082);
+  --zivel-card-border: rgba(255,255,255,.11);
+  --zivel-card-border-hover: rgba(255,255,255,.18);
+  --zivel-card-shadow: 0 18px 55px rgba(0,0,0,.55);
+}
+
+.zivel-service-page{
+  position: relative;
+  background: var(--zivel-bg);
+  color: var(--zivel-fg);
+  overflow: clip;
+}
+
+/* Symmetric subtle glow (uses inline vars set on wrapper) */
+.zivel-service-page::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  z-index:0;
+  pointer-events:none;
+
+  background:
+    radial-gradient(900px 650px at 10% 18%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .20) 0%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .09) 40%,
+      rgba(0,0,0,0) 72%),
+    radial-gradient(900px 650px at 90% 18%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .20) 0%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .09) 40%,
+      rgba(0,0,0,0) 72%),
+    radial-gradient(1200px 900px at 50% 86%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .12) 0%,
+      rgba(0,0,0,0) 62%),
+    radial-gradient(1400px 1000px at 50% 58%,
+      rgba(0,0,0,.72) 0%,
+      rgba(0,0,0,.94) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.70) 55%, rgba(0,0,0,.92) 100%);
+}
+
+/* Put content above glow */
+.zivel-service-page > *{ position:relative; z-index:1; }
+
+/* Premium type depth */
+.zivel-service-page h1,
+.zivel-service-page h2,
+.zivel-service-page h3{
+  text-shadow: 0 10px 26px rgba(0,0,0,.45);
+}
+
+/* KEY: Many sections are opaque (bg-black/bg-zinc/etc) and hide the glow.
+   Make only container elements translucent (not buttons/links). */
+.zivel-service-page :where(section, main, article, div)[class*="bg-"]{
+  background-color: rgba(0,0,0,.52) !important;
+  backdrop-filter: blur(8px) saturate(1.06);
+}
+
+/* If your project uses shadcn tokens, include them too */
+.zivel-service-page :where(section, main, article, div)
+  :is([class*="bg-background"], [class*="bg-card"], [class*="bg-muted"], [class*="bg-secondary"]){
+  background-color: rgba(0,0,0,.52) !important;
+}
+
+/* UI pop: card-like blocks (containers) */
+.zivel-service-page :where(section, article, div)[class*="rounded"][class*="p-"],
+.zivel-service-page :where(section, article, div)[class*="rounded"][class*="px-"][class*="py-"]{
+  background: var(--zivel-card-bg) !important;
+  border: 1px solid var(--zivel-card-border) !important;
+  box-shadow: var(--zivel-card-shadow);
+}
+
+.zivel-service-page :where(section, article, div)[class*="rounded"][class*="p-"]:hover,
+.zivel-service-page :where(section, article, div)[class*="rounded"][class*="px-"][class*="py-"]:hover{
+  background: var(--zivel-card-bg-hover) !important;
+  border-color: var(--zivel-card-border-hover) !important;
+}
+
+/* Focus ring uses service color */
+.zivel-service-page a:focus-visible,
+.zivel-service-page button:focus-visible{
+  outline: 2px solid rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .55);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+${THEME_END}
+`;
+
+  if (css.includes(THEME_START) && css.includes(THEME_END)) {
+    return css.replace(new RegExp(`${THEME_START}[\\s\\S]*?${THEME_END}`,"m"), PROD);
+  }
+  return css.trimEnd() + "\n\n" + PROD + "\n";
+}
+
+function main(){
+  const layout = findLayout();
+  if (!layout) throw new Error("Could not find app/layout.* or src/app/layout.*");
+  const globals = findGlobalsFromLayout(layout);
+  if (!globals) throw new Error("Could not find globals.css near layout or common paths");
+
+  const b = backup(globals);
+
+  let css = fs.readFileSync(globals, "utf8");
+  css = stripDebug(css);
+  css = upsertTheme(css);
+
+  fs.writeFileSync(globals, css, "utf8");
+
+  console.log("✅ Finalized Cryo theme (removed debug magenta, kept glow + UI pop)");
+  console.log("globals:", globals);
+  console.log("backup :", b);
+}
+
+main();
+EOF
+
+node scripts/finalize-cryo-theme.mjs
+npm run build

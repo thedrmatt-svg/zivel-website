@@ -1,0 +1,269 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------------
+   ZIVEL DESIGN SYSTEM — GLOBAL STYLES
+-------------------------------------------------- */
+
+/* CSS Variables: Brand + Theme */
+:root {
+  --zivel-black: #000000;
+  --zivel-white: #ffffff;
+  --zivel-gold: #d4af37;
+
+  --zivel-gray-900: #0b0b0b;
+  --zivel-gray-800: #141414;
+  --zivel-gray-700: #1f1f1f;
+  --zivel-gray-600: #2a2a2a;
+  --zivel-gray-500: #3a3a3a;
+
+  --zivel-text-primary: #ffffff;
+  --zivel-text-secondary: rgba(255, 255, 255, 0.75);
+  --zivel-text-muted: rgba(255, 255, 255, 0.55);
+}
+
+/* Base HTML / Body */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--zivel-black);
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--zivel-black);
+  color: var(--zivel-text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--zivel-gold);
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--zivel-text-primary);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Paragraphs */
+p {
+  color: var(--zivel-text-secondary);
+  max-width: 65ch;
+}
+
+/* Lists */
+ul,
+ol {
+  padding-left: 1.25rem;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Buttons (base reset — actual styles via components) */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Utility: Gold text */
+.text-gold {
+  color: var(--zivel-gold);
+}
+
+/* Utility: Section spacing */
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Utility: Subtle border */
+.border-subtle {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Utility: Card background */
+.bg-card {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ZIVEL_SERVICE_THEME_START */
+:root{
+  --zivel-bg:#07090d;
+  --zivel-fg: #f6f7f8;
+  --zivel-muted: rgba(246,247,248,.72);
+
+  /* Card pop */
+  --zivel-card-bg: rgba(255,255,255,.06);
+  --zivel-card-bg-hover: rgba(255,255,255,.09);
+  --zivel-card-border: rgba(255,255,255,.10);
+  --zivel-card-border-hover: rgba(255,255,255,.16);
+  --zivel-card-shadow: 0 18px 55px rgba(0,0,0,.55);
+
+  /* Service color (set per page) */
+  --zivel-service-r: 45;
+  --zivel-service-g: 100;
+  --zivel-service-b: 189;
+}
+
+/* Wrapper: applies only on service pages where you add data-zivel-service */
+.zivel-service-page{
+  position: relative;
+  background: var(--zivel-bg);
+  color: var(--zivel-fg);
+  overflow: clip;
+}
+
+/* Symmetric service glow BEHIND content */
+.zivel-service-page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+
+  /* subtle, symmetric + vignette */
+  background:
+    radial-gradient(900px 650px at 10% 18%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .22) 0%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .10) 38%,
+      rgba(0,0,0,0) 70%),
+    radial-gradient(900px 650px at 90% 18%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .22) 0%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .10) 38%,
+      rgba(0,0,0,0) 70%),
+    radial-gradient(1200px 900px at 50% 86%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .12) 0%,
+      rgba(0,0,0,0) 62%),
+    radial-gradient(1400px 1000px at 50% 58%,
+      rgba(0,0,0,.75) 0%,
+      rgba(0,0,0,.95) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.70) 55%, rgba(0,0,0,.92) 100%);
+}
+
+/* Ensure content sits above glow */
+.zivel-service-page > *{ position:relative; z-index:1; }
+
+/* Headings pop slightly */
+.zivel-service-page h1,
+.zivel-service-page h2,
+.zivel-service-page h3{
+  text-shadow: 0 10px 26px rgba(0,0,0,.45);
+}
+
+/* Body text slightly softened */
+.zivel-service-page p,
+.zivel-service-page li{
+  color: var(--zivel-muted);
+}
+
+/* UI POP:
+   This targets common "box/card" patterns without changing your components:
+   - any element with a border (Tailwind often emits border utilities)
+   - any rounded container (rounded-xl/2xl etc)
+   These rules are subtle and only apply inside the service wrapper.
+*/
+.zivel-service-page [class*="rounded"],
+.zivel-service-page [class*="border"]{
+  border-color: var(--zivel-card-border) !important;
+}
+
+/* Card-like containers: if you already have bg-black/bg-white overlays, we nudge them */
+.zivel-service-page [class*="bg-"]{
+  /* don't force a color, just improve legibility */
+  backdrop-filter: saturate(1.05) blur(6px);
+}
+
+/* A safe "card pop" class you can optionally add later (not required) */
+.zivel-card-pop{
+  background: var(--zivel-card-bg);
+  border: 1px solid var(--zivel-card-border);
+  border-radius: 18px;
+  box-shadow: var(--zivel-card-shadow);
+}
+.zivel-card-pop:hover{
+  background: var(--zivel-card-bg-hover);
+  border-color: var(--zivel-card-border-hover);
+  transform: translateY(-1px);
+  transition: all .18s ease;
+}
+
+/* Buttons: keep your existing, but add a premium focus ring */
+.zivel-service-page a:focus-visible,
+.zivel-service-page button:focus-visible{
+  outline: 2px solid rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .55);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+/* Per-service color variables (Cryo true blue) */
+.zivel-service-page[data-zivel-service="cryo"]{
+  --zivel-service-r: 45;
+  --zivel-service-g: 100;
+  --zivel-service-b: 189;
+}
+/* ZIVEL_SERVICE_THEME_END */
+
+/* ZIVEL_DEBUG_START */
+/* DEBUG: if you don't see magenta outline, wrapper/CSS isn't applying */
+.zivel-service-page{
+  outline: 4px solid magenta !important;
+  min-height: 100vh !important;
+}
+
+/* make glow VERY obvious */
+.zivel-service-page::before{
+  filter: saturate(1.3) contrast(1.05);
+  background:
+    radial-gradient(900px 650px at 10% 18%,
+      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .40) 0%,
+      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .18) 45%,
+      rgba(0,0,0,0) 72%),
+    radial-gradient(900px 650px at 90% 18%,
+      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .40) 0%,
+      rgba(var(--zivel-service-r,45), var(--zivel-service-g,100), var(--zivel-service-b,189), .18) 45%,
+      rgba(0,0,0,0) 72%),
+    linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.80) 60%, rgba(0,0,0,.95) 100%) !important;
+}
+
+/* ensure the overall page isn't forcing white behind it */
+body:has(.zivel-service-page){
+  background: #07090d !important;
+}
+/* ZIVEL_DEBUG_END */
+
