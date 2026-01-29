@@ -35,14 +35,6 @@ export async function generateMetadata({
 
 export default async function ServicePage({ params }: PageProps) {
   const { slug } = await params;
-  
-  /* ZIVEL_SERVICE_COLOR_MAP */
-  const __zivelSlug = slug;
-  const __zivelRGB =
-    __zivelSlug === "cryotherapy"
-      ? [45, 100, 189] // Cryo true blue
-      : [0, 0, 0];
-
   const service = getServiceBySlug(slug);
   if (!service) return notFound();
 
@@ -55,14 +47,8 @@ export default async function ServicePage({ params }: PageProps) {
   const researchBaseHref =
     service.benefits.viewResearchCTA?.href ?? "/research";
 
-  const serviceStyle = {
-    "--zivel-service-r": __zivelRGB[0],
-    "--zivel-service-g": __zivelRGB[1],
-    "--zivel-service-b": __zivelRGB[2],
-  } as React.CSSProperties;
-
   return (
-    <div style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-24 zivel-service-page">{/* SECTION 1 — HERO */}
+    <div data-zivel-service="cryo" className="zivel-service-page zivel-service--cryo space-y-24">{/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden">
         {/* Background media */}
         {service.hero.media?.type === "image" ? (
