@@ -1,0 +1,82 @@
+import fs from "node:fs";
+import path from "node:path";
+
+const FILE = "src/styles/globals.css";
+const START = "/* ZIVEL_SERVICE_THEME_START */";
+const END   = "/* ZIVEL_SERVICE_THEME_END */";
+
+function backup(filePath){
+  const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+  const safe = filePath.replace(/\//g,"__");
+  const out = path.join(".backups", `${safe}.${stamp}.bak`);
+  fs.copyFileSync(filePath, out);
+  return out;
+}
+
+function main(){
+  if (!fs.existsSync(FILE)) {
+    console.error("❌ Not found:", FILE);
+    process.exit(1);
+  }
+
+  const b = backup(FILE);
+  let css = fs.readFileSync(FILE, "utf8");
+
+  const blockRe = new RegExp(`${START}[\\s\\S]*?${END}`, "m");
+  const m = css.match(blockRe);
+  if (!m) {
+    console.error("❌ Theme block markers not found.");
+    process.exit(1);
+  }
+
+  let block = m[0];
+
+  // Ensure defaults exist on .zivel-service-page (so vars always defined)
+  if (!block.includes("--zivel-service-r")) {
+    block = block.replace(
+      /\.zivel-service-page\s*\{\s*/m,
+      `.zivel-service-page{\n  --zivel-service-r: 0;\n  --zivel-service-g: 0;\n  --zivel-service-b: 0;\n  `
+    );
+  }
+
+  // Replace existing cryo rule (self-only) with parent-or-self selector
+  const selfOnlyRe = /\.zivel-service-page\s*\[\s*data-zivel-service\s*=\s*"cryotherapy"\s*\][\s\S]*?\}\s*/m;
+  const altSelfOnlyRe = /\.zivel-service-page\s*\[data-zivel-service="cryotherapy"\][\s\S]*?\}\s*/m;
+
+  // More common formatting:
+  const existingRe = /\.zivel-service-page\s*\[data-zivel-service="cryotherapy"\][\s\S]*?\}\s*/m;
+
+  const replacement =
+`.zivel-service-page[data-zivel-service="cryotherapy"],
+[data-zivel-service="cryotherapy"] .zivel-service-page{
+  --zivel-service-r: 45;
+  --zivel-service-g: 100;
+  --zivel-service-b: 189;
+}
+`;
+
+  if (block.includes(`data-zivel-service="cryotherapy"`)) {
+    // Try to replace any existing cryo mapping rule (even if formatted differently)
+    block = block
+      .replace(existingRe, replacement)
+      .replace(altSelfOnlyRe, replacement);
+  } else {
+    // Insert mapping after the first .zivel-service-page rule close brace
+    const idx = block.indexOf(".zivel-service-page");
+    const after = idx >= 0 ? block.indexOf("}", idx) : -1;
+    if (after === -1) {
+      console.error("❌ Could not locate .zivel-service-page rule to insert mapping.");
+      process.exit(1);
+    }
+    block = block.slice(0, after + 1) + "\n\n" + replacement + block.slice(after + 1);
+  }
+
+  css = css.replace(blockRe, block);
+  fs.writeFileSync(FILE, css, "utf8");
+
+  console.log("✅ Updated Cryo selector to work when data attribute is on parent OR same element.");
+  console.log("File:", FILE);
+  console.log("Backup:", b);
+}
+
+main();
