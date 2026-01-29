@@ -1,0 +1,92 @@
+import fs from "node:fs";
+import path from "node:path";
+
+const CANDIDATES = [
+  "src/app/services/[slug]/page.tsx",
+  "src/app/services/[slug]/page.jsx",
+  "app/services/[slug]/page.tsx",
+  "app/services/[slug]/page.jsx",
+];
+
+const pagePath = CANDIDATES.find(p => fs.existsSync(p));
+if (!pagePath) {
+  console.error("❌ Could not find services/[slug]/page.tsx in app/ or src/app/");
+  process.exit(1);
+}
+
+function backup(filePath){
+  const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+  const safe = filePath.replace(/\//g,"__");
+  const out = path.join(".backups", `${safe}.${stamp}.bak`);
+  fs.copyFileSync(filePath, out);
+  return out;
+}
+
+function findReturnExprBounds(src){
+  const re = /return\s*\(/g;
+  const m = re.exec(src);
+  if (!m) return null;
+
+  const openIdx = m.index + m[0].length - 1;
+  let depth = 0;
+  let i = openIdx;
+
+  for (; i < src.length; i++){
+    const ch = src[i];
+    if (ch === "(") depth++;
+    else if (ch === ")") {
+      depth--;
+      if (depth === 0) {
+        return { openParen: openIdx, closeParen: i };
+      }
+    }
+  }
+  return null;
+}
+
+let src = fs.readFileSync(pagePath, "utf8");
+
+if (src.includes('className="zivel-service-page"') && src.match(/return\s*\(\s*<div[^>]*zivel-service-page/m)) {
+  console.log("✅ Top-level return already wrapped with zivel-service-page. No change needed.");
+  process.exit(0);
+}
+
+const bounds = findReturnExprBounds(src);
+if (!bounds) {
+  console.error("❌ Could not parse return(...) expression.");
+  process.exit(1);
+}
+
+const { openParen, closeParen } = bounds;
+
+const insertOpen = `
+    <div data-zivel-service={slug} className="zivel-service-page" style={serviceStyle}>
+`;
+
+const insertClose = `
+    </div>
+`;
+
+if (!src.includes("const slug") || !src.includes("serviceStyle")) {
+  console.error("❌ Expected `const slug` and `serviceStyle` to exist in the page file, but didn't find them.");
+  console.error("Run: rg -n \"const slug|serviceStyle\" " + pagePath);
+  process.exit(1);
+}
+
+const before = src.slice(0, openParen + 1);
+const middle = src.slice(openParen + 1, closeParen);
+const after = src.slice(closeParen);
+
+if (middle.match(/^\s*<div[^>]*zivel-service-page/m)) {
+  console.log("✅ return(...) already starts with a zivel-service-page div. No change needed.");
+  process.exit(0);
+}
+
+src = before + insertOpen + middle + insertClose + after;
+
+const b = backup(pagePath);
+fs.writeFileSync(pagePath, src, "utf8");
+
+console.log("✅ Wrapped entire service page return() with zivel-service-page.");
+console.log("Page:", pagePath);
+console.log("Backup:", b);
