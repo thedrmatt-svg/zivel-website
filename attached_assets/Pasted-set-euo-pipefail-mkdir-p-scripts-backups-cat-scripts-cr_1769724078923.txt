@@ -1,0 +1,97 @@
+set -euo pipefail
+mkdir -p scripts .backups
+
+cat > scripts/cryo-button-to-trueblue.mjs <<'EOF'
+import fs from "node:fs";
+import path from "node:path";
+
+const FILE = "src/styles/globals.css";
+const START = "/* ZIVEL_SERVICE_THEME_START */";
+const END   = "/* ZIVEL_SERVICE_THEME_END */";
+
+function backup(filePath){
+  const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+  const safe = filePath.replace(/\//g,"__");
+  const out = path.join(".backups", `${safe}.${stamp}.bak`);
+  fs.copyFileSync(filePath, out);
+  return out;
+}
+
+function main(){
+  if (!fs.existsSync(FILE)) {
+    console.error("❌ Not found:", FILE);
+    process.exit(1);
+  }
+
+  const b = backup(FILE);
+  let css = fs.readFileSync(FILE, "utf8");
+
+  const blockRe = new RegExp(`${START}[\\s\\S]*?${END}`, "m");
+  const m = css.match(blockRe);
+  if (!m) {
+    console.error("❌ Theme block markers not found in src/styles/globals.css");
+    process.exit(1);
+  }
+
+  let block = m[0];
+
+  const BTN_MARK_START = "/* ZIVEL_CRYO_BUTTON_START */";
+  const BTN_MARK_END   = "/* ZIVEL_CRYO_BUTTON_END */";
+
+  const btnCss = `${BTN_MARK_START}
+/* Cryotherapy: make primary CTA button match service blue (scoped) */
+.zivel-service-page[data-zivel-service="cryotherapy"],
+[data-zivel-service="cryotherapy"] .zivel-service-page{
+  --zivel-btn: rgb(45 100 189);
+  --zivel-btn-hover: rgb(36 86 170);
+  --zivel-btn-text: #ffffff;
+}
+
+/* Target common primary button patterns without changing other buttons */
+.zivel-service-page :where(a,button)[class*="bg-teal"],
+.zivel-service-page :where(a,button)[class*="bg-emerald"],
+.zivel-service-page :where(a,button)[class*="bg-cyan"],
+.zivel-service-page :where(a,button)[class*="bg-primary"],
+.zivel-service-page :where(a,button)[data-variant="default"]{
+  background-color: var(--zivel-btn) !important;
+  border-color: rgba(255,255,255,.10) !important;
+  color: var(--zivel-btn-text) !important;
+}
+
+.zivel-service-page :where(a,button)[class*="bg-teal"]:hover,
+.zivel-service-page :where(a,button)[class*="bg-emerald"]:hover,
+.zivel-service-page :where(a,button)[class*="bg-cyan"]:hover,
+.zivel-service-page :where(a,button)[class*="bg-primary"]:hover,
+.zivel-service-page :where(a,button)[data-variant="default"]:hover{
+  background-color: var(--zivel-btn-hover) !important;
+}
+${BTN_MARK_END}
+`;
+
+  // Upsert the button block inside the theme block
+  const btnRe = new RegExp(`${BTN_MARK_START}[\\s\\S]*?${BTN_MARK_END}\\s*`, "m");
+  if (btnRe.test(block)) {
+    block = block.replace(btnRe, btnCss);
+  } else {
+    // insert near focus ring rule if present, else before theme end
+    const insertAt = block.lastIndexOf("/* Premium focus ring");
+    if (insertAt !== -1) {
+      block = block.slice(0, insertAt) + btnCss + "\n\n" + block.slice(insertAt);
+    } else {
+      block = block.replace(END, `${btnCss}\n${END}`);
+    }
+  }
+
+  css = css.replace(blockRe, block);
+  fs.writeFileSync(FILE, css, "utf8");
+
+  console.log("✅ Cryo CTA button override added (true blue), scoped to cryotherapy service page.");
+  console.log("File:", FILE);
+  console.log("Backup:", b);
+}
+
+main();
+EOF
+
+node scripts/cryo-button-to-trueblue.mjs
+npm run build

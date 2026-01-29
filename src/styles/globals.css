@@ -214,6 +214,35 @@ button {
   border-color: var(--zivel-card-border-hover) !important;
 }
 
+/* ZIVEL_CRYO_BUTTON_START */
+/* Cryotherapy: make primary CTA button match service blue (scoped) */
+.zivel-service-page[data-zivel-service="cryotherapy"],
+[data-zivel-service="cryotherapy"] .zivel-service-page{
+  --zivel-btn: rgb(45 100 189);
+  --zivel-btn-hover: rgb(36 86 170);
+  --zivel-btn-text: #ffffff;
+}
+
+/* Target common primary button patterns without changing other buttons */
+.zivel-service-page :where(a,button)[class*="bg-teal"],
+.zivel-service-page :where(a,button)[class*="bg-emerald"],
+.zivel-service-page :where(a,button)[class*="bg-cyan"],
+.zivel-service-page :where(a,button)[class*="bg-primary"],
+.zivel-service-page :where(a,button)[data-variant="default"]{
+  background-color: var(--zivel-btn) !important;
+  border-color: rgba(255,255,255,.10) !important;
+  color: var(--zivel-btn-text) !important;
+}
+
+.zivel-service-page :where(a,button)[class*="bg-teal"]:hover,
+.zivel-service-page :where(a,button)[class*="bg-emerald"]:hover,
+.zivel-service-page :where(a,button)[class*="bg-cyan"]:hover,
+.zivel-service-page :where(a,button)[class*="bg-primary"]:hover,
+.zivel-service-page :where(a,button)[data-variant="default"]:hover{
+  background-color: var(--zivel-btn-hover) !important;
+}
+/* ZIVEL_CRYO_BUTTON_END */
+
 /* Premium focus ring uses service color */
 .zivel-service-page a:focus-visible,
 .zivel-service-page button:focus-visible{
