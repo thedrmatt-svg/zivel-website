@@ -143,6 +143,9 @@ button {
   overflow: clip;
 }
 
+/* Service-specific colors (True Blue for cryotherapy) */
+.zivel-service-page[data-zivel-service="cryotherapy"] { --zivel-service-r:45; --zivel-service-g:100; --zivel-service-b:189; }
+
 /* Symmetric glow BEHIND content (strong enough to notice, still premium) */
 .zivel-service-page::before{
   content:"";
