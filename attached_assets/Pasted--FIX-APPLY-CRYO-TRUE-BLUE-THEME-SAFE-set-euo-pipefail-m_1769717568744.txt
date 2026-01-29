@@ -1,0 +1,307 @@
+# ================== FIX + APPLY CRYO TRUE-BLUE THEME (SAFE) ==================
+set -euo pipefail
+
+mkdir -p scripts .backups
+
+cat > scripts/fix-and-apply-cryo-theme.mjs <<'EOF'
+import fs from "node:fs";
+import path from "node:path";
+
+const SERVICE = "cryo";
+const RGB = [45, 100, 189]; // true blue
+
+const MARKER_START = "/* ZIVEL_SERVICE_THEME_START */";
+const MARKER_END   = "/* ZIVEL_SERVICE_THEME_END */";
+
+const THEME_CSS = `${MARKER_START}
+/* Zivel Service Theme (scoped) */
+:root{
+  --zivel-bg:#07090d;
+  --zivel-fg:#f6f7f8;
+
+  /* Card pop */
+  --zivel-card-bg: rgba(255,255,255,.055);
+  --zivel-card-bg-hover: rgba(255,255,255,.085);
+  --zivel-card-border: rgba(255,255,255,.11);
+  --zivel-card-border-hover: rgba(255,255,255,.18);
+  --zivel-card-shadow: 0 18px 55px rgba(0,0,0,.55);
+}
+
+/* Wrapper: apply ONLY when we add class + data attribute on the cryo page root */
+.zivel-service-page{
+  position: relative;
+  background: var(--zivel-bg);
+  color: var(--zivel-fg);
+  overflow: clip;
+}
+
+/* Per-service variables */
+.zivel-service-page[data-zivel-service="${SERVICE}"]{
+  --zivel-service-r: ${RGB[0]};
+  --zivel-service-g: ${RGB[1]};
+  --zivel-service-b: ${RGB[2]};
+}
+
+/* Symmetric glow BEHIND the UI (subtle) */
+.zivel-service-page::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  z-index:0;
+  pointer-events:none;
+
+  background:
+    radial-gradient(900px 650px at 10% 18%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .18) 0%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .08) 45%,
+      rgba(0,0,0,0) 72%),
+    radial-gradient(900px 650px at 90% 18%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .18) 0%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .08) 45%,
+      rgba(0,0,0,0) 72%),
+    radial-gradient(1200px 900px at 50% 86%,
+      rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .10) 0%,
+      rgba(0,0,0,0) 62%),
+    radial-gradient(1400px 1000px at 50% 58%,
+      rgba(0,0,0,.70) 0%,
+      rgba(0,0,0,.94) 70%),
+    linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.72) 55%, rgba(0,0,0,.92) 100%);
+}
+
+/* Ensure page content is above glow */
+.zivel-service-page > *{ position: relative; z-index: 1; }
+
+/* Headings: subtle depth */
+.zivel-service-page h1,
+.zivel-service-page h2,
+.zivel-service-page h3{
+  text-shadow: 0 10px 26px rgba(0,0,0,.45);
+}
+
+/* UI POP for existing “boxes/cards”
+   We target elements that LOOK like cards in Tailwind: rounded + padding.
+   This avoids affecting every rounded element (like buttons).
+*/
+.zivel-service-page :where([class*="rounded"][class*="p-"], [class*="rounded"][class*="px-"][class*="py-"]){
+  background: var(--zivel-card-bg) !important;
+  border: 1px solid var(--zivel-card-border) !important;
+  box-shadow: var(--zivel-card-shadow);
+  backdrop-filter: blur(6px) saturate(1.05);
+}
+
+.zivel-service-page :where([class*="rounded"][class*="p-"], [class*="rounded"][class*="px-"][class*="py-"]):hover{
+  background: var(--zivel-card-bg-hover) !important;
+  border-color: var(--zivel-card-border-hover) !important;
+}
+
+/* Links/buttons: premium focus ring */
+.zivel-service-page a:focus-visible,
+.zivel-service-page button:focus-visible{
+  outline: 2px solid rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .55);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+${MARKER_END}
+`;
+
+function newestBackup(match) {
+  if (!fs.existsSync(".backups")) return null;
+  const files = fs.readdirSync(".backups")
+    .filter(f => f.includes(match))
+    .map(f => ({ f, t: fs.statSync(path.join(".backups", f)).mtimeMs }))
+    .sort((a,b)=>b.t-a.t);
+  return files[0]?.f ? path.join(".backups", files[0].f) : null;
+}
+
+function restoreLatestOrSkip(targetPath, matchToken) {
+  const b = newestBackup(matchToken);
+  if (!b) return { restored:false, backup:null };
+  fs.copyFileSync(b, targetPath);
+  return { restored:true, backup:b };
+}
+
+function findLayout() {
+  const cands = ["app/layout.tsx","app/layout.jsx","src/app/layout.tsx","src/app/layout.jsx"];
+  for (const c of cands) if (fs.existsSync(c)) return c;
+  return null;
+}
+
+function findGlobalsFromLayout(layoutPath) {
+  const dir = path.dirname(layoutPath);
+  const direct = path.join(dir, "globals.css");
+  if (fs.existsSync(direct)) return direct;
+
+  // fallback: search common
+  const cands = ["app/globals.css","src/app/globals.css","styles/globals.css","src/styles/globals.css"];
+  for (const c of cands) if (fs.existsSync(c)) return c;
+
+  return null;
+}
+
+function findCryoPage() {
+  const preferred = [
+    "app/services/cryotherapy/page.tsx",
+    "app/services/cryotherapy/page.jsx",
+    "src/app/services/cryotherapy/page.tsx",
+    "src/app/services/cryotherapy/page.jsx",
+    "app/(services)/cryotherapy/page.tsx",
+    "src/app/(services)/cryotherapy/page.tsx",
+  ];
+  for (const p of preferred) if (fs.existsSync(p)) return p;
+
+  // walk app + src/app
+  const roots = ["app","src/app"].filter(r => fs.existsSync(r));
+  const hits = [];
+  const walk = (dir) => {
+    for (const ent of fs.readdirSync(dir, {withFileTypes:true})) {
+      const full = path.join(dir, ent.name);
+      if (ent.isDirectory()) walk(full);
+      else if (ent.isFile() && /^page\.(t|j)sx$/.test(ent.name)) hits.push(full);
+    }
+  };
+  roots.forEach(walk);
+
+  // score
+  const scored = hits.map(f => {
+    const lower = f.toLowerCase();
+    const s = fs.readFileSync(f, "utf8");
+    let score = 0;
+    if (lower.includes("cryotherapy")) score += 8;
+    if (lower.includes("cryo")) score += 4;
+    if (s.includes("Cryotherapy")) score += 6;
+    if (s.match(/<h1[^>]*>[^<]*Cryotherapy/i)) score += 5;
+    return { f, score };
+  }).filter(x => x.score > 0)
+    .sort((a,b)=>b.score-a.score);
+
+  return scored[0]?.f ?? null;
+}
+
+function backup(filePath){
+  const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+  const safe = filePath.replace(/\//g,"__");
+  const out = path.join(".backups", `${safe}.${stamp}.bak`);
+  fs.copyFileSync(filePath, out);
+  return out;
+}
+
+function upsertThemeCss(globalsPath){
+  let css = fs.readFileSync(globalsPath,"utf8");
+  if (css.includes(MARKER_START) && css.includes(MARKER_END)) {
+    css = css.replace(new RegExp(`${MARKER_START}[\\s\\S]*?${MARKER_END}`,"m"), THEME_CSS);
+  } else {
+    css = css.trimEnd() + "\n\n" + THEME_CSS + "\n";
+  }
+  fs.writeFileSync(globalsPath, css, "utf8");
+}
+
+/**
+ * Add attributes to the FIRST root JSX tag after "return ("
+ * - NO wrapping, NO closing tags inserted
+ * - Prefers <main>, otherwise <div>
+ */
+function addWrapperAttrs(pagePath){
+  let src = fs.readFileSync(pagePath,"utf8");
+
+  const idxReturn = src.indexOf("return");
+  if (idxReturn === -1) throw new Error("No return found in page file.");
+
+  // Find "return (" then the next tag
+  const m = src.match(/return\s*\(\s*<([a-zA-Z]+)([^>]*)>/m);
+  if (!m) throw new Error("Could not find root JSX tag after return(");
+
+  const tagName = m[1];
+  const attrs = m[2] ?? "";
+  const full = m[0];
+
+  // only edit if it's main/div/section (safe)
+  if (!["main","div","section"].includes(tagName)) {
+    throw new Error(`Root tag is <${tagName}>; refusing to edit automatically.`);
+  }
+
+  let next = `<${tagName}${attrs}>`;
+
+  // add data-zivel-service if missing
+  if (!next.includes('data-zivel-service=')) {
+    next = next.replace(`<${tagName}`, `<${tagName} data-zivel-service="${SERVICE}"`);
+  }
+
+  // add/append className
+  if (next.includes("className=")) {
+    // className="..."
+    next = next.replace(/className="([^"]*)"/, (mm, inner) => {
+      const add = inner.includes("zivel-service-page") ? inner : (inner + " zivel-service-page");
+      return `className="${add}"`;
+    });
+
+    // className={...}
+    next = next.replace(/className=\{([^}]+)\}/, (mm, inner) => {
+      // if already includes zivel-service-page, skip
+      if (mm.includes("zivel-service-page")) return mm;
+      return `className={(${inner}).toString() + " zivel-service-page"}`;
+    });
+  } else {
+    next = next.replace(`<${tagName}`, `<${tagName} className="zivel-service-page"`);
+  }
+
+  // Replace the original opening tag in the matched return(...) snippet
+  const replaced = full.replace(`<${tagName}${attrs}>`, next);
+  src = src.replace(full, replaced);
+
+  fs.writeFileSync(pagePath, src, "utf8");
+}
+
+function main(){
+  const layout = findLayout();
+  if (!layout) {
+    console.error("❌ Could not find app/layout.(t|j)sx or src/app/layout.(t|j)sx");
+    process.exit(1);
+  }
+  const globals = findGlobalsFromLayout(layout);
+  if (!globals) {
+    console.error("❌ Could not find globals.css referenced by layout");
+    process.exit(1);
+  }
+  const cryoPage = findCryoPage();
+  if (!cryoPage) {
+    console.error("❌ Could not find Cryotherapy page file");
+    process.exit(1);
+  }
+
+  // Attempt restore from backups if the earlier run mangled things
+  // We restore ONLY if backups exist and target files exist.
+  if (fs.existsSync(globals)) restoreLatestOrSkip(globals, "globals.css");
+  if (fs.existsSync(cryoPage)) restoreLatestOrSkip(cryoPage, "cryotherapy__page") || restoreLatestOrSkip(cryoPage, "cryo");
+
+  const b1 = backup(globals);
+  const b2 = backup(cryoPage);
+
+  upsertThemeCss(globals);
+  addWrapperAttrs(cryoPage);
+
+  console.log("✅ Layout:", layout);
+  console.log("✅ Globals:", globals);
+  console.log("✅ Cryo page:", cryoPage);
+  console.log("✅ Backups created:", b1, "and", b2);
+}
+
+main();
+EOF
+
+node scripts/fix-and-apply-cryo-theme.mjs
+
+echo ""
+echo "=== VERIFY: markers + wrapper present ==="
+rg -n "ZIVEL_SERVICE_THEME_START|zivel-service-page|data-zivel-service=\"cryo\"" app src/app 2>/dev/null || true
+
+echo ""
+echo "=== BUILD ==="
+if [ -f package.json ] && rg -q "\"build\"" package.json; then
+  npm run build
+else
+  echo "(no build script found — skipping)"
+fi
+
+echo ""
+echo "✅ Done."
+# =====================================================================
