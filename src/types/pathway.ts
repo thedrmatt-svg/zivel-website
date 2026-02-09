@@ -35,5 +35,6 @@ export type Pathway = {
   scienceNote: string;
   testimonials: PathwayTestimonial[];
   faqs: PathwayFAQ[];
+  recommendedServices: string[];
   relatedPathwaySlugs: string[];
 };

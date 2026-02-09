@@ -127,5 +127,13 @@ export const recoveryPainSupport: Pathway = {
     },
   ],
 
+  recommendedServices: [
+    "cryotherapy",
+    "red-light-therapy",
+    "compression-therapy",
+    "cryo-soothe",
+    "infrared-sauna",
+  ],
+
   relatedPathwaySlugs: ["performance-edge", "longevity-reset"],
 };

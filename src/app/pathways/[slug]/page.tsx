@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { pathways, getPathwayBySlug } from "@/lib/data/pathways";
+import { getServiceBySlug } from "@/lib/data/services";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -141,6 +142,39 @@ export default async function PathwayDetailPage({ params }: PageProps) {
                 </footer>
               </blockquote>
             ))}
+          </div>
+        </section>
+      )}
+
+      {pw.recommendedServices.length > 0 && (
+        <section className="space-y-6">
+          <h2>Recommended Services</h2>
+          <p className="text-white/70">
+            These services pair well with this pathway for additional support.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {pw.recommendedServices.map((serviceSlug) => {
+              const svc = getServiceBySlug(serviceSlug);
+              return (
+                <Link
+                  key={serviceSlug}
+                  href={`/services/${serviceSlug}`}
+                  className="group rounded-2xl border border-white/10 bg-white/4 p-5 hover:border-white/20 hover:bg-white/8"
+                >
+                  <h3 className="text-base font-semibold group-hover:text-[var(--zivel-gold)]">
+                    {svc?.name ?? serviceSlug}
+                  </h3>
+                  {svc && (
+                    <p className="mt-2 text-xs text-white/60 line-clamp-2">
+                      {svc.hero.subheadline}
+                    </p>
+                  )}
+                  <span className="mt-3 inline-block text-xs font-medium text-[var(--zivel-gold)] opacity-0 transition-opacity group-hover:opacity-100">
+                    Learn more →
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </section>
       )}
