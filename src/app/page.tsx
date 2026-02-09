@@ -195,17 +195,17 @@ export default function HomePage() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { name: "Performance", desc: "Optimize energy, focus, and athletic output." },
-              { name: "Recovery", desc: "Ease tension, reduce soreness, and restore balance." },
-              { name: "Beauty", desc: "Support skin health, tone, and a refreshed appearance." },
-              { name: "Longevity", desc: "Build habits that support long-term well-being." },
+              { name: "Performance", desc: "Optimize energy, focus, and athletic output.", href: "/pathways" },
+              { name: "Recovery", desc: "Ease tension, reduce soreness, and restore balance.", href: "/pathways/recovery-pain-support" },
+              { name: "Beauty", desc: "Support skin health, tone, and a refreshed appearance.", href: "/pathways" },
+              { name: "Longevity", desc: "Build habits that support long-term well-being.", href: "/pathways" },
             ].map((pathway) => (
               <article key={pathway.name} className="rounded-2xl border-subtle bg-card p-6 text-center">
                 <h3 className="mb-2 text-lg font-semibold">{pathway.name}</h3>
                 <p className="text-sm text-white/70">{pathway.desc}</p>
                 <div className="mt-5">
                   <Link
-                    href="/services"
+                    href={pathway.href}
                     className="text-sm font-semibold underline decoration-white/20 underline-offset-4 hover:decoration-white/40"
                   >
                     Explore pathway →
