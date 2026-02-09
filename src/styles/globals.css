@@ -149,6 +149,31 @@ button {
   --zivel-service-r: 45;
   --zivel-service-g: 100;
   --zivel-service-b: 189;
+
+  --zivel-bg: #060a14;
+  background: linear-gradient(180deg,
+    rgba(12, 22, 48, .85) 0%,
+    rgba(8, 14, 32, .70) 30%,
+    rgba(6, 10, 20, .90) 100%) !important;
+}
+
+/* Cryotherapy: blue-tinted translucent containers */
+.zivel-service-page[data-zivel-service="cryotherapy"] :where(section, main, article, div)[class*="bg-"],
+.zivel-service-page[data-zivel-service="cryotherapy"] :where(section, main, article, div)[class*="bg-["]{
+  background-color: rgba(10, 18, 40, .52) !important;
+}
+
+.zivel-service-page[data-zivel-service="cryotherapy"] :where(section, main, article, div)
+  :is([class*="bg-background"], [class*="bg-card"], [class*="bg-muted"], [class*="bg-secondary"]){
+  background-color: rgba(10, 18, 40, .55) !important;
+}
+
+/* Cryotherapy: blue-tinted cards */
+.zivel-service-page[data-zivel-service="cryotherapy"] :where(section, article, div)[class*="rounded"][class*="p-"],
+.zivel-service-page[data-zivel-service="cryotherapy"] :where(section, article, div)[class*="rounded"][class*="px-"][class*="py-"]{
+  background: rgba(14, 24, 52, .45) !important;
+  border-color: rgba(45, 100, 189, .15) !important;
+  box-shadow: 0 18px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(45, 100, 189, .08);
 }
 
 /* Symmetric glow BEHIND content (strong enough to notice, still premium) */
