@@ -1,87 +1,113 @@
 import type { BlogPost } from "@/types/blog";
 
-export const post: BlogPost = {
+const blogPost: BlogPost = {
   slug: "recovery-nervous-system-regulation",
-  title: "Recovery and Nervous System Regulation: What the Science Suggests",
-  description: "How modern recovery modalities may support nervous system regulation—shifting the body from a stressed state toward balance and restoration.",
-  date: "2026-02-09",
-  body: `The nervous system is central to how the body responds to stress, recovers from exertion, and maintains long-term health. When the nervous system stays in an elevated state for too long—whether from training, work demands, or daily life—recovery becomes harder, sleep quality drops, and overall resilience can decline.
+  title: "Recovery Isn't Optional: Why Modern Wellness Routines Focus on Nervous System Regulation",
+  description:
+    "Modern recovery goes beyond muscle soreness. Nervous system regulation plays a central role in recovery, resilience, and long-term health.",
+  publishDate: "2026-01-28",
+  author: "Zivel Science Team",
+  category: "Recovery & Longevity",
+  readingTime: "6 min read",
+  featured: false,
 
-Nervous system regulation refers to the body's ability to shift between states of activation and rest. Supporting this process is one of the key reasons people incorporate recovery modalities into their routines.
-
-## Understanding the Autonomic Nervous System
-
-The autonomic nervous system has two primary branches:
-
-### Sympathetic nervous system
-Often called the "fight or flight" system, this branch activates during stress, exercise, or perceived threat. It increases heart rate, redirects blood flow, and heightens alertness.
-
-### Parasympathetic nervous system
-Sometimes referred to as "rest and digest," this branch supports recovery, digestion, immune function, and sleep. It helps the body return to a calm, restorative baseline.
-
-Health and resilience depend on the ability to move fluidly between these states. Problems emerge when the sympathetic system stays dominant for extended periods—a pattern common in modern life.
-
-## Signs of Nervous System Dysregulation
-
-Many people experience signs of an overactivated nervous system without recognizing the pattern:
-- Difficulty winding down at the end of the day
-- Restless or unrefreshing sleep
-- Persistent muscle tension, especially in the neck, jaw, or shoulders
-- Feeling wired but tired
-- Elevated resting heart rate
-- Reduced ability to focus or think clearly
-
-These patterns often build gradually and are easy to attribute to being "busy" rather than recognizing them as signs of insufficient recovery.
-
-## How Recovery Modalities May Support Regulation
-
-Several non-invasive recovery modalities are used to encourage parasympathetic activation and support the body's ability to shift out of a stressed state.
-
-### Cold exposure
-Brief cold exposure has been studied for its effects on vagal tone—a marker of parasympathetic function. While the initial response to cold is sympathetic activation, repeated controlled exposure may improve the body's ability to recover quickly and return to baseline.
-
-**Related:** /services/cryotherapy
-
-### Infrared heat
-Infrared sauna sessions are commonly used for relaxation. The gentle warming effect may support vasodilation, encourage muscle relaxation, and create conditions favorable for parasympathetic activity.
-
-**Related:** /services/infrared-sauna
-
-### Compression therapy
-Rhythmic pneumatic compression mimics the body's natural circulatory processes and is often described as deeply relaxing. The passive, rhythmic nature of compression may help promote a calm state.
-
-**Related:** /services/compression-therapy
-
-### Dry float therapy
-Sensory reduction environments reduce external input—light, sound, and gravitational load—creating conditions that may support deep nervous system downregulation.
-
-**Related:** /services/dry-float
-
-### Red light therapy
-Emerging research suggests that specific wavelengths of red and near-infrared light may influence mitochondrial function and cellular signaling in ways that support tissue recovery and systemic balance.
-
-**Related:** /services/red-light-therapy
-
-## Building a Recovery Routine for Nervous System Health
-
-Effective nervous system support is less about intensity and more about consistency. A few principles guide the approach:
-- Regularity matters more than duration—short, frequent sessions tend to be more sustainable
-- Alternating stimulating and restorative modalities creates rhythm
-- Timing sessions around sleep or high-stress periods can amplify benefits
-- Listening to the body's signals helps calibrate the right frequency
-
-## The Connection Between Regulation and Longevity
-
-Chronic sympathetic dominance is associated with increased inflammation, impaired immune function, and accelerated biological aging. Supporting nervous system regulation is increasingly viewed as a foundational component of longevity-focused wellness.
-
-Rather than treating recovery as optional, many individuals now approach it as essential maintenance for long-term health and performance.
-
-## The Takeaway
-
-Nervous system regulation is a skill the body develops through consistent practice. Modern recovery modalities offer practical, non-invasive tools to support this process—helping the body shift from stress to restoration more efficiently.
-
-To explore modalities that support nervous system health, visit /services or learn more at /science.
-`,
+  content: [
+    {
+      type: "paragraph",
+      text:
+        "Recovery is often framed as something athletes do after intense training. In reality, recovery is a foundational biological process that affects everyone—from high performers to individuals managing daily stress, poor sleep, or chronic fatigue."
+    },
+    {
+      type: "paragraph",
+      text:
+        "Modern wellness science increasingly focuses on nervous system regulation as a key driver of recovery, resilience, and long-term health. When the nervous system remains in a prolonged state of stress, the body's ability to repair, adapt, and restore balance is compromised."
+    },
+    {
+      type: "heading",
+      level: 2,
+      text: "The Nervous System's Role in Recovery"
+    },
+    {
+      type: "paragraph",
+      text:
+        "The autonomic nervous system governs involuntary functions such as heart rate, circulation, digestion, and stress response. It operates through two primary branches: the sympathetic nervous system, often described as fight or flight, and the parasympathetic nervous system, associated with rest and recovery."
+    },
+    {
+      type: "paragraph",
+      text:
+        "While short-term stress responses are adaptive, chronic activation of the sympathetic system can interfere with recovery processes, sleep quality, immune function, and metabolic health."
+    },
+    {
+      type: "heading",
+      level: 2,
+      text: "Why Traditional Rest Alone Often Isn't Enough"
+    },
+    {
+      type: "paragraph",
+      text:
+        "Sleep and passive rest are essential, but they may not fully counterbalance the physiological load created by modern lifestyles. Prolonged sitting, screen exposure, irregular sleep schedules, and psychological stress can keep the nervous system activated even during periods of rest."
+    },
+    {
+      type: "paragraph",
+      text:
+        "This has led to growing interest in recovery modalities designed to support nervous system down-regulation rather than relying on rest alone."
+    },
+    {
+      type: "heading",
+      level: 2,
+      text: "How Evidence-Informed Recovery Modalities Support Regulation"
+    },
+    {
+      type: "paragraph",
+      text:
+        "Research across multiple disciplines suggests that controlled environmental stimuli can influence nervous system activity and circulation patterns. In wellness settings, recovery modalities are often selected to support these mechanisms."
+    },
+    {
+      type: "list",
+      items: [
+        "Cold exposure, which may influence autonomic balance and perceived stress tolerance",
+        "Red light therapy, studied for its effects on cellular energy production and tissue response",
+        "Infrared sauna, used to promote circulation and relaxation without humidity",
+        "Dry float therapy, designed to minimize sensory input and encourage deep relaxation",
+        "Compression therapy, commonly used to support circulation and recovery comfort"
+      ]
+    },
+    {
+      type: "paragraph",
+      text:
+        "These modalities are not positioned as medical treatments, but as tools that may complement broader wellness and recovery routines."
+    },
+    {
+      type: "heading",
+      level: 2,
+      text: "Recovery as a Long-Term Health Strategy"
+    },
+    {
+      type: "paragraph",
+      text:
+        "Recovery is increasingly viewed not as a response to overexertion, but as a proactive health strategy. Supporting nervous system regulation may contribute to improved sleep quality, enhanced stress resilience, and sustainable performance over time."
+    },
+    {
+      type: "heading",
+      level: 2,
+      text: "Integrating Recovery Into a Wellness Routine"
+    },
+    {
+      type: "paragraph",
+      text:
+        "Rather than relying on a single approach, many wellness routines integrate multiple recovery strategies based on individual needs, goals, and availability. The focus is consistency, adaptability, and long-term sustainability."
+    },
+    {
+      type: "heading",
+      level: 2,
+      text: "Final Thoughts"
+    },
+    {
+      type: "paragraph",
+      text:
+        "As understanding of the nervous system deepens, recovery is increasingly recognized as a cornerstone of sustainable health and longevity. By supporting regulation rather than simply rest, modern recovery approaches aim to help individuals feel more balanced, resilient, and prepared for daily demands."
+    }
+  ]
 };
 
-export default post;
+export default blogPost;
