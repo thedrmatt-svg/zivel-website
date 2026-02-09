@@ -5,10 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 import { services } from "@/lib/data/services";
+import { pathways } from "@/lib/data/pathways";
 import { getLocationNav } from "@/lib/data/locationNav";
 
 const LOCATIONS_NAV = getLocationNav({ featuredCount: 4 });
-
 
 const navLinkClass =
   "text-sm font-medium text-white/80 hover:text-white transition-colors";
@@ -18,6 +18,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
+  const [mobilePathwaysOpen, setMobilePathwaysOpen] = useState(false);
 
   const serviceLinks = useMemo(
     () =>
@@ -25,6 +26,16 @@ export default function Header() {
         label: s.name,
         href: `/services/${s.slug}`,
         description: s.hero.subheadline,
+      })),
+    []
+  );
+
+  const pathwayLinks = useMemo(
+    () =>
+      pathways.map((p) => ({
+        label: p.name,
+        href: `/pathways/${p.slug}`,
+        description: p.seo.description,
       })),
     []
   );
@@ -91,6 +102,47 @@ export default function Header() {
 
             <div className="relative group">
               <Link
+                href="/pathways"
+                className={`${navLinkClass} ${
+                  isActive("/pathways") ? "text-white" : ""
+                }`}
+              >
+                Pathways
+              </Link>
+
+              <div className="invisible absolute left-0 top-full pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
+                <div className="w-[420px] rounded-2xl border border-white/10 bg-black/95 p-3 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+                  <Link
+                    href="/pathways"
+                    className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
+                  >
+                    View All Pathways →
+                  </Link>
+
+                  <div className="my-2 h-px bg-white/10" />
+
+                  <div className="max-h-[400px] overflow-auto pr-1">
+                    {pathwayLinks.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block rounded-xl px-3 py-3 hover:bg-white/5"
+                      >
+                        <div className="text-sm font-semibold text-white">
+                          {item.label}
+                        </div>
+                        <div className="mt-1 text-xs text-white/65 line-clamp-2">
+                          {item.description}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <Link
                 href="/locations"
                 className={`${navLinkClass} inline-flex items-center gap-1 ${
                   isActive("/locations") ? "text-white" : ""
@@ -144,9 +196,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <Link href="/pathways" className={navLinkClass}>
-              Pathways
-            </Link>
+
             <Link href="/science" className={navLinkClass}>
               Science
             </Link>
@@ -221,6 +271,40 @@ export default function Header() {
 
               <button
                 className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
+                onClick={() => setMobilePathwaysOpen((v) => !v)}
+                aria-label="Toggle pathways"
+              >
+                <span>Pathways</span>
+                <span className="text-white/60">
+                  {mobilePathwaysOpen ? "—" : "+"}
+                </span>
+              </button>
+
+              {mobilePathwaysOpen ? (
+                <div className="space-y-1 px-2 pb-2">
+                  <Link
+                    href="/pathways"
+                    className="block rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/5"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    View All Pathways →
+                  </Link>
+
+                  {pathwayLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/5"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+
+              <button
+                className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
                 onClick={() => setMobileLocationsOpen((v) => !v)}
                 aria-label="Toggle locations"
               >
@@ -263,13 +347,7 @@ export default function Header() {
                   ))}
                 </div>
               )}
-              <Link
-                href="/pathways"
-                className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
-                onClick={() => setMobileOpen(false)}
-              >
-                Pathways
-              </Link>
+
               <Link
                 href="/science"
                 className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"

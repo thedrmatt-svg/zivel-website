@@ -1,0 +1,167 @@
+set -e
+
+# Backup current header
+if [ -f src/components/layout/Header.tsx ]; then
+  cp src/components/layout/Header.tsx src/components/layout/Header.tsx.bak
+fi
+
+cat > src/components/layout/Header.tsx <<'TSX'
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { services } from "@/lib/data/services";
+import { pathways } from "@/lib/data/pathways";
+
+function NavLink({ href, label }: { href: string; label: string }) {
+  const pathname = usePathname();
+  const active = pathname === href || (href !== "/" && pathname.startsWith(href));
+  return (
+    <Link
+      href={href}
+      className={[
+        "text-sm font-medium transition",
+        active ? "text-white" : "text-white/70 hover:text-white",
+      ].join(" ")}
+    >
+      {label}
+    </Link>
+  );
+}
+
+function Dropdown({
+  label,
+  items,
+  viewAllHref,
+  viewAllLabel,
+}: {
+  label: string;
+  items: { href: string; title: string; description?: string }[];
+  viewAllHref: string;
+  viewAllLabel: string;
+}) {
+  return (
+    <div className="relative group">
+      <button
+        type="button"
+        className="text-sm font-medium text-white/70 hover:text-white transition inline-flex items-center gap-2"
+        aria-haspopup="menu"
+        aria-expanded="false"
+      >
+        {label}
+        <span className="text-white/40 group-hover:text-white/70">v</span>
+      </button>
+
+      <div className="pointer-events-none opacity-0 translate-y-1 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0 transition absolute left-0 top-full mt-3 w-[420px] z-50">
+        <div className="rounded-2xl border border-white/10 bg-black/90 backdrop-blur p-3 shadow-xl">
+          <div className="grid gap-2">
+            {items.map((it) => (
+              <Link
+                key={it.href}
+                href={it.href}
+                className="rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 p-4 transition"
+              >
+                <div className="text-sm font-semibold text-white">{it.title}</div>
+                {it.description ? (
+                  <div className="mt-1 text-xs text-white/65">{it.description}</div>
+                ) : null}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-2 pt-2 border-t border-white/10">
+            <Link
+              href={viewAllHref}
+              className="inline-flex text-sm font-medium text-[var(--zivel-gold)] hover:opacity-90"
+            >
+              {viewAllLabel} ->
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Header() {
+  const servicesItems = services.map((s) => ({
+    href: `/services/${s.slug}`,
+    title: s.name,
+    description: s.hero?.subheadline ?? s.seo?.description ?? "",
+  }));
+
+  const pathwaysItems = pathways.map((p) => ({
+    href: `/pathways/${p.slug}`,
+    title: p.name,
+    description: p.seo?.description ?? "",
+  }));
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
+      <div className="section flex h-16 items-center justify-between gap-4">
+        {/* Logo -> Home */}
+        <Link href="/" className="flex items-center gap-3">
+          {/* If your logo path differs, update it here */}
+          <img
+            src="/images/brand/zivel-logo.png"
+            alt="Zivel"
+            className="h-7 w-auto"
+          />
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden lg:flex items-center gap-6">
+          <Dropdown
+            label="Services"
+            items={servicesItems}
+            viewAllHref="/services"
+            viewAllLabel="View all services"
+          />
+
+          <Dropdown
+            label="Pathways"
+            items={pathwaysItems}
+            viewAllHref="/pathways"
+            viewAllLabel="View all pathways"
+          />
+
+          <NavLink href="/locations" label="Locations" />
+          <NavLink href="/science" label="Science" />
+          <NavLink href="/blog" label="Blog" />
+          <NavLink href="/franchise" label="Franchise" />
+        </nav>
+
+        {/* CTAs */}
+        <div className="hidden lg:flex items-center gap-3">
+          <Link
+            href="/locations"
+            className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+          >
+            Find a Location
+          </Link>
+          <Link
+            href="/#book"
+            className="rounded-xl bg-[var(--zivel-gold)] px-4 py-2 text-sm font-semibold text-black hover:opacity-90"
+          >
+            Book Now
+          </Link>
+        </div>
+
+        {/* Mobile fallback */}
+        <div className="lg:hidden">
+          <Link
+            href="/pathways"
+            className="rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+          >
+            Menu
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}
+TSX
+
+npm run build
+echo "OK: Header updated with Pathways dropdown."
