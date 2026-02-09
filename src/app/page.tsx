@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { services } from "@/lib/data/services";
 import { scienceArticles } from "@/lib/data/science";
+import HomePathwaysSection from "@/components/sections/HomePathwaysSection";
 
 export const metadata: Metadata = {
   title: "Zivel | Wellness & Recovery",
@@ -182,40 +183,7 @@ export default function HomePage() {
       </section>
 
       {/* PATHWAYS */}
-      <section id="pathways" className="section" aria-labelledby="home-pathways-title">
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-3xl">
-            <h2 id="home-pathways-title" className="mb-2">
-              Zivel Pathways
-            </h2>
-            <p className="text-white/70">
-              Curated combinations that turn multiple services into a streamlined session—built around how you want to feel today.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              { name: "Performance", desc: "Optimize energy, focus, and athletic output.", href: "/pathways" },
-              { name: "Recovery", desc: "Ease tension, reduce soreness, and restore balance.", href: "/pathways/recovery-pain-support" },
-              { name: "Beauty", desc: "Support skin health, tone, and a refreshed appearance.", href: "/pathways" },
-              { name: "Longevity", desc: "Build habits that support long-term well-being.", href: "/pathways" },
-            ].map((pathway) => (
-              <article key={pathway.name} className="rounded-2xl border-subtle bg-card p-6 text-center">
-                <h3 className="mb-2 text-lg font-semibold">{pathway.name}</h3>
-                <p className="text-sm text-white/70">{pathway.desc}</p>
-                <div className="mt-5">
-                  <Link
-                    href={pathway.href}
-                    className="text-sm font-semibold underline decoration-white/20 underline-offset-4 hover:decoration-white/40"
-                  >
-                    Explore pathway →
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HomePathwaysSection />
 
       {/* LOCATIONS */}
       <section id="locations" className="section" aria-labelledby="home-locations-title">
