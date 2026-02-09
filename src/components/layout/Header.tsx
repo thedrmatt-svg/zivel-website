@@ -153,45 +153,27 @@ export default function Header() {
               </Link>
 
               <div className="invisible absolute left-0 top-full pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
-                <div className="w-[420px] rounded-2xl border border-white/10 bg-black/95 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <div className="text-xs font-semibold text-white/60 uppercase tracking-wider">Browse by State</div>
-                      <div className="mt-3 space-y-1">
-                        {LOCATIONS_NAV.states.map((s) => (
-                          <Link
-                            key={s.href}
-                            href={s.href}
-                            className="block rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white"
-                          >
-                            {s.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold text-white/60 uppercase tracking-wider">Featured</div>
-                      <div className="mt-3 space-y-1">
-                        {LOCATIONS_NAV.featured.map((c) => (
-                          <Link
-                            key={c.href}
-                            href={c.href}
-                            className="block rounded-xl px-3 py-2 hover:bg-white/5"
-                          >
-                            <div className="text-sm text-white/90">{c.label}</div>
-                            {c.note && <div className="text-xs text-white/55">{c.note}</div>}
-                          </Link>
-                        ))}
-                      </div>
-                      <div className="mt-3">
-                        <Link
-                          href="/locations"
-                          className="inline-flex rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/80 hover:bg-white/10 hover:text-white"
-                        >
-                          View all locations →
-                        </Link>
-                      </div>
-                    </div>
+                <div className="w-[260px] rounded-2xl border border-white/10 bg-black/95 p-3 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+                  <Link
+                    href="/locations"
+                    className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
+                  >
+                    View All Locations →
+                  </Link>
+
+                  <div className="my-2 h-px bg-white/10" />
+
+                  <div className="text-xs font-semibold text-white/60 uppercase tracking-wider px-3 pb-1">Browse by State</div>
+                  <div className="space-y-1">
+                    {LOCATIONS_NAV.states.map((s) => (
+                      <Link
+                        key={s.href}
+                        href={s.href}
+                        className="block rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white"
+                      >
+                        {s.label}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -332,17 +314,6 @@ export default function Header() {
                       onClick={() => setMobileOpen(false)}
                     >
                       {s.label}
-                    </Link>
-                  ))}
-                  <div className="px-3 pt-3 text-xs font-semibold text-white/50 uppercase tracking-wider">Featured</div>
-                  {LOCATIONS_NAV.featured.map((c) => (
-                    <Link
-                      key={c.href}
-                      href={c.href}
-                      className="block rounded-xl px-3 py-2 text-sm text-white/80 hover:bg-white/5"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {c.label}
                     </Link>
                   ))}
                 </div>
