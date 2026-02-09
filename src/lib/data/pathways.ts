@@ -7,6 +7,7 @@ import performanceAthleticOptimization from "@/content/pathways/performance-athl
 import mobilityActiveLifestyle from "@/content/pathways/mobility-active-lifestyle";
 import bodyCompositionMetabolicSupport from "@/content/pathways/body-composition-metabolic-support";
 import skinHealthRegenerativeAesthetics from "@/content/pathways/skin-health-regenerative-aesthetics";
+import travelResetJetLagRecovery from "@/content/pathways/travel-reset-jet-lag-recovery";
 
 export const pathways: Pathway[] = [
   recoveryPainSupport,
@@ -16,6 +17,7 @@ export const pathways: Pathway[] = [
   mobilityActiveLifestyle,
   bodyCompositionMetabolicSupport,
   skinHealthRegenerativeAesthetics,
+  travelResetJetLagRecovery,
 ];
 
 export function getPathwayBySlug(slug: string): Pathway | undefined {
