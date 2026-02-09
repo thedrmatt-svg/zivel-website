@@ -1,0 +1,108 @@
+import type { Pathway } from "@/types/pathway";
+
+export const bodyCompositionMetabolicSupport: Pathway = {
+  slug: "body-composition-metabolic-support",
+  name: "Body Composition & Metabolic Support",
+
+  seo: {
+    title: "Body Composition & Metabolic Support Pathway | Zivel",
+    description:
+      "A structured wellness pathway designed to support body composition goals using non-invasive modalities as part of a broader health journey and consistent routine.",
+    canonical: "/pathways/body-composition-metabolic-support",
+  },
+
+  hero: {
+    headline: "Body Composition & Metabolic Support",
+    subheadline: "Sustainable change is built through consistency, not extremes.",
+    primaryCTA: { label: "Book Now", href: "/#book" },
+    secondaryCTA: { label: "Find a Location", href: "/locations" },
+  },
+
+  whoItsFor: {
+    headline: "Who This Pathway Is For",
+    body: [
+      "This pathway is designed for clients who want to support body composition goals as part of a broader wellness or health journey.",
+      "It is commonly used by individuals who are already working on nutrition, training, and lifestyle habits, and want a structured routine that supports consistency.",
+      "Rather than positioning wellness as a quick fix, the pathway focuses on repeatable sessions that fit real schedules and reinforce long-term habits.",
+    ],
+    bullets: [
+      "Clients targeting stubborn areas as part of a broader wellness plan",
+      "Individuals building consistency with training, nutrition, and recovery routines",
+      "People who want structured support that complements long-term habits",
+      "Anyone who prefers a clear plan over extreme, short-term approaches",
+    ],
+    note:
+      "This pathway is educational and wellness-focused. It does not replace medical care and does not diagnose or treat conditions.",
+  },
+
+  goal: {
+    headline: "Primary Goal",
+    body: [
+      "The goal of this pathway is to support body composition routines by pairing targeted sessions with recovery inputs that help clients stay consistent over time.",
+      "The emphasis is on sustainable routines that complement training and lifestyle habits, not on quick or extreme promises.",
+    ],
+  },
+
+  services: {
+    headline: "Services Commonly Used",
+    intro:
+      "This pathway combines a structured sequence that supports whole-body recovery and targeted goals:",
+    orderedServiceSlugs: [
+      "cryotherapy",
+      "cryo-slimming",
+      "red-light-therapy",
+      "compression-therapy",
+    ],
+    note:
+      "On non-slimming days, many clients repeat the sequence while skipping the Cryo Slimming step.",
+  },
+
+  howItWorks: {
+    headline: "Recommended Sequence (How It Works)",
+    bullets: [
+      "Cryotherapy is used first as a whole-body stimulus that many clients use to support recovery routines and metabolic consistency.",
+      "Cryo Slimming can follow on targeted days to focus on specific areas as part of a broader body composition plan.",
+      "Red Light Therapy is used next as a whole-body session that many clients incorporate to support cellular energy processes and recovery habits.",
+      "Compression Therapy is commonly used at the end of the session to support circulation and post-session recovery comfort.",
+    ],
+  },
+
+  science: {
+    headline: "Science & Education",
+    body: [
+      "Body composition is influenced by long-term patterns: lifestyle consistency, training stimulus, recovery quality, and daily habits.",
+      "Zivel's Science Hub provides clear education on evidence-informed wellness modalities commonly included in recovery and body composition routines.",
+    ],
+    cta: { label: "Explore Body Composition Science \u2192", href: "/science" },
+  },
+
+  frequency: {
+    headline: "Recommended Frequency",
+    body: [
+      "Frequency depends on goals, schedule, and how a client structures training and nutrition habits. Many clients benefit from consistent sessions over time rather than sporadic use.",
+    ],
+    bullets: [
+      "1\u20132 sessions per week to build consistency and reinforce routine",
+      "2\u20133 sessions per week during focused blocks (paired with lifestyle habits)",
+      "Targeted Cryo Slimming days can be scheduled as part of a plan, with non-slimming days using the same flow minus the targeted step",
+    ],
+  },
+
+  finalCTA: {
+    headline: "Build Consistency First",
+    body: [
+      "The strongest outcomes come from repeatable routines. This pathway supports clients who want a structured plan that fits real life and reinforces long-term wellness habits.",
+      "Book a session and begin building a routine designed for consistency and sustainability.",
+    ],
+    primaryCTA: { label: "Book Now", href: "/#book" },
+    secondaryCTA: { label: "Explore Services", href: "/services" },
+  },
+
+  relatedPathwaySlugs: [
+    "longevity-healthy-aging",
+    "mobility-active-lifestyle",
+    "recovery-pain-support",
+  ],
+};
+
+export default bodyCompositionMetabolicSupport;
