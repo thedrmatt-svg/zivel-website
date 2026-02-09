@@ -13,7 +13,7 @@ export const longevityHealthyAging: Pathway = {
 
   hero: {
     headline: "Longevity & Healthy Aging",
-    subheadline: "Most people focus on lifestyle. Longevity is built through healthstyle.",
+    subheadline: "Longevity is built through healthstyle—consistent habits that support recovery and resilience.",
     primaryCTA: { label: "Book Now", href: "/#book" },
     secondaryCTA: { label: "Find a Location", href: "/locations" },
   },
