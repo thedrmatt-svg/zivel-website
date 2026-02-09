@@ -7,11 +7,10 @@ export type BlogPost = {
   slug: string;
   title: string;
   description: string;
-  publishDate: string;
+  publishDate: string; // YYYY-MM-DD
   author: string;
   category: string;
   readingTime: string;
-  featured: boolean;
+  featured?: boolean;
   content: BlogContentBlock[];
-  body?: string;
 };
