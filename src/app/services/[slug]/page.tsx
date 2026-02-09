@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
 import { getServiceBySlug, services } from "@/lib/data/services";
+import { pathways } from "@/lib/data/pathways";
 import { getLinksForServiceSlug } from "@/lib/data/serviceLinks";
 import { getScienceBySlug } from "@/lib/data/science";
 import { getResearchBySlug } from "@/lib/data/research";
@@ -49,6 +50,10 @@ export default async function ServicePage({ params }: PageProps) {
   const links = getLinksForServiceSlug(service.slug);
   const linkedScience = links.science.map(getScienceBySlug).filter((s): s is NonNullable<typeof s> => Boolean(s));
   const linkedResearch = links.research.map(getResearchBySlug).filter((r): r is NonNullable<typeof r> => Boolean(r));
+
+  const relatedPathways = pathways.filter((p) =>
+    (p.services?.orderedServiceSlugs ?? []).includes(service.slug)
+  );
 
   const accentHex = service.accent?.hex ?? "#C9A24D"; // fallback gold
 
@@ -196,6 +201,34 @@ export default async function ServicePage({ params }: PageProps) {
           ))}
         </div>
       </section>
+
+      {/* PATHWAYS THAT INCLUDE THIS SERVICE */}
+      {relatedPathways.length ? (
+        <section className="section">
+          <div className="flex items-end justify-between gap-6">
+            <h2>Pathways That Include {service.name}</h2>
+            <Link
+              href="/pathways"
+              className="text-sm font-medium text-white/70 hover:text-[var(--zivel-gold)]"
+            >
+              View all pathways →
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {relatedPathways.map((p) => (
+              <Link
+                key={p.slug}
+                href={`/pathways/${p.slug}`}
+                className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
+              >
+                <div className="text-lg font-semibold text-white">{p.name}</div>
+                <p className="mt-2 text-sm text-white/70">{p.seo.description}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* SECTION 4 — HOW IT WORKS / WHAT TO EXPECT */}
       <section className="section">
