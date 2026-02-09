@@ -12,7 +12,7 @@ export default function BlogIndexPage() {
       <header className="space-y-3">
         <h1>Blog</h1>
         <p className="text-white/70">
-          Evidence-informed wellness, recovery, and longevity education—written for clarity.
+          Clear, science-led insights on recovery, performance, and longevity.
         </p>
       </header>
 
