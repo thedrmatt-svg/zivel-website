@@ -1,14 +1,15 @@
 import type { BlogPost } from "@/types/blog";
-import coldLightHeat from "@/content/blog/cold-light-heat-modern-recovery-modalities-longevity";
-import recoveryWeekly from "@/content/blog/recovery-weekly-wellness-essential-not-luxury";
-import recoveryNervousSystem from "@/content/blog/recovery-nervous-system-regulation";
+
+import post1 from "@/content/blog/cold-light-heat-modern-recovery-modalities-longevity";
+import post2 from "@/content/blog/recovery-weekly-wellness-essential-not-luxury";
+import post3 from "@/content/blog/recovery-nervous-system-regulation";
 
 export const blogPosts: BlogPost[] = [
-  coldLightHeat,
-  recoveryWeekly,
-  recoveryNervousSystem,
-].sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
+  post1,
+  post2,
+  post3,
+];
 
-export function getBlogPostBySlug(slug: string): BlogPost | undefined {
+export function getBlogBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
 }

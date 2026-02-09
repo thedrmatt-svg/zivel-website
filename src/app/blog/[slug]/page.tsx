@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts, getBlogPostBySlug } from "@/lib/data/blog";
+import { blogPosts, getBlogBySlug } from "@/lib/data/blog";
 import type { BlogContentBlock } from "@/types/blog";
 
 type PageProps = {
@@ -16,7 +16,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = getBlogBySlug(slug);
   if (!post) return {};
   return {
     title: post.title + " | Zivel",
@@ -56,7 +56,7 @@ function renderContentBlocks(blocks: BlogContentBlock[]) {
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = getBlogBySlug(slug);
   if (!post) return notFound();
 
   return (
