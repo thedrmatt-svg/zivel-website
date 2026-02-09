@@ -1,0 +1,423 @@
+set -e
+
+mkdir -p scripts
+
+cat > scripts/add-blogs-1-2.mjs <<'EOF'
+import fs from "fs";
+import path from "path";
+
+const ROOT = process.cwd();
+const src = (...p) => path.join(ROOT, "src", ...p);
+
+const today = new Date().toISOString().slice(0, 10);
+
+// ---------- Blog content (Blog #1 + #2) ----------
+const posts = [
+  {
+    slug: "cold-light-heat-modern-recovery-modalities-longevity",
+    title: "Cold, Light, and Heat: How Modern Recovery Modalities Support Longevity",
+    description:
+      "A science-informed overview of cold exposure, red light therapy, and infrared heat—and how consistent recovery routines support longevity-focused wellness.",
+    date: today,
+    body: `Longevity is no longer just about living longer—it’s about maintaining energy, mobility, and resilience over time. As interest in preventive health continues to grow, many people are turning to modern recovery modalities that support the body’s natural adaptive systems without invasive procedures or pharmaceuticals.
+
+Among the most widely used approaches today are cold exposure, red light therapy, and infrared heat. While each works through different physiological pathways, they are often used together as part of a structured recovery or wellness routine designed to support long-term health.
+
+## The Role of Recovery in Longevity-Focused Wellness
+
+Recovery plays a central role in how the body adapts to stress—whether that stress comes from exercise, work, travel, or everyday life. When recovery is insufficient, the nervous system remains overactivated, inflammation may persist, and sleep and metabolic function can suffer.
+
+Longevity-oriented wellness focuses on supporting balance, not extremes. Non-invasive recovery modalities are increasingly used to:
+- Support circulation and tissue recovery  
+- Encourage nervous system regulation  
+- Promote cellular signaling associated with repair and adaptation  
+- Improve consistency in wellness routines  
+
+Rather than replacing medical care, these approaches are commonly used as complementary tools within a broader lifestyle that includes movement, nutrition, and sleep.
+
+## Cold Exposure and Adaptive Stress
+
+Brief, controlled cold exposure has been studied for its ability to stimulate adaptive responses in the body. Cold temperatures activate thermoregulatory systems and may influence circulation, inflammatory signaling, and nervous system tone.
+
+In modern wellness settings, cold exposure is typically applied in short, time-limited sessions designed for comfort and safety. Many individuals incorporate cold-based recovery to:
+- Feel more energized and mentally alert  
+- Support post-exercise recovery  
+- Encourage circulation following physical stress  
+
+Used consistently, cold exposure is often described as a stimulus for resilience, helping the body adapt more efficiently to stress over time.
+
+**Related:** /services/cryotherapy
+
+## Red Light Therapy and Cellular Support
+
+Red and near-infrared light therapy has gained attention for its role in supporting mitochondrial function—the process by which cells produce energy. Research has explored how specific wavelengths of light interact with tissues to influence cellular signaling and repair mechanisms.
+
+Red light therapy is commonly used to:
+- Support muscle recovery and tissue health  
+- Promote skin vitality and circulation  
+- Encourage relaxation and parasympathetic activity  
+
+Because sessions are passive and non-invasive, red light therapy is often integrated into regular routines and paired with other recovery modalities.
+
+**Related:** /services/red-light-therapy and /science/red-light-mechanisms
+
+## Infrared Heat and Relaxation-Based Recovery
+
+Unlike traditional steam saunas, infrared heat uses radiant energy to warm the body without added humidity. This approach allows for a more comfortable experience while still encouraging a gentle sweat response.
+
+Infrared heat is frequently used to support:
+- Relaxation and stress reduction  
+- Circulatory support  
+- Recovery routines focused on rest and restoration  
+
+**Related:** /services/infrared-sauna
+
+## Why These Modalities Are Often Used Together
+
+Each modality targets different mechanisms:
+- Cold exposure introduces short-term adaptive stress  
+- Red light supports cellular energy and signaling pathways  
+- Infrared heat promotes relaxation and circulation  
+
+Used together, they create rhythm within a wellness routine—alternating stimulation and restoration in a way that supports long-term consistency.
+
+## Making Recovery a Consistent Practice
+
+Longevity-focused wellness is less about intensity and more about repeatability. The most effective recovery routines are the ones people can maintain week after week.
+
+To explore recovery options near you, visit /locations or learn more through /science.
+
+## The Takeaway
+
+Modern recovery modalities like cold exposure, red light therapy, and infrared heat reflect a broader shift toward preventive, evidence-informed wellness. By supporting the body’s natural adaptive processes, these approaches help individuals stay active, resilient, and engaged over time.
+
+Longevity isn’t about doing more—it’s about recovering better.
+`,
+  },
+  {
+    slug: "recovery-weekly-wellness-essential-not-luxury",
+    title: "Why Recovery Is Becoming a Weekly Wellness Essential (Not a Luxury)",
+    description:
+      "Recovery is increasingly treated as a weekly wellness essential—supporting sleep, stress resilience, mobility, and long-term consistency.",
+    date: today,
+    body: `For years, recovery was framed as something reserved for elite athletes—an optional add-on for people with intense training schedules. That view is shifting. Recovery is increasingly being treated as a weekly wellness essential, used by everyday individuals to support energy, stress resilience, mobility, and long-term consistency.
+
+This change reflects a practical reality: modern life places continuous demands on the body and nervous system. Work stress, sedentary time, travel, poor sleep, and constant stimulation can accumulate in ways that affect how the body feels and performs.
+
+A recovery routine is often less about doing more—and more about helping the body reset.
+
+## Recovery Is Not Only for Post-Workout Soreness
+
+Exercise is one form of stress, but it is not the only one. Many people experience fatigue, tension, and reduced performance simply from daily life patterns, including:
+- Prolonged sitting and low movement variability  
+- High mental load and chronically elevated stress  
+- Inconsistent sleep timing and quality  
+- Limited time for downshifting and restoration  
+
+Recovery-focused practices can support the body’s ability to handle stress more effectively—whether that stress comes from training, work, or a busy schedule.
+
+## What a Weekly Recovery Routine Supports
+
+A consistent recovery routine is commonly used to support:
+
+### Nervous system regulation
+Recovery sessions are often used to encourage a calmer baseline and support parasympathetic activity—rest, digestion, and restoration.
+
+### Mobility and tissue comfort
+Stiffness can build gradually with repetitive movement patterns or prolonged sitting. Recovery practices can help people feel more comfortable moving consistently.
+
+### Sleep quality and recovery capacity
+Sleep is one of the most important recovery tools available. Many individuals build weekly recovery sessions around improving evening wind-down and restoring a sense of readiness.
+
+### Consistency in healthy routines
+Wellness compounds: when the body feels better, consistency improves.
+
+## Why Modalities Are Becoming Part of Routine Care
+
+In modern wellness settings, common recovery modalities include:
+- Cold exposure (often via cryotherapy)  
+- Red light therapy  
+- Infrared heat  
+- Compression therapy  
+- Dry float therapy  
+
+These modalities are frequently combined to create a balanced weekly plan—mixing stimulation with restoration.
+
+**Related:** /services and /science
+
+## Recovery Is More Sustainable Than All-or-Nothing Wellness
+
+Weekly recovery is often easier to sustain than high-effort programs. A recovery routine can be:
+- Time-efficient  
+- Non-invasive  
+- Scalable based on goals  
+- Compatible with training plans and busy schedules  
+
+This makes it a practical foundation for longevity-focused habits.
+
+## How Often Should Recovery Be Done?
+
+Frequency depends on goals and lifestyle stress. Many individuals choose a weekly cadence because it is realistic and repeatable:
+- 1–2 sessions per week during normal routines  
+- 2–4 sessions per week during high-stress or heavy training blocks  
+
+The key variable is consistency.
+
+## The Takeaway
+
+Recovery is increasingly viewed as routine care for modern life. It supports the body’s ability to adapt, improves the likelihood of consistency, and helps individuals maintain energy and resilience over time.
+
+To explore recovery modalities and evidence-informed wellness education, visit /science, browse /services, or find a nearby studio at /locations.
+`,
+  },
+];
+
+// ---------- Helpers ----------
+const ensureDir = (p) => fs.mkdirSync(p, { recursive: true });
+const writeIfMissing = (file, content) => {
+  if (!fs.existsSync(file)) fs.writeFileSync(file, content, "utf8");
+};
+
+function findExistingBlogDataFile() {
+  const candidates = [
+    src("lib", "data", "blog.ts"),
+    src("lib", "data", "posts.ts"),
+  ];
+  for (const f of candidates) if (fs.existsSync(f)) return f;
+
+  // heuristic scan
+  const scanDirs = [src("lib", "data"), src("content")].filter(fs.existsSync);
+  for (const d of scanDirs) {
+    const files = fs.readdirSync(d).filter((x) => x.endsWith(".ts"));
+    for (const f of files) {
+      const full = path.join(d, f);
+      const txt = fs.readFileSync(full, "utf8");
+      if (txt.includes("export const posts") || txt.includes("export const blogPosts")) return full;
+    }
+  }
+  return null;
+}
+
+// ---------- Create content files ----------
+const BLOG_DIR = src("content", "blog");
+ensureDir(BLOG_DIR);
+
+for (const p of posts) {
+  const file = path.join(BLOG_DIR, `${p.slug}.ts`);
+  const content = `import type { BlogPost } from "@/types/blog";
+
+export const post: BlogPost = {
+  slug: ${JSON.stringify(p.slug)},
+  title: ${JSON.stringify(p.title)},
+  description: ${JSON.stringify(p.description)},
+  date: ${JSON.stringify(p.date)},
+  body: ${JSON.stringify(p.body)},
+};
+
+export default post;
+`;
+  fs.writeFileSync(file, content, "utf8");
+}
+
+// ---------- Ensure type ----------
+ensureDir(src("types"));
+writeIfMissing(
+  src("types", "blog.ts"),
+  `export type BlogPost = {
+  slug: string;
+  title: string;
+  description: string;
+  date: string; // YYYY-MM-DD
+  body: string; // markdown-ish string
+};
+`
+);
+
+// ---------- Ensure registry data file ----------
+ensureDir(src("lib", "data"));
+const blogDataFile = findExistingBlogDataFile() ?? src("lib", "data", "blog.ts");
+
+const imports = posts
+  .map((p) => `import ${camel(p.slug)} from "@/content/blog/${p.slug}";`)
+  .join("\n");
+
+const arrayItems = posts.map((p) => `  ${camel(p.slug)},`).join("\n");
+
+function camel(slug) {
+  return slug
+    .split("-")
+    .map((w, i) => (i === 0 ? w : w[0].toUpperCase() + w.slice(1)))
+    .join("");
+}
+
+const registry = `import type { BlogPost } from "@/types/blog";
+${imports}
+
+export const blogPosts: BlogPost[] = [
+${arrayItems}
+].sort((a,b) => (a.date < b.date ? 1 : -1));
+
+export function getBlogPostBySlug(slug: string): BlogPost | undefined {
+  return blogPosts.find((p) => p.slug === slug);
+}
+`;
+
+fs.writeFileSync(blogDataFile, registry, "utf8");
+
+// ---------- Ensure routes (only if missing) ----------
+const blogIndex = src("app", "blog", "page.tsx");
+const blogSlugPage = src("app", "blog", "[slug]", "page.tsx");
+ensureDir(path.dirname(blogIndex));
+ensureDir(path.dirname(blogSlugPage));
+
+writeIfMissing(
+  blogIndex,
+  `import Link from "next/link";
+import { blogPosts } from "@/lib/data/blog";
+
+export const metadata = {
+  title: "Blog | Zivel",
+  description: "Evidence-informed wellness, recovery, and longevity education.",
+};
+
+export default function BlogIndexPage() {
+  return (
+    <main className="section space-y-10">
+      <header className="space-y-3">
+        <h1>Blog</h1>
+        <p className="text-white/70">
+          Evidence-informed wellness, recovery, and longevity education—written for clarity.
+        </p>
+      </header>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {blogPosts.map((p) => (
+          <Link key={p.slug} href={\`/blog/\${p.slug}\`} className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10">
+            <div className="text-xs text-white/60">{p.date}</div>
+            <div className="mt-2 text-lg font-semibold text-white">{p.title}</div>
+            <p className="mt-2 text-sm text-white/70">{p.description}</p>
+          </Link>
+        ))}
+      </div>
+    </main>
+  );
+}
+`
+);
+
+writeIfMissing(
+  blogSlugPage,
+  `import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { blogPosts, getBlogPostBySlug } from "@/lib/data/blog";
+
+export function generateStaticParams() {
+  return blogPosts.map((p) => ({ slug: p.slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const post = getBlogPostBySlug(params.slug);
+  if (!post) return {};
+  return {
+    title: post.title + " | Zivel",
+    description: post.description,
+    alternates: { canonical: \`/blog/\${post.slug}\` },
+  };
+}
+
+function renderMarkdownish(text: string) {
+  // simple, safe rendering: split by blank lines
+  return text.split(/\\n\\n+/).map((block, i) => {
+    const h2 = block.match(/^##\\s+(.*)/);
+    if (h2) return <h2 key={i} className="mt-10">{h2[1]}</h2>;
+
+    const h3 = block.match(/^###\\s+(.*)/);
+    if (h3) return <h3 key={i} className="mt-8 text-lg font-semibold">{h3[1]}</h3>;
+
+    // convert "Related: /path" into link
+    const rel = block.match(/^\\*\\*Related:\\*\\*\\s+(.*)/);
+    if (rel) {
+      const hrefs = rel[1].split("and").map(s => s.trim());
+      return (
+        <p key={i} className="text-sm text-white/70">
+          Related:{" "}
+          {hrefs.map((h, idx) => (
+            <span key={h}>
+              <Link className="underline hover:text-[var(--zivel-gold)]" href={h}>{h}</Link>
+              {idx < hrefs.length - 1 ? " • " : ""}
+            </span>
+          ))}
+        </p>
+      );
+    }
+
+    // list items
+    if (block.includes("\\n- ")) {
+      const [lead, ...items] = block.split("\\n- ");
+      return (
+        <div key={i} className="space-y-3">
+          {lead.trim() ? <p className="text-white/70">{lead.trim()}</p> : null}
+          <ul className="space-y-2 text-white/70">
+            {items.map((it, idx) => (
+              <li key={idx} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/40" />
+                <span>{it.trim()}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    return <p key={i} className="text-white/70">{block.trim()}</p>;
+  });
+}
+
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  const post = getBlogPostBySlug(params.slug);
+  if (!post) return notFound();
+
+  return (
+    <main className="section space-y-10">
+      <nav className="text-sm text-white/60">
+        <Link href="/blog" className="hover:text-white">Blog</Link> / {post.title}
+      </nav>
+
+      <header className="space-y-3">
+        <div className="text-xs text-white/60">{post.date}</div>
+        <h1>{post.title}</h1>
+        <p className="text-white/70">{post.description}</p>
+      </header>
+
+      <article className="prose prose-invert max-w-none">
+        {renderMarkdownish(post.body)}
+      </article>
+
+      <div className="rounded-2xl border-subtle bg-card p-8">
+        <h2 className="m-0">Explore Services</h2>
+        <p className="mt-3 text-white/70">
+          Zivel offers modern recovery and wellness modalities built for consistency.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link href="/services" className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90">
+            View Services
+          </Link>
+          <Link href="/locations" className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10">
+            Find a Location
+          </Link>
+        </div>
+      </div>
+    </main>
+  );
+}
+`
+);
+
+console.log("✅ Added Blog #1 and Blog #2 content files to src/content/blog/");
+console.log(`✅ Updated blog registry: ${path.relative(ROOT, blogDataFile)}`);
+console.log("✅ Ensured /blog and /blog/[slug] routes exist (only created if missing).");
+EOF
+
+node scripts/add-blogs-1-2.mjs
+npm run build
