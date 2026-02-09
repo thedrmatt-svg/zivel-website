@@ -1,0 +1,108 @@
+import type { Pathway } from "@/types/pathway";
+
+export const performanceAthleticOptimization: Pathway = {
+  slug: "performance-athletic-optimization",
+  name: "Performance & Athletic Optimization",
+
+  seo: {
+    title: "Performance & Athletic Optimization Pathway | Zivel",
+    description:
+      "A structured recovery pathway designed to support training consistency, recovery quality, and performance habits for athletes and active individuals of all ages.",
+    canonical: "/pathways/performance-athletic-optimization",
+  },
+
+  hero: {
+    headline: "Performance & Athletic Optimization",
+    subheadline:
+      "Performance is not reserved for pro athletes. It is for anyone pushing physical and mental potential.",
+    primaryCTA: { label: "Book Now", href: "/#book" },
+    secondaryCTA: { label: "Find a Location", href: "/locations" },
+  },
+
+  whoItsFor: {
+    headline: "Who This Pathway Is For",
+    body: [
+      "This pathway is designed for athletes and active individuals who want to train consistently and recover more effectively. It is built for performance-minded routines across all ages and activity levels.",
+      "For competitive youth athletes, recovery is a year-round commitment. Training, tournaments, and skill development often run continuously, and recovery habits should match that pace rather than only showing up during season.",
+      "For adults and older athletes, this pathway supports the same idea: age does not define movement quality. Many individuals are building new fitness identities through strength training, endurance events, martial arts, golf, pickleball, or simply staying capable for life.",
+    ],
+    bullets: [
+      "Youth athletes in year-round competitive sports",
+      "Adults training at the gym or entering new sports (jiu jitsu, running, endurance events)",
+      "Active adults focused on staying strong, mobile, and consistent over time",
+      "Anyone who wants performance habits that support better training continuity",
+    ],
+    note:
+      "This pathway is educational and wellness-focused. It does not replace medical care and does not diagnose or treat injuries.",
+  },
+
+  goal: {
+    headline: "Primary Goal",
+    body: [
+      "The goal of this pathway is to improve training continuity by supporting recovery quality. Performance improves when athletes can repeat high-quality training sessions with fewer setbacks from accumulated stress.",
+      "Rather than treating recovery as an emergency tool, the pathway frames it as a repeatable performance habit that supports better output, better readiness, and more consistent progress.",
+    ],
+  },
+
+  services: {
+    headline: "Services Commonly Used",
+    intro:
+      "This pathway commonly integrates modalities used by performance-minded clients to support recovery comfort, circulation, and readiness:",
+    orderedServiceSlugs: [
+      "cryotherapy",
+      "red-light-therapy",
+      "compression-therapy",
+      "cryo-soothe",
+    ],
+    note:
+      "Service selection and order can vary based on training load, sport demands, and individual preference. Zivel team members can help guide the routine.",
+  },
+
+  howItWorks: {
+    headline: "How This Pathway Supports Performance Routines",
+    bullets: [
+      "Supports recovery comfort so training can stay consistent week to week",
+      "Promotes circulation and readiness habits commonly used post-training",
+      "Encourages structured recovery instead of random, reactive sessions",
+      "Fits year-round training cycles for youth athletes and adults alike",
+    ],
+  },
+
+  science: {
+    headline: "Science & Education",
+    body: [
+      "Performance routines often combine training stimulus with recovery inputs that support circulation, nervous system balance, and tissue recovery processes.",
+      "Zivel's Science Hub provides clear education on evidence-informed use patterns across modalities commonly used in performance-minded recovery routines.",
+    ],
+    cta: { label: "Explore Performance & Recovery Science \u2192", href: "/science" },
+  },
+
+  frequency: {
+    headline: "Recommended Frequency",
+    body: [
+      "Frequency depends on training load, sport schedule, and individual goals. Many performance-minded clients use recovery sessions consistently to support readiness and training continuity.",
+    ],
+    bullets: [
+      "1\u20132 sessions per week for routine training support",
+      "2\u20134 sessions per week during heavy training blocks, tournaments, or event prep",
+    ],
+  },
+
+  finalCTA: {
+    headline: "Make Recovery a Performance Habit",
+    body: [
+      "Performance is built through consistent training and consistent recovery. This pathway helps athletes and active individuals build repeatable recovery habits that support better readiness and long-term progress.",
+      "Book a session and start building a routine that matches the way athletes actually train: year-round.",
+    ],
+    primaryCTA: { label: "Book Now", href: "/#book" },
+    secondaryCTA: { label: "Explore Services", href: "/services" },
+  },
+
+  relatedPathwaySlugs: [
+    "recovery-pain-support",
+    "mobility-active-lifestyle",
+    "longevity-healthy-aging",
+  ],
+};
+
+export default performanceAthleticOptimization;
