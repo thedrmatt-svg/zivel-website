@@ -1,0 +1,507 @@
+set -e
+
+# -----------------------------
+# 1) Folders
+# -----------------------------
+mkdir -p src/types
+mkdir -p src/content/pathways
+mkdir -p src/lib/data
+mkdir -p src/app/pathways/[slug]
+
+# -----------------------------
+# 2) Type: Pathway
+# -----------------------------
+cat > src/types/pathway.ts <<'TS'
+export type Pathway = {
+  slug: string;
+  name: string;
+
+  seo: {
+    title: string;
+    description: string;
+    canonical?: string;
+  };
+
+  hero: {
+    headline: string;
+    subheadline: string;
+    primaryCTA: { label: string; href: string };
+    secondaryCTA: { label: string; href: string };
+  };
+
+  whoItsFor: {
+    headline: string;
+    body: string[];
+    bullets?: string[];
+    note?: string;
+  };
+
+  goal: {
+    headline: string;
+    body: string[];
+  };
+
+  services: {
+    headline: string;
+    intro?: string;
+    orderedServiceSlugs: string[]; // important: drives UI + future auto-booking
+    note?: string;
+  };
+
+  howItWorks: {
+    headline: string;
+    bullets: string[];
+  };
+
+  science: {
+    headline: string;
+    body: string[];
+    cta: { label: string; href: string };
+  };
+
+  frequency: {
+    headline: string;
+    body: string[];
+    bullets?: string[];
+  };
+
+  finalCTA: {
+    headline: string;
+    body: string[];
+    primaryCTA: { label: string; href: string };
+    secondaryCTA: { label: string; href: string };
+  };
+
+  relatedPathwaySlugs?: string[];
+};
+TS
+
+# -----------------------------
+# 3) Content: Pathway 1
+# -----------------------------
+cat > src/content/pathways/recovery-pain-support.ts <<'TS'
+import type { Pathway } from "@/types/pathway";
+
+export const recoveryPainSupport: Pathway = {
+  slug: "recovery-pain-support",
+  name: "Recovery & Pain Support",
+
+  seo: {
+    title: "Recovery & Pain Support Pathway | Zivel",
+    description:
+      "A structured, non-invasive recovery pathway designed to support comfort, mobility, and resilience for adults navigating daily physical stress, training load, or lingering stiffness.",
+    canonical: "/pathways/recovery-pain-support",
+  },
+
+  hero: {
+    headline: "Recovery & Pain Support",
+    subheadline: "Pain is common—but it does not have to be normal.",
+    primaryCTA: { label: "Book Now", href: "/#book" },
+    secondaryCTA: { label: "Find a Location", href: "/locations" },
+  },
+
+  whoItsFor: {
+    headline: "Who This Pathway Is For",
+    body: [
+      "The Recovery & Pain Support Pathway is designed for adults approximately 30–65 who want to improve comfort, mobility, and recovery capacity through a consistent wellness routine.",
+      "It is commonly used by individuals who feel stiff from sitting all day, sore from physically demanding work, recovering from heavy workouts, or managing lingering discomfort from prior injuries.",
+    ],
+    bullets: [
+      "Stiffness from prolonged sitting or desk work",
+      "Soreness from manual or repetitive work",
+      "Post-workout recovery support",
+      "Recovery support after prior injuries (as part of a broader wellness plan)",
+    ],
+    note:
+      "This pathway is educational and wellness-focused. It is not medical care and does not diagnose or treat conditions.",
+  },
+
+  goal: {
+    headline: "Primary Goal",
+    body: [
+      "The goal of this pathway is to support recovery and comfort by promoting circulation, reducing physical tension, and encouraging nervous system down-regulation.",
+      "Rather than focusing on short-term fixes, it emphasizes repeatable recovery habits that help the body respond more effectively to physical stress over time.",
+    ],
+  },
+
+  services: {
+    headline: "Services Commonly Used",
+    intro:
+      "This pathway typically combines the following modalities, selected based on individual preferences and goals:",
+    orderedServiceSlugs: [
+      "cryotherapy",
+      "red-light-therapy",
+      "compression",
+      "cryo-soothe",
+      "infrared-sauna",
+    ],
+    note:
+      "Dry Float Therapy may be less ideal for some individuals with certain types of low back discomfort due to reduced spinal support during the session. Zivel team members can help guide service selection.",
+  },
+
+  howItWorks: {
+    headline: "How This Pathway Supports Recovery",
+    bullets: [
+      "Supports circulation and recovery comfort following physical stress",
+      "Helps reduce perceived stiffness and tension through consistent recovery inputs",
+      "Encourages nervous system regulation to support restorative recovery habits",
+      "Can be used as a stand-alone recovery day or paired with training routines",
+    ],
+  },
+
+  science: {
+    headline: "Science & Education",
+    body: [
+      "Recovery strategies that support circulation, nervous system balance, and cellular energy production are frequently studied across wellness and performance contexts.",
+      "Zivel’s approach is evidence-informed and designed to be approachable, repeatable, and aligned with practical recovery routines.",
+    ],
+    cta: { label: "Explore the Science Hub →", href: "/science" },
+  },
+
+  frequency: {
+    headline: "Recommended Frequency",
+    body: [
+      "Frequency varies based on activity level and day-to-day physical demand. Many individuals build this pathway into a weekly routine.",
+    ],
+    bullets: [
+      "1–2 sessions per week during normal routines",
+      "2–3 sessions per week during higher physical demand or training blocks",
+    ],
+  },
+
+  finalCTA: {
+    headline: "Support Recovery with a Structured Routine",
+    body: [
+      "This pathway is designed to make recovery simple: clear modalities, repeatable sessions, and a routine that fits real schedules.",
+      "Book a session at a nearby studio and build consistency over time.",
+    ],
+    primaryCTA: { label: "Book Now", href: "/#book" },
+    secondaryCTA: { label: "View Locations", href: "/locations" },
+  },
+
+  relatedPathwaySlugs: [
+    "longevity-healthy-aging",
+    "mobility-active-lifestyle",
+    "stress-sleep-reset",
+  ],
+};
+
+export default recoveryPainSupport;
+TS
+
+# -----------------------------
+# 4) Registry: pathways
+# -----------------------------
+cat > src/lib/data/pathways.ts <<'TS'
+import type { Pathway } from "@/types/pathway";
+
+import recoveryPainSupport from "@/content/pathways/recovery-pain-support";
+
+export const pathways: Pathway[] = [
+  recoveryPainSupport,
+];
+
+export function getPathwayBySlug(slug: string): Pathway | undefined {
+  return pathways.find((p) => p.slug === slug);
+}
+TS
+
+# -----------------------------
+# 5) /pathways index page
+# -----------------------------
+cat > src/app/pathways/page.tsx <<'TSX'
+import Link from "next/link";
+import { pathways } from "@/lib/data/pathways";
+
+export const metadata = {
+  title: "Pathways | Zivel",
+  description:
+    "Goal-based wellness pathways built from Zivel services—designed to make routines clear, repeatable, and easy to book.",
+};
+
+export default function PathwaysIndexPage() {
+  return (
+    <main className="section space-y-10">
+      <header className="space-y-3">
+        <h1>Pathways</h1>
+        <p className="text-white/70">
+          Goal-based routines that combine Zivel services into structured, repeatable wellness experiences.
+        </p>
+      </header>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {pathways.map((p) => (
+          <Link
+            key={p.slug}
+            href={`/pathways/${p.slug}`}
+            className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
+          >
+            <div className="text-lg font-semibold text-white">{p.name}</div>
+            <p className="mt-2 text-sm text-white/70">{p.seo.description}</p>
+            <div className="mt-4 text-sm font-medium text-[var(--zivel-gold)]">
+              View Pathway →
+            </div>
+          </Link>
+        ))}
+      </div>
+    </main>
+  );
+}
+TSX
+
+# -----------------------------
+# 6) /pathways/[slug] detail page
+# -----------------------------
+cat > src/app/pathways/[slug]/page.tsx <<'TSX'
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+import { getPathwayBySlug, pathways } from "@/lib/data/pathways";
+import { getServiceBySlug } from "@/lib/data/services";
+
+export function generateStaticParams() {
+  return pathways.map((p) => ({ slug: p.slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const pathway = getPathwayBySlug(params.slug);
+  if (!pathway) return {};
+  return {
+    title: pathway.seo.title,
+    description: pathway.seo.description,
+    alternates: { canonical: pathway.seo.canonical ?? `/pathways/${pathway.slug}` },
+  };
+}
+
+export default function PathwayPage({ params }: { params: { slug: string } }) {
+  const pathway = getPathwayBySlug(params.slug);
+  if (!pathway) return notFound();
+
+  const orderedServices = pathway.services.orderedServiceSlugs
+    .map((slug) => getServiceBySlug(slug))
+    .filter(Boolean);
+
+  return (
+    <main className="space-y-24">
+      {/* HERO */}
+      <section className="section">
+        <div className="rounded-2xl border-subtle bg-card p-10">
+          <div className="max-w-3xl space-y-5">
+            <h1>{pathway.hero.headline}</h1>
+            <p className="text-lg text-white/80">{pathway.hero.subheadline}</p>
+
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link
+                href={pathway.hero.primaryCTA.href}
+                className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+              >
+                {pathway.hero.primaryCTA.label}
+              </Link>
+              <Link
+                href={pathway.hero.secondaryCTA.href}
+                className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+              >
+                {pathway.hero.secondaryCTA.label}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHO IT'S FOR */}
+      <section className="section">
+        <h2 className="mb-6">{pathway.whoItsFor.headline}</h2>
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="space-y-4 text-white/70">
+            {pathway.whoItsFor.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+            {pathway.whoItsFor.note ? (
+              <p className="text-xs text-white/50">{pathway.whoItsFor.note}</p>
+            ) : null}
+          </div>
+
+          {pathway.whoItsFor.bullets?.length ? (
+            <div className="rounded-2xl border-subtle bg-card p-6">
+              <ul className="space-y-2 text-sm text-white/70">
+                {pathway.whoItsFor.bullets.map((b) => (
+                  <li key={b} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </div>
+      </section>
+
+      {/* GOAL */}
+      <section className="section">
+        <h2 className="mb-6">{pathway.goal.headline}</h2>
+        <div className="space-y-4 text-white/70">
+          {pathway.goal.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="section">
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <h2>{pathway.services.headline}</h2>
+            {pathway.services.intro ? (
+              <p className="mt-2 text-white/70">{pathway.services.intro}</p>
+            ) : null}
+          </div>
+          <Link
+            href="/services"
+            className="text-sm font-medium text-white/70 hover:text-[var(--zivel-gold)]"
+          >
+            View all services →
+          </Link>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {pathway.services.orderedServiceSlugs.map((slug) => {
+            const svc = getServiceBySlug(slug);
+            const href = svc ? `/services/${svc.slug}` : "/services";
+            const title = svc?.name ?? slug.replaceAll("-", " ");
+
+            return (
+              <Link
+                key={slug}
+                href={href}
+                className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
+              >
+                <div className="text-lg font-semibold text-white">{title}</div>
+                <p className="mt-2 text-sm text-white/70">
+                  Explore how this modality fits into the pathway routine.
+                </p>
+              </Link>
+            );
+          })}
+        </div>
+
+        {pathway.services.note ? (
+          <p className="mt-6 text-xs text-white/50">{pathway.services.note}</p>
+        ) : null}
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="section">
+        <h2 className="mb-6">{pathway.howItWorks.headline}</h2>
+        <div className="rounded-2xl border-subtle bg-card p-6">
+          <ul className="space-y-2 text-sm text-white/70">
+            {pathway.howItWorks.bullets.map((b) => (
+              <li key={b} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/40" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* SCIENCE */}
+      <section className="section rounded-2xl border-subtle bg-card p-8">
+        <div className="max-w-3xl space-y-4">
+          <h2>{pathway.science.headline}</h2>
+          <div className="space-y-3 text-sm text-white/70">
+            {pathway.science.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+          <Link
+            href={pathway.science.cta.href}
+            className="inline-flex rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+          >
+            {pathway.science.cta.label}
+          </Link>
+        </div>
+      </section>
+
+      {/* FREQUENCY */}
+      <section className="section">
+        <h2 className="mb-6">{pathway.frequency.headline}</h2>
+        <div className="space-y-4 text-white/70">
+          {pathway.frequency.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        {pathway.frequency.bullets?.length ? (
+          <div className="mt-6 rounded-2xl border-subtle bg-card p-6">
+            <ul className="space-y-2 text-sm text-white/70">
+              {pathway.frequency.bullets.map((b) => (
+                <li key={b} className="flex gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)]" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="section rounded-2xl border-subtle bg-black/60 p-10">
+        <div className="max-w-4xl space-y-4">
+          <h2 className="m-0">{pathway.finalCTA.headline}</h2>
+          <div className="space-y-3 text-white/70">
+            {pathway.finalCTA.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3 pt-2">
+            <Link
+              href={pathway.finalCTA.primaryCTA.href}
+              className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+            >
+              {pathway.finalCTA.primaryCTA.label}
+            </Link>
+            <Link
+              href={pathway.finalCTA.secondaryCTA.href}
+              className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+            >
+              {pathway.finalCTA.secondaryCTA.label}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Related pathways (safe placeholder until we add them) */}
+      {pathway.relatedPathwaySlugs?.length ? (
+        <section className="section">
+          <h2 className="mb-6">Related Pathways</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {pathway.relatedPathwaySlugs.map((slug) => (
+              <Link
+                key={slug}
+                href={`/pathways/${slug}`}
+                className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
+              >
+                <div className="text-lg font-semibold text-white">
+                  {slug.replaceAll("-", " ")}
+                </div>
+                <p className="mt-2 text-sm text-white/70">
+                  This pathway will be published soon.
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
+    </main>
+  );
+}
+TSX
+
+# -----------------------------
+# 7) Build
+# -----------------------------
+npm run build
+echo "✅ Pathway 1 created and registered."
+echo "✅ Visit: /pathways and /pathways/recovery-pain-support"

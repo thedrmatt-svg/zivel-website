@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { pathways, getPathwayBySlug } from "@/lib/data/pathways";
+
+import { getPathwayBySlug, pathways } from "@/lib/data/pathways";
 import { getServiceBySlug } from "@/lib/data/services";
 
 type PageProps = {
@@ -12,214 +13,234 @@ export function generateStaticParams() {
   return pathways.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const pw = getPathwayBySlug(slug);
-  if (!pw) return {};
+  const pathway = getPathwayBySlug(slug);
+  if (!pathway) return {};
   return {
-    title: `${pw.name} Pathway | Zivel`,
-    description: pw.description,
-    alternates: { canonical: `/pathways/${pw.slug}` },
+    title: pathway.seo.title,
+    description: pathway.seo.description,
+    alternates: { canonical: pathway.seo.canonical ?? `/pathways/${pathway.slug}` },
   };
 }
 
-export default async function PathwayDetailPage({ params }: PageProps) {
+export default async function PathwayPage({ params }: PageProps) {
   const { slug } = await params;
-  const pw = getPathwayBySlug(slug);
-  if (!pw) return notFound();
+  const pathway = getPathwayBySlug(slug);
+  if (!pathway) return notFound();
 
   return (
-    <main className="section space-y-16">
-      <nav className="text-sm text-white/60">
-        <Link href="/pathways" className="hover:text-white">
-          Pathways
-        </Link>{" "}
-        / {pw.name}
-      </nav>
+    <main className="space-y-24">
+      {/* HERO */}
+      <section className="section">
+        <div className="rounded-2xl border-subtle bg-card p-10">
+          <div className="max-w-3xl space-y-5">
+            <h1>{pathway.hero.headline}</h1>
+            <p className="text-lg text-white/80">{pathway.hero.subheadline}</p>
 
-      <header className="space-y-4">
-        <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium capitalize text-white/70">
-          {pw.category}
-        </span>
-        <h1>{pw.name}</h1>
-        <p className="max-w-3xl text-lg text-white/70">{pw.description}</p>
-        <div className="flex flex-wrap gap-4 text-sm text-white/60">
-          <span>Total: {pw.totalDuration}</span>
-          <span>{pw.steps.length} services</span>
-        </div>
-      </header>
-
-      <section className="space-y-4">
-        <h2>Ideal For</h2>
-        <ul className="space-y-2">
-          {pw.idealFor.map((item, i) => (
-            <li key={i} className="flex items-start gap-3 text-white/70">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--zivel-gold)]" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="space-y-6">
-        <h2>Your Session</h2>
-        <div className="space-y-4">
-          {pw.steps.map((step) => (
-            <div
-              key={step.serviceSlug}
-              className="relative rounded-2xl border border-white/10 bg-white/4 p-6"
-            >
-              <div className="flex items-center gap-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--zivel-gold)] text-sm font-bold text-black">
-                  {step.order}
-                </span>
-                <div>
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-lg font-semibold">{step.serviceName}</h3>
-                    <span className="text-xs text-white/50">{step.duration}</span>
-                  </div>
-                  <p className="mt-1 text-sm text-white/70">{step.description}</p>
-                </div>
-              </div>
-              <div className="mt-3 pl-12">
-                <Link
-                  href={`/services/${step.serviceSlug}`}
-                  className="text-xs font-medium text-[var(--zivel-gold)] hover:underline"
-                >
-                  Learn about {step.serviceName} →
-                </Link>
-              </div>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link
+                href={pathway.hero.primaryCTA.href}
+                className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+              >
+                {pathway.hero.primaryCTA.label}
+              </Link>
+              <Link
+                href={pathway.hero.secondaryCTA.href}
+                className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+              >
+                {pathway.hero.secondaryCTA.label}
+              </Link>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
-      <section className="space-y-6">
-        <h2>Benefits</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {pw.benefits.map((b, i) => (
-            <div
-              key={i}
-              className="rounded-2xl border border-white/10 bg-white/4 p-5"
-            >
-              <h3 className="text-base font-semibold">{b.title}</h3>
-              <p className="mt-2 text-sm text-white/70">{b.description}</p>
+      {/* WHO IT'S FOR */}
+      <section className="section">
+        <h2 className="mb-6">{pathway.whoItsFor.headline}</h2>
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="space-y-4 text-white/70">
+            {pathway.whoItsFor.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+            {pathway.whoItsFor.note ? (
+              <p className="text-xs text-white/50">{pathway.whoItsFor.note}</p>
+            ) : null}
+          </div>
+
+          {pathway.whoItsFor.bullets?.length ? (
+            <div className="rounded-2xl border-subtle bg-card p-6">
+              <ul className="space-y-2 text-sm text-white/70">
+                {pathway.whoItsFor.bullets.map((b) => (
+                  <li key={b} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
+          ) : null}
+        </div>
+      </section>
+
+      {/* GOAL */}
+      <section className="section">
+        <h2 className="mb-6">{pathway.goal.headline}</h2>
+        <div className="space-y-4 text-white/70">
+          {pathway.goal.body.map((p, i) => (
+            <p key={i}>{p}</p>
           ))}
         </div>
       </section>
 
-      <section className="rounded-2xl border border-white/10 bg-white/4 p-8">
-        <h2>The Science</h2>
-        <p className="mt-3 text-white/70">{pw.scienceNote}</p>
-        <div className="mt-5">
+      {/* SERVICES */}
+      <section className="section">
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <h2>{pathway.services.headline}</h2>
+            {pathway.services.intro ? (
+              <p className="mt-2 text-white/70">{pathway.services.intro}</p>
+            ) : null}
+          </div>
           <Link
-            href="/research"
-            className="text-sm font-medium text-[var(--zivel-gold)] hover:underline"
+            href="/services"
+            className="text-sm font-medium text-white/70 hover:text-[var(--zivel-gold)]"
           >
-            Explore the research library →
+            View all services →
           </Link>
         </div>
-      </section>
 
-      {pw.testimonials.length > 0 && (
-        <section className="space-y-6">
-          <h2>What Clients Say</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {pw.testimonials.map((t, i) => (
-              <blockquote
-                key={i}
-                className="rounded-2xl border border-white/10 bg-white/4 p-6"
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {pathway.services.orderedServiceSlugs.map((svcSlug) => {
+            const svc = getServiceBySlug(svcSlug);
+            const href = svc ? `/services/${svc.slug}` : "/services";
+            const title = svc?.name ?? svcSlug.replaceAll("-", " ");
+
+            return (
+              <Link
+                key={svcSlug}
+                href={href}
+                className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
               >
-                <p className="text-sm italic text-white/80">
-                  &ldquo;{t.quote}&rdquo;
+                <div className="text-lg font-semibold text-white">{title}</div>
+                <p className="mt-2 text-sm text-white/70">
+                  Explore how this modality fits into the pathway routine.
                 </p>
-                <footer className="mt-4 text-xs text-white/50">
-                  — {t.name}
-                  {t.location ? `, ${t.location}` : ""}
-                </footer>
-              </blockquote>
+              </Link>
+            );
+          })}
+        </div>
+
+        {pathway.services.note ? (
+          <p className="mt-6 text-xs text-white/50">{pathway.services.note}</p>
+        ) : null}
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="section">
+        <h2 className="mb-6">{pathway.howItWorks.headline}</h2>
+        <div className="rounded-2xl border-subtle bg-card p-6">
+          <ul className="space-y-2 text-sm text-white/70">
+            {pathway.howItWorks.bullets.map((b) => (
+              <li key={b} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/40" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* SCIENCE */}
+      <section className="section rounded-2xl border-subtle bg-card p-8">
+        <div className="max-w-3xl space-y-4">
+          <h2>{pathway.science.headline}</h2>
+          <div className="space-y-3 text-sm text-white/70">
+            {pathway.science.body.map((p, i) => (
+              <p key={i}>{p}</p>
             ))}
           </div>
-        </section>
-      )}
-
-      {pw.recommendedServices.length > 0 && (
-        <section className="space-y-6">
-          <h2>Recommended Services</h2>
-          <p className="text-white/70">
-            These services pair well with this pathway for additional support.
-          </p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {pw.recommendedServices.map((serviceSlug) => {
-              const svc = getServiceBySlug(serviceSlug);
-              return (
-                <Link
-                  key={serviceSlug}
-                  href={`/services/${serviceSlug}`}
-                  className="group rounded-2xl border border-white/10 bg-white/4 p-5 hover:border-white/20 hover:bg-white/8"
-                >
-                  <h3 className="text-base font-semibold group-hover:text-[var(--zivel-gold)]">
-                    {svc?.name ?? serviceSlug}
-                  </h3>
-                  {svc && (
-                    <p className="mt-2 text-xs text-white/60 line-clamp-2">
-                      {svc.hero.subheadline}
-                    </p>
-                  )}
-                  <span className="mt-3 inline-block text-xs font-medium text-[var(--zivel-gold)] opacity-0 transition-opacity group-hover:opacity-100">
-                    Learn more →
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
-      {pw.faqs.length > 0 && (
-        <section className="space-y-6">
-          <h2>Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {pw.faqs.map((faq, i) => (
-              <details
-                key={i}
-                className="group rounded-2xl border border-white/10 bg-white/4"
-              >
-                <summary className="cursor-pointer select-none px-6 py-4 text-sm font-semibold text-white hover:text-[var(--zivel-gold)]">
-                  {faq.question}
-                </summary>
-                <div className="border-t border-white/10 px-6 py-4 text-sm text-white/70">
-                  {faq.answer}
-                </div>
-              </details>
-            ))}
-          </div>
-        </section>
-      )}
-
-      <section className="rounded-2xl border border-white/10 bg-white/4 p-8 text-center">
-        <h2>Ready to feel the difference?</h2>
-        <p className="mt-3 text-white/70">
-          Book your {pw.name} pathway and experience a curated recovery session.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Link
-            href="/#book"
-            className="rounded-xl bg-[var(--zivel-gold)] px-6 py-3 text-sm font-semibold text-black hover:opacity-90"
+            href={pathway.science.cta.href}
+            className="inline-flex rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
           >
-            Book Now
-          </Link>
-          <Link
-            href="/locations"
-            className="rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
-          >
-            Find a Location
+            {pathway.science.cta.label}
           </Link>
         </div>
       </section>
+
+      {/* FREQUENCY */}
+      <section className="section">
+        <h2 className="mb-6">{pathway.frequency.headline}</h2>
+        <div className="space-y-4 text-white/70">
+          {pathway.frequency.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        {pathway.frequency.bullets?.length ? (
+          <div className="mt-6 rounded-2xl border-subtle bg-card p-6">
+            <ul className="space-y-2 text-sm text-white/70">
+              {pathway.frequency.bullets.map((b) => (
+                <li key={b} className="flex gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)]" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="section rounded-2xl border-subtle bg-black/60 p-10">
+        <div className="max-w-4xl space-y-4">
+          <h2 className="m-0">{pathway.finalCTA.headline}</h2>
+          <div className="space-y-3 text-white/70">
+            {pathway.finalCTA.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3 pt-2">
+            <Link
+              href={pathway.finalCTA.primaryCTA.href}
+              className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+            >
+              {pathway.finalCTA.primaryCTA.label}
+            </Link>
+            <Link
+              href={pathway.finalCTA.secondaryCTA.href}
+              className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+            >
+              {pathway.finalCTA.secondaryCTA.label}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Related pathways */}
+      {pathway.relatedPathwaySlugs?.length ? (
+        <section className="section">
+          <h2 className="mb-6">Related Pathways</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {pathway.relatedPathwaySlugs.map((rpSlug) => (
+              <Link
+                key={rpSlug}
+                href={`/pathways/${rpSlug}`}
+                className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
+              >
+                <div className="text-lg font-semibold text-white">
+                  {rpSlug.replaceAll("-", " ")}
+                </div>
+                <p className="mt-2 text-sm text-white/70">
+                  This pathway will be published soon.
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }

@@ -1,40 +1,62 @@
-export type PathwayServiceStep = {
-  serviceSlug: string;
-  serviceName: string;
-  duration: string;
-  description: string;
-  order: number;
-};
-
-export type PathwayBenefit = {
-  title: string;
-  description: string;
-};
-
-export type PathwayTestimonial = {
-  name: string;
-  location?: string;
-  quote: string;
-};
-
-export type PathwayFAQ = {
-  question: string;
-  answer: string;
-};
-
 export type Pathway = {
   slug: string;
   name: string;
-  tagline: string;
-  category: "recovery" | "performance" | "beauty" | "longevity";
-  description: string;
-  idealFor: string[];
-  totalDuration: string;
-  steps: PathwayServiceStep[];
-  benefits: PathwayBenefit[];
-  scienceNote: string;
-  testimonials: PathwayTestimonial[];
-  faqs: PathwayFAQ[];
-  recommendedServices: string[];
-  relatedPathwaySlugs: string[];
+
+  seo: {
+    title: string;
+    description: string;
+    canonical?: string;
+  };
+
+  hero: {
+    headline: string;
+    subheadline: string;
+    primaryCTA: { label: string; href: string };
+    secondaryCTA: { label: string; href: string };
+  };
+
+  whoItsFor: {
+    headline: string;
+    body: string[];
+    bullets?: string[];
+    note?: string;
+  };
+
+  goal: {
+    headline: string;
+    body: string[];
+  };
+
+  services: {
+    headline: string;
+    intro?: string;
+    orderedServiceSlugs: string[];
+    note?: string;
+  };
+
+  howItWorks: {
+    headline: string;
+    bullets: string[];
+  };
+
+  science: {
+    headline: string;
+    body: string[];
+    cta: { label: string; href: string };
+  };
+
+  frequency: {
+    headline: string;
+    body: string[];
+    bullets?: string[];
+  };
+
+  finalCTA: {
+    headline: string;
+    body: string[];
+    primaryCTA: { label: string; href: string };
+    secondaryCTA: { label: string; href: string };
+  };
+
+  relatedPathwaySlugs?: string[];
 };

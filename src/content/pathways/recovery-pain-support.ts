@@ -3,137 +3,105 @@ import type { Pathway } from "@/types/pathway";
 export const recoveryPainSupport: Pathway = {
   slug: "recovery-pain-support",
   name: "Recovery & Pain Support",
-  tagline: "Ease tension, reduce soreness, and restore balance.",
-  category: "recovery",
-  description:
-    "A curated multi-service session designed to target soreness, inflammation, and nervous system stress. This pathway combines cold exposure, compression, and infrared heat to help the body recover faster and feel better between workouts, during high-stress periods, or after long days.",
-  idealFor: [
-    "Athletes managing post-training soreness",
-    "Desk workers with chronic tension or stiffness",
-    "Anyone recovering from physical or mental fatigue",
-    "People seeking natural support for inflammation",
+
+  seo: {
+    title: "Recovery & Pain Support Pathway | Zivel",
+    description:
+      "A structured, non-invasive recovery pathway designed to support comfort, mobility, and resilience for adults navigating daily physical stress, training load, or lingering stiffness.",
+    canonical: "/pathways/recovery-pain-support",
+  },
+
+  hero: {
+    headline: "Recovery & Pain Support",
+    subheadline: "Pain is common—but it does not have to be normal.",
+    primaryCTA: { label: "Book Now", href: "/#book" },
+    secondaryCTA: { label: "Find a Location", href: "/locations" },
+  },
+
+  whoItsFor: {
+    headline: "Who This Pathway Is For",
+    body: [
+      "The Recovery & Pain Support Pathway is designed for adults approximately 30–65 who want to improve comfort, mobility, and recovery capacity through a consistent wellness routine.",
+      "It is commonly used by individuals who feel stiff from sitting all day, sore from physically demanding work, recovering from heavy workouts, or managing lingering discomfort from prior injuries.",
+    ],
+    bullets: [
+      "Stiffness from prolonged sitting or desk work",
+      "Soreness from manual or repetitive work",
+      "Post-workout recovery support",
+      "Recovery support after prior injuries (as part of a broader wellness plan)",
+    ],
+    note:
+      "This pathway is educational and wellness-focused. It is not medical care and does not diagnose or treat conditions.",
+  },
+
+  goal: {
+    headline: "Primary Goal",
+    body: [
+      "The goal of this pathway is to support recovery and comfort by promoting circulation, reducing physical tension, and encouraging nervous system down-regulation.",
+      "Rather than focusing on short-term fixes, it emphasizes repeatable recovery habits that help the body respond more effectively to physical stress over time.",
+    ],
+  },
+
+  services: {
+    headline: "Services Commonly Used",
+    intro:
+      "This pathway typically combines the following modalities, selected based on individual preferences and goals:",
+    orderedServiceSlugs: [
+      "cryotherapy",
+      "red-light-therapy",
+      "compression-therapy",
+      "cryo-soothe",
+      "infrared-sauna",
+    ],
+    note:
+      "Dry Float Therapy may be less ideal for some individuals with certain types of low back discomfort due to reduced spinal support during the session. Zivel team members can help guide service selection.",
+  },
+
+  howItWorks: {
+    headline: "How This Pathway Supports Recovery",
+    bullets: [
+      "Supports circulation and recovery comfort following physical stress",
+      "Helps reduce perceived stiffness and tension through consistent recovery inputs",
+      "Encourages nervous system regulation to support restorative recovery habits",
+      "Can be used as a stand-alone recovery day or paired with training routines",
+    ],
+  },
+
+  science: {
+    headline: "Science & Education",
+    body: [
+      "Recovery strategies that support circulation, nervous system balance, and cellular energy production are frequently studied across wellness and performance contexts.",
+      "Zivel's approach is evidence-informed and designed to be approachable, repeatable, and aligned with practical recovery routines.",
+    ],
+    cta: { label: "Explore the Science Hub →", href: "/science" },
+  },
+
+  frequency: {
+    headline: "Recommended Frequency",
+    body: [
+      "Frequency varies based on activity level and day-to-day physical demand. Many individuals build this pathway into a weekly routine.",
+    ],
+    bullets: [
+      "1–2 sessions per week during normal routines",
+      "2–3 sessions per week during higher physical demand or training blocks",
+    ],
+  },
+
+  finalCTA: {
+    headline: "Support Recovery with a Structured Routine",
+    body: [
+      "This pathway is designed to make recovery simple: clear modalities, repeatable sessions, and a routine that fits real schedules.",
+      "Book a session at a nearby studio and build consistency over time.",
+    ],
+    primaryCTA: { label: "Book Now", href: "/#book" },
+    secondaryCTA: { label: "View Locations", href: "/locations" },
+  },
+
+  relatedPathwaySlugs: [
+    "longevity-healthy-aging",
+    "mobility-active-lifestyle",
+    "stress-sleep-reset",
   ],
-  totalDuration: "45–60 minutes",
-
-  steps: [
-    {
-      serviceSlug: "infrared-sauna",
-      serviceName: "Infrared Sauna",
-      duration: "20 min",
-      description:
-        "Begin with deep, penetrating infrared heat to warm muscles, promote circulation, and prepare the body for recovery. This step helps loosen tight tissue and supports the body's natural detox processes.",
-      order: 1,
-    },
-    {
-      serviceSlug: "compression-therapy",
-      serviceName: "Compression Therapy",
-      duration: "15 min",
-      description:
-        "Sequential pneumatic compression targets the legs and lower body to flush metabolic waste, reduce swelling, and accelerate circulatory recovery. Ideal after long runs, flights, or sedentary periods.",
-      order: 2,
-    },
-    {
-      serviceSlug: "cryotherapy",
-      serviceName: "Cryotherapy",
-      duration: "3 min",
-      description:
-        "A brief, intense cold exposure session to reduce inflammation, trigger endorphin release, and reset the nervous system. The contrast from heat to cold enhances the overall recovery response.",
-      order: 3,
-    },
-  ],
-
-  benefits: [
-    {
-      title: "Reduced Muscle Soreness",
-      description:
-        "Cold exposure and compression work together to reduce delayed onset muscle soreness (DOMS) and support faster return to activity.",
-    },
-    {
-      title: "Lower Inflammation",
-      description:
-        "The heat-to-cold contrast may help modulate the inflammatory response, easing joint stiffness and tissue irritation.",
-    },
-    {
-      title: "Improved Circulation",
-      description:
-        "Infrared heat dilates blood vessels while cryotherapy triggers vasoconstriction — the alternating effect promotes efficient blood flow.",
-    },
-    {
-      title: "Nervous System Reset",
-      description:
-        "Cold exposure activates the parasympathetic nervous system, helping shift the body from a stressed state into recovery mode.",
-    },
-    {
-      title: "Better Sleep Quality",
-      description:
-        "By reducing cortisol levels and easing physical tension, this pathway may support deeper, more restorative sleep.",
-    },
-    {
-      title: "Mental Clarity",
-      description:
-        "The endorphin and norepinephrine release from cryotherapy often leaves clients feeling focused, alert, and calm.",
-    },
-  ],
-
-  scienceNote:
-    "This pathway leverages contrast therapy principles — alternating vasodilation (heat) and vasoconstriction (cold) — which has been studied for its effects on recovery, inflammation markers, and perceived soreness. Compression therapy adds a mechanical circulatory assist that complements the thermal modalities. While individual results vary, consistent use of these modalities in combination is supported by emerging research in sports medicine and recovery science.",
-
-  testimonials: [
-    {
-      name: "Marcus T.",
-      location: "Scottsdale",
-      quote:
-        "I do this pathway every Sunday after my long runs. The difference in how I feel Monday morning is night and day.",
-    },
-    {
-      name: "Elena R.",
-      location: "Austin",
-      quote:
-        "I sit at a desk all day and my back was constantly tight. This combination loosened everything up — I actually look forward to it now.",
-    },
-    {
-      name: "Jordan K.",
-      location: "Denver",
-      quote:
-        "Started doing this twice a week and my recovery between training sessions has improved dramatically. Sleep is better too.",
-    },
-  ],
-
-  faqs: [
-    {
-      question: "Do I need to do the services in this exact order?",
-      answer:
-        "The recommended order (heat → compression → cold) is designed to maximize the contrast therapy effect. However, our staff can adjust the sequence based on your preferences and how you're feeling that day.",
-    },
-    {
-      question: "How often should I do this pathway?",
-      answer:
-        "For active individuals, 1–3 times per week is common. For general wellness and stress management, once a week is a great starting point. Consistency matters more than frequency.",
-    },
-    {
-      question: "Is this pathway safe if I have joint pain or a past injury?",
-      answer:
-        "Most clients with general joint discomfort benefit from this pathway. However, if you have an acute injury, recent surgery, or a specific medical condition, consult your healthcare provider before booking.",
-    },
-    {
-      question: "Can I book just part of the pathway?",
-      answer:
-        "Absolutely. Each service can be booked individually. The pathway is a curated combination for those who want a structured, multi-service session.",
-    },
-    {
-      question: "Will I feel cold after the cryotherapy at the end?",
-      answer:
-        "Most clients feel energized and alert after cryo — not uncomfortably cold. The body warms back up quickly, and many people describe a pleasant rush of warmth and energy within minutes.",
-    },
-  ],
-
-  recommendedServices: [
-    "cryotherapy",
-    "red-light-therapy",
-    "compression-therapy",
-    "cryo-soothe",
-    "infrared-sauna",
-  ],
-
-  relatedPathwaySlugs: ["performance-edge", "longevity-reset"],
 };
+
+export default recoveryPainSupport;
