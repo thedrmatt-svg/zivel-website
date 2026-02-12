@@ -1,3 +1,4 @@
+cat > components/locations/GoogleReviews.tsx <<'EOF'
 type Review = {
   author_name?: string;
   rating?: number;
@@ -8,7 +9,7 @@ type Review = {
 };
 
 async function fetchFiveStarReviews(placeId: string) {
-  const key = process.env.GOOGLE_PLACES_API_KEY;
+  const key = process.env.GOOGLE_PLACES_API_KEY; // server-only
   if (!key) return { reviews: [] as Review[], rating: null as number | null, total: null as number | null };
 
   const url =
@@ -18,6 +19,7 @@ async function fetchFiveStarReviews(placeId: string) {
     `&reviews_sort=${encodeURIComponent("newest")}` +
     `&key=${encodeURIComponent(key)}`;
 
+  // Cache for 24 hours to avoid rate limits and speed up page loads
   const res = await fetch(url, { next: { revalidate: 86400 } });
   if (!res.ok) return { reviews: [] as Review[], rating: null, total: null, url: null as string | null };
 
@@ -69,7 +71,7 @@ export default async function GoogleReviews({
             <div className="text-sm text-white/60">
               Recent 5-star feedback for {locationName}
               {typeof data.rating === "number" && typeof data.total === "number"
-                ? ` \u2022 Overall ${data.rating.toFixed(1)} (${data.total} ratings)`
+                ? ` • Overall ${data.rating.toFixed(1)} (${data.total} ratings)`
                 : ""}
             </div>
           </div>
@@ -111,3 +113,4 @@ export default async function GoogleReviews({
     </div>
   );
 }
+EOF
