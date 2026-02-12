@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import BookingWidget from "@/components/booking/BookingWidget";
 import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
 import GoogleReviews from "@/components/location/GoogleReviews";
+import PartnersSection from "@/components/location/PartnersSection";
 import PricingSection from "@/components/location/PricingSection";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 
@@ -270,20 +271,11 @@ export default async function LocationPage({
         </section>
       )}
 
-      {/* SECTION 5 — LOCAL PARTNERS (optional) */}
-      {location.partners && location.partners.length > 0 && (
-        <section className="section">
-          <h2 className="mb-10">Local Partners</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {location.partners.map((p) => (
-              <div key={p.name} className="rounded-2xl border-subtle bg-card p-6">
-                <div className="font-semibold">{p.name}</div>
-                <div className="text-sm text-white/60">{p.type}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* SECTION — LOCAL PARTNERS */}
+      <section id="partners" className="section">
+        <h2 className="mb-10">Local Partners</h2>
+        <PartnersSection partners={location.partners} />
+      </section>
 
       {/* SECTION 6 — BOOKING */}
       <section id="book" className="section rounded-2xl border-subtle bg-card p-10">
