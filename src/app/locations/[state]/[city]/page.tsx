@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
 import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
+import GoogleReviews from "@/components/location/GoogleReviews";
 import PricingSection from "@/components/location/PricingSection";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 
@@ -241,6 +242,15 @@ export default async function LocationPage({
         <PricingSection
           tiers={location.pricing?.membershipTiers}
           standardPrices={location.pricing?.standardPrices}
+        />
+      </section>
+
+      {/* SECTION — GOOGLE REVIEWS */}
+      <section id="reviews" className="section">
+        <h2 className="mb-10">What Guests Are Saying</h2>
+        <GoogleReviews
+          placeId={location.google?.placeId}
+          locationName={location.name}
         />
       </section>
 
