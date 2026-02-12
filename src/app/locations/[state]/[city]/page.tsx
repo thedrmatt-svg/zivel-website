@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
+import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 
 export function generateStaticParams() {
@@ -202,6 +203,17 @@ export default async function LocationPage({
           </div>
         </section>
       )}
+
+      {/* SECTION — GOOGLE MAP */}
+      <section id="map" className="section">
+        <h2 className="mb-6">Find Us</h2>
+        <GoogleMapEmbed
+          title={`Map for ${location.name}`}
+          embedUrl={location.google?.mapEmbedUrl}
+          placeId={location.google?.placeId}
+          query={location.contact?.address || location.name}
+        />
+      </section>
 
       {/* SECTION 3 — SERVICES AVAILABLE */}
       <section className="section">
