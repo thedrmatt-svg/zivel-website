@@ -43,9 +43,41 @@ export type Location = {
     title?: string;
   }[];
 
+  google?: {
+    placeId: string;
+    mapEmbedUrl?: string;
+  };
+
+  pricing?: {
+    membershipTiers?: {
+      name: string;
+      price: string;
+      cadence: string;
+      description: string;
+      features: string[];
+      mostPopular?: boolean;
+    }[];
+    standardPrices?: {
+      name: string;
+      price: string;
+      note?: string;
+    }[];
+  };
+
   partners?: {
     name: string;
     type: string;
+    description?: string;
+    website?: string;
+    logo?: string;
+  }[];
+
+  jobs?: {
+    title: string;
+    type: string;
+    locationNote?: string;
+    description: string;
+    applyUrl?: string;
   }[];
 
   booking?: {
