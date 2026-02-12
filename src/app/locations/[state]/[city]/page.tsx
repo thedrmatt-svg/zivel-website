@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import BookingWidget from "@/components/booking/BookingWidget";
 import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
 import GoogleReviews from "@/components/location/GoogleReviews";
+import JobsSection from "@/components/location/JobsSection";
 import PartnersSection from "@/components/location/PartnersSection";
 import PricingSection from "@/components/location/PricingSection";
 import { getLocationByPath, locations } from "@/lib/data/locations";
@@ -275,6 +276,12 @@ export default async function LocationPage({
       <section id="partners" className="section">
         <h2 className="mb-10">Local Partners</h2>
         <PartnersSection partners={location.partners} />
+      </section>
+
+      {/* SECTION — LOCAL JOB OFFERS */}
+      <section id="jobs" className="section">
+        <h2 className="mb-10">Join Our Team</h2>
+        <JobsSection jobs={location.jobs} />
       </section>
 
       {/* SECTION 6 — BOOKING */}
