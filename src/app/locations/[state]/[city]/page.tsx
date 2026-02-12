@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
 import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
+import PricingSection from "@/components/location/PricingSection";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 
 export function generateStaticParams() {
@@ -232,6 +233,15 @@ export default async function LocationPage({
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* SECTION — LOCAL PRICING */}
+      <section id="pricing" className="section">
+        <h2 className="mb-10">Pricing</h2>
+        <PricingSection
+          tiers={location.pricing?.membershipTiers}
+          standardPrices={location.pricing?.standardPrices}
+        />
       </section>
 
       {/* SECTION 4 — LOCAL OWNERS (optional) */}
