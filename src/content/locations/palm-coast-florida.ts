@@ -67,7 +67,55 @@ export const zivel_palm_coast_location: Location = {
   }
 ],
 
-  partners: [],
+  google: {
+    placeId: "",
+    mapEmbedUrl: "",
+  },
+
+  pricing: {
+    membershipTiers: [
+      {
+        name: "Base",
+        price: "$X",
+        cadence: "/mo",
+        description: "Placeholder",
+        features: ["Placeholder", "Placeholder"],
+        mostPopular: false,
+      },
+      {
+        name: "Plus",
+        price: "$X",
+        cadence: "/mo",
+        description: "Placeholder",
+        features: ["Placeholder", "Placeholder"],
+        mostPopular: true,
+      },
+    ],
+    standardPrices: [
+      { name: "Cryotherapy", price: "$X", note: "Single session" },
+      { name: "Infrared Sauna", price: "$X", note: "Single session" },
+    ],
+  },
+
+  partners: [
+    {
+      name: "Partner Name",
+      type: "Chiropractic / Gym / etc",
+      description: "2-3 sentences placeholder about the partnership.",
+      website: "https://example.com",
+      logo: "/images/partners/example.png",
+    },
+  ],
+
+  jobs: [
+    {
+      title: "Wellness Specialist",
+      type: "Part-time",
+      locationNote: "On-site",
+      description: "Placeholder role summary.",
+      applyUrl: "https://example.com/apply",
+    },
+  ],
 };
 
 export default zivel_palm_coast_location;
