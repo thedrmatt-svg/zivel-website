@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { services } from "@/lib/data/services";
 import { scienceArticles } from "@/lib/data/science";
+import { locations } from "@/lib/data/locations";
 import HomePathwaysSection from "@/components/sections/HomePathwaysSection";
+import LocationSearch from "@/components/sections/LocationSearch";
 
 export const metadata: Metadata = {
   title: "Zivel | Wellness & Recovery",
@@ -207,26 +209,18 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-[1fr_auto]">
-            <label className="sr-only" htmlFor="location-search">
-              Search by city or ZIP
-            </label>
-            <input
-              id="location-search"
-              type="text"
-              placeholder="Search by city or ZIP"
-              className="h-12 rounded-2xl border border-white/12 bg-black/30 px-4 text-sm text-white placeholder:text-white/40 outline-none focus:border-white/25"
+          <div className="mt-8">
+            <LocationSearch
+              locations={locations.map((loc) => ({
+                name: loc.name,
+                stateSlug: loc.stateSlug,
+                citySlug: loc.citySlug,
+                state: loc.state,
+                city: loc.city,
+                contact: loc.contact,
+                geo: loc.geo,
+              }))}
             />
-            <button
-              type="button"
-              className="h-12 rounded-2xl bg-white px-5 text-sm font-semibold text-black transition hover:bg-white/90"
-            >
-              Search
-            </button>
-          </div>
-
-          <div className="mt-6 h-[360px] rounded-2xl border-subtle bg-black/40 flex items-center justify-center text-white/40">
-            Locations Map / Grid Placeholder
           </div>
         </div>
       </section>

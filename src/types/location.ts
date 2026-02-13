@@ -43,6 +43,11 @@ export type Location = {
     title?: string;
   }[];
 
+  geo?: {
+    lat: number;
+    lng: number;
+  };
+
   google?: {
     placeId?: string;
     mapEmbedUrl?: string;

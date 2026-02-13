@@ -18,6 +18,28 @@ import zivel_palm_coast_location from "@/content/locations/palm-coast-florida";
 import zivel_parker_location from "@/content/locations/parker-colorado";
 import zivel_riverton_location from "@/content/locations/riverton-utah";
 import zivel_rogers_location from "@/content/locations/rogers-arkansas";
+const GEO_BY_LOCATION_PATH: Record<string, { lat: number; lng: number }> = {
+  "arkansas/bentonville": { lat: 36.3729, lng: -94.2088 },
+  "north-carolina/belmont": { lat: 35.2430, lng: -81.0370 },
+  "ohio/brecksville": { lat: 41.3184, lng: -81.6268 },
+  "georgia/buckhead": { lat: 33.8384, lng: -84.3793 },
+  "colorado/briargate": { lat: 38.9545, lng: -104.7975 },
+  "florida/coral-gables": { lat: 25.7215, lng: -80.2684 },
+  "georgia/windermere": { lat: 34.2071, lng: -84.1274 },
+  "arkansas/fayetteville": { lat: 36.0822, lng: -94.1719 },
+  "mississippi/fieldhouse": { lat: 32.2988, lng: -90.1848 },
+  "tennessee/cool-springs": { lat: 35.9270, lng: -86.8186 },
+  "colorado/highlands-ranch": { lat: 39.5519, lng: -104.9686 },
+  "florida/hollywood": { lat: 26.0112, lng: -80.1495 },
+  "louisiana/metairie": { lat: 29.9841, lng: -90.1526 },
+  "tennessee/murfreesboro": { lat: 35.8456, lng: -86.3903 },
+  "kentucky/newport": { lat: 39.0914, lng: -84.4958 },
+  "florida/palm-coast": { lat: 29.5844, lng: -81.2079 },
+  "colorado/parker": { lat: 39.5186, lng: -104.7614 },
+  "utah/riverton": { lat: 40.5219, lng: -111.9391 },
+  "arkansas/rogers": { lat: 36.3320, lng: -94.1185 },
+};
+
 const PLACE_ID_BY_LOCATION_PATH: Record<string, string> = {
   "arkansas/bentonville": "ChIJR09Pun4RyYcRxkI5BNchv1o",
   "north-carolina/belmont": "ChIJjaywtH29VogRFXe1l_SIid0",
@@ -64,8 +86,10 @@ const rawLocations: Location[] = [
 export const locations: Location[] = rawLocations.map((loc) => {
   const key = `${loc.stateSlug}/${loc.citySlug}`;
   const placeId = PLACE_ID_BY_LOCATION_PATH[key];
+  const geo = GEO_BY_LOCATION_PATH[key];
   return {
     ...loc,
+    ...(geo ? { geo } : {}),
     google: {
       ...(loc.google ?? {}),
       ...(placeId ? { placeId } : {}),
