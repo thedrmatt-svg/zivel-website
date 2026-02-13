@@ -57,9 +57,9 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="hover:text-[var(--zivel-gold)]" href="/franchise">
+              <a className="hover:text-[var(--zivel-gold)]" href="https://www.zivelfranchise.com" target="_blank" rel="noopener noreferrer">
                 Franchise
-              </Link>
+              </a>
             </li>
             <li>
               <Link className="hover:text-[var(--zivel-gold)]" href="/contact">

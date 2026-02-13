@@ -185,9 +185,9 @@ export default function Header() {
             <Link href="/blog" className={navLinkClass}>
               Blog
             </Link>
-            <Link href="/franchise" className={navLinkClass}>
+            <a href="https://www.zivelfranchise.com" target="_blank" rel="noopener noreferrer" className={navLinkClass}>
               Franchise
-            </Link>
+            </a>
 
             <div className="flex items-center gap-3">
               <Link
@@ -333,13 +333,15 @@ export default function Header() {
               >
                 Blog
               </Link>
-              <Link
-                href="/franchise"
+              <a
+                href="https://www.zivelfranchise.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
                 onClick={() => setMobileOpen(false)}
               >
                 Franchise
-              </Link>
+              </a>
 
               <div className="grid gap-2 pt-2">
                 <Link
