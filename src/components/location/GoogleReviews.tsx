@@ -24,7 +24,7 @@ async function fetchFiveStarReviews(placeId: string) {
   const data = await res.json();
 
   const reviews: Review[] = Array.isArray(data?.reviews) ? data.reviews : [];
-  const five = reviews.filter((r) => Number(r?.rating) === 5).slice(0, 6);
+  const five = reviews.filter((r) => Number(r?.rating) === 5).slice(0, 4);
 
   return {
     reviews: five,
