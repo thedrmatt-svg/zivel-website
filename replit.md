@@ -70,3 +70,5 @@ A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, 
 - 2026-02-09: Removed light/dark theme toggle — site is dark-only
 - 2026-02-09: Cryotherapy uniform blue background atmosphere
 - 2026-02-09: Blog system with structured content format
+- 2026-02-13: Functional LocationSearch with ZIP geocoding (zippopotam.us), haversine distance, city/name text search
+- 2026-02-13: Added geo coordinates (lat/lng) for all 19 locations
