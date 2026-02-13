@@ -1,3 +1,4 @@
+cat > components/locations/GoogleReviews.tsx <<'EOF'
 type Review = {
   authorAttribution?: { displayName?: string; uri?: string };
   rating?: number;
@@ -6,15 +7,17 @@ type Review = {
 };
 
 async function fetchFiveStarReviews(placeId: string) {
-  const key = process.env.GOOGLE_PLACES_API_KEY;
+  const key = process.env.GOOGLE_PLACES_API_KEY; // server-only
   if (!key) return { reviews: [] as Review[], rating: null as number | null, total: null as number | null, googleUrl: null as string | null };
 
+  // Places API (New): https://places.googleapis.com/v1/places/{placeId}
   const url = `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}?languageCode=en`;
 
   const res = await fetch(url, {
-    next: { revalidate: 86400 },
+    next: { revalidate: 86400 }, // cache 24h
     headers: {
       "X-Goog-Api-Key": key,
+      // FieldMask is REQUIRED in Places API (New)
       "X-Goog-FieldMask": "rating,userRatingCount,reviews,googleMapsUri",
     },
   });
@@ -116,3 +119,4 @@ export default async function GoogleReviews({
     </div>
   );
 }
+EOF
