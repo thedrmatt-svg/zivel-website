@@ -9,6 +9,7 @@ import GoogleReviews from "@/components/location/GoogleReviews";
 import JobsSection from "@/components/location/JobsSection";
 import PartnersSection from "@/components/location/PartnersSection";
 import PricingSection from "@/components/location/PricingSection";
+import StoreSection from "@/components/location/StoreSection";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 
 export function generateStaticParams() {
@@ -282,6 +283,12 @@ export default async function LocationPage({
       <section id="jobs" className="section">
         <h2 className="mb-10">Join Our Team</h2>
         <JobsSection jobs={location.jobs} />
+      </section>
+
+      {/* SECTION — STORE */}
+      <section id="store" className="section">
+        <h2 className="mb-10">Shop</h2>
+        <StoreSection items={location.store} />
       </section>
 
       {/* SECTION 6 — BOOKING */}

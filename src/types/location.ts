@@ -80,6 +80,14 @@ export type Location = {
     applyUrl?: string;
   }[];
 
+  store?: {
+    name: string;
+    description: string;
+    image?: string;
+    price?: string;
+    url?: string;
+  }[];
+
   booking?: {
     locationId: number | null;
   };

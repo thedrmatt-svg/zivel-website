@@ -112,6 +112,16 @@ export const zivel_briargate_location: Location = {
       applyUrl: "https://example.com/apply",
     },
   ],
+
+  store: [
+    {
+      name: "Product Name",
+      description: "Placeholder product description.",
+      image: "/images/store/placeholder.png",
+      price: "$X",
+      url: "https://example.com/shop",
+    },
+  ],
 };
 
 export default zivel_briargate_location;
