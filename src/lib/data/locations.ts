@@ -18,7 +18,28 @@ import zivel_palm_coast_location from "@/content/locations/palm-coast-florida";
 import zivel_parker_location from "@/content/locations/parker-colorado";
 import zivel_riverton_location from "@/content/locations/riverton-utah";
 import zivel_rogers_location from "@/content/locations/rogers-arkansas";
-export const locations: Location[] = [
+const PLACE_ID_BY_LOCATION_PATH: Record<string, string> = {
+  "arkansas/bentonville": "ChIJR09Pun4RyYcRxkI5BNchv1o",
+  "north-carolina/belmont": "ChIJjaywtH29VogRFXe1l_SIid0",
+  "ohio/brecksville": "ChIJhUVltrPnMIgRR5CgLcH6kEg",
+  "georgia/buckhead": "ChIJy62rJ3MF9YgRvu9Ok1SKNVk",
+  "florida/coral-gables": "ChIJASK_6UO32YgRpFki1ZCosJc",
+  "georgia/windermere": "ChIJV-6ARVqb9YgRj0e_jO2WQ1g",
+  "arkansas/fayetteville": "ChIJOQ32BYdvyYcRBVSmzC6EUXU",
+  "mississippi/fieldhouse": "ChIJH-Rny771f4gR6Xo-0TmD4fY",
+  "tennessee/cool-springs": "ChIJ2wrmYux_ZIgRBiaOZ9F4OJU",
+  "colorado/highlands-ranch": "ChIJWfZHnFKDbIcRkP0dRbgJ9cA",
+  "florida/hollywood": "ChIJi939hJKr2YgRfV5beSrIpBg",
+  "louisiana/metairie": "ChIJcRW5v4CvIIYRV9XzIn-1rjQ",
+  "tennessee/murfreesboro": "ChIJYTKz_hoJZIgR1CouEEaQMCY",
+  "kentucky/newport": "ChIJXQjPuRuxQYgRdVqMxDTFhb4",
+  "florida/palm-coast": "ChIJj-Iwlobr5ogRfJmFlZN-Cf4",
+  "colorado/parker": "ChIJe_IaW4mPbIcR1irKWiajjIY",
+  "utah/riverton": "ChIJp1GibQmFUocRBLMZt3xJW9k",
+  "arkansas/rogers": "ChIJAxzaK14RyYcR1S8wLP9Gq4I",
+};
+
+const rawLocations: Location[] = [
   zivel_bentonville_location,
   zivel_belmont_location,
   zivel_brecksville_location,
@@ -39,6 +60,18 @@ export const locations: Location[] = [
   zivel_riverton_location,
   zivel_rogers_location,
 ];
+
+export const locations: Location[] = rawLocations.map((loc) => {
+  const key = `${loc.stateSlug}/${loc.citySlug}`;
+  const placeId = PLACE_ID_BY_LOCATION_PATH[key];
+  return {
+    ...loc,
+    google: {
+      ...(loc.google ?? {}),
+      ...(placeId ? { placeId } : {}),
+    },
+  };
+});
 
 export function getLocationByPath(state: string, city: string): Location | undefined {
   const s = state.toLowerCase();

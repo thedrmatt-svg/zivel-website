@@ -1,0 +1,84 @@
+node <<'NODE'
+const fs = require("fs");
+const path = "lib/data/locations.ts";
+
+if (!fs.existsSync(path)) {
+  console.error(`ERROR: Can't find ${path}. Update the path in this script.`);
+  process.exit(1);
+}
+
+const original = fs.readFileSync(path, "utf8");
+fs.writeFileSync(path + ".bak", original, "utf8");
+
+// If already patched, exit cleanly
+if (original.includes("PLACE_ID_BY_LOCATION_PATH")) {
+  console.log("Looks like Place ID mapping already exists. No changes made.");
+  process.exit(0);
+}
+
+// 1) Rename export const locations = [...]  -> const rawLocations = [...]
+let updated = original.replace(
+  /export\s+const\s+locations\s*=\s*\[/,
+  "const rawLocations = ["
+);
+
+if (updated === original) {
+  console.error("ERROR: Could not find `export const locations = [` to replace. Open lib/data/locations.ts and confirm that exact text exists.");
+  process.exit(1);
+}
+
+// 2) Append mapping + re-export locations after the array closes.
+// We inject right after the first occurrence of a closing `];` that ends the array.
+const mappingBlock = `
+
+/**
+ * Place IDs per location (stateSlug/citySlug).
+ * Source: your spreadsheet.
+ * If a Place ID is missing, it will simply be undefined.
+ */
+const PLACE_ID_BY_LOCATION_PATH: Record<string, string> = {
+  "ar/bentonville": "ChIJR09Pun4RyYcRxkI5BNchv1o",
+  "nc/belmont": "ChIJjaywtH29VogRFXe1l_SIid0",
+  "oh/brecksville": "ChIJhUVltrPnMIgRR5CgLcH6kEg",
+  "ga/buckhead": "ChIJy62rJ3MF9YgRvu9Ok1SKNVk",
+  // "co/briargate": "", // missing Place ID (leave blank for now)
+  "fl/coral-gables": "ChIJASK_6UO32YgRpFki1ZCosJc",
+  "ga/cumming-winderemere": "ChIJV-6ARVqb9YgRj0e_jO2WQ1g",
+  "ar/fayetteville": "ChIJOQ32BYdvyYcRBVSmzC6EUXU",
+  "ms/fieldhouse": "ChIJH-Rny771f4gR6Xo-0TmD4fY",
+  "tn/franklin-cool-springs": "ChIJ2wrmYux_ZIgRBiaOZ9F4OJU",
+  "co/highlands-ranch": "ChIJWfZHnFKDbIcRkP0dRbgJ9cA",
+  "fl/hollywood": "ChIJi939hZKr2YgRfV5beSrIpBg",
+  "la/metairie": "ChIJcRW5v4CvIIYRV9XzIn-1rjQ",
+  "tn/murfreesboro": "ChIJYTKz_hoJZIgR1CouEEaQMCY",
+  "ky/newport": "ChIJXQjPuRuxQYgRdVqMxDTFhb4",
+  "fl/palm-coast": "ChIJj-Iwlobr5ogRfJmFlZN-Cf4",
+  "co/parker": "ChIJe_IaW4mPbIcR1irKWiajjIY",
+  "ut/riverton": "ChIJp1GibQmFUocRBLMZt3xJW9k",
+  "ar/rogers": "ChIJAxzaK14RyYcR1S8wLP9Gq4I",
+};
+
+export const locations = rawLocations.map((loc) => {
+  const key = \`\${loc.stateSlug}/\${loc.citySlug}\`;
+  const placeId = PLACE_ID_BY_LOCATION_PATH[key];
+  return {
+    ...loc,
+    google: {
+      ...(loc.google ?? {}),
+      ...(placeId ? { placeId } : {}),
+    },
+  };
+});
+`;
+
+updated = updated.replace(/\]\s*;\s*(?![\s\S]*\]\s*;)/, "];" + mappingBlock);
+
+if (updated === original) {
+  console.error("ERROR: Could not append mapping block. No changes made.");
+  process.exit(1);
+}
+
+fs.writeFileSync(path, updated, "utf8");
+console.log(`✅ Updated ${path}`);
+console.log(`🧾 Backup saved at ${path}.bak`);
+NODE

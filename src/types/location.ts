@@ -44,7 +44,7 @@ export type Location = {
   }[];
 
   google?: {
-    placeId: string;
+    placeId?: string;
     mapEmbedUrl?: string;
   };
 
