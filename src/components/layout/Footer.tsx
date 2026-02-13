@@ -66,6 +66,11 @@ export default function Footer() {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link className="hover:text-[var(--zivel-gold)]" href="/terms-and-conditions">
+                Terms & Conditions
+              </Link>
+            </li>
           </ul>
         </div>
 
