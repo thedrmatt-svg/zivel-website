@@ -1,0 +1,108 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Zivel Terms and Conditions",
+  description:
+    "Zivel Terms and Conditions including cancellation policies, refund policies, and website usage terms.",
+};
+
+export default function TermsPage() {
+  return (
+    <div className="section max-w-4xl space-y-12 py-24">
+      <h1>Terms and Conditions</h1>
+
+      <section className="space-y-4">
+        <h2>Late Cancellation and No-Show Policy</h2>
+        <p>
+          At Zivel, our mission is to keep our services accessible and affordable, so our clients can do more of what they love.
+          To maintain accurate scheduling, we uphold the following policies.
+        </p>
+
+        <h3>Late Cancellation Policy</h3>
+        <p>
+          Appointments may be canceled up to 24 hours before start time without penalty.
+          Credits used will be automatically returned to your account.
+        </p>
+        <p>
+          Cancellations within 24 hours will incur a fee of 25% of the non-member cost
+          or $25, whichever is greater.
+        </p>
+
+        <h3>No Show Policy</h3>
+        <p>
+          Missed appointments will incur a fee of 50% of the non-member service cost.
+          This fee will be charged to the credit card on file.
+        </p>
+
+        <h3>Late Arrival Policy</h3>
+        <p>
+          If running late, please notify the store immediately. We uphold a 5-minute rule
+          for abbreviated treatments. Arrivals more than 5 minutes late may require rescheduling.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2>Refund Policy</h2>
+        <p>
+          We do not offer refunds for services rendered or previously purchased services.
+          At the store's sole discretion, purchases may be converted to store credit or gift cards.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2>Disclaimer</h2>
+        <p>
+          Policies may be updated periodically and published on our website and booking system.
+        </p>
+      </section>
+
+      <section className="space-y-6">
+        <h2>Zivel Terms and Conditions of Use Agreement</h2>
+
+        <p>
+          This Website is not directed to persons under eighteen (18) years of age.
+          The information provided is for informational purposes only and is not medical advice.
+          Always consult a qualified healthcare provider before beginning any treatment.
+        </p>
+
+        <h3>Parental or Guardian Permission</h3>
+        <p>
+          Users must be 13 years or older. Users under 13 must have parental consent.
+        </p>
+
+        <h3>Privacy</h3>
+        <p>
+          Please review our Privacy Policy for details regarding our privacy practices.
+        </p>
+
+        <h3>License and Site Access</h3>
+        <p>
+          Zivel grants limited license to access the Website for personal use only.
+          Unauthorized use terminates this license.
+        </p>
+
+        <h3>Membership Account</h3>
+        <p>
+          Users are responsible for maintaining account confidentiality.
+          Memberships are non-transferable and may be terminated for violations.
+        </p>
+
+        <h3>Disclaimers and Limitation of Liability</h3>
+        <p>
+          The Website is provided "as is" without warranties of any kind.
+          Zivel shall not be liable for indirect or consequential damages.
+        </p>
+
+        <h3>Applicable Law</h3>
+        <p>
+          Governed by the laws of the State of Tennessee.
+        </p>
+
+        <h3>Copyright & Trademarks</h3>
+        <p>
+          © Zivel 2024. All rights reserved.
+        </p>
+      </section>
+    </div>
+  );
+}
