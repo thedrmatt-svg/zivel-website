@@ -11,7 +11,7 @@ export default function GoogleMapEmbed({ title, embedUrl, placeId, query }: Prop
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY;
 
   const src =
-    embedUrl ??
+    (embedUrl || null) ??
     (key && placeId
       ? `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(
           key
