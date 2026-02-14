@@ -45,7 +45,7 @@ export const cryoLiftFacial: Service = {
 
   benefits: {
     headline: "Key Benefits",
-    viewResearchCTA: { label: "View Research →", href: "/research/cryo-lift-facial" },
+    viewResearchCTA: { label: "View the Science →", href: "/science/cold-exposure" },
     items: [
       {
         title: "Supports a refreshed, glowing look",

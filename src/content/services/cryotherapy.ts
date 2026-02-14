@@ -89,8 +89,8 @@ export const cryotherapy: Service = {
       },
     ],
     viewResearchCTA: {
-      label: "View Research →",
-      href: "/research/cryotherapy",
+      label: "View the Science →",
+      href: "/science/cold-exposure",
     },
   },
 

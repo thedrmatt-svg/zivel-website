@@ -45,7 +45,7 @@ export const cryoSlimming: Service = {
 
   benefits: {
     headline: "Key Benefits",
-    viewResearchCTA: { label: "View Research →", href: "/research/cryo-slimming" },
+    viewResearchCTA: { label: "View the Science →", href: "/science/cold-exposure" },
     items: [
       {
         title: "Supports fat reduction goals",

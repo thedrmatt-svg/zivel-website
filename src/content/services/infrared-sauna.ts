@@ -44,7 +44,7 @@ export const infraredSauna: Service = {
 
   benefits: {
     headline: "Benefits clients commonly look for",
-    viewResearchCTA: { label: "View Research →", href: "/research/infrared-sauna" },
+    viewResearchCTA: { label: "View the Science →", href: "/science/infrared-sauna" },
     items: [
       { title: "Relaxation & stress support", description: "A calming, heat-based reset.", citations: ["ir-1"] },
       { title: "Circulation support", description: "Heat can promote vasodilation and blood flow.", citations: ["ir-2"] },

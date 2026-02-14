@@ -45,7 +45,7 @@ export const cryoToning: Service = {
 
   benefits: {
     headline: "Key Benefits",
-    viewResearchCTA: { label: "View Research →", href: "/research/cryo-toning" },
+    viewResearchCTA: { label: "View the Science →", href: "/science/cold-exposure" },
     items: [
       {
         title: "Supports firmer-looking skin",

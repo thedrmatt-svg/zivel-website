@@ -45,7 +45,7 @@ export const dryFloat: Service = {
 
   benefits: {
     headline: "Key Benefits",
-    viewResearchCTA: { label: "View Research →", href: "/research/dry-float" },
+    viewResearchCTA: { label: "View the Science →", href: "/science/recovery-modalities-float-compression" },
     items: [
       {
         title: "Deep relaxation & stress reduction",

@@ -45,7 +45,7 @@ export const compressionTherapy: Service = {
 
   benefits: {
     headline: "Key Benefits",
-    viewResearchCTA: { label: "View Research →", href: "/research/compression-therapy" },
+    viewResearchCTA: { label: "View the Science →", href: "/science/recovery-modalities-float-compression" },
     items: [
       {
         title: "Supports circulation and recovery routines",

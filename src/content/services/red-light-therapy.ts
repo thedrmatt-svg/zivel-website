@@ -48,7 +48,7 @@ export const redLightTherapy: Service = {
 
   benefits: {
     headline: "Key Benefits",
-    viewResearchCTA: { label: "View Research →", href: "/research/red-light-therapy" },
+    viewResearchCTA: { label: "View the Science →", href: "/science/red-light-mechanisms" },
     items: [
       {
         title: "Supports recovery and muscle performance",
