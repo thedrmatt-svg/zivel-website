@@ -196,7 +196,7 @@ button {
   width: 800px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.10) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -244,7 +244,7 @@ button {
 /* Hero gradient background (deep black to elevated) */
 .zv-hero-bg {
   background:
-    radial-gradient(ellipse 80% 60% at 20% 60%, rgba(212, 175, 55, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 20% 60%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
     radial-gradient(ellipse 60% 50% at 80% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
     linear-gradient(180deg, #000000 0%, #080808 60%, #0a0a0a 100%);
 }
@@ -252,15 +252,15 @@ button {
 /* CTA section with gradient depth */
 .zv-cta-bg {
   background:
-    radial-gradient(ellipse 70% 80% at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 80% at 50% 50%, rgba(212, 175, 55, 0.09) 0%, transparent 60%),
     linear-gradient(180deg, #0c0c0c 0%, #080808 50%, #060606 100%);
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.14);
 }
 
 /* Testimonial/quote section with subtle warmth */
 .zv-section-warm {
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
     linear-gradient(180deg, #0a0a0a 0%, #080808 100%);
 }
 
