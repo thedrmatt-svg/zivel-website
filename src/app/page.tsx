@@ -45,11 +45,11 @@ export default function HomePage() {
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <header className="lg:col-span-7">
               <h1 id="home-hero-title" className="mb-6">
-                Feel better. Recover smarter.
+                Recover Smarter. Lead Stronger.
               </h1>
 
               <p className="max-w-2xl text-lg text-white/80">
-                Zivel is modern wellness technology—delivered in calm, premium studios—with evidence-informed services designed to support recovery, performance, and daily well-being.
+                Zivel pioneers cutting-edge wellness technology nationwide, offering expert-led, evidence-based recovery services in serene studios—empowering active adults to ease pain, reduce stress, and sustain balanced well-being via tailored science-backed pathways for everyday performance.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
