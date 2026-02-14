@@ -37,17 +37,17 @@ export async function generateMetadata({
 export default async function ServicePage({ params }: PageProps) {
   const { slug } = await params;
   
-  /* ZIVEL_SERVICE_COLOR_MAP */
+  /* ZIVEL_SERVICE_COLOR_MAP — matches accent.hex from each service content file */
   const __zivelSlug = slug;
   const __zivelColorMap: Record<string, number[]> = {
     "cryotherapy": [45, 100, 189],
-    "red-light-therapy": [200, 50, 50],
-    "infrared-sauna": [210, 120, 40],
-    "dry-float": [80, 140, 180],
-    "compression-therapy": [60, 160, 100],
-    "cryo-slimming": [140, 60, 160],
-    "cryo-toning": [50, 170, 170],
-    "cryo-lift-facial": [200, 140, 170],
+    "red-light-therapy": [214, 69, 69],
+    "infrared-sauna": [245, 158, 11],
+    "dry-float": [34, 197, 94],
+    "compression-therapy": [161, 161, 170],
+    "cryo-slimming": [20, 184, 166],
+    "cryo-toning": [59, 130, 246],
+    "cryo-lift-facial": [251, 113, 133],
   };
   const __zivelRGB = __zivelColorMap[__zivelSlug] ?? [212, 175, 55];
 
