@@ -45,8 +45,8 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-black/80 backdrop-blur-xl backdrop-saturate-150">
-      <div className="section">
-        <div className="flex h-16 items-center justify-between gap-4">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="flex h-12 md:h-16 items-center justify-between gap-4">
           <Link href="/" className="flex items-center" aria-label="Zivel Home">
             <Image
               src="/images/brand/zivel-logo.png"
@@ -54,7 +54,7 @@ export default function Header() {
               width={120}
               height={28}
               priority
-              className="h-7 w-auto"
+              className="h-5 md:h-7 w-auto"
             />
           </Link>
 
@@ -206,7 +206,7 @@ export default function Header() {
           </nav>
 
           <button
-            className="md:hidden rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm font-semibold text-white hover:bg-white/10"
+            className="md:hidden rounded-lg border border-white/15 bg-white/5 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
           >
