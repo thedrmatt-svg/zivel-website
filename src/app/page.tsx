@@ -43,10 +43,6 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <header className="lg:col-span-7">
-              <p className="mb-4 text-sm font-medium tracking-widest uppercase text-[var(--zivel-gold)]">
-                Zivel Wellness
-              </p>
-
               <h1 id="home-hero-title" className="mb-6">
                 Feel better. Recover smarter.
               </h1>

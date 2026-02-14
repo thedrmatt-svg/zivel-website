@@ -39,10 +39,17 @@ export default async function ServicePage({ params }: PageProps) {
   
   /* ZIVEL_SERVICE_COLOR_MAP */
   const __zivelSlug = slug;
-  const __zivelRGB =
-    __zivelSlug === "cryotherapy"
-      ? [45, 100, 189] // Cryo true blue
-      : [0, 0, 0];
+  const __zivelColorMap: Record<string, number[]> = {
+    "cryotherapy": [45, 100, 189],
+    "red-light-therapy": [200, 50, 50],
+    "infrared-sauna": [210, 120, 40],
+    "dry-float": [80, 140, 180],
+    "compression-therapy": [60, 160, 100],
+    "cryo-slimming": [140, 60, 160],
+    "cryo-toning": [50, 170, 170],
+    "cryo-lift-facial": [200, 140, 170],
+  };
+  const __zivelRGB = __zivelColorMap[__zivelSlug] ?? [212, 175, 55];
 
   const service = getServiceBySlug(slug);
   if (!service) return notFound();

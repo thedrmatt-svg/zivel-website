@@ -406,16 +406,18 @@ button {
   border-color: var(--zivel-card-border-hover) !important;
 }
 
-/* ZIVEL_CRYO_BUTTON_START */
-/* Cryotherapy: make primary CTA button match service blue (scoped) */
-.zivel-service-page[data-zivel-service="cryotherapy"],
-[data-zivel-service="cryotherapy"] .zivel-service-page{
-  --zivel-btn: rgb(45 100 189);
-  --zivel-btn-hover: rgb(36 86 170);
+/* Service-color buttons: uses --zivel-service-r/g/b set per page */
+.zivel-service-page{
+  --zivel-btn: rgb(var(--zivel-service-r) var(--zivel-service-g) var(--zivel-service-b));
+  --zivel-btn-hover: rgb(
+    calc(var(--zivel-service-r) * 0.85)
+    calc(var(--zivel-service-g) * 0.85)
+    calc(var(--zivel-service-b) * 0.85)
+  );
   --zivel-btn-text: #ffffff;
 }
 
-/* Target common primary button patterns without changing other buttons */
+/* Target common primary button patterns */
 .zivel-service-page :where(a,button)[class*="bg-teal"],
 .zivel-service-page :where(a,button)[class*="bg-emerald"],
 .zivel-service-page :where(a,button)[class*="bg-cyan"],
@@ -433,7 +435,6 @@ button {
 .zivel-service-page :where(a,button)[data-variant="default"]:hover{
   background-color: var(--zivel-btn-hover) !important;
 }
-/* ZIVEL_CRYO_BUTTON_END */
 
 /* Premium focus ring uses service color */
 .zivel-service-page a:focus-visible,
@@ -443,25 +444,15 @@ button {
   border-radius: 12px;
 }
 
-/* ZIVEL_CRYO_CTA_START */
-/* Cryotherapy-only: set primary theme token + force booking CTA blue */
-.zivel-service-page[data-zivel-service="cryotherapy"],
-[data-zivel-service="cryotherapy"] .zivel-service-page{
-  /* shadcn tokens are HSL triplets */
-  --primary: 215 61% 46%;              /* ~ RGB(45,100,189) */
-  --primary-foreground: 0 0% 100%;
-}
-
-/* Catch common booking CTAs by href (Link renders to <a>) */
+/* Catch booking CTAs by href — color matches service */
 .zivel-service-page :where(a[href*="book" i], a[href*="booking" i], a[href*="schedule" i]){
-  background-color: rgb(45 100 189) !important;
+  background-color: var(--zivel-btn) !important;
   color: #fff !important;
   border-color: rgba(255,255,255,.12) !important;
 }
 .zivel-service-page :where(a[href*="book" i], a[href*="booking" i], a[href*="schedule" i]):hover{
-  background-color: rgb(36 86 170) !important;
+  background-color: var(--zivel-btn-hover) !important;
 }
-/* ZIVEL_CRYO_CTA_END */
 
 /* ZIVEL_SERVICE_THEME_END */
 
