@@ -134,10 +134,10 @@ export default async function LocationPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="space-y-24">
+      <div className="space-y-0">
 
       {/* SECTION 1 — HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden zv-hero-bg zv-noise">
         {location.hero?.image && (
           <div className="absolute inset-0">
             <Image
@@ -153,7 +153,7 @@ export default async function LocationPage({
           </div>
         )}
 
-        <div className="relative section py-24">
+        <div className="relative section py-24 zv-glow-gold">
           <div className="max-w-3xl space-y-6">
             <h1>{location.hero?.headline ?? location.name}</h1>
             {location.hero?.subheadline && (
@@ -178,9 +178,12 @@ export default async function LocationPage({
         </div>
       </section>
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION 2 — ABOUT THIS LOCATION (optional) */}
       {location.about && (
-        <section className="section grid gap-10 md:grid-cols-2 md:items-center">
+        <>
+        <section className="section py-20 grid gap-10 md:grid-cols-2 md:items-center zv-section-elevated">
           <div className="space-y-4">
             <h2>{location.about.headline}</h2>
             {location.about.body.map((p, i) => (
@@ -195,13 +198,16 @@ export default async function LocationPage({
             className="rounded-2xl object-cover"
           />
         </section>
+        <div className="zv-divider-white" />
+        </>
       )}
 
       {/* SECTION — CONTACT INFO (for simple locations) */}
       {location.contact?.address && (
-        <section className="section">
+        <>
+        <section className="section py-20 zv-section-recessed">
           <h2 className="mb-6">Location Details</h2>
-          <div className="rounded-2xl border-subtle bg-card p-6 space-y-3">
+          <div className="rounded-2xl zv-card-glass p-6 space-y-3">
             <p className="text-white/85">{location.contact.address}</p>
             {location.contact.phone && (
               <p>
@@ -218,10 +224,12 @@ export default async function LocationPage({
             )}
           </div>
         </section>
+        <div className="zv-divider-gold" />
+        </>
       )}
 
       {/* SECTION — GOOGLE MAP */}
-      <section id="map" className="section">
+      <section id="map" className="section py-20">
         <h2 className="mb-6">Find Us</h2>
         <GoogleMapEmbed
           title={`Map for ${location.name}`}
@@ -231,15 +239,17 @@ export default async function LocationPage({
         />
       </section>
 
+      <div className="zv-divider-white" />
+
       {/* SECTION 3 — SERVICES AVAILABLE */}
-      <section className="section">
+      <section className="section py-20 zv-section-warm zv-noise">
         <h2 className="mb-10">Services Available</h2>
         <div className="grid gap-6 md:grid-cols-3">
           {location.services.map((s) => (
             <Link
               key={s.slug}
               href={`/services/${s.slug}`}
-              className="rounded-2xl border-subtle bg-card p-6 hover:bg-white/10"
+              className="rounded-2xl zv-card-glass p-6"
             >
               <h3 className="text-lg">{s.name}</h3>
               {s.description && (
@@ -250,8 +260,10 @@ export default async function LocationPage({
         </div>
       </section>
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION — LOCAL PRICING */}
-      <section id="pricing" className="section">
+      <section id="pricing" className="section py-20 zv-section-elevated">
         <h2 className="mb-10">Pricing</h2>
         <PricingSection
           tiers={location.pricing?.membershipTiers}
@@ -259,8 +271,10 @@ export default async function LocationPage({
         />
       </section>
 
+      <div className="zv-divider-white" />
+
       {/* SECTION — GOOGLE REVIEWS */}
-      <section id="reviews" className="section">
+      <section id="reviews" className="section py-20 zv-section-recessed">
         <h2 className="mb-10">What Guests Are Saying</h2>
         <GoogleReviews
           placeId={location.google?.placeId}
@@ -268,13 +282,16 @@ export default async function LocationPage({
         />
       </section>
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION 4 — LOCAL OWNERS (optional) */}
       {location.owners && location.owners.length > 0 && (
-        <section className="section">
+        <>
+        <section className="section py-20 zv-section-elevated">
           <h2 className="mb-10">Meet the Team</h2>
           <div className="grid gap-8 md:grid-cols-2">
             {location.owners.map((o) => (
-              <div key={o.name} className="rounded-2xl border-subtle bg-card p-6">
+              <div key={o.name} className="rounded-2xl zv-card-glass p-6">
                 <h3 className="text-lg">{o.name}</h3>
                 {o.title && <p className="text-sm text-brand">{o.title}</p>}
                 {o.bio && <p className="mt-2 text-sm text-white/70">{o.bio}</p>}
@@ -282,28 +299,36 @@ export default async function LocationPage({
             ))}
           </div>
         </section>
+        <div className="zv-divider-white" />
+        </>
       )}
 
       {/* SECTION — LOCAL PARTNERS */}
-      <section id="partners" className="section">
+      <section id="partners" className="section py-20 zv-section-cool">
         <h2 className="mb-10">Local Partners</h2>
         <PartnersSection partners={location.partners} />
       </section>
 
+      <div className="zv-divider-white" />
+
       {/* SECTION — LOCAL JOB OFFERS */}
-      <section id="jobs" className="section">
+      <section id="jobs" className="section py-20 zv-section-recessed">
         <h2 className="mb-10">Join Our Team</h2>
         <JobsSection jobs={location.jobs} />
       </section>
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION — STORE */}
-      <section id="store" className="section">
+      <section id="store" className="section py-20 zv-section-elevated">
         <h2 className="mb-10">Shop</h2>
         <StoreSection items={location.store} />
       </section>
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION 6 — BOOKING */}
-      <section id="book" className="section rounded-2xl border-subtle bg-card p-10">
+      <section id="book" className="section py-20 rounded-2xl zv-card-glass p-10 zv-glow-gold">
         <h2 className="mb-4">Book Your Session</h2>
         {location.booking?.locationId ? (
           <BookingWidget locationId={location.booking.locationId} />
@@ -320,22 +345,27 @@ export default async function LocationPage({
         )}
       </section>
 
+      <div className="zv-divider-white" />
+
       {/* SECTION 7 — FAQ (optional) */}
       {faqItems.length > 0 && (
-        <section className="section">
+        <>
+        <section className="section py-20 zv-section-recessed">
           <h2 className="mb-10">Frequently Asked Questions</h2>
           {faqItems.map((f, i) => (
-            <details key={i} className="rounded-2xl border-subtle bg-card p-6 mb-4">
+            <details key={i} className="rounded-2xl zv-card-glass p-6 mb-4">
               <summary className="font-semibold cursor-pointer">{f.q}</summary>
               <p className="mt-3 text-sm text-white/70">{f.a}</p>
             </details>
           ))}
         </section>
+        <div className="zv-divider-gold" />
+        </>
       )}
 
       {/* SECTION 8 — FINAL CTA (optional) */}
       {location.finalCTA && (
-        <section className="section bg-black/60 rounded-2xl p-10">
+        <section className="section py-20 rounded-2xl zv-cta-bg p-10">
           <h2>{location.finalCTA.headline}</h2>
           <a
             href="#book"
