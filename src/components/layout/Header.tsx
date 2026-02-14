@@ -44,7 +44,7 @@ export default function Header() {
     pathname === href || (href !== "/" && pathname?.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/75 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-black/80 backdrop-blur-xl backdrop-saturate-150">
       <div className="section">
         <div className="flex h-16 items-center justify-between gap-4">
           <Link href="/" className="flex items-center" aria-label="Zivel Home">

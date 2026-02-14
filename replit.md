@@ -65,6 +65,17 @@ A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, 
 - Dev/prod server: port 5000 (0.0.0.0)
 - Tailwind CSS with CSS variable-based theming
 
+## Visual Dynamics System
+CSS utility classes in globals.css for section-level visual variety:
+- `.zv-bleed` — full-bleed section (breaks out of max-w container)
+- `.zv-section-elevated` / `.zv-section-recessed` / `.zv-section-gradient` — alternating dark backgrounds
+- `.zv-section-warm` / `.zv-section-cool` — warm (gold tint) and cool (blue tint) section variants
+- `.zv-hero-bg` / `.zv-cta-bg` — hero and CTA gradient backgrounds
+- `.zv-noise` — subtle noise texture overlay
+- `.zv-divider-gold` / `.zv-divider-white` — gradient divider lines between sections
+- `.zv-card-glass` — glass morphism card (backdrop-blur, inset shadow, hover state)
+- `.zv-glow-gold` / `.zv-edge-top` — radial gold glow and top edge accent
+
 ## Recent Changes
 - 2026-02-09: Created Pathway system (type, content, data registry, index + detail pages)
 - 2026-02-09: Removed light/dark theme toggle — site is dark-only
@@ -72,3 +83,4 @@ A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, 
 - 2026-02-09: Blog system with structured content format
 - 2026-02-13: Functional LocationSearch with ZIP geocoding (zippopotam.us), haversine distance, city/name text search
 - 2026-02-13: Added geo coordinates (lat/lng) for all 19 locations
+- 2026-02-14: Visual dynamics system — alternating section backgrounds, gold/white dividers, glass cards, noise textures, hero gradients across all pages

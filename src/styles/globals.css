@@ -123,6 +123,173 @@ button {
   background-color: rgba(255, 255, 255, 0.04);
 }
 
+/* --------------------------------------------------
+   VISUAL DYNAMICS SYSTEM
+   Alternating section backgrounds, gradient washes,
+   decorative accents, and depth layers
+-------------------------------------------------- */
+
+/* Elevated section: slightly lifted dark */
+.zv-section-elevated {
+  background: linear-gradient(180deg, #0a0a0a 0%, #080808 100%);
+}
+
+/* Recessed section: deeper dark with subtle inner glow */
+.zv-section-recessed {
+  background: linear-gradient(180deg, #050505 0%, #000000 50%, #030303 100%);
+}
+
+/* Gradient wash: dark to charcoal transition */
+.zv-section-gradient {
+  background: linear-gradient(170deg, #000000 0%, #0d0d0d 40%, #111111 70%, #0a0a0a 100%);
+}
+
+/* Subtle noise texture overlay for depth */
+.zv-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  z-index: 0;
+}
+.zv-noise { position: relative; }
+.zv-noise > * { position: relative; z-index: 1; }
+
+/* Gold accent divider line */
+.zv-divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.06) 15%,
+    rgba(212, 175, 55, 0.35) 50%,
+    rgba(212, 175, 55, 0.06) 85%,
+    transparent 100%
+  );
+}
+
+/* White subtle divider */
+.zv-divider-white {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 15%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.04) 85%,
+    transparent 100%
+  );
+}
+
+/* Radial glow behind hero/key sections */
+.zv-glow-gold {
+  position: relative;
+}
+.zv-glow-gold::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.zv-glow-gold > * { position: relative; z-index: 1; }
+
+/* Top edge glow (subtle gold line at section top) */
+.zv-edge-top {
+  position: relative;
+}
+.zv-edge-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(212, 175, 55, 0.2) 30%,
+    rgba(212, 175, 55, 0.35) 50%,
+    rgba(212, 175, 55, 0.2) 70%,
+    transparent
+  );
+  z-index: 2;
+}
+
+/* Premium card with glass effect */
+.zv-card-glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+    0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.zv-card-glass:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 24px 70px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero gradient background (deep black to elevated) */
+.zv-hero-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 60%, rgba(212, 175, 55, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
+    linear-gradient(180deg, #000000 0%, #080808 60%, #0a0a0a 100%);
+}
+
+/* CTA section with gradient depth */
+.zv-cta-bg {
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
+    linear-gradient(180deg, #0c0c0c 0%, #080808 50%, #060606 100%);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* Testimonial/quote section with subtle warmth */
+.zv-section-warm {
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0a0a 0%, #080808 100%);
+}
+
+/* Science/research section with cool tone */
+.zv-section-cool {
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(100, 140, 200, 0.03) 0%, transparent 50%),
+    linear-gradient(180deg, #060608 0%, #08080a 100%);
+}
+
+/* Full-bleed section: breaks out of max-w container */
+.zv-bleed {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+}
+
+/* Animated subtle shimmer on gold elements */
+@keyframes zv-shimmer {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.3; }
+}
+
+.zv-shimmer {
+  animation: zv-shimmer 4s ease-in-out infinite;
+}
+
 /* ZIVEL_SERVICE_THEME_START */
 /* Zivel Service Theme (production) — symmetric glow + UI pop (active file: src/styles/globals.css) */
 :root{

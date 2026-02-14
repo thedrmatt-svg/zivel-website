@@ -37,13 +37,13 @@ export default function HomePage() {
   const featuredArticles = scienceArticles.slice(0, 3);
 
   return (
-    <main className="space-y-24">
+    <main className="space-y-0">
       {/* HERO */}
-      <section id="top" className="section" aria-labelledby="home-hero-title">
-        <div className="mx-auto max-w-6xl">
+      <section id="top" className="zv-bleed zv-hero-bg zv-noise py-20 md:py-28" aria-labelledby="home-hero-title">
+        <div className="mx-auto max-w-6xl px-4">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <header className="lg:col-span-7">
-              <p className="mb-4 text-sm font-medium tracking-wide text-white/70">
+              <p className="mb-4 text-sm font-medium tracking-widest uppercase text-[var(--zivel-gold)]">
                 Zivel Wellness
               </p>
 
@@ -94,7 +94,7 @@ export default function HomePage() {
                 ].map((t) => (
                   <li
                     key={t}
-                    className="rounded-2xl border-subtle bg-card p-4 text-sm text-white/80"
+                    className="zv-card-glass rounded-2xl p-4 text-sm text-white/80"
                   >
                     {t}
                   </li>
@@ -103,7 +103,7 @@ export default function HomePage() {
             </header>
 
             <div className="lg:col-span-5">
-              <div className="aspect-[4/5] w-full rounded-2xl border-subtle bg-black/40 flex items-center justify-center text-white/40">
+              <div className="aspect-[4/5] w-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent flex items-center justify-center text-white/40 shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
                 Hero Media Placeholder
               </div>
             </div>
@@ -111,10 +111,12 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="zv-bleed zv-divider-gold" />
+
       {/* BOOKING WIDGET */}
-      <section id="book" className="section" aria-labelledby="home-booking-title">
-        <div className="mx-auto max-w-6xl">
-          <div className="rounded-2xl border-subtle bg-card p-6 md:p-8">
+      <section id="book" className="zv-bleed zv-section-elevated py-20" aria-labelledby="home-booking-title">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="rounded-2xl zv-card-glass p-6 md:p-8">
             <div className="mx-auto max-w-3xl text-center">
               <h2 id="home-booking-title" className="mb-4">
                 Book Your Session
@@ -139,9 +141,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="zv-bleed zv-divider-white" />
+
       {/* SERVICES */}
-      <section id="services" className="section" aria-labelledby="home-services-title">
-        <div className="mx-auto max-w-6xl">
+      <section id="services" className="zv-bleed zv-section-gradient zv-noise py-20" aria-labelledby="home-services-title">
+        <div className="mx-auto max-w-6xl px-4">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <h2 id="home-services-title" className="mb-2">
@@ -163,7 +167,7 @@ export default function HomePage() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {featuredServices.map((service) => (
-              <article key={service.slug} className="rounded-2xl border-subtle bg-card p-6">
+              <article key={service.slug} className="rounded-2xl zv-card-glass p-6 transition-all duration-300 hover:-translate-y-0.5">
                 <header className="mb-3 flex items-start justify-between gap-3">
                   <h3 className="text-lg font-semibold">{service.name}</h3>
                 </header>
@@ -173,7 +177,7 @@ export default function HomePage() {
                 <div className="mt-5">
                   <Link
                     href={`/services/${service.slug}`}
-                    className="text-sm font-semibold underline decoration-white/20 underline-offset-4 hover:decoration-white/40"
+                    className="text-sm font-semibold text-[var(--zivel-gold)] underline decoration-[var(--zivel-gold)]/20 underline-offset-4 hover:decoration-[var(--zivel-gold)]/60"
                   >
                     Learn more →
                   </Link>
@@ -184,12 +188,20 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="zv-bleed zv-divider-gold" />
+
       {/* PATHWAYS */}
-      <HomePathwaysSection />
+      <div className="zv-bleed zv-section-recessed py-20">
+        <div className="mx-auto max-w-6xl px-4">
+          <HomePathwaysSection />
+        </div>
+      </div>
+
+      <div className="zv-bleed zv-divider-white" />
 
       {/* LOCATIONS */}
-      <section id="locations" className="section" aria-labelledby="home-locations-title">
-        <div className="mx-auto max-w-6xl">
+      <section id="locations" className="zv-bleed zv-section-elevated zv-noise py-20" aria-labelledby="home-locations-title">
+        <div className="mx-auto max-w-6xl px-4">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <h2 id="home-locations-title" className="mb-2">
@@ -225,10 +237,12 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="zv-bleed zv-divider-gold" />
+
       {/* ABOUT ZIVEL (Preview Strip) */}
-      <section id="about" className="section" aria-labelledby="home-about-title">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-6 rounded-2xl border-subtle bg-card p-6 md:grid-cols-12 md:p-8 md:items-center">
+      <section id="about" className="zv-bleed zv-section-gradient py-20" aria-labelledby="home-about-title">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="grid gap-6 rounded-2xl zv-cta-bg p-6 md:grid-cols-12 md:p-8 md:items-center">
             <div className="md:col-span-7">
               <h2 id="home-about-title" className="mb-3">
                 About Zivel
@@ -247,7 +261,7 @@ export default function HomePage() {
             </div>
 
             <div className="md:col-span-5">
-              <div className="aspect-[16/10] w-full rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center text-white/40">
+              <div className="aspect-[16/10] w-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent flex items-center justify-center text-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                 About Media Placeholder
               </div>
             </div>
@@ -255,9 +269,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="zv-bleed zv-divider-white" />
+
       {/* SOCIAL PROOF */}
-      <section id="reviews" className="section" aria-labelledby="home-social-proof-title">
-        <div className="mx-auto max-w-6xl">
+      <section id="reviews" className="zv-bleed zv-section-warm zv-noise py-20" aria-labelledby="home-social-proof-title">
+        <div className="mx-auto max-w-6xl px-4">
           <div className="max-w-3xl">
             <h2 id="home-social-proof-title" className="mb-2">
               What Clients Say
@@ -273,12 +289,13 @@ export default function HomePage() {
               { quote: "The combination of cryotherapy and red light has become my go-to recovery routine.", name: "Marcus T.", city: "Denver, CO" },
               { quote: "Clean, calm, and consistent—exactly what I was looking for in a wellness studio.", name: "Emily R.", city: "Atlanta, GA" },
             ].map((t) => (
-              <figure key={t.name} className="rounded-2xl border-subtle bg-card p-6">
-                <blockquote className="text-sm text-white/70">
+              <figure key={t.name} className="rounded-2xl zv-card-glass p-6">
+                <blockquote className="text-sm text-white/80 italic leading-relaxed">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-4 text-xs text-white/50">
-                  — {t.name}, {t.city}
+                <figcaption className="mt-4 text-xs">
+                  <span className="font-semibold text-white">— {t.name}</span>
+                  <span className="text-white/50">, {t.city}</span>
                 </figcaption>
               </figure>
             ))}
@@ -286,9 +303,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="zv-bleed zv-divider-gold" />
+
       {/* SCIENCE & RECOVERY HUB PREVIEW */}
-      <section id="science" className="section" aria-labelledby="home-science-title">
-        <div className="mx-auto max-w-6xl">
+      <section id="science" className="zv-bleed zv-section-cool zv-noise py-20" aria-labelledby="home-science-title">
+        <div className="mx-auto max-w-6xl px-4">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <h2 id="home-science-title" className="mb-2">
@@ -309,8 +328,8 @@ export default function HomePage() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {featuredArticles.map((article) => (
-              <article key={article.slug} className="rounded-2xl border-subtle bg-card p-6">
-                <div className="mb-4 aspect-[16/9] w-full rounded-xl border border-white/10 bg-black/40 flex items-center justify-center text-white/40">
+              <article key={article.slug} className="rounded-2xl zv-card-glass p-6 transition-all duration-300 hover:-translate-y-0.5">
+                <div className="mb-4 aspect-[16/9] w-full rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent flex items-center justify-center text-white/40">
                   Article Thumbnail
                 </div>
                 <h3 className="mb-2 text-lg font-semibold">
@@ -322,7 +341,7 @@ export default function HomePage() {
                 <div className="mt-5">
                   <Link
                     href={`/science/${article.slug}`}
-                    className="text-sm font-semibold underline decoration-white/20 underline-offset-4 hover:decoration-white/40"
+                    className="text-sm font-semibold text-[var(--zivel-gold)] underline decoration-[var(--zivel-gold)]/20 underline-offset-4 hover:decoration-[var(--zivel-gold)]/60"
                   >
                     Read More →
                   </Link>
@@ -333,10 +352,12 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="zv-bleed zv-divider-gold" />
+
       {/* FINAL CTA STRIP */}
-      <section className="section" aria-labelledby="home-final-cta-title">
-        <div className="mx-auto max-w-6xl">
-          <div className="rounded-2xl border border-white/12 bg-white/[0.06] p-6 md:p-8">
+      <section className="zv-bleed zv-glow-gold py-20" aria-labelledby="home-final-cta-title">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="rounded-2xl zv-cta-bg p-6 md:p-10">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="max-w-3xl">
                 <h2 id="home-final-cta-title" className="mb-2">

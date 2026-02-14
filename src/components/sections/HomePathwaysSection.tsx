@@ -3,8 +3,8 @@ import { pathways } from "@/lib/data/pathways";
 
 export default function HomePathwaysSection() {
   return (
-    <section id="pathways" className="section" aria-labelledby="home-pathways-title">
-      <div className="mx-auto max-w-6xl space-y-8">
+    <section id="pathways" aria-labelledby="home-pathways-title">
+      <div className="space-y-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 id="home-pathways-title">Pathways</h2>
@@ -14,7 +14,7 @@ export default function HomePathwaysSection() {
           </div>
           <Link
             href="/pathways"
-            className="text-sm font-medium text-white/70 hover:text-[var(--zivel-gold)]"
+            className="text-sm font-medium text-[var(--zivel-gold)] hover:text-white transition-colors"
           >
             View all pathways →
           </Link>
@@ -25,7 +25,7 @@ export default function HomePathwaysSection() {
             <Link
               key={p.slug}
               href={`/pathways/${p.slug}`}
-              className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
+              className="rounded-2xl zv-card-glass p-6 transition-all duration-300 hover:-translate-y-0.5"
             >
               <div className="text-lg font-semibold text-white">{p.name}</div>
               <p className="mt-2 text-sm text-white/70">{p.seo.description}</p>

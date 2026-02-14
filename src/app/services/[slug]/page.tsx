@@ -67,7 +67,7 @@ export default async function ServicePage({ params }: PageProps) {
   } as React.CSSProperties;
 
   return (
-    <div style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-24 zivel-service-page">{/* SECTION 1 — HERO */}
+    <div style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-0 zivel-service-page">{/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden">
         {/* Background media */}
         {service.hero.media?.type === "image" ? (
@@ -112,6 +112,8 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION 2 — INTRO / WHAT IT IS */}
       <section className="section">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
@@ -154,6 +156,8 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <div className="zv-divider-white" />
 
       {/* SECTION 3 — BENEFITS GRID (WITH CITATIONS) */}
       <section className="section">
@@ -230,6 +234,8 @@ export default async function ServicePage({ params }: PageProps) {
         </section>
       ) : null}
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION 4 — HOW IT WORKS / WHAT TO EXPECT */}
       <section className="section">
         <h2 className="mb-10">{service.howItWorks.headline}</h2>
@@ -245,8 +251,10 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
+      <div className="zv-divider-white" />
+
       {/* SECTION 5 — THE SCIENCE BEHIND IT */}
-      <section className="section rounded-2xl border-subtle bg-card p-8">
+      <section className="section rounded-2xl zv-card-glass p-8">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <div className="space-y-4">
             <h2>{service.science.headline}</h2>
@@ -284,6 +292,8 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <div className="zv-divider-white" />
 
       {/* SECTION 6 — SAFETY & CONTRAINDICATIONS */}
       <section className="section">
@@ -341,6 +351,8 @@ export default async function ServicePage({ params }: PageProps) {
         </section>
       ) : null}
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION 8 — TESTIMONIALS */}
       <section className="section">
         <h2 className="mb-10">{service.testimonials.headline}</h2>
@@ -355,6 +367,8 @@ export default async function ServicePage({ params }: PageProps) {
           ))}
         </div>
       </section>
+
+      <div className="zv-divider-white" />
 
       {/* SECTION 9 — PRICING PREVIEW */}
       <section className="section">
@@ -389,8 +403,10 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION 10 — BOOKING WIDGET */}
-      <section id="book" className="section rounded-2xl border-subtle bg-card p-8">
+      <section id="book" className="section rounded-2xl zv-card-glass p-8">
         <div className="max-w-3xl">
           <h2 className="mb-3">{service.booking.headline}</h2>
           {service.booking.subheadline ? (
@@ -414,6 +430,8 @@ export default async function ServicePage({ params }: PageProps) {
         <BookingWidget className="mt-8" locationId={service.booking.locationIdDefault} />
       </section>
 
+      <div className="zv-divider-white" />
+
       {/* SECTION 11 — FAQ */}
       <section className="section">
         <h2 className="mb-10">{service.faqs.headline}</h2>
@@ -429,6 +447,8 @@ export default async function ServicePage({ params }: PageProps) {
           ))}
         </div>
       </section>
+
+      <div className="zv-divider-gold" />
 
       {/* SECTION 12 — RELATED SERVICES */}
       <section className="section">
@@ -503,8 +523,10 @@ export default async function ServicePage({ params }: PageProps) {
         </section>
       ) : null}
 
+      <div className="zv-divider-gold" />
+
       {/* SECTION 13 — FINAL CTA STRIP */}
-      <section className="section rounded-2xl border-subtle bg-black/60 p-10">
+      <section className="section rounded-2xl zv-cta-bg p-10">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <h2 className="m-0">{service.finalCTA.headline}</h2>
 
