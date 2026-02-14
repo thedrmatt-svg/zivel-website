@@ -55,7 +55,7 @@ export default function HomePage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#book"
-                  className="inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
+                  className="inline-flex items-center justify-center rounded-2xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black transition hover:opacity-90"
                 >
                   Book Now
                 </a>
