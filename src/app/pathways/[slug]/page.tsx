@@ -36,7 +36,6 @@ export default async function PathwayPage({ params }: PageProps) {
         <div className="mx-auto max-w-6xl px-4">
           <div className="rounded-2xl zv-cta-bg p-10">
             <div className="max-w-3xl space-y-5">
-              <p className="text-sm font-medium tracking-widest uppercase text-[var(--zivel-gold)]">Pathway</p>
               <h1>{pathway.hero.headline}</h1>
               <p className="text-lg text-white/80">{pathway.hero.subheadline}</p>
 
