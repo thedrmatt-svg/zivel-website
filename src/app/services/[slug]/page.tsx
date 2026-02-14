@@ -54,6 +54,48 @@ export default async function ServicePage({ params }: PageProps) {
   const service = getServiceBySlug(slug);
   if (!service) return notFound();
 
+  const SITE_URL = "https://www.zivel.com";
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    description: service.seo.description,
+    url: `${SITE_URL}/services/${service.slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "Zivel Wellness",
+      url: SITE_URL,
+    },
+    serviceType: service.name,
+    areaServed: {
+      "@type": "Country",
+      name: "United States",
+    },
+  };
+
+  const faqSchema = service.faqs.items.length ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: service.faqs.items.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  } : null;
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Services", item: `${SITE_URL}/services` },
+      { "@type": "ListItem", position: 2, name: service.name, item: `${SITE_URL}/services/${service.slug}` },
+    ],
+  };
+
   const links = getLinksForServiceSlug(service.slug);
   const linkedScience = links.science.map(getScienceBySlug).filter((s): s is NonNullable<typeof s> => Boolean(s));
   const linkedResearch = links.research.map(getResearchBySlug).filter((r): r is NonNullable<typeof r> => Boolean(r));
@@ -74,7 +116,11 @@ export default async function ServicePage({ params }: PageProps) {
   } as React.CSSProperties;
 
   return (
-    <div style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-0 zivel-service-page">{/* SECTION 1 — HERO */}
+    <div style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-0 zivel-service-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden">
         {/* Background media */}
         {service.hero.media?.type === "video" ? (

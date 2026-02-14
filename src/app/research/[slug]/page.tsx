@@ -24,11 +24,37 @@ export default async function ResearchSourcePage({ params }: Props) {
   const s = getResearchBySlug(slug);
   if (!s) return notFound();
 
+  const SITE_URL = "https://www.zivel.com";
+  const identifier = s.slug ?? s.id ?? slug;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    headline: s.title,
+    description: s.summary,
+    ...(s.authors?.length && { author: s.authors.map((name) => ({ "@type": "Person", name })) }),
+    ...(s.year && { datePublished: String(s.year) }),
+    ...(s.journal && { isPartOf: { "@type": "Periodical", name: s.journal } }),
+    url: s.url,
+    mainEntityOfPage: `${SITE_URL}/research/${identifier}`,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Research", item: `${SITE_URL}/research` },
+      { "@type": "ListItem", position: 2, name: s.title, item: `${SITE_URL}/research/${identifier}` },
+    ],
+  };
+
   const relatedServiceSlugs = getRelatedServicesForResearchSlug(s.slug ?? s.id ?? "");
   const relatedServices = relatedServiceSlugs.map(getServiceBySlug).filter((svc): svc is NonNullable<typeof svc> => Boolean(svc));
 
   return (
     <div className="section space-y-8 max-w-3xl">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="space-y-2">
         <h1>{s.title}</h1>
         <p className="text-white/70">{s.summary}</p>

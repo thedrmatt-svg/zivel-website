@@ -55,19 +55,28 @@ export default async function LocationPage({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "HealthAndBeautyBusiness",
     name: location.name,
     description: location.seo.description,
     url: canonicalUrl,
     ...(location.hero?.image && {
       image: location.hero.image.startsWith("http") ? location.hero.image : `${SITE_URL}${location.hero.image}`,
     }),
+    ...(location.contact?.phone && { telephone: location.contact.phone }),
     address: {
       "@type": "PostalAddress",
       addressLocality: cityName,
       addressRegion: location.state,
       addressCountry: "US",
     },
+    ...(location.geo && {
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: location.geo.lat,
+        longitude: location.geo.lng,
+      },
+    }),
+    priceRange: "$$",
   };
 
   const breadcrumbSchema = {

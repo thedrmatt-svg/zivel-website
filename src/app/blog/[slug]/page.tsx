@@ -59,8 +59,41 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post = getBlogBySlug(slug);
   if (!post) return notFound();
 
+  const SITE_URL = "https://www.zivel.com";
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    author: {
+      "@type": "Person",
+      name: post.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Zivel Wellness",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/images/brand/zivel-logo.png` },
+    },
+    datePublished: post.publishDate,
+    url: `${SITE_URL}/blog/${post.slug}`,
+    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 2, name: post.title, item: `${SITE_URL}/blog/${post.slug}` },
+    ],
+  };
+
   return (
     <main className="section space-y-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <nav className="text-sm text-white/60">
         <Link href="/blog" className="hover:text-white">Blog</Link> / {post.title}
       </nav>

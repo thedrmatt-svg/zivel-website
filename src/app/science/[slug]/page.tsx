@@ -23,11 +23,41 @@ export default async function ScienceArticlePage({ params }: Props) {
   const a = getScienceBySlug(slug);
   if (!a) return notFound();
 
+  const SITE_URL = "https://www.zivel.com";
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: a.title,
+    description: a.description,
+    datePublished: a.publishedDate,
+    ...(a.updatedDate && { dateModified: a.updatedDate }),
+    publisher: {
+      "@type": "Organization",
+      name: "Zivel Wellness",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/images/brand/zivel-logo.png` },
+    },
+    url: `${SITE_URL}/science/${a.slug}`,
+    mainEntityOfPage: `${SITE_URL}/science/${a.slug}`,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Science", item: `${SITE_URL}/science` },
+      { "@type": "ListItem", position: 2, name: a.title, item: `${SITE_URL}/science/${a.slug}` },
+    ],
+  };
+
   const relatedServiceSlugs = getRelatedServicesForScienceSlug(a.slug);
   const relatedServices = relatedServiceSlugs.map(getServiceBySlug).filter((s): s is NonNullable<typeof s> => Boolean(s));
 
   return (
     <div className="section space-y-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="space-y-3 max-w-3xl">
         <div className="text-xs text-white/50">{a.category}</div>
         <h1>{a.title}</h1>
