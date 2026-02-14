@@ -136,6 +136,8 @@ export default async function LocationPage({
               alt={location.name}
               fill
               priority
+              sizes="100vw"
+              quality={80}
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/10" />

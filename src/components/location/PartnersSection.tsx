@@ -18,7 +18,7 @@ export default function PartnersSection({ partners }: { partners?: Partner[] }) 
           <div className="flex items-start gap-4">
             {p.logo ? (
               <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-black/20">
-                <Image src={p.logo} alt={`${p.name} logo`} fill className="object-contain p-2" />
+                <Image src={p.logo} alt={`${p.name} logo`} fill loading="lazy" sizes="56px" quality={75} className="object-contain p-2" />
               </div>
             ) : (
               <div className="h-14 w-14 shrink-0 rounded-xl border border-white/10 bg-white/5" />

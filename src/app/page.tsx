@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/lib/data/services";
 import { scienceArticles } from "@/lib/data/science";
@@ -99,8 +100,11 @@ export default function HomePage() {
             </header>
 
             <div className="lg:col-span-5">
-              <div className="aspect-[4/5] w-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent flex items-center justify-center text-white/40 shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
-                Hero Media Placeholder
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
+                {/* Replace: add hero.webp or hero.mp4 to /public/images/home/ */}
+                {/* <Image src="/images/home/hero.webp" alt="Zivel wellness studio" fill priority sizes="(max-width: 1024px) 100vw, 42vw" quality={80} className="object-cover" /> */}
+                {/* <video src="/images/home/hero.mp4" autoPlay muted loop playsInline preload="metadata" poster="/images/home/hero-poster.webp" className="h-full w-full object-cover" /> */}
+                <span className="absolute inset-0 flex items-center justify-center text-white/40">Hero Media Placeholder</span>
               </div>
             </div>
           </div>
@@ -257,8 +261,10 @@ export default function HomePage() {
             </div>
 
             <div className="md:col-span-5">
-              <div className="aspect-[16/10] w-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent flex items-center justify-center text-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-                About Media Placeholder
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+                {/* Replace: add about.webp to /public/images/home/ */}
+                {/* <Image src="/images/home/about.webp" alt="Inside a Zivel studio" fill loading="lazy" sizes="(max-width: 768px) 100vw, 42vw" quality={75} className="object-cover" /> */}
+                <span className="absolute inset-0 flex items-center justify-center text-white/40">About Media Placeholder</span>
               </div>
             </div>
           </div>

@@ -98,8 +98,10 @@ export default function ServicesIndexPage() {
                         src={heroSrc}
                         alt={s.name}
                         fill
-                        className="object-cover opacity-95 transition duration-700 group-hover:scale-[1.03]"
+                        loading="lazy"
                         sizes="(max-width: 1024px) 100vw, 33vw"
+                        quality={75}
+                        className="object-cover opacity-95 transition duration-700 group-hover:scale-[1.03]"
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-white/[0.04] to-transparent text-white/40">

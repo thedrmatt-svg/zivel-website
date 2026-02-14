@@ -77,16 +77,31 @@ export default async function ServicePage({ params }: PageProps) {
     <div style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-0 zivel-service-page">{/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden">
         {/* Background media */}
-        {service.hero.media?.type === "image" ? (
+        {service.hero.media?.type === "video" ? (
+          <div className="absolute inset-0">
+            <video
+              src={service.hero.media.src}
+              poster={service.hero.media.poster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/10" />
+          </div>
+        ) : service.hero.media?.type === "image" ? (
           <div className="absolute inset-0">
             <Image
               src={service.hero.media.src}
               alt={service.hero.media.alt ?? service.name}
               fill
               priority
+              sizes="100vw"
+              quality={80}
               className="object-cover"
             />
-            {/* Gradient overlay: black -> transparent */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/10" />
           </div>
         ) : null}
@@ -146,12 +161,28 @@ export default async function ServicePage({ params }: PageProps) {
 
           {/* Media */}
           <div className="rounded-2xl border-subtle bg-card overflow-hidden">
-            {service.intro.media?.type === "image" ? (
+            {service.intro.media?.type === "video" ? (
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
+                <video
+                  src={service.intro.media.src}
+                  poster={service.intro.media.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ) : service.intro.media?.type === "image" ? (
               <div className="relative aspect-[4/3] w-full">
                 <Image
                   src={service.intro.media.src}
                   alt={service.intro.media.alt ?? service.name}
                   fill
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={75}
                   className="object-cover"
                 />
               </div>
@@ -282,12 +313,28 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
 
           <div className="rounded-2xl border border-white/10 overflow-hidden bg-black/20">
-            {service.science.media?.type === "image" ? (
+            {service.science.media?.type === "video" ? (
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
+                <video
+                  src={service.science.media.src}
+                  poster={service.science.media.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ) : service.science.media?.type === "image" ? (
               <div className="relative aspect-[4/3] w-full">
                 <Image
                   src={service.science.media.src}
                   alt={service.science.media.alt ?? `${service.name} science`}
                   fill
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={75}
                   className="object-cover"
                 />
               </div>
@@ -344,10 +391,10 @@ export default async function ServicePage({ params }: PageProps) {
               >
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-white/10">
-                    <Image src={item.beforeSrc} alt={item.alt} fill className="object-cover" />
+                    <Image src={item.beforeSrc} alt={`${item.alt} — before`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
                   </div>
                   <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-white/10">
-                    <Image src={item.afterSrc} alt={item.alt} fill className="object-cover" />
+                    <Image src={item.afterSrc} alt={`${item.alt} — after`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
                   </div>
                 </div>
               </div>

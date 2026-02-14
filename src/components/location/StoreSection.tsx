@@ -27,6 +27,9 @@ export default function StoreSection({ items }: { items?: StoreItem[] }) {
                 src={item.image}
                 alt={item.name}
                 fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                quality={75}
                 className="object-cover"
               />
             </div>
