@@ -85,3 +85,4 @@ CSS utility classes in globals.css for section-level visual variety:
 - 2026-02-13: Added geo coordinates (lat/lng) for all 19 locations
 - 2026-02-14: Visual dynamics system — alternating section backgrounds, gold/white dividers, glass cards, noise textures, hero gradients across all pages
 - 2026-02-14: Image/video optimization — AVIF+WebP auto-format, responsive sizes, lazy loading, quality controls, video support with poster frames, 30-day cache TTL
+- 2026-02-14: Comprehensive SEO/GEO schema — Organization + WebSite in layout, Service + FAQ on service pages, Article on blog/science, ScholarlyArticle on research, BreadcrumbList on all detail pages, HealthAndBeautyBusiness with geo/phone on locations, robots.txt, dynamic sitemap.xml, Twitter cards, googleBot robots directives
