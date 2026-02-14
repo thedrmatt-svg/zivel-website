@@ -80,8 +80,15 @@ export default function LocationSearch({ locations }: { locations: LocationData[
             contact: loc.contact,
             distanceMiles: haversine(userLat, userLng, loc.geo!.lat, loc.geo!.lng),
           }))
+          .filter((loc) => loc.distanceMiles <= 100)
           .sort((a, b) => a.distanceMiles - b.distanceMiles)
           .slice(0, 5);
+
+        if (sorted.length === 0) {
+          setError("No locations found within 100 miles. Try a different ZIP code.");
+          setLoading(false);
+          return;
+        }
 
         setResults(sorted);
       } catch {
