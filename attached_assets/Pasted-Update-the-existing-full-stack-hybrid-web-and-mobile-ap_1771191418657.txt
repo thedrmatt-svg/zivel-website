@@ -1,0 +1,39 @@
+Update the existing full-stack hybrid web and mobile app for Zivel Manager (React Native with React Native Web, Node.js/Express backend, MongoDB, Socket.io, etc., including all current features like Dashboard with Leaderboard/KPIs, Bookings with default Day View and drag-drop, Clients, POS with pricing/services/packages/memberships, Reports sub-tabs, Admin tab with Pricing & Services sub-section, black/white/gold theme, service colors preserved, multi-service booking flow with ordered sequence and earliest start logic, Contrast Pathway specific overlaps/charging from before, etc.). Do not start from scratch—reference and build upon the current code structure.
+Update and replace all existing pathways with the new specified sequences. These are predefined bundles that clients/staff can select in the booking popup to auto-fill the ordered services and suggest staggered start times based on total block durations (session + buffer from prior specs). Make pathways editable in the Admin tab (under a new “Pathways” sub-section for Owner/Manager roles via RBAC).
+Key Updates:
+1.  Pathways Schema:
+	•  Create/update a “pathways” collection in MongoDB with:
+		•  name (string, e.g., ‘Contrast’)
+		•  description (optional, e.g., ‘Sauna and Cryo alternation for contrast therapy’)
+		•  services (array of objects: { service_name: string, duration_minutes: number — total block including buffer })
+		•  category (e.g., ‘recovery’, ‘premium’, ‘mixed’)
+		•  price (calculated sum or bundled; use service prices from catalog)
+		•  is_active (boolean, default true)
+		•  location_overrides (object for per-location customizations)
+	•  Seed/populate with these exact pathways (replace any old ones like previous Contrast):
+		•  Contrast: services: [{service_name: ‘Infrared Sauna’, duration_minutes: 15}, {service_name: ‘Cryotherapy’, duration_minutes: 10}, {service_name: ‘Infrared Sauna’, duration_minutes: 15}, {service_name: ‘Cryotherapy’, duration_minutes: 10}] (note: handle overlaps as before — multiple short Sauna/Cryo blocks; charge as 2 appointments total)
+		•  Recovery: services: [{service_name: ‘Cryotherapy’, duration_minutes: 10}, {service_name: ‘Red Light’, duration_minutes: 15}, {service_name: ‘Compression’, duration_minutes: 15}, {service_name: ‘Cryo Soothe’, duration_minutes: 10}] (assume Cryo Soothe is a variant of Cryotherapy or new service; add if missing)
+		•  Longevity: services: [{service_name: ‘Red Light’, duration_minutes: 15}, {service_name: ‘Infrared Sauna’, duration_minutes: 30}, {service_name: ‘Cryotherapy’, duration_minutes: 10}]
+		•  Sleep/Stress: services: [{service_name: ‘Cryotherapy’, duration_minutes: 10}, {service_name: ‘Dry Float’, duration_minutes: 30}, {service_name: ‘Red Light’, duration_minutes: 15}]
+		•  Athlete: services: [{service_name: ‘Cryotherapy’, duration_minutes: 10}, {service_name: ‘Red Light’, duration_minutes: 15}, {service_name: ‘Compression’, duration_minutes: 15}, {service_name: ‘Cryo Soothe’, duration_minutes: 10}]
+		•  Body Comp: services: [{service_name: ‘Cryotherapy’, duration_minutes: 10}, {service_name: ‘Cryo Slimming’, duration_minutes: 45}, {service_name: ‘Red Light’, duration_minutes: 15}, {service_name: ‘Compression’, duration_minutes: 15}]
+		•  Skin: services: [{service_name: ‘CryoLift Facial’, duration_minutes: 30}, {service_name: ‘Red Light’, duration_minutes: 15}, {service_name: ‘Cryotherapy’, duration_minutes: 10}]
+		•  Travel: services: [{service_name: ‘Red Light’, duration_minutes: 15}, {service_name: ‘Compression’, duration_minutes: 15}, {service_name: ‘Cryotherapy’, duration_minutes: 10}]
+2.  Booking Flow Integration:
+	•  In multi-service booking popup: Add a “Select Pathway” dropdown or buttons at the top (list all active pathways with names/descriptions).
+	•  On selection: Auto-populate the services array in order (first selected = first in sequence, as before).
+	•  Apply earliest start logic: Find optimal staggered starts for the full sequence (respecting shared resources like Sauna/Premium, buffers, availability).
+	•  For Contrast: Special handling — generate multiple bookings (Sauna x2, Cryo x2) with overlaps; charge as 2 total appointments (Sauna full + Cryo equivalent).
+	•  Show preview: Estimated total time, price sum, suggested start time.
+	•  Client view: Simplified dropdown; staff: Full preview with edit option.
+3.  Admin Tab: Pathways Sub-Section:
+	•  Under Admin (in More menu/sidebar), add a new sub-tab/screen: “Pathways” next to “Pricing & Services”.
+	•  UI: List all pathways in editable cards/tables:
+		•  Fields: Name (editable), Services order (drag-reorder or add/remove services with dropdown from catalog), Durations (editable numbers), Active toggle, Price (auto-calc or manual).
+		•  Per-location overrides: Checkbox to customize per studio.
+		•  Add/Save/Delete buttons: CRUD operations on pathways collection; broadcast changes via Socket.io to refresh booking UIs.
+	•  Default to showing all; filter by category if needed.
+4.  POS and Analytics Integration:
+	•  In POS: Add pathway quick-add buttons (e.g., in a new “Pathways” sub-tab) that add the bundled services to cart with total price.
+	•  In KPIs/Analytics: Track pathway usage (e.g., most popular, revenue from pathways).
+Organize implementations logically: Schema/seed data first, backend APIs (CRUD for pathways, scheduling for sequences), frontend booking popup (dropdown + auto-fill), Admin UI (editable list), then POS integration and tests. Generate updated code with comments (e.g., // Updated Contrast pathway with 15-min Sauna blocks and overlaps). Test for glitches like incorrect staggering, charging for multi-blocks, or Admin saves. Ensure bilingual labels and theme compatibility (black/white/gold). If ‘Cryo Soothe’ is new, add as a Cryotherapy variant ($45, 10 min total block).
