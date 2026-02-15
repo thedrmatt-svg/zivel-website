@@ -7,6 +7,7 @@ import { useMemo, useState } from "react";
 import { services } from "@/lib/data/services";
 import { pathways } from "@/lib/data/pathways";
 import { getLocationNav } from "@/lib/data/locationNav";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 
 const LOCATIONS_NAV = getLocationNav({ featuredCount: 4 });
 
@@ -203,16 +204,20 @@ export default function Header() {
               >
                 Book Now
               </Link>
+              <LanguageSwitcher />
             </div>
           </nav>
 
-          <button
-            className="md:hidden rounded-lg border border-white/15 bg-white/5 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? "Close" : "Menu"}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher />
+            <button
+              className="rounded-lg border border-white/15 bg-white/5 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? "Close" : "Menu"}
+            </button>
+          </div>
         </div>
 
         {mobileOpen ? (
