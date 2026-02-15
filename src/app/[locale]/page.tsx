@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { services } from "@/lib/data/services";
 import { scienceArticles } from "@/lib/data/science";
 import { locations } from "@/lib/data/locations";
@@ -34,6 +35,7 @@ const navItems: Array<{ key: SectionKey; label: string; href: string }> = [
 ];
 
 export default function HomePage() {
+  const t = useTranslations();
   const featuredServices = services.slice(0, 6);
   const featuredArticles = scienceArticles.slice(0, 3);
 
@@ -45,11 +47,11 @@ export default function HomePage() {
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <header className="lg:col-span-7">
               <h1 id="home-hero-title" className="mb-6">
-                Recover Smarter. Lead Stronger.
+                {t("hero.title")}
               </h1>
 
               <p className="max-w-2xl text-lg text-white/80">
-                Zivel pioneers cutting-edge wellness technology nationwide, offering expert-led, evidence-based recovery services in serene studios—empowering active adults to ease pain, reduce stress, and sustain balanced well-being via tailored science-backed pathways for everyday performance.
+                {t("hero.subtitle")}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -88,12 +90,12 @@ export default function HomePage() {
                   "Personalized guidance",
                   "Clean, consistent studios",
                   "Results you can feel",
-                ].map((t) => (
+                ].map((highlight) => (
                   <li
-                    key={t}
+                    key={highlight}
                     className="zv-card-glass rounded-2xl p-4 text-sm text-white/80"
                   >
-                    {t}
+                    {highlight}
                   </li>
                 ))}
               </ul>
@@ -290,14 +292,14 @@ export default function HomePage() {
               { quote: "I feel more recovered after every session. The staff makes the experience easy and comfortable.", name: "Sarah M.", city: "Nashville, TN" },
               { quote: "The combination of cryotherapy and red light has become my go-to recovery routine.", name: "Marcus T.", city: "Denver, CO" },
               { quote: "Clean, calm, and consistent—exactly what I was looking for in a wellness studio.", name: "Emily R.", city: "Atlanta, GA" },
-            ].map((t) => (
-              <figure key={t.name} className="rounded-2xl zv-card-glass p-6">
+            ].map((testimonial) => (
+              <figure key={testimonial.name} className="rounded-2xl zv-card-glass p-6">
                 <blockquote className="text-sm text-white/80 italic leading-relaxed">
-                  &ldquo;{t.quote}&rdquo;
+                  &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
                 <figcaption className="mt-4 text-xs">
-                  <span className="font-semibold text-white">— {t.name}</span>
-                  <span className="text-white/50">, {t.city}</span>
+                  <span className="font-semibold text-white">— {testimonial.name}</span>
+                  <span className="text-white/50">, {testimonial.city}</span>
                 </figcaption>
               </figure>
             ))}

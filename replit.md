@@ -1,20 +1,31 @@
 # Zivel Wellness — Next.js 15
 
 ## Overview
-A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, Tailwind CSS, and App Router. Dark-only theme with black background, white text, and gold accents.
+A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, Tailwind CSS, and App Router. Dark-only theme with black background, white text, and gold accents. Internationalized with next-intl (English + Spanish).
 
 ## Project Structure
 ```
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx              # Root layout
-│   │   ├── page.tsx                # Home page
-│   │   ├── blog/                   # Blog section (structured content)
-│   │   ├── pathways/               # Pathway index + [slug] detail pages
-│   │   ├── services/[slug]/        # Dynamic service pages
-│   │   ├── locations/              # Location pages
-│   │   ├── science/                # Science section
-│   │   └── research/               # Research library
+│   │   ├── layout.tsx              # Root layout (minimal)
+│   │   ├── robots.ts               # robots.txt generation
+│   │   ├── sitemap.ts              # Dynamic sitemap.xml
+│   │   └── [locale]/               # Locale-based routing (en, es)
+│   │       ├── layout.tsx          # Locale layout (metadata, Header, Footer, NextIntlClientProvider)
+│   │       ├── page.tsx            # Home page
+│   │       ├── blog/               # Blog section (structured content)
+│   │       ├── pathways/           # Pathway index + [slug] detail pages
+│   │       ├── services/[slug]/    # Dynamic service pages
+│   │       ├── locations/          # Location pages
+│   │       ├── science/            # Science section
+│   │       └── research/           # Research library
+│   ├── i18n/
+│   │   ├── routing.ts             # Locale routing config (en default, es)
+│   │   └── request.ts             # Request config for message loading
+│   ├── messages/
+│   │   ├── en.json                # English translations
+│   │   └── es.json                # Spanish translations
+│   ├── middleware.ts               # next-intl middleware
 │   ├── components/
 │   │   ├── layout/Header.tsx       # Navigation header
 │   │   ├── layout/Footer.tsx       # Footer
@@ -33,6 +44,15 @@ A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, 
 ├── tsconfig.json
 └── package.json
 ```
+
+## Internationalization (i18n)
+- **Library**: next-intl
+- **Locales**: en (default), es
+- **Locale prefix**: "as-needed" (English URLs have no prefix, Spanish uses /es/...)
+- **Message files**: src/messages/en.json, src/messages/es.json
+- **Currently translated**: Home page hero (title + subtitle)
+- **Routing**: src/i18n/routing.ts defines locales; middleware handles detection
+- **Config**: next.config.ts uses createNextIntlPlugin wrapping
 
 ## Design System
 - **Theme**: Dark-only (#000000 background, #ffffff text)
@@ -86,3 +106,4 @@ CSS utility classes in globals.css for section-level visual variety:
 - 2026-02-14: Visual dynamics system — alternating section backgrounds, gold/white dividers, glass cards, noise textures, hero gradients across all pages
 - 2026-02-14: Image/video optimization — AVIF+WebP auto-format, responsive sizes, lazy loading, quality controls, video support with poster frames, 30-day cache TTL
 - 2026-02-14: Comprehensive SEO/GEO schema — Organization + WebSite in layout, Service + FAQ on service pages, Article on blog/science, ScholarlyArticle on research, BreadcrumbList on all detail pages, HealthAndBeautyBusiness with geo/phone on locations, robots.txt, dynamic sitemap.xml, Twitter cards, googleBot robots directives
+- 2026-02-15: Internationalization with next-intl — en/es locales, locale-based routing under [locale], home page hero translated
