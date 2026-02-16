@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { scienceArticles } from "@/lib/data/science";
 import { getServiceBySlug } from "@/lib/data/services";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const metadata = {
   title: "Science & Recovery Hub | Zivel",
@@ -44,115 +45,126 @@ export default function ScienceIndexPage() {
     .slice(0, 6);
 
   return (
-    <div className="space-y-0">
-      <section className="zv-bleed zv-section-cool zv-noise py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4 space-y-4">
-          <p className="text-sm font-medium tracking-widest uppercase text-[var(--zivel-gold)]">Evidence-Informed</p>
-          <h1>Science & Recovery Hub</h1>
-          <p className="text-white/70 max-w-3xl">
-            This hub collects evidence-informed explanations of recovery and
-            wellness technologies—written for clarity and practical use. The goal
-            is to help readers understand what people use these tools for, what to
-            expect, and how to think about routines without hype.
-          </p>
+    <div className="space-y-0 -mt-20">
+      {/* HERO (DARK) */}
+      <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0 zv-glow-gold opacity-30" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline zv-hero-animate-1">Evidence-Informed</p>
+            <h1 className="mt-4 font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">Science & Recovery Hub</h1>
+            <p className="mt-6 max-w-3xl text-lg text-white/70 leading-relaxed zv-hero-animate-3">
+              This hub collects evidence-informed explanations of recovery and
+              wellness technologies—written for clarity and practical use.
+            </p>
 
-          <div className="text-sm text-white/60">
-            Looking for citations?{" "}
-            <Link
-              href="/research"
-              className="text-white/80 underline hover:text-[var(--zivel-gold)]"
-            >
-              View sources
-            </Link>
-            .
-          </div>
+            <div className="mt-6 text-sm text-white/60 zv-hero-animate-4">
+              Looking for citations?{" "}
+              <Link
+                href="/research"
+                className="text-white/80 underline hover:text-[var(--zivel-gold)]"
+              >
+                View sources
+              </Link>
+              .
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-gold" />
-
       {featured.length ? (
         <>
-          <section className="zv-bleed zv-section-elevated zv-noise py-16">
-            <div className="mx-auto max-w-6xl px-4 space-y-5">
-              <h2 className="text-xl">Start here</h2>
+          <div className="zv-bleed zv-divider-dark-to-light" />
+
+          {/* FEATURED (LIGHT) */}
+          <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+            <div className="mx-auto max-w-6xl px-6">
+              <ScrollReveal variant="fade-up">
+                <p className="zv-tagline">Recommended</p>
+                <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Start Here</h2>
+              </ScrollReveal>
+
               <div className="grid gap-6 md:grid-cols-3">
-                {featured.map((a) => (
-                  <Link
-                    key={a.slug}
-                    href={`/science/${a.slug}`}
-                    className="rounded-2xl zv-card-glass p-6 transition-all duration-300 hover:-translate-y-0.5"
-                  >
-                    <div className="text-lg font-semibold text-white">{a.title}</div>
-                    <div className="mt-2 text-sm text-white/70">{a.description}</div>
+                {featured.map((a, idx) => (
+                  <ScrollReveal key={a.slug} variant="fade-up" delay={idx * 80}>
+                    <Link
+                      href={`/science/${a.slug}`}
+                      className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
+                    >
+                      <div className="font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{a.title}</div>
+                      <p className="mt-3 text-sm text-black/55 leading-relaxed">{a.description}</p>
 
-                    {a.relatedServiceSlugs?.length ? (
-                      <div className="mt-4 text-xs text-white/55">
-                        Related:{" "}
-                        {a.relatedServiceSlugs.map((slug: string, i: number) => {
-                          const s = getServiceBySlug(slug);
-                          const label = s?.name ?? slug.replaceAll("-", " ");
-                          return (
-                            <span key={slug}>
-                              <span className="text-white/70">{label}</span>
-                              {i < (a.relatedServiceSlugs?.length ?? 0) - 1 ? ", " : ""}
-                            </span>
-                          );
-                        })}
+                      {a.relatedServiceSlugs?.length ? (
+                        <div className="mt-4 text-xs text-black/45">
+                          Related:{" "}
+                          {a.relatedServiceSlugs.map((slug: string, i: number) => {
+                            const s = getServiceBySlug(slug);
+                            const label = s?.name ?? slug.replaceAll("-", " ");
+                            return (
+                              <span key={slug}>
+                                <span className="text-black/60">{label}</span>
+                                {i < (a.relatedServiceSlugs?.length ?? 0) - 1 ? ", " : ""}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      ) : null}
+
+                      <div className="mt-4 text-xs text-black/40">
+                        {a.readingTimeMinutes ? `${a.readingTimeMinutes} min read` : ""}
                       </div>
-                    ) : null}
-
-                    <div className="mt-4 text-xs text-white/50">
-                      {a.readingTimeMinutes ? `${a.readingTimeMinutes} min read` : ""}
-                    </div>
-                  </Link>
+                    </Link>
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
           </section>
-
-          <div className="zv-bleed zv-divider-white" />
         </>
       ) : null}
 
-      <section className="zv-bleed zv-section-gradient zv-noise py-16">
-        <div className="mx-auto max-w-6xl px-4 space-y-10">
+      <div className="zv-bleed zv-divider-dark-to-light" />
+
+      {/* CATEGORIES (DARK) */}
+      <section className="zv-bleed zv-immersive-section zv-section-gradient">
+        <div className="mx-auto max-w-6xl px-6 space-y-16">
           {categoriesOrdered.map((cat, catIdx) => {
             const items = [...(grouped[cat] ?? [])].sort(sortByFeaturedThenTitle);
             return (
               <div key={cat}>
-                {catIdx > 0 && <div className="zv-divider-white mb-10" />}
-                <div className="space-y-4">
-                  <div className="space-y-2 max-w-3xl">
-                    <h2 className="text-xl">{cat}</h2>
+                {catIdx > 0 && <div className="zv-divider-white mb-16" />}
+                <ScrollReveal variant="fade-up">
+                  <div className="space-y-3 max-w-3xl mb-10">
+                    <p className="zv-tagline">{cat}</p>
+                    <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight">{cat}</h2>
                     {CATEGORY_BLURBS[cat] ? (
-                      <p className="text-white/65 text-sm">{CATEGORY_BLURBS[cat]}</p>
+                      <p className="text-white/60 leading-relaxed">{CATEGORY_BLURBS[cat]}</p>
                     ) : null}
                   </div>
+                </ScrollReveal>
 
-                  <div className="grid gap-6 md:grid-cols-3">
-                    {items.map((a) => (
+                <div className="grid gap-6 md:grid-cols-3">
+                  {items.map((a, idx) => (
+                    <ScrollReveal key={a.slug} variant="fade-up" delay={idx * 80}>
                       <Link
-                        key={a.slug}
                         href={`/science/${a.slug}`}
-                        className="rounded-2xl zv-card-glass p-6 transition-all duration-300 hover:-translate-y-0.5"
+                        className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
                       >
-                        <div className="text-lg font-semibold text-white">
+                        <div className="font-serif text-lg text-white group-hover:text-[var(--zivel-gold)] transition-colors">
                           {a.title}
                         </div>
-                        <div className="mt-2 text-sm text-white/70">
+                        <p className="mt-3 text-sm text-white/60 leading-relaxed">
                           {a.description}
-                        </div>
+                        </p>
 
                         {a.relatedServiceSlugs?.length ? (
-                          <div className="mt-4 text-xs text-white/55">
+                          <div className="mt-4 text-xs text-white/45">
                             Related:{" "}
                             {a.relatedServiceSlugs.map((slug: string, i: number) => {
                               const s = getServiceBySlug(slug);
                               const label = s?.name ?? slug.replaceAll("-", " ");
                               return (
                                 <span key={slug}>
-                                  <span className="text-white/70">{label}</span>
+                                  <span className="text-white/60">{label}</span>
                                   {i < (a.relatedServiceSlugs?.length ?? 0) - 1 ? ", " : ""}
                                 </span>
                               );
@@ -160,12 +172,12 @@ export default function ScienceIndexPage() {
                           </div>
                         ) : null}
 
-                        <div className="mt-4 text-xs text-white/50">
+                        <div className="mt-4 text-xs text-white/40">
                           {a.readingTimeMinutes ? `${a.readingTimeMinutes} min read` : ""}
                         </div>
                       </Link>
-                    ))}
-                  </div>
+                    </ScrollReveal>
+                  ))}
                 </div>
               </div>
             );
@@ -173,14 +185,15 @@ export default function ScienceIndexPage() {
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-gold" />
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-      <section className="zv-bleed zv-section-recessed py-8">
-        <div className="mx-auto max-w-6xl px-4 text-sm text-white/60">
+      {/* FOOTER NOTE (LIGHT) */}
+      <section className="zv-bleed zv-section-light zv-light py-12">
+        <div className="mx-auto max-w-6xl px-6 text-sm text-black/50">
           Science articles reference peer-reviewed research.{" "}
           <Link
             href="/research"
-            className="text-white/80 underline hover:text-[var(--zivel-gold)]"
+            className="text-black/70 underline hover:text-[var(--zivel-gold-dark)]"
           >
             View sources →
           </Link>

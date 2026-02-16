@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { getPathwayBySlug, pathways } from "@/lib/data/pathways";
 import { getServiceBySlug } from "@/lib/data/services";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -30,250 +31,295 @@ export default async function PathwayPage({ params }: PageProps) {
   if (!pathway) return notFound();
 
   return (
-    <main className="space-y-0">
-      {/* HERO */}
-      <section className="zv-bleed zv-hero-bg zv-noise py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="rounded-2xl zv-cta-bg p-10">
+    <main className="space-y-0 -mt-20">
+      {/* ========== HERO (DARK) ========== */}
+      <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[70vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0 zv-glow-gold opacity-30" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
+          <ScrollReveal variant="fade-up">
             <div className="max-w-3xl space-y-5">
-              <h1>{pathway.hero.headline}</h1>
-              <p className="text-lg text-white/80">{pathway.hero.subheadline}</p>
+              <p className="zv-tagline zv-hero-animate-1">Pathway</p>
+              <h1 className="font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">{pathway.hero.headline}</h1>
+              <p className="text-lg text-white/75 leading-relaxed zv-hero-animate-3">{pathway.hero.subheadline}</p>
 
-              <div className="flex flex-wrap gap-3 pt-2">
+              <div className="flex flex-wrap gap-4 pt-2 zv-hero-animate-4">
                 <Link
                   href={pathway.hero.primaryCTA.href}
-                  className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+                  className="zv-btn-luxury zv-btn-gold"
                 >
                   {pathway.hero.primaryCTA.label}
                 </Link>
                 <Link
                   href={pathway.hero.secondaryCTA.href}
-                  className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+                  className="zv-btn-luxury zv-btn-outline"
                 >
                   {pathway.hero.secondaryCTA.label}
                 </Link>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-gold" />
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-      {/* WHO IT'S FOR */}
-      <section className="zv-bleed zv-section-elevated zv-noise py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="mb-6">{pathway.whoItsFor.headline}</h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="space-y-4 text-white/70">
-              {pathway.whoItsFor.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-              {pathway.whoItsFor.note ? (
-                <p className="text-xs text-white/50">{pathway.whoItsFor.note}</p>
-              ) : null}
-            </div>
+      {/* ========== WHO IT'S FOR (LIGHT) ========== */}
+      <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline">Who It&apos;s For</p>
+            <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">{pathway.whoItsFor.headline}</h2>
+            <div className="zv-gold-line-left mt-6" />
+          </ScrollReveal>
+
+          <div className="mt-10 grid gap-12 md:grid-cols-2">
+            <ScrollReveal variant="fade-left">
+              <div className="space-y-4 text-lg leading-relaxed">
+                {pathway.whoItsFor.body.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+                {pathway.whoItsFor.note ? (
+                  <p className="text-xs text-black/40 italic">{pathway.whoItsFor.note}</p>
+                ) : null}
+              </div>
+            </ScrollReveal>
 
             {pathway.whoItsFor.bullets?.length ? (
-              <div className="rounded-2xl zv-card-glass p-6">
-                <ul className="space-y-2 text-sm text-white/70">
-                  {pathway.whoItsFor.bullets.map((b) => (
-                    <li key={b} className="flex gap-2">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)]" />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ScrollReveal variant="fade-right">
+                <div className="zv-luxury-card rounded-2xl p-8">
+                  <ul className="space-y-3 text-sm text-black/60">
+                    {pathway.whoItsFor.bullets.map((b) => (
+                      <li key={b} className="flex gap-3 items-start">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)] flex-shrink-0" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollReveal>
             ) : null}
           </div>
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-white" />
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-      {/* GOAL */}
-      <section className="zv-bleed zv-section-recessed py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="mb-6">{pathway.goal.headline}</h2>
-          <div className="space-y-4 text-white/70">
-            {pathway.goal.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
+      {/* ========== GOAL (DARK) ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-recessed">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline">The Goal</p>
+            <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">{pathway.goal.headline}</h2>
+            <div className="zv-gold-line-left mt-6" />
+          </ScrollReveal>
+
+          <ScrollReveal variant="fade-up" delay={100}>
+            <div className="mt-10 space-y-4 text-white/70 text-lg leading-relaxed max-w-3xl">
+              {pathway.goal.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-gold" />
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-      {/* SERVICES */}
-      <section className="zv-bleed zv-section-gradient zv-noise py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="flex items-end justify-between gap-6">
-            <div>
-              <h2>{pathway.services.headline}</h2>
-              {pathway.services.intro ? (
-                <p className="mt-2 text-white/70">{pathway.services.intro}</p>
-              ) : null}
+      {/* ========== SERVICES (LIGHT) ========== */}
+      <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="flex items-end justify-between gap-6 mb-12">
+              <div>
+                <p className="zv-tagline">Included Services</p>
+                <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">{pathway.services.headline}</h2>
+                {pathway.services.intro ? (
+                  <p className="mt-3 text-black/55 max-w-2xl">{pathway.services.intro}</p>
+                ) : null}
+              </div>
+              <Link
+                href="/services"
+                className="text-sm font-medium text-black/50 hover:text-black transition-colors zv-gold-underline hidden md:inline"
+              >
+                View all services →
+              </Link>
             </div>
-            <Link
-              href="/services"
-              className="text-sm font-medium text-[var(--zivel-gold)] hover:text-white transition-colors"
-            >
-              View all services →
-            </Link>
-          </div>
+          </ScrollReveal>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {pathway.services.orderedServiceSlugs.map((svcSlug) => {
+          <div className="grid gap-6 md:grid-cols-3">
+            {pathway.services.orderedServiceSlugs.map((svcSlug, idx) => {
               const svc = getServiceBySlug(svcSlug);
               const href = svc ? `/services/${svc.slug}` : "/services";
               const title = svc?.name ?? svcSlug.replaceAll("-", " ");
 
               return (
-                <Link
-                  key={svcSlug}
-                  href={href}
-                  className="rounded-2xl zv-card-glass p-6 transition-all duration-300 hover:-translate-y-0.5"
-                >
-                  <div className="text-lg font-semibold text-white">{title}</div>
-                  <p className="mt-2 text-sm text-white/70">
-                    Explore how this modality fits into the pathway routine.
-                  </p>
-                </Link>
+                <ScrollReveal key={svcSlug} variant="fade-up" delay={idx * 100}>
+                  <Link
+                    href={href}
+                    className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <div className="font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{title}</div>
+                    <p className="mt-3 text-sm text-black/55 leading-relaxed">
+                      Explore how this modality fits into the pathway routine.
+                    </p>
+                  </Link>
+                </ScrollReveal>
               );
             })}
           </div>
 
           {pathway.services.note ? (
-            <p className="mt-6 text-xs text-white/50">{pathway.services.note}</p>
+            <p className="mt-6 text-xs text-black/40 italic">{pathway.services.note}</p>
           ) : null}
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-white" />
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-      {/* HOW IT WORKS */}
-      <section className="zv-bleed zv-section-elevated py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="mb-6">{pathway.howItWorks.headline}</h2>
-          <div className="rounded-2xl zv-card-glass p-6">
-            <ul className="space-y-2 text-sm text-white/70">
-              {pathway.howItWorks.bullets.map((b) => (
-                <li key={b} className="flex gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)]" />
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
+      {/* ========== HOW IT WORKS (DARK) ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-elevated">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline">The Process</p>
+            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{pathway.howItWorks.headline}</h2>
+          </ScrollReveal>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {pathway.howItWorks.bullets.map((b, idx) => (
+              <ScrollReveal key={b} variant="fade-up" delay={idx * 80}>
+                <div className="zv-luxury-card rounded-2xl p-8 h-full">
+                  <div className="font-serif text-2xl font-light text-white/25 mb-3">
+                    {String(idx + 1).padStart(2, "0")}
+                  </div>
+                  <p className="text-white/70 leading-relaxed">{b}</p>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-gold" />
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-      {/* SCIENCE */}
-      <section className="zv-bleed zv-section-cool zv-noise py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="rounded-2xl zv-cta-bg p-8">
-            <div className="max-w-3xl space-y-4">
-              <h2>{pathway.science.headline}</h2>
-              <div className="space-y-3 text-sm text-white/70">
+      {/* ========== SCIENCE (LIGHT) ========== */}
+      <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="max-w-3xl space-y-6">
+              <p className="zv-tagline">The Science</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight">{pathway.science.headline}</h2>
+              <div className="zv-gold-line-left" />
+              <div className="space-y-4 text-lg leading-relaxed">
                 {pathway.science.body.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
               <Link
                 href={pathway.science.cta.href}
-                className="inline-flex rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+                className="zv-btn-outline inline-flex mt-4"
               >
                 {pathway.science.cta.label}
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-white" />
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-      {/* FREQUENCY */}
-      <section className="zv-bleed zv-section-gradient py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="mb-6">{pathway.frequency.headline}</h2>
-          <div className="space-y-4 text-white/70">
-            {pathway.frequency.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-          {pathway.frequency.bullets?.length ? (
-            <div className="mt-6 rounded-2xl zv-card-glass p-6">
-              <ul className="space-y-2 text-sm text-white/70">
-                {pathway.frequency.bullets.map((b) => (
-                  <li key={b} className="flex gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)]" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
+      {/* ========== FREQUENCY (DARK) ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-gradient">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline">Recommended Frequency</p>
+            <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">{pathway.frequency.headline}</h2>
+          </ScrollReveal>
+
+          <ScrollReveal variant="fade-up" delay={100}>
+            <div className="mt-10 space-y-4 text-white/70 text-lg leading-relaxed max-w-3xl">
+              {pathway.frequency.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
+          </ScrollReveal>
+
+          {pathway.frequency.bullets?.length ? (
+            <ScrollReveal variant="fade-up" delay={200}>
+              <div className="mt-8 zv-luxury-card rounded-2xl p-8 max-w-3xl">
+                <ul className="space-y-3 text-sm text-white/70">
+                  {pathway.frequency.bullets.map((b) => (
+                    <li key={b} className="flex gap-3 items-start">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--zivel-gold)] flex-shrink-0" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
           ) : null}
         </div>
       </section>
 
       <div className="zv-bleed zv-divider-gold" />
 
-      {/* FINAL CTA */}
-      <section className="zv-bleed zv-glow-gold py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="rounded-2xl zv-cta-bg p-10">
-            <div className="max-w-4xl space-y-4">
-              <h2 className="m-0">{pathway.finalCTA.headline}</h2>
-              <div className="space-y-3 text-white/70">
+      {/* ========== FINAL CTA (DARK) ========== */}
+      <section className="zv-bleed relative overflow-hidden py-24 md:py-32">
+        <div className="absolute inset-0 zv-glow-gold opacity-20" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="scale">
+            <div className="text-center max-w-3xl mx-auto space-y-6">
+              <h2 className="font-serif text-5xl md:text-6xl font-light tracking-tight">{pathway.finalCTA.headline}</h2>
+              <div className="space-y-3 text-white/70 text-lg leading-relaxed">
                 {pathway.finalCTA.body.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
 
-              <div className="flex flex-wrap gap-3 pt-2">
+              <div className="flex flex-wrap justify-center gap-4 pt-4">
                 <Link
                   href={pathway.finalCTA.primaryCTA.href}
-                  className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
+                  className="zv-btn-luxury zv-btn-gold"
                 >
                   {pathway.finalCTA.primaryCTA.label}
                 </Link>
                 <Link
                   href={pathway.finalCTA.secondaryCTA.href}
-                  className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+                  className="zv-btn-luxury zv-btn-outline"
                 >
                   {pathway.finalCTA.secondaryCTA.label}
                 </Link>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Related pathways */}
+      {/* ========== RELATED PATHWAYS (LIGHT, optional) ========== */}
       {pathway.relatedPathwaySlugs?.length ? (
         <>
-          <div className="zv-bleed zv-divider-white" />
-          <section className="zv-bleed zv-section-recessed py-16">
-            <div className="mx-auto max-w-6xl px-4">
-              <h2 className="mb-6">Related Pathways</h2>
+          <div className="zv-bleed zv-divider-dark-to-light" />
+          <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+            <div className="mx-auto max-w-6xl px-6">
+              <ScrollReveal variant="fade-up">
+                <p className="zv-tagline">Explore More</p>
+                <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Related Pathways</h2>
+              </ScrollReveal>
+
               <div className="grid gap-6 md:grid-cols-3">
-                {pathway.relatedPathwaySlugs.map((rpSlug) => (
-                  <Link
-                    key={rpSlug}
-                    href={`/pathways/${rpSlug}`}
-                    className="rounded-2xl zv-card-glass p-6 transition-all duration-300 hover:-translate-y-0.5"
-                  >
-                    <div className="text-lg font-semibold text-white">
-                      {rpSlug.replaceAll("-", " ")}
-                    </div>
-                    <p className="mt-2 text-sm text-white/70">
-                      This pathway will be published soon.
-                    </p>
-                  </Link>
+                {pathway.relatedPathwaySlugs.map((rpSlug, idx) => (
+                  <ScrollReveal key={rpSlug} variant="fade-up" delay={idx * 100}>
+                    <Link
+                      href={`/pathways/${rpSlug}`}
+                      className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
+                    >
+                      <div className="font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">
+                        {rpSlug.replaceAll("-", " ")}
+                      </div>
+                      <p className="mt-3 text-sm text-black/55 leading-relaxed">
+                        This pathway will be published soon.
+                      </p>
+                    </Link>
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
