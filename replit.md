@@ -55,7 +55,9 @@ A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, 
 - **Config**: next.config.ts uses createNextIntlPlugin wrapping
 
 ## Design System
-- **Theme**: Dark-only (#000000 background, #ffffff text)
+- **Theme**: Dark base with alternating dark/light sections on home page
+- **Dark sections**: #000000 background, #ffffff text
+- **Light sections**: #ffffff background, #1a1a1a text (uses `.zv-light` + `.zv-section-light` classes)
 - **Gold accent**: #d4af37
 - **Typography**: Playfair Display (serif, headings), Inter (sans-serif, body) via Google Fonts
 - **CSS variables**: `--zivel-black`, `--zivel-white`, `--zivel-gold`, `--zivel-gold-light`, `--zivel-gold-dark`, `--zivel-text-primary`, `--zivel-text-secondary`, `--zivel-text-muted`
@@ -93,6 +95,8 @@ CSS utility classes in globals.css for section-level visual variety:
 - `.zv-bleed` — full-bleed section (breaks out of max-w container)
 - `.zv-section-elevated` / `.zv-section-recessed` / `.zv-section-gradient` — alternating dark backgrounds
 - `.zv-section-warm` / `.zv-section-cool` — warm (gold tint) and cool (blue tint) section variants
+- `.zv-section-light` / `.zv-section-light-warm` / `.zv-section-light-elevated` — white/light section backgrounds
+- `.zv-light` — modifier class that flips text, cards, buttons, and dividers to dark-on-white
 - `.zv-hero-bg` / `.zv-cta-bg` — hero and CTA gradient backgrounds
 - `.zv-hero-fullscreen` — full-viewport hero with centered content
 - `.zv-noise` — subtle noise texture overlay
@@ -128,3 +132,4 @@ CSS utility classes in globals.css for section-level visual variety:
 - 2026-02-14: Comprehensive SEO/GEO schema — Organization + WebSite in layout, Service + FAQ on service pages, Article on blog/science, ScholarlyArticle on research, BreadcrumbList on all detail pages, HealthAndBeautyBusiness with geo/phone on locations, robots.txt, dynamic sitemap.xml, Twitter cards, googleBot robots directives
 - 2026-02-15: Internationalization with next-intl — en/es locales, locale-based routing under [locale], home page hero translated
 - 2026-02-16: Luxury redesign inspired by Golden Door — Playfair Display serif typography, full-screen hero with CSS entrance animations, scroll-triggered reveal animations (ScrollReveal component), horizontal auto-scrolling testimonial gallery (HorizontalScroller component), immersive section layouts with generous spacing, luxury card with gold border glow, elegant uppercase nav with transparent-to-solid scroll effect, statement quote section, decorative gold accents, prefers-reduced-motion accessibility support, fixed header with proper scroll compensation
+- 2026-02-16: Alternating dark/light sections on home page — Hero(dark) → Booking(white) → Services(dark) → Quote(white) → Pathways(dark) → Locations(white) → About(dark) → Testimonials(white-warm) → Science(dark) → CTA(dark); light section CSS utilities (`.zv-light`, `.zv-section-light`, `.zv-section-light-warm`); LocationSearch variant prop for light/dark rendering

@@ -35,11 +35,13 @@ function haversine(lat1: number, lng1: number, lat2: number, lng2: number): numb
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-export default function LocationSearch({ locations }: { locations: LocationData[] }) {
+export default function LocationSearch({ locations, variant = "dark" }: { locations: LocationData[]; variant?: "dark" | "light" }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<LocationResult[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const isLight = variant === "light";
 
   const search = useCallback(async () => {
     const trimmed = query.trim();
@@ -142,20 +144,32 @@ export default function LocationSearch({ locations }: { locations: LocationData[
             if (e.key === "Enter") search();
           }}
           placeholder="Enter ZIP code or city name"
-          className="h-12 rounded-2xl border border-white/12 bg-black/30 px-4 text-sm text-white placeholder:text-white/40 outline-none focus:border-white/25"
+          className={
+            isLight
+              ? "h-12 rounded-2xl border border-black/12 bg-white px-4 text-sm text-black placeholder:text-black/40 outline-none focus:border-black/25 shadow-sm"
+              : "h-12 rounded-2xl border border-white/12 bg-black/30 px-4 text-sm text-white placeholder:text-white/40 outline-none focus:border-white/25"
+          }
         />
         <button
           type="button"
           onClick={search}
           disabled={loading}
-          className="h-12 rounded-2xl bg-white px-5 text-sm font-semibold text-black transition hover:bg-white/90 disabled:opacity-50"
+          className={
+            isLight
+              ? "h-12 rounded-2xl bg-black px-5 text-sm font-semibold text-white transition hover:bg-black/85 disabled:opacity-50"
+              : "h-12 rounded-2xl bg-white px-5 text-sm font-semibold text-black transition hover:bg-white/90 disabled:opacity-50"
+          }
         >
           {loading ? "Searching..." : "Search"}
         </button>
       </div>
 
       {error ? (
-        <div className="mt-6 rounded-2xl border-subtle bg-card p-6 text-white/70">
+        <div className={
+          isLight
+            ? "mt-6 rounded-2xl border border-black/8 bg-black/[0.03] p-6 text-black/60"
+            : "mt-6 rounded-2xl border-subtle bg-card p-6 text-white/70"
+        }>
           {error}
         </div>
       ) : null}
@@ -166,12 +180,16 @@ export default function LocationSearch({ locations }: { locations: LocationData[
             <Link
               key={`${loc.stateSlug}/${loc.citySlug}`}
               href={`/locations/${loc.stateSlug}/${loc.citySlug}`}
-              className="rounded-2xl border-subtle bg-card p-6 transition hover:bg-white/[0.06]"
+              className={
+                isLight
+                  ? "rounded-2xl border border-black/8 bg-black/[0.02] p-6 transition hover:bg-black/[0.04] hover:border-black/12"
+                  : "rounded-2xl border-subtle bg-card p-6 transition hover:bg-white/[0.06]"
+              }
             >
-              <div className="font-semibold text-white/90">{loc.name}</div>
-              <div className="mt-1 text-sm text-white/60">{loc.state}</div>
+              <div className={isLight ? "font-semibold text-black/85" : "font-semibold text-white/90"}>{loc.name}</div>
+              <div className={isLight ? "mt-1 text-sm text-black/50" : "mt-1 text-sm text-white/60"}>{loc.state}</div>
               {loc.contact?.address ? (
-                <div className="mt-2 text-sm text-white/50">{loc.contact.address}</div>
+                <div className={isLight ? "mt-2 text-sm text-black/40" : "mt-2 text-sm text-white/50"}>{loc.contact.address}</div>
               ) : null}
               {loc.distanceMiles > 0 ? (
                 <div className="mt-3 text-sm font-semibold text-gold">
@@ -182,7 +200,11 @@ export default function LocationSearch({ locations }: { locations: LocationData[
           ))}
         </div>
       ) : !error ? (
-        <div className="mt-6 rounded-2xl border-subtle bg-black/40 p-10 text-center text-white/40">
+        <div className={
+          isLight
+            ? "mt-6 rounded-2xl border border-black/8 bg-black/[0.03] p-10 text-center text-black/35"
+            : "mt-6 rounded-2xl border-subtle bg-black/40 p-10 text-center text-white/40"
+        }>
           Enter a ZIP code to find the nearest Zivel locations, or search by city name.
         </div>
       ) : null}

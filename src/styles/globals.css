@@ -237,6 +237,121 @@ button {
     linear-gradient(180deg, #060608 0%, #08080a 100%);
 }
 
+.zv-section-light {
+  background: #ffffff;
+}
+
+.zv-section-light-warm {
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+    linear-gradient(180deg, #fafaf8 0%, #ffffff 100%);
+}
+
+.zv-section-light-cool {
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(100, 140, 200, 0.03) 0%, transparent 50%),
+    linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
+}
+
+.zv-section-light-elevated {
+  background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+}
+
+.zv-light h1,
+.zv-light h2,
+.zv-light h3,
+.zv-light h4,
+.zv-light h5,
+.zv-light h6 {
+  color: #1a1a1a;
+}
+
+.zv-light p {
+  color: rgba(0, 0, 0, 0.60);
+}
+
+.zv-light .zv-tagline {
+  color: var(--zivel-gold-dark);
+}
+
+.zv-light .zv-quote-large {
+  color: #1a1a1a;
+}
+
+.zv-light .zv-quote-mark {
+  color: var(--zivel-gold);
+}
+
+.zv-light .zv-btn-outline {
+  color: #1a1a1a;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+.zv-light .zv-btn-outline:hover {
+  color: #1a1a1a;
+  border-color: var(--zivel-gold);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.zv-light .zv-luxury-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.zv-light .zv-luxury-card:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: color-mix(in srgb, var(--_accent) 30%, transparent);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08), 0 0 40px color-mix(in srgb, var(--_accent) 6%, transparent);
+}
+
+.zv-light .zv-card-glass {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.6) inset,
+    0 20px 60px rgba(0, 0, 0, 0.06);
+}
+.zv-light .zv-card-glass:hover {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.zv-light .border-subtle {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.zv-light .bg-card {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.zv-divider-gold-light {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.10) 15%,
+    rgba(212, 175, 55, 0.40) 50%,
+    rgba(212, 175, 55, 0.10) 85%,
+    transparent 100%
+  );
+}
+
+.zv-divider-dark-to-light {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.08) 15%,
+    rgba(212, 175, 55, 0.30) 50%,
+    rgba(212, 175, 55, 0.08) 85%,
+    transparent 100%
+  );
+}
+
+.zv-light .zv-noise::after {
+  opacity: 0.015;
+}
+
+.zv-light .zv-diagonal-accent::before {
+  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.15), transparent);
+}
+
 .zv-bleed {
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
@@ -484,11 +599,18 @@ noscript + .zv-reveal,
 }
 .zv-scroller-wrap::before {
   left: 0;
-  background: linear-gradient(to right, var(--zivel-black), transparent);
+  background: linear-gradient(to right, var(--scroller-bg, var(--zivel-black)), transparent);
 }
 .zv-scroller-wrap::after {
   right: 0;
-  background: linear-gradient(to left, var(--zivel-black), transparent);
+  background: linear-gradient(to left, var(--scroller-bg, var(--zivel-black)), transparent);
+}
+
+.zv-light .zv-scroller-wrap::before {
+  background: linear-gradient(to right, #fafaf8, transparent);
+}
+.zv-light .zv-scroller-wrap::after {
+  background: linear-gradient(to left, #fafaf8, transparent);
 }
 
 .zv-scroller-track {

@@ -32,7 +32,7 @@ export default function HomePage() {
 
   return (
     <main className="-mt-20">
-      {/* ========== FULL-SCREEN HERO ========== */}
+      {/* ========== FULL-SCREEN HERO (DARK) ========== */}
       <section className="zv-bleed zv-hero-fullscreen zv-noise" aria-labelledby="home-hero-title">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
@@ -79,11 +79,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== GOLD DIVIDER ========== */}
-      <div className="zv-divider-gold" />
+      {/* ========== TRANSITION: DARK → LIGHT ========== */}
+      <div className="zv-divider-dark-to-light" />
 
-      {/* ========== BOOKING WIDGET ========== */}
-      <section id="book" className="zv-bleed zv-immersive-section zv-section-elevated zv-noise" aria-labelledby="home-booking-title">
+      {/* ========== BOOKING WIDGET (LIGHT) ========== */}
+      <section id="book" className="zv-bleed zv-immersive-section zv-section-light zv-noise zv-light" aria-labelledby="home-booking-title">
         <div className="mx-auto max-w-5xl px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-12">
@@ -95,17 +95,17 @@ export default function HomePage() {
 
           <ScrollReveal variant="scale" delay={200}>
             <div className="rounded-2xl zv-card-glass p-6 md:p-8">
-              <p className="mb-8 text-center text-white/60 max-w-lg mx-auto">
+              <p className="mb-8 text-center max-w-lg mx-auto">
                 Choose your location, select a service, and pick a time that works for you.
               </p>
 
-              <div className="h-[560px] w-full rounded-xl border border-white/10 bg-black/40 flex items-center justify-center text-white/40">
+              <div className="h-[560px] w-full rounded-xl border border-black/10 bg-black/[0.03] flex items-center justify-center text-black/30">
                 Booking Widget Placeholder (iframe will go here)
               </div>
 
-              <p className="mt-6 text-center text-sm text-white/50">
+              <p className="mt-6 text-center text-sm text-black/40">
                 If the booking form does not load,{" "}
-                <Link href="/locations" className="text-[var(--zivel-gold)] zv-gold-underline">
+                <Link href="/locations" className="text-[var(--zivel-gold-dark)] zv-gold-underline">
                   find a location
                 </Link>{" "}
                 to book directly.
@@ -115,9 +115,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="zv-divider-white" />
+      <div className="zv-divider-dark-to-light" />
 
-      {/* ========== SIGNATURE SERVICES ========== */}
+      {/* ========== SIGNATURE SERVICES (DARK) ========== */}
       <section id="services" className="zv-bleed zv-immersive-section zv-section-gradient zv-noise zv-diagonal-accent" aria-labelledby="home-services-title">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-end mb-14">
@@ -162,10 +162,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="zv-divider-gold" />
+      <div className="zv-divider-dark-to-light" />
 
-      {/* ========== STATEMENT QUOTE ========== */}
-      <section className="zv-bleed zv-immersive-section zv-section-recessed" aria-label="Brand statement">
+      {/* ========== STATEMENT QUOTE (LIGHT) ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-light zv-light" aria-label="Brand statement">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <ScrollReveal variant="fade-in" duration={1200}>
             <span className="zv-quote-mark block mb-4">&ldquo;</span>
@@ -177,9 +177,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="zv-divider-gold" />
+      <div className="zv-divider-dark-to-light" />
 
-      {/* ========== PATHWAYS ========== */}
+      {/* ========== PATHWAYS (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-elevated zv-noise">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
@@ -188,10 +188,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="zv-divider-white" />
+      <div className="zv-divider-dark-to-light" />
 
-      {/* ========== LOCATIONS ========== */}
-      <section id="locations" className="zv-bleed zv-immersive-section zv-section-gradient zv-noise" aria-labelledby="home-locations-title">
+      {/* ========== LOCATIONS (LIGHT) ========== */}
+      <section id="locations" className="zv-bleed zv-immersive-section zv-section-light zv-noise zv-light" aria-labelledby="home-locations-title">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-end mb-14">
             <div className="lg:col-span-8">
@@ -199,7 +199,7 @@ export default function HomePage() {
                 <span className="zv-tagline mb-4 block">Visit Us</span>
                 <h2 id="home-locations-title">Find a Zivel Near You</h2>
                 <span className="zv-gold-line-left mt-6" />
-                <p className="mt-6 text-white/60 text-lg">
+                <p className="mt-6 text-lg">
                   Visit a studio near you and book in minutes. Every location delivers the same premium experience—designed to feel calm, modern, and consistent.
                 </p>
               </ScrollReveal>
@@ -216,6 +216,7 @@ export default function HomePage() {
 
           <ScrollReveal variant="fade-up" delay={300}>
             <LocationSearch
+              variant="light"
               locations={locations.map((loc) => ({
                 name: loc.name,
                 stateSlug: loc.stateSlug,
@@ -230,9 +231,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="zv-divider-gold" />
+      <div className="zv-divider-dark-to-light" />
 
-      {/* ========== ABOUT ZIVEL ========== */}
+      {/* ========== ABOUT ZIVEL (DARK) ========== */}
       <section id="about" className="zv-bleed zv-immersive-section zv-section-recessed" aria-labelledby="home-about-title">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
@@ -261,10 +262,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="zv-divider-white" />
+      <div className="zv-divider-dark-to-light" />
 
-      {/* ========== TESTIMONIALS — SCROLLING GALLERY ========== */}
-      <section id="reviews" className="zv-bleed zv-immersive-section zv-section-warm zv-noise" aria-labelledby="home-social-proof-title">
+      {/* ========== TESTIMONIALS (LIGHT — WARM) ========== */}
+      <section id="reviews" className="zv-bleed zv-immersive-section zv-section-light-warm zv-noise zv-light" aria-labelledby="home-social-proof-title">
         <div className="mx-auto max-w-6xl px-6 mb-14">
           <ScrollReveal variant="fade-up">
             <div className="text-center">
@@ -280,17 +281,17 @@ export default function HomePage() {
             {testimonials.map((testimonial) => (
               <figure
                 key={testimonial.name}
-                className="flex-shrink-0 w-[400px] rounded-2xl border border-white/8 bg-white/[0.03] p-8 backdrop-blur-sm"
+                className="flex-shrink-0 w-[400px] rounded-2xl border border-black/8 bg-black/[0.02] p-8 backdrop-blur-sm"
               >
                 <span className="zv-quote-mark block mb-2">&ldquo;</span>
-                <blockquote className="text-base text-white/80 italic leading-relaxed font-[var(--font-playfair)]">
+                <blockquote className="text-base text-black/70 italic leading-relaxed font-[var(--font-playfair)]">
                   {testimonial.quote}
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3">
                   <span className="block h-px w-8 bg-[var(--zivel-gold)]/40" />
                   <div>
-                    <span className="font-semibold text-white text-sm">{testimonial.name}</span>
-                    <span className="text-white/40 text-sm ml-2">{testimonial.city}</span>
+                    <span className="font-semibold text-black/80 text-sm">{testimonial.name}</span>
+                    <span className="text-black/40 text-sm ml-2">{testimonial.city}</span>
                   </div>
                 </figcaption>
               </figure>
@@ -299,9 +300,9 @@ export default function HomePage() {
         </ScrollReveal>
       </section>
 
-      <div className="zv-divider-gold" />
+      <div className="zv-divider-dark-to-light" />
 
-      {/* ========== SCIENCE HUB PREVIEW ========== */}
+      {/* ========== SCIENCE HUB PREVIEW (DARK) ========== */}
       <section id="science" className="zv-bleed zv-immersive-section zv-section-cool zv-noise zv-diagonal-accent" aria-labelledby="home-science-title">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-end mb-14">
@@ -355,7 +356,7 @@ export default function HomePage() {
 
       <div className="zv-divider-gold" />
 
-      {/* ========== FINAL CTA ========== */}
+      {/* ========== FINAL CTA (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section zv-glow-gold" aria-labelledby="home-final-cta-title">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <ScrollReveal variant="fade-up">
