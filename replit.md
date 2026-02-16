@@ -57,9 +57,12 @@ A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, 
 ## Design System
 - **Theme**: Dark-only (#000000 background, #ffffff text)
 - **Gold accent**: #d4af37
-- **CSS variables**: `--zivel-black`, `--zivel-white`, `--zivel-gold`, `--zivel-text-primary`, `--zivel-text-secondary`, `--zivel-text-muted`
+- **Typography**: Playfair Display (serif, headings), Inter (sans-serif, body) via Google Fonts
+- **CSS variables**: `--zivel-black`, `--zivel-white`, `--zivel-gold`, `--zivel-gold-light`, `--zivel-gold-dark`, `--zivel-text-primary`, `--zivel-text-secondary`, `--zivel-text-muted`
 - **Service theming**: `.zivel-service-page[data-zivel-service="..."]` with per-service CSS variables
 - **Cryotherapy "True Blue"**: RGB(45,100,189) — blue glow effects, blue-tinted containers, uniform blue atmosphere
+- **Header**: Fixed position, transparent-to-solid on scroll, uppercase tracking nav links
+- **Layout**: Fixed header with pt-20 offset on content wrapper; homepage uses -mt-20 to pull hero behind header
 
 ## Content Systems
 
@@ -91,10 +94,27 @@ CSS utility classes in globals.css for section-level visual variety:
 - `.zv-section-elevated` / `.zv-section-recessed` / `.zv-section-gradient` — alternating dark backgrounds
 - `.zv-section-warm` / `.zv-section-cool` — warm (gold tint) and cool (blue tint) section variants
 - `.zv-hero-bg` / `.zv-cta-bg` — hero and CTA gradient backgrounds
+- `.zv-hero-fullscreen` — full-viewport hero with centered content
 - `.zv-noise` — subtle noise texture overlay
 - `.zv-divider-gold` / `.zv-divider-white` — gradient divider lines between sections
 - `.zv-card-glass` — glass morphism card (backdrop-blur, inset shadow, hover state)
+- `.zv-luxury-card` — premium card with gold border glow on hover
 - `.zv-glow-gold` / `.zv-edge-top` — radial gold glow and top edge accent
+- `.zv-immersive-section` — generous padding sections (8rem vertical)
+- `.zv-tagline` — uppercase, letter-spaced gold tagline
+- `.zv-gold-line` / `.zv-gold-line-left` — decorative gold accent lines
+- `.zv-quote-large` / `.zv-quote-mark` — large serif italic quote styling
+- `.zv-btn-luxury` / `.zv-btn-gold` / `.zv-btn-outline` — luxury button variants
+- `.zv-gold-underline` — animated gold underline on hover
+- `.zv-diagonal-accent` — decorative diagonal gold line
+- `.zv-hero-animate-1` through `-5` — CSS-only staggered hero entrance animations
+- `.zv-reveal` / `.zv-revealed` — scroll-triggered reveal animations (JS IntersectionObserver)
+- `.zv-scroller-track` — horizontal auto-scrolling gallery track
+
+### UI Components
+- `ScrollReveal` — Client component using IntersectionObserver for scroll-triggered animations; supports fade-up, fade-in, fade-left, fade-right, scale, blur variants; includes prefers-reduced-motion fallback
+- `HorizontalScroller` — Auto-scrolling horizontal gallery with pause-on-hover
+- `ParallaxSection` — Scroll-speed parallax effect wrapper
 
 ## Recent Changes
 - 2026-02-09: Created Pathway system (type, content, data registry, index + detail pages)
@@ -107,3 +127,4 @@ CSS utility classes in globals.css for section-level visual variety:
 - 2026-02-14: Image/video optimization — AVIF+WebP auto-format, responsive sizes, lazy loading, quality controls, video support with poster frames, 30-day cache TTL
 - 2026-02-14: Comprehensive SEO/GEO schema — Organization + WebSite in layout, Service + FAQ on service pages, Article on blog/science, ScholarlyArticle on research, BreadcrumbList on all detail pages, HealthAndBeautyBusiness with geo/phone on locations, robots.txt, dynamic sitemap.xml, Twitter cards, googleBot robots directives
 - 2026-02-15: Internationalization with next-intl — en/es locales, locale-based routing under [locale], home page hero translated
+- 2026-02-16: Luxury redesign inspired by Golden Door — Playfair Display serif typography, full-screen hero with CSS entrance animations, scroll-triggered reveal animations (ScrollReveal component), horizontal auto-scrolling testimonial gallery (HorizontalScroller component), immersive section layouts with generous spacing, luxury card with gold border glow, elegant uppercase nav with transparent-to-solid scroll effect, statement quote section, decorative gold accents, prefers-reduced-motion accessibility support, fixed header with proper scroll compensation

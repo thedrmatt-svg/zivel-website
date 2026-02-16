@@ -2,15 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --------------------------------------------------
-   ZIVEL DESIGN SYSTEM — GLOBAL STYLES
--------------------------------------------------- */
-
-/* CSS Variables: Brand + Theme */
 :root {
   --zivel-black: #000000;
   --zivel-white: #ffffff;
   --zivel-gold: #d4af37;
+  --zivel-gold-light: #e8cc6e;
+  --zivel-gold-dark: #b8942e;
 
   --zivel-gray-900: #0b0b0b;
   --zivel-gray-800: #141414;
@@ -23,23 +20,26 @@
   --zivel-text-muted: rgba(255, 255, 255, 0.55);
 }
 
-/* Base HTML / Body */
 html {
   scroll-behavior: smooth;
   background-color: var(--zivel-black);
+  scroll-padding-top: 5rem;
+}
+
+[id] {
+  scroll-margin-top: 5rem;
 }
 
 body {
   min-height: 100vh;
   background-color: var(--zivel-black);
   color: var(--zivel-text-primary);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Links */
 a {
   color: inherit;
   text-decoration: none;
@@ -49,52 +49,43 @@ a:hover {
   color: var(--zivel-gold);
 }
 
-/* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-  letter-spacing: -0.01em;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--zivel-text-primary);
 }
 
 h1 {
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  line-height: 1.15;
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  line-height: 1.08;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: 1.2;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.12;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.2;
 }
 
-/* Paragraphs */
 p {
   color: var(--zivel-text-secondary);
   max-width: 65ch;
 }
 
-/* Lists */
-ul,
-ol {
+ul, ol {
   padding-left: 1.25rem;
 }
 
-/* Images */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Buttons (base reset — actual styles via components) */
 button {
   background: none;
   border: none;
@@ -102,49 +93,33 @@ button {
   font-family: inherit;
 }
 
-/* Utility: Gold text */
-.text-gold {
-  color: var(--zivel-gold);
-}
+.text-gold { color: var(--zivel-gold); }
 
-/* Utility: Section spacing */
 .section {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
 
-/* Utility: Subtle border */
 .border-subtle {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Utility: Card background */
 .bg-card {
   background-color: rgba(255, 255, 255, 0.04);
 }
 
-/* --------------------------------------------------
-   VISUAL DYNAMICS SYSTEM
-   Alternating section backgrounds, gradient washes,
-   decorative accents, and depth layers
--------------------------------------------------- */
-
-/* Elevated section: slightly lifted dark */
 .zv-section-elevated {
   background: linear-gradient(180deg, #0a0a0a 0%, #080808 100%);
 }
 
-/* Recessed section: deeper dark with subtle inner glow */
 .zv-section-recessed {
   background: linear-gradient(180deg, #050505 0%, #000000 50%, #030303 100%);
 }
 
-/* Gradient wash: dark to charcoal transition */
 .zv-section-gradient {
   background: linear-gradient(170deg, #000000 0%, #0d0d0d 40%, #111111 70%, #0a0a0a 100%);
 }
 
-/* Subtle noise texture overlay for depth */
 .zv-noise::after {
   content: "";
   position: absolute;
@@ -159,7 +134,6 @@ button {
 .zv-noise { position: relative; }
 .zv-noise > * { position: relative; z-index: 1; }
 
-/* Gold accent divider line */
 .zv-divider-gold {
   height: 1px;
   background: linear-gradient(90deg,
@@ -171,7 +145,6 @@ button {
   );
 }
 
-/* White subtle divider */
 .zv-divider-white {
   height: 1px;
   background: linear-gradient(90deg,
@@ -183,7 +156,6 @@ button {
   );
 }
 
-/* Radial glow behind hero/key sections */
 .zv-glow-gold {
   position: relative;
 }
@@ -202,7 +174,6 @@ button {
 }
 .zv-glow-gold > * { position: relative; z-index: 1; }
 
-/* Top edge glow (subtle gold line at section top) */
 .zv-edge-top {
   position: relative;
 }
@@ -223,7 +194,6 @@ button {
   z-index: 2;
 }
 
-/* Premium card with glass effect */
 .zv-card-glass {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -241,7 +211,6 @@ button {
     0 24px 70px rgba(0, 0, 0, 0.5);
 }
 
-/* Hero gradient background (deep black to elevated) */
 .zv-hero-bg {
   background:
     radial-gradient(ellipse 80% 60% at 20% 60%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
@@ -249,7 +218,6 @@ button {
     linear-gradient(180deg, #000000 0%, #080808 60%, #0a0a0a 100%);
 }
 
-/* CTA section with gradient depth */
 .zv-cta-bg {
   background:
     radial-gradient(ellipse 70% 80% at 50% 50%, rgba(212, 175, 55, 0.09) 0%, transparent 60%),
@@ -257,21 +225,18 @@ button {
   border: 1px solid rgba(212, 175, 55, 0.14);
 }
 
-/* Testimonial/quote section with subtle warmth */
 .zv-section-warm {
   background:
     radial-gradient(ellipse at 30% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
     linear-gradient(180deg, #0a0a0a 0%, #080808 100%);
 }
 
-/* Science/research section with cool tone */
 .zv-section-cool {
   background:
     radial-gradient(ellipse at 70% 30%, rgba(100, 140, 200, 0.03) 0%, transparent 50%),
     linear-gradient(180deg, #060608 0%, #08080a 100%);
 }
 
-/* Full-bleed section: breaks out of max-w container */
 .zv-bleed {
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
@@ -279,7 +244,6 @@ button {
   padding-right: calc(50vw - 50%);
 }
 
-/* Animated subtle shimmer on gold elements */
 @keyframes zv-shimmer {
   0% { opacity: 0.3; }
   50% { opacity: 0.6; }
@@ -290,8 +254,413 @@ button {
   animation: zv-shimmer 4s ease-in-out infinite;
 }
 
+/* =============================================
+   LUXURY VISUAL DYNAMICS
+   Scroll animations, parallax, scroller, hero
+============================================= */
+
+.zv-reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition-property: opacity, transform, filter;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zv-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .zv-hero-animate-1,
+  .zv-hero-animate-2,
+  .zv-hero-animate-3,
+  .zv-hero-animate-4,
+  .zv-hero-animate-5 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .zv-scroll-hint,
+  .zv-float,
+  .zv-shimmer {
+    animation: none !important;
+  }
+}
+
+noscript + .zv-reveal,
+.no-js .zv-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.zv-reveal--fade-up {
+  transform: translateY(50px);
+}
+
+.zv-reveal--fade-in {
+  transform: none;
+}
+
+.zv-reveal--fade-left {
+  transform: translateX(-50px);
+}
+
+.zv-reveal--fade-right {
+  transform: translateX(50px);
+}
+
+.zv-reveal--scale {
+  transform: scale(0.92);
+}
+
+.zv-reveal--blur {
+  transform: translateY(20px);
+  filter: blur(8px);
+}
+
+.zv-revealed {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.zv-parallax {
+  will-change: transform;
+}
+
+.zv-parallax > * {
+  transform: translateY(var(--parallax-y, 0));
+  transition: transform 0.1s linear;
+}
+
+/* Full-screen hero */
+.zv-hero-fullscreen {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: var(--zivel-black);
+}
+
+.zv-hero-fullscreen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 30%, rgba(212, 175, 55, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(212, 175, 55, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(212, 175, 55, 0.04) 0%, transparent 60%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.zv-hero-fullscreen::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, var(--zivel-black), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.zv-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+@keyframes zv-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.zv-float {
+  animation: zv-float 6s ease-in-out infinite;
+}
+
+@keyframes zv-scroll-hint {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 0.8; transform: translateY(8px); }
+}
+
+.zv-scroll-hint {
+  animation: zv-scroll-hint 2.5s ease-in-out infinite;
+}
+
+@keyframes zv-pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.3); }
+  50% { box-shadow: 0 0 30px 10px rgba(212, 175, 55, 0.08); }
+}
+
+.zv-pulse-gold {
+  animation: zv-pulse-gold 3s ease-in-out infinite;
+}
+
+.zv-gold-line {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--zivel-gold), transparent);
+  margin: 0 auto;
+}
+
+.zv-gold-line-left {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--zivel-gold), transparent);
+}
+
+.zv-tagline {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--zivel-gold);
+  font-weight: 500;
+}
+
+.zv-immersive-section {
+  position: relative;
+  padding: 8rem 0;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .zv-immersive-section {
+    padding: 5rem 0;
+  }
+}
+
+.zv-quote-large {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--zivel-text-primary);
+}
+
+.zv-quote-mark {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 5rem;
+  line-height: 0;
+  color: var(--zivel-gold);
+  opacity: 0.5;
+}
+
+/* Horizontal auto-scroll gallery */
+@keyframes zv-scroll-x {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.zv-scroller-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.zv-scroller-wrap::before,
+.zv-scroller-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.zv-scroller-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--zivel-black), transparent);
+}
+.zv-scroller-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--zivel-black), transparent);
+}
+
+.zv-scroller-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: zv-scroll-x 40s linear infinite;
+  width: max-content;
+}
+
+/* Luxury hover card with gold border glow */
+.zv-luxury-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.zv-luxury-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg,
+    rgba(212, 175, 55, 0) 0%,
+    rgba(212, 175, 55, 0) 40%,
+    rgba(212, 175, 55, 0.15) 50%,
+    rgba(212, 175, 55, 0) 60%,
+    rgba(212, 175, 55, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+
+.zv-luxury-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(212, 175, 55, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 175, 55, 0.05);
+}
+
+.zv-luxury-card:hover::before {
+  opacity: 1;
+}
+
+/* Stagger animation children */
+.zv-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.zv-stagger.zv-revealed > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: none; }
+.zv-stagger.zv-revealed > *:nth-child(2) { transition-delay: 100ms; opacity: 1; transform: none; }
+.zv-stagger.zv-revealed > *:nth-child(3) { transition-delay: 200ms; opacity: 1; transform: none; }
+.zv-stagger.zv-revealed > *:nth-child(4) { transition-delay: 300ms; opacity: 1; transform: none; }
+.zv-stagger.zv-revealed > *:nth-child(5) { transition-delay: 400ms; opacity: 1; transform: none; }
+.zv-stagger.zv-revealed > *:nth-child(6) { transition-delay: 500ms; opacity: 1; transform: none; }
+.zv-stagger.zv-revealed > *:nth-child(7) { transition-delay: 600ms; opacity: 1; transform: none; }
+.zv-stagger.zv-revealed > *:nth-child(8) { transition-delay: 700ms; opacity: 1; transform: none; }
+
+/* Animated gold underline */
+.zv-gold-underline {
+  position: relative;
+  display: inline-block;
+}
+.zv-gold-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--zivel-gold);
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.zv-gold-underline:hover::after {
+  width: 100%;
+}
+
+/* Section with diagonal decorative line */
+.zv-diagonal-accent {
+  position: relative;
+}
+.zv-diagonal-accent::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: 10%;
+  width: 1px;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.2), transparent);
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+/* Luxury button styles */
+.zv-btn-luxury {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.zv-btn-gold {
+  background: var(--zivel-gold);
+  color: var(--zivel-black);
+  border: none;
+}
+.zv-btn-gold:hover {
+  background: var(--zivel-gold-light);
+  color: var(--zivel-black);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(212, 175, 55, 0.25);
+}
+
+.zv-btn-outline {
+  background: transparent;
+  color: var(--zivel-white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.zv-btn-outline:hover {
+  color: var(--zivel-white);
+  border-color: var(--zivel-gold);
+  background: rgba(212, 175, 55, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Elegant image with mask */
+.zv-img-mask {
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+/* Hero entrance animations (CSS-only, no JS needed) */
+@keyframes zv-hero-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zv-hero-rise {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.zv-hero-animate-1 {
+  animation: zv-hero-fade-in 1s ease-out 0.2s both;
+}
+.zv-hero-animate-2 {
+  animation: zv-hero-rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+.zv-hero-animate-3 {
+  animation: zv-hero-rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+.zv-hero-animate-4 {
+  animation: zv-hero-rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+.zv-hero-animate-5 {
+  animation: zv-hero-fade-in 1.2s ease-out 1.2s both;
+}
+
 /* ZIVEL_SERVICE_THEME_START */
-/* Zivel Service Theme (production) — symmetric glow + UI pop (active file: src/styles/globals.css) */
 :root{
   --zivel-bg:#07090d;
   --zivel-fg:#f6f7f8;
@@ -310,7 +679,6 @@ button {
   overflow: clip;
 }
 
-/* Service-specific colors (True Blue for cryotherapy) */
 .zivel-service-page[data-zivel-service="cryotherapy"],
 [data-zivel-service="cryotherapy"] .zivel-service-page{
   --zivel-service-r: 45;
@@ -324,7 +692,6 @@ button {
     rgba(6, 10, 20, .90) 100%) !important;
 }
 
-/* Cryotherapy: blue-tinted translucent containers */
 .zivel-service-page[data-zivel-service="cryotherapy"] :where(section, main, article, div)[class*="bg-"],
 .zivel-service-page[data-zivel-service="cryotherapy"] :where(section, main, article, div)[class*="bg-["]{
   background-color: rgba(10, 18, 40, .52) !important;
@@ -335,7 +702,6 @@ button {
   background-color: rgba(10, 18, 40, .55) !important;
 }
 
-/* Cryotherapy: blue-tinted cards */
 .zivel-service-page[data-zivel-service="cryotherapy"] :where(section, article, div)[class*="rounded"][class*="p-"],
 .zivel-service-page[data-zivel-service="cryotherapy"] :where(section, article, div)[class*="rounded"][class*="px-"][class*="py-"]{
   background: rgba(14, 24, 52, .45) !important;
@@ -343,7 +709,6 @@ button {
   box-shadow: 0 18px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(45, 100, 189, .08);
 }
 
-/* Symmetric glow BEHIND content (strong enough to notice, still premium) */
 .zivel-service-page::before{
   content:"";
   position:absolute;
@@ -371,28 +736,23 @@ button {
 
 .zivel-service-page > *{ position:relative; z-index:1; }
 
-/* Type depth */
 .zivel-service-page h1,
 .zivel-service-page h2,
 .zivel-service-page h3{
   text-shadow: 0 10px 26px rgba(0,0,0,.45);
 }
 
-/* Let glow show THROUGH common container backgrounds (but not buttons/links) */
 .zivel-service-page :where(section, main, article, div)[class*="bg-"],
 .zivel-service-page :where(section, main, article, div)[class*="bg-["]{
-  /* Make opaque sections translucent so the symmetric glow reads site-wide */
   background-color: rgba(0,0,0,.46) !important;
   backdrop-filter: blur(10px) saturate(1.08);
 }
 
-/* shadcn tokens */
 .zivel-service-page :where(section, main, article, div)
   :is([class*="bg-background"], [class*="bg-card"], [class*="bg-muted"], [class*="bg-secondary"]){
   background-color: rgba(0,0,0,.50) !important;
 }
 
-/* UI pop for card-like blocks (containers only) */
 .zivel-service-page :where(section, article, div)[class*="rounded"][class*="p-"],
 .zivel-service-page :where(section, article, div)[class*="rounded"][class*="px-"][class*="py-"]{
   background: var(--zivel-card-bg) !important;
@@ -406,7 +766,6 @@ button {
   border-color: var(--zivel-card-border-hover) !important;
 }
 
-/* Service-color buttons: uses --zivel-service-r/g/b set per page */
 .zivel-service-page{
   --zivel-btn: rgb(var(--zivel-service-r) var(--zivel-service-g) var(--zivel-service-b));
   --zivel-btn-hover: rgb(
@@ -417,7 +776,6 @@ button {
   --zivel-btn-text: #ffffff;
 }
 
-/* Target common primary button patterns */
 .zivel-service-page :where(a,button)[class*="bg-teal"],
 .zivel-service-page :where(a,button)[class*="bg-emerald"],
 .zivel-service-page :where(a,button)[class*="bg-cyan"],
@@ -436,7 +794,6 @@ button {
   background-color: var(--zivel-btn-hover) !important;
 }
 
-/* Premium focus ring uses service color */
 .zivel-service-page a:focus-visible,
 .zivel-service-page button:focus-visible{
   outline: 2px solid rgba(var(--zivel-service-r), var(--zivel-service-g), var(--zivel-service-b), .55);
@@ -444,7 +801,6 @@ button {
   border-radius: 12px;
 }
 
-/* Catch booking CTAs by href — color matches service */
 .zivel-service-page :where(a[href*="book" i], a[href*="booking" i], a[href*="schedule" i]){
   background-color: var(--zivel-btn) !important;
   color: #fff !important;
@@ -453,6 +809,4 @@ button {
 .zivel-service-page :where(a[href*="book" i], a[href*="booking" i], a[href*="schedule" i]):hover{
   background-color: var(--zivel-btn-hover) !important;
 }
-
 /* ZIVEL_SERVICE_THEME_END */
-

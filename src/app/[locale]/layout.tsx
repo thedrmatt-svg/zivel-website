@@ -2,10 +2,24 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Playfair_Display, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -84,8 +98,8 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale}>
-      <body className="min-h-screen bg-black text-white overflow-x-hidden">
+    <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
+      <body className="min-h-screen bg-black text-white overflow-x-hidden font-[var(--font-inter)]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
@@ -96,7 +110,7 @@ export default async function LocaleLayout({
         />
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <div className="mx-auto w-full max-w-6xl px-4 py-10">{children}</div>
+          <div className="mx-auto w-full max-w-6xl px-4 pt-20">{children}</div>
           <Footer />
         </NextIntlClientProvider>
       </body>
