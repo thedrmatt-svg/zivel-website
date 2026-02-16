@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { locations } from "@/lib/data/locations";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Locations | Zivel",
@@ -37,61 +38,84 @@ export default function LocationsIndexPage() {
     .sort((a, b) => a.stateName.localeCompare(b.stateName));
 
   return (
-    <div className="space-y-0">
-      <section className="zv-bleed zv-hero-bg zv-noise py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-4 space-y-4">
-          <p className="text-sm font-medium tracking-widest uppercase text-[var(--zivel-gold)]">Studio Network</p>
-          <h1>Locations</h1>
-          <p className="text-white/70 max-w-2xl">
-            Browse by state to find your nearest Zivel studio. Each location page includes
-            services offered, booking, local partners, and FAQs.
-          </p>
+    <div className="space-y-0 -mt-20">
+      {/* ========== HERO (DARK) ========== */}
+      <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0 zv-glow-gold opacity-40" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline zv-hero-animate-1">Studio Network</p>
+            <h1 className="mt-4 font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">Locations</h1>
+            <p className="mt-6 max-w-2xl text-lg text-white/70 leading-relaxed zv-hero-animate-3">
+              Browse by state to find your nearest Zivel studio. Each location page includes
+              services offered, booking, local partners, and FAQs.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-gold" />
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-      <section className="zv-bleed zv-section-gradient zv-noise py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="flex items-end justify-between gap-6 mb-8">
-            <h2>Browse by State</h2>
-            <p className="text-sm text-white/60">
-              {locations.length} location{locations.length === 1 ? "" : "s"} in the registry
-            </p>
-          </div>
+      {/* ========== BROWSE BY STATE (LIGHT) ========== */}
+      <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="flex items-end justify-between gap-6 mb-14">
+              <div>
+                <p className="zv-tagline">Explore</p>
+                <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">Browse by State</h2>
+              </div>
+              <p className="text-sm text-black/50 hidden md:block">
+                {locations.length} location{locations.length === 1 ? "" : "s"} nationwide
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {states.map((s) => (
-              <Link
-                key={s.stateSlug}
-                href={`/locations/${s.stateSlug}`}
-                className="rounded-2xl zv-card-glass p-6 transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <div className="text-lg font-semibold text-white">{s.stateName}</div>
-                <div className="mt-2 text-sm text-white/70">
-                  {s.count} studio{s.count === 1 ? "" : "s"}
-                </div>
-                <div className="mt-4 text-sm font-medium text-[var(--zivel-gold)]">
-                  View locations →
-                </div>
-              </Link>
+            {states.map((s, idx) => (
+              <ScrollReveal key={s.stateSlug} variant="fade-up" delay={idx * 80}>
+                <Link
+                  href={`/locations/${s.stateSlug}`}
+                  className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <div className="font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{s.stateName}</div>
+                  <p className="mt-2 text-sm text-black/55">
+                    {s.count} studio{s.count === 1 ? "" : "s"}
+                  </p>
+                  <div className="mt-5 text-sm font-medium text-[var(--zivel-gold-dark)]">
+                    View locations →
+                  </div>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="zv-bleed zv-divider-white" />
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-      <section className="zv-bleed zv-section-elevated py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="rounded-2xl zv-cta-bg p-8">
-            <h2 className="text-xl">Modern wellness, built for real life</h2>
-            <p className="mt-3 text-sm text-white/70">
-              Zivel studios combine science-backed services and personalized guidance in a
-              premium, calming environment. Visit a location page to see the services offered,
-              what to expect, and how to book.
-            </p>
-          </div>
+      {/* ========== CTA (DARK) ========== */}
+      <section className="zv-bleed relative overflow-hidden py-24 md:py-32">
+        <div className="absolute inset-0 zv-glow-gold opacity-15" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="scale">
+            <div className="text-center max-w-3xl mx-auto space-y-6">
+              <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight">Modern Wellness, Built for Real Life</h2>
+              <p className="text-white/65 text-lg leading-relaxed">
+                Zivel studios combine science-backed services and personalized guidance in a
+                premium, calming environment. Visit a location page to see the services offered,
+                what to expect, and how to book.
+              </p>
+              <div className="mt-8 flex flex-wrap justify-center gap-4">
+                <Link href="/services" className="zv-btn-luxury zv-btn-gold">
+                  View Services
+                </Link>
+                <Link href="/pathways" className="zv-btn-luxury zv-btn-outline">
+                  Explore Pathways
+                </Link>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

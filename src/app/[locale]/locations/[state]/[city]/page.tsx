@@ -10,6 +10,7 @@ import JobsSection from "@/components/location/JobsSection";
 import PartnersSection from "@/components/location/PartnersSection";
 import PricingSection from "@/components/location/PricingSection";
 import StoreSection from "@/components/location/StoreSection";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 
 export function generateStaticParams() {
@@ -118,6 +119,8 @@ export default async function LocationPage({
     })),
   } : null;
 
+  let sectionParity = 0;
+
   return (
     <>
       <script
@@ -134,10 +137,10 @@ export default async function LocationPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="space-y-0">
+      <div className="space-y-0 -mt-20">
 
-      {/* SECTION 1 — HERO */}
-      <section className="relative overflow-hidden zv-hero-bg zv-noise">
+      {/* ========== HERO (DARK) ========== */}
+      <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[70vh] flex items-end overflow-hidden">
         {location.hero?.image && (
           <div className="absolute inset-0">
             <Image
@@ -149,231 +152,485 @@ export default async function LocationPage({
               quality={80}
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
           </div>
         )}
+        <div className="absolute inset-0 zv-glow-gold opacity-20" />
 
-        <div className="relative section py-24 zv-glow-gold">
-          <div className="max-w-3xl space-y-6">
-            <h1>{location.hero?.headline ?? location.name}</h1>
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
+          <ScrollReveal variant="fade-up">
+            <nav className="text-sm text-white/50 mb-6 zv-hero-animate-1">
+              <Link href="/locations" className="hover:text-white transition-colors">Locations</Link>
+              <span className="mx-2">/</span>
+              <Link href={`/locations/${location.stateSlug}`} className="hover:text-white transition-colors">{location.state}</Link>
+              <span className="mx-2">/</span>
+              <span className="text-white/70">{cityName}</span>
+            </nav>
+
+            <h1 className="font-serif text-5xl md:text-7xl font-light tracking-tight max-w-4xl zv-hero-animate-2">
+              {location.hero?.headline ?? location.name}
+            </h1>
             {location.hero?.subheadline && (
-              <p className="text-lg text-white/85">{location.hero.subheadline}</p>
+              <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-3xl zv-hero-animate-3">{location.hero.subheadline}</p>
             )}
 
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a
-                href="#book"
-                className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black"
-              >
+            <div className="flex flex-wrap gap-4 pt-6 zv-hero-animate-4">
+              <a href="#book" className="zv-btn-luxury zv-btn-gold">
                 Book Now
               </a>
-              <Link
-                href="/services"
-                className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm text-white"
-              >
+              <Link href="/services" className="zv-btn-luxury zv-btn-outline">
                 View Services
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <div className="zv-divider-gold" />
-
-      {/* SECTION 2 — ABOUT THIS LOCATION (optional) */}
+      {/* ========== ABOUT THIS LOCATION (LIGHT) ========== */}
       {location.about && (
         <>
-        <section className="section py-20 grid gap-10 md:grid-cols-2 md:items-center zv-section-elevated">
-          <div className="space-y-4">
-            <h2>{location.about.headline}</h2>
-            {location.about.body.map((p, i) => (
-              <p key={i} className="text-white/70">{p}</p>
-            ))}
-          </div>
-          <Image
-            src={location.about.image}
-            alt={`${location.name} interior`}
-            width={600}
-            height={450}
-            className="rounded-2xl object-cover"
-          />
-        </section>
-        <div className="zv-divider-white" />
+          <div className="zv-bleed zv-divider-dark-to-light" />
+          <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+            <div className="mx-auto max-w-6xl px-6">
+              <div className="grid gap-12 md:grid-cols-2 md:items-center">
+                <ScrollReveal variant="fade-left">
+                  <div className="space-y-5">
+                    <p className="zv-tagline">About</p>
+                    <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight">{location.about.headline}</h2>
+                    <div className="zv-gold-line-left" />
+                    {location.about.body.map((p, i) => (
+                      <p key={i} className="text-black/60 text-lg leading-relaxed">{p}</p>
+                    ))}
+                  </div>
+                </ScrollReveal>
+                <ScrollReveal variant="fade-right">
+                  <Image
+                    src={location.about.image}
+                    alt={`${location.name} interior`}
+                    width={600}
+                    height={450}
+                    className="rounded-2xl object-cover shadow-lg"
+                  />
+                </ScrollReveal>
+              </div>
+            </div>
+          </section>
+          {(() => { sectionParity = 1; return null; })()}
         </>
       )}
 
-      {/* SECTION — CONTACT INFO (for simple locations) */}
+      {/* ========== CONTACT INFO (alternating) ========== */}
       {location.contact?.address && (
         <>
-        <section className="section py-20 zv-section-recessed">
-          <h2 className="mb-6">Location Details</h2>
-          <div className="rounded-2xl zv-card-glass p-6 space-y-3">
-            <p className="text-white/85">{location.contact.address}</p>
-            {location.contact.phone && (
-              <p>
-                <a href={`tel:${location.contact.phone}`} className="text-brand underline">
-                  {location.contact.phone}
-                </a>
-              </p>
-            )}
-            {location.contact.parking && (
-              <p className="text-white/70 text-sm">{location.contact.parking}</p>
-            )}
-            {location.contact.notes && (
-              <p className="text-white/70 text-sm">{location.contact.notes}</p>
-            )}
-          </div>
-        </section>
-        <div className="zv-divider-gold" />
+          <div className="zv-bleed zv-divider-dark-to-light" />
+          {sectionParity % 2 === 0 ? (
+            <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+              <div className="mx-auto max-w-6xl px-6">
+                <ScrollReveal variant="fade-up">
+                  <p className="zv-tagline">Visit Us</p>
+                  <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Location Details</h2>
+                  <div className="zv-luxury-card rounded-2xl p-8 space-y-3">
+                    <p className="text-black/80 text-lg">{location.contact.address}</p>
+                    {location.contact.phone && (
+                      <p><a href={`tel:${location.contact.phone}`} className="text-[var(--zivel-gold-dark)] underline">{location.contact.phone}</a></p>
+                    )}
+                    {location.contact.parking && <p className="text-black/55 text-sm">{location.contact.parking}</p>}
+                    {location.contact.notes && <p className="text-black/55 text-sm">{location.contact.notes}</p>}
+                  </div>
+                </ScrollReveal>
+              </div>
+            </section>
+          ) : (
+            <section className="zv-bleed zv-immersive-section zv-section-elevated">
+              <div className="mx-auto max-w-6xl px-6">
+                <ScrollReveal variant="fade-up">
+                  <p className="zv-tagline">Visit Us</p>
+                  <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Location Details</h2>
+                  <div className="zv-luxury-card rounded-2xl p-8 space-y-3">
+                    <p className="text-white/85 text-lg">{location.contact.address}</p>
+                    {location.contact.phone && (
+                      <p><a href={`tel:${location.contact.phone}`} className="text-[var(--zivel-gold)] underline">{location.contact.phone}</a></p>
+                    )}
+                    {location.contact.parking && <p className="text-white/60 text-sm">{location.contact.parking}</p>}
+                    {location.contact.notes && <p className="text-white/60 text-sm">{location.contact.notes}</p>}
+                  </div>
+                </ScrollReveal>
+              </div>
+            </section>
+          )}
+          {(() => { sectionParity++; return null; })()}
         </>
       )}
 
-      {/* SECTION — GOOGLE MAP */}
-      <section id="map" className="section py-20">
-        <h2 className="mb-6">Find Us</h2>
-        <GoogleMapEmbed
-          title={`Map for ${location.name}`}
-          embedUrl={location.google?.mapEmbedUrl}
-          placeId={location.google?.placeId}
-          query={location.contact?.address || location.name}
-        />
-      </section>
+      {/* ========== GOOGLE MAP (alternating) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      {sectionParity % 2 === 0 ? (
+        <section id="map" className="zv-bleed zv-section-light zv-light zv-immersive-section">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Directions</p>
+              <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Find Us</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <GoogleMapEmbed
+                title={`Map for ${location.name}`}
+                embedUrl={location.google?.mapEmbedUrl}
+                placeId={location.google?.placeId}
+                query={location.contact?.address || location.name}
+              />
+            </ScrollReveal>
+          </div>
+        </section>
+      ) : (
+        <section id="map" className="zv-bleed zv-immersive-section zv-section-recessed">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Directions</p>
+              <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Find Us</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <GoogleMapEmbed
+                title={`Map for ${location.name}`}
+                embedUrl={location.google?.mapEmbedUrl}
+                placeId={location.google?.placeId}
+                query={location.contact?.address || location.name}
+              />
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+      {(() => { sectionParity++; return null; })()}
 
-      <div className="zv-divider-white" />
+      {/* ========== SERVICES AVAILABLE (alternating) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      {sectionParity % 2 === 0 ? (
+        <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">What We Offer</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Services Available</h2>
+            </ScrollReveal>
+            <div className="grid gap-6 md:grid-cols-3">
+              {location.services.map((s, idx) => (
+                <ScrollReveal key={s.slug} variant="fade-up" delay={idx * 80}>
+                  <Link
+                    href={`/services/${s.slug}`}
+                    className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <div className="font-serif text-lg text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{s.name}</div>
+                    {s.description && <p className="mt-3 text-sm text-black/55 leading-relaxed">{s.description}</p>}
+                  </Link>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="zv-bleed zv-immersive-section zv-section-elevated">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">What We Offer</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Services Available</h2>
+            </ScrollReveal>
+            <div className="grid gap-6 md:grid-cols-3">
+              {location.services.map((s, idx) => (
+                <ScrollReveal key={s.slug} variant="fade-up" delay={idx * 80}>
+                  <Link
+                    href={`/services/${s.slug}`}
+                    className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <div className="font-serif text-lg text-white group-hover:text-[var(--zivel-gold)] transition-colors">{s.name}</div>
+                    {s.description && <p className="mt-3 text-sm text-white/60 leading-relaxed">{s.description}</p>}
+                  </Link>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      {(() => { sectionParity++; return null; })()}
 
-      {/* SECTION 3 — SERVICES AVAILABLE */}
-      <section className="section py-20 zv-section-warm zv-noise">
-        <h2 className="mb-10">Services Available</h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          {location.services.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/services/${s.slug}`}
-              className="rounded-2xl zv-card-glass p-6"
-            >
-              <h3 className="text-lg">{s.name}</h3>
-              {s.description && (
-                <p className="mt-2 text-sm text-white/70">{s.description}</p>
+      {/* ========== PRICING (alternating) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      {sectionParity % 2 === 0 ? (
+        <section id="pricing" className="zv-bleed zv-section-light zv-light zv-immersive-section">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Investment</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Pricing</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <PricingSection
+                tiers={location.pricing?.membershipTiers}
+                standardPrices={location.pricing?.standardPrices}
+              />
+            </ScrollReveal>
+          </div>
+        </section>
+      ) : (
+        <section id="pricing" className="zv-bleed zv-immersive-section zv-section-gradient">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Investment</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Pricing</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <PricingSection
+                tiers={location.pricing?.membershipTiers}
+                standardPrices={location.pricing?.standardPrices}
+              />
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+      {(() => { sectionParity++; return null; })()}
+
+      {/* ========== REVIEWS (alternating) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      {sectionParity % 2 === 0 ? (
+        <section id="reviews" className="zv-bleed zv-section-light zv-light zv-immersive-section">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Guest Feedback</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Guests Are Saying</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <GoogleReviews
+                placeId={location.google?.placeId}
+                locationName={location.name}
+              />
+            </ScrollReveal>
+          </div>
+        </section>
+      ) : (
+        <section id="reviews" className="zv-bleed zv-immersive-section zv-section-recessed">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Guest Feedback</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Guests Are Saying</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <GoogleReviews
+                placeId={location.google?.placeId}
+                locationName={location.name}
+              />
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+      {(() => { sectionParity++; return null; })()}
+
+      {/* ========== TEAM (alternating, optional) ========== */}
+      {location.owners && location.owners.length > 0 && (
+        <>
+          <div className="zv-bleed zv-divider-dark-to-light" />
+          {sectionParity % 2 === 0 ? (
+            <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+              <div className="mx-auto max-w-6xl px-6">
+                <ScrollReveal variant="fade-up">
+                  <p className="zv-tagline">Our People</p>
+                  <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Meet the Team</h2>
+                </ScrollReveal>
+                <div className="grid gap-8 md:grid-cols-2">
+                  {location.owners.map((o, idx) => (
+                    <ScrollReveal key={o.name} variant="fade-up" delay={idx * 100}>
+                      <div className="zv-luxury-card rounded-2xl p-8">
+                        <div className="font-serif text-xl text-black/85">{o.name}</div>
+                        {o.title && <p className="text-sm text-[var(--zivel-gold-dark)] mt-1">{o.title}</p>}
+                        {o.bio && <p className="mt-3 text-sm text-black/55 leading-relaxed">{o.bio}</p>}
+                      </div>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ) : (
+            <section className="zv-bleed zv-immersive-section zv-section-elevated">
+              <div className="mx-auto max-w-6xl px-6">
+                <ScrollReveal variant="fade-up">
+                  <p className="zv-tagline">Our People</p>
+                  <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Meet the Team</h2>
+                </ScrollReveal>
+                <div className="grid gap-8 md:grid-cols-2">
+                  {location.owners.map((o, idx) => (
+                    <ScrollReveal key={o.name} variant="fade-up" delay={idx * 100}>
+                      <div className="zv-luxury-card rounded-2xl p-8">
+                        <div className="font-serif text-xl text-white">{o.name}</div>
+                        {o.title && <p className="text-sm text-[var(--zivel-gold)] mt-1">{o.title}</p>}
+                        {o.bio && <p className="mt-3 text-sm text-white/60 leading-relaxed">{o.bio}</p>}
+                      </div>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+          {(() => { sectionParity++; return null; })()}
+        </>
+      )}
+
+      {/* ========== PARTNERS (alternating) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      {sectionParity % 2 === 0 ? (
+        <section id="partners" className="zv-bleed zv-section-light zv-light zv-immersive-section">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Community</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Local Partners</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <PartnersSection partners={location.partners} />
+            </ScrollReveal>
+          </div>
+        </section>
+      ) : (
+        <section id="partners" className="zv-bleed zv-immersive-section zv-section-cool">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Community</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Local Partners</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <PartnersSection partners={location.partners} />
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+      {(() => { sectionParity++; return null; })()}
+
+      {/* ========== JOBS (alternating) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      {sectionParity % 2 === 0 ? (
+        <section id="jobs" className="zv-bleed zv-section-light zv-light zv-immersive-section">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Careers</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Join Our Team</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <JobsSection jobs={location.jobs} />
+            </ScrollReveal>
+          </div>
+        </section>
+      ) : (
+        <section id="jobs" className="zv-bleed zv-immersive-section zv-section-recessed">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Careers</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Join Our Team</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <JobsSection jobs={location.jobs} />
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+      {(() => { sectionParity++; return null; })()}
+
+      {/* ========== STORE (alternating) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      {sectionParity % 2 === 0 ? (
+        <section id="store" className="zv-bleed zv-section-light zv-light zv-immersive-section">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Retail</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Shop</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <StoreSection items={location.store} />
+            </ScrollReveal>
+          </div>
+        </section>
+      ) : (
+        <section id="store" className="zv-bleed zv-immersive-section zv-section-elevated">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Retail</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Shop</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={100}>
+              <StoreSection items={location.store} />
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+      {(() => { sectionParity++; return null; })()}
+
+      {/* ========== BOOKING (LIGHT — always) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      <section id="book" className="zv-bleed zv-section-light zv-light zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline">Reserve</p>
+            <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Book Your Session</h2>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={100}>
+            <div className="zv-luxury-card rounded-2xl p-10">
+              {location.booking?.locationId ? (
+                <BookingWidget locationId={location.booking.locationId} />
+              ) : location.contact?.phone ? (
+                <p className="text-black/60 text-lg">
+                  Booking coming soon. Call{" "}
+                  <a href={`tel:${location.contact.phone}`} className="text-[var(--zivel-gold-dark)] underline">
+                    {location.contact.phone}
+                  </a>{" "}
+                  to schedule.
+                </p>
+              ) : (
+                <p className="text-black/60 text-lg">Booking coming soon.</p>
               )}
-            </Link>
-          ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <div className="zv-divider-gold" />
-
-      {/* SECTION — LOCAL PRICING */}
-      <section id="pricing" className="section py-20 zv-section-elevated">
-        <h2 className="mb-10">Pricing</h2>
-        <PricingSection
-          tiers={location.pricing?.membershipTiers}
-          standardPrices={location.pricing?.standardPrices}
-        />
-      </section>
-
-      <div className="zv-divider-white" />
-
-      {/* SECTION — GOOGLE REVIEWS */}
-      <section id="reviews" className="section py-20 zv-section-recessed">
-        <h2 className="mb-10">What Guests Are Saying</h2>
-        <GoogleReviews
-          placeId={location.google?.placeId}
-          locationName={location.name}
-        />
-      </section>
-
-      <div className="zv-divider-gold" />
-
-      {/* SECTION 4 — LOCAL OWNERS (optional) */}
-      {location.owners && location.owners.length > 0 && (
-        <>
-        <section className="section py-20 zv-section-elevated">
-          <h2 className="mb-10">Meet the Team</h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            {location.owners.map((o) => (
-              <div key={o.name} className="rounded-2xl zv-card-glass p-6">
-                <h3 className="text-lg">{o.name}</h3>
-                {o.title && <p className="text-sm text-brand">{o.title}</p>}
-                {o.bio && <p className="mt-2 text-sm text-white/70">{o.bio}</p>}
-              </div>
-            ))}
-          </div>
-        </section>
-        <div className="zv-divider-white" />
-        </>
-      )}
-
-      {/* SECTION — LOCAL PARTNERS */}
-      <section id="partners" className="section py-20 zv-section-cool">
-        <h2 className="mb-10">Local Partners</h2>
-        <PartnersSection partners={location.partners} />
-      </section>
-
-      <div className="zv-divider-white" />
-
-      {/* SECTION — LOCAL JOB OFFERS */}
-      <section id="jobs" className="section py-20 zv-section-recessed">
-        <h2 className="mb-10">Join Our Team</h2>
-        <JobsSection jobs={location.jobs} />
-      </section>
-
-      <div className="zv-divider-gold" />
-
-      {/* SECTION — STORE */}
-      <section id="store" className="section py-20 zv-section-elevated">
-        <h2 className="mb-10">Shop</h2>
-        <StoreSection items={location.store} />
-      </section>
-
-      <div className="zv-divider-gold" />
-
-      {/* SECTION 6 — BOOKING */}
-      <section id="book" className="section py-20 rounded-2xl zv-card-glass p-10 zv-glow-gold">
-        <h2 className="mb-4">Book Your Session</h2>
-        {location.booking?.locationId ? (
-          <BookingWidget locationId={location.booking.locationId} />
-        ) : location.contact?.phone ? (
-          <p className="text-white/70">
-            Booking coming soon. Call{" "}
-            <a href={`tel:${location.contact.phone}`} className="text-brand underline">
-              {location.contact.phone}
-            </a>{" "}
-            to schedule.
-          </p>
-        ) : (
-          <p className="text-white/70">Booking coming soon.</p>
-        )}
-      </section>
-
-      <div className="zv-divider-white" />
-
-      {/* SECTION 7 — FAQ (optional) */}
+      {/* ========== FAQ (DARK, optional) ========== */}
       {faqItems.length > 0 && (
         <>
-        <section className="section py-20 zv-section-recessed">
-          <h2 className="mb-10">Frequently Asked Questions</h2>
-          {faqItems.map((f, i) => (
-            <details key={i} className="rounded-2xl zv-card-glass p-6 mb-4">
-              <summary className="font-semibold cursor-pointer">{f.q}</summary>
-              <p className="mt-3 text-sm text-white/70">{f.a}</p>
-            </details>
-          ))}
-        </section>
-        <div className="zv-divider-gold" />
+          <div className="zv-bleed zv-divider-dark-to-light" />
+          <section className="zv-bleed zv-immersive-section zv-section-gradient">
+            <div className="mx-auto max-w-6xl px-6">
+              <ScrollReveal variant="fade-up">
+                <p className="zv-tagline">Common Questions</p>
+                <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Frequently Asked Questions</h2>
+              </ScrollReveal>
+              <div className="space-y-4">
+                {faqItems.map((f, i) => (
+                  <ScrollReveal key={i} variant="fade-up" delay={i * 60}>
+                    <details className="zv-luxury-card rounded-2xl p-8 group">
+                      <summary className="font-serif text-lg cursor-pointer text-white group-open:text-[var(--zivel-gold)] transition-colors">
+                        {f.q}
+                      </summary>
+                      <p className="mt-4 text-white/65 leading-relaxed">{f.a}</p>
+                    </details>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
+          </section>
         </>
       )}
 
-      {/* SECTION 8 — FINAL CTA (optional) */}
+      {/* ========== FINAL CTA (DARK) ========== */}
       {location.finalCTA && (
-        <section className="section py-20 rounded-2xl zv-cta-bg p-10">
-          <h2>{location.finalCTA.headline}</h2>
-          <a
-            href="#book"
-            className="inline-block mt-6 rounded-xl bg-[var(--zivel-gold)] px-6 py-3 font-semibold text-black"
-          >
-            Book Your Visit
-          </a>
-        </section>
+        <>
+          <div className="zv-bleed zv-divider-gold" />
+          <section className="zv-bleed relative overflow-hidden py-24 md:py-32">
+            <div className="absolute inset-0 zv-glow-gold opacity-20" />
+            <div className="relative z-10 mx-auto max-w-6xl px-6">
+              <ScrollReveal variant="scale">
+                <div className="text-center max-w-3xl mx-auto space-y-6">
+                  <h2 className="font-serif text-5xl md:text-6xl font-light tracking-tight">{location.finalCTA.headline}</h2>
+                  <div className="mt-8">
+                    <a href="#book" className="zv-btn-luxury zv-btn-gold">
+                      Book Your Visit
+                    </a>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </section>
+        </>
       )}
 
     </div>

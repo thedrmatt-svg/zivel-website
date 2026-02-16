@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { locations } from "@/lib/data/locations";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 function titleCase(slug: string) {
   return slug
@@ -52,65 +53,93 @@ export default async function StateLocationsPage({ params }: { params: Promise<{
   const stateName = titleCase(state);
 
   return (
-    <div className="space-y-16">
-      <section className="section py-14">
-        <div className="max-w-3xl space-y-4">
-          <p className="text-sm text-white/60">
-            <Link href="/locations" className="hover:text-[var(--zivel-gold)]">
-              Locations
-            </Link>{" "}
-            <span className="text-white/40">/</span> {stateName}
-          </p>
-
-          <h1>{stateName} Locations</h1>
-
-          <p className="text-white/70">
-            Browse cities/neighborhoods in {stateName}. Each location page includes services
-            available, booking, local partners, and FAQs.
-          </p>
+    <div className="space-y-0 -mt-20">
+      {/* ========== HERO (DARK) ========== */}
+      <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0 zv-glow-gold opacity-30" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
+          <ScrollReveal variant="fade-up">
+            <nav className="text-sm text-white/50 mb-6 zv-hero-animate-1">
+              <Link href="/locations" className="hover:text-white transition-colors">Locations</Link>
+              <span className="mx-2">/</span>
+              <span className="text-white/70">{stateName}</span>
+            </nav>
+            <h1 className="font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">{stateName}</h1>
+            <p className="mt-6 max-w-2xl text-lg text-white/70 leading-relaxed zv-hero-animate-3">
+              Browse cities and neighborhoods in {stateName}. Each location page includes services
+              available, booking, local partners, and FAQs.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
-      <section className="section">
-        <div className="flex items-end justify-between gap-6">
-          <h2>Choose a City</h2>
-          <p className="text-sm text-white/60">
-            {stateLocations.length} location{stateLocations.length === 1 ? "" : "s"}
-          </p>
-        </div>
+      <div className="zv-bleed zv-divider-dark-to-light" />
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {stateLocations.map((loc) => {
-            const citySlug = loc.citySlug;
-            const cityName = loc.city ?? (citySlug ? titleCase(citySlug) : "Location");
+      {/* ========== CHOOSE A CITY (LIGHT) ========== */}
+      <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="flex items-end justify-between gap-6 mb-14">
+              <div>
+                <p className="zv-tagline">Studios</p>
+                <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">Choose a City</h2>
+              </div>
+              <p className="text-sm text-black/50 hidden md:block">
+                {stateLocations.length} location{stateLocations.length === 1 ? "" : "s"}
+              </p>
+            </div>
+          </ScrollReveal>
 
-            if (!citySlug) return null;
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {stateLocations.map((loc, idx) => {
+              const citySlug = loc.citySlug;
+              const cityName = loc.city ?? (citySlug ? titleCase(citySlug) : "Location");
 
-            return (
-              <Link
-                key={`${loc.stateSlug}-${citySlug}`}
-                href={`/locations/${state}/${citySlug}`}
-                className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
-              >
-                <div className="text-lg font-semibold text-white">{cityName}</div>
-                <div className="mt-2 text-sm text-white/60">View location details →</div>
-                <div className="mt-4 text-sm font-medium text-white/70 hover:text-[var(--zivel-gold)]">
-                  View this location →
-                </div>
-              </Link>
-            );
-          })}
+              if (!citySlug) return null;
+
+              return (
+                <ScrollReveal key={`${loc.stateSlug}-${citySlug}`} variant="fade-up" delay={idx * 80}>
+                  <Link
+                    href={`/locations/${state}/${citySlug}`}
+                    className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <div className="font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{cityName}</div>
+                    <p className="mt-2 text-sm text-black/55">View location details</p>
+                    <div className="mt-5 text-sm font-medium text-[var(--zivel-gold-dark)]">
+                      View this location →
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      <section className="section pb-16">
-        <div className="rounded-2xl border-subtle bg-card p-8">
-          <h2 className="text-xl">Wellness services in {stateName}</h2>
-          <p className="mt-3 text-sm text-white/70">
-            Explore Zivel locations in {stateName} for modern recovery and performance
-            services. Each studio page provides local information, available services, and a
-            direct booking experience.
-          </p>
+      <div className="zv-bleed zv-divider-dark-to-light" />
+
+      {/* ========== CTA (DARK) ========== */}
+      <section className="zv-bleed relative overflow-hidden py-24 md:py-32">
+        <div className="absolute inset-0 zv-glow-gold opacity-15" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="scale">
+            <div className="text-center max-w-3xl mx-auto space-y-6">
+              <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight">Wellness Services in {stateName}</h2>
+              <p className="text-white/65 text-lg leading-relaxed">
+                Explore Zivel locations in {stateName} for modern recovery and performance
+                services. Each studio page provides local information, available services, and a
+                direct booking experience.
+              </p>
+              <div className="mt-8 flex flex-wrap justify-center gap-4">
+                <Link href="/services" className="zv-btn-luxury zv-btn-gold">
+                  View Services
+                </Link>
+                <Link href="/locations" className="zv-btn-luxury zv-btn-outline">
+                  All Locations
+                </Link>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>
