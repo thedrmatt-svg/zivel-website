@@ -498,8 +498,9 @@ noscript + .zv-reveal,
   width: max-content;
 }
 
-/* Luxury hover card with gold border glow */
+/* Luxury hover card with accent border glow — uses --luxury-accent (defaults to gold) */
 .zv-luxury-card {
+  --_accent: var(--luxury-accent, rgba(212, 175, 55, 1));
   position: relative;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -514,11 +515,11 @@ noscript + .zv-reveal,
   inset: -1px;
   border-radius: inherit;
   background: linear-gradient(135deg,
-    rgba(212, 175, 55, 0) 0%,
-    rgba(212, 175, 55, 0) 40%,
-    rgba(212, 175, 55, 0.15) 50%,
-    rgba(212, 175, 55, 0) 60%,
-    rgba(212, 175, 55, 0) 100%
+    transparent 0%,
+    transparent 40%,
+    color-mix(in srgb, var(--_accent) 15%, transparent) 50%,
+    transparent 60%,
+    transparent 100%
   );
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -527,9 +528,9 @@ noscript + .zv-reveal,
 
 .zv-luxury-card:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(212, 175, 55, 0.2);
+  border-color: color-mix(in srgb, var(--_accent) 25%, transparent);
   transform: translateY(-4px);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 175, 55, 0.05);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 40px color-mix(in srgb, var(--_accent) 8%, transparent);
 }
 
 .zv-luxury-card:hover::before {

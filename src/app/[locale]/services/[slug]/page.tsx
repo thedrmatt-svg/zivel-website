@@ -1,9 +1,11 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { getServiceBySlug, services } from "@/lib/data/services";
 import { pathways } from "@/lib/data/pathways";
 import { getLinksForServiceSlug } from "@/lib/data/serviceLinks";
@@ -104,7 +106,8 @@ export default async function ServicePage({ params }: PageProps) {
     (p.services?.orderedServiceSlugs ?? []).includes(service.slug)
   );
 
-  const accentHex = service.accent?.hex ?? "#C9A24D"; // fallback gold
+  const accentHex = service.accent?.hex ?? "#C9A24D";
+  const accentRGB = `rgb(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]})`;
 
   const researchBaseHref =
     service.benefits.viewResearchCTA?.href ?? "/research";
@@ -113,537 +116,693 @@ export default async function ServicePage({ params }: PageProps) {
     "--zivel-service-r": __zivelRGB[0],
     "--zivel-service-g": __zivelRGB[1],
     "--zivel-service-b": __zivelRGB[2],
-  } as React.CSSProperties;
+  } as CSSProperties;
 
   return (
-    <div style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-0 zivel-service-page">
+    <div style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-0 zivel-service-page -mt-20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      {/* SECTION 1 — HERO */}
-      <section className="relative overflow-hidden">
-        {/* Background media */}
-        {service.hero.media?.type === "video" ? (
-          <div className="absolute inset-0">
-            <video
-              src={service.hero.media.src}
-              poster={service.hero.media.poster}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/10" />
-          </div>
-        ) : service.hero.media?.type === "image" ? (
-          <div className="absolute inset-0">
-            <Image
-              src={service.hero.media.src}
-              alt={service.hero.media.alt ?? service.name}
-              fill
-              priority
-              sizes="100vw"
-              quality={80}
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/10" />
-          </div>
-        ) : null}
 
-        <div className="relative section py-20">
-          <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl opacity-60 md:opacity-40" style={{ background: accentHex }} />
-          <div className="max-w-3xl space-y-6">
-            <h1>{service.name}</h1>
-            <p className="text-lg text-white/85">{service.hero.subheadline}</p>
-
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a
-                href={service.hero.primaryCTA.href}
-                style={{
-                  backgroundColor: accentHex,
-                  boxShadow: `0 0 32px ${accentHex}66`,
-                }}
-                className="rounded-xl px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
-              >
-                {service.hero.primaryCTA.label}
-              </a>
-              <Link
-                href={service.hero.secondaryCTA.href}
-                className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
-              >
-                {service.hero.secondaryCTA.label}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="zv-divider-gold" />
-
-      {/* SECTION 2 — INTRO / WHAT IT IS */}
-      <section className="section">
-        <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div className="space-y-5">
-            <h2>{service.intro.headline}</h2>
-            <div className="space-y-4 text-white/70">
-              {service.intro.paragraphs.map((p, idx) => (
-                <p key={idx}>{p}</p>
-              ))}
-            </div>
-
-            {service.intro.bullets?.length ? (
-              <ul className="mt-4 space-y-2 text-sm text-white/70">
-                {service.intro.bullets.map((b) => (
-                  <li key={b} className="flex gap-2">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accentHex }} />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
-
-          {/* Media */}
-          <div className="rounded-2xl border-subtle bg-card overflow-hidden">
-            {service.intro.media?.type === "video" ? (
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <video
-                  src={service.intro.media.src}
-                  poster={service.intro.media.poster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            ) : service.intro.media?.type === "image" ? (
-              <div className="relative aspect-[4/3] w-full">
-                <Image
-                  src={service.intro.media.src}
-                  alt={service.intro.media.alt ?? service.name}
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={75}
-                  className="object-cover"
-                />
-              </div>
-            ) : (
-              <div className="flex aspect-[4/3] items-center justify-center text-white/40">
-                Intro media placeholder
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <div className="zv-divider-white" />
-
-      {/* SECTION 3 — BENEFITS GRID (WITH CITATIONS) */}
-      <section className="section">
-        <div className="flex items-end justify-between gap-6">
-          <h2>{service.benefits.headline}</h2>
-
-          {service.benefits.viewResearchCTA ? (
-            <Link
-              href={service.benefits.viewResearchCTA.href}
-              className="text-sm font-medium text-white/70 hover:text-[var(--zivel-gold)]"
-            >
-              {service.benefits.viewResearchCTA.label}
-            </Link>
+      {/* ========== SECTION 1 — FULL-SCREEN HERO ========== */}
+      <section className="zv-bleed relative min-h-screen flex items-center overflow-hidden" aria-labelledby="service-hero-title">
+        <div className="absolute inset-0 z-0">
+          {service.hero.media?.type === "video" ? (
+            <>
+              <video
+                src={service.hero.media.src}
+                poster={service.hero.media.poster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black" />
+            </>
+          ) : service.hero.media?.type === "image" ? (
+            <>
+              <Image
+                src={service.hero.media.src}
+                alt={service.hero.media.alt ?? service.name}
+                fill
+                priority
+                sizes="100vw"
+                quality={80}
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black" />
+            </>
           ) : null}
+
+          <div
+            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full opacity-30"
+            style={{ background: `radial-gradient(circle, ${accentRGB} 0%, transparent 70%)` }}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full opacity-15"
+            style={{ background: `radial-gradient(circle, ${accentRGB} 0%, transparent 70%)` }}
+          />
         </div>
 
-        <div className="mt-10 grid gap-8 md:grid-cols-3">
-          {service.benefits.items.map((b, idx) => (
-            <div key={`${b.title}-${idx}`} className="rounded-2xl border-subtle bg-card p-6">
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="text-lg">{b.title}</h3>
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
+          <p className="zv-tagline zv-hero-animate-1" style={{ color: accentRGB }}>
+            {service.name.toUpperCase()}
+          </p>
 
-                {/* Citation number(s) */}
-                {b.citations?.length ? (
-                  <div className="flex flex-wrap justify-end gap-2 text-xs text-white/60">
-                    {b.citations.map((c, cIdx) => (
-                      <a
-                        key={`${c}-${cIdx}`}
-                        href={`${researchBaseHref}#${c}`}
-                        className="rounded-full border border-white/15 bg-white/5 px-2 py-1 hover:text-[var(--zivel-gold)]" style={{ boxShadow: `0 0 0 0 rgba(0,0,0,0)` }}
-                        title={`Citation ${cIdx + 1}`}
-                        aria-label={`Citation ${cIdx + 1}`}
-                      >
-                        {cIdx + 1}
-                      </a>
+          <h1 id="service-hero-title" className="mt-4 font-serif text-5xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-tight zv-hero-animate-2">
+            {service.name}
+          </h1>
+
+          <p className="mt-8 max-w-2xl text-lg md:text-xl text-white/75 leading-relaxed zv-hero-animate-3">
+            {service.hero.subheadline}
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-4 zv-hero-animate-4">
+            <a
+              href={service.hero.primaryCTA.href}
+              className="zv-btn-luxury"
+              style={{
+                backgroundColor: accentRGB,
+                boxShadow: `0 0 40px rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.3)`,
+              }}
+            >
+              {service.hero.primaryCTA.label}
+            </a>
+            <Link
+              href={service.hero.secondaryCTA.href}
+              className="zv-btn-outline"
+            >
+              {service.hero.secondaryCTA.label}
+            </Link>
+          </div>
+        </div>
+
+        <div className="absolute bottom-10 right-10 text-white/40 text-xs tracking-[0.3em] uppercase zv-hero-animate-5 hidden md:block">
+          <span>Scroll</span>
+          <div className="mt-2 mx-auto w-px h-8 bg-white/20 zv-scroll-hint" />
+        </div>
+      </section>
+
+      <div className="zv-divider-gold zv-bleed" />
+
+      {/* ========== SECTION 2 — INTRO / WHAT IT IS ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-recessed">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="grid gap-12 md:grid-cols-2 md:items-center">
+              <div className="space-y-6">
+                <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight">{service.intro.headline}</h2>
+                <div className="zv-gold-line-left" />
+                <div className="space-y-4 text-white/70 text-lg leading-relaxed">
+                  {service.intro.paragraphs.map((p, idx) => (
+                    <p key={idx}>{p}</p>
+                  ))}
+                </div>
+
+                {service.intro.bullets?.length ? (
+                  <ul className="mt-6 space-y-3 text-white/70">
+                    {service.intro.bullets.map((b) => (
+                      <li key={b} className="flex gap-3 items-start">
+                        <span className="mt-2 h-2 w-2 rounded-full flex-shrink-0" style={{ backgroundColor: accentRGB }} />
+                        <span>{b}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 ) : null}
               </div>
 
-              {b.description ? (
-                <p className="mt-3 text-sm text-white/70">{b.description}</p>
+              <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
+                {service.intro.media?.type === "video" ? (
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                    <video
+                      src={service.intro.media.src}
+                      poster={service.intro.media.poster}
+                      autoPlay muted loop playsInline preload="none"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ) : service.intro.media?.type === "image" ? (
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={service.intro.media.src}
+                      alt={service.intro.media.alt ?? service.name}
+                      fill loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={75}
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex aspect-[4/3] items-center justify-center text-white/40">
+                    Intro media placeholder
+                  </div>
+                )}
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <div className="zv-divider-white zv-bleed" />
+
+      {/* ========== SECTION 3 — BENEFITS GRID ========== */}
+      <section className="zv-bleed zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="flex items-end justify-between gap-6 mb-12">
+              <div>
+                <p className="zv-tagline" style={{ color: accentRGB }}>Benefits</p>
+                <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.benefits.headline}</h2>
+              </div>
+
+              {service.benefits.viewResearchCTA ? (
+                <Link
+                  href={service.benefits.viewResearchCTA.href}
+                  className="text-sm font-medium text-white/60 hover:text-white transition-colors zv-gold-underline hidden md:inline"
+                >
+                  {service.benefits.viewResearchCTA.label}
+                </Link>
               ) : null}
             </div>
-          ))}
-        </div>
-      </section>
+          </ScrollReveal>
 
-      {/* PATHWAYS THAT INCLUDE THIS SERVICE */}
-      {relatedPathways.length ? (
-        <section className="section">
-          <div className="flex items-end justify-between gap-6">
-            <h2>Pathways That Include {service.name}</h2>
-            <Link
-              href="/pathways"
-              className="text-sm font-medium text-white/70 hover:text-[var(--zivel-gold)]"
-            >
-              View all pathways →
-            </Link>
-          </div>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {relatedPathways.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/pathways/${p.slug}`}
-                className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
-              >
-                <div className="text-lg font-semibold text-white">{p.name}</div>
-                <p className="mt-2 text-sm text-white/70">{p.seo.description}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      <div className="zv-divider-gold" />
-
-      {/* SECTION 4 — HOW IT WORKS / WHAT TO EXPECT */}
-      <section className="section">
-        <h2 className="mb-10">{service.howItWorks.headline}</h2>
-
-        <div className="grid gap-6 md:grid-cols-4">
-          {service.howItWorks.steps.map((s, idx) => (
-            <div key={`${s.title}-${idx}`} className="rounded-2xl border-subtle bg-card p-6">
-              <div className="text-xs font-semibold text-white/60">STEP {idx + 1}</div>
-              <h3 className="mt-2 text-lg">{s.title}</h3>
-              <p className="mt-2 text-sm text-white/70">{s.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="zv-divider-white" />
-
-      {/* SECTION 5 — THE SCIENCE BEHIND IT */}
-      <section className="section rounded-2xl zv-card-glass p-8">
-        <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div className="space-y-4">
-            <h2>{service.science.headline}</h2>
-            <div className="space-y-3 text-sm text-white/70">
-              {service.science.body.map((p, idx) => (
-                <p key={idx}>{p}</p>
-              ))}
-            </div>
-
-            {service.science.cta ? (
-              <Link
-                href={service.science.cta.href}
-                className="inline-flex rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
-              >
-                {service.science.cta.label}
-              </Link>
-            ) : null}
-          </div>
-
-          <div className="rounded-2xl border border-white/10 overflow-hidden bg-black/20">
-            {service.science.media?.type === "video" ? (
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <video
-                  src={service.science.media.src}
-                  poster={service.science.media.poster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            ) : service.science.media?.type === "image" ? (
-              <div className="relative aspect-[4/3] w-full">
-                <Image
-                  src={service.science.media.src}
-                  alt={service.science.media.alt ?? `${service.name} science`}
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={75}
-                  className="object-cover"
-                />
-              </div>
-            ) : (
-              <div className="flex aspect-[4/3] items-center justify-center text-white/40">
-                Science diagram placeholder
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <div className="zv-divider-white" />
-
-      {/* SECTION 6 — SAFETY & CONTRAINDICATIONS */}
-      <section className="section">
-        <h2 className="mb-10">Safety & Contraindications</h2>
-
-        <div className="grid gap-10 md:grid-cols-2">
-          <div className="rounded-2xl border-subtle bg-card p-6">
-            <h3 className="text-lg">{service.safety.headline}</h3>
-            <div className="mt-3 space-y-3 text-sm text-white/70">
-              {service.safety.body.map((p, idx) => (
-                <p key={idx}>{p}</p>
-              ))}
-            </div>
-            <p className="mt-4 text-xs text-white/50">{service.safety.disclaimer}</p>
-          </div>
-
-          <div className="rounded-2xl border-subtle bg-card p-6">
-            <h3 className="text-lg">Contraindications</h3>
-            <ul className="mt-4 space-y-2 text-sm text-white/70">
-              {service.safety.contraindications.map((c) => (
-                <li key={c} className="flex gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-white/40" />
-                  <span>{c}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 7 — BEFORE & AFTER (OPTIONAL) */}
-      {service.beforeAfter ? (
-        <section className="section">
-          <h2 className="mb-10">{service.beforeAfter.headline}</h2>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {service.beforeAfter.items.map((item, idx) => (
-              <div
-                key={`${item.beforeSrc}-${idx}`}
-                className="rounded-2xl border-subtle bg-card p-4"
-              >
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-white/10">
-                    <Image src={item.beforeSrc} alt={`${item.alt} — before`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {service.benefits.items.map((b, idx) => (
+              <ScrollReveal key={`${b.title}-${idx}`} variant="fade-up" delay={idx * 80}>
+                <div className="zv-luxury-card rounded-2xl p-8 h-full" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="font-serif text-xl font-normal">{b.title}</h3>
+                    {b.citations?.length ? (
+                      <div className="flex flex-wrap justify-end gap-2 text-xs text-white/50">
+                        {b.citations.map((c, cIdx) => (
+                          <a
+                            key={`${c}-${cIdx}`}
+                            href={`${researchBaseHref}#${c}`}
+                            className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 hover:text-white transition-colors"
+                            title={`Citation ${cIdx + 1}`}
+                            aria-label={`Citation ${cIdx + 1}`}
+                          >
+                            {cIdx + 1}
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-white/10">
-                    <Image src={item.afterSrc} alt={`${item.alt} — after`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
-                  </div>
+                  {b.description ? (
+                    <p className="mt-4 text-sm text-white/60 leading-relaxed">{b.description}</p>
+                  ) : null}
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <p className="mt-4 text-xs text-white/50">{service.beforeAfter.disclaimer}</p>
-        </section>
-      ) : null}
-
-      <div className="zv-divider-gold" />
-
-      {/* SECTION 8 — TESTIMONIALS */}
-      <section className="section">
-        <h2 className="mb-10">{service.testimonials.headline}</h2>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {service.testimonials.items.map((t, idx) => (
-            <div key={`${t.name}-${idx}`} className="rounded-2xl border-subtle bg-card p-6">
-              <p className="text-sm text-white/70">&quot;{t.quote}&quot;</p>
-              <div className="mt-4 text-sm font-semibold text-white">{t.name}</div>
-              {t.location ? <div className="text-xs text-white/60">{t.location}</div> : null}
+          {service.benefits.viewResearchCTA ? (
+            <div className="mt-8 md:hidden">
+              <Link
+                href={service.benefits.viewResearchCTA.href}
+                className="text-sm font-medium text-white/60 hover:text-white transition-colors"
+              >
+                {service.benefits.viewResearchCTA.label}
+              </Link>
             </div>
-          ))}
+          ) : null}
         </div>
       </section>
 
-      <div className="zv-divider-white" />
-
-      {/* SECTION 9 — PRICING PREVIEW */}
-      <section className="section">
-        <h2 className="mb-10">{service.pricingPreview.headline}</h2>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {service.pricingPreview.cards.map((card, idx) => (
-            <div key={`${card.title}-${idx}`} className="rounded-2xl border-subtle bg-card p-6">
-              <div className="text-sm font-semibold text-white">{card.title}</div>
-              <div className="mt-2 text-2xl font-bold text-white">{card.priceLine}</div>
-              <ul className="mt-4 space-y-2 text-sm text-white/70">
-                {card.details.map((d) => (
-                  <li key={d} className="flex gap-2">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-white/40" />
-                    <span>{d}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {card.cta ? (
-                <div className="mt-6">
+      {/* ========== PATHWAYS THAT INCLUDE THIS SERVICE ========== */}
+      {relatedPathways.length ? (
+        <>
+          <div className="zv-divider-gold zv-bleed" />
+          <section className="zv-bleed zv-immersive-section zv-section-elevated">
+            <div className="mx-auto max-w-6xl px-6">
+              <ScrollReveal variant="fade-up">
+                <div className="flex items-end justify-between gap-6 mb-12">
+                  <div>
+                    <p className="zv-tagline" style={{ color: accentRGB }}>Pathways</p>
+                    <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">Pathways That Include {service.name}</h2>
+                  </div>
                   <Link
-                    href={card.cta.href}
-                    className="inline-flex rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
+                    href="/pathways"
+                    className="text-sm font-medium text-white/60 hover:text-white transition-colors zv-gold-underline hidden md:inline"
                   >
-                    {card.cta.label}
+                    View all pathways
                   </Link>
                 </div>
-              ) : null}
-            </div>
-          ))}
-        </div>
-      </section>
+              </ScrollReveal>
 
-      <div className="zv-divider-gold" />
-
-      {/* SECTION 10 — BOOKING WIDGET */}
-      <section id="book" className="section rounded-2xl zv-card-glass p-8">
-        <div className="max-w-3xl">
-          <h2 className="mb-3">{service.booking.headline}</h2>
-          {service.booking.subheadline ? (
-            <p className="text-white/70">{service.booking.subheadline}</p>
-          ) : null}
-
-          {service.booking.badges?.length ? (
-            <div className="mt-5 flex flex-wrap gap-2 text-xs text-white/70">
-              {service.booking.badges.map((b) => (
-                <span
-                  key={b}
-                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1"
-                >
-                  {b}
-                </span>
-              ))}
-            </div>
-          ) : null}
-        </div>
-
-        <BookingWidget className="mt-8" locationId={service.booking.locationIdDefault} />
-      </section>
-
-      <div className="zv-divider-white" />
-
-      {/* SECTION 11 — FAQ */}
-      <section className="section">
-        <h2 className="mb-10">{service.faqs.headline}</h2>
-
-        <div className="space-y-4">
-          {service.faqs.items.map((f, idx) => (
-            <details key={`${f.question}-${idx}`} className="rounded-2xl border-subtle bg-card p-6">
-              <summary className="cursor-pointer text-base font-semibold text-white">
-                {f.question}
-              </summary>
-              <p className="mt-3 text-sm text-white/70">{f.answer}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      <div className="zv-divider-gold" />
-
-      {/* SECTION 12 — RELATED SERVICES */}
-      <section className="section">
-        <h2 className="mb-10">{service.relatedServices.headline}</h2>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {service.relatedServices.slugs.map((relatedSlug) => {
-            const related = getServiceBySlug(relatedSlug);
-            const title = related?.name ?? relatedSlug.replaceAll("-", " ");
-            const href = related ? `/services/${related.slug}` : "/services";
-
-            return (
-              <Link
-                key={relatedSlug}
-                href={href}
-                className="rounded-2xl border-subtle bg-card p-6 hover:border-white/20 hover:bg-white/10"
-              >
-                <div className="text-lg font-semibold text-white">{title}</div>
-                <div className="mt-2 text-sm text-white/70">
-                  Explore this service and how it fits into a recovery stack.
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* RELATED SCIENCE & RESEARCH (from serviceLinks) */}
-      {(linkedScience.length > 0 || linkedResearch.length > 0) ? (
-        <section className="section">
-          <h2 className="mb-10">Related Science & Research</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            {linkedScience.length > 0 ? (
-              <div className="rounded-2xl border-subtle bg-black/20 p-6">
-                <div className="text-xs font-semibold text-white/60 mb-4">SCIENCE ARTICLES</div>
-                <div className="space-y-3">
-                  {linkedScience.map((a) => (
+              <div className="grid gap-6 md:grid-cols-3">
+                {relatedPathways.map((p, idx) => (
+                  <ScrollReveal key={p.slug} variant="fade-up" delay={idx * 100}>
                     <Link
-                      key={a.slug}
-                      href={`/science/${a.slug}`}
-                      className="block rounded-xl border border-white/10 bg-white/5 p-4 hover:border-[var(--zivel-gold)] hover:bg-white/10"
+                      href={`/pathways/${p.slug}`}
+                      className="zv-luxury-card block rounded-2xl p-8 h-full" style={{ "--luxury-accent": accentRGB } as CSSProperties}
                     >
-                      <div className="text-sm font-semibold text-white">{a.title}</div>
-                      {a.description ? (
-                        <div className="mt-1 text-xs text-white/60 line-clamp-2">{a.description}</div>
-                      ) : null}
+                      <div className="font-serif text-xl text-white">{p.name}</div>
+                      <p className="mt-3 text-sm text-white/60 leading-relaxed">{p.seo.description}</p>
                     </Link>
-                  ))}
-                </div>
+                  </ScrollReveal>
+                ))}
               </div>
-            ) : null}
-            {linkedResearch.length > 0 ? (
-              <div className="rounded-2xl border-subtle bg-black/20 p-6">
-                <div className="text-xs font-semibold text-white/60 mb-4">RESEARCH SOURCES</div>
-                <div className="space-y-3">
-                  {linkedResearch.map((r) => (
-                    <Link
-                      key={r.slug ?? r.id}
-                      href={`/research/${r.slug ?? r.id}`}
-                      className="block rounded-xl border border-white/10 bg-white/5 p-4 hover:border-[var(--zivel-gold)] hover:bg-white/10"
-                    >
-                      <div className="text-sm font-semibold text-white">{r.title}</div>
-                      {r.journal ? (
-                        <div className="mt-1 text-xs text-white/60">{r.journal} {r.year ? `(${r.year})` : ""}</div>
-                      ) : null}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-          </div>
-        </section>
+            </div>
+          </section>
+        </>
       ) : null}
 
-      <div className="zv-divider-gold" />
+      <div className="zv-divider-white zv-bleed" />
 
-      {/* SECTION 13 — FINAL CTA STRIP */}
-      <section className="section rounded-2xl zv-cta-bg p-10">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <h2 className="m-0">{service.finalCTA.headline}</h2>
+      {/* ========== SECTION 4 — HOW IT WORKS ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-gradient">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline" style={{ color: accentRGB }}>The Experience</p>
+            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.howItWorks.headline}</h2>
+          </ScrollReveal>
 
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={service.finalCTA.primaryCTA.href}
-              className="rounded-xl bg-[var(--zivel-gold)] px-5 py-3 text-sm font-semibold text-black hover:opacity-90"
-            >
-              {service.finalCTA.primaryCTA.label}
-            </a>
-            <Link
-              href={service.finalCTA.secondaryCTA.href}
-              className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:border-white/25 hover:bg-white/10"
-            >
-              {service.finalCTA.secondaryCTA.label}
-            </Link>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {service.howItWorks.steps.map((s, idx) => (
+              <ScrollReveal key={`${s.title}-${idx}`} variant="fade-up" delay={idx * 120}>
+                <div className="relative rounded-2xl p-8 h-full" style={{
+                  background: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.05)`,
+                  border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)`,
+                }}>
+                  <div className="font-serif text-3xl font-light mb-4" style={{ color: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.4)` }}>
+                    {String(idx + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="font-serif text-xl font-normal">{s.title}</h3>
+                  <p className="mt-3 text-sm text-white/60 leading-relaxed">{s.description}</p>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
+        </div>
+      </section>
+
+      <div className="zv-divider-gold zv-bleed" />
+
+      {/* ========== SECTION 5 — THE SCIENCE BEHIND IT ========== */}
+      <section className="zv-bleed zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="grid gap-12 md:grid-cols-2 md:items-center">
+              <div className="space-y-6">
+                <p className="zv-tagline" style={{ color: accentRGB }}>The Science</p>
+                <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight">{service.science.headline}</h2>
+                <div className="zv-gold-line-left" />
+                <div className="space-y-4 text-white/70 leading-relaxed">
+                  {service.science.body.map((p, idx) => (
+                    <p key={idx}>{p}</p>
+                  ))}
+                </div>
+
+                {service.science.cta ? (
+                  <Link
+                    href={service.science.cta.href}
+                    className="zv-btn-outline inline-flex mt-4"
+                  >
+                    {service.science.cta.label}
+                  </Link>
+                ) : null}
+              </div>
+
+              <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
+                {service.science.media?.type === "video" ? (
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                    <video
+                      src={service.science.media.src}
+                      poster={service.science.media.poster}
+                      autoPlay muted loop playsInline preload="none"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ) : service.science.media?.type === "image" ? (
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={service.science.media.src}
+                      alt={service.science.media.alt ?? `${service.name} science`}
+                      fill loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={75}
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex aspect-[4/3] items-center justify-center text-white/40">
+                    Science diagram placeholder
+                  </div>
+                )}
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <div className="zv-divider-white zv-bleed" />
+
+      {/* ========== SECTION 6 — SAFETY & CONTRAINDICATIONS ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-recessed">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline" style={{ color: accentRGB }}>Safety First</p>
+            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Safety & Contraindications</h2>
+          </ScrollReveal>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            <ScrollReveal variant="fade-left">
+              <div className="zv-luxury-card rounded-2xl p-8 h-full" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                <h3 className="font-serif text-2xl font-normal">{service.safety.headline}</h3>
+                <div className="mt-5 space-y-4 text-white/70 leading-relaxed">
+                  {service.safety.body.map((p, idx) => (
+                    <p key={idx}>{p}</p>
+                  ))}
+                </div>
+                <p className="mt-6 text-xs text-white/40 italic">{service.safety.disclaimer}</p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal variant="fade-right">
+              <div className="zv-luxury-card rounded-2xl p-8 h-full" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                <h3 className="font-serif text-2xl font-normal">Contraindications</h3>
+                <ul className="mt-5 space-y-3 text-white/70">
+                  {service.safety.contraindications.map((c) => (
+                    <li key={c} className="flex gap-3 items-start">
+                      <span className="mt-2 h-2 w-2 rounded-full flex-shrink-0 bg-white/30" />
+                      <span>{c}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== SECTION 7 — BEFORE & AFTER (OPTIONAL) ========== */}
+      {service.beforeAfter ? (
+        <>
+          <div className="zv-divider-gold zv-bleed" />
+          <section className="zv-bleed zv-immersive-section">
+            <div className="mx-auto max-w-6xl px-6">
+              <ScrollReveal variant="fade-up">
+                <p className="zv-tagline" style={{ color: accentRGB }}>Results</p>
+                <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.beforeAfter.headline}</h2>
+              </ScrollReveal>
+
+              <div className="grid gap-8 md:grid-cols-2">
+                {service.beforeAfter.items.map((item, idx) => (
+                  <ScrollReveal key={`${item.beforeSrc}-${idx}`} variant="fade-up" delay={idx * 100}>
+                    <div className="zv-luxury-card rounded-2xl p-6" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)` }}>
+                          <Image src={item.beforeSrc} alt={`${item.alt} — before`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
+                        </div>
+                        <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)` }}>
+                          <Image src={item.afterSrc} alt={`${item.alt} — after`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
+                        </div>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+
+              <p className="mt-6 text-xs text-white/40 italic">{service.beforeAfter.disclaimer}</p>
+            </div>
+          </section>
+        </>
+      ) : null}
+
+      <div className="zv-divider-gold zv-bleed" />
+
+      {/* ========== SECTION 8 — TESTIMONIALS (STATEMENT QUOTE STYLE) ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-elevated">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline" style={{ color: accentRGB }}>Testimonials</p>
+            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.testimonials.headline}</h2>
+          </ScrollReveal>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {service.testimonials.items.map((t, idx) => (
+              <ScrollReveal key={`${t.name}-${idx}`} variant="fade-up" delay={idx * 100}>
+                <div className="zv-luxury-card rounded-2xl p-8 h-full flex flex-col" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                  <div className="zv-quote-mark font-serif" style={{ color: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.3)` }}>&ldquo;</div>
+                  <p className="flex-1 text-white/80 italic leading-relaxed font-serif text-lg">{t.quote}</p>
+                  <div className="mt-6 pt-4" style={{ borderTop: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)` }}>
+                    <div className="text-sm font-semibold text-white">{t.name}</div>
+                    {t.location ? <div className="text-xs text-white/50 mt-0.5">{t.location}</div> : null}
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="zv-divider-white zv-bleed" />
+
+      {/* ========== SECTION 9 — PRICING ========== */}
+      <section className="zv-bleed zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline" style={{ color: accentRGB }}>Investment</p>
+            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.pricingPreview.headline}</h2>
+          </ScrollReveal>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {service.pricingPreview.cards.map((card, idx) => (
+              <ScrollReveal key={`${card.title}-${idx}`} variant="fade-up" delay={idx * 100}>
+                <div className="zv-luxury-card rounded-2xl p-8 h-full flex flex-col" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                  <div className="text-sm font-semibold uppercase tracking-wider text-white/60">{card.title}</div>
+                  <div className="mt-3 font-serif text-3xl font-light text-white">{card.priceLine}</div>
+                  <ul className="mt-6 flex-1 space-y-3 text-sm text-white/60">
+                    {card.details.map((d) => (
+                      <li key={d} className="flex gap-3 items-start">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: accentRGB }} />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {card.cta ? (
+                    <div className="mt-8">
+                      <Link
+                        href={card.cta.href}
+                        className="zv-btn-outline inline-flex text-sm"
+                      >
+                        {card.cta.label}
+                      </Link>
+                    </div>
+                  ) : null}
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="zv-divider-gold zv-bleed" />
+
+      {/* ========== SECTION 10 — BOOKING WIDGET ========== */}
+      <section id="book" className="zv-bleed zv-immersive-section zv-section-gradient">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="max-w-3xl">
+              <p className="zv-tagline" style={{ color: accentRGB }}>Book Now</p>
+              <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.booking.headline}</h2>
+              {service.booking.subheadline ? (
+                <p className="mt-4 text-lg text-white/60">{service.booking.subheadline}</p>
+              ) : null}
+
+              {service.booking.badges?.length ? (
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {service.booking.badges.map((b) => (
+                    <span
+                      key={b}
+                      className="rounded-full px-4 py-1.5 text-xs text-white/70"
+                      style={{
+                        border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.2)`,
+                        backgroundColor: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.06)`,
+                      }}
+                    >
+                      {b}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            <BookingWidget className="mt-10" locationId={service.booking.locationIdDefault} />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <div className="zv-divider-white zv-bleed" />
+
+      {/* ========== SECTION 11 — FAQ ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-recessed">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline" style={{ color: accentRGB }}>Questions</p>
+            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.faqs.headline}</h2>
+          </ScrollReveal>
+
+          <div className="space-y-4 max-w-4xl">
+            {service.faqs.items.map((f, idx) => (
+              <ScrollReveal key={`${f.question}-${idx}`} variant="fade-up" delay={idx * 60}>
+                <details className="group rounded-2xl p-6 md:p-8 transition-colors" style={{
+                  background: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.04)`,
+                  border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.10)`,
+                }}>
+                  <summary className="cursor-pointer font-serif text-lg font-normal text-white list-none flex items-center justify-between gap-4">
+                    {f.question}
+                    <span className="text-white/30 transition-transform group-open:rotate-45 text-2xl flex-shrink-0">+</span>
+                  </summary>
+                  <p className="mt-4 text-white/60 leading-relaxed">{f.answer}</p>
+                </details>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="zv-divider-gold zv-bleed" />
+
+      {/* ========== SECTION 12 — RELATED SERVICES ========== */}
+      <section className="zv-bleed zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline" style={{ color: accentRGB }}>Explore More</p>
+            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.relatedServices.headline}</h2>
+          </ScrollReveal>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {service.relatedServices.slugs.map((relatedSlug, idx) => {
+              const related = getServiceBySlug(relatedSlug);
+              const title = related?.name ?? relatedSlug.replaceAll("-", " ");
+              const href = related ? `/services/${related.slug}` : "/services";
+
+              return (
+                <ScrollReveal key={relatedSlug} variant="fade-up" delay={idx * 100}>
+                  <Link
+                    href={href}
+                    className="zv-luxury-card block rounded-2xl p-8 h-full" style={{ "--luxury-accent": accentRGB } as CSSProperties}
+                  >
+                    <div className="font-serif text-2xl font-light text-white">{title}</div>
+                    <p className="mt-3 text-sm text-white/60 leading-relaxed">
+                      Explore this service and how it fits into a recovery stack.
+                    </p>
+                  </Link>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== RELATED SCIENCE & RESEARCH ========== */}
+      {(linkedScience.length > 0 || linkedResearch.length > 0) ? (
+        <>
+          <div className="zv-divider-white zv-bleed" />
+          <section className="zv-bleed zv-immersive-section zv-section-elevated">
+            <div className="mx-auto max-w-6xl px-6">
+              <ScrollReveal variant="fade-up">
+                <p className="zv-tagline" style={{ color: accentRGB }}>Evidence</p>
+                <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Related Science & Research</h2>
+              </ScrollReveal>
+
+              <div className="grid gap-8 md:grid-cols-2">
+                {linkedScience.length > 0 ? (
+                  <ScrollReveal variant="fade-left">
+                    <div className="zv-luxury-card rounded-2xl p-8" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                      <div className="text-xs font-semibold text-white/50 tracking-wider uppercase mb-6">Science Articles</div>
+                      <div className="space-y-4">
+                        {linkedScience.map((a) => (
+                          <Link
+                            key={a.slug}
+                            href={`/science/${a.slug}`}
+                            className="block rounded-xl p-4 transition-colors"
+                            style={{
+                              border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.10)`,
+                              background: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.04)`,
+                            }}
+                          >
+                            <div className="font-serif text-white">{a.title}</div>
+                            {a.description ? (
+                              <div className="mt-1 text-xs text-white/50 line-clamp-2">{a.description}</div>
+                            ) : null}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ) : null}
+                {linkedResearch.length > 0 ? (
+                  <ScrollReveal variant="fade-right">
+                    <div className="zv-luxury-card rounded-2xl p-8" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                      <div className="text-xs font-semibold text-white/50 tracking-wider uppercase mb-6">Research Sources</div>
+                      <div className="space-y-4">
+                        {linkedResearch.map((r) => (
+                          <Link
+                            key={r.slug ?? r.id}
+                            href={`/research/${r.slug ?? r.id}`}
+                            className="block rounded-xl p-4 transition-colors"
+                            style={{
+                              border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.10)`,
+                              background: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.04)`,
+                            }}
+                          >
+                            <div className="font-serif text-white">{r.title}</div>
+                            {r.journal ? (
+                              <div className="mt-1 text-xs text-white/50">{r.journal} {r.year ? `(${r.year})` : ""}</div>
+                            ) : null}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ) : null}
+              </div>
+            </div>
+          </section>
+        </>
+      ) : null}
+
+      <div className="zv-divider-gold zv-bleed" />
+
+      {/* ========== SECTION 13 — FINAL CTA ========== */}
+      <section className="zv-bleed relative overflow-hidden py-24 md:py-32">
+        <div className="absolute inset-0">
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-15"
+            style={{ background: `radial-gradient(circle, ${accentRGB} 0%, transparent 70%)` }}
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="scale">
+            <div className="text-center">
+              <h2 className="font-serif text-5xl md:text-6xl font-light tracking-tight">{service.finalCTA.headline}</h2>
+              <div className="mt-10 flex flex-wrap justify-center gap-4">
+                <a
+                  href={service.finalCTA.primaryCTA.href}
+                  className="zv-btn-luxury"
+                  style={{
+                    backgroundColor: accentRGB,
+                    boxShadow: `0 0 50px rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.3)`,
+                  }}
+                >
+                  {service.finalCTA.primaryCTA.label}
+                </a>
+                <Link
+                  href={service.finalCTA.secondaryCTA.href}
+                  className="zv-btn-outline"
+                >
+                  {service.finalCTA.secondaryCTA.label}
+                </Link>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>
