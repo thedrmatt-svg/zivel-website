@@ -99,6 +99,14 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
+      <head>
+        <link
+          rel="preload"
+          href="/images/brand/zivel-logo.png"
+          as="image"
+          fetchPriority="high"
+        />
+      </head>
       <body className="min-h-screen bg-black text-white overflow-x-hidden font-[var(--font-inter)]">
         <script
           type="application/ld+json"
