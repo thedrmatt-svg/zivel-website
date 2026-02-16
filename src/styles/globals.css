@@ -932,4 +932,63 @@ noscript + .zv-reveal,
 .zivel-service-page :where(a[href*="book" i], a[href*="booking" i], a[href*="schedule" i]):hover{
   background-color: var(--zivel-btn-hover) !important;
 }
+.zivel-service-page .zv-light {
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+.zivel-service-page .zv-light h1,
+.zivel-service-page .zv-light h2,
+.zivel-service-page .zv-light h3 {
+  color: #1a1a1a !important;
+  text-shadow: none !important;
+}
+
+.zivel-service-page .zv-light p {
+  color: rgba(0, 0, 0, 0.60) !important;
+}
+
+.zivel-service-page .zv-light .zv-btn-outline {
+  color: #1a1a1a !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+.zivel-service-page .zv-light .zv-btn-outline:hover {
+  border-color: var(--zivel-gold) !important;
+  background: rgba(212, 175, 55, 0.06) !important;
+}
+
+.zivel-service-page .zv-light :where(section, article, div)[class*="rounded"][class*="p-"],
+.zivel-service-page .zv-light :where(section, article, div)[class*="rounded"][class*="px-"][class*="py-"] {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06) !important;
+}
+
+.zivel-service-page .zv-light :where(section, article, div)[class*="rounded"][class*="p-"]:hover,
+.zivel-service-page .zv-light :where(section, article, div)[class*="rounded"][class*="px-"][class*="py-"]:hover {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.zivel-service-page .zv-light .zv-luxury-card {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06) !important;
+}
+.zivel-service-page .zv-light .zv-luxury-card:hover {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: color-mix(in srgb, var(--_accent) 30%, transparent) !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08), 0 0 40px color-mix(in srgb, var(--_accent) 6%, transparent) !important;
+}
+
+.zivel-service-page .zv-light .zv-gold-line-left {
+  background: linear-gradient(90deg, var(--zivel-gold-dark), transparent);
+}
+
+.zivel-service-page .zv-light-warm {
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+    linear-gradient(180deg, #fafaf8 0%, #ffffff 100%) !important;
+  color: #1a1a1a !important;
+}
 /* ZIVEL_SERVICE_THEME_END */

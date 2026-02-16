@@ -39,7 +39,6 @@ export async function generateMetadata({
 export default async function ServicePage({ params }: PageProps) {
   const { slug } = await params;
   
-  /* ZIVEL_SERVICE_COLOR_MAP — matches accent.hex from each service content file */
   const __zivelSlug = slug;
   const __zivelColorMap: Record<string, number[]> = {
     "cryotherapy": [45, 100, 189],
@@ -124,7 +123,7 @@ export default async function ServicePage({ params }: PageProps) {
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* ========== SECTION 1 — FULL-SCREEN HERO ========== */}
+      {/* ========== SECTION 1 — FULL-SCREEN HERO (DARK) ========== */}
       <section className="zv-bleed relative min-h-screen flex items-center overflow-hidden" aria-labelledby="service-hero-title">
         <div className="absolute inset-0 z-0">
           {service.hero.media?.type === "video" ? (
@@ -205,24 +204,24 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      <div className="zv-divider-gold zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 2 — INTRO / WHAT IT IS ========== */}
-      <section className="zv-bleed zv-immersive-section zv-section-recessed">
+      {/* ========== SECTION 2 — INTRO / WHAT IT IS (LIGHT) ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
             <div className="grid gap-12 md:grid-cols-2 md:items-center">
               <div className="space-y-6">
                 <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight">{service.intro.headline}</h2>
                 <div className="zv-gold-line-left" />
-                <div className="space-y-4 text-white/70 text-lg leading-relaxed">
+                <div className="space-y-4 text-lg leading-relaxed">
                   {service.intro.paragraphs.map((p, idx) => (
                     <p key={idx}>{p}</p>
                   ))}
                 </div>
 
                 {service.intro.bullets?.length ? (
-                  <ul className="mt-6 space-y-3 text-white/70">
+                  <ul className="mt-6 space-y-3 text-black/60">
                     {service.intro.bullets.map((b) => (
                       <li key={b} className="flex gap-3 items-start">
                         <span className="mt-2 h-2 w-2 rounded-full flex-shrink-0" style={{ backgroundColor: accentRGB }} />
@@ -233,7 +232,7 @@ export default async function ServicePage({ params }: PageProps) {
                 ) : null}
               </div>
 
-              <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
+              <div className="rounded-2xl overflow-hidden shadow-lg" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.20)` }}>
                 {service.intro.media?.type === "video" ? (
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <video
@@ -255,7 +254,7 @@ export default async function ServicePage({ params }: PageProps) {
                     />
                   </div>
                 ) : (
-                  <div className="flex aspect-[4/3] items-center justify-center text-white/40">
+                  <div className="flex aspect-[4/3] items-center justify-center text-black/30 bg-black/[0.03]">
                     Intro media placeholder
                   </div>
                 )}
@@ -265,9 +264,9 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      <div className="zv-divider-white zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 3 — BENEFITS GRID ========== */}
+      {/* ========== SECTION 3 — BENEFITS GRID (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
@@ -331,11 +330,11 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ========== PATHWAYS THAT INCLUDE THIS SERVICE ========== */}
+      {/* ========== PATHWAYS THAT INCLUDE THIS SERVICE (LIGHT) ========== */}
       {relatedPathways.length ? (
         <>
-          <div className="zv-divider-gold zv-bleed" />
-          <section className="zv-bleed zv-immersive-section zv-section-elevated">
+          <div className="zv-divider-dark-to-light zv-bleed" />
+          <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
             <div className="mx-auto max-w-6xl px-6">
               <ScrollReveal variant="fade-up">
                 <div className="flex items-end justify-between gap-6 mb-12">
@@ -345,7 +344,7 @@ export default async function ServicePage({ params }: PageProps) {
                   </div>
                   <Link
                     href="/pathways"
-                    className="text-sm font-medium text-white/60 hover:text-white transition-colors zv-gold-underline hidden md:inline"
+                    className="text-sm font-medium text-black/50 hover:text-black transition-colors zv-gold-underline hidden md:inline"
                   >
                     View all pathways
                   </Link>
@@ -357,10 +356,10 @@ export default async function ServicePage({ params }: PageProps) {
                   <ScrollReveal key={p.slug} variant="fade-up" delay={idx * 100}>
                     <Link
                       href={`/pathways/${p.slug}`}
-                      className="zv-luxury-card block rounded-2xl p-8 h-full" style={{ "--luxury-accent": accentRGB } as CSSProperties}
+                      className="zv-luxury-card block rounded-2xl p-8 h-full group" style={{ "--luxury-accent": accentRGB } as CSSProperties}
                     >
-                      <div className="font-serif text-xl text-white">{p.name}</div>
-                      <p className="mt-3 text-sm text-white/60 leading-relaxed">{p.seo.description}</p>
+                      <div className="font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{p.name}</div>
+                      <p className="mt-3 text-sm leading-relaxed">{p.seo.description}</p>
                     </Link>
                   </ScrollReveal>
                 ))}
@@ -370,9 +369,9 @@ export default async function ServicePage({ params }: PageProps) {
         </>
       ) : null}
 
-      <div className="zv-divider-white zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 4 — HOW IT WORKS ========== */}
+      {/* ========== SECTION 4 — HOW IT WORKS (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-gradient">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
@@ -399,10 +398,10 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      <div className="zv-divider-gold zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 5 — THE SCIENCE BEHIND IT ========== */}
-      <section className="zv-bleed zv-immersive-section">
+      {/* ========== SECTION 5 — THE SCIENCE BEHIND IT (LIGHT) ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
             <div className="grid gap-12 md:grid-cols-2 md:items-center">
@@ -410,7 +409,7 @@ export default async function ServicePage({ params }: PageProps) {
                 <p className="zv-tagline" style={{ color: accentRGB }}>The Science</p>
                 <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight">{service.science.headline}</h2>
                 <div className="zv-gold-line-left" />
-                <div className="space-y-4 text-white/70 leading-relaxed">
+                <div className="space-y-4 leading-relaxed">
                   {service.science.body.map((p, idx) => (
                     <p key={idx}>{p}</p>
                   ))}
@@ -426,7 +425,7 @@ export default async function ServicePage({ params }: PageProps) {
                 ) : null}
               </div>
 
-              <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
+              <div className="rounded-2xl overflow-hidden shadow-lg" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.20)` }}>
                 {service.science.media?.type === "video" ? (
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <video
@@ -448,7 +447,7 @@ export default async function ServicePage({ params }: PageProps) {
                     />
                   </div>
                 ) : (
-                  <div className="flex aspect-[4/3] items-center justify-center text-white/40">
+                  <div className="flex aspect-[4/3] items-center justify-center text-black/30 bg-black/[0.03]">
                     Science diagram placeholder
                   </div>
                 )}
@@ -458,9 +457,9 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      <div className="zv-divider-white zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 6 — SAFETY & CONTRAINDICATIONS ========== */}
+      {/* ========== SECTION 6 — SAFETY & CONTRAINDICATIONS (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-recessed">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
@@ -498,11 +497,11 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ========== SECTION 7 — BEFORE & AFTER (OPTIONAL) ========== */}
+      {/* ========== SECTION 7 — BEFORE & AFTER (LIGHT, OPTIONAL) ========== */}
       {service.beforeAfter ? (
         <>
-          <div className="zv-divider-gold zv-bleed" />
-          <section className="zv-bleed zv-immersive-section">
+          <div className="zv-divider-dark-to-light zv-bleed" />
+          <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
             <div className="mx-auto max-w-6xl px-6">
               <ScrollReveal variant="fade-up">
                 <p className="zv-tagline" style={{ color: accentRGB }}>Results</p>
@@ -514,10 +513,10 @@ export default async function ServicePage({ params }: PageProps) {
                   <ScrollReveal key={`${item.beforeSrc}-${idx}`} variant="fade-up" delay={idx * 100}>
                     <div className="zv-luxury-card rounded-2xl p-6" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
                       <div className="grid gap-4 md:grid-cols-2">
-                        <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)` }}>
+                        <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
                           <Image src={item.beforeSrc} alt={`${item.alt} — before`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
                         </div>
-                        <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)` }}>
+                        <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
                           <Image src={item.afterSrc} alt={`${item.alt} — after`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
                         </div>
                       </div>
@@ -526,15 +525,15 @@ export default async function ServicePage({ params }: PageProps) {
                 ))}
               </div>
 
-              <p className="mt-6 text-xs text-white/40 italic">{service.beforeAfter.disclaimer}</p>
+              <p className="mt-6 text-xs text-black/35 italic">{service.beforeAfter.disclaimer}</p>
             </div>
           </section>
         </>
       ) : null}
 
-      <div className="zv-divider-gold zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 8 — TESTIMONIALS (STATEMENT QUOTE STYLE) ========== */}
+      {/* ========== SECTION 8 — TESTIMONIALS (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-elevated">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
@@ -559,10 +558,10 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      <div className="zv-divider-white zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 9 — PRICING ========== */}
-      <section className="zv-bleed zv-immersive-section">
+      {/* ========== SECTION 9 — PRICING (LIGHT) ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline" style={{ color: accentRGB }}>Investment</p>
@@ -573,9 +572,9 @@ export default async function ServicePage({ params }: PageProps) {
             {service.pricingPreview.cards.map((card, idx) => (
               <ScrollReveal key={`${card.title}-${idx}`} variant="fade-up" delay={idx * 100}>
                 <div className="zv-luxury-card rounded-2xl p-8 h-full flex flex-col" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
-                  <div className="text-sm font-semibold uppercase tracking-wider text-white/60">{card.title}</div>
-                  <div className="mt-3 font-serif text-3xl font-light text-white">{card.priceLine}</div>
-                  <ul className="mt-6 flex-1 space-y-3 text-sm text-white/60">
+                  <div className="text-sm font-semibold uppercase tracking-wider text-black/50">{card.title}</div>
+                  <div className="mt-3 font-serif text-3xl font-light text-black/85">{card.priceLine}</div>
+                  <ul className="mt-6 flex-1 space-y-3 text-sm text-black/55">
                     {card.details.map((d) => (
                       <li key={d} className="flex gap-3 items-start">
                         <span className="mt-2 h-1.5 w-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: accentRGB }} />
@@ -601,9 +600,9 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      <div className="zv-divider-gold zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 10 — BOOKING WIDGET ========== */}
+      {/* ========== SECTION 10 — BOOKING WIDGET (DARK) ========== */}
       <section id="book" className="zv-bleed zv-immersive-section zv-section-gradient">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
@@ -637,10 +636,10 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      <div className="zv-divider-white zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 11 — FAQ ========== */}
-      <section className="zv-bleed zv-immersive-section zv-section-recessed">
+      {/* ========== SECTION 11 — FAQ (LIGHT) ========== */}
+      <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline" style={{ color: accentRGB }}>Questions</p>
@@ -652,13 +651,13 @@ export default async function ServicePage({ params }: PageProps) {
               <ScrollReveal key={`${f.question}-${idx}`} variant="fade-up" delay={idx * 60}>
                 <details className="group rounded-2xl p-6 md:p-8 transition-colors" style={{
                   background: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.04)`,
-                  border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.10)`,
+                  border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)`,
                 }}>
-                  <summary className="cursor-pointer font-serif text-lg font-normal text-white list-none flex items-center justify-between gap-4">
+                  <summary className="cursor-pointer font-serif text-lg font-normal text-black/85 list-none flex items-center justify-between gap-4">
                     {f.question}
-                    <span className="text-white/30 transition-transform group-open:rotate-45 text-2xl flex-shrink-0">+</span>
+                    <span className="text-black/25 transition-transform group-open:rotate-45 text-2xl flex-shrink-0">+</span>
                   </summary>
-                  <p className="mt-4 text-white/60 leading-relaxed">{f.answer}</p>
+                  <p className="mt-4 text-black/55 leading-relaxed">{f.answer}</p>
                 </details>
               </ScrollReveal>
             ))}
@@ -666,9 +665,9 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      <div className="zv-divider-gold zv-bleed" />
+      <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 12 — RELATED SERVICES ========== */}
+      {/* ========== SECTION 12 — RELATED SERVICES (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
@@ -700,11 +699,11 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ========== RELATED SCIENCE & RESEARCH ========== */}
+      {/* ========== RELATED SCIENCE & RESEARCH (LIGHT) ========== */}
       {(linkedScience.length > 0 || linkedResearch.length > 0) ? (
         <>
-          <div className="zv-divider-white zv-bleed" />
-          <section className="zv-bleed zv-immersive-section zv-section-elevated">
+          <div className="zv-divider-dark-to-light zv-bleed" />
+          <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
             <div className="mx-auto max-w-6xl px-6">
               <ScrollReveal variant="fade-up">
                 <p className="zv-tagline" style={{ color: accentRGB }}>Evidence</p>
@@ -715,21 +714,21 @@ export default async function ServicePage({ params }: PageProps) {
                 {linkedScience.length > 0 ? (
                   <ScrollReveal variant="fade-left">
                     <div className="zv-luxury-card rounded-2xl p-8" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
-                      <div className="text-xs font-semibold text-white/50 tracking-wider uppercase mb-6">Science Articles</div>
+                      <div className="text-xs font-semibold text-black/40 tracking-wider uppercase mb-6">Science Articles</div>
                       <div className="space-y-4">
                         {linkedScience.map((a) => (
                           <Link
                             key={a.slug}
                             href={`/science/${a.slug}`}
-                            className="block rounded-xl p-4 transition-colors"
+                            className="block rounded-xl p-4 transition-colors hover:bg-black/[0.03]"
                             style={{
-                              border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.10)`,
+                              border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)`,
                               background: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.04)`,
                             }}
                           >
-                            <div className="font-serif text-white">{a.title}</div>
+                            <div className="font-serif text-black/80">{a.title}</div>
                             {a.description ? (
-                              <div className="mt-1 text-xs text-white/50 line-clamp-2">{a.description}</div>
+                              <div className="mt-1 text-xs text-black/45 line-clamp-2">{a.description}</div>
                             ) : null}
                           </Link>
                         ))}
@@ -740,21 +739,21 @@ export default async function ServicePage({ params }: PageProps) {
                 {linkedResearch.length > 0 ? (
                   <ScrollReveal variant="fade-right">
                     <div className="zv-luxury-card rounded-2xl p-8" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
-                      <div className="text-xs font-semibold text-white/50 tracking-wider uppercase mb-6">Research Sources</div>
+                      <div className="text-xs font-semibold text-black/40 tracking-wider uppercase mb-6">Research Sources</div>
                       <div className="space-y-4">
                         {linkedResearch.map((r) => (
                           <Link
                             key={r.slug ?? r.id}
                             href={`/research/${r.slug ?? r.id}`}
-                            className="block rounded-xl p-4 transition-colors"
+                            className="block rounded-xl p-4 transition-colors hover:bg-black/[0.03]"
                             style={{
-                              border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.10)`,
+                              border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)`,
                               background: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.04)`,
                             }}
                           >
-                            <div className="font-serif text-white">{r.title}</div>
+                            <div className="font-serif text-black/80">{r.title}</div>
                             {r.journal ? (
-                              <div className="mt-1 text-xs text-white/50">{r.journal} {r.year ? `(${r.year})` : ""}</div>
+                              <div className="mt-1 text-xs text-black/45">{r.journal} {r.year ? `(${r.year})` : ""}</div>
                             ) : null}
                           </Link>
                         ))}
@@ -770,7 +769,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       <div className="zv-divider-gold zv-bleed" />
 
-      {/* ========== SECTION 13 — FINAL CTA ========== */}
+      {/* ========== SECTION 13 — FINAL CTA (DARK) ========== */}
       <section className="zv-bleed relative overflow-hidden py-24 md:py-32">
         <div className="absolute inset-0">
           <div
