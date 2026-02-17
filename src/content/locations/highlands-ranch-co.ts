@@ -19,7 +19,7 @@ const highlands_ranch_co: Location = {
     headline: "Modern Wellness & Recovery in Highlands Ranch, CO",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/highlands-ranch-co/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ const highlands_ranch_co: Location = {
       "Zivel Highlands Ranch brings modern wellness technology and recovery services to the Highlands Ranch community.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/highlands-ranch-co/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [

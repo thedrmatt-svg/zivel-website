@@ -19,7 +19,7 @@ const briargate_co: Location = {
     headline: "Modern Wellness & Recovery in Briargate, CO",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/briargate-co/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ const briargate_co: Location = {
       "Zivel Briargate brings modern wellness technology and recovery services to the Briargate community.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/briargate-co/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [

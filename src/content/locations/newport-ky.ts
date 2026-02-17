@@ -19,7 +19,7 @@ export const newportKY: Location = {
     headline: "Modern Wellness & Recovery in Newport, Kentucky",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/newport-ky/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ export const newportKY: Location = {
       "Zivel Newport is your destination for advanced wellness and recovery services in Northern Kentucky.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/newport-ky/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [

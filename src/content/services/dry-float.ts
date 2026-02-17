@@ -17,7 +17,7 @@ export const dryFloat: Service = {
       "Deep relaxation and recovery—float fully clothed in a zero-gravity environment without getting wet.",
     media: {
       type: "image",
-      src: "/images/services/dry-float/hero.svg",
+      src: "/images/services/dry-float/hero.jpg",
       alt: "Dry float therapy session at Zivel (placeholder)",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
@@ -38,7 +38,7 @@ export const dryFloat: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/dry-float/intro.svg",
+      src: "/images/services/dry-float/intro.jpg",
       alt: "Dry float bed/pod in a Zivel studio (placeholder)",
     },
   },
@@ -120,7 +120,7 @@ export const dryFloat: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/dry-float/science.svg",
+      src: "/images/services/dry-float/science.jpg",
       alt: "Relaxation and recovery concept visual (placeholder)",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },

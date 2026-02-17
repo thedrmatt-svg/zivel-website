@@ -19,7 +19,7 @@ const palm_coast_fl: Location = {
     headline: "Modern Wellness & Recovery in Palm Coast, FL",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/palm-coast-fl/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ const palm_coast_fl: Location = {
       "Zivel Palm Coast brings modern wellness technology and recovery services to the Palm Coast community.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/palm-coast-fl/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [

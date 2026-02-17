@@ -19,7 +19,7 @@ const metairie_la: Location = {
     headline: "Modern Wellness & Recovery in Metairie, LA",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/metairie-la/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ const metairie_la: Location = {
       "Zivel Metairie brings modern wellness technology and recovery services to the Metairie community.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/metairie-la/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [

@@ -17,7 +17,7 @@ export const cryoLiftFacial: Service = {
       "Non-invasive facial cooling designed to support the appearance of skin firmness, tone, and overall skin health—used for both ongoing maintenance and event preparation.",
     media: {
       type: "image",
-      src: "/images/services/cryo-lift-facial/hero.svg",
+      src: "/images/services/cryo-lift-facial/hero.jpg",
       alt: "CryoLift facial session at Zivel (placeholder)",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
@@ -38,7 +38,7 @@ export const cryoLiftFacial: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryo-lift-facial/intro.svg",
+      src: "/images/services/cryo-lift-facial/intro.jpg",
       alt: "Cryo facial tools and treatment room (placeholder)",
     },
   },
@@ -120,7 +120,7 @@ export const cryoLiftFacial: Service = {
     ],
     media: {
       type: "image",
-      src: "/images/services/cryo-lift-facial/science.svg",
+      src: "/images/services/cryo-lift-facial/science.jpg",
       alt: "Skin and circulation concept visual (placeholder)",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },

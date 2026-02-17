@@ -19,7 +19,7 @@ const rogers_ar: Location = {
     headline: "Modern Wellness & Recovery in Rogers, AR",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/rogers-ar/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ const rogers_ar: Location = {
       "Zivel Rogers brings modern wellness technology and recovery services to the Rogers community.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/rogers-ar/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [

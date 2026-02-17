@@ -19,7 +19,7 @@ const fayetteville_ar: Location = {
     headline: "Modern Wellness & Recovery in Fayetteville, AR",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/fayetteville-ar/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ const fayetteville_ar: Location = {
       "Zivel Fayetteville brings modern wellness technology and recovery services to the Fayetteville community.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/fayetteville-ar/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [

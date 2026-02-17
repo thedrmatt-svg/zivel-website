@@ -19,7 +19,7 @@ const brecksville_oh: Location = {
     headline: "Modern Wellness & Recovery in Brecksville, OH",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/brecksville-oh/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ const brecksville_oh: Location = {
       "Zivel Brecksville brings modern wellness technology and recovery services to the Brecksville community.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/brecksville-oh/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [

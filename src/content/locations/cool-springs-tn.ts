@@ -19,7 +19,7 @@ const cool_springs_tn: Location = {
     headline: "Modern Wellness & Recovery in Cool Springs, TN",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/cool-springs-tn/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ const cool_springs_tn: Location = {
       "Zivel Cool Springs brings modern wellness technology and recovery services to the Cool Springs community.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/cool-springs-tn/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [

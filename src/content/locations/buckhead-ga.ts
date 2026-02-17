@@ -19,7 +19,7 @@ const buckhead_ga: Location = {
     headline: "Modern Wellness & Recovery in Buckhead, GA",
     subheadline:
       "Science-backed therapies designed to help you recover faster, feel better, and perform at your best.",
-    image: "/images/locations/buckhead-ga/hero.svg",
+    image: "/images/locations/studio-hero.jpg",
   },
 
   about: {
@@ -28,7 +28,7 @@ const buckhead_ga: Location = {
       "Zivel Buckhead brings modern wellness technology and recovery services to the Buckhead community.",
       "Our studio combines cutting-edge technology with personalized care to support recovery, performance, and longevity.",
     ],
-    image: "/images/locations/buckhead-ga/about.svg",
+    image: "/images/locations/studio-about.jpg",
   },
 
   services: [
