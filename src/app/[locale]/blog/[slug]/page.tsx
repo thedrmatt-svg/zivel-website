@@ -26,13 +26,30 @@ export async function generateMetadata({
   };
 }
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim();
+}
+
+function extractHeadings(blocks: BlogContentBlock[]) {
+  return blocks
+    .filter((b): b is Extract<BlogContentBlock, { type: "heading" }> => b.type === "heading")
+    .map((b) => ({ level: b.level, text: b.text, id: slugify(b.text) }));
+}
+
 function renderContentBlocks(blocks: BlogContentBlock[]) {
   return blocks.map((block, i) => {
     switch (block.type) {
-      case "heading":
+      case "heading": {
+        const id = slugify(block.text);
         if (block.level === 2)
-          return <h2 key={i} className="mt-10 font-serif text-2xl md:text-3xl font-light tracking-tight">{block.text}</h2>;
-        return <h3 key={i} className="mt-8 font-serif text-xl font-normal">{block.text}</h3>;
+          return <h2 key={i} id={id} className="mt-10 font-serif text-2xl md:text-3xl font-light tracking-tight scroll-mt-28">{block.text}</h2>;
+        return <h3 key={i} id={id} className="mt-8 font-serif text-xl font-normal scroll-mt-28">{block.text}</h3>;
+      }
 
       case "list":
         return (
@@ -61,6 +78,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) return notFound();
 
   const SITE_URL = "https://www.zivel.com";
+  const headings = extractHeadings(post.content);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -80,6 +98,11 @@ export default async function BlogPostPage({ params }: PageProps) {
     datePublished: post.publishDate,
     url: `${SITE_URL}/blog/${post.slug}`,
     mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+    ...(headings.length > 0 && {
+      articleSection: headings
+        .filter((h) => h.level === 2)
+        .map((h) => h.text),
+    }),
   };
 
   const breadcrumbSchema = {
@@ -127,6 +150,25 @@ export default async function BlogPostPage({ params }: PageProps) {
       <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
         <div className="mx-auto max-w-3xl px-6">
           <ScrollReveal variant="fade-up">
+            {headings.length > 0 && (
+              <nav aria-label="Table of contents" className="mb-12 rounded-2xl border border-black/8 bg-black/[0.02] p-6 md:p-8">
+                <h2 className="text-xs uppercase tracking-[0.2em] text-[var(--zivel-gold-dark)] font-semibold mb-4">In This Article</h2>
+                <ol className="space-y-2">
+                  {headings.map((heading) => (
+                    <li key={heading.id} className={heading.level === 3 ? "pl-5" : ""}>
+                      <a
+                        href={`#${heading.id}`}
+                        className="text-black/60 hover:text-[var(--zivel-gold-dark)] transition-colors duration-300 text-[15px] leading-relaxed flex items-start gap-2"
+                      >
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--zivel-gold)]/40" />
+                        {heading.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
+
             <article className="space-y-6">
               {renderContentBlocks(post.content)}
             </article>
