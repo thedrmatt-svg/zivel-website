@@ -17,6 +17,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+const serviceImageMap: Record<string, string> = {
+  "cryotherapy": "/images/home/service-cryo.jpg",
+  "red-light-therapy": "/images/home/service-redlight.jpg",
+  "infrared-sauna": "/images/home/service-sauna.jpg",
+  "dry-float": "/images/home/service-dryfloat.jpg",
+  "compression-therapy": "/images/home/service-compression.jpg",
+  "cryo-slimming": "/images/home/service-slimming.jpg",
+  "cryo-toning": "/images/home/service-exercise.jpg",
+  "cryo-lift-facial": "/images/home/service-facial.jpg",
+};
+
+const scienceImages = [
+  "/images/home/science-1.jpg",
+  "/images/home/science-2.jpg",
+  "/images/home/science-3.jpg",
+];
+
 export default function HomePage() {
   const t = useTranslations();
   const featuredServices = services.slice(0, 6);
@@ -35,7 +52,15 @@ export default function HomePage() {
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
       <section className="zv-bleed zv-hero-fullscreen zv-noise" aria-labelledby="home-hero-title">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
+          <Image
+            src="/images/home/hero-bg.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/80" />
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.08)_0%,transparent_70%)]" />
         </div>
 
@@ -144,17 +169,29 @@ export default function HomePage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {featuredServices.map((service, i) => (
               <ScrollReveal key={service.slug} variant="fade-up" delay={i * 100}>
-                <Link href={`/services/${service.slug}`} className="block zv-luxury-card p-8 h-full group">
-                  <h3 className="text-xl mb-3 group-hover:text-[var(--zivel-gold)] transition-colors duration-500">{service.name}</h3>
-                  <p className="text-sm text-white/60 line-clamp-3 mb-6">
-                    {service.hero.subheadline}
-                  </p>
-                  <span className="text-sm font-medium text-[var(--zivel-gold)] flex items-center gap-2">
-                    Explore
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
-                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
+                <Link href={`/services/${service.slug}`} className="block zv-luxury-card overflow-hidden h-full group">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <Image
+                      src={serviceImageMap[service.slug] || "/images/home/service-exercise.jpg"}
+                      alt={service.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl mb-3 group-hover:text-[var(--zivel-gold)] transition-colors duration-500">{service.name}</h3>
+                    <p className="text-sm text-white/60 line-clamp-3 mb-6">
+                      {service.hero.subheadline}
+                    </p>
+                    <span className="text-sm font-medium text-[var(--zivel-gold)] flex items-center gap-2">
+                      Explore
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
+                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
+                  </div>
                 </Link>
               </ScrollReveal>
             ))}
@@ -164,12 +201,22 @@ export default function HomePage() {
 
       <div className="zv-divider-dark-to-light" />
 
-      {/* ========== STATEMENT QUOTE (LIGHT) ========== */}
-      <section className="zv-bleed zv-immersive-section zv-section-light zv-light" aria-label="Brand statement">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+      {/* ========== STATEMENT QUOTE (LIGHT) — WITH BACKGROUND IMAGE ========== */}
+      <section className="zv-bleed zv-immersive-section relative overflow-hidden" aria-label="Brand statement">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/home/quote-bg.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <ScrollReveal variant="fade-in" duration={1200}>
             <span className="zv-quote-mark block mb-4">&ldquo;</span>
-            <p className="zv-quote-large">
+            <p className="zv-quote-large text-white">
               The real journey begins when you arrive. We exist to help you recover smarter, perform better, and feel the difference.
             </p>
             <span className="zv-gold-line mt-10" />
@@ -238,9 +285,15 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
             <ScrollReveal variant="fade-right">
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/home/about-studio.jpg"
+                  alt="Inside a Zivel wellness studio"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
                 <div className="absolute inset-0 border border-white/10 rounded-2xl z-10" />
-                <span className="absolute inset-0 flex items-center justify-center text-white/30">About Media Placeholder</span>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               </div>
             </ScrollReveal>
@@ -330,8 +383,15 @@ export default function HomePage() {
             {featuredArticles.map((article, i) => (
               <ScrollReveal key={article.slug} variant="fade-up" delay={i * 150}>
                 <Link href={`/science/${article.slug}`} className="block zv-luxury-card overflow-hidden h-full group">
-                  <div className="aspect-[16/9] w-full bg-gradient-to-br from-white/[0.03] to-transparent flex items-center justify-center text-white/30 text-sm">
-                    Article Thumbnail
+                  <div className="relative aspect-[16/9] w-full overflow-hidden">
+                    <Image
+                      src={scienceImages[i] || scienceImages[0]}
+                      alt={article.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg mb-3 group-hover:text-[var(--zivel-gold)] transition-colors duration-500">
@@ -356,9 +416,20 @@ export default function HomePage() {
 
       <div className="zv-divider-gold" />
 
-      {/* ========== FINAL CTA (DARK) ========== */}
-      <section className="zv-bleed zv-immersive-section zv-glow-gold" aria-labelledby="home-final-cta-title">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+      {/* ========== FINAL CTA (DARK) — WITH BACKGROUND IMAGE ========== */}
+      <section className="zv-bleed zv-immersive-section relative overflow-hidden" aria-labelledby="home-final-cta-title">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/home/cta-bg.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/65" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0%,transparent_60%)]" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <ScrollReveal variant="fade-up">
             <span className="zv-tagline mb-6 block">Begin Today</span>
             <h2 id="home-final-cta-title" className="mb-6">

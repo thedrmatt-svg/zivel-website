@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     "*.replit.dev",
     "*.replit.app",
     "*.riker.replit.dev",
+    "*.spock.replit.dev",
   ],
   images: {
     formats: ["image/avif", "image/webp"],
