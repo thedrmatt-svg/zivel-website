@@ -88,13 +88,12 @@ export default function HomePage() {
 
       </section>
 
-      <div className="zv-divider-gold" />
+      <div className="zv-divider-dark-to-light" />
 
-      {/* ========== BOOKING WIDGET (DARK + GOLD GRADIENT) ========== */}
-      <section id="book" className="zv-bleed zv-immersive-section zv-noise zv-hero-gradient zv-booking-gradient" aria-labelledby="home-booking-title">
+      {/* ========== BOOKING WIDGET (WHITE + GOLD GRADIENT) ========== */}
+      <section id="book" className="zv-bleed zv-immersive-section zv-noise zv-light zv-booking-gradient" aria-labelledby="home-booking-title">
         <div className="absolute inset-0 z-0">
           <div className="zv-booking-gradient-bg" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
         </div>
         <div className="relative z-10 mx-auto max-w-5xl px-6">
           <ScrollReveal variant="fade-up">
@@ -107,17 +106,17 @@ export default function HomePage() {
 
           <ScrollReveal variant="scale" delay={200}>
             <div className="rounded-2xl zv-card-glass p-6 md:p-8">
-              <p className="mb-8 text-center max-w-lg mx-auto text-white/60">
+              <p className="mb-8 text-center max-w-lg mx-auto">
                 Choose your location, select a service, and pick a time that works for you.
               </p>
 
-              <div className="h-[560px] w-full rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center text-white/30">
+              <div className="h-[560px] w-full rounded-xl border border-black/10 bg-black/[0.03] flex items-center justify-center text-black/30">
                 Booking Widget Placeholder (iframe will go here)
               </div>
 
-              <p className="mt-6 text-center text-sm text-white/40">
+              <p className="mt-6 text-center text-sm text-black/40">
                 If the booking form does not load,{" "}
-                <Link href="/locations" className="text-[var(--zivel-gold)] zv-gold-underline">
+                <Link href="/locations" className="text-[var(--zivel-gold-dark)] zv-gold-underline">
                   find a location
                 </Link>{" "}
                 to book directly.
@@ -127,7 +126,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="zv-divider-gold" />
+      <div className="zv-divider-dark-to-light" />
 
       {/* ========== SIGNATURE SERVICES (DARK) ========== */}
       <section id="services" className="zv-bleed zv-immersive-section zv-section-gradient zv-noise zv-diagonal-accent" aria-labelledby="home-services-title">

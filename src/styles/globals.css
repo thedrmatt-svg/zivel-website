@@ -521,10 +521,10 @@ noscript + .zv-reveal,
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 70% at 15% 75%, rgba(212, 175, 55, 0.40) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 60% at 85% 25%, rgba(212, 175, 55, 0.25) 0%, transparent 55%),
-    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.10) 0%, transparent 45%),
-    linear-gradient(170deg, #000000 0%, #0a0a0a 40%, #0d0d0d 70%, #050505 100%);
+    radial-gradient(ellipse 80% 70% at 15% 75%, rgba(212, 175, 55, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 85% 25%, rgba(212, 175, 55, 0.12) 0%, transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 45%),
+    #ffffff;
   z-index: 0;
 }
 
