@@ -512,22 +512,6 @@ noscript + .zv-reveal,
   z-index: 0;
 }
 
-.zv-booking-gradient {
-  position: relative;
-  overflow: hidden;
-}
-
-.zv-booking-gradient-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 70% at 15% 75%, rgba(212, 175, 55, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 60% at 85% 25%, rgba(212, 175, 55, 0.12) 0%, transparent 55%),
-    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 45%),
-    #ffffff;
-  z-index: 0;
-}
-
 
 .zv-hero-content {
   position: relative;

@@ -88,14 +88,12 @@ export default function HomePage() {
 
       </section>
 
+      {/* ========== TRANSITION: DARK → LIGHT ========== */}
       <div className="zv-divider-dark-to-light" />
 
-      {/* ========== BOOKING WIDGET (WHITE + GOLD GRADIENT) ========== */}
-      <section id="book" className="zv-bleed zv-immersive-section zv-noise zv-light zv-booking-gradient" aria-labelledby="home-booking-title">
-        <div className="absolute inset-0 z-0">
-          <div className="zv-booking-gradient-bg" />
-        </div>
-        <div className="relative z-10 mx-auto max-w-5xl px-6">
+      {/* ========== BOOKING WIDGET (LIGHT) ========== */}
+      <section id="book" className="zv-bleed zv-immersive-section zv-section-light zv-noise zv-light" aria-labelledby="home-booking-title">
+        <div className="mx-auto max-w-5xl px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-12">
               <span className="zv-tagline mb-4 block">Reserve Your Experience</span>
