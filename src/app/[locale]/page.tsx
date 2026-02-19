@@ -50,18 +50,20 @@ export default function HomePage() {
   return (
     <main className="-mt-20">
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
-      <section className="zv-bleed zv-hero-fullscreen zv-noise" aria-labelledby="home-hero-title">
+      <section className="zv-bleed zv-hero-fullscreen zv-noise zv-hero-gradient" aria-labelledby="home-hero-title">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/home/hero-bg.jpg"
-            alt=""
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/80" />
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.08)_0%,transparent_70%)]" />
+          <div className="zv-hero-gradient-bg" />
+          <div className="zv-hero-wave">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="w-full h-full">
+              <path d="M0,224 C120,260 240,290 360,270 C480,250 600,200 720,192 C840,184 960,220 1080,240 C1200,260 1320,250 1440,230 L1440,320 L0,320 Z" fill="rgba(210,120,30,0.18)" />
+            </svg>
+          </div>
+          <div className="zv-hero-wave zv-hero-wave-2">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="w-full h-full">
+              <path d="M0,256 C160,220 320,200 480,210 C640,220 800,270 960,280 C1120,290 1280,260 1440,240 L1440,320 L0,320 Z" fill="rgba(45,100,200,0.14)" />
+            </svg>
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
         </div>
 
         <div className="zv-hero-content">

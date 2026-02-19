@@ -489,6 +489,56 @@ noscript + .zv-reveal,
   pointer-events: none;
 }
 
+.zv-hero-gradient.zv-hero-fullscreen {
+  background: transparent;
+}
+.zv-hero-gradient > .absolute {
+  position: absolute !important;
+  z-index: 0 !important;
+}
+.zv-hero-gradient.zv-hero-fullscreen::before,
+.zv-hero-gradient.zv-hero-fullscreen::after {
+  display: none;
+}
+
+.zv-hero-gradient-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 70% at 10% 80%, rgba(210, 120, 30, 0.50) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 60% at 90% 20%, rgba(45, 100, 200, 0.40) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+    linear-gradient(170deg, #000000 0%, #0a0a0a 40%, #0d0d0d 70%, #050505 100%);
+  z-index: 0;
+}
+
+.zv-hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+  z-index: 1;
+  animation: zv-wave-drift 20s ease-in-out infinite;
+}
+
+.zv-hero-wave-2 {
+  bottom: -5%;
+  animation: zv-wave-drift 25s ease-in-out infinite reverse;
+}
+
+@keyframes zv-wave-drift {
+  0%, 100% { transform: translateX(-2%); }
+  50% { transform: translateX(2%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zv-hero-wave,
+  .zv-hero-wave-2 {
+    animation: none;
+  }
+}
+
 .zv-hero-content {
   position: relative;
   z-index: 3;

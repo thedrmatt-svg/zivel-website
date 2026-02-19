@@ -1,0 +1,15 @@
+Add an abstract gradient overlay to the home page hero section. The hero should have a warm amber/orange glow radiating from the bottom-left (symbolizing heat therapies like sauna) fading into a cool steel blue glow in the upper-right (symbolizing cold therapies like cryotherapy), with a subtle gold accent at center. Layer two animated SVG wave shapes at the bottom — one warm amber, one cool blue — that gently drift horizontally for organic emotion. The base should be a dark gradient (not pure black).
+
+Implementation details:
+
+In the home page hero section markup, replace any existing background with a container div holding: a .zv-hero-gradient-bg div (the main gradient), two .zv-hero-wave divs (animated waves), and a light top-to-bottom black overlay for text contrast. Add class zv-hero-gradient to the hero section element.
+In your global CSS, add these classes:
+.zv-hero-gradient.zv-hero-fullscreen { background: transparent; } — override any solid black background on the hero so the gradient shows through
+.zv-hero-gradient > .absolute { position: absolute !important; z-index: 0 !important; } — prevent any position: relative rules (like from noise texture utilities) from collapsing the gradient container
+.zv-hero-gradient.zv-hero-fullscreen::before, .zv-hero-gradient.zv-hero-fullscreen::after { display: none; } — suppress any existing pseudo-element overlays that would cover the gradient
+.zv-hero-gradient-bg — absolute positioned, inset 0, with layered radial gradients: amber (0.50 opacity at 10% 80%), blue (0.40 opacity at 90% 20%), gold center (0.12 opacity), over a dark base linear-gradient
+.zv-hero-wave — absolute positioned at bottom, 65% height, inline SVG wave path filled with warm amber (rgba 210,120,30,0.18), animating translateX -2% to 2% over 20s
+.zv-hero-wave-2 — second wave with cool blue fill (rgba 45,100,200,0.14), offset lower, animating 25s in reverse
+@keyframes zv-wave-drift for the horizontal drift
+@media (prefers-reduced-motion: reduce) to disable wave animation for accessibility
+The three critical CSS fixes that make it visible are: (a) transparent background on the hero section, (b) !important absolute positioning override on the gradient container, and (c) hiding the ::before/::after pseudo-elements. Without all three, the gradient will appear as solid black.
