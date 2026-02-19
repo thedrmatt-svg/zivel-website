@@ -53,16 +53,6 @@ export default function HomePage() {
       <section className="zv-bleed zv-hero-fullscreen zv-noise zv-hero-gradient" aria-labelledby="home-hero-title">
         <div className="absolute inset-0 z-0">
           <div className="zv-hero-gradient-bg" />
-          <div className="zv-hero-wave">
-            <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="w-full h-full">
-              <path d="M0,224 C120,260 240,290 360,270 C480,250 600,200 720,192 C840,184 960,220 1080,240 C1200,260 1320,250 1440,230 L1440,320 L0,320 Z" fill="rgba(210,120,30,0.18)" />
-            </svg>
-          </div>
-          <div className="zv-hero-wave zv-hero-wave-2">
-            <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="w-full h-full">
-              <path d="M0,256 C160,220 320,200 480,210 C640,220 800,270 960,280 C1120,290 1280,260 1440,240 L1440,320 L0,320 Z" fill="rgba(45,100,200,0.14)" />
-            </svg>
-          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
         </div>
 

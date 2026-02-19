@@ -512,32 +512,6 @@ noscript + .zv-reveal,
   z-index: 0;
 }
 
-.zv-hero-wave {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 65%;
-  z-index: 1;
-  animation: zv-wave-drift 20s ease-in-out infinite;
-}
-
-.zv-hero-wave-2 {
-  bottom: -5%;
-  animation: zv-wave-drift 25s ease-in-out infinite reverse;
-}
-
-@keyframes zv-wave-drift {
-  0%, 100% { transform: translateX(-2%); }
-  50% { transform: translateX(2%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .zv-hero-wave,
-  .zv-hero-wave-2 {
-    animation: none;
-  }
-}
 
 .zv-hero-content {
   position: relative;
