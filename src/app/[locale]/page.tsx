@@ -108,16 +108,26 @@ export default function HomePage() {
                 Choose your location, select a service, and pick a time that works for you.
               </p>
 
-              <div className="h-[560px] w-full rounded-xl border border-black/10 bg-black/[0.03] flex items-center justify-center text-black/30">
-                Booking Widget Placeholder (iframe will go here)
-              </div>
+              <iframe
+                className="block h-[700px] w-full rounded-xl border border-black/10 bg-white"
+                src="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
+                title="Book an appointment at Zivel"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
 
               <p className="mt-6 text-center text-sm text-black/40">
                 If the booking form does not load,{" "}
-                <Link href="/locations" className="text-[var(--zivel-gold-dark)] zv-gold-underline">
-                  find a location
-                </Link>{" "}
-                to book directly.
+                <a
+                  href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[var(--zivel-gold-dark)] zv-gold-underline"
+                >
+                  open the booking page
+                </a>
+                .
               </p>
             </div>
           </ScrollReveal>
