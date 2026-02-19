@@ -86,14 +86,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
-          <div className="zv-scroll-hint flex flex-col items-center gap-2 text-white/40">
-            <span className="text-xs uppercase tracking-[0.2em]">Scroll</span>
-            <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 4V20M8 20L2 14M8 20L14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-        </div>
       </section>
 
       {/* ========== TRANSITION: DARK → LIGHT ========== */}
