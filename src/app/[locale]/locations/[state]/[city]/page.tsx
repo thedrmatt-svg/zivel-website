@@ -11,6 +11,7 @@ import PartnersSection from "@/components/location/PartnersSection";
 import PricingSection from "@/components/location/PricingSection";
 import StoreSection from "@/components/location/StoreSection";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import ServiceImageCard from "@/components/location/ServiceImageCard";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 
 export function generateStaticParams() {
@@ -310,16 +311,17 @@ export default async function LocationPage({
               <p className="zv-tagline">What We Offer</p>
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Services Available</h2>
             </ScrollReveal>
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {location.services.map((s, idx) => (
                 <ScrollReveal key={s.slug} variant="fade-up" delay={idx * 80}>
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
-                  >
-                    <div className="font-serif text-lg text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{s.name}</div>
-                    {s.description && <p className="mt-3 text-sm text-black/55 leading-relaxed">{s.description}</p>}
-                  </Link>
+                  <ServiceImageCard
+                    slug={s.slug}
+                    name={s.name}
+                    description={s.description}
+                    citySlug={location.citySlug}
+                    cityName={cityName}
+                    variant="light"
+                  />
                 </ScrollReveal>
               ))}
             </div>
@@ -332,16 +334,17 @@ export default async function LocationPage({
               <p className="zv-tagline">What We Offer</p>
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Services Available</h2>
             </ScrollReveal>
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {location.services.map((s, idx) => (
                 <ScrollReveal key={s.slug} variant="fade-up" delay={idx * 80}>
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
-                  >
-                    <div className="font-serif text-lg text-white group-hover:text-[var(--zivel-gold)] transition-colors">{s.name}</div>
-                    {s.description && <p className="mt-3 text-sm text-white/60 leading-relaxed">{s.description}</p>}
-                  </Link>
+                  <ServiceImageCard
+                    slug={s.slug}
+                    name={s.name}
+                    description={s.description}
+                    citySlug={location.citySlug}
+                    cityName={cityName}
+                    variant="dark"
+                  />
                 </ScrollReveal>
               ))}
             </div>
