@@ -64,8 +64,8 @@ export default async function GoogleReviews({
       <div className="rounded-2xl border-subtle bg-card p-6">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
-            <div className="text-lg font-semibold">5-Star Reviews</div>
-            <div className="text-sm text-white/60">
+            <div className="text-lg font-semibold text-black">5-Star Reviews</div>
+            <div className="text-sm text-black/70">
               Recent 5-star feedback for {locationName}
               {typeof data.rating === "number" && typeof data.total === "number"
                 ? ` • Overall ${data.rating.toFixed(1)} (${data.total} ratings)`
@@ -78,7 +78,7 @@ export default async function GoogleReviews({
               href={data.googleUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-brand underline"
+              className="text-sm text-black underline"
             >
               View on Google
             </a>
@@ -90,26 +90,15 @@ export default async function GoogleReviews({
         {data.reviews.map((r, idx) => (
           <div key={idx} className="rounded-2xl border-subtle bg-card p-6">
             <div className="flex items-baseline justify-between gap-2">
-              <div className="font-semibold text-white/90">
+              <div className="font-semibold text-black">
                 {r.authorAttribution?.displayName ?? "Google User"}
               </div>
-              <div className="text-xs text-white/50">
+              <div className="text-xs text-black/60">
                 {r.relativePublishTimeDescription ?? ""}
               </div>
             </div>
 
-            {r.text?.text ? <p className="mt-3 text-sm text-white/70">{r.text.text}</p> : null}
-
-            {r.authorAttribution?.uri ? (
-              <a
-                className="mt-4 inline-block text-sm text-brand underline"
-                href={r.authorAttribution.uri}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Reviewer profile
-              </a>
-            ) : null}
+            {r.text?.text ? <p className="mt-3 text-sm text-black/70">{r.text.text}</p> : null}
           </div>
         ))}
       </div>

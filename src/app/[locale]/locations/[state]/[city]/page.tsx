@@ -394,8 +394,8 @@ export default async function LocationPage({
         <section id="reviews" className="zv-bleed zv-section-light zv-light zv-immersive-section">
           <div className="mx-auto max-w-6xl px-6">
             <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">Guest Feedback</p>
-              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Guests Are Saying</h2>
+              <p className="zv-tagline">Client Feedback</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Clients Are Saying</h2>
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
               <GoogleReviews
@@ -409,8 +409,8 @@ export default async function LocationPage({
         <section id="reviews" className="zv-bleed zv-immersive-section zv-section-recessed">
           <div className="mx-auto max-w-6xl px-6">
             <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">Guest Feedback</p>
-              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Guests Are Saying</h2>
+              <p className="zv-tagline">Client Feedback</p>
+              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Clients Are Saying</h2>
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
               <GoogleReviews
