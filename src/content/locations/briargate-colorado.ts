@@ -64,7 +64,7 @@ export const zivel_briargate_location: Location = {
 ],
 
   google: {
-    placeId: "",
+    placeId: "ChIJFdsggG9NE4cR0dKogMxsgbI",
     mapEmbedUrl: "",
   },
 
