@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { locations } from "@/lib/data/locations";
+import LocationsMap from "@/components/location/LocationsMap";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
@@ -50,6 +51,32 @@ export default function LocationsIndexPage() {
               Browse by state to find your nearest Zivel studio. Each location page includes
               services offered, booking, local partners, and FAQs.
             </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <div className="zv-bleed zv-divider-dark-to-light" />
+
+      {/* ========== MAP (LIGHT) ========== */}
+      <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline">Find a Studio</p>
+            <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Our Locations</h2>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={100}>
+            <LocationsMap
+              locations={locations
+                .filter((loc) => loc.geo)
+                .map((loc) => ({
+                  name: loc.name,
+                  address: loc.contact?.address ?? "",
+                  phone: loc.contact?.phone ?? "",
+                  lat: loc.geo!.lat,
+                  lng: loc.geo!.lng,
+                  href: `/locations/${loc.stateSlug}/${loc.citySlug}`,
+                }))}
+            />
           </ScrollReveal>
         </div>
       </section>

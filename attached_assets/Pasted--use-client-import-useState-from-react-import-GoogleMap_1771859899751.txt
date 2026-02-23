@@ -1,0 +1,96 @@
+'use client';
+
+import { useState } from 'react';
+import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+
+const mapCenter = { lat: 39.8283, lng: -98.5795 }; // US center
+
+const mapOptions = {
+  disableDefaultUI: false,
+  zoomControl: true,
+  streetViewControl: false,
+  mapTypeControl: false,
+  fullscreenControl: true,
+  styles: [
+    { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+    { featureType: 'transit', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+  ],
+};
+
+interface Location {
+  name: string;
+  address: string;
+  phone: string;
+  bookLink: string;
+  lat: number;
+  lng: number;
+  hours?: string;
+}
+
+const locations: Location[] = [
+  // Populate with your real 20+ locations here
+  // Example:
+  {
+    name: 'Zivel Aurora, CO',
+    address: '123 Example St, Aurora, CO 80012',
+    phone: '(720) 555-1234',
+    bookLink: 'https://zivel.myperformanceiq.com/book-appointment?set_location=XXXX',
+    lat: 39.7294,
+    lng: -104.8319,
+  },
+  // Add the rest...
+];
+
+export default function LocationsMap() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+  });
+
+  const [activeMarker, setActiveMarker] = useState<Location | null>(null);
+
+  if (!isLoaded) {
+    return <div className="h-96 flex items-center justify-center bg-gray-100 rounded-xl">Loading map...</div>;
+  }
+
+  return (
+    <div className="w-full h-[500px] md:h-[600px] lg:h-[700px] rounded-xl overflow-hidden shadow-lg border border-gray-200">
+      <GoogleMap
+        zoom={4}
+        center={mapCenter}
+        mapContainerStyle={{ width: '100%', height: '100%' }}
+        options={mapOptions}
+      >
+        {locations.map((loc, index) => (
+          <Marker
+            key={index}
+            position={{ lat: loc.lat, lng: loc.lng }}
+            onClick={() => setActiveMarker(loc)}
+            // Optional: custom pin icon later
+          />
+        ))}
+
+        {activeMarker && (
+          <InfoWindow
+            position={{ lat: activeMarker.lat, lng: activeMarker.lng }}
+            onCloseClick={() => setActiveMarker(null)}
+          >
+            <div className="p-3 max-w-xs text-base">
+              <h3 className="font-bold text-xl mb-2">{activeMarker.name}</h3>
+              <p className="mb-1 text-gray-700">{activeMarker.address}</p>
+              <p className="mb-2 text-gray-700">Phone: {activeMarker.phone}</p>
+              {activeMarker.hours && <p className="mb-3 text-gray-700">Hours: {activeMarker.hours}</p>}
+              <a
+                href={activeMarker.bookLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#D4AF37] text-white px-6 py-3 rounded-full text-base font-semibold hover:bg-[#b8942f] transition-colors"
+              >
+                Book Now
+              </a>
+            </div>
+          </InfoWindow>
+        )}
+      </GoogleMap>
+    </div>
+  );
+}
