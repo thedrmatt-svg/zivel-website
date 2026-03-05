@@ -148,7 +148,7 @@ export default async function ServicePage({ params }: PageProps) {
                 fill
                 priority
                 sizes="100vw"
-                quality={80}
+                quality={100}
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/70" />
