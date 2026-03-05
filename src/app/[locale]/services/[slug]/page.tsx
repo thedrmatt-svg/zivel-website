@@ -440,7 +440,7 @@ export default async function ServicePage({ params }: PageProps) {
                       fill loading="lazy"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       quality={75}
-                      className="object-cover"
+                      className="object-cover object-top"
                     />
                   </div>
                 ) : (
