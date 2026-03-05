@@ -138,7 +138,7 @@ export default async function ServicePage({ params }: PageProps) {
                 preload="metadata"
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/80" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/70" />
             </>
           ) : service.hero.media?.type === "image" ? (
             <>
@@ -151,16 +151,16 @@ export default async function ServicePage({ params }: PageProps) {
                 quality={80}
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/80" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/70" />
             </>
           ) : null}
 
           <div
-            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full opacity-30"
+            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full opacity-10"
             style={{ background: `radial-gradient(circle, ${accentRGB} 0%, transparent 70%)` }}
           />
           <div
-            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full opacity-15"
+            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full opacity-[0.06]"
             style={{ background: `radial-gradient(circle, ${accentRGB} 0%, transparent 70%)` }}
           />
         </div>
