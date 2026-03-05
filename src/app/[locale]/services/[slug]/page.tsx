@@ -124,7 +124,7 @@ export default async function ServicePage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* ========== SECTION 1 — FULL-SCREEN HERO (DARK) ========== */}
-      <section className="zv-bleed relative min-h-screen flex items-center" style={{ overflow: 'clip' }} aria-labelledby="service-hero-title">
+      <section className="zv-bleed relative min-h-[70vh] flex items-center" style={{ overflow: 'clip' }} aria-labelledby="service-hero-title">
         <div className="z-0" style={{ position: 'absolute', top: 0, bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '100vw' }}>
           {service.hero.media?.type === "video" ? (
             <>
