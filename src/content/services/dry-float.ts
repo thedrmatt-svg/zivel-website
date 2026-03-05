@@ -18,7 +18,7 @@ export const dryFloat: Service = {
     media: {
       type: "image",
       src: "/images/services/dry-float/hero.jpg",
-      alt: "Dry float therapy session at Zivel (placeholder)",
+      alt: "Client relaxing on Starpool dry float bed with green ambient lighting at Zivel",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
     secondaryCTA: { label: "View Locations", href: "/locations" },
@@ -39,7 +39,7 @@ export const dryFloat: Service = {
     media: {
       type: "image",
       src: "/images/services/dry-float/intro.jpg",
-      alt: "Dry float bed/pod in a Zivel studio (placeholder)",
+      alt: "Client with headphones relaxing on dry float bed at Zivel",
     },
   },
 
@@ -121,7 +121,7 @@ export const dryFloat: Service = {
     media: {
       type: "image",
       src: "/images/services/dry-float/science.jpg",
-      alt: "Relaxation and recovery concept visual (placeholder)",
+      alt: "Overhead view of client on Starpool dry float bed with green ambient lighting",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },
   },
