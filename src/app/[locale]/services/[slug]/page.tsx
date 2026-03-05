@@ -199,10 +199,6 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </div>
 
-        <div className="absolute bottom-10 right-10 text-white/40 text-xs tracking-[0.3em] uppercase zv-hero-animate-5 hidden md:block">
-          <span>Scroll</span>
-          <div className="mt-2 mx-auto w-px h-8 bg-white/20 zv-scroll-hint" />
-        </div>
       </section>
 
       <div className="zv-divider-dark-to-light zv-bleed" />
