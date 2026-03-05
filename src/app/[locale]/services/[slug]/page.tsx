@@ -138,7 +138,7 @@ export default async function ServicePage({ params }: PageProps) {
                 preload="metadata"
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/80" />
             </>
           ) : service.hero.media?.type === "image" ? (
             <>
@@ -151,7 +151,7 @@ export default async function ServicePage({ params }: PageProps) {
                 quality={80}
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/80" />
             </>
           ) : null}
 
