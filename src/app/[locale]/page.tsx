@@ -52,8 +52,16 @@ export default function HomePage() {
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
       <section className="zv-bleed zv-hero-fullscreen zv-noise zv-hero-gradient" aria-labelledby="home-hero-title">
         <div className="absolute inset-0 z-0">
-          <div className="zv-hero-gradient-bg" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+          <Image
+            src="/images/home/hero.jpg"
+            alt="Zivel wellness services — cryotherapy, facial treatment, and infrared sauna"
+            fill
+            priority
+            sizes="100vw"
+            unoptimized
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
         </div>
 
         <div className="zv-hero-content">
