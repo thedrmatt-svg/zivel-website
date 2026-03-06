@@ -50,8 +50,8 @@ export default function HomePage() {
   return (
     <main className="-mt-20">
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
-      <section className="zv-bleed relative overflow-hidden bg-black" aria-labelledby="home-hero-title">
-        <div className="relative w-full" style={{ aspectRatio: '1920 / 600' }}>
+      <section className="zv-bleed zv-hero-fullscreen zv-noise zv-hero-gradient" aria-labelledby="home-hero-title">
+        <div className="absolute inset-0 z-0">
           <Image
             src="/images/home/hero.jpg"
             alt="Zivel wellness services — cryotherapy, facial treatment, and infrared sauna"
@@ -61,29 +61,39 @@ export default function HomePage() {
             unoptimized
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
+        </div>
 
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4">
-            <span className="zv-tagline mb-4 block zv-hero-animate-1">Experience the Difference</span>
+        <div className="zv-hero-content">
+          <span className="zv-tagline mb-6 block zv-hero-animate-1">Experience the Difference</span>
 
-            <h1 id="home-hero-title" className="mb-4 font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-white zv-hero-animate-2">
-              {t("hero.title")}
-            </h1>
+          <h1 id="home-hero-title" className="mb-8 zv-hero-animate-2">
+            {t("hero.title")}
+          </h1>
 
-            <p className="mx-auto max-w-2xl text-sm md:text-base lg:text-lg text-white/70 leading-relaxed zv-hero-animate-3">
-              {t("hero.subtitle")}
-            </p>
+          <p className="mx-auto max-w-2xl text-lg text-white/70 leading-relaxed zv-hero-animate-3">
+            {t("hero.subtitle")}
+          </p>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-4 zv-hero-animate-4">
-              <a href="#book" className="zv-btn-luxury zv-btn-gold">
-                Book Your Session
-              </a>
-              <a href="#services" className="zv-btn-luxury zv-btn-outline">
-                Explore Services
-              </a>
-            </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-4 zv-hero-animate-4">
+            <a href="#book" className="zv-btn-luxury zv-btn-gold">
+              Book Your Session
+            </a>
+            <a href="#services" className="zv-btn-luxury zv-btn-outline">
+              Explore Services
+            </a>
+          </div>
+
+          <div className="mt-16 flex justify-center gap-12 text-sm text-white/50 zv-hero-animate-5">
+            {["Recovery", "Performance", "Longevity"].map((item) => (
+              <span key={item} className="flex items-center gap-2">
+                <span className="block h-px w-4 bg-[var(--zivel-gold)]/40" />
+                {item}
+              </span>
+            ))}
           </div>
         </div>
+
       </section>
 
       {/* ========== TRANSITION: DARK → LIGHT ========== */}
