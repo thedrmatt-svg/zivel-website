@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { locations } from "@/lib/data/locations";
-import LocationsMap from "@/components/location/LocationsMap";
+// import LocationsMap from "@/components/location/LocationsMap";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
@@ -64,20 +64,9 @@ export default function LocationsIndexPage() {
             <p className="zv-tagline">Find a Studio</p>
             <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Our Locations</h2>
           </ScrollReveal>
-          <ScrollReveal variant="fade-up" delay={100}>
-            <LocationsMap
-              locations={locations
-                .filter((loc) => loc.geo)
-                .map((loc) => ({
-                  name: loc.name,
-                  address: loc.contact?.address ?? "",
-                  phone: loc.contact?.phone ?? "",
-                  lat: loc.geo!.lat,
-                  lng: loc.geo!.lng,
-                  href: `/locations/${loc.stateSlug}/${loc.citySlug}`,
-                }))}
-            />
-          </ScrollReveal>
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-12 text-center text-white/40 text-sm tracking-wider uppercase">
+            Map disabled during development
+          </div>
         </div>
       </section>
 
