@@ -201,12 +201,10 @@ export default function Header() {
               >
                 Book Now
               </Link>
-              <LanguageSwitcher />
             </div>
           </nav>
 
           <div className="flex items-center gap-2 lg:hidden">
-            <LanguageSwitcher />
             <button
               className="border border-white/20 bg-transparent px-3 py-2 text-xs font-medium tracking-wider uppercase text-white hover:border-[var(--zivel-gold)] transition-all duration-300"
               onClick={() => setMobileOpen((v) => !v)}
