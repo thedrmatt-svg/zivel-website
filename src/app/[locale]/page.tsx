@@ -63,10 +63,10 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="bg-black text-center text-white px-6 py-16 md:py-20">
-          <span className="zv-tagline mb-6 block zv-hero-animate-1">Experience the Difference</span>
+        <div className="bg-black text-center text-white px-6 pt-6 pb-10 md:pt-8 md:pb-14">
+          <span className="zv-tagline mb-4 block zv-hero-animate-1">Experience the Difference</span>
 
-          <h1 id="home-hero-title" className="mb-8 font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">
+          <h1 id="home-hero-title" className="mb-6 font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">
             {t("hero.title")}
           </h1>
 
