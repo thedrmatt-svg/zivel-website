@@ -50,28 +50,28 @@ export default function HomePage() {
   return (
     <main className="-mt-20">
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
-      <section className="zv-bleed zv-hero-fullscreen zv-noise zv-hero-gradient" aria-labelledby="home-hero-title">
+      <section className="zv-bleed relative min-h-[70vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-black" aria-labelledby="home-hero-title">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/home/hero.jpg"
             alt="Zivel wellness services — cryotherapy, facial treatment, and infrared sauna"
             fill
             priority
-            sizes="100vw"
-            unoptimized
-            className="object-cover"
+            quality={85}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1920px"
+            className="object-contain object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
 
-        <div className="zv-hero-content">
+        <div className="relative z-10 text-center text-white px-6 max-w-5xl">
           <span className="zv-tagline mb-6 block zv-hero-animate-1">Experience the Difference</span>
 
-          <h1 id="home-hero-title" className="mb-8 zv-hero-animate-2">
+          <h1 id="home-hero-title" className="mb-8 font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">
             {t("hero.title")}
           </h1>
 
-          <p className="mx-auto max-w-2xl text-lg text-white/70 leading-relaxed zv-hero-animate-3">
+          <p className="mx-auto max-w-2xl text-lg md:text-xl text-white/70 leading-relaxed zv-hero-animate-3">
             {t("hero.subtitle")}
           </p>
 
