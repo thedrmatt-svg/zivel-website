@@ -50,16 +50,13 @@ export default function HomePage() {
   return (
     <main className="-mt-20">
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
-      <section className="zv-bleed overflow-hidden bg-black" aria-labelledby="home-hero-title">
-        <div className="relative mt-20" style={{ aspectRatio: '16 / 9', width: '100vw', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}>
-          <Image
+      <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="home-hero-title">
+        <div className="pt-20">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/home/hero.jpg"
             alt="Zivel wellness services — cryotherapy, facial treatment, and infrared sauna"
-            fill
-            priority
-            quality={85}
-            sizes="100vw"
-            className="object-cover object-center"
+            style={{ width: '100%', height: 'auto', display: 'block' }}
           />
         </div>
 
