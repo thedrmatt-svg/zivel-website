@@ -51,7 +51,7 @@ export default function HomePage() {
     <main className="-mt-20">
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
       <section className="zv-bleed overflow-hidden bg-black" aria-labelledby="home-hero-title">
-        <div className="relative w-full" style={{ aspectRatio: '1920 / 1080' }}>
+        <div className="relative w-full min-h-[50vh] md:min-h-[70vh]">
           <Image
             src="/images/home/hero.jpg"
             alt="Zivel wellness services — cryotherapy, facial treatment, and infrared sauna"
@@ -59,7 +59,7 @@ export default function HomePage() {
             priority
             quality={85}
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-contain object-center"
           />
         </div>
 
