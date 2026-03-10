@@ -50,21 +50,20 @@ export default function HomePage() {
   return (
     <main className="-mt-20">
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
-      <section className="zv-bleed relative min-h-[70vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-black" aria-labelledby="home-hero-title">
-        <div className="absolute inset-0 z-0">
+      <section className="zv-bleed overflow-hidden bg-black" aria-labelledby="home-hero-title">
+        <div className="relative w-full" style={{ aspectRatio: '1920 / 1080' }}>
           <Image
             src="/images/home/hero.jpg"
             alt="Zivel wellness services — cryotherapy, facial treatment, and infrared sauna"
             fill
             priority
             quality={85}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1920px"
-            className="object-contain object-center"
+            sizes="100vw"
+            className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-black/40" />
         </div>
 
-        <div className="relative z-10 text-center text-white px-6 max-w-5xl">
+        <div className="bg-black text-center text-white px-6 py-16 md:py-20">
           <span className="zv-tagline mb-6 block zv-hero-animate-1">Experience the Difference</span>
 
           <h1 id="home-hero-title" className="mb-8 font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">
@@ -83,17 +82,7 @@ export default function HomePage() {
               Explore Services
             </a>
           </div>
-
-          <div className="mt-16 flex justify-center gap-12 text-sm text-white/50 zv-hero-animate-5">
-            {["Recovery", "Performance", "Longevity"].map((item) => (
-              <span key={item} className="flex items-center gap-2">
-                <span className="block h-px w-4 bg-[var(--zivel-gold)]/40" />
-                {item}
-              </span>
-            ))}
-          </div>
         </div>
-
       </section>
 
       {/* ========== TRANSITION: DARK → LIGHT ========== */}
