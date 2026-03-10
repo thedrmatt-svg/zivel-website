@@ -51,7 +51,7 @@ export default function HomePage() {
     <main className="-mt-20">
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
       <section className="zv-bleed overflow-hidden bg-black" aria-labelledby="home-hero-title">
-        <div className="relative w-full min-h-[50vh] md:min-h-[70vh]">
+        <div className="relative w-full min-h-[50vh] md:min-h-[70vh] mt-20">
           <Image
             src="/images/home/hero.jpg"
             alt="Zivel wellness services — cryotherapy, facial treatment, and infrared sauna"
