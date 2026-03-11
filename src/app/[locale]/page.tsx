@@ -58,6 +58,7 @@ export default function HomePage() {
             width={1920}
             height={800}
             priority
+            fetchPriority="high"
             sizes="100vw"
             quality={80}
             style={{ width: '100%', height: 'auto', display: 'block' }}
