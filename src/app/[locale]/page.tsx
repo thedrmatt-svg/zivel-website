@@ -102,14 +102,17 @@ export default function HomePage() {
                 Choose your location, select a service, and pick a time that works for you.
               </p>
 
-              <iframe
-                className="block h-[700px] w-full rounded-xl border border-black/10 bg-white"
-                src="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
-                title="Book an appointment at Zivel"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
+              <div className="overflow-hidden rounded-xl border border-black/10">
+                <iframe
+                  className="block h-[660px] w-full bg-white"
+                  style={{ marginBottom: '-40px' }}
+                  src="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
+                  title="Book an appointment at Zivel"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
 
               <p className="mt-6 text-center text-sm text-black/40">
                 If the booking form does not load,{" "}
