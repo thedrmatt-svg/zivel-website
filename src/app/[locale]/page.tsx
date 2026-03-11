@@ -52,26 +52,30 @@ export default function HomePage() {
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="home-hero-title">
         <div className="pt-20">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/home/hero.jpg"
             alt="Zivel wellness services — cryotherapy, facial treatment, and infrared sauna"
+            width={1920}
+            height={800}
+            priority
+            sizes="100vw"
+            quality={80}
             style={{ width: '100%', height: 'auto', display: 'block' }}
           />
         </div>
 
         <div className="bg-black text-center text-white px-6 pt-6 pb-10 md:pt-8 md:pb-14">
-          <span className="zv-tagline mb-4 block zv-hero-animate-1">Experience the Difference</span>
+          <span className="zv-tagline mb-4 block">Experience the Difference</span>
 
-          <h1 id="home-hero-title" className="mb-6 font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">
+          <h1 id="home-hero-title" className="mb-6 font-serif text-5xl md:text-7xl font-light tracking-tight">
             {t("hero.title")}
           </h1>
 
-          <p className="mx-auto max-w-2xl text-lg md:text-xl text-white/70 leading-relaxed zv-hero-animate-3">
+          <p className="mx-auto max-w-2xl text-lg md:text-xl text-white/70 leading-relaxed">
             {t("hero.subtitle")}
           </p>
 
-          <div className="mt-10 flex flex-wrap justify-center gap-4 zv-hero-animate-4">
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a href="#book" className="zv-btn-luxury zv-btn-gold">
               Book Your Session
             </a>

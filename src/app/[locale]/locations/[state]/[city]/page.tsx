@@ -144,10 +144,14 @@ export default async function LocationPage({
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="location-hero-title">
         {location.hero?.image && (
           <div className="pt-20">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={heroImage}
               alt={location.name}
+              width={1920}
+              height={800}
+              priority
+              sizes="100vw"
+              quality={80}
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
           </div>
