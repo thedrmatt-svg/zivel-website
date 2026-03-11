@@ -12,10 +12,10 @@ import { compressionTherapy } from "@/content/services/compression-therapy";
 export const services: Service[] = [
   cryotherapy,
   redLightTherapy,
-  infraredSauna,
+  cryoSlimming,
   dryFloat,
   compressionTherapy,
-  cryoSlimming,
+  infraredSauna,
   cryoToning,
   cryoLiftFacial,
 ];
