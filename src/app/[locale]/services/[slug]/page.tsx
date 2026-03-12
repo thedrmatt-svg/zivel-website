@@ -511,7 +511,7 @@ export default async function ServicePage({ params }: PageProps) {
                     <div className="zv-luxury-card rounded-2xl overflow-hidden" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
                       {item.src ? (
                         <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '871 / 723', border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
-                          <Image src={item.src} alt={item.alt} fill loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" quality={80} className="object-cover" />
+                          <Image src={item.src} alt={item.alt} fill loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" quality={80} className="object-cover" style={{ objectPosition: item.objectPosition ?? 'center center' }} />
                         </div>
                       ) : (
                         <div className="p-6">

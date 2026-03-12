@@ -61,7 +61,8 @@ export type SafetySection = {
 };
 
 export type BeforeAfterItem = {
-  src?: string;       // single combined before/after image
+  src?: string;           // single combined before/after image
+  objectPosition?: string; // crop focus e.g. "center bottom"
   beforeSrc?: string;
   afterSrc?: string;
   alt: string;

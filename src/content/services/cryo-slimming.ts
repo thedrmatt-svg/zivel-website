@@ -147,14 +147,14 @@ export const cryoSlimming: Service = {
     headline: "Before & After Results",
     items: [
       {
-        beforeSrc: "/images/services/cryo-slimming/before-1.jpg",
-        afterSrc: "/images/services/cryo-slimming/after-1.jpg",
-        alt: "Cryo slimming before and after results (placeholder)",
+        src: "/images/services/cryo-slimming/result-1.avif",
+        objectPosition: "center bottom",
+        alt: "Cryo Slimming before and after results",
       },
       {
-        beforeSrc: "/images/services/cryo-slimming/before-2.jpg",
-        afterSrc: "/images/services/cryo-slimming/after-2.jpg",
-        alt: "Cryo slimming transformation example (placeholder)",
+        src: "/images/services/cryo-slimming/result-2.avif",
+        objectPosition: "center center",
+        alt: "Cryo Slimming before and after results",
       },
     ],
     disclaimer:
