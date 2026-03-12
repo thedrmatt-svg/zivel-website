@@ -186,24 +186,34 @@ export const cryoLiftFacial: Service = {
   },
 
   pricingPreview: {
-    headline: "Pricing & Membership Options",
+    headline: "Pricing Options",
     cards: [
       {
         title: "Single Session",
-        priceLine: "From $X",
-        details: ["Great as part of an ongoing skin routine", "No downtime"],
-      },
-      {
-        title: "Packages",
-        priceLine: "Save with Packages",
-        details: ["Multi-session savings", "Great for maintenance routines"],
-        cta: { label: "View Packages", href: "/memberships" },
+        priceLine: "From $XX",
+        details: [
+          "Great for first-time clients",
+          "Flexible scheduling",
+          "Upgrade to membership anytime",
+        ],
       },
       {
         title: "Member Rate",
-        priceLine: "Member Pricing",
-        details: ["Best per-session value", "Priority booking"],
-        cta: { label: "View Memberships", href: "/memberships" },
+        priceLine: "Save with Membership",
+        details: [
+          "Members save more",
+          "Priority Booking",
+          "Maximize Outcomes",
+        ],
+      },
+      {
+        title: "Packages",
+        priceLine: "Bundle & Save",
+        details: [
+          "Multi-session packages",
+          "Better value than single sessions",
+          "Flexible use over time",
+        ],
       },
     ],
   },

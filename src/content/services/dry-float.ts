@@ -167,15 +167,15 @@ export const dryFloat: Service = {
   },
 
   pricingPreview: {
-    headline: "Pricing & Membership Options",
+    headline: "Pricing Options",
     cards: [
       {
         title: "Single Session",
-        priceLine: "From $X",
+        priceLine: "From $XX",
         details: [
-          "Great first experience",
-          "Perfect for stress-heavy weeks",
-          "Add-on friendly",
+          "Great for first-time clients",
+          "Flexible scheduling",
+          "Upgrade to membership anytime",
         ],
       },
       {
@@ -183,18 +183,17 @@ export const dryFloat: Service = {
         priceLine: "Save with Membership",
         details: [
           "Best value per session",
-          "Designed for consistency",
-          "Stacks well with other services",
+          "Monthly benefits and discounts",
+          "Ideal for consistent routines",
         ],
-        cta: { label: "View Memberships", href: "/memberships" },
       },
       {
         title: "Packages",
         priceLine: "Bundle & Save",
         details: [
-          "Multi-session savings",
-          "Use on your schedule",
-          "Ideal for monthly routines",
+          "Multi-session packages",
+          "Better value than single sessions",
+          "Flexible use over time",
         ],
       },
     ],

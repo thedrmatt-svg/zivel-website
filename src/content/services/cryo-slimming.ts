@@ -186,24 +186,34 @@ export const cryoSlimming: Service = {
   },
 
   pricingPreview: {
-    headline: "Pricing & Membership Options",
+    headline: "Pricing Options",
     cards: [
       {
         title: "Single Session",
-        priceLine: "From $X",
-        details: ["One treatment area", "No commitment required"],
-      },
-      {
-        title: "Packages",
-        priceLine: "Save with Packages",
-        details: ["Multi-session savings", "Best for visible results"],
-        cta: { label: "View Packages", href: "/memberships" },
+        priceLine: "From $XX",
+        details: [
+          "Great for first-time clients",
+          "Flexible scheduling",
+          "Upgrade to membership anytime",
+        ],
       },
       {
         title: "Member Rate",
-        priceLine: "Member Pricing",
-        details: ["Best per-session value", "Priority booking"],
-        cta: { label: "View Memberships", href: "/memberships" },
+        priceLine: "Save with Membership",
+        details: [
+          "Members save more",
+          "Priority Booking",
+          "Maximize Outcomes",
+        ],
+      },
+      {
+        title: "Packages",
+        priceLine: "Bundle & Save",
+        details: [
+          "Multi-session packages",
+          "Better value than single sessions",
+          "Flexible use over time",
+        ],
       },
     ],
   },

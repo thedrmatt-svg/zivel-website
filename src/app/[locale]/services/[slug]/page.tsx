@@ -561,8 +561,7 @@ export default async function ServicePage({ params }: PageProps) {
       <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
-            <p className="zv-tagline" style={{ color: accentRGB }}>Investment</p>
-            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.pricingPreview.headline}</h2>
+            <h2 className="mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.pricingPreview.headline}</h2>
           </ScrollReveal>
 
           <div className="grid gap-6 md:grid-cols-3">

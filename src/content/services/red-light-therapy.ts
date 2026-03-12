@@ -172,25 +172,34 @@ export const redLightTherapy: Service = {
   },
 
   pricingPreview: {
-    headline: "Pricing & Membership Options",
+    headline: "Pricing Options",
     cards: [
       {
         title: "Single Session",
-        priceLine: "Placeholder price",
-        details: ["Perfect for trying it once", "No commitment required"],
-        cta: { label: "View Memberships", href: "/memberships" },
+        priceLine: "From $XX",
+        details: [
+          "Great for first-time clients",
+          "Flexible scheduling",
+          "Upgrade to membership anytime",
+        ],
       },
       {
         title: "Member Rate",
-        priceLine: "Placeholder price",
-        details: ["Best value per session", "Designed for consistency"],
-        cta: { label: "View Memberships", href: "/memberships" },
+        priceLine: "Save with Membership",
+        details: [
+          "Best value per session",
+          "Monthly benefits and discounts",
+          "Ideal for consistent routines",
+        ],
       },
       {
         title: "Packages",
-        priceLine: "Placeholder price",
-        details: ["Multi-session packs", "Great for goals + gifting"],
-        cta: { label: "View Memberships", href: "/memberships" },
+        priceLine: "Bundle & Save",
+        details: [
+          "Multi-session packages",
+          "Better value than single sessions",
+          "Flexible use over time",
+        ],
       },
     ],
   },

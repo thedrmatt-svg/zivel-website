@@ -168,24 +168,34 @@ export const compressionTherapy: Service = {
   },
 
   pricingPreview: {
-    headline: "Pricing & Membership Options",
+    headline: "Pricing Options",
     cards: [
       {
         title: "Single Session",
-        priceLine: "From $X",
-        details: ["Great for recovery days", "No commitment required"],
+        priceLine: "From $XX",
+        details: [
+          "Great for first-time clients",
+          "Flexible scheduling",
+          "Upgrade to membership anytime",
+        ],
       },
       {
         title: "Member Rate",
         priceLine: "Save with Membership",
-        details: ["Best per-session value", "Designed for consistency"],
-        cta: { label: "View Memberships", href: "/memberships" },
+        details: [
+          "Best value per session",
+          "Monthly benefits and discounts",
+          "Ideal for consistent routines",
+        ],
       },
       {
         title: "Packages",
         priceLine: "Bundle & Save",
-        details: ["Multi-session savings", "Use on your schedule"],
-        cta: { label: "View Packages", href: "/memberships" },
+        details: [
+          "Multi-session packages",
+          "Better value than single sessions",
+          "Flexible use over time",
+        ],
       },
     ],
   },

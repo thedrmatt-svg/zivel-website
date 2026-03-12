@@ -106,24 +106,34 @@ export const infraredSauna: Service = {
   },
 
   pricingPreview: {
-    headline: "Pricing preview",
+    headline: "Pricing Options",
     cards: [
       {
         title: "Single Session",
-        priceLine: "From $X",
-        details: ["Great for trying it once", "Ideal add-on after a workout"],
+        priceLine: "From $XX",
+        details: [
+          "Great for first-time clients",
+          "Flexible scheduling",
+          "Upgrade to membership anytime",
+        ],
       },
       {
         title: "Member Rate",
-        priceLine: "From $X",
-        details: ["Best value per session", "Priority booking (where available)"],
-        cta: { label: "View Memberships", href: "/memberships" },
+        priceLine: "Save with Membership",
+        details: [
+          "Best value per session",
+          "Monthly benefits and discounts",
+          "Ideal for consistent routines",
+        ],
       },
       {
         title: "Packages",
-        priceLine: "From $X",
-        details: ["Multi-session savings", "Use on your schedule"],
-        cta: { label: "View Packages", href: "/memberships" },
+        priceLine: "Bundle & Save",
+        details: [
+          "Multi-session packages",
+          "Better value than single sessions",
+          "Flexible use over time",
+        ],
       },
     ],
   },

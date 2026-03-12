@@ -204,10 +204,6 @@ export const cryotherapy: Service = {
           "Monthly benefits and discounts",
           "Ideal for consistent routines",
         ],
-        cta: {
-          label: "View Memberships",
-          href: "/memberships",
-        },
       },
       {
         title: "Packages",
@@ -215,7 +211,7 @@ export const cryotherapy: Service = {
         details: [
           "Multi-session packages",
           "Better value than single sessions",
-          "Perfect for goal-based programs",
+          "Flexible use over time",
         ],
       },
     ],
