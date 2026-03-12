@@ -796,12 +796,6 @@ export default async function ServicePage({ params }: PageProps) {
                 >
                   {service.finalCTA.primaryCTA.label}
                 </a>
-                <Link
-                  href={service.finalCTA.secondaryCTA.href}
-                  className="zv-btn-outline"
-                >
-                  {service.finalCTA.secondaryCTA.label}
-                </Link>
               </div>
             </div>
           </ScrollReveal>
