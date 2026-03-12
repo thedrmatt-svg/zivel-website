@@ -510,8 +510,8 @@ export default async function ServicePage({ params }: PageProps) {
                   <ScrollReveal key={`${item.src ?? item.beforeSrc}-${idx}`} variant="fade-up" delay={idx * 100}>
                     <div className="zv-luxury-card rounded-2xl overflow-hidden" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
                       {item.src ? (
-                        <div className="w-full overflow-hidden rounded-2xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
-                          <Image src={item.src} alt={item.alt} width={0} height={0} sizes="(max-width: 768px) 100vw, 50vw" quality={80} className="w-full h-auto block" loading="lazy" />
+                        <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '871 / 723', border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
+                          <Image src={item.src} alt={item.alt} fill loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" quality={80} className="object-cover" />
                         </div>
                       ) : (
                         <div className="p-6">
