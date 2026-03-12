@@ -144,17 +144,15 @@ export const cryoLiftFacial: Service = {
   },
 
   beforeAfter: {
-    headline: "Before & After (Optional)",
+    headline: "Before & After Results",
     items: [
       {
-        beforeSrc: "/images/services/cryo-lift-facial/before-1.jpg",
-        afterSrc: "/images/services/cryo-lift-facial/after-1.jpg",
-        alt: "CryoLift Facial before and after (placeholder)",
+        src: "/images/services/cryo-lift-facial/result-1.avif",
+        alt: "CryoLift Facial before and after results",
       },
       {
-        beforeSrc: "/images/services/cryo-lift-facial/before-2.jpg",
-        afterSrc: "/images/services/cryo-lift-facial/after-2.jpg",
-        alt: "CryoLift Facial results example (placeholder)",
+        src: "/images/services/cryo-lift-facial/result-2.avif",
+        alt: "CryoLift Facial before and after results",
       },
     ],
     disclaimer:

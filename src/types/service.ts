@@ -61,8 +61,9 @@ export type SafetySection = {
 };
 
 export type BeforeAfterItem = {
-  beforeSrc: string;
-  afterSrc: string;
+  src?: string;       // single combined before/after image
+  beforeSrc?: string;
+  afterSrc?: string;
   alt: string;
 };
 

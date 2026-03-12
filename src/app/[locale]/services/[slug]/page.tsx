@@ -507,16 +507,24 @@ export default async function ServicePage({ params }: PageProps) {
 
               <div className="grid gap-8 md:grid-cols-2">
                 {service.beforeAfter.items.map((item, idx) => (
-                  <ScrollReveal key={`${item.beforeSrc}-${idx}`} variant="fade-up" delay={idx * 100}>
-                    <div className="zv-luxury-card rounded-2xl p-6" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
-                      <div className="grid gap-4 md:grid-cols-2">
-                        <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
-                          <Image src={item.beforeSrc} alt={`${item.alt} — before`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
+                  <ScrollReveal key={`${item.src ?? item.beforeSrc}-${idx}`} variant="fade-up" delay={idx * 100}>
+                    <div className="zv-luxury-card rounded-2xl overflow-hidden" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                      {item.src ? (
+                        <div className="w-full overflow-hidden rounded-2xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
+                          <Image src={item.src} alt={item.alt} width={0} height={0} sizes="(max-width: 768px) 100vw, 50vw" quality={80} className="w-full h-auto block" loading="lazy" />
                         </div>
-                        <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
-                          <Image src={item.afterSrc} alt={`${item.alt} — after`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
+                      ) : (
+                        <div className="p-6">
+                          <div className="grid gap-4 md:grid-cols-2">
+                            <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
+                              <Image src={item.beforeSrc!} alt={`${item.alt} — before`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
+                            </div>
+                            <div className="relative aspect-[4/5] overflow-hidden rounded-xl" style={{ border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.15)` }}>
+                              <Image src={item.afterSrc!} alt={`${item.alt} — after`} fill loading="lazy" sizes="(max-width: 768px) 50vw, 25vw" quality={75} className="object-cover" />
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </ScrollReveal>
                 ))}
