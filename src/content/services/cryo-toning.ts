@@ -147,14 +147,14 @@ export const cryoToning: Service = {
     headline: "Before & After Results",
     items: [
       {
-        beforeSrc: "/images/services/cryo-toning/before-1.jpg",
-        afterSrc: "/images/services/cryo-toning/after-1.jpg",
-        alt: "Cryo toning before and after results (placeholder)",
+        src: "/images/services/cryo-toning/result-1.avif",
+        objectPosition: "center center",
+        alt: "Cryo Toning before and after results",
       },
       {
-        beforeSrc: "/images/services/cryo-toning/before-2.jpg",
-        afterSrc: "/images/services/cryo-toning/after-2.jpg",
-        alt: "Cryo toning transformation example (placeholder)",
+        src: "/images/services/cryo-toning/result-2.avif",
+        objectPosition: "center center",
+        alt: "Cryo Toning before and after results",
       },
     ],
     disclaimer:
