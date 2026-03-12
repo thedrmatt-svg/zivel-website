@@ -6,10 +6,10 @@ import { notFound } from "next/navigation";
 import BookingWidget from "@/components/booking/BookingWidget";
 // import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
 // import GoogleReviews from "@/components/location/GoogleReviews";
-import JobsSection from "@/components/location/JobsSection";
-import PartnersSection from "@/components/location/PartnersSection";
+// import JobsSection from "@/components/location/JobsSection"; // hidden until ready
+// import PartnersSection from "@/components/location/PartnersSection"; // hidden until ready
 import PricingSection from "@/components/location/PricingSection";
-import StoreSection from "@/components/location/StoreSection";
+// import StoreSection from "@/components/location/StoreSection"; // hidden until ready
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import ServiceImageCard from "@/components/location/ServiceImageCard";
 import { getLocationByPath, locations } from "@/lib/data/locations";
@@ -120,6 +120,60 @@ export default async function LocationPage({
     })),
   } : null;
 
+  const DEFAULT_MEMBERSHIP_TIERS = [
+    {
+      name: "Essential",
+      price: "$99",
+      cadence: "/mo",
+      description: "Great entry point for regular recovery.",
+      features: [
+        "Cryotherapy — $40/session",
+        "Red Light Therapy — $40/session",
+        "Infrared Sauna — $40/session",
+        "Dry Float — $40/session",
+        "Compression Therapy — $40/session",
+        "Member priority scheduling",
+      ],
+    },
+    {
+      name: "Elite",
+      price: "$129",
+      cadence: "/mo",
+      description: "Our most popular — more sessions, more value.",
+      features: [
+        "All Essential services — $40/session",
+        "CryoLift Facial — $150/session",
+        "Priority booking",
+        "Maximize your outcomes",
+      ],
+      mostPopular: true,
+    },
+    {
+      name: "Exclusive",
+      price: "$169",
+      cadence: "/mo",
+      description: "The complete Zivel experience.",
+      features: [
+        "All Elite services — $40/session",
+        "Cryo Slimming — $350/session",
+        "Cryo Toning — $350/session",
+        "Premium scheduling perks",
+        "Members save more",
+      ],
+    },
+  ];
+
+  const DEFAULT_STANDARD_PRICES = [
+    { name: "Cryotherapy", price: "$40" },
+    { name: "Red Light Therapy", price: "$40" },
+    { name: "Infrared Sauna", price: "$40" },
+    { name: "Dry Float", price: "$40" },
+    { name: "Compression Therapy", price: "$40" },
+    { name: "CryoLift Facial", price: "$150" },
+    { name: "Cryo Slimming", price: "$350" },
+    { name: "Cryo Toning", price: "$350" },
+  ];
+
   let sectionParity = 0;
 
   return (
@@ -159,14 +213,6 @@ export default async function LocationPage({
 
         <div className="bg-black text-white px-6 pt-6 pb-10 md:pt-8 md:pb-14">
           <div className="mx-auto max-w-6xl">
-            <nav className="text-sm text-white/50 mb-6 zv-hero-animate-1">
-              <Link href="/locations" className="hover:text-white transition-colors">Locations</Link>
-              <span className="mx-2">/</span>
-              <Link href={`/locations/${location.stateSlug}`} className="hover:text-white transition-colors">{location.state}</Link>
-              <span className="mx-2">/</span>
-              <span className="text-white/70">{cityName}</span>
-            </nav>
-
             <h1 id="location-hero-title" className="font-serif text-5xl md:text-7xl font-light tracking-tight max-w-4xl zv-hero-animate-2">
               {location.hero?.headline ?? location.name}
             </h1>
@@ -262,6 +308,49 @@ export default async function LocationPage({
         </>
       )}
 
+      {/* ========== HOURS (alternating) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      {sectionParity % 2 === 0 ? (
+        <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">When We&apos;re Open</p>
+              <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Hours</h2>
+              <div className="zv-luxury-card rounded-2xl p-8">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map((day) => (
+                    <div key={day} className="flex items-center justify-between border-b border-black/8 pb-3 last:border-b-0 last:pb-0 sm:[&:nth-child(7)]:col-span-2">
+                      <span className="text-black/70 font-medium">{day}</span>
+                      <span className="text-black/85 font-semibold">8:00 AM – 7:00 PM</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      ) : (
+        <section className="zv-bleed zv-immersive-section zv-section-elevated">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">When We&apos;re Open</p>
+              <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Hours</h2>
+              <div className="zv-luxury-card rounded-2xl p-8">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map((day) => (
+                    <div key={day} className="flex items-center justify-between border-b border-white/10 pb-3 last:border-b-0 last:pb-0 sm:[&:nth-child(7)]:col-span-2">
+                      <span className="text-white/65 font-medium">{day}</span>
+                      <span className="text-white/90 font-semibold">8:00 AM – 7:00 PM</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+      {(() => { sectionParity++; return null; })()}
+
       {/* ========== GOOGLE MAP (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (
@@ -353,8 +442,8 @@ export default async function LocationPage({
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
               <PricingSection
-                tiers={location.pricing?.membershipTiers}
-                standardPrices={location.pricing?.standardPrices}
+                tiers={location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS}
+                standardPrices={location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES}
               />
             </ScrollReveal>
           </div>
@@ -368,8 +457,8 @@ export default async function LocationPage({
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
               <PricingSection
-                tiers={location.pricing?.membershipTiers}
-                standardPrices={location.pricing?.standardPrices}
+                tiers={location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS}
+                standardPrices={location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES}
               />
             </ScrollReveal>
           </div>
@@ -406,141 +495,17 @@ export default async function LocationPage({
       )}
       {(() => { sectionParity++; return null; })()}
 
-      {/* ========== TEAM (alternating, optional) ========== */}
-      {location.owners && location.owners.length > 0 && (
-        <>
-          <div className="zv-bleed zv-divider-dark-to-light" />
-          {sectionParity % 2 === 0 ? (
-            <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
-              <div className="mx-auto max-w-6xl px-6">
-                <ScrollReveal variant="fade-up">
-                  <p className="zv-tagline">Our People</p>
-                  <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Meet the Team</h2>
-                </ScrollReveal>
-                <div className="grid gap-8 md:grid-cols-2">
-                  {location.owners.map((o, idx) => (
-                    <ScrollReveal key={o.name} variant="fade-up" delay={idx * 100}>
-                      <div className="zv-luxury-card rounded-2xl p-8">
-                        <div className="font-serif text-xl text-black/85">{o.name}</div>
-                        {o.title && <p className="text-sm text-[var(--zivel-gold-dark)] mt-1">{o.title}</p>}
-                        {o.bio && <p className="mt-3 text-sm text-black/55 leading-relaxed">{o.bio}</p>}
-                      </div>
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </div>
-            </section>
-          ) : (
-            <section className="zv-bleed zv-immersive-section zv-section-elevated">
-              <div className="mx-auto max-w-6xl px-6">
-                <ScrollReveal variant="fade-up">
-                  <p className="zv-tagline">Our People</p>
-                  <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Meet the Team</h2>
-                </ScrollReveal>
-                <div className="grid gap-8 md:grid-cols-2">
-                  {location.owners.map((o, idx) => (
-                    <ScrollReveal key={o.name} variant="fade-up" delay={idx * 100}>
-                      <div className="zv-luxury-card rounded-2xl p-8">
-                        <div className="font-serif text-xl text-white">{o.name}</div>
-                        {o.title && <p className="text-sm text-[var(--zivel-gold)] mt-1">{o.title}</p>}
-                        {o.bio && <p className="mt-3 text-sm text-white/60 leading-relaxed">{o.bio}</p>}
-                      </div>
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </div>
-            </section>
-          )}
-          {(() => { sectionParity++; return null; })()}
-        </>
-      )}
+      {/* ========== TEAM — hidden until ready ========== */}
+      {/* {location.owners && location.owners.length > 0 && ( ... )} */}
 
-      {/* ========== PARTNERS (alternating) ========== */}
-      <div className="zv-bleed zv-divider-dark-to-light" />
-      {sectionParity % 2 === 0 ? (
-        <section id="partners" className="zv-bleed zv-section-light zv-light zv-immersive-section">
-          <div className="mx-auto max-w-6xl px-6">
-            <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">Community</p>
-              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Local Partners</h2>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={100}>
-              <PartnersSection partners={location.partners} />
-            </ScrollReveal>
-          </div>
-        </section>
-      ) : (
-        <section id="partners" className="zv-bleed zv-immersive-section zv-section-cool">
-          <div className="mx-auto max-w-6xl px-6">
-            <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">Community</p>
-              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Local Partners</h2>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={100}>
-              <PartnersSection partners={location.partners} />
-            </ScrollReveal>
-          </div>
-        </section>
-      )}
-      {(() => { sectionParity++; return null; })()}
+      {/* ========== PARTNERS — hidden until ready ========== */}
+      {/* Local Partners section hidden */}
 
-      {/* ========== JOBS (alternating) ========== */}
-      <div className="zv-bleed zv-divider-dark-to-light" />
-      {sectionParity % 2 === 0 ? (
-        <section id="jobs" className="zv-bleed zv-section-light zv-light zv-immersive-section">
-          <div className="mx-auto max-w-6xl px-6">
-            <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">Careers</p>
-              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Join Our Team</h2>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={100}>
-              <JobsSection jobs={location.jobs} />
-            </ScrollReveal>
-          </div>
-        </section>
-      ) : (
-        <section id="jobs" className="zv-bleed zv-immersive-section zv-section-recessed">
-          <div className="mx-auto max-w-6xl px-6">
-            <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">Careers</p>
-              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Join Our Team</h2>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={100}>
-              <JobsSection jobs={location.jobs} />
-            </ScrollReveal>
-          </div>
-        </section>
-      )}
-      {(() => { sectionParity++; return null; })()}
+      {/* ========== JOBS — hidden until ready ========== */}
+      {/* Join Our Team section hidden */}
 
-      {/* ========== STORE (alternating) ========== */}
-      <div className="zv-bleed zv-divider-dark-to-light" />
-      {sectionParity % 2 === 0 ? (
-        <section id="store" className="zv-bleed zv-section-light zv-light zv-immersive-section">
-          <div className="mx-auto max-w-6xl px-6">
-            <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">Retail</p>
-              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Shop</h2>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={100}>
-              <StoreSection items={location.store} />
-            </ScrollReveal>
-          </div>
-        </section>
-      ) : (
-        <section id="store" className="zv-bleed zv-immersive-section zv-section-elevated">
-          <div className="mx-auto max-w-6xl px-6">
-            <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">Retail</p>
-              <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Shop</h2>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={100}>
-              <StoreSection items={location.store} />
-            </ScrollReveal>
-          </div>
-        </section>
-      )}
-      {(() => { sectionParity++; return null; })()}
+      {/* ========== STORE — hidden until ready ========== */}
+      {/* Shop section hidden */}
 
       {/* ========== BOOKING (LIGHT — always) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />

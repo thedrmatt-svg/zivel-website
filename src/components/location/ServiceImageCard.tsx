@@ -11,8 +11,8 @@ const nationalImageMap: Record<string, string> = {
   "dry-float": "/images/home/service-dryfloat.jpg",
   "compression-therapy": "/images/home/service-compression.jpg",
   "cryo-slimming": "/images/home/service-slimming.jpg",
-  "cryo-toning": "/images/home/service-exercise.jpg",
-  "cryo-lift-facial": "/images/home/service-facial.jpg",
+  "cryo-toning": "/images/services/cryo-toning/hero.avif",
+  "cryo-lift-facial": "/images/services/cryo-lift-facial/hero.avif",
 };
 
 const fallbackImage = "/images/home/service-exercise.jpg";
