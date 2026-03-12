@@ -572,7 +572,7 @@ export default async function ServicePage({ params }: PageProps) {
               return (
               <ScrollReveal key={`${card.title}-${idx}`} variant="fade-up" delay={idx * 100}>
                 <div
-                  className={`rounded-2xl p-5 h-full flex flex-col${isMemberRate ? " zv-member-rate-card" : ""}`}
+                  className="rounded-2xl p-5 h-full flex flex-col relative overflow-hidden group"
                   style={{
                     "--luxury-accent": accentRGB,
                     backgroundColor: "white",
@@ -580,6 +580,14 @@ export default async function ServicePage({ params }: PageProps) {
                     boxShadow: isMemberRate ? `0 0 16px rgba(212,175,55,0.25)` : "0 1px 4px rgba(0,0,0,0.06)",
                   } as CSSProperties}
                 >
+                  {isMemberRate && (
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background: "linear-gradient(135deg, transparent 0%, transparent 38%, rgba(212,175,55,0.18) 50%, transparent 62%, transparent 100%)",
+                      }}
+                    />
+                  )}
                   <div className="text-sm font-semibold uppercase tracking-wider text-black/50">{card.title}</div>
                   {!isSingleSession && (
                     <div className={`mt-2 font-serif text-2xl ${isMemberRate ? "font-semibold text-[var(--zivel-gold-dark)]" : "font-light text-black/85"}`}>

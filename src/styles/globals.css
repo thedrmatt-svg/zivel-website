@@ -718,28 +718,6 @@ noscript + .zv-reveal,
   width: 100%;
 }
 
-/* Member rate card diagonal gold bar on hover */
-.zv-member-rate-card {
-  position: relative;
-  overflow: hidden;
-}
-.zv-member-rate-card::after {
-  content: "";
-  position: absolute;
-  top: -60px;
-  right: 12%;
-  width: 1px;
-  height: 140px;
-  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.6), transparent);
-  transform: rotate(30deg);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.zv-member-rate-card:hover::after {
-  opacity: 1;
-}
-
 /* Section with diagonal decorative line */
 .zv-diagonal-accent {
   position: relative;
