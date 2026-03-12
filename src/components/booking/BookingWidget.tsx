@@ -13,9 +13,10 @@ export default function BookingWidget({
 
   return (
     <section className={className}>
-      <div className="rounded-2xl border border-white/10 bg-white/5 shadow-xl">
+      <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-xl">
         <iframe
           className="block h-[700px] w-full rounded-2xl border-0 bg-black"
+          style={{ marginBottom: '-60px' }}
           src={url}
           title={title}
           loading="lazy"

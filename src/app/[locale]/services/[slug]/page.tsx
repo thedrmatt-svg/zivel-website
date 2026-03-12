@@ -632,23 +632,6 @@ export default async function ServicePage({ params }: PageProps) {
               {service.booking.subheadline ? (
                 <p className="mt-4 text-lg text-white/60">{service.booking.subheadline}</p>
               ) : null}
-
-              {service.booking.badges?.length ? (
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {service.booking.badges.map((b) => (
-                    <span
-                      key={b}
-                      className="rounded-full px-4 py-1.5 text-xs text-white/70"
-                      style={{
-                        border: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.2)`,
-                        backgroundColor: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.06)`,
-                      }}
-                    >
-                      {b}
-                    </span>
-                  ))}
-                </div>
-              ) : null}
             </div>
 
             <BookingWidget className="mt-10" locationId={service.booking.locationIdDefault} />
@@ -692,7 +675,7 @@ export default async function ServicePage({ params }: PageProps) {
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline" style={{ color: accentRGB }}>Explore More</p>
-            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.relatedServices.headline}</h2>
+            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Related &amp; Recommended Services</h2>
           </ScrollReveal>
 
           <div className="grid gap-8 md:grid-cols-3">
