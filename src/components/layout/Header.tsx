@@ -162,15 +162,14 @@ export default function Header() {
                     View All Locations →
                   </Link>
                   <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                  <div className="text-xs font-semibold text-white/40 uppercase tracking-wider px-3 pb-1">Browse by State</div>
-                  <div className="space-y-1">
-                    {LOCATIONS_NAV.states.map((s) => (
+                  <div className="max-h-64 overflow-y-auto space-y-0.5 pr-1" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.15) transparent" }}>
+                    {LOCATIONS_NAV.cities.map((c) => (
                       <Link
-                        key={s.href}
-                        href={s.href}
+                        key={c.href}
+                        href={c.href}
                         className="block rounded-lg px-3 py-2 text-sm text-white/70 hover:bg-white/5 hover:text-white transition-colors"
                       >
-                        {s.label}
+                        {c.label}
                       </Link>
                     ))}
                   </div>
@@ -298,15 +297,14 @@ export default function Header() {
                   >
                     Browse All Locations →
                   </Link>
-                  <div className="px-3 pt-2 text-xs font-medium text-white/30 uppercase tracking-wider">States</div>
-                  {LOCATIONS_NAV.states.map((s) => (
+                  {LOCATIONS_NAV.cities.map((c) => (
                     <Link
-                      key={s.href}
-                      href={s.href}
+                      key={c.href}
+                      href={c.href}
                       className="block px-3 py-2 text-sm text-white/60 hover:text-white transition-colors"
                       onClick={() => setMobileOpen(false)}
                     >
-                      {s.label}
+                      {c.label}
                     </Link>
                   ))}
                 </div>

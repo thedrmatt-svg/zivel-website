@@ -1,7 +1,7 @@
 import { locations } from "@/lib/data/locations";
 import type { Location } from "@/types/location";
 
-export type LocationNavState = { label: string; href: string };
+export type LocationNavCity = { label: string; href: string };
 export type LocationNavFeatured = { label: string; href: string; note?: string };
 
 function titleCase(slug: string) {
@@ -14,19 +14,15 @@ function titleCase(slug: string) {
 export function getLocationNav(options?: { featuredCount?: number }) {
   const featuredCount = options?.featuredCount ?? 4;
 
-  // states
-  const stateMap = new Map<string, { label: string; href: string }>();
-  for (const loc of locations) {
-    const stateSlug = loc.stateSlug.toLowerCase();
-    if (!stateSlug) continue;
-
-    const label = titleCase(stateSlug);
-    stateMap.set(stateSlug, { label, href: `/locations/${stateSlug}` });
-  }
-
-  const states = Array.from(stateMap.values()).sort((a, b) =>
-    a.label.localeCompare(b.label)
-  );
+  // cities: all locations sorted alphabetically by city name
+  const cities: LocationNavCity[] = locations
+    .map((loc: Location) => {
+      const stateSlug = loc.stateSlug.toLowerCase();
+      const citySlug = loc.citySlug.toLowerCase();
+      const cityName = loc.city ?? titleCase(citySlug);
+      return { label: cityName, href: `/locations/${stateSlug}/${citySlug}` };
+    })
+    .sort((a, b) => a.label.localeCompare(b.label));
 
   // featured: first N locations in registry order
   const featured = locations
@@ -44,5 +40,5 @@ export function getLocationNav(options?: { featuredCount?: number }) {
       } as LocationNavFeatured;
     });
 
-  return { states, featured };
+  return { cities, featured };
 }
