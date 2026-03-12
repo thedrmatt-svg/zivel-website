@@ -763,6 +763,9 @@ noscript + .zv-reveal,
 }
 
 .zv-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   color: var(--zivel-white);
   border: 1px solid rgba(255, 255, 255, 0.2);
