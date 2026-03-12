@@ -11,12 +11,12 @@ import travelResetJetLagRecovery from "@/content/pathways/travel-reset-jet-lag-r
 
 export const pathways: Pathway[] = [
   recoveryPainSupport,
+  bodyCompositionMetabolicSupport,
+  skinHealthRegenerativeAesthetics,
   longevityHealthyAging,
   stressSleepReset,
   performanceAthleticOptimization,
   mobilityActiveLifestyle,
-  bodyCompositionMetabolicSupport,
-  skinHealthRegenerativeAesthetics,
   travelResetJetLagRecovery,
 ];
 
