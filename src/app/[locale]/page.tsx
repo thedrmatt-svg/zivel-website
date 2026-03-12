@@ -384,7 +384,7 @@ export default function HomePage() {
                       src={scienceImages[i] || scienceImages[0]}
                       alt={article.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className={`object-cover transition-transform duration-700 group-hover:scale-105 ${i === 1 ? 'object-top' : ''}`}
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
