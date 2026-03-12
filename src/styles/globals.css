@@ -766,6 +766,7 @@ noscript + .zv-reveal,
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem 2.5rem;
   background: transparent;
   color: var(--zivel-white);
   border: 1px solid rgba(255, 255, 255, 0.2);
