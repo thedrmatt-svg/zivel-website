@@ -572,7 +572,7 @@ export default async function ServicePage({ params }: PageProps) {
               return (
               <ScrollReveal key={`${card.title}-${idx}`} variant="fade-up" delay={idx * 100}>
                 <div
-                  className="rounded-2xl p-5 h-full flex flex-col"
+                  className={`rounded-2xl p-5 h-full flex flex-col${isMemberRate ? " zv-member-rate-card" : ""}`}
                   style={{
                     "--luxury-accent": accentRGB,
                     backgroundColor: "white",
@@ -582,8 +582,8 @@ export default async function ServicePage({ params }: PageProps) {
                 >
                   <div className="text-sm font-semibold uppercase tracking-wider text-black/50">{card.title}</div>
                   {!isSingleSession && (
-                    <div className="mt-2 font-serif text-2xl font-light text-black/85">
-                      {isMemberRate ? "Save with Plan" : card.priceLine}
+                    <div className={`mt-2 font-serif text-2xl ${isMemberRate ? "font-semibold text-[var(--zivel-gold-dark)]" : "font-light text-black/85"}`}>
+                      {isMemberRate ? "Save with a Plan" : card.priceLine}
                     </div>
                   )}
                   <ul className="mt-4 flex-1 space-y-2 text-sm text-black/55">
