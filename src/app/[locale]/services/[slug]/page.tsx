@@ -565,23 +565,38 @@ export default async function ServicePage({ params }: PageProps) {
             <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.pricingPreview.headline}</h2>
           </ScrollReveal>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {service.pricingPreview.cards.map((card, idx) => (
+          <div className="grid gap-6 md:grid-cols-3">
+            {service.pricingPreview.cards.map((card, idx) => {
+              const isMemberRate = card.title === "Member Rate";
+              const isSingleSession = card.title === "Single Session";
+              return (
               <ScrollReveal key={`${card.title}-${idx}`} variant="fade-up" delay={idx * 100}>
-                <div className="zv-luxury-card rounded-2xl p-8 h-full flex flex-col" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                <div
+                  className="rounded-2xl p-5 h-full flex flex-col"
+                  style={{
+                    "--luxury-accent": accentRGB,
+                    backgroundColor: "white",
+                    border: isMemberRate ? `2px solid var(--zivel-gold)` : "1px solid rgba(0,0,0,0.08)",
+                    boxShadow: isMemberRate ? `0 0 16px rgba(212,175,55,0.25)` : "0 1px 4px rgba(0,0,0,0.06)",
+                  } as CSSProperties}
+                >
                   <div className="text-sm font-semibold uppercase tracking-wider text-black/50">{card.title}</div>
-                  <div className="mt-3 font-serif text-3xl font-light text-black/85">{card.priceLine}</div>
-                  <ul className="mt-6 flex-1 space-y-3 text-sm text-black/55">
+                  {!isSingleSession && (
+                    <div className="mt-2 font-serif text-2xl font-light text-black/85">
+                      {isMemberRate ? "Save with Plan" : card.priceLine}
+                    </div>
+                  )}
+                  <ul className="mt-4 flex-1 space-y-2 text-sm text-black/55">
                     {card.details.map((d) => (
                       <li key={d} className="flex gap-3 items-start">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: accentRGB }} />
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: accentRGB }} />
                         <span>{d}</span>
                       </li>
                     ))}
                   </ul>
 
-                  {card.cta ? (
-                    <div className="mt-8">
+                  {card.cta && !isMemberRate ? (
+                    <div className="mt-5">
                       <Link
                         href={card.cta.href}
                         className="zv-btn-outline inline-flex text-sm"
@@ -592,7 +607,8 @@ export default async function ServicePage({ params }: PageProps) {
                   ) : null}
                 </div>
               </ScrollReveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
