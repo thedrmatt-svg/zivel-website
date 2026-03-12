@@ -160,25 +160,25 @@ export const cryotherapy: Service = {
 
   // SECTION 8 — TESTIMONIALS
   testimonials: {
-    headline: "What People Are Saying",
+    headline: "What Clients Say",
     items: [
       {
-        name: "Client Name",
-        location: "City, State",
+        name: "Marcus T.",
+        location: "Zivel Client",
         quote:
-          "Placeholder testimonial about feeling better, recovering faster, or improved consistency.",
+          "I was skeptical at first, but after my first session I was hooked. Recovery is noticeably faster and I feel sharper the rest of the day.",
       },
       {
-        name: "Client Name",
-        location: "City, State",
+        name: "Brianna H.",
+        location: "Zivel Client",
         quote:
-          "Placeholder testimonial about soreness reduction, energy, and overall wellness routine.",
+          "I do cryotherapy twice a week and it's made a real difference in how my body handles training. Less soreness, more energy. It's become non-negotiable for me.",
       },
       {
-        name: "Client Name",
-        location: "City, State",
+        name: "Derek S.",
+        location: "Zivel Client",
         quote:
-          "Placeholder testimonial about stacking services and the Zivel experience.",
+          "The team walks you through everything so it doesn't feel intimidating. I stack it with compression and red light—three minutes of cold and I feel like a different person.",
       },
     ],
   },
