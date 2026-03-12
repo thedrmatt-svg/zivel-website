@@ -211,7 +211,7 @@ export default async function LocationPage({
           </div>
         )}
 
-        <div className="bg-black text-white px-6 pt-6 pb-10 md:pt-8 md:pb-14">
+        <div className={`bg-black text-white px-6 pb-10 md:pb-14 ${location.hero?.image ? "pt-6 md:pt-8" : "pt-28 md:pt-32"}`}>
           <div className="mx-auto max-w-6xl">
             <h1 id="location-hero-title" className="font-serif text-5xl md:text-7xl font-light tracking-tight max-w-4xl zv-hero-animate-2">
               {location.hero?.headline ?? location.name}
