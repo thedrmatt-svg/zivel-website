@@ -199,14 +199,6 @@ export default function LocationSearch({ locations, variant = "dark" }: { locati
             </Link>
           ))}
         </div>
-      ) : !error ? (
-        <div className={
-          isLight
-            ? "mt-6 rounded-2xl border border-black/8 bg-black/[0.03] p-10 text-center text-black/35"
-            : "mt-6 rounded-2xl border-subtle bg-black/40 p-10 text-center text-white/40"
-        }>
-          Enter a ZIP code to find the nearest Zivel locations, or search by city name.
-        </div>
       ) : null}
     </div>
   );
