@@ -20,7 +20,8 @@ export function getLocationNav(options?: { featuredCount?: number }) {
       const stateSlug = loc.stateSlug.toLowerCase();
       const citySlug = loc.citySlug.toLowerCase();
       const cityName = loc.city ?? titleCase(citySlug);
-      return { label: cityName, href: `/locations/${stateSlug}/${citySlug}` };
+      const stateShort = loc.state ?? stateSlug.toUpperCase();
+      return { label: `${cityName}, ${stateShort}`, href: `/locations/${stateSlug}/${citySlug}` };
     })
     .sort((a, b) => a.label.localeCompare(b.label));
 
