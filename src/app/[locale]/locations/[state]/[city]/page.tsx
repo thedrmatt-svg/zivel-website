@@ -282,6 +282,17 @@ export default async function LocationPage({
                     )}
                     {location.contact.parking && <p className="text-black/55 text-sm">{location.contact.parking}</p>}
                     {location.contact.notes && <p className="text-black/55 text-sm">{location.contact.notes}</p>}
+                    <div className="pt-4 border-t border-black/8">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-black/40 mb-3">Hours</p>
+                      <div className="grid gap-2 sm:grid-cols-2">
+                        {["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map((day) => (
+                          <div key={day} className="flex items-center justify-between sm:[&:nth-child(7)]:col-span-2">
+                            <span className="text-black/60 text-sm">{day}</span>
+                            <span className="text-black/80 text-sm font-medium">8:00 AM – 7:00 PM</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </ScrollReveal>
               </div>
@@ -299,6 +310,17 @@ export default async function LocationPage({
                     )}
                     {location.contact.parking && <p className="text-white/60 text-sm">{location.contact.parking}</p>}
                     {location.contact.notes && <p className="text-white/60 text-sm">{location.contact.notes}</p>}
+                    <div className="pt-4 border-t border-white/10">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-white/35 mb-3">Hours</p>
+                      <div className="grid gap-2 sm:grid-cols-2">
+                        {["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map((day) => (
+                          <div key={day} className="flex items-center justify-between sm:[&:nth-child(7)]:col-span-2">
+                            <span className="text-white/55 text-sm">{day}</span>
+                            <span className="text-white/80 text-sm font-medium">8:00 AM – 7:00 PM</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </ScrollReveal>
               </div>
@@ -307,49 +329,6 @@ export default async function LocationPage({
           {(() => { sectionParity++; return null; })()}
         </>
       )}
-
-      {/* ========== HOURS (alternating) ========== */}
-      <div className="zv-bleed zv-divider-dark-to-light" />
-      {sectionParity % 2 === 0 ? (
-        <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
-          <div className="mx-auto max-w-6xl px-6">
-            <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">When We&apos;re Open</p>
-              <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Hours</h2>
-              <div className="zv-luxury-card rounded-2xl p-8">
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map((day) => (
-                    <div key={day} className="flex items-center justify-between border-b border-black/8 pb-3 last:border-b-0 last:pb-0 sm:[&:nth-child(7)]:col-span-2">
-                      <span className="text-black/70 font-medium">{day}</span>
-                      <span className="text-black/85 font-semibold">8:00 AM – 7:00 PM</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-      ) : (
-        <section className="zv-bleed zv-immersive-section zv-section-elevated">
-          <div className="mx-auto max-w-6xl px-6">
-            <ScrollReveal variant="fade-up">
-              <p className="zv-tagline">When We&apos;re Open</p>
-              <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Hours</h2>
-              <div className="zv-luxury-card rounded-2xl p-8">
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map((day) => (
-                    <div key={day} className="flex items-center justify-between border-b border-white/10 pb-3 last:border-b-0 last:pb-0 sm:[&:nth-child(7)]:col-span-2">
-                      <span className="text-white/65 font-medium">{day}</span>
-                      <span className="text-white/90 font-semibold">8:00 AM – 7:00 PM</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-      )}
-      {(() => { sectionParity++; return null; })()}
 
       {/* ========== GOOGLE MAP (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
