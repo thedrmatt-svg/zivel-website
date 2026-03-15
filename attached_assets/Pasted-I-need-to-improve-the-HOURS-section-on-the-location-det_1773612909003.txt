@@ -1,0 +1,63 @@
+I need to improve the "HOURS" section on the location details page (e.g., /locations/[state]/[city] or similar).
+
+Current problem: The hours layout is hard to read — days and times are spaced too far apart, horizontal alignment is awkward, and it's not mobile-friendly.
+
+Goal: Make it clean, vertical (Sunday through Saturday order), and group consecutive days with the same hours (e.g., if Monday–Thursday are identical, show "Monday–Thursday: 8am–7pm" on one line).
+
+Desired final look (text-based example):
+
+HOURS
+Monday–Thursday    8am–7pm
+Friday             8am–5pm
+Saturday           10am–3pm
+Sunday             10am–3pm
+
+Or, if all weekdays same:
+
+Monday–Friday      8am–7pm
+Saturday–Sunday    10am–3pm
+
+Implementation requirements:
+- Use a clean vertical list (e.g., <dl> or <div> grid or flex column).
+- Use Tailwind CSS classes (assuming we already use Tailwind).
+- Make it responsive: On mobile, keep vertical; on desktop, can be slightly wider but still easy to scan.
+- Group logic: Automatically collapse consecutive days with identical hours (e.g., Mon–Thu same → one line).
+- Keep styling consistent with site (dark mode/gold accents if applicable).
+- Add subtle icons or bullets if it improves readability (optional).
+- Accessibility: Use semantic HTML (e.g., <dt> for day, <dd> for time), proper contrast.
+
+Current code snippet (replace this part):
+
+[PASTE YOUR EXISTING HOURS JSX/TSX HERE IF YOU HAVE IT, e.g.:
+<div>
+  <p>Monday 8am-7pm Tuesday 8am-7pm ...</p>
+</div>
+]
+
+Please refactor the hours display:
+1. Accept hours as a data object or array (suggest a simple structure if needed, e.g. array of { day: string, hours: string }).
+2. Write logic to group consecutive identical hours.
+3. Output a clean, vertical list with grouped days.
+4. Keep the "HOURS" heading styled nicely (e.g., uppercase, gold underline or similar).
+
+Example data you can use for testing:
+const hours = [
+  { day: "Monday", time: "8am–7pm" },
+  { day: "Tuesday", time: "8am–7pm" },
+  { day: "Wednesday", time: "8am–7pm" },
+  { day: "Thursday", time: "8am–7pm" },
+  { day: "Friday", time: "8am–5pm" },
+  { day: "Saturday", time: "10am–3pm" },
+  { day: "Sunday", time: "10am–3pm" },
+];
+
+Expected output HTML structure something like:
+<dl className="space-y-2 text-left">
+  <dt className="font-semibold">Monday–Thursday</dt>
+  <dd className="text-gray-300">8am–7pm</dd>
+  <dt className="font-semibold">Friday</dt>
+  <dd className="text-gray-300">8am–5pm</dd>
+  ...
+</dl>
+
+Make it look premium and readable. Thanks!

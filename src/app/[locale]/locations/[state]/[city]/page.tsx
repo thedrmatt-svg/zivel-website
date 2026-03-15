@@ -174,6 +174,25 @@ export default async function LocationPage({
     { name: "Cryo Toning", price: "$350" },
   ];
 
+  // Build grouped hours for display
+  const ORDERED_DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] as const;
+  type DayKey = "monday"|"tuesday"|"wednesday"|"thursday"|"friday"|"saturday"|"sunday";
+  const hoursArray = ORDERED_DAYS.map(day => ({
+    day,
+    time: location.hours?.[day.toLowerCase() as DayKey] ?? "8:00 AM – 7:00 PM",
+  }));
+  const groupedHours: { label: string; time: string }[] = [];
+  let hi = 0;
+  while (hi < hoursArray.length) {
+    let hj = hi + 1;
+    while (hj < hoursArray.length && hoursArray[hj].time === hoursArray[hi].time) hj++;
+    groupedHours.push({
+      label: hj - hi === 1 ? hoursArray[hi].day : `${hoursArray[hi].day}–${hoursArray[hj - 1].day}`,
+      time: hoursArray[hi].time,
+    });
+    hi = hj;
+  }
+
   let sectionParity = 0;
 
   return (
@@ -284,18 +303,14 @@ export default async function LocationPage({
                     {location.contact.notes && <p className="text-black/55 text-sm">{location.contact.notes}</p>}
                     <div className="pt-4 border-t border-black/8">
                       <p className="text-xs font-semibold uppercase tracking-wider text-black/40 mb-3">Hours</p>
-                      <div className="grid gap-2 sm:grid-cols-2">
-                        {(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] as const).map((day) => {
-                          const key = day.toLowerCase() as keyof NonNullable<typeof location.hours>;
-                          const time = location.hours?.[key] ?? "8:00 AM – 7:00 PM";
-                          return (
-                            <div key={day} className="flex items-center justify-between sm:[&:nth-child(7)]:col-span-2">
-                              <span className="text-black/60 text-sm">{day}</span>
-                              <span className="text-black/80 text-sm font-medium">{time}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
+                      <dl className="space-y-1.5">
+                        {groupedHours.map(({ label, time }) => (
+                          <div key={label} className="flex items-baseline justify-between gap-6">
+                            <dt className="text-sm text-black/60 shrink-0">{label}</dt>
+                            <dd className="text-sm text-black/85 font-semibold text-right">{time}</dd>
+                          </div>
+                        ))}
+                      </dl>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -316,18 +331,14 @@ export default async function LocationPage({
                     {location.contact.notes && <p className="text-white/60 text-sm">{location.contact.notes}</p>}
                     <div className="pt-4 border-t border-white/10">
                       <p className="text-xs font-semibold uppercase tracking-wider text-white/35 mb-3">Hours</p>
-                      <div className="grid gap-2 sm:grid-cols-2">
-                        {(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] as const).map((day) => {
-                          const key = day.toLowerCase() as keyof NonNullable<typeof location.hours>;
-                          const time = location.hours?.[key] ?? "8:00 AM – 7:00 PM";
-                          return (
-                            <div key={day} className="flex items-center justify-between sm:[&:nth-child(7)]:col-span-2">
-                              <span className="text-white/55 text-sm">{day}</span>
-                              <span className="text-white/80 text-sm font-medium">{time}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
+                      <dl className="space-y-1.5">
+                        {groupedHours.map(({ label, time }) => (
+                          <div key={label} className="flex items-baseline justify-between gap-6">
+                            <dt className="text-sm text-white/55 shrink-0">{label}</dt>
+                            <dd className="text-sm text-white/90 font-semibold text-right">{time}</dd>
+                          </div>
+                        ))}
+                      </dl>
                     </div>
                   </div>
                 </ScrollReveal>
