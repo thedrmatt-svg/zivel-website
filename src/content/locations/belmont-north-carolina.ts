@@ -102,8 +102,16 @@ export const zivel_belmont_location: Location = {
       },
     ],
     standardPrices: [
-      { name: "Cryotherapy", price: "$X", note: "Single session" },
-      { name: "Infrared Sauna", price: "$X", note: "Single session" },
+      { name: "Cryotherapy", price: "$50", note: "Single session" },
+      { name: "Red Light Therapy", price: "$50", note: "Single session" },
+      { name: "Infrared Sauna", price: "$50", note: "Single session" },
+      { name: "Dry Float", price: "$50", note: "Single session" },
+      { name: "Compression Therapy", price: "$50", note: "Single session" },
+      { name: "Oxygen Bar", price: "$50", note: "Single session" },
+      { name: "Cryo Slimming", price: "$350", note: "Single session" },
+      { name: "Cryo Toning", price: "$350", note: "Single session" },
+      { name: "CryoLift Facial", price: "$175", note: "Single session" },
+      { name: "Cryo Soothe", price: "$50", note: "Single session" },
     ],
   },
 

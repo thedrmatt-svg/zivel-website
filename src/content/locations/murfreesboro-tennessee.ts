@@ -102,8 +102,15 @@ export const zivel_murfreesboro_location: Location = {
       },
     ],
     standardPrices: [
-      { name: "Cryotherapy", price: "$X", note: "Single session" },
-      { name: "Infrared Sauna", price: "$X", note: "Single session" },
+      { name: "Cryotherapy", price: "$45", note: "Single session" },
+      { name: "Infrared Sauna", price: "$35", note: "Single session" },
+      { name: "Dry Float", price: "$65", note: "Single session" },
+      { name: "Compression Therapy", price: "$30", note: "Single session" },
+      { name: "Oxygen Bar", price: "$30", note: "Single session" },
+      { name: "Cryo Slimming", price: "$350", note: "Single session" },
+      { name: "Cryo Toning", price: "$350", note: "Single session" },
+      { name: "CryoLift Facial", price: "$150", note: "Single session" },
+      { name: "Cryo Soothe", price: "$30", note: "Single session" },
     ],
   },
 
