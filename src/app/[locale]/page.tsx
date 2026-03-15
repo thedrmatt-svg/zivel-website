@@ -25,7 +25,7 @@ const serviceImageMap: Record<string, string> = {
   "compression-therapy": "/images/home/service-compression.jpg",
   "cryo-slimming": "/images/home/service-slimming.jpg",
   "cryo-toning": "/images/home/service-exercise.jpg",
-  "cryo-lift-facial": "/images/home/service-facial.jpg",
+  "cryo-lift-facial": "/images/home/service-facial.avif",
 };
 
 const scienceImages = [
