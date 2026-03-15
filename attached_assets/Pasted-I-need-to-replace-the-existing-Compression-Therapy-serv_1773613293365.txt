@@ -1,0 +1,49 @@
+I need to replace the existing Compression Therapy service card on the Home Page with a new card for CryoLift Facial.
+
+Current setup (from screenshot):
+- Service cards are in a grid (likely 3 columns on desktop, stacked on mobile).
+- Each card has:
+  - Dark background
+  - Service title (e.g., "Compression Therapy") in white/large font
+  - Short blurb/description below title
+  - "Explore →" link/button in gold/yellow
+  - Image below the text (full-width within card)
+- Compression card currently shows:
+  Title: Compression Therapy
+  Blurb: "A recovery-focused session using rhythmic pneumatic compression to support circulation and post-workout..."
+  Link: Explore →
+  Image: person in compression device
+
+Task:
+- Swap the entire Compression Therapy card for CryoLift Facial.
+- Keep ALL styling, layout, hover effects, grid position, and structure identical (just change title, blurb, image src, and link destination).
+- New card details:
+  - Title: CryoLift Facial
+  - Blurb: "A non-invasive, cold-therapy facial that combines targeted cryotherapy with specialized techniques to smooth, firm, and brighten skin—reducing fine lines, improving texture, and delivering a radiant, youthful glow with zero downtime."
+  - Link: "Explore →" pointing to /services/cryo-lift-facial (or whatever the current link pattern is for other services)
+  - Image: Use the existing CryoLift Facial image already in /public (likely /images/services/cryolift-facial.jpg or similar—confirm path if needed; if unsure, use "/images/cryolift-facial.jpg" and adjust if Replit flags it)
+
+Instructions:
+1. Locate the service cards section on the home page (probably in /app/page.tsx or a <Services /> or <FeaturedServices /> component).
+2. Services are likely rendered from an array/map of objects (e.g., services.map(...)).
+3. Find the object or JSX block for Compression Therapy.
+4. Replace it with the new CryoLift Facial object/card.
+5. Keep the order: Cryotherapy → Red Light Therapy → CryoSlimming → Dry Float → CryoLift Facial (new) → Infrared Sauna.
+6. Ensure the image src is correct and loads (use priority if above-fold, or lazy if not).
+7. No other changes to layout, colors, fonts, spacing, or grid.
+
+Example of updated array item (adjust to match your code structure):
+{
+  title: "CryoLift Facial",
+  description: "A non-invasive, cold-therapy facial that combines targeted cryotherapy with specialized techniques to smooth, firm, and brighten skin—reducing fine lines, improving texture, and delivering a radiant, youthful glow with zero downtime.",
+  image: "/images/services/cryolift-facial.jpg",
+  link: "/services/cryo-lift-facial"
+}
+
+After update:
+- Preview home page
+- Confirm CryoLift Facial card appears correctly (image loads, text fits in card without overflow, link works)
+- Check mobile view (cards stack vertically, no layout break)
+
+Do not touch any other cards, hero, or sections—just this one replacement.
+Thanks!

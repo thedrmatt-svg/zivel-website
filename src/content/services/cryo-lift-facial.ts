@@ -14,7 +14,7 @@ export const cryoLiftFacial: Service = {
 
   hero: {
     subheadline:
-      "Non-invasive facial cooling designed to support the appearance of skin firmness, tone, and overall skin health—used for both ongoing maintenance and event preparation.",
+      "A non-invasive, cold-therapy facial that combines targeted cryotherapy with specialized techniques to smooth, firm, and brighten skin—reducing fine lines, improving texture, and delivering a radiant, youthful glow with zero downtime.",
     media: {
       type: "image",
       src: "/images/services/cryo-lift-facial/hero.avif",
