@@ -20,6 +20,16 @@ export const zivel_riverton_location: Location = {
     notes: "",
   },
 
+  hours: {
+    monday: "7am – 8pm",
+    tuesday: "10am – 8pm",
+    wednesday: "7am – 8pm",
+    thursday: "10am – 8pm",
+    friday: "8am – 8pm",
+    saturday: "9am – 8pm",
+    sunday: "10am – 2pm",
+  },
+
   booking: {
     locationId: 11445,
   },

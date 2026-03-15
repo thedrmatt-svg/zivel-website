@@ -20,6 +20,16 @@ export const zivel_buckhead_location: Location = {
     notes: "",
   },
 
+  hours: {
+    monday: "10am – 7pm",
+    tuesday: "10am – 7pm",
+    wednesday: "10am – 7pm",
+    thursday: "10am – 7pm",
+    friday: "10am – 5pm",
+    saturday: "10am – 5pm",
+    sunday: "Closed",
+  },
+
   booking: {
     locationId: 11537,
   },

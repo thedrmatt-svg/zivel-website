@@ -20,6 +20,16 @@ export const zivel_newport_location: Location = {
     notes: "",
   },
 
+  hours: {
+    monday: "8am – 7pm",
+    tuesday: "8am – 7pm",
+    wednesday: "8am – 7pm",
+    thursday: "8am – 7pm",
+    friday: "8am – 5pm",
+    saturday: "9am – 4pm",
+    sunday: "10am – 3pm",
+  },
+
   booking: {
     locationId: 11437,
   },

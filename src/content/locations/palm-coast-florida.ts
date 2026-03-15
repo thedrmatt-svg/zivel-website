@@ -20,6 +20,16 @@ export const zivel_palm_coast_location: Location = {
     notes: "",
   },
 
+  hours: {
+    monday: "Closed",
+    tuesday: "10am – 7pm",
+    wednesday: "10am – 7pm",
+    thursday: "10am – 7pm",
+    friday: "10am – 5pm",
+    saturday: "10am – 5pm",
+    sunday: "10am – 5pm",
+  },
+
   booking: {
     locationId: 11434,
   },

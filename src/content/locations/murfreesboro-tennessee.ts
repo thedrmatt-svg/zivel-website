@@ -20,6 +20,16 @@ export const zivel_murfreesboro_location: Location = {
     notes: "",
   },
 
+  hours: {
+    monday: "9am – 7pm",
+    tuesday: "9am – 7pm",
+    wednesday: "9am – 7pm",
+    thursday: "9am – 7pm",
+    friday: "9am – 7pm",
+    saturday: "9am – 7pm",
+    sunday: "1pm – 4:30pm",
+  },
+
   booking: {
     locationId: 11430,
   },

@@ -20,6 +20,16 @@ export const zivel_franklin_cool_springs_location: Location = {
     notes: "",
   },
 
+  hours: {
+    monday: "8am – 6pm",
+    tuesday: "8am – 4pm",
+    wednesday: "8am – 6pm",
+    thursday: "8am – 6pm",
+    friday: "8am – 5pm",
+    saturday: "9am – 5pm",
+    sunday: "11am – 3pm",
+  },
+
   booking: {
     locationId: 11436,
   },

@@ -20,6 +20,16 @@ export const zivel_parker_location: Location = {
     notes: "",
   },
 
+  hours: {
+    monday: "9am – 7pm",
+    tuesday: "9am – 7pm",
+    wednesday: "9am – 7pm",
+    thursday: "9am – 7pm",
+    friday: "9am – 6pm",
+    saturday: "9am – 4pm",
+    sunday: "Closed",
+  },
+
   booking: {
     locationId: 11680,
   },

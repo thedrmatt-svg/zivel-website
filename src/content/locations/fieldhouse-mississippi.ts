@@ -20,6 +20,16 @@ export const zivel_fieldhouse_location: Location = {
     notes: "Inside Fieldhouse near Hernando, MS",
   },
 
+  hours: {
+    monday: "10am – 7pm",
+    tuesday: "10am – 7pm",
+    wednesday: "10am – 7pm",
+    thursday: "10am – 7pm",
+    friday: "10am – 7pm",
+    saturday: "10am – 2pm",
+    sunday: "Closed",
+  },
+
   booking: {
     locationId: 11441,
   },

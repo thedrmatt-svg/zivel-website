@@ -20,6 +20,16 @@ export const zivel_metairie_location: Location = {
     notes: "",
   },
 
+  hours: {
+    monday: "9am – 7pm",
+    tuesday: "9am – 7pm",
+    wednesday: "9am – 7pm",
+    thursday: "9am – 7pm",
+    friday: "9am – 7pm",
+    saturday: "10am – 5pm",
+    sunday: "12pm – 4pm",
+  },
+
   booking: {
     locationId: 11435,
   },

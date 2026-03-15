@@ -19,6 +19,16 @@ export type Location = {
     notes?: string;
   };
 
+  hours?: {
+    monday?: string;
+    tuesday?: string;
+    wednesday?: string;
+    thursday?: string;
+    friday?: string;
+    saturday?: string;
+    sunday?: string;
+  };
+
   hero?: {
     headline: string;
     subheadline: string;

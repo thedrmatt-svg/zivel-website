@@ -285,12 +285,16 @@ export default async function LocationPage({
                     <div className="pt-4 border-t border-black/8">
                       <p className="text-xs font-semibold uppercase tracking-wider text-black/40 mb-3">Hours</p>
                       <div className="grid gap-2 sm:grid-cols-2">
-                        {["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map((day) => (
-                          <div key={day} className="flex items-center justify-between sm:[&:nth-child(7)]:col-span-2">
-                            <span className="text-black/60 text-sm">{day}</span>
-                            <span className="text-black/80 text-sm font-medium">8:00 AM – 7:00 PM</span>
-                          </div>
-                        ))}
+                        {(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] as const).map((day) => {
+                          const key = day.toLowerCase() as keyof NonNullable<typeof location.hours>;
+                          const time = location.hours?.[key] ?? "8:00 AM – 7:00 PM";
+                          return (
+                            <div key={day} className="flex items-center justify-between sm:[&:nth-child(7)]:col-span-2">
+                              <span className="text-black/60 text-sm">{day}</span>
+                              <span className="text-black/80 text-sm font-medium">{time}</span>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -313,12 +317,16 @@ export default async function LocationPage({
                     <div className="pt-4 border-t border-white/10">
                       <p className="text-xs font-semibold uppercase tracking-wider text-white/35 mb-3">Hours</p>
                       <div className="grid gap-2 sm:grid-cols-2">
-                        {["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map((day) => (
-                          <div key={day} className="flex items-center justify-between sm:[&:nth-child(7)]:col-span-2">
-                            <span className="text-white/55 text-sm">{day}</span>
-                            <span className="text-white/80 text-sm font-medium">8:00 AM – 7:00 PM</span>
-                          </div>
-                        ))}
+                        {(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] as const).map((day) => {
+                          const key = day.toLowerCase() as keyof NonNullable<typeof location.hours>;
+                          const time = location.hours?.[key] ?? "8:00 AM – 7:00 PM";
+                          return (
+                            <div key={day} className="flex items-center justify-between sm:[&:nth-child(7)]:col-span-2">
+                              <span className="text-white/55 text-sm">{day}</span>
+                              <span className="text-white/80 text-sm font-medium">{time}</span>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

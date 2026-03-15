@@ -20,6 +20,16 @@ export const zivel_brecksville_location: Location = {
     notes: "",
   },
 
+  hours: {
+    monday: "8am – 6pm",
+    tuesday: "8am – 6pm",
+    wednesday: "8am – 6pm",
+    thursday: "8am – 6pm",
+    friday: "8am – 5pm",
+    saturday: "9am – 2pm",
+    sunday: "Closed",
+  },
+
   booking: {
     locationId: 11438,
   },
