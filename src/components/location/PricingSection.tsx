@@ -93,6 +93,9 @@ export default function PricingSection({
               ))}
             </div>
           </div>
+          <p className="mt-4 text-sm text-white/50 italic">
+            Save more with memberships or packages—contact this location for personalized pricing info.
+          </p>
         </div>
       ) : null}
     </div>
