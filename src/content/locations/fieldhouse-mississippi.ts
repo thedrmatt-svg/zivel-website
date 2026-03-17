@@ -85,19 +85,19 @@ export const zivel_fieldhouse_location: Location = {
   pricing: {
     membershipTiers: [
       {
-        name: "Base",
-        price: "$X",
+        name: "Essential",
+        price: "$99",
         cadence: "/mo",
-        description: "Placeholder",
-        features: ["Placeholder", "Placeholder"],
+        description: "A great entry point for regular recovery.",
+        features: ["6 Recovery Sessions/Month", "Good for Beginners"],
         mostPopular: false,
       },
       {
-        name: "Plus",
-        price: "$X",
+        name: "Elite",
+        price: "$129",
         cadence: "/mo",
-        description: "Placeholder",
-        features: ["Placeholder", "Placeholder"],
+        description: "More sessions, more value.",
+        features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
         mostPopular: true,
       },
     ],

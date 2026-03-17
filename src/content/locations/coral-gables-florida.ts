@@ -85,19 +85,19 @@ export const zivel_coral_gables_location: Location = {
   pricing: {
     membershipTiers: [
       {
-        name: "Base",
-        price: "$X",
+        name: "Essential",
+        price: "$129",
         cadence: "/mo",
-        description: "Placeholder",
-        features: ["Placeholder", "Placeholder"],
+        description: "A great entry point for regular recovery.",
+        features: ["11 Recovery Sessions/Month", "Good for Beginners"],
         mostPopular: false,
       },
       {
-        name: "Plus",
-        price: "$X",
+        name: "Elite",
+        price: "$199",
         cadence: "/mo",
-        description: "Placeholder",
-        features: ["Placeholder", "Placeholder"],
+        description: "More sessions, more value.",
+        features: ["20 Recovery Sessions/Month", "Premium Service Discounts"],
         mostPopular: true,
       },
     ],

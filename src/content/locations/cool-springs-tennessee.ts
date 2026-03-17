@@ -79,19 +79,19 @@ export const zivel_franklin_cool_springs_location: Location = {
   pricing: {
     membershipTiers: [
       {
-        name: "Base",
-        price: "$X",
+        name: "Essential",
+        price: "$129",
         cadence: "/mo",
-        description: "Placeholder",
-        features: ["Placeholder", "Placeholder"],
+        description: "A great entry point for regular recovery.",
+        features: ["4 Recovery Sessions/Month", "Good for Beginners"],
         mostPopular: false,
       },
       {
-        name: "Plus",
-        price: "$X",
+        name: "Elite",
+        price: "$179",
         cadence: "/mo",
-        description: "Placeholder",
-        features: ["Placeholder", "Placeholder"],
+        description: "More sessions, more value.",
+        features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
         mostPopular: true,
       },
     ],
