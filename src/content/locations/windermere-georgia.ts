@@ -82,6 +82,14 @@ export const zivel_cumming_windermere_location: Location = {
     mapEmbedUrl: "",
   },
 
+  announcement: {
+    headline: "Grand Opening Event This Weekend!",
+    dates: "Friday, March 20 – Sunday, March 22",
+    body: "Join us at 3775 Windermere Pkwy for big savings and to try out our Recovery Services!",
+    cta: "Take advantage of Grand Opening Savings below!",
+    buttons: [],
+  },
+
   pricing: {
     membershipTiers: [
       {

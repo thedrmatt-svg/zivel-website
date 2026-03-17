@@ -35,6 +35,14 @@ export type Location = {
     image: string;
   };
 
+  announcement?: {
+    headline: string;
+    dates?: string;
+    body: string;
+    cta?: string;
+    buttons?: { label: string; href: string; variant?: "gold" | "outline" }[];
+  };
+
   about?: {
     headline: string;
     body: string[];

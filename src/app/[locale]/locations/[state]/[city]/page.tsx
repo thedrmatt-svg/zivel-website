@@ -251,6 +251,39 @@ export default async function LocationPage({
         </div>
       </section>
 
+      {/* ========== GRAND OPENING / ANNOUNCEMENT BANNER ========== */}
+      {location.announcement && (
+        <section className="zv-bleed bg-[var(--zivel-gold)] text-black py-10 px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Special Event</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold mb-2">{location.announcement.headline}</h2>
+            {location.announcement.dates && (
+              <p className="text-lg font-semibold mb-4">{location.announcement.dates}</p>
+            )}
+            <p className="text-base mb-3 opacity-85">{location.announcement.body}</p>
+            {location.announcement.cta && (
+              <p className="text-base font-bold mb-6">{location.announcement.cta}</p>
+            )}
+            {location.announcement.buttons && location.announcement.buttons.length > 0 && (
+              <div className="flex flex-wrap justify-center gap-4">
+                {location.announcement.buttons.map((btn) => (
+                  <a
+                    key={btn.label}
+                    href={btn.href}
+                    className={btn.variant === "outline"
+                      ? "inline-block rounded-full border-2 border-black px-6 py-3 text-sm font-semibold tracking-wide hover:bg-black hover:text-[var(--zivel-gold)] transition-colors duration-300"
+                      : "inline-block rounded-full bg-black text-[var(--zivel-gold)] px-6 py-3 text-sm font-semibold tracking-wide hover:bg-black/80 transition-colors duration-300"
+                    }
+                  >
+                    {btn.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* ========== ABOUT THIS LOCATION (LIGHT) ========== */}
       {location.about && (
         <>
