@@ -38,7 +38,7 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "coralgables.zivel.com" }],
-        destination: "https://www.zivel.com/locations/florida/coralgables/:path*",
+        destination: "https://www.zivel.com/locations/florida/coral-gables/:path*",
         permanent: true,
       },
       {
