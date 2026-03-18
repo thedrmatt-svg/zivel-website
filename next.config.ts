@@ -36,6 +36,18 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [{ type: "host", value: "coralgables.zivel.com" }],
+        destination: "https://www.zivel.com/locations/florida/coral-gables/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "brecksville.zivel.com" }],
+        destination: "https://www.zivel.com/locations/ohio/brecksville/:path*",
+        permanent: true,
+      },
+      {
         source: "/riverton",
         destination: "/locations/utah/riverton",
         permanent: true,
