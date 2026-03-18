@@ -216,7 +216,10 @@ export default function Header() {
 
         {mobileOpen ? (
           <div className="lg:hidden pb-6 pt-2">
-            <div className="space-y-1 rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl p-4">
+            <div
+              className="space-y-1 rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl p-4 overflow-y-auto"
+              style={{ maxHeight: "calc(100dvh - 5rem)" }}
+            >
               <button
                 className="flex w-full items-center justify-between px-3 py-3 text-sm font-medium tracking-wide uppercase text-white hover:text-[var(--zivel-gold)] transition-colors"
                 onClick={() => setMobileServicesOpen((v) => !v)}
