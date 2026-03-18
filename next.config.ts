@@ -4,6 +4,20 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://*.vercel.app; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' https://zivel.myperformanceiq.com https://*.vercel.app; connect-src 'self' https://maps.googleapis.com;",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {
