@@ -72,8 +72,7 @@ export default function Header() {
               height={573}
               priority
               fetchPriority="high"
-              style={{ width: "auto", height: "auto" }}
-              className="h-9 md:h-10 lg:h-12 xl:h-14 w-auto transition-all duration-200"
+              className="!h-9 md:!h-10 lg:!h-12 xl:!h-14 !w-auto transition-all duration-200"
             />
           </Link>
 
