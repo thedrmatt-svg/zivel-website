@@ -156,7 +156,7 @@ export default async function ScienceArticlePage({ params }: Props) {
                       className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
                     >
                       <div className="font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{svc.name}</div>
-                      <p className="mt-2 text-sm text-black/50">Learn more →</p>
+                      <p className="mt-2 text-sm text-black/50">Explore {svc.name} →</p>
                     </Link>
                   </ScrollReveal>
                 ))}

@@ -85,7 +85,7 @@ export default async function ResearchSourcePage({ params }: Props) {
                 className="rounded-xl border-subtle bg-card p-4 hover:border-white/20 hover:bg-white/10"
               >
                 <div className="font-semibold text-white">{svc.name}</div>
-                <div className="mt-1 text-xs text-white/60">Learn more →</div>
+                <div className="mt-1 text-xs text-white/60">Explore {svc.name} →</div>
               </Link>
             ))}
           </div>

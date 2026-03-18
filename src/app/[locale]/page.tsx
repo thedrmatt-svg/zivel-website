@@ -196,8 +196,8 @@ export default function HomePage() {
                       {service.hero.subheadline}
                     </p>
                     <span className="text-sm font-medium text-[var(--zivel-gold)] flex items-center gap-2">
-                      Explore
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
+                      Explore {service.name}
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
                         <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </span>
@@ -317,7 +317,7 @@ export default function HomePage() {
                   Zivel brings modern wellness technology to local communities through a network of independently operated studios. We focus on evidence-informed modalities, clean environments, and personalized guidance—so you can feel better and recover smarter.
                 </p>
                 <Link href="/about" className="zv-btn-luxury zv-btn-outline">
-                  Learn More
+                  Learn More About Zivel
                 </Link>
               </div>
             </ScrollReveal>
@@ -411,8 +411,8 @@ export default function HomePage() {
                       {article.description}
                     </p>
                     <span className="text-sm font-medium text-[var(--zivel-gold)] flex items-center gap-2">
-                      Read More
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
+                      Read article<span className="sr-only"> — {article.title}</span>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
                         <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </span>
