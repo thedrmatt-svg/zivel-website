@@ -120,7 +120,7 @@ export default async function LocaleLayout({
         />
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <div className="mx-auto w-full max-w-6xl px-4 pt-20">{children}</div>
+          <div className="w-full pt-20">{children}</div>
           <Footer />
         </NextIntlClientProvider>
       </body>
