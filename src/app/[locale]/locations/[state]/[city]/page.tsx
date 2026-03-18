@@ -4,8 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
-// import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
-// import GoogleReviews from "@/components/location/GoogleReviews";
+import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
+import GoogleReviews from "@/components/location/GoogleReviews";
 // import JobsSection from "@/components/location/JobsSection"; // hidden until ready
 // import PartnersSection from "@/components/location/PartnersSection"; // hidden until ready
 import PricingSection from "@/components/location/PricingSection";
@@ -399,7 +399,11 @@ export default async function LocationPage({
               <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Find Us</h2>
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-12 text-center text-white/40 text-sm tracking-wider uppercase">Map disabled during development</div>
+              <GoogleMapEmbed
+                title={location.name}
+                placeId={location.google?.placeId}
+                query={location.contact?.address}
+              />
             </ScrollReveal>
           </div>
         </section>
@@ -411,7 +415,11 @@ export default async function LocationPage({
               <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Find Us</h2>
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-12 text-center text-white/40 text-sm tracking-wider uppercase">Map disabled during development</div>
+              <GoogleMapEmbed
+                title={location.name}
+                placeId={location.google?.placeId}
+                query={location.contact?.address}
+              />
             </ScrollReveal>
           </div>
         </section>
@@ -513,9 +521,7 @@ export default async function LocationPage({
               <p className="zv-tagline">Client Feedback</p>
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Clients Are Saying</h2>
             </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={100}>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-12 text-center text-white/40 text-sm tracking-wider uppercase">Reviews disabled during development</div>
-            </ScrollReveal>
+            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} />
           </div>
         </section>
       ) : (
@@ -525,9 +531,7 @@ export default async function LocationPage({
               <p className="zv-tagline">Client Feedback</p>
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Clients Are Saying</h2>
             </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={100}>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-12 text-center text-white/40 text-sm tracking-wider uppercase">Reviews disabled during development</div>
-            </ScrollReveal>
+            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} />
           </div>
         </section>
       )}
