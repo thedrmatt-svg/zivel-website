@@ -165,7 +165,7 @@ export default async function ServicePage({ params }: PageProps) {
           />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8 lg:px-12 py-32 md:py-40">
           <p className="zv-tagline zv-hero-animate-1" style={{ color: accentRGB }}>
             {service.name.toUpperCase()}
           </p>
@@ -204,7 +204,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 2 — INTRO / WHAT IT IS (LIGHT) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <div className="grid gap-12 md:grid-cols-2 md:items-center">
               <div className="space-y-6">
@@ -264,7 +264,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 3 — BENEFITS GRID (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <div className="flex items-end justify-between gap-6 mb-12">
               <div>
@@ -331,7 +331,7 @@ export default async function ServicePage({ params }: PageProps) {
         <>
           <div className="zv-divider-dark-to-light zv-bleed" />
           <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
-            <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
               <ScrollReveal variant="fade-up">
                 <div className="flex items-end justify-between gap-6 mb-12">
                   <div>
@@ -369,7 +369,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 4 — HOW IT WORKS (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-gradient">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline" style={{ color: accentRGB }}>The Experience</p>
             <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.howItWorks.headline}</h2>
@@ -398,7 +398,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 5 — THE SCIENCE BEHIND IT (LIGHT) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <div className="grid gap-12 md:grid-cols-2 md:items-center">
               <div className="space-y-6">
@@ -457,7 +457,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 6 — SAFETY & CONTRAINDICATIONS (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-recessed">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline" style={{ color: accentRGB }}>Safety First</p>
             <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Safety & Contraindications</h2>
@@ -498,7 +498,7 @@ export default async function ServicePage({ params }: PageProps) {
         <>
           <div className="zv-divider-dark-to-light zv-bleed" />
           <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
-            <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
               <ScrollReveal variant="fade-up">
                 <p className="zv-tagline" style={{ color: accentRGB }}>Results</p>
                 <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.beforeAfter.headline}</h2>
@@ -539,7 +539,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 8 — TESTIMONIALS (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-elevated">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline" style={{ color: accentRGB }}>Testimonials</p>
             <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.testimonials.headline}</h2>
@@ -566,7 +566,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 9 — PRICING (LIGHT) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <h2 className="mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.pricingPreview.headline}</h2>
           </ScrollReveal>
@@ -631,7 +631,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 10 — BOOKING WIDGET (DARK) ========== */}
       <section id="book" className="zv-bleed zv-immersive-section zv-section-gradient">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <div className="max-w-3xl">
               <p className="zv-tagline" style={{ color: accentRGB }}>Book Now</p>
@@ -650,7 +650,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 11 — FAQ (LIGHT) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline" style={{ color: accentRGB }}>Questions</p>
             <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.faqs.headline}</h2>
@@ -679,7 +679,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ========== SECTION 12 — RELATED SERVICES (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline" style={{ color: accentRGB }}>Explore More</p>
             <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Related &amp; Recommended Services</h2>
@@ -714,7 +714,7 @@ export default async function ServicePage({ params }: PageProps) {
         <>
           <div className="zv-divider-dark-to-light zv-bleed" />
           <section className="zv-bleed zv-immersive-section zv-section-light zv-light">
-            <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
               <ScrollReveal variant="fade-up">
                 <p className="zv-tagline" style={{ color: accentRGB }}>Evidence</p>
                 <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Related Science & Research</h2>
@@ -788,7 +788,7 @@ export default async function ServicePage({ params }: PageProps) {
           />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <ScrollReveal variant="scale">
             <div className="text-center">
               <h2 className="font-serif text-5xl md:text-6xl font-light tracking-tight">{service.finalCTA.headline}</h2>
