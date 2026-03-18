@@ -599,6 +599,71 @@ export default async function LocationPage({
         </>
       )}
 
+      {/* ========== LINK CARDS (alternating, only when present) ========== */}
+      {location.linkCards && location.linkCards.length > 0 && (
+        <>
+          <div className="zv-bleed zv-divider-dark-to-light" />
+          {sectionParity % 2 === 0 ? (
+            <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+              <div className="mx-auto max-w-6xl px-6">
+                <div className="grid gap-6 md:grid-cols-2">
+                  {location.linkCards.map((card, idx) => (
+                    <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                      <a
+                        href={card.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group flex flex-col rounded-2xl border border-black/10 bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-8"
+                      >
+                        <h3 className="font-serif text-2xl font-light text-black/90 mb-2">{card.title}</h3>
+                        {card.price && (
+                          <p className="text-2xl font-semibold text-black mb-3">{card.price}</p>
+                        )}
+                        {card.description && (
+                          <p className="text-black/60 text-sm mb-4 flex-1">{card.description}</p>
+                        )}
+                        <span className="mt-auto inline-block rounded-full bg-black text-white px-8 py-3 text-sm font-semibold tracking-wide text-center group-hover:bg-[var(--zivel-gold)] group-hover:text-black transition-colors duration-200">
+                          {card.cta}
+                        </span>
+                      </a>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ) : (
+            <section className="zv-bleed zv-immersive-section zv-section-elevated">
+              <div className="mx-auto max-w-6xl px-6">
+                <div className="grid gap-6 md:grid-cols-2">
+                  {location.linkCards.map((card, idx) => (
+                    <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                      <a
+                        href={card.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 p-8"
+                      >
+                        <h3 className="font-serif text-2xl font-light text-white/90 mb-2">{card.title}</h3>
+                        {card.price && (
+                          <p className="text-2xl font-semibold text-white mb-3">{card.price}</p>
+                        )}
+                        {card.description && (
+                          <p className="text-white/55 text-sm mb-4 flex-1">{card.description}</p>
+                        )}
+                        <span className="mt-auto inline-block rounded-full border border-[var(--zivel-gold)] text-[var(--zivel-gold)] px-8 py-3 text-sm font-semibold tracking-wide text-center group-hover:bg-[var(--zivel-gold)] group-hover:text-black transition-colors duration-200">
+                          {card.cta}
+                        </span>
+                      </a>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+          {(() => { sectionParity++; return null; })()}
+        </>
+      )}
+
       {/* ========== REVIEWS (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (

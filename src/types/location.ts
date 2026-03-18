@@ -118,6 +118,14 @@ export type Location = {
     url?: string;
   }[];
 
+  linkCards?: {
+    title: string;
+    description?: string;
+    price?: string;
+    cta: string;
+    href: string;
+  }[];
+
   booking?: {
     locationId: number | null;
   };

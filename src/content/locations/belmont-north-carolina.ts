@@ -146,6 +146,21 @@ export const zivel_belmont_location: Location = {
     ],
   },
 
+  linkCards: [
+    {
+      title: "Performance & Recovery Session",
+      price: "$50 per session",
+      cta: "Book Session",
+      href: "https://app.clubready.com/JoinUs/14875/643772",
+    },
+    {
+      title: "Gift Cards & Products",
+      description: "Give the gift of wellness — for any occasion.",
+      cta: "Buy Now",
+      href: "https://payhip.com/ZIVEL",
+    },
+  ],
+
   partners: [
     {
       name: "Partner Name",
