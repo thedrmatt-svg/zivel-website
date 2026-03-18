@@ -11,10 +11,24 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import HorizontalScroller from "@/components/ui/HorizontalScroller";
 
 export const metadata: Metadata = {
-  title: "Zivel | Wellness & Recovery",
+  title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
   description:
-    "Zivel is modern wellness technology—delivered in calm, premium studios—with evidence-informed services designed to support recovery, performance, and daily well-being.",
+    "Zivel delivers cutting-edge wellness technology nationwide — expert-led recovery, body contouring, and skin rejuvenation in serene private studios. Book cryo, red light, infrared sauna, CryoLift Facial and more.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+    description:
+      "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
+    url: "https://www.zivel.com",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+    description:
+      "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
+    images: ["/images/og-image.jpg"],
+  },
 };
 
 const serviceImageMap: Record<string, string> = {

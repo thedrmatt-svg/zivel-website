@@ -23,24 +23,26 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Zivel Wellness | Recovery, Performance & Longevity",
+    default: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
     template: "%s | Zivel Wellness",
   },
   description:
-    "Science-backed wellness services including cryotherapy, red light therapy, infrared sauna, compression, dry float, and aesthetic cryo. Book your session today.",
+    "Zivel delivers cutting-edge wellness technology nationwide — expert-led recovery, body contouring, and skin rejuvenation in serene private studios. Book cryo, red light, infrared sauna, CryoLift Facial and more.",
   openGraph: {
-    title: "Zivel Wellness | Recovery, Performance & Longevity",
+    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
     description:
-      "Science-backed wellness services including cryotherapy, red light therapy, infrared sauna, compression, dry float, and aesthetic cryo. Book your session today.",
+      "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
     url: "https://www.zivel.com",
     siteName: "Zivel",
     type: "website",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zivel Wellness | Recovery, Performance & Longevity",
+    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
     description:
-      "Science-backed wellness services including cryotherapy, red light therapy, infrared sauna, compression, dry float, and aesthetic cryo. Book your session today.",
+      "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
+    images: ["/images/og-image.jpg"],
   },
   robots: {
     index: true,
