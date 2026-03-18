@@ -87,7 +87,9 @@ export const zivel_cumming_windermere_location: Location = {
     dates: "Friday, March 20 – Sunday, March 22",
     body: "Join us at 3775 Windermere Pkwy for big savings and to try out our Recovery Services!",
     cta: "Take advantage of Grand Opening Savings below!",
-    buttons: [],
+    buttons: [
+      { label: "5 Cryo Facials for $500", href: "https://app.clubready.com/JoinUs/14944/648827", variant: "gold" },
+    ],
   },
 
   pricing: {
