@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' https://maps.googleapis.com https://*.vercel.app; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; frame-src 'self' https://zivel.myperformanceiq.com https://*.vercel.app; connect-src 'self' https://maps.googleapis.com https://*.vercel.app; object-src 'none'; base-uri 'self';",
+              "default-src 'self'; script-src 'self' 'unsafe-inline' https://maps.googleapis.com https://*.vercel.app https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data: https:; frame-src 'self' https://zivel.myperformanceiq.com https://*.vercel.app https://www.google.com; connect-src 'self' https://maps.googleapis.com https://*.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';",
           },
           {
             key: "Strict-Transport-Security",
@@ -29,6 +29,10 @@ const nextConfig: NextConfig = {
           {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
           },
         ],
       },
