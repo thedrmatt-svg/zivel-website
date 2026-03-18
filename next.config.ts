@@ -36,6 +36,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/locations/northcarolina/belmont",
+        destination: "https://www.zivel.com/locations/north-carolina/belmont",
+        permanent: true,
+      },
+      {
+        source: "/locations/northcarolina/belmont/",
+        destination: "https://www.zivel.com/locations/north-carolina/belmont",
+        permanent: true,
+      },
+      {
         source: "/locations/florida/coralgables",
         destination: "https://www.zivel.com/locations/florida/coral-gables",
         permanent: true,
