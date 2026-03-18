@@ -78,7 +78,7 @@ export const zivel_belmont_location: Location = {
 ],
 
   google: {
-    placeId: "",
+    placeId: "ChIJjaywtH29VogRFXe1l_SIid0",
     mapEmbedUrl: "",
   },
 
