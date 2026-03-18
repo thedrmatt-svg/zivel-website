@@ -1,0 +1,30 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About Zivel",
+  description: "Learn about Zivel's mission to bring modern wellness technology to local communities across the country.",
+};
+
+export default function AboutPage() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center text-center px-6 py-32">
+      <span className="zv-tagline mb-6 block">Our Story</span>
+      <h1 className="font-serif text-5xl md:text-7xl font-light tracking-tight mb-6">
+        About Zivel
+      </h1>
+      <span className="zv-gold-line mb-8 mx-auto" />
+      <p className="text-white/60 text-lg md:text-xl max-w-xl leading-relaxed mb-12">
+        We&apos;re crafting something worth reading. Our full story is coming soon.
+      </p>
+      <div className="flex flex-wrap justify-center gap-4">
+        <Link href="/locations" className="zv-btn-luxury zv-btn-gold">
+          Find a Studio
+        </Link>
+        <Link href="/" className="zv-btn-luxury zv-btn-outline">
+          Back to Home
+        </Link>
+      </div>
+    </div>
+  );
+}
