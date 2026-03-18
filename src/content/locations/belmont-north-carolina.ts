@@ -150,7 +150,7 @@ export const zivel_belmont_location: Location = {
     {
       title: "Performance & Recovery Session",
       price: "$50 per session",
-      cta: "Book Session",
+      cta: "Buy Session",
       href: "https://app.clubready.com/JoinUs/14875/643772",
     },
     {
