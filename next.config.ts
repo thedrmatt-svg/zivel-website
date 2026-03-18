@@ -36,6 +36,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/locations/mississippi/hernando/fieldhouse",
+        destination: "https://www.zivel.com/locations/mississippi/fieldhouse",
+        permanent: true,
+      },
+      {
+        source: "/locations/mississippi/hernando/fieldhouse/",
+        destination: "https://www.zivel.com/locations/mississippi/fieldhouse",
+        permanent: true,
+      },
+      {
         source: "/locations/northcarolina/belmont",
         destination: "https://www.zivel.com/locations/north-carolina/belmont",
         permanent: true,
