@@ -11,6 +11,31 @@ const nextConfig: NextConfig = {
         destination: "/locations/utah/riverton",
         permanent: true,
       },
+      {
+        source: "/highlandsranch",
+        destination: "/locations/colorado/highlands-ranch",
+        permanent: true,
+      },
+      {
+        source: "/fieldhouse",
+        destination: "/locations/mississippi/fieldhouse",
+        permanent: true,
+      },
+      {
+        source: "/bentonville",
+        destination: "/locations/arkansas/bentonville",
+        permanent: true,
+      },
+      {
+        source: "/locations/georgia/cumming",
+        destination: "/locations/georgia/windermere",
+        permanent: true,
+      },
+      {
+        source: "/murfreesboro",
+        destination: "/locations/tennessee/murfreesboro",
+        permanent: true,
+      },
     ];
   },
   allowedDevOrigins: [
