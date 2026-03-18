@@ -36,6 +36,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/riverton",
+        destination: "https://www.zivel.com/locations/utah/riverton",
+        permanent: true,
+      },
+      {
+        source: "/riverton/",
+        destination: "https://www.zivel.com/locations/utah/riverton",
+        permanent: true,
+      },
+      {
         source: "/locations/mississippi/hernando/fieldhouse",
         destination: "https://www.zivel.com/locations/mississippi/fieldhouse",
         permanent: true,
