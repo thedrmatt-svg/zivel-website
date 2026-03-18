@@ -5,6 +5,7 @@ type PricingTier = {
   description?: string;
   features?: string[];
   mostPopular?: boolean;
+  bookingUrl?: string;
 };
 
 type StandardPrice = {
@@ -70,6 +71,17 @@ export default function PricingSection({
                       </li>
                     ))}
                   </ul>
+                ) : null}
+
+                {t.bookingUrl ? (
+                  <a
+                    href={t.bookingUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 block w-full rounded-full border border-[var(--zivel-gold)] py-2.5 text-center text-sm font-semibold text-[var(--zivel-gold)] transition-colors duration-200 hover:bg-[var(--zivel-gold)] hover:text-black"
+                  >
+                    Join Now
+                  </a>
                 ) : null}
               </div>
             ))}

@@ -85,20 +85,51 @@ export const zivel_belmont_location: Location = {
   pricing: {
     membershipTiers: [
       {
-        name: "Essential",
+        name: "Bronze",
         price: "$99",
-        cadence: "/mo",
+        cadence: "/month",
         description: "A great entry point for regular recovery.",
-        features: ["4 Recovery Sessions/Month", "Good for Beginners"],
+        features: ["4 Sessions per month", "Premium Service Discount"],
         mostPopular: false,
+        bookingUrl: "https://www.clubready.com/JoinUs/14875/635456",
       },
       {
-        name: "Elite",
+        name: "Silver",
         price: "$129",
-        cadence: "/mo",
+        cadence: "/month",
         description: "More sessions, more value.",
-        features: ["6 Recovery Sessions/Month", "Premium Service Discounts"],
+        features: ["6 Sessions per month", "Premium Service Discounts"],
         mostPopular: true,
+        bookingUrl: "https://www.clubready.com/JoinUs/14875/635455",
+      },
+      {
+        name: "Gold",
+        price: "$149",
+        cadence: "/month",
+        description: "The complete Zivel experience.",
+        features: ["Unlimited Services", "Premium Service Discounts"],
+        mostPopular: false,
+        bookingUrl: "https://www.clubready.com/JoinUs/14875/635453",
+      },
+    ],
+    specialDeals: [
+      {
+        name: "Buy 1 Cryo Slimming/Toning and get 2 Red Light Sessions Free",
+        price: "$350",
+        savings: "$100",
+        bookingUrl: "https://app.clubready.com/JoinUs/14875/645548",
+      },
+      {
+        name: "Buy 2 Recovery Sessions and get 1 Free",
+        price: "$100",
+        savings: "$50",
+        bookingUrl: "https://app.clubready.com/JoinUs/14875/643787",
+      },
+      {
+        name: "Buy 1 Cryo Slimming/Toning and Cryo Facial Combo",
+        price: "$474",
+        savings: "$51",
+        bookingUrl: "https://app.clubready.com/JoinUs/14875/645543",
       },
     ],
     standardPrices: [
