@@ -47,6 +47,11 @@ const nextConfig: NextConfig = {
         destination: "https://www.zivel.com/locations/ohio/brecksville/:path*",
         permanent: true,
       },
+      {
+        source: "/locations/georgie/cumming/windermere",
+        destination: "https://www.zivel.com/locations/georgia/windermere",
+        permanent: true,
+      },
     ];
   },
   allowedDevOrigins: [
