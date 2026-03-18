@@ -36,23 +36,23 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/locations/georgie/cumming/windermere",
-        destination: "https://www.zivel.com/locations/georgia/windermere",
+        source: "/locations/florida/coralgables",
+        destination: "https://www.zivel.com/locations/florida/coral-gables",
         permanent: true,
       },
       {
-        source: "/locations/georgie/cumming/windermere/",
-        destination: "https://www.zivel.com/locations/georgia/windermere",
+        source: "/locations/florida/coralgables/",
+        destination: "https://www.zivel.com/locations/florida/coral-gables",
         permanent: true,
       },
       {
-        source: "/locations/georgia/cumming/windermere",
-        destination: "https://www.zivel.com/locations/georgia/windermere",
+        source: "/locations/colorado/highlandsranch",
+        destination: "https://www.zivel.com/locations/colorado/highlands-ranch",
         permanent: true,
       },
       {
-        source: "/locations/georgia/cumming/windermere/",
-        destination: "https://www.zivel.com/locations/georgia/windermere",
+        source: "/locations/colorado/highlandsranch/",
+        destination: "https://www.zivel.com/locations/colorado/highlands-ranch",
         permanent: true,
       },
       {
@@ -65,6 +65,16 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         has: [{ type: "host", value: "brecksville.zivel.com" }],
         destination: "https://www.zivel.com/locations/ohio/brecksville/:path*",
+        permanent: true,
+      },
+      {
+        source: "/locations/georgie/cumming/windermere",
+        destination: "https://www.zivel.com/locations/georgia/windermere",
+        permanent: true,
+      },
+      {
+        source: "/locations/georgie/cumming/windermere/",
+        destination: "https://www.zivel.com/locations/georgia/windermere",
         permanent: true,
       },
     ];
