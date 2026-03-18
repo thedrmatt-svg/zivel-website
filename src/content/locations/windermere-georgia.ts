@@ -89,6 +89,7 @@ export const zivel_cumming_windermere_location: Location = {
     cta: "Take advantage of Grand Opening Savings below!",
     buttons: [
       { label: "5 Cryo Facials for $500", href: "https://app.clubready.com/JoinUs/14944/648827", variant: "gold" },
+      { label: "5 Cryo Slimmings for $1,000", href: "https://app.clubready.com/JoinUs/14944/648827", variant: "gold" },
     ],
   },
 

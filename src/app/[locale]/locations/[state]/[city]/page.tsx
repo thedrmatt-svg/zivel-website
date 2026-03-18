@@ -256,7 +256,6 @@ export default async function LocationPage({
         <>
           <section className="zv-bleed bg-[var(--zivel-gold)] text-black py-10 px-6">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Special Event</p>
               <h2 className="font-serif text-3xl md:text-4xl font-semibold mb-2">{location.announcement.headline}</h2>
               {location.announcement.dates && (
                 <p className="text-lg font-semibold mb-4">{location.announcement.dates}</p>
