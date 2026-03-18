@@ -99,7 +99,7 @@ export const zivel_belmont_location: Location = {
         cadence: "/month",
         description: "More sessions, more value.",
         features: ["6 Sessions per month", "Premium Service Discounts"],
-        mostPopular: true,
+        mostPopular: false,
         bookingUrl: "https://www.clubready.com/JoinUs/14875/635455",
       },
       {
@@ -108,7 +108,7 @@ export const zivel_belmont_location: Location = {
         cadence: "/month",
         description: "The complete Zivel experience.",
         features: ["Unlimited Services", "Premium Service Discounts"],
-        mostPopular: false,
+        mostPopular: true,
         bookingUrl: "https://www.clubready.com/JoinUs/14875/635453",
       },
     ],
