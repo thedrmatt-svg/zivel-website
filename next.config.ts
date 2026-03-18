@@ -38,43 +38,13 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "coralgables.zivel.com" }],
-        destination: "https://www.zivel.com/locations/florida/coral-gables/:path*",
+        destination: "https://www.zivel.com/locations/florida/coralgables/:path*",
         permanent: true,
       },
       {
         source: "/:path*",
         has: [{ type: "host", value: "brecksville.zivel.com" }],
         destination: "https://www.zivel.com/locations/ohio/brecksville/:path*",
-        permanent: true,
-      },
-      {
-        source: "/riverton",
-        destination: "/locations/utah/riverton",
-        permanent: true,
-      },
-      {
-        source: "/highlandsranch",
-        destination: "/locations/colorado/highlands-ranch",
-        permanent: true,
-      },
-      {
-        source: "/fieldhouse",
-        destination: "/locations/mississippi/fieldhouse",
-        permanent: true,
-      },
-      {
-        source: "/bentonville",
-        destination: "/locations/arkansas/bentonville",
-        permanent: true,
-      },
-      {
-        source: "/locations/georgia/cumming",
-        destination: "/locations/georgia/windermere",
-        permanent: true,
-      },
-      {
-        source: "/murfreesboro",
-        destination: "/locations/tennessee/murfreesboro",
         permanent: true,
       },
     ];
