@@ -64,16 +64,16 @@ export default function Header() {
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex h-16 md:h-20 items-center justify-between gap-4">
-          <Link href="/" className="flex items-center" aria-label="Zivel Home">
+          <Link href="/" className="flex items-center pl-1 md:pl-2" aria-label="Zivel Home">
             <Image
               src="/images/brand/zivel-logo.png"
               alt="Zivel"
-              width={120}
-              height={28}
+              width={1499}
+              height={573}
               priority
               fetchPriority="high"
               style={{ width: "auto", height: "auto" }}
-              className="h-7 md:h-9 w-auto"
+              className="h-11 md:h-14 w-auto"
             />
           </Link>
 
