@@ -20,19 +20,19 @@ export default function PrivacyPolicyPage() {
       <section className="space-y-4">
         <h2>Introduction</h2>
         <p>
-          Welcome to Zivel ("Zivel", "Company", "we", "us", or "our"). Zivel respects your privacy and is committed
-          to protecting it through this Privacy Policy ("Privacy Policy"). As used in this Privacy Policy, the
+          Welcome to Zivel (&quot;Zivel&quot;, &quot;Company&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). Zivel respects your privacy and is committed
+          to protecting it through this Privacy Policy (&quot;Privacy Policy&quot;). As used in this Privacy Policy, the
           foregoing references include Zivel Franchise, LLC and Pryme, LLC.
         </p>
         <p>
           This Privacy Policy describes the types of information we may collect from you or that you may provide when you:
-          (i) use any Zivel website, mobile application(s), and other Zivel online services (collectively, "Technology Service")
+          (i) use any Zivel website, mobile application(s), and other Zivel online services (collectively, &quot;Technology Service&quot;)
           that link to or reference this Privacy Policy; (ii) use Zivel services as described in the Zivel Monthly Membership
-          Agreement or other applicable written agreement or enrollment forms (the "Services"); and (iii) interact with our
+          Agreement or other applicable written agreement or enrollment forms (the &quot;Services&quot;); and (iii) interact with our
           practices for collecting, using, maintaining, protecting, and disclosing that information.
         </p>
         <p>
-          This Privacy Policy may change from time to time (see "Updates to Our Privacy Policy"). Your continued use of the
+          This Privacy Policy may change from time to time (see &quot;Updates to Our Privacy Policy&quot;). Your continued use of the
           Technology Service and/or Services after we make changes is deemed acceptance of those changes.
         </p>
       </section>
@@ -43,12 +43,12 @@ export default function PrivacyPolicyPage() {
         <h3>Collection and Use of Personal Information</h3>
         <p>
           When you use our Technology Service and/or Services, we may collect information that can be used to identify you
-          ("Personal Information"). When you voluntarily submit Personal Information (e.g., account registration, forms,
+          (&quot;Personal Information&quot;). When you voluntarily submit Personal Information (e.g., account registration, forms,
           web chat, email, membership documents), you consent to collection, use, and disclosure of that information in
           accordance with this Privacy Policy.
         </p>
         <p>
-          Personal Information may include (without limitation) your name, address, driver's license number, email address,
+          Personal Information may include (without limitation) your name, address, driver&apos;s license number, email address,
           telephone number, and other information you choose to provide.
         </p>
         <p>We may use Personal Information to:</p>
@@ -66,7 +66,7 @@ export default function PrivacyPolicyPage() {
 
         <h3 className="pt-2">Collection and Use of Non-Personal Information</h3>
         <p>
-          When you access our Technology Service, we may collect "Non-Personal Information" that does not identify you
+          When you access our Technology Service, we may collect &quot;Non-Personal Information&quot; that does not identify you
           personally but provides usage data such as browser agent, IP address, device identifiers, operating system,
           access times, approximate location (where permitted by device settings), and interactions with our pages.
           This data helps us analyze and improve the user experience.
@@ -117,8 +117,8 @@ export default function PrivacyPolicyPage() {
 
         <h3>Do Not Track</h3>
         <p>
-          Some browsers include a "Do Not Track" feature. Because there is not a consistent industry standard for responding to
-          these signals, our Technology Service may not respond to "Do Not Track" settings.
+          Some browsers include a &quot;Do Not Track&quot; feature. Because there is not a consistent industry standard for responding to
+          these signals, our Technology Service may not respond to &quot;Do Not Track&quot; settings.
         </p>
       </section>
 
@@ -162,8 +162,8 @@ export default function PrivacyPolicyPage() {
           Message and data rates may apply. Your consent to receive text messages is not a condition of purchase.
         </p>
         <p>
-          You can opt out of marketing text messages at any time by following the instructions in the messages (for example, replying "STOP"),
-          or by contacting us as described below. We do not share, sell, or trade our customers' phone numbers for direct marketing.
+          You can opt out of marketing text messages at any time by following the instructions in the messages (for example, replying &quot;STOP&quot;),
+          or by contacting us as described below. We do not share, sell, or trade our customers&apos; phone numbers for direct marketing.
         </p>
       </section>
 

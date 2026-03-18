@@ -7,7 +7,7 @@ import { useMemo, useState, useEffect } from "react";
 import { services } from "@/lib/data/services";
 import { pathways } from "@/lib/data/pathways";
 import { getLocationNav } from "@/lib/data/locationNav";
-import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+
 
 const LOCATIONS_NAV = getLocationNav({ featuredCount: 4 });
 

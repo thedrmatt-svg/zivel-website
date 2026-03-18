@@ -45,7 +45,7 @@ export default function TermsPage() {
         <h2>Refund Policy</h2>
         <p>
           We do not offer refunds for services rendered or previously purchased services.
-          At the store's sole discretion, purchases may be converted to store credit or gift cards.
+          At the store&apos;s sole discretion, purchases may be converted to store credit or gift cards.
         </p>
       </section>
 
@@ -89,7 +89,7 @@ export default function TermsPage() {
 
         <h3>Disclaimers and Limitation of Liability</h3>
         <p>
-          The Website is provided "as is" without warranties of any kind.
+          The Website is provided &quot;as is&quot; without warranties of any kind.
           Zivel shall not be liable for indirect or consequential damages.
         </p>
 

@@ -105,7 +105,6 @@ export default async function ServicePage({ params }: PageProps) {
     (p.services?.orderedServiceSlugs ?? []).includes(service.slug)
   );
 
-  const accentHex = service.accent?.hex ?? "#C9A24D";
   const accentRGB = `rgb(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]})`;
 
   const researchBaseHref =

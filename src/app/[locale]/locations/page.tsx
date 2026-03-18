@@ -64,7 +64,15 @@ export default function LocationsIndexPage() {
             <p className="zv-tagline">Find a Studio</p>
             <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Our Locations</h2>
           </ScrollReveal>
-          <LocationsMap locations={locations} />
+          <LocationsMap locations={locations.filter(l => l.geo?.lat && l.geo?.lng).map(l => ({
+            name: l.name,
+            address: l.contact?.address ?? "",
+            phone: l.contact?.phone ?? "",
+            lat: l.geo!.lat!,
+            lng: l.geo!.lng!,
+            href: `/locations/${l.stateSlug}/${l.citySlug}`,
+            bookingId: l.booking?.locationId ?? undefined,
+          }))} />
         </div>
       </section>
 
