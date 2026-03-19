@@ -107,6 +107,16 @@ const nextConfig: NextConfig = {
         destination: "https://www.zivel.com/locations/georgia/windermere",
         permanent: true,
       },
+      {
+        source: "/locations/georgia/cumming/windermere",
+        destination: "https://www.zivel.com/locations/georgia/windermere",
+        permanent: true,
+      },
+      {
+        source: "/locations/georgia/cumming/windermere/",
+        destination: "https://www.zivel.com/locations/georgia/windermere",
+        permanent: true,
+      },
     ];
   },
   allowedDevOrigins: [
