@@ -119,7 +119,7 @@ export const zivel_cumming_windermere_location: Location = {
       {
         name: "Day Pass — 3 Recovery Sessions",
         price: "$49",
-        bookingUrl: "https://app.clubready.com/JoinUs/14944/6417561",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/641756",
       },
       {
         name: "Founder's Club: Unlimited Recovery",
