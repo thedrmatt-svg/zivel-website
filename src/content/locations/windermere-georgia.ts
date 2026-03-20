@@ -95,6 +95,8 @@ export const zivel_cumming_windermere_location: Location = {
   },
 
   pricing: {
+    specialDealsExpiry: "March 22",
+    specialDealsPosition: "top",
     membershipTiers: [
       {
         name: "Essential",
@@ -125,6 +127,16 @@ export const zivel_cumming_windermere_location: Location = {
         savings: "Intro rate — regular pricing from month 2",
         bookingUrl: "https://app.clubready.com/JoinUs/14944/637622",
         featured: true,
+      },
+      {
+        name: "Family Unlimited",
+        price: "$189/mo",
+        savings: "Then $299/mo from month 2",
+        benefits: [
+          "Unlimited Recovery Services for up to 4 family members",
+          "Discounts on Premium Services",
+        ],
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/637626",
       },
     ],
     standardPrices: [

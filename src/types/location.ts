@@ -81,10 +81,13 @@ export type Location = {
       mostPopular?: boolean;
       bookingUrl?: string;
     }[];
+    specialDealsExpiry?: string;
+    specialDealsPosition?: "top" | "default";
     specialDeals?: {
       name: string;
       price: string;
       savings?: string;
+      benefits?: string[];
       bookingUrl: string;
       featured?: boolean;
     }[];

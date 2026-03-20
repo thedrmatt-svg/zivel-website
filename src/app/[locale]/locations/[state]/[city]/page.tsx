@@ -291,6 +291,89 @@ export default async function LocationPage({
         </>
       )}
 
+      {/* ========== SPECIAL DEALS (TOP POSITION — just below hero/announcement) ========== */}
+      {location.pricing?.specialDeals && location.pricing.specialDeals.length > 0 && location.pricing.specialDealsPosition === "top" && (
+        <section className="zv-bleed zv-immersive-section bg-[#0a0a0a]">
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline">Limited Time</p>
+              <h2 className="mt-3 mb-2 font-serif text-4xl md:text-5xl font-light tracking-tight">Special Deals</h2>
+              {location.pricing.specialDealsExpiry && (
+                <p className="mb-12 text-base text-white/50 italic">Offers expire {location.pricing.specialDealsExpiry}</p>
+              )}
+              {!location.pricing.specialDealsExpiry && <div className="mb-14" />}
+            </ScrollReveal>
+            <div className="grid gap-6 md:grid-cols-3">
+              {location.pricing.specialDeals.map((deal, idx) => {
+                const isSavingsDollar = deal.savings && /^\$\d+$/.test(deal.savings.trim());
+                return (
+                  <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                    <a
+                      href={deal.bookingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={[
+                        "group block rounded-2xl border hover:-translate-y-1 transition-all duration-300 overflow-hidden",
+                        deal.featured
+                          ? "border-[var(--zivel-gold)] bg-white/10 ring-1 ring-[var(--zivel-gold)] shadow-lg shadow-[var(--zivel-gold)]/10"
+                          : "border-white/10 bg-white/5 hover:bg-white/10",
+                      ].join(" ")}
+                    >
+                      {deal.featured && (
+                        <div className="bg-[var(--zivel-gold)] px-6 py-2 text-center text-xs font-bold tracking-widest uppercase text-black">
+                          ★ Featured Deal
+                        </div>
+                      )}
+                      <div className="p-6 flex flex-col h-full">
+                        {deal.savings && isSavingsDollar && (
+                          <div className="mb-4">
+                            <span className="rounded-full bg-[var(--zivel-gold)] px-3 py-1 text-xs font-semibold text-black">
+                              Save {deal.savings}
+                            </span>
+                          </div>
+                        )}
+                        <div className="flex-1">
+                          <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h3>
+                          {deal.benefits && deal.benefits.length > 0 && (
+                            <ul className="mt-2 mb-2 space-y-1">
+                              {deal.benefits.map((b, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-white/60">
+                                  <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>
+                                  {b}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                          {deal.savings && !isSavingsDollar && (
+                            <p className="text-sm text-white/50 mt-2 italic">{deal.savings}</p>
+                          )}
+                        </div>
+                        <div className="flex items-baseline gap-2 mt-4 mb-5">
+                          <span className="text-2xl font-semibold text-white">{deal.price}</span>
+                          {isSavingsDollar && (
+                            <span className="text-sm text-white/35 line-through">
+                              ${(parseInt(deal.price.replace(/\D/g, "")) + parseInt(deal.savings!.replace(/\D/g, ""))).toLocaleString()}
+                            </span>
+                          )}
+                        </div>
+                        <span className={[
+                          "block w-full rounded-full py-2.5 text-center text-sm font-semibold tracking-wide transition-colors duration-200",
+                          deal.featured
+                            ? "bg-[var(--zivel-gold)] text-black group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black"
+                            : "border border-[var(--zivel-gold)] text-[var(--zivel-gold)] group-hover:bg-[var(--zivel-gold)] group-hover:text-black",
+                        ].join(" ")}>
+                          Claim Deal
+                        </span>
+                      </div>
+                    </a>
+                  </ScrollReveal>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ========== ABOUT THIS LOCATION (LIGHT) ========== */}
       {location.about && (
         <>
@@ -513,7 +596,7 @@ export default async function LocationPage({
       {(() => { sectionParity++; return null; })()}
 
       {/* ========== SPECIAL DEALS (alternating, only when present) ========== */}
-      {location.pricing?.specialDeals && location.pricing.specialDeals.length > 0 && (
+      {location.pricing?.specialDeals && location.pricing.specialDeals.length > 0 && location.pricing.specialDealsPosition !== "top" && (
         <>
           <div className="zv-bleed zv-divider-dark-to-light" />
           {sectionParity % 2 === 0 ? (
@@ -521,7 +604,11 @@ export default async function LocationPage({
               <div className="mx-auto max-w-6xl px-6">
                 <ScrollReveal variant="fade-up">
                   <p className="zv-tagline">Limited Time</p>
-                  <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Special Deals</h2>
+                  <h2 className="mt-3 mb-2 font-serif text-4xl md:text-5xl font-light tracking-tight">Special Deals</h2>
+                  {location.pricing?.specialDealsExpiry && (
+                    <p className="mb-12 text-base text-black/50 italic">Offers expire {location.pricing.specialDealsExpiry}</p>
+                  )}
+                  {!location.pricing?.specialDealsExpiry && <div className="mb-14" />}
                 </ScrollReveal>
                 <div className="grid gap-6 md:grid-cols-3">
                   {location.pricing.specialDeals.map((deal, idx) => {
@@ -552,11 +639,23 @@ export default async function LocationPage({
                                 </span>
                               </div>
                             )}
-                            <h3 className="font-serif text-xl font-light leading-snug text-black/90 mb-3 flex-1">{deal.name}</h3>
-                            {deal.savings && !isSavingsDollar && (
-                              <p className="text-sm text-black/55 mb-3 italic">{deal.savings}</p>
-                            )}
-                            <div className="flex items-baseline gap-2 mb-5">
+                            <div className="flex-1">
+                              <h3 className="font-serif text-xl font-light leading-snug text-black/90 mb-2">{deal.name}</h3>
+                              {deal.benefits && deal.benefits.length > 0 && (
+                                <ul className="mt-2 mb-2 space-y-1">
+                                  {deal.benefits.map((b, i) => (
+                                    <li key={i} className="flex items-start gap-2 text-sm text-black/65">
+                                      <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>
+                                      {b}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                              {deal.savings && !isSavingsDollar && (
+                                <p className="text-sm text-black/55 mt-2 italic">{deal.savings}</p>
+                              )}
+                            </div>
+                            <div className="flex items-baseline gap-2 mt-4 mb-5">
                               <span className="text-2xl font-semibold text-black">{deal.price}</span>
                               {isSavingsDollar && (
                                 <span className="text-sm text-black/40 line-through">
@@ -585,7 +684,11 @@ export default async function LocationPage({
               <div className="mx-auto max-w-6xl px-6">
                 <ScrollReveal variant="fade-up">
                   <p className="zv-tagline">Limited Time</p>
-                  <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Special Deals</h2>
+                  <h2 className="mt-3 mb-2 font-serif text-4xl md:text-5xl font-light tracking-tight">Special Deals</h2>
+                  {location.pricing?.specialDealsExpiry && (
+                    <p className="mb-12 text-base text-white/50 italic">Offers expire {location.pricing.specialDealsExpiry}</p>
+                  )}
+                  {!location.pricing?.specialDealsExpiry && <div className="mb-14" />}
                 </ScrollReveal>
                 <div className="grid gap-6 md:grid-cols-3">
                   {location.pricing.specialDeals.map((deal, idx) => {
@@ -616,11 +719,23 @@ export default async function LocationPage({
                                 </span>
                               </div>
                             )}
-                            <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-3 flex-1">{deal.name}</h3>
-                            {deal.savings && !isSavingsDollar && (
-                              <p className="text-sm text-white/50 mb-3 italic">{deal.savings}</p>
-                            )}
-                            <div className="flex items-baseline gap-2 mb-5">
+                            <div className="flex-1">
+                              <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h3>
+                              {deal.benefits && deal.benefits.length > 0 && (
+                                <ul className="mt-2 mb-2 space-y-1">
+                                  {deal.benefits.map((b, i) => (
+                                    <li key={i} className="flex items-start gap-2 text-sm text-white/60">
+                                      <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>
+                                      {b}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                              {deal.savings && !isSavingsDollar && (
+                                <p className="text-sm text-white/50 mt-2 italic">{deal.savings}</p>
+                              )}
+                            </div>
+                            <div className="flex items-baseline gap-2 mt-4 mb-5">
                               <span className="text-2xl font-semibold text-white">{deal.price}</span>
                               {isSavingsDollar && (
                                 <span className="text-sm text-white/35 line-through">
