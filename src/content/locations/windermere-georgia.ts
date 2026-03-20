@@ -113,6 +113,20 @@ export const zivel_cumming_windermere_location: Location = {
         mostPopular: true,
       },
     ],
+    specialDeals: [
+      {
+        name: "Day Pass — 3 Recovery Sessions",
+        price: "$49",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/6417561",
+      },
+      {
+        name: "Founder's Club: Unlimited Recovery",
+        price: "$79/mo",
+        savings: "Intro rate — regular pricing from month 2",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/637622",
+        featured: true,
+      },
+    ],
     standardPrices: [
       { name: "Cryotherapy", price: "$40", note: "Single session" },
       { name: "Red Light Therapy", price: "$30", note: "Single session" },

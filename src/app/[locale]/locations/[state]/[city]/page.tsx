@@ -524,34 +524,59 @@ export default async function LocationPage({
                   <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Special Deals</h2>
                 </ScrollReveal>
                 <div className="grid gap-6 md:grid-cols-3">
-                  {location.pricing.specialDeals.map((deal, idx) => (
-                    <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
-                      <a
-                        href={deal.bookingUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group block rounded-2xl border border-black/10 bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-                      >
-                        <div className="p-6 flex flex-col h-full">
-                          <div className="flex items-start justify-between gap-3 mb-4">
-                            <span className="rounded-full bg-[var(--zivel-gold)] px-3 py-1 text-xs font-semibold text-black shrink-0">
-                              Save {deal.savings}
+                  {location.pricing.specialDeals.map((deal, idx) => {
+                    const isSavingsDollar = deal.savings && /^\$\d+$/.test(deal.savings.trim());
+                    return (
+                      <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                        <a
+                          href={deal.bookingUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={[
+                            "group block rounded-2xl border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden",
+                            deal.featured
+                              ? "border-[var(--zivel-gold)] bg-white shadow-md ring-1 ring-[var(--zivel-gold)]"
+                              : "border-black/10 bg-white shadow-sm",
+                          ].join(" ")}
+                        >
+                          {deal.featured && (
+                            <div className="bg-[var(--zivel-gold)] px-6 py-2 text-center text-xs font-bold tracking-widest uppercase text-black">
+                              ★ Featured Deal
+                            </div>
+                          )}
+                          <div className="p-6 flex flex-col h-full">
+                            {deal.savings && isSavingsDollar && (
+                              <div className="mb-4">
+                                <span className="rounded-full bg-[var(--zivel-gold)] px-3 py-1 text-xs font-semibold text-black">
+                                  Save {deal.savings}
+                                </span>
+                              </div>
+                            )}
+                            <h3 className="font-serif text-xl font-light leading-snug text-black/90 mb-3 flex-1">{deal.name}</h3>
+                            {deal.savings && !isSavingsDollar && (
+                              <p className="text-sm text-black/55 mb-3 italic">{deal.savings}</p>
+                            )}
+                            <div className="flex items-baseline gap-2 mb-5">
+                              <span className="text-2xl font-semibold text-black">{deal.price}</span>
+                              {isSavingsDollar && (
+                                <span className="text-sm text-black/40 line-through">
+                                  ${(parseInt(deal.price.replace(/\D/g, "")) + parseInt(deal.savings!.replace(/\D/g, ""))).toLocaleString()}
+                                </span>
+                              )}
+                            </div>
+                            <span className={[
+                              "block w-full rounded-full py-2.5 text-center text-sm font-semibold tracking-wide transition-colors duration-200",
+                              deal.featured
+                                ? "bg-[var(--zivel-gold)] text-black group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black"
+                                : "bg-black text-white group-hover:bg-[var(--zivel-gold)] group-hover:text-black",
+                            ].join(" ")}>
+                              Claim Deal
                             </span>
                           </div>
-                          <h3 className="font-serif text-xl font-light leading-snug text-black/90 mb-4 flex-1">{deal.name}</h3>
-                          <div className="flex items-baseline gap-2 mb-5">
-                            <span className="text-2xl font-semibold text-black">{deal.price}</span>
-                            <span className="text-sm text-black/50 line-through">
-                              ${(parseInt(deal.price.replace(/\D/g, "")) + parseInt(deal.savings.replace(/\D/g, ""))).toLocaleString()}
-                            </span>
-                          </div>
-                          <span className="block w-full rounded-full bg-black text-white py-2.5 text-center text-sm font-semibold tracking-wide group-hover:bg-[var(--zivel-gold)] group-hover:text-black transition-colors duration-200">
-                            Claim Deal
-                          </span>
-                        </div>
-                      </a>
-                    </ScrollReveal>
-                  ))}
+                        </a>
+                      </ScrollReveal>
+                    );
+                  })}
                 </div>
               </div>
             </section>
@@ -563,34 +588,59 @@ export default async function LocationPage({
                   <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Special Deals</h2>
                 </ScrollReveal>
                 <div className="grid gap-6 md:grid-cols-3">
-                  {location.pricing.specialDeals.map((deal, idx) => (
-                    <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
-                      <a
-                        href={deal.bookingUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group block rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-                      >
-                        <div className="p-6 flex flex-col h-full">
-                          <div className="flex items-start justify-between gap-3 mb-4">
-                            <span className="rounded-full bg-[var(--zivel-gold)] px-3 py-1 text-xs font-semibold text-black shrink-0">
-                              Save {deal.savings}
+                  {location.pricing.specialDeals.map((deal, idx) => {
+                    const isSavingsDollar = deal.savings && /^\$\d+$/.test(deal.savings.trim());
+                    return (
+                      <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                        <a
+                          href={deal.bookingUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={[
+                            "group block rounded-2xl border hover:-translate-y-1 transition-all duration-300 overflow-hidden",
+                            deal.featured
+                              ? "border-[var(--zivel-gold)] bg-white/10 ring-1 ring-[var(--zivel-gold)] shadow-lg shadow-[var(--zivel-gold)]/10"
+                              : "border-white/10 bg-white/5 hover:bg-white/10",
+                          ].join(" ")}
+                        >
+                          {deal.featured && (
+                            <div className="bg-[var(--zivel-gold)] px-6 py-2 text-center text-xs font-bold tracking-widest uppercase text-black">
+                              ★ Featured Deal
+                            </div>
+                          )}
+                          <div className="p-6 flex flex-col h-full">
+                            {deal.savings && isSavingsDollar && (
+                              <div className="mb-4">
+                                <span className="rounded-full bg-[var(--zivel-gold)] px-3 py-1 text-xs font-semibold text-black">
+                                  Save {deal.savings}
+                                </span>
+                              </div>
+                            )}
+                            <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-3 flex-1">{deal.name}</h3>
+                            {deal.savings && !isSavingsDollar && (
+                              <p className="text-sm text-white/50 mb-3 italic">{deal.savings}</p>
+                            )}
+                            <div className="flex items-baseline gap-2 mb-5">
+                              <span className="text-2xl font-semibold text-white">{deal.price}</span>
+                              {isSavingsDollar && (
+                                <span className="text-sm text-white/35 line-through">
+                                  ${(parseInt(deal.price.replace(/\D/g, "")) + parseInt(deal.savings!.replace(/\D/g, ""))).toLocaleString()}
+                                </span>
+                              )}
+                            </div>
+                            <span className={[
+                              "block w-full rounded-full py-2.5 text-center text-sm font-semibold tracking-wide transition-colors duration-200",
+                              deal.featured
+                                ? "bg-[var(--zivel-gold)] text-black group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black"
+                                : "border border-[var(--zivel-gold)] text-[var(--zivel-gold)] group-hover:bg-[var(--zivel-gold)] group-hover:text-black",
+                            ].join(" ")}>
+                              Claim Deal
                             </span>
                           </div>
-                          <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-4 flex-1">{deal.name}</h3>
-                          <div className="flex items-baseline gap-2 mb-5">
-                            <span className="text-2xl font-semibold text-white">{deal.price}</span>
-                            <span className="text-sm text-white/40 line-through">
-                              ${(parseInt(deal.price.replace(/\D/g, "")) + parseInt(deal.savings.replace(/\D/g, ""))).toLocaleString()}
-                            </span>
-                          </div>
-                          <span className="block w-full rounded-full border border-[var(--zivel-gold)] text-[var(--zivel-gold)] py-2.5 text-center text-sm font-semibold tracking-wide group-hover:bg-[var(--zivel-gold)] group-hover:text-black transition-colors duration-200">
-                            Claim Deal
-                          </span>
-                        </div>
-                      </a>
-                    </ScrollReveal>
-                  ))}
+                        </a>
+                      </ScrollReveal>
+                    );
+                  })}
                 </div>
               </div>
             </section>

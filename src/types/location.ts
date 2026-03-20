@@ -84,8 +84,9 @@ export type Location = {
     specialDeals?: {
       name: string;
       price: string;
-      savings: string;
+      savings?: string;
       bookingUrl: string;
+      featured?: boolean;
     }[];
     standardPrices?: {
       name: string;
