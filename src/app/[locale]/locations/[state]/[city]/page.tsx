@@ -52,7 +52,7 @@ export default async function LocationPage({
   const canonicalPath = location.seo?.canonical ?? `/locations/${location.stateSlug}/${location.citySlug}`;
   const canonicalUrl = canonicalPath.startsWith("http") ? canonicalPath : `${SITE_URL}${canonicalPath}`;
 
-  const heroImage = location.hero?.image ?? "/images/placeholder-location.jpg";
+  const heroImage = location.hero?.image ?? "/images/home/hero.jpg";
   const cityName = location.city ?? location.citySlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 
   const jsonLd = {
@@ -215,22 +215,21 @@ export default async function LocationPage({
 
       {/* ========== HERO (DARK) ========== */}
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="location-hero-title">
-        {location.hero?.image && (
-          <div className="pt-20">
-            <Image
-              src={heroImage}
-              alt={location.name}
-              width={1920}
-              height={800}
-              priority
-              sizes="100vw"
-              quality={80}
-              style={{ width: '100%', height: 'auto', display: 'block' }}
-            />
-          </div>
-        )}
+        <div className="pt-20">
+          <Image
+            src={heroImage}
+            alt={location.name}
+            width={1920}
+            height={800}
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+            quality={80}
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          />
+        </div>
 
-        <div className={`bg-black text-white px-6 pb-10 md:pb-14 ${location.hero?.image ? "pt-6 md:pt-8" : "pt-28 md:pt-32"}`}>
+        <div className="bg-black text-white px-6 pt-6 md:pt-8 pb-10 md:pb-14">
           <div className="mx-auto max-w-6xl">
             <h1 id="location-hero-title" className="font-serif text-5xl md:text-7xl font-light tracking-tight max-w-4xl zv-hero-animate-2">
               {location.hero?.headline ?? location.name}
