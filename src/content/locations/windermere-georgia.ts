@@ -124,7 +124,7 @@ export const zivel_cumming_windermere_location: Location = {
       {
         name: "Founder's Club: Unlimited Recovery",
         price: "$79/mo",
-        savings: "Intro rate — regular pricing from month 2",
+        savings: "Then $159/mo from month 2",
         bookingUrl: "https://app.clubready.com/JoinUs/14944/637622",
         featured: true,
       },
