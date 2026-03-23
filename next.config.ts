@@ -117,6 +117,35 @@ const nextConfig: NextConfig = {
         destination: "https://www.zivel.com/locations/georgia/windermere",
         permanent: true,
       },
+
+      // ── Squarespace-era bare slugs ──────────────────────────────────────
+      // User-specified homepage redirects
+      { source: "/coolspot{/}?",    destination: "https://www.zivel.com", permanent: true },
+      { source: "/cherryhills{/}?", destination: "https://www.zivel.com", permanent: true },
+
+      // Location bare-slug redirects
+      { source: "/belmont{/}?",        destination: "https://www.zivel.com/locations/north-carolina/belmont",    permanent: true },
+      { source: "/bentonville{/}?",    destination: "https://www.zivel.com/locations/arkansas/bentonville",      permanent: true },
+      { source: "/brecksville{/}?",    destination: "https://www.zivel.com/locations/ohio/brecksville",          permanent: true },
+      { source: "/briargate{/}?",      destination: "https://www.zivel.com/locations/colorado/briargate",        permanent: true },
+      { source: "/buckhead{/}?",       destination: "https://www.zivel.com/locations/georgia/buckhead",          permanent: true },
+      { source: "/cool-springs{/}?",   destination: "https://www.zivel.com/locations/tennessee/cool-springs",    permanent: true },
+      { source: "/coolsprings{/}?",    destination: "https://www.zivel.com/locations/tennessee/cool-springs",    permanent: true },
+      { source: "/coral-gables{/}?",   destination: "https://www.zivel.com/locations/florida/coral-gables",      permanent: true },
+      { source: "/coralgables{/}?",    destination: "https://www.zivel.com/locations/florida/coral-gables",      permanent: true },
+      { source: "/fayetteville{/}?",   destination: "https://www.zivel.com/locations/arkansas/fayetteville",     permanent: true },
+      { source: "/fieldhouse{/}?",     destination: "https://www.zivel.com/locations/mississippi/fieldhouse",    permanent: true },
+      { source: "/highlands-ranch{/}?",destination: "https://www.zivel.com/locations/colorado/highlands-ranch",  permanent: true },
+      { source: "/highlandsranch{/}?", destination: "https://www.zivel.com/locations/colorado/highlands-ranch",  permanent: true },
+      { source: "/hollywood{/}?",      destination: "https://www.zivel.com/locations/florida/hollywood",         permanent: true },
+      { source: "/metairie{/}?",       destination: "https://www.zivel.com/locations/louisiana/metairie",        permanent: true },
+      { source: "/murfreesboro{/}?",   destination: "https://www.zivel.com/locations/tennessee/murfreesboro",    permanent: true },
+      { source: "/newport{/}?",        destination: "https://www.zivel.com/locations/kentucky/newport",          permanent: true },
+      { source: "/palm-coast{/}?",     destination: "https://www.zivel.com/locations/florida/palm-coast",        permanent: true },
+      { source: "/palmcoast{/}?",      destination: "https://www.zivel.com/locations/florida/palm-coast",        permanent: true },
+      { source: "/parker{/}?",         destination: "https://www.zivel.com/locations/colorado/parker",           permanent: true },
+      { source: "/rogers{/}?",         destination: "https://www.zivel.com/locations/arkansas/rogers",           permanent: true },
+      { source: "/windermere{/}?",     destination: "https://www.zivel.com/locations/georgia/windermere",        permanent: true },
     ];
   },
   allowedDevOrigins: [
