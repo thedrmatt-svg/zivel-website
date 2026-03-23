@@ -84,6 +84,7 @@ A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, 
 - `npm run build` — Production build
 - `npm run start` — Production server
 - `npm run lint` — ESLint
+- `npm run fetch-places` — Fetch fresh Google Places data (rating, reviews) and write to `src/data/places-cache.json`. Requires `GOOGLE_PLACES_API_KEY` env var. Commit the updated JSON to keep review data fresh without any build-time API calls.
 
 ## Configuration
 - Import alias: `@/*` → `./src/*`

@@ -1,0 +1,137 @@
+{
+  "_comment": "Pre-fetched Google Places data. Run `npm run fetch-places` to refresh.",
+  "_generatedAt": "",
+  "ChIJR09Pun4RyYcRxkI5BNchv1o": {
+    "locationPath": "arkansas/bentonville",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJjaywtH29VogRFXe1l_SIid0": {
+    "locationPath": "north-carolina/belmont",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJhUVltrPnMIgRR5CgLcH6kEg": {
+    "locationPath": "ohio/brecksville",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJy62rJ3MF9YgRvu9Ok1SKNVk": {
+    "locationPath": "georgia/buckhead",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJFdsggG9NE4cR0dKogMxsgbI": {
+    "locationPath": "colorado/briargate",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJASK_6UO32YgRpFki1ZCosJc": {
+    "locationPath": "florida/coral-gables",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJV-6ARVqb9YgRj0e_jO2WQ1g": {
+    "locationPath": "georgia/windermere",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJOQ32BYdvyYcRBVSmzC6EUXU": {
+    "locationPath": "arkansas/fayetteville",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJH-Rny771f4gR6Xo-0TmD4fY": {
+    "locationPath": "mississippi/fieldhouse",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJ2wrmYux_ZIgRBiaOZ9F4OJU": {
+    "locationPath": "tennessee/cool-springs",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJWfZHnFKDbIcRkP0dRbgJ9cA": {
+    "locationPath": "colorado/highlands-ranch",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJi939hJKr2YgRfV5beSrIpBg": {
+    "locationPath": "florida/hollywood",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJcRW5v4CvIIYRV9XzIn-1rjQ": {
+    "locationPath": "louisiana/metairie",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJYTKz_hoJZIgR1CouEEaQMCY": {
+    "locationPath": "tennessee/murfreesboro",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJXQjPuRuxQYgRdVqMxDTFhb4": {
+    "locationPath": "kentucky/newport",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJj-Iwlobr5ogRfJmFlZN-Cf4": {
+    "locationPath": "florida/palm-coast",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJe_IaW4mPbIcR1irKWiajjIY": {
+    "locationPath": "colorado/parker",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJp1GibQmFUocRBLMZt3xJW9k": {
+    "locationPath": "utah/riverton",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  },
+  "ChIJAxzaK14RyYcR1S8wLP9Gq4I": {
+    "locationPath": "arkansas/rogers",
+    "rating": null,
+    "userRatingCount": null,
+    "googleMapsUri": null,
+    "reviews": []
+  }
+}
