@@ -30,11 +30,15 @@ export async function generateMetadata({
   const location = getLocationByPath(state, city);
   if (!location) return {};
 
+  const SITE_URL = "https://www.zivel.com";
+  const rawCanonical = location.seo?.canonical ?? `/locations/${location.stateSlug}/${location.citySlug}`;
+  const canonicalUrl = rawCanonical.startsWith("http") ? rawCanonical : `${SITE_URL}${rawCanonical}`;
+
   return {
     title: location.seo.title,
     description: location.seo.description,
     alternates: {
-      canonical: location.seo.canonical,
+      canonical: canonicalUrl,
     },
   };
 }

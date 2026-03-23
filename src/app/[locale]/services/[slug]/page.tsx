@@ -27,11 +27,15 @@ export async function generateMetadata({
   const service = getServiceBySlug(slug);
   if (!service) return {};
 
+  const SITE_URL = "https://www.zivel.com";
+  const rawCanonical = service.seo.canonical ?? `/services/${service.slug}`;
+  const canonicalUrl = rawCanonical.startsWith("http") ? rawCanonical : `${SITE_URL}${rawCanonical}`;
+
   return {
     title: service.seo.title,
     description: service.seo.description,
     alternates: {
-      canonical: service.seo.canonical ?? `/services/${service.slug}`,
+      canonical: canonicalUrl,
     },
   };
 }
