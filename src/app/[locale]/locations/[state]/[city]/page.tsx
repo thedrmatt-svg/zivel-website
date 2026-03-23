@@ -24,21 +24,28 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ state: string; city: string }>;
+  params: Promise<{ state: string; city: string; locale: string }>;
 }): Promise<Metadata> {
-  const { state, city } = await params;
+  const { state, city, locale } = await params;
   const location = getLocationByPath(state, city);
   if (!location) return {};
 
   const SITE_URL = "https://www.zivel.com";
-  const rawCanonical = location.seo?.canonical ?? `/locations/${location.stateSlug}/${location.citySlug}`;
-  const canonicalUrl = rawCanonical.startsWith("http") ? rawCanonical : `${SITE_URL}${rawCanonical}`;
+  const basePath = `/locations/${location.stateSlug}/${location.citySlug}`;
+  const enUrl = `${SITE_URL}${basePath}`;
+  const esUrl = `${SITE_URL}/es${basePath}`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
 
   return {
     title: location.seo.title,
     description: location.seo.description,
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        en: enUrl,
+        es: esUrl,
+        "x-default": enUrl,
+      },
     },
   };
 }

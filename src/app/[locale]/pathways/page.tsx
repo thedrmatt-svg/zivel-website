@@ -1,12 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { pathways } from "@/lib/data/pathways";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
-export const metadata = {
-  title: "Pathways | Zivel",
-  description:
-    "Goal-based wellness pathways built from Zivel services—designed to make routines clear, repeatable, and easy to book.",
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/pathways`;
+  const esUrl = `${SITE_URL}/es/pathways`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Pathways | Zivel",
+    description:
+      "Goal-based wellness pathways built from Zivel services—designed to make routines clear, repeatable, and easy to book.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 export default function PathwaysIndexPage() {
   return (

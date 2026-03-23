@@ -5,12 +5,27 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 
 import { services } from "@/lib/data/services";
 
-export const metadata: Metadata = {
-  title: "Services | Zivel",
-  description:
-    "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
-  alternates: { canonical: "/services" },
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/services`;
+  const esUrl = `${SITE_URL}/es/services`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Services | Zivel",
+    description:
+      "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 function hexToRgba(hex: string, alpha: number) {
   const h = hex.replace("#", "").trim();

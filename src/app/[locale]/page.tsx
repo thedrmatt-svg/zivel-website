@@ -10,26 +10,46 @@ import LocationSearch from "@/components/sections/LocationSearch";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import HorizontalScroller from "@/components/ui/HorizontalScroller";
 
-export const metadata: Metadata = {
-  title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
-  description:
-    "Zivel delivers cutting-edge wellness technology nationwide — expert-led recovery, body contouring, and skin rejuvenation in serene private studios. Book cryo, red light, infrared sauna, CryoLift Facial and more.",
-  alternates: { canonical: "/" },
-  openGraph: {
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/`;
+  const esUrl = `${SITE_URL}/es/`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+
+  return {
     title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
     description:
-      "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
-    url: "https://www.zivel.com",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
-    description:
-      "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
-    images: ["/images/og-image.jpg"],
-  },
-};
+      "Zivel delivers cutting-edge wellness technology nationwide — expert-led recovery, body contouring, and skin rejuvenation in serene private studios. Book cryo, red light, infrared sauna, CryoLift Facial and more.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: enUrl,
+        es: esUrl,
+        "x-default": enUrl,
+      },
+    },
+    openGraph: {
+      title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+      description:
+        "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
+      url: "https://www.zivel.com",
+      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+      description:
+        "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
+      images: ["/images/og-image.jpg"],
+    },
+  };
+}
 
 const serviceImageMap: Record<string, string> = {
   "cryotherapy": "/images/home/service-cryo.jpg",

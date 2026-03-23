@@ -7,21 +7,30 @@ import { getServiceBySlug } from "@/lib/data/services";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 type PageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 };
+
+const SITE_URL = "https://www.zivel.com";
 
 export function generateStaticParams() {
   return pathways.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const pathway = getPathwayBySlug(slug);
   if (!pathway) return {};
+  const basePath = `/pathways/${pathway.slug}`;
+  const enUrl = `${SITE_URL}${basePath}`;
+  const esUrl = `${SITE_URL}/es${basePath}`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
     title: pathway.seo.title,
     description: pathway.seo.description,
-    alternates: { canonical: pathway.seo.canonical ?? `/pathways/${pathway.slug}` },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
   };
 }
 

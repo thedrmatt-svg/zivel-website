@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Memberships",
-  description: "Zivel membership plans give you access to premium wellness sessions at every studio location. Details coming soon.",
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/memberships`;
+  const esUrl = `${SITE_URL}/es/memberships`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Memberships",
+    description: "Zivel membership plans give you access to premium wellness sessions at every studio location. Details coming soon.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 export default function MembershipsPage() {
   return (

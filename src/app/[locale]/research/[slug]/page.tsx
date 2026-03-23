@@ -9,14 +9,27 @@ export function generateStaticParams() {
   return researchSources.map((s) => ({ slug: s.slug ?? s.id }));
 }
 
-type Props = { params: Promise<{ slug: string }> };
+const SITE_URL = "https://www.zivel.com";
+
+type Props = { params: Promise<{ slug: string; locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const s = getResearchBySlug(slug);
   if (!s) return {};
   const identifier = s.slug ?? s.id;
-  return { title: `${s.title} | Zivel Research`, description: s.summary, alternates: { canonical: `/research/${identifier}` } };
+  const basePath = `/research/${identifier}`;
+  const enUrl = `${SITE_URL}${basePath}`;
+  const esUrl = `${SITE_URL}/es${basePath}`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: `${s.title} | Zivel Research`,
+    description: s.summary,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
 }
 
 export default async function ResearchSourcePage({ params }: Props) {
@@ -24,7 +37,6 @@ export default async function ResearchSourcePage({ params }: Props) {
   const s = getResearchBySlug(slug);
   if (!s) return notFound();
 
-  const SITE_URL = "https://www.zivel.com";
   const identifier = s.slug ?? s.id ?? slug;
 
   const articleSchema = {

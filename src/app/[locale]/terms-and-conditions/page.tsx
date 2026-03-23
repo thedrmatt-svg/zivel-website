@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Zivel Terms and Conditions",
-  description:
-    "Zivel Terms and Conditions including cancellation policies, refund policies, and website usage terms.",
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/terms-and-conditions`;
+  const esUrl = `${SITE_URL}/es/terms-and-conditions`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Zivel Terms and Conditions",
+    description:
+      "Zivel Terms and Conditions including cancellation policies, refund policies, and website usage terms.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 export default function TermsPage() {
   return (

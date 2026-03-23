@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { Playfair_Display, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 
@@ -21,41 +22,66 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
-    template: "%s | Zivel Wellness",
-  },
-  description:
-    "Zivel delivers cutting-edge wellness technology nationwide — expert-led recovery, body contouring, and skin rejuvenation in serene private studios. Book cryo, red light, infrared sauna, CryoLift Facial and more.",
-  openGraph: {
-    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  await params;
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") ?? "/";
+
+  const enPathname = pathname.startsWith("/es")
+    ? pathname.replace(/^\/es/, "") || "/"
+    : pathname;
+  const esPathname = pathname.startsWith("/es") ? pathname : `/es${pathname}`;
+
+  return {
+    title: {
+      default: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+      template: "%s | Zivel Wellness",
+    },
     description:
-      "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
-    url: "https://www.zivel.com",
-    siteName: "Zivel",
-    type: "website",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
-    description:
-      "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
-    images: ["/images/og-image.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+      "Zivel delivers cutting-edge wellness technology nationwide — expert-led recovery, body contouring, and skin rejuvenation in serene private studios. Book cryo, red light, infrared sauna, CryoLift Facial and more.",
+    openGraph: {
+      title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+      description:
+        "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
+      url: "https://www.zivel.com",
+      siteName: "Zivel",
+      type: "website",
+      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+      description:
+        "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
+      images: ["/images/og-image.jpg"],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+    alternates: {
+      canonical: `${SITE_URL}${pathname}`,
+      languages: {
+        en: `${SITE_URL}${enPathname}`,
+        es: `${SITE_URL}${esPathname}`,
+        "x-default": `${SITE_URL}${enPathname}`,
+      },
+    },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

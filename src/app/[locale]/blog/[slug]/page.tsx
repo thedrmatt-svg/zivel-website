@@ -6,8 +6,10 @@ import type { BlogContentBlock } from "@/types/blog";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 type PageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 };
+
+const SITE_URL = "https://www.zivel.com";
 
 export function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
@@ -16,13 +18,20 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const post = getBlogBySlug(slug);
   if (!post) return {};
+  const basePath = `/blog/${post.slug}`;
+  const enUrl = `${SITE_URL}${basePath}`;
+  const esUrl = `${SITE_URL}/es${basePath}`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
     title: post.title + " | Zivel",
     description: post.description,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
   };
 }
 

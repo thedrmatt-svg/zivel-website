@@ -1,13 +1,30 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { scienceArticles } from "@/lib/data/science";
 import { getServiceBySlug } from "@/lib/data/services";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
-export const metadata = {
-  title: "Science & Recovery Hub | Zivel",
-  description:
-    "Evidence-informed articles on recovery, performance, longevity, and modern wellness technology—written for clarity and practical use.",
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/science`;
+  const esUrl = `${SITE_URL}/es/science`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Science & Recovery Hub | Zivel",
+    description:
+      "Evidence-informed articles on recovery, performance, longevity, and modern wellness technology—written for clarity and practical use.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 const CATEGORY_BLURBS: Record<string, string> = {
   "Science Basics":

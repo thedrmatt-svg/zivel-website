@@ -20,19 +20,28 @@ export function generateStaticParams() {
   return Array.from(states).map((state) => ({ state }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ state: string }> }): Promise<Metadata> {
-  const { state: stateParam } = await params;
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({ params }: { params: Promise<{ state: string; locale: string }> }): Promise<Metadata> {
+  const { state: stateParam, locale } = await params;
   const state = stateParam.toLowerCase();
   const stateLocations = locations.filter((l) => l.stateSlug === state);
 
   if (!stateLocations.length) return {};
 
   const stateName = titleCase(state);
+  const basePath = `/locations/${state}`;
+  const enUrl = `${SITE_URL}${basePath}`;
+  const esUrl = `${SITE_URL}/es${basePath}`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
 
   return {
     title: `${stateName} Locations | Zivel`,
     description: `Find Zivel studios in ${stateName}. View services offered, booking, and local details for each location.`,
-    alternates: { canonical: `/locations/${state}` },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
   };
 }
 

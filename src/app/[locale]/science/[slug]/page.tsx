@@ -6,25 +6,36 @@ import { getRelatedServicesForScienceSlug } from "@/lib/data/serviceLinks";
 import { getServiceBySlug } from "@/lib/data/services";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
+const SITE_URL = "https://www.zivel.com";
+
 export function generateStaticParams() {
   return scienceArticles.map((a) => ({ slug: a.slug }));
 }
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ slug: string; locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const a = getScienceBySlug(slug);
   if (!a) return {};
-  return { title: `${a.title} | Zivel`, description: a.description, alternates: { canonical: `/science/${a.slug}` } };
+  const basePath = `/science/${a.slug}`;
+  const enUrl = `${SITE_URL}${basePath}`;
+  const esUrl = `${SITE_URL}/es${basePath}`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: `${a.title} | Zivel`,
+    description: a.description,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
 }
 
 export default async function ScienceArticlePage({ params }: Props) {
   const { slug } = await params;
   const a = getScienceBySlug(slug);
   if (!a) return notFound();
-
-  const SITE_URL = "https://www.zivel.com";
 
   const articleSchema = {
     "@context": "https://schema.org",

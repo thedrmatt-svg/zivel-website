@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Contact Zivel",
-  description: "Get in touch with Zivel. Find your local studio or reach out to our team.",
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/contact`;
+  const esUrl = `${SITE_URL}/es/contact`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Contact Zivel",
+    description: "Get in touch with Zivel. Find your local studio or reach out to our team.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 export default function ContactPage() {
   return (

@@ -13,7 +13,7 @@ import { getScienceBySlug } from "@/lib/data/science";
 import { getResearchBySlug } from "@/lib/data/research";
 
 type PageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 };
 
 export function generateStaticParams() {
@@ -23,19 +23,26 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
 
   const SITE_URL = "https://www.zivel.com";
-  const rawCanonical = service.seo.canonical ?? `/services/${service.slug}`;
-  const canonicalUrl = rawCanonical.startsWith("http") ? rawCanonical : `${SITE_URL}${rawCanonical}`;
+  const basePath = `/services/${service.slug}`;
+  const enUrl = `${SITE_URL}${basePath}`;
+  const esUrl = `${SITE_URL}/es${basePath}`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
 
   return {
     title: service.seo.title,
     description: service.seo.description,
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        en: enUrl,
+        es: esUrl,
+        "x-default": enUrl,
+      },
     },
   };
 }

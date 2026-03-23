@@ -5,12 +5,27 @@ import { locations } from "@/lib/data/locations";
 import LocationsMap from "@/components/location/LocationsMap";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
-export const metadata: Metadata = {
-  title: "Locations | Zivel",
-  description:
-    "Find a Zivel studio near you. Browse by state to view local wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, and more.",
-  alternates: { canonical: "/locations" },
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/locations`;
+  const esUrl = `${SITE_URL}/es/locations`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Locations | Zivel",
+    description:
+      "Find a Zivel studio near you. Browse by state to view local wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, and more.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 function titleCase(slug: string) {
   return slug

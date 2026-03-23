@@ -1,11 +1,28 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { blogPosts } from "@/lib/data/blog";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
-export const metadata = {
-  title: "Blog | Zivel",
-  description: "Evidence-informed wellness, recovery, and longevity education.",
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/blog`;
+  const esUrl = `${SITE_URL}/es/blog`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Blog | Zivel",
+    description: "Evidence-informed wellness, recovery, and longevity education.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 export default function BlogIndexPage() {
   return (

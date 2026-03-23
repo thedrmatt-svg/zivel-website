@@ -1,10 +1,27 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { researchSources } from "@/lib/data/research";
 
-export const metadata = {
-  title: "Research Sources | Zivel",
-  description: "Citations and sources referenced across Zivel service pages and science articles.",
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/research`;
+  const esUrl = `${SITE_URL}/es/research`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Research Sources | Zivel",
+    description: "Citations and sources referenced across Zivel service pages and science articles.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 export default function ResearchIndexPage() {
   return (

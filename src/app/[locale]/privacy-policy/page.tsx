@@ -1,13 +1,26 @@
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Zivel Privacy Policy",
-  description:
-    "Zivel Privacy Policy describing how we collect, use, share, and protect personal information, including cookies, analytics, and opt-out choices.",
-  alternates: {
-    canonical: "/privacy-policy",
-  },
-};
+const SITE_URL = "https://www.zivel.com";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const enUrl = `${SITE_URL}/privacy-policy`;
+  const esUrl = `${SITE_URL}/es/privacy-policy`;
+  const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  return {
+    title: "Zivel Privacy Policy",
+    description:
+      "Zivel Privacy Policy describing how we collect, use, share, and protect personal information, including cookies, analytics, and opt-out choices.",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+    },
+  };
+}
 
 export default function PrivacyPolicyPage() {
   return (
