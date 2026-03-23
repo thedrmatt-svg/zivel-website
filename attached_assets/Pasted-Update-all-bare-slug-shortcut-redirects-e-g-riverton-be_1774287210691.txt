@@ -1,0 +1,68 @@
+Update all bare-slug shortcut redirects (e.g. /riverton, /belmont, etc.) so their destinations use the non-www version (zivel.com/... instead of www.zivel.com/...).
+
+This prevents double 301 hops for www visitors.
+
+Replace the entire redirects section in next.config.js with this cleaned-up version:
+
+async redirects() {
+  return [
+    // First: Force www → non-www (already good)
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'www.zivel.com' }],
+      destination: 'https://zivel.com/:path*',
+      permanent: true,
+    },
+
+    // Bare-slug shortcuts — now point to non-www
+    {
+      source: '/riverton',
+      destination: 'https://zivel.com/locations/utah/riverton',
+      permanent: true,
+    },
+    {
+      source: '/riverton/',
+      destination: 'https://zivel.com/locations/utah/riverton',
+      permanent: true,
+    },
+
+    // Add your other bare-slug shortcuts here (change www to non-www)
+    // Example for Belmont (adjust slug/path as needed):
+    {
+      source: '/belmont',
+      destination: 'https://zivel.com/locations/north-carolina/belmont',
+      permanent: true,
+    },
+    {
+      source: '/belmont/',
+      destination: 'https://zivel.com/locations/north-carolina/belmont',
+      permanent: true,
+    },
+
+    // Keep subdomain and typo redirects as-is (they already use full URLs)
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'coralgables.zivel.com' }],
+      destination: 'https://www.zivel.com/locations/florida/coral-gables/:path*',
+      permanent: true,
+    },
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'brecksville.zivel.com' }],
+      destination: 'https://www.zivel.com/locations/ohio/brecksville/:path*',
+      permanent: true,
+    },
+    {
+      source: '/locations/georgie/cumming/windermere',
+      destination: 'https://www.zivel.com/locations/georgia/windermere',
+      permanent: true,
+    },
+    {
+      source: '/locations/georgie/cumming/windermere/',
+      destination: 'https://www.zivel.com/locations/georgia/windermere',
+      permanent: true,
+    },
+
+    // Add any other bare-slug shortcuts here with non-www destinations
+  ];
+},
