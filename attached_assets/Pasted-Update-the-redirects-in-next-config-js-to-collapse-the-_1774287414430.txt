@@ -1,0 +1,77 @@
+Update the redirects in next.config.js to collapse the redirect chain for www visitors.
+
+Make all bare-slug shortcuts (like /riverton, /belmont, etc.) aware of the www host and redirect directly to the final non-www location URL.
+
+Replace the entire redirects section with this optimized version:
+
+async redirects() {
+  return [
+    // 1. Force www → non-www (already good, keep as first rule)
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'www.zivel.com' }],
+      destination: 'https://zivel.com/:path*',
+      permanent: true,
+    },
+
+    // 2. Bare-slug shortcuts — now with www-aware versions that skip the double hop
+    {
+      source: '/riverton',
+      destination: 'https://zivel.com/locations/utah/riverton',
+      permanent: true,
+    },
+    {
+      source: '/riverton/',
+      destination: 'https://zivel.com/locations/utah/riverton',
+      permanent: true,
+    },
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'www.zivel.com' }],
+      destination: 'https://zivel.com/locations/utah/riverton/:path*',
+      permanent: true,
+    },
+
+    // Repeat pattern for other bare-slug shortcuts (e.g. Belmont)
+    {
+      source: '/belmont',
+      destination: 'https://zivel.com/locations/north-carolina/belmont',
+      permanent: true,
+    },
+    {
+      source: '/belmont/',
+      destination: 'https://zivel.com/locations/north-carolina/belmont',
+      permanent: true,
+    },
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'www.zivel.com' }],
+      destination: 'https://zivel.com/locations/north-carolina/belmont/:path*',
+      permanent: true,
+    },
+
+    // Keep subdomain and typo redirects as-is (they already use full URLs)
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'coralgables.zivel.com' }],
+      destination: 'https://www.zivel.com/locations/florida/coral-gables/:path*',
+      permanent: true,
+    },
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'brecksville.zivel.com' }],
+      destination: 'https://www.zivel.com/locations/ohio/brecksville/:path*',
+      permanent: true,
+    },
+    {
+      source: '/locations/georgie/cumming/windermere',
+      destination: 'https://www.zivel.com/locations/georgia/windermere',
+      permanent: true,
+    },
+    {
+      source: '/locations/georgie/cumming/windermere/',
+      destination: 'https://www.zivel.com/locations/georgia/windermere',
+      permanent: true,
+    },
+  ];
+},
