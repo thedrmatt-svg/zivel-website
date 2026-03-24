@@ -95,7 +95,6 @@ export const zivel_cumming_windermere_location: Location = {
   },
 
   pricing: {
-    specialDealsExpiry: "March 22",
     specialDealsPosition: "top",
     membershipTiers: [
       {
@@ -122,7 +121,7 @@ export const zivel_cumming_windermere_location: Location = {
         bookingUrl: "https://app.clubready.com/JoinUs/14944/641756",
       },
       {
-        name: "Founder's Club: Unlimited Recovery",
+        name: "Individual All Access Plan",
         price: "$79/mo",
         savings: "Then $159/mo from month 2",
         bookingUrl: "https://app.clubready.com/JoinUs/14944/637622",
