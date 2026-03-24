@@ -19,7 +19,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CACHE_PATH = resolve(__dirname, "../src/data/places-cache.json");
 
-const FIELDS = "rating,userRatingCount,reviews,googleMapsUri";
+const FIELDS = "id,displayName,formattedAddress,internationalPhoneNumber,googleMapsUri,websiteUri,rating,userRatingCount,reviews,regularOpeningHours,photos";
 
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 if (!API_KEY) {

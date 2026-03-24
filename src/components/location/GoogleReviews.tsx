@@ -40,7 +40,7 @@ export default function GoogleReviews({
   if (!data || !data.reviews.length) {
     return (
       <div className="rounded-2xl border-subtle bg-card p-6 text-white/70">
-        Reviews are temporarily unavailable.
+        Reviews coming soon.
       </div>
     );
   }
@@ -52,7 +52,7 @@ export default function GoogleReviews({
   if (!fiveStarReviews.length) {
     return (
       <div className="rounded-2xl border-subtle bg-card p-6 text-white/70">
-        Reviews are temporarily unavailable.
+        Reviews coming soon.
       </div>
     );
   }
