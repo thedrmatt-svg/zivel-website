@@ -23,10 +23,10 @@ export const zivel_briargate_location: Location = {
   hours: {
     monday: "9am – 7pm",
     tuesday: "9am – 7pm",
-    wednesday: "9am – 7pm",
-    thursday: "9am – 7pm",
-    friday: "9am – 7pm",
-    saturday: "10am – 3pm",
+    wednesday: "8am – 7pm",
+    thursday: "8am – 7pm",
+    friday: "8am – 7pm",
+    saturday: "10am – 4pm",
     sunday: "Closed",
   },
 
