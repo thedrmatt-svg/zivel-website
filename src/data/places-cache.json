@@ -1,137 +1,821 @@
 {
   "_comment": "Pre-fetched Google Places data. Run `npm run fetch-places` to refresh.",
-  "_generatedAt": "",
+  "_generatedAt": "2026-03-24T14:42:58.076Z",
   "ChIJR09Pun4RyYcRxkI5BNchv1o": {
     "locationPath": "arkansas/bentonville",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 74,
+    "googleMapsUri": "https://maps.google.com/?cid=6538982391337796294&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Jeff Rogers",
+        "authorUri": "https://www.google.com/maps/contrib/104268661953306945669/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I am so completely impressed with all the services available at such a great price. Compression therapy and float therapy are my go to treatments after workouts, traveling  or tiresome tasks. Today, after a longer than usual tread session, my lower back and hamstrings were TIGHT and painful. I immediately went for the compression therapy and Cheri and Stacie suggested I come back for a  cryo-soothing session for localized pain and inflammation later in the afternoon. By the time I returned, after compression , I was already experiencing relief. The cryo  session with Janya was incredible and relieved any lingering discomfort. If you are looking for recovery services with state of the art equipment and wonderful people, Zivel Bentonville is the place for you!"
+      },
+      {
+        "authorName": "Michelle",
+        "authorUri": "https://www.google.com/maps/contrib/110651811748191816834/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "Everyone at Zivel has been so kind and helpful! I am already seeing results three weeks in after cryotoning. The atmosphere is very relaxing and peaceful as well."
+      },
+      {
+        "authorName": "Josh Yudin",
+        "authorUri": "https://www.google.com/maps/contrib/107769382353574647526/reviews",
+        "rating": 5,
+        "relativeTime": "4 months ago",
+        "text": "Amazing services in an amazing space! If you take exercise, aging or just overall health at any age even somewhat seriously - do your homework and head over to Zivel. It will literally change your life."
+      },
+      {
+        "authorName": "Faith Hobson",
+        "authorUri": "https://www.google.com/maps/contrib/113688925769790020295/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Absolutely love the staff and owners! It was such a pleasant experience and everyone was so knowledgeable and accommodating. Definitely will tell family and friends ❤️❤️❤️"
+      },
+      {
+        "authorName": "chad harris",
+        "authorUri": "https://www.google.com/maps/contrib/111762787401624828823/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "I can always count on Zivel to deliver an optimal performance and recovery experience, while setting a clear standard in professionalism and customer service!!\n\nChad H."
+      }
+    ]
   },
   "ChIJjaywtH29VogRFXe1l_SIid0": {
     "locationPath": "north-carolina/belmont",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 6,
+    "googleMapsUri": "https://maps.google.com/?cid=15963440938290083605&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Eileen Emblidge",
+        "authorUri": "https://www.google.com/maps/contrib/100107565594958016861/reviews",
+        "rating": 5,
+        "relativeTime": "8 months ago",
+        "text": "Visited with the owner and was able to try the dry float. It was extremely relaxing. Cannot wait to go back. A friend of mine did get to demo the cryo booth and it was extraordinary she said! Cannot wait until everything is there so we can try everything!\n\nUpdate!\nHad the most amazing facial today. Literally the best facial I have EVER had. Haleigh is so professional and so talented. Cannot wait to go back."
+      },
+      {
+        "authorName": "Ciphy (Ci)",
+        "authorUri": "https://www.google.com/maps/contrib/112330491734997478673/reviews",
+        "rating": 5,
+        "relativeTime": "10 months ago",
+        "text": "I stopped by to checkout the cryotherapy chamber. They aren't quite open yet but the owner was at the store. He was really friendly and gave me a tour of the facility. The cryo chamber looks amazing and so does the dry float. The owner took the time to answer all of my questions and was so nice. I can't wait for this place to open. It is going to be a nice escape for me."
+      },
+      {
+        "authorName": "Mary-Jane Jones",
+        "authorUri": "https://www.google.com/maps/contrib/101940214711803729877/reviews",
+        "rating": 5,
+        "relativeTime": "9 months ago",
+        "text": "Belmont has a new hidden gem. Zivel is incredible. I did an early membership sign up, got a tour, and immediately did a 30 minute float session. The building is super clean, great location, with easy parking and wonderful owners. Highly recommend!"
+      },
+      {
+        "authorName": "Vesta Ambient",
+        "authorUri": "https://www.google.com/maps/contrib/102807075923202442325/reviews",
+        "rating": 5,
+        "relativeTime": "10 months ago",
+        "text": "This was my first time ever trying cryo and it was an AMAZING first experience! Super friendly and clean environment!"
+      },
+      {
+        "authorName": "Neal Karski",
+        "authorUri": "https://www.google.com/maps/contrib/106106870481714154209/reviews",
+        "rating": 5,
+        "relativeTime": "8 months ago",
+        "text": "Amazing facility and experience!"
+      }
+    ]
   },
   "ChIJhUVltrPnMIgRR5CgLcH6kEg": {
     "locationPath": "ohio/brecksville",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 127,
+    "googleMapsUri": "https://maps.google.com/?cid=5228954874978275399&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Kristen Kuhns",
+        "authorUri": "https://www.google.com/maps/contrib/113045385899063752468/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "My sister and I did a 45 minute red light sauna session and it was amazing! Beautiful facility and you have the room to yourself so you can enjoy the sauna and come in and out as you need to."
+      },
+      {
+        "authorName": "Maria Cicero",
+        "authorUri": "https://www.google.com/maps/contrib/116307582284089875507/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "My husband and I went here for a sauna session with red light therapy and also did the cryo chamber. It was absolutely amazing! My inflammation has definitely decreased and I just feel more relaxed overall! We will definitely be back 😁"
+      },
+      {
+        "authorName": "Kellie Young",
+        "authorUri": "https://www.google.com/maps/contrib/100675324538442230107/reviews",
+        "rating": 5,
+        "relativeTime": "6 months ago",
+        "text": "My boyfriend and I had such a great experience at Zivel! The offer so many difference services, and can’t wait to try them all. The place is very clean and the office manager was so kind, professional and helpful!"
+      },
+      {
+        "authorName": "Rachel Trillis",
+        "authorUri": "https://www.google.com/maps/contrib/108338356713892115359/reviews",
+        "rating": 5,
+        "relativeTime": "11 months ago",
+        "text": "Absolutely LOVED my experience here! I tried all 5 services included in the membership & enjoyed each one! I can’t wait to come back!"
+      },
+      {
+        "authorName": "Gail Starcher",
+        "authorUri": "https://www.google.com/maps/contrib/105020259624809108011/reviews",
+        "rating": 5,
+        "relativeTime": "11 months ago",
+        "text": "If you're suffering from painful muscles and joints or just need some de-stressing time, Zivel is the perfect place for both.  The Staff are personable and do not pressure you to sign up for any services or try anything you're not comfortable with. They make your experience fun and relaxing and their top priority is You the Customer and ensuring you are safe, comfortable and relaxed while you are at Zivel.  Always clean and able to work with my schedule.  Highly recommend Zivel in Brecksville for Cryotherapy, Infared Light Therapy, Sauna, Compression for legs & arms, oxygen bar, float room, and massage therapy."
+      }
+    ]
   },
   "ChIJy62rJ3MF9YgRvu9Ok1SKNVk": {
     "locationPath": "georgia/buckhead",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 79,
+    "googleMapsUri": "https://maps.google.com/?cid=6428196138994560958&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Shaniya Favors",
+        "authorUri": "https://www.google.com/maps/contrib/101838996068465587544/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I had an absolutely phenomenal experience at Zivel. Eden made sure my entire visit was top-tier from start to finish. She provided exceptional service. Super sweet, welcoming, and took the time to answer every single question I had without hesitation. I felt genuinely taken care of. 10/10, definitely recommend. I will 100% be asking for Eden again. Thank you so much!"
+      },
+      {
+        "authorName": "Nyasia Bowen",
+        "authorUri": "https://www.google.com/maps/contrib/110619137638170083889/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "This place is simply fabulous! The services offered are amazing and the staff are exceptional. I have to pony out Eden The Esthetician, she is AMAZING! The way she cares about her work shows on my face, lol… the best facial I’ve ever had! I will be back again and again, especially for Eden!"
+      },
+      {
+        "authorName": "Christopher Wagner",
+        "authorUri": "https://www.google.com/maps/contrib/100960519515292606093/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "First of all I would just like to say that Kelsey was amazing. The services she provided were phenomenal and prompt. I definitely recommend this place to family and friends! I promise your experience will be as great mine. You won’t be disappointed. You will be glad you came. Oh yeah be sure to ask for Kelsey."
+      },
+      {
+        "authorName": "Safa Masoud",
+        "authorUri": "https://www.google.com/maps/contrib/117378225221217944316/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I had an excellent experience at Zivel. Special thanks to Kelsey. She was extremely knowledgeable, professional, and took the time to explain the entire process before starting. The space was clean, well-organized, and felt very safe. I left feeling refreshed and confident. I would absolutely recommend Kelsey to anyone new to Zivel."
+      },
+      {
+        "authorName": "Chris Bowen",
+        "authorUri": "https://www.google.com/maps/contrib/111541308959363173762/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I had a great facial by aesthetician Eden. I hadn’t had one in so long and she was great in explaining which facials would be good for me with my concerns and what I wanted addressed. She was very knowledgeable and calm and made my whole experience very enjoyable. I will definitely be back."
+      }
+    ]
   },
   "ChIJFdsggG9NE4cR0dKogMxsgbI": {
     "locationPath": "colorado/briargate",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 19,
+    "googleMapsUri": "https://maps.google.com/?cid=12862681636334523089&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Ashley Nault",
+        "authorUri": "https://www.google.com/maps/contrib/110186937744446139794/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Had a great experience at Zivel today. Gracie showed me all around their new fabulous space that offers red light, infared saunas, compression therapy, cryotherapy, and even cryo facials. Definitely recommend checking them out for some self care. Very clean and welcoming space 😊"
+      },
+      {
+        "authorName": "Konner Workman",
+        "authorUri": "https://www.google.com/maps/contrib/118024827446612852053/reviews",
+        "rating": 5,
+        "relativeTime": "3 weeks ago",
+        "text": "I can’t say enough great things about Zivel! From the moment I walked in, their customer care was absolutely amazing. The team is incredibly professional, knowledgeable, and genuinely cares about your overall well-being.\n\nAfter doing their cryotherapy, compression, and sauna treatments, my body has never felt better. I was also able to try a cryo facial, and my skin has truly never felt so refreshed and rejuvenated. Beyond just the treatments, they took the time to give me personalized advice on how to maintain my skin and improve my overall health, which I really appreciated.\n\nAlthough it was an investment, it has been more than worth it. The results and the level of care I received made it one of the best wellness decisions I’ve ever made. I will definitely be a member of Zivel for a long time! Highly recommend to anyone looking to feel and look their best."
+      },
+      {
+        "authorName": "Jessica Grett",
+        "authorUri": "https://www.google.com/maps/contrib/109751792070294235837/reviews",
+        "rating": 5,
+        "relativeTime": "3 weeks ago",
+        "text": "I absolutely love Zivel!! All of the staff are so kind and welcoming. Gracie gave me a tour of all the different therapies and was so sweet and insightful! I found this place because I was looking for cryotherapy for a shoulder injury, which is now completely back to normal. I used to power lift multiple times a week but never took recovery seriously, until now. This has been a huge game changer for me and my health. I cannot recommend enough!!"
+      },
+      {
+        "authorName": "Nancy Ballesteros",
+        "authorUri": "https://www.google.com/maps/contrib/112176782516907196485/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Had a great first experience here.  The staff was super friendly and knowledgeable and facility was so clean.  I especially enjoyed trying the cryo.  I was talked through everything so no surprises.  If you are in the neighborhood, I highly encourage you to check this place out."
+      },
+      {
+        "authorName": "Joseph",
+        "authorUri": "https://www.google.com/maps/contrib/108491154383838693925/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I feel like a new man! I tried the red light therapy, compression, and cryotherapy in one go and it felt amazing. The owner gave me a tour and she was super friendly and knowledgeable about the equipment. The space is clean, well run, and welcoming. If you’re curious about cryo, I highly recommend trying it! Just come ready with a song to play in the cryo room. They have a sound system inside and the music seems to help power through the cold."
+      }
+    ]
   },
   "ChIJASK_6UO32YgRpFki1ZCosJc": {
     "locationPath": "florida/coral-gables",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 55,
+    "googleMapsUri": "https://maps.google.com/?cid=10930421635632748964&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Hugh Son",
+        "authorUri": "https://www.google.com/maps/contrib/117151442220193034309/reviews",
+        "rating": 5,
+        "relativeTime": "3 months ago",
+        "text": "I’ve been going to Zivel for the past year, and wouldn’t hesitate recommending them to all my friends and family. The infrared sauna , compression therapy and cold chamber are top notch experiences. I am feeling my best because of this : high energy , mentally and physically optimized. 5/5"
+      },
+      {
+        "authorName": "Marc J",
+        "authorUri": "https://www.google.com/maps/contrib/100587376358027689591/reviews",
+        "rating": 5,
+        "relativeTime": "3 weeks ago",
+        "text": "don’t write reviews often, but this one is earned.\n\nFrom the moment I walked into Zivel, I felt like I had found something different. The space is clean, calming, and thoughtfully designed, not clinical or cold, but elevated and intentional. You can tell health and experience both matter here.\n\nAnd then there’s Catalina.\n\nCatalina made the entire experience. Professional, knowledgeable, and genuinely warm. She took the time to explain everything, answered every question without rushing, and made me feel completely comfortable. You can tell she actually cares about people not just the service. That kind of energy is rare.\n\nI’m very serious about my health, and I don’t trust just anyone when it comes to wellness. Zivel exceeded expectations. The service was seamless, the attention to detail was top tier, and I walked out feeling better  physically and mentally.\n\nIf you care about your body, your recovery, and doing things the right way, this is the place. I’m honestly so glad I found it.\n\nCatalina, thank you for making it such a great experience. I’ll absolutely be back."
+      },
+      {
+        "authorName": "Catin Boots",
+        "authorUri": "https://www.google.com/maps/contrib/101979839961067924815/reviews",
+        "rating": 5,
+        "relativeTime": "4 months ago",
+        "text": "I love visiting the facility for a reset. I am not an athlete,  but I go for general aches and pains and I always feel better afterwards. All the services are great! I especially look forward to my infared sauna followed by cryo tunnel, recharges my battery every time. If I feel like taking it easy just a nice red light therapy or dry float is perfect. I recommend this location,  the people are friendly and knowledgeable and the services are varied for your choosing."
+      },
+      {
+        "authorName": "Julie Axelrod",
+        "authorUri": "https://www.google.com/maps/contrib/105115695272656774468/reviews",
+        "rating": 5,
+        "relativeTime": "8 months ago",
+        "text": "I cannot speak highly enough of Zivel.  Joining Zivel helped jumpstart and has been an integral part of my wellness journey. The infrared red light sauna followed by the cryo chamber has been a total game changer. I leave Zivel feeling energized and with an endorphin boost, ready to take on the day.  The premium services (cryo facials!) are incredible and relaxing. Mike and Carolina are both super knowledgeable, helpful and create a welcoming and fun environment.  10/10"
+      },
+      {
+        "authorName": "Stephanie Mendoza",
+        "authorUri": "https://www.google.com/maps/contrib/113172694874145230845/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "So happy this gem exists in Coral Gables! A bio hackers dream! Everything from the services to the staff was such a pleasant experience. Will definitely be coming back and trying out everything else they have to offer!"
+      }
+    ]
   },
   "ChIJV-6ARVqb9YgRj0e_jO2WQ1g": {
     "locationPath": "georgia/windermere",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 34,
+    "googleMapsUri": "https://maps.google.com/?cid=6360093045790033807&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Jamaican Family",
+        "authorUri": "https://www.google.com/maps/contrib/111007810182475147919/reviews",
+        "rating": 5,
+        "relativeTime": "5 months ago",
+        "text": "Love this place! Zivel is my new favorite wellness/recovery center. They literally have everything under one roof. Cryotherapy, sauna, red light bed and leg compression all can be done at this location. I also enjoyed the cryo facial! The staff and owners are all super nice and friendly. 5 stars all the way!"
+      },
+      {
+        "authorName": "Katie Elizabeth R.",
+        "authorUri": "https://www.google.com/maps/contrib/101806221269695601053/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Amazing concept and well executed space. As an endurance athlete, and a professional wellness coach, I could not more highly recommend the modalities and services provided all under one roof. Both the cryo chamber and the infrared sauna were immaculately clean, well appointed with amenities, and private. Tony at the front was phenomenal with explaining everything, and his background in triathlon means he knows his stuff and can vouch for how much the recovery techniques provided relief in real time.\nHighly recommend!"
+      },
+      {
+        "authorName": "Mk K",
+        "authorUri": "https://www.google.com/maps/contrib/101436728817627303547/reviews",
+        "rating": 5,
+        "relativeTime": "5 months ago",
+        "text": "Amazing addition to the neighborhood!\nZivel is quite impressive. The space is modern, clean, and super relaxing—exactly what you want after a tough workout. I really enjoy the cryotherapy and always leave feeling totally refreshed and recharged. The Cryolift facial is a game changer - a must try! The staff is welcoming and ready to guide you through any questions you may have.\nIt's great to see a place like this open up nearby—perfect for athletes or anyone looking to speed up recovery and take better care of their body. Highly recommend! Please check it out!"
+      },
+      {
+        "authorName": "Michelle Straka",
+        "authorUri": "https://www.google.com/maps/contrib/107753959274223835879/reviews",
+        "rating": 5,
+        "relativeTime": "5 months ago",
+        "text": "I had an excellent experience at ZIVEL! I came in for a cryo-lift facial, and it was amazing — my skin felt smoother, tighter, and noticeably clearer right afterward. Mckenzie did the facial and was fantastic — professional, knowledgeable, and made the whole process feel relaxing and effective.\n\nShe also took me through a cryo-slimming  session, and I could actually see a noticeable difference in my waistline — even after just one session. It was refreshing and left me feeling energized.\n\nEveryone at ZIVEL was wonderful, from the friendly front desk staff to Mckenzie herself. They even let me try the cryo-chamber, which was such a cool (literally!) experience.\n\nI’m definitely planning to come back to try their red light therapy and sauna. If you’re looking for cutting-edge wellness treatments in a welcoming, professional setting — ZIVEL is the place to go!"
+      },
+      {
+        "authorName": "Ava Grace Sestan",
+        "authorUri": "https://www.google.com/maps/contrib/105030217780848183800/reviews",
+        "rating": 5,
+        "relativeTime": "5 months ago",
+        "text": "I had such a great experience here! The space is so clean and inviting when you walk in! They had refreshments and offered a variety of drinks and snacks. The rooms were very clean as well, I was given a tour of the space and spaced out very well. I did cryotherapy, a cryo facial, and the slimming treatment. Mackenzie was my Esthetician and she was amazing. She gave me a run down of everything she was going to do and the benefits. I felt very comfortable with her and she answered all my questions. After the appointment I felt so amazing and definitely will be going back! I cannot recommend mackenzie enough!!"
+      }
+    ]
   },
   "ChIJOQ32BYdvyYcRBVSmzC6EUXU": {
     "locationPath": "arkansas/fayetteville",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 103,
+    "googleMapsUri": "https://maps.google.com/?cid=8453683312087946245&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "John",
+        "authorUri": "https://www.google.com/maps/contrib/105194763549174753371/reviews",
+        "rating": 5,
+        "relativeTime": "3 months ago",
+        "text": "⭐️⭐️⭐️⭐️⭐️ Amazing Wellness Experience at Zivel – Fayetteville!\n\nI recently visited Zivel in Fayetteville and I have to say, this place truly stands out as one of the best wellness and recovery spots in the area. They offer a fantastic variety of services including cryotherapy, red light therapy, compression therapy, oxygen sauna, infrared sauna, and more — all designed to help with recovery, energy, circulation, relaxation, and overall wellbeing.\n\nFrom the moment you walk in, you can tell this is a place that cares deeply about each guest’s experience. The facility is spotlessly clean and welcoming, which immediately puts you at ease. Every station — whether it’s the cryotherapy chamber, red light bed, or compression area — is organized and well maintained, making each treatment feel safe and professional.\n\nWhat really sets Zivel apart, though, is the staff and ownership team. They are genuinely friendly, knowledgeable, and attentive. They take the time to explain every service, help you choose what’s best for your goals, and make sure you’re comfortable throughout the entire process. Their positive energy makes every visit enjoyable and uplifting.\n\nI’ve tried multiple services here — from the invigorating cryotherapy sessions to the soothing infrared sauna and beneficial red light bed — and each one leaves me feeling refreshed, relaxed, and healthier. The compression and oxygen therapies are also great additions that make you feel pampered and cared for from head to toe.\n\nWhether you’re looking to speed up recovery, reduce stress, enhance your wellness routine, or just treat yourself to self-care that actually feels good, Zivel Fayetteville is absolutely worth checking out. The whole team makes you feel like family, and you leave each visit feeling better than when you came in!\n\nHighly recommend! ⭐️⭐️⭐️⭐️⭐️.        Well, it's DEFINITELY MARK APPROVED STRESS RELIEF AND WEIGHT LOSS HAS ALREADY HAPPENED AMAZING RESULTS THANK YOU ALL 😊"
+      },
+      {
+        "authorName": "Gail",
+        "authorUri": "https://www.google.com/maps/contrib/118438738879831897449/reviews",
+        "rating": 5,
+        "relativeTime": "3 months ago",
+        "text": "Zivel in Fayetteville is such a welcoming and calming space. The staff made me feel comfortable right away and explained everything clearly. Faith was absolutely wonderful! She was, knowledgeable, and genuinely kind throughout my visit. She guided me with ease and made sure I felt cared for every step of the way. I have already scheduled my next appointment & can’t wait to go back for more!"
+      },
+      {
+        "authorName": "Aisha Renae",
+        "authorUri": "https://www.google.com/maps/contrib/116207319275123057294/reviews",
+        "rating": 5,
+        "relativeTime": "3 months ago",
+        "text": "This was my very first experience at a wellness center, and Zivel Fayetteville completely exceeded my expectations.\n\nFrom the moment I walked in, I felt genuinely welcomed and at ease. The staff was kind, attentive, and took the time to explain everything, which made the whole experience feel comfortable and stress-free. I tried cryotherapy, and not only did it help with inflammation, but I left feeling refreshed, energized, and taken care of. The atmosphere is calming and uplifting, and you can tell they truly care about your wellness journey. They also offer slimming and shaping facials, which I’m really excited to try next time. I’m so glad I chose Zivel Fayetteville—this experience made me feel confident, supported, and excited to come back."
+      },
+      {
+        "authorName": "Nathan",
+        "authorUri": "https://www.google.com/maps/contrib/101415535268176476005/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "Came in to try out the compression, oxygen, and cryo with a friend who referred me.\n\nCompletely sold and feel amazing after first visit, 100% will get a membership since they have so many locations I can bounce to."
+      },
+      {
+        "authorName": "Jeremie Reynolds",
+        "authorUri": "https://www.google.com/maps/contrib/114074218230770678846/reviews",
+        "rating": 5,
+        "relativeTime": "3 months ago",
+        "text": "Zivel is awesome! The whole place is clean, relaxing, and super professional. I had a great experience with their wellness services, especially the cryotherapy and infrared sauna. Big shoutout to Faith! She was incredibly friendly, helpful, and made the whole visit even better. Highly recommend this spot for anyone looking to level up their recovery and wellness!"
+      }
+    ]
   },
   "ChIJH-Rny771f4gR6Xo-0TmD4fY": {
     "locationPath": "mississippi/fieldhouse",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 29,
+    "googleMapsUri": "https://maps.google.com/?cid=17789644287437077225&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Sybil Williams",
+        "authorUri": "https://www.google.com/maps/contrib/117489310835833310892/reviews",
+        "rating": 5,
+        "relativeTime": "3 weeks ago",
+        "text": "Lily was great.  Highly recommend Zivel for many things they offer but especially the Cryo by Lily."
+      },
+      {
+        "authorName": "Kathy Campbell",
+        "authorUri": "https://www.google.com/maps/contrib/104970903177984374189/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "We love Zivel and the staff!  Even our 13 year old uses it to recover on her off days and before/after big tournaments."
+      },
+      {
+        "authorName": "Misty Herring",
+        "authorUri": "https://www.google.com/maps/contrib/112368779175392824798/reviews",
+        "rating": 5,
+        "relativeTime": "7 months ago",
+        "text": "If I could give more then 5stars I would absolutely do it,  this morning I went and tried the dry float this morning and its SO AMAZING!!!!  so if your looking to unwind and relax definitely recommend doing the dry float, I felt so relaxed and left feeling so good!!  Another service highly recommend is  the cryotherpy  so if you are athletic or just looking to ease pain or inflammation this one is for you, as it was definitely for me. I have inflammation in my lower  back also arthritis and it made a world difference for me,  also loved the red light therapy alone with its many many benefits it has, This  place alone with the friendly staff is the BEST !!! Just to give a few shoutouts the other day Kim was so kind, very helpful, explaining each service to me, also today Kirk  was the exact same way,  very kind, explaining each process 😊  I will be back"
+      },
+      {
+        "authorName": "Darryl Young",
+        "authorUri": "https://www.google.com/maps/contrib/101424361743319595563/reviews",
+        "rating": 5,
+        "relativeTime": "a year ago",
+        "text": "Daughter is a softball/basketball player returning from injury. Long tournament this past weekend and her body was sore.  Crying and compression therapy and she’s feeling tremendously better.  Definitely recommend for athletes looking to recover after competition."
+      },
+      {
+        "authorName": "Krista Golightly",
+        "authorUri": "https://www.google.com/maps/contrib/110368559303475392272/reviews",
+        "rating": 5,
+        "relativeTime": "a year ago",
+        "text": "I started going to Zivel in November of 2024 and using cryo therapy, compression, & oxygen and I had so much energy and dropped the last 10 lbs I had been trying to lose!  Then I started cryo slimming and lost almost an inch off my arms in just 2 treatments:) I love it so much! Friendly staff and the owners are knowledgeable and kind. Highly recommend anyone on a wellness journey to visit and try all they have to offer:)"
+      }
+    ]
   },
   "ChIJ2wrmYux_ZIgRBiaOZ9F4OJU": {
     "locationPath": "tennessee/cool-springs",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 18,
+    "googleMapsUri": "https://maps.google.com/?cid=10752476951127926278&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Tammy Howington",
+        "authorUri": "https://www.google.com/maps/contrib/100859662768158271537/reviews",
+        "rating": 5,
+        "relativeTime": "6 months ago",
+        "text": "Nicole is the Best!!!  I have been to many places in my lifetime that I wouldn’t take my own Mom to again; but she is always very kind and knowledgeable of the assets offered by the company.  I will always be a repeat customer and recommend to anyone who is ever interested in receiving the same services that I have received or any other services provided by Nicole or the company.\nNUMBER ONE!!!!\nDefinitely worth a 5 Star Review\nSincerely,\nTamara Howington\n⭐️⭐️⭐️⭐️⭐️"
+      },
+      {
+        "authorName": "Walk2cool",
+        "authorUri": "https://www.google.com/maps/contrib/111312341985330869755/reviews",
+        "rating": 5,
+        "relativeTime": "a year ago",
+        "text": "Zivel has truly captured “wellness” at their Cool Springs clinic. From the Oxygen bar in the waiting room, to the plush changing robes between sauna/cryo sessions. I left feeling totally energized and ready for the day. Thank you Zivel!"
+      },
+      {
+        "authorName": "Melanie Ann C",
+        "authorUri": "https://www.google.com/maps/contrib/109344601683927559289/reviews",
+        "rating": 5,
+        "relativeTime": "11 months ago",
+        "text": "Zivel Performance & Recovery is truly a game-changer! They offer state-of-the-art recovery services that go far beyond your typical wellness center. The staff is incredibly friendly and knowledgeable, making every visit feel comfortable and welcoming. I signed up while training for a half marathon, and it’s been one of the best decisions I’ve made—my body feels absolutely amazing after each visit.  Not only has it helped with recovery, but I also feel more confident staying injury-free throughout my training. Highly recommend!\n\nMelanie Ann"
+      },
+      {
+        "authorName": "Scott moore",
+        "authorUri": "https://www.google.com/maps/contrib/109493111261526516916/reviews",
+        "rating": 5,
+        "relativeTime": "12 months ago",
+        "text": "Zivel has been great over the last few months of Cryotherapy treatments.  Definitely noticing a difference in my chest (main concern area)!  And Nicole is awesome at her job -pleasant and professional!  Will be getting another package of Cryo treatments with Zivel- Cool Springs"
+      },
+      {
+        "authorName": "Eric Descher",
+        "authorUri": "https://www.google.com/maps/contrib/107719746777251872870/reviews",
+        "rating": 5,
+        "relativeTime": "6 months ago",
+        "text": "Nicole is the BEST!! So knowledgeable and so kind! Her facials are top notch. I have also done Cryo slimming and noticed great results. Go see her!"
+      }
+    ]
   },
   "ChIJWfZHnFKDbIcRkP0dRbgJ9cA": {
     "locationPath": "colorado/highlands-ranch",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 4.9,
+    "userRatingCount": 130,
+    "googleMapsUri": "https://maps.google.com/?cid=13904030111614500240&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Jennifer Knudsen",
+        "authorUri": "https://www.google.com/maps/contrib/105851978576972790888/reviews",
+        "rating": 5,
+        "relativeTime": "2 weeks ago",
+        "text": "I can’t say enough amazing things about Zivel - Highlands Ranch! From the moment you walk in, you’re welcomed with warmth, professionalism, and genuine care.\n\nThe owners are truly one of a kind. Deena is so kind, accommodating, and dedicated to making every visit special. You can tell she genuinely cares about each client’s experience and goes above and beyond to ensure everything is perfect.\n\nMy family has received multiple cryo facials from Kaelyn and Lee, and every single one has been wonderful. They are knowledgeable, gentle, and make the treatments both relaxing and effective. We always leave feeling refreshed, glowing, and excited for our next appointment.\n\nIf you’re looking for top-tier service, incredible results, and a team that treats you like family, this is the place. We love the float bed, red light sauna, and cryo chamber Highly, highly recommend!"
+      },
+      {
+        "authorName": "Madison Jenkins",
+        "authorUri": "https://www.google.com/maps/contrib/102498277271581577396/reviews",
+        "rating": 5,
+        "relativeTime": "3 weeks ago",
+        "text": "I recently had a facial with Lee, and once again, it was an exceptional experience. Her treatments are consistently thorough and results driven. My skin always feels refreshed, balanced, and noticeably more radiant after every service. Lee is extremely knowledgeable in the skincare industry and takes the time to educate her clients while thoughtfully addressing individual skin goals and concerns. You can truly tell she is passionate about delivering customized, effective treatments. I highly recommend booking a facial with Lee!! You  won’t be disappointed."
+      },
+      {
+        "authorName": "Tin Tent",
+        "authorUri": "https://www.google.com/maps/contrib/102578183595807263592/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Had such a great experience at Zivel in Highlands Ranch! Lee was absolutely amazing — knowledgeable, professional, and made me feel completely comfortable from start to finish. She took the time to explain everything and customized the experience so it felt really personalized.\nI did the CryoFacial and CryoShaping treatments, and both were fantastic. The CryoFacial left my skin feeling tight, refreshed, and glowing, and the CryoShaping treatment felt incredibly effective and invigorating. You can tell they truly care about results and client experience.\nHighly recommend Lee and the team at Zivel if you’re looking for something that feels both results-driven and luxurious. I’ll definitely be back!"
+      },
+      {
+        "authorName": "Lily Sanchez",
+        "authorUri": "https://www.google.com/maps/contrib/109444682816432090088/reviews",
+        "rating": 5,
+        "relativeTime": "3 weeks ago",
+        "text": "I truly appreciate Lee and the level of care she puts into every treatment. Receiving a facial from her was such a reminder of how passionate and dedicated she is to her craft.\n\nFrom the moment the appointment began, she made me feel comfortable, heard, and genuinely cared for. She took her time analyzing my skin, explaining what it needed, and customizing the entire treatment specifically for me. Nothing felt rushed every step was thoughtful and intentional.\n\nMy skin felt incredibly refreshed, smooth, and radiant afterward. More than that, I left feeling confident and educated about how to maintain my results at home. Lee doesn’t just provide a service  she provides an experience rooted in knowledge, professionalism, and true care.\n\nI’m so grateful for her expertise and would highly recommend her to anyone looking for someone they can truly trust with their skin."
+      },
+      {
+        "authorName": "estheticswkae",
+        "authorUri": "https://www.google.com/maps/contrib/116675902165186847256/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I love that this place is a one stop shop. I’m doing the Body Contouring to help boost my lifestyle results and keep myself tighten and toned. I love that I can also do a Cryofacial at the same time! I just upgraded my facial from my package for a microneedling to target some past acne scarring. Kaelyn has been amazing in helping me understand why these treatments can be so beneficial and recommended sessions and services that fit my goals and lifestyle. and on top of that they also have everything i need to recovery from my exercise plan. 10/10 recommend trying your next beauty service here"
+      }
+    ]
   },
   "ChIJi939hJKr2YgRfV5beSrIpBg": {
     "locationPath": "florida/hollywood",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 144,
+    "googleMapsUri": "https://maps.google.com/?cid=1775764237841030781&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Marcel Desir",
+        "authorUri": "https://www.google.com/maps/contrib/109110552681023821370/reviews",
+        "rating": 5,
+        "relativeTime": "4 months ago",
+        "text": "Dear Zivel,\nWhat an amazing experience! As a first-time visitor, I was truly impressed by how beautiful, clean, and inviting your facility is. Carolina was incredibly helpful, friendly, and knowledgeable about all the amenities, which made my visit even better.\n\nI’m grateful for the opportunity to experience this space, and I will definitely be sharing it with my friends and family. The environment felt peaceful, sacred, and truly special.\n\nThank you so much."
+      },
+      {
+        "authorName": "Karen Matluck",
+        "authorUri": "https://www.google.com/maps/contrib/108210400712662286409/reviews",
+        "rating": 5,
+        "relativeTime": "5 months ago",
+        "text": "I wasn’t sure what to expect when I walked Into Zivel. I absolutely loved the concept, especially because I don’t like to sit still. So everything in there is three minutes in the cold room, which is my favorite all-time favorite room. Especially because you can dance in there oh my God I love that. And then I floated and relaxed for 20 minutes and then I did the infrared for 10 minutes and then I did Isomething that squeezed my hips and my thighs so much that I loved it. You have to go and try it. It’s my new go to.  The staff is amazing. The rooms  are super clean and you just feel very comfortable and you walk out of their feeling at least 10 years younger."
+      },
+      {
+        "authorName": "Naty Esquenazi",
+        "authorUri": "https://www.google.com/maps/contrib/106461939756689606991/reviews",
+        "rating": 5,
+        "relativeTime": "8 months ago",
+        "text": "I went in for a wellness day and ended up trying almost everything—cryotherapy, red light therapy, lymphatic drainage, sauna, and the dry float. Honestly, I loved it all. The space feels super chill and clean, and the staff is really friendly and helpful. I left feeling totally relaxed and recharged. Definitely coming back soon!"
+      },
+      {
+        "authorName": "Ariella Burstein",
+        "authorUri": "https://www.google.com/maps/contrib/106068946814845367830/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I’ve been truly impressed with Zivel Hollywood. On my very first visit I arrived with my lip very swollen because I had accidentally bitten it earlier that day. Without really knowing, I went into the Red Light Therapy just because I wanted to try all the services, and I walked out with the swelling almost completely gone. From the moment I started the session I could feel improvement, and about 15 minutes later the result was honestly amazing. After that I did cryotherapy 2 mins and it finished reducing the inflammation even more. From that day on, Zivel Hollywood became part of my routine.\nI also love the compression therapy, I play tennis and it really helps my recovery. The dry float helps me rest, relax and lower my stress levels. I honestly can’t pick a favorite because I enjoy every service.\nI’m also excited to try the cryo facials since I see everyone loves them, and I’ll definitely share another review after, but so far I absolutely love my experience!"
+      },
+      {
+        "authorName": "Doreen Weiser",
+        "authorUri": "https://www.google.com/maps/contrib/112569490754329783934/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I joined for cryotherapy & also use Red light therapy & compression several times a week. My left hip pain is gone & my skin looks amazing. You will feel results quickly if you go consistently. The owner & staff are amazing 🤩I highly recommend this to everyone. Restorative practices are critical to ones overall health & well being."
+      }
+    ]
   },
   "ChIJcRW5v4CvIIYRV9XzIn-1rjQ": {
     "locationPath": "louisiana/metairie",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 53,
+    "googleMapsUri": "https://maps.google.com/?cid=3796171093571786071&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Gabrielle Clayton",
+        "authorUri": "https://www.google.com/maps/contrib/118104888739342727672/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "If you’re thinking about going to Zivel, you must try it out! I’m so happy I came across this awesome place! I met one of the owners, Chris, and he’s super nice but everyone that works here is also really friendly and they keep everything very clean as well! I love how all the sessions are private and you don’t have to share a room with anyone like some other places. All of their recovery sessions are great especially the infrared sauna and you can choose the lighting that you want or you can change the colors which I think gives a more relaxing experience. I’ve been coming to Zivel for the past few months right before their grand opening and the red light therapy, float therapy, and cryotherapy, etc. really does work so I’ll definitely be continuing my membership! Give it a shot and you won’t regret it!"
+      },
+      {
+        "authorName": "Jonathan Whelan",
+        "authorUri": "https://www.google.com/maps/contrib/109381931131953789818/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "Had a great day at Zivel! First we were greeted by Chris, he is so sweet. He showed us all the modalities we were going to experience. My favorite was the dry float bed. I felt like I slept for a week. Zivel is a great way to relax after a busy holiday season"
+      },
+      {
+        "authorName": "c p",
+        "authorUri": "https://www.google.com/maps/contrib/106587232821205665811/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "Relaxing and rejuvenating experience. The staff is very friendly & knowledgeable. Highly recommend the red light, dry float & cryo therapy!"
+      },
+      {
+        "authorName": "Kristin Offner",
+        "authorUri": "https://www.google.com/maps/contrib/101294677213234622106/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "I just had the most relaxing hour at Zivel Metairie! I did the dry float, red light therapy and leg compressions. You’ll leave feeling like a million bucks! The staff is super friendly and everything is always so clean."
+      },
+      {
+        "authorName": "Corey Gaconi",
+        "authorUri": "https://www.google.com/maps/contrib/101408022329525097491/reviews",
+        "rating": 5,
+        "relativeTime": "7 months ago",
+        "text": "The facilities are really nice and the services they offer are all very beneficial! I did the compression sleeves and they made my legs feel brand new. Also did the cryotherapy which  was an amazing experience! Highly recommend this place if you take your performance and recovery seriously."
+      }
+    ]
   },
   "ChIJYTKz_hoJZIgR1CouEEaQMCY": {
     "locationPath": "tennessee/murfreesboro",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 108,
+    "googleMapsUri": "https://maps.google.com/?cid=2751858002916944596&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Dina Demarest",
+        "authorUri": "https://www.google.com/maps/contrib/116232776844881905198/reviews",
+        "rating": 5,
+        "relativeTime": "a year ago",
+        "text": "This was such a lovely experience. I did the dry float, the compression with oxygen, the sauna and the cryotherapy. It was my favorite day ever. I will be back! Thank you Zivel for showing me a wonderful experience at your spa!"
+      },
+      {
+        "authorName": "James Yates (The Banditos Gun Circus)",
+        "authorUri": "https://www.google.com/maps/contrib/106004293073826501747/reviews",
+        "rating": 5,
+        "relativeTime": "a year ago",
+        "text": "For anyone who has inflammation, who is an athlete, or just wants to relax, they have tools that will give you some relaxation and relief. Give Zivel a try… you won’t regret it. The guy in my pic is Scott Hayes. He owns the franchise and is a great guy!"
+      },
+      {
+        "authorName": "Tyler Holt",
+        "authorUri": "https://www.google.com/maps/contrib/103498764272293981555/reviews",
+        "rating": 5,
+        "relativeTime": "2 years ago",
+        "text": "Love this place! So glad we have one in Murfreesboro.  From the Infrared Sauna to compression  and oxygen to Cryo, this place has it all. Definitely recommend checking this place out  whether you are looking for a good recovery routine after your workout or even just some relaxation. The sauna is my favorite! Love hooking up my music via Bluetooth and just sweating out the stresses\nof the week. Feels like a dance party! 10/10💪🏼"
+      },
+      {
+        "authorName": "Kate Lecornu",
+        "authorUri": "https://www.google.com/maps/contrib/102504909140938162234/reviews",
+        "rating": 5,
+        "relativeTime": "9 months ago",
+        "text": "If you are in the Murfreesboro area and looking for a recovery center, I highly recommend Zivel. My son was visiting the area for a soccer tournament and needed some recovery in his downtime. The location is very clean and the services are top of the line. They have everything from oxygen to cryotherapy."
+      },
+      {
+        "authorName": "madison jordan",
+        "authorUri": "https://www.google.com/maps/contrib/114072271185798854948/reviews",
+        "rating": 5,
+        "relativeTime": "a year ago",
+        "text": "Scott and Luke are absolutely great! Amazing customer service! Loved the whole experience! I was able to try each service and I was truly amazed. I’m no athlete but I am a mother with a new baby and I am a full time server and let me tell you… it was amazing for my mental and physical health, I can’t imagine how much it would be helpful for an athlete or someone who works out! 💪🏽 the environment was relaxing and very clean!"
+      }
+    ]
   },
   "ChIJXQjPuRuxQYgRdVqMxDTFhb4": {
     "locationPath": "kentucky/newport",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 50,
+    "googleMapsUri": "https://maps.google.com/?cid=13728595869535328885&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Chad Cattani",
+        "authorUri": "https://www.google.com/maps/contrib/100259756832748301055/reviews",
+        "rating": 5,
+        "relativeTime": "2 weeks ago",
+        "text": "I got a membership before they opened, and I couldn’t be happier with that decision. Zivel is a great place for quality recovery. The staff is all incredibly nice and attentive. The facility is SPOTLESS at all times. My favorite is doing the infared sauna followed by the cryo booth - I always feel energized and refreshed after. My daughter also has a membership to aid in her recovery from soccer. She loves the leg compression and float tank! 10/10 would recommend!"
+      },
+      {
+        "authorName": "Karen Hoskins",
+        "authorUri": "https://www.google.com/maps/contrib/102684942647550240701/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Great experience.  The cryo facial is amazing and has done a great job toning and smoothing.  The cryoslimming is also very effective.  While both are working and I can see the improvement in tone and smoothness, I can’t say enough about how relaxing both services are…plus Gina is great!"
+      },
+      {
+        "authorName": "Payson Briggs",
+        "authorUri": "https://www.google.com/maps/contrib/100480506067650622030/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I’ve had a great experience at Zivel rehabbing from rotator cuff repair surgery. The staff have been super welcoming and the float therapy, sauna, cryotherapy, and compression have been a great adjunct to physical therapy. At 1 month post surgery I feel ahead of schedule and am grateful for Zivel for facilitating my progress."
+      },
+      {
+        "authorName": "Taylor Hummeldorf",
+        "authorUri": "https://www.google.com/maps/contrib/116522410093756460180/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "My daughter and I visited Zivel and we had an amazing experience. We really appreciated Shaelyn Kamp explaining everything and helping us along the way. She was the best! I loved the cryotherapy and my daughter really enjoyed the dry floatation therapy! We will be back."
+      },
+      {
+        "authorName": "Heather Thomas",
+        "authorUri": "https://www.google.com/maps/contrib/111185709311295378212/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Love being a member at Zivel Newport and getting unlimited services for one price!\nStaff is so kind and welcoming.\nBooking services is easy and I’m loving the choice and convenience of several recovery options.\nPresently-Compression therapy is my top favorite and go to!"
+      }
+    ]
   },
   "ChIJj-Iwlobr5ogRfJmFlZN-Cf4": {
     "locationPath": "florida/palm-coast",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 71,
+    "googleMapsUri": "https://maps.google.com/?cid=18305301332757944700&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Cheyenne White",
+        "authorUri": "https://www.google.com/maps/contrib/105752178631405630618/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "I have been to a lot of places like this… But this one is genuinely a stand out. Kelly and Victoria took the time to listen to every question I had. They gave me a proper tour of the facilities and wow, Zivel is by far the cleanest health and wellness spa I have ever seen. I worked with them to discuss my goals of skin health, eliminating fluid retention/bloating plus addressing muscle/back aches. I tried compression therapy for arms/hips/legs (yes they have all three!). Legs is my favorite, with hips a close second. I’ve been doing red light therapy here about 3x a week and I have never felt better. I use to wake up tired and groggy and then unable to sleep well at night. The red light is not only helping my energy levels but renewing my skin and muscles. And it’s not a small red light panel that most wellness spas/gyms have. It’s a full body red light bed! I have also tried the oxygen bar, infrared sauna, cryofacials and cryotoning/body contouring. The results, the professionalism, the care - Zivel has become my new go-to and it should be yours too!"
+      },
+      {
+        "authorName": "CoachBob79 S",
+        "authorUri": "https://www.google.com/maps/contrib/111918341970907196054/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "We love Zivel Palm Coast! Between the 3 of us in the family who have used the services, we have loved them all!\n\nI tried Float and Red Light therapy today.\n\nKelly, the owner is very knowledgeable and attentive to our youn athlete’s needs.\nVictoria, Cheyenne, and all of the other ladies we have seen have been so kind and helpful.\n\n100% recommend for anyone."
+      },
+      {
+        "authorName": "Lisa Bechtol",
+        "authorUri": "https://www.google.com/maps/contrib/104806207989747157288/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "Zivel – Palm Coast holds a flawless 5.0 ★ rating for good reason. This is a modern wellness and recovery studio that blends state-of-the-art therapies with a soothing, spa-like atmosphere. The staff is exceptional, they are attentive, genuinely caring that your experience is above and beyond.  The staff is  knowledgeable about the variety of innovative treatments—cryotherapy, infrared sauna, float therapy, red light therapy, and compression—that support muscle recovery, reduce inflammation, and restore energy.  I workout 5 days a week and recovery is crucial.\nSo. whether you’re training hard, recovering from injury, or simply recharging your mind and body, Zivel helps you feel whole again."
+      },
+      {
+        "authorName": "Sheila Sullivan",
+        "authorUri": "https://www.google.com/maps/contrib/108106381642281628315/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Zivel is a nice, homey relaxing place to go to recover and recharge. You can step away from the cold into the infrared sauna or escape the summer heat by going into the cryotherapy chamber.  It's a friendly, welcoming place that I try to make time for as often as I can.\nI always feel relaxed when I leave.\nI like to do the red light therapy, float and end with a sauna.  If I'm in a rush and want a quick pick me up, then I'll opt for the cryotherapy and compression.\nThe facility is clean and feels like you're in a fancy spa without the fancy spa prices.I appreciate how kind and helpful Victoria, Kelly and everyone are.\nI'd highly recommend checking it out!"
+      },
+      {
+        "authorName": "Jacqueline V",
+        "authorUri": "https://www.google.com/maps/contrib/103104445216813742877/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "If you are looking for more than just a standard treatment, Zivel in Palm Coast is the place to go. From the moment you walk in, you aren't treated like just another client on the schedule—you are treated like a friend.\n​The Cryofacial Difference:\n​I have seen a massive difference in my skin since starting my cryofacials. The results are visible and impressive, especially my neck; but the experience itself is what keeps me coming back.\n​Robin is truly the epitome of what an esthetician should be. Her approach is the perfect blend of professional knowledge and genuine care:\n​Educational: She walks you through every step of the process so you know exactly what is happening. If you want the \"quiet\" treatment, very accommodating (more of that below).\n​Transparent: She sets clear expectations for the outcome, so there are never any guesses.\n​Accommodating: She goes out of her way to make sure you are comfortable and allows you to set the tone of the room during your treatment.\n​It is rare to find someone so full of knowledge who also makes you feel so welcomed. I cannot recommend Robin and the team at Zivell enough!"
+      }
+    ]
   },
   "ChIJe_IaW4mPbIcR1irKWiajjIY": {
     "locationPath": "colorado/parker",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 28,
+    "googleMapsUri": "https://maps.google.com/?cid=9695303482949118678&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Lynda M",
+        "authorUri": "https://www.google.com/maps/contrib/102541628311316793410/reviews",
+        "rating": 5,
+        "relativeTime": "2 weeks ago",
+        "text": "I love this place! So happy they're in the neighborhood! I've started doing Cryo and IR Sauna to help with inflammation and better circulation, and it's also helped improve my sleep and with my energy. I have been feeling amazing since I started coming to Zivel. This place is new, clean, comfortable and so worth the membership! Additionally, the gals at the front desk are amazing! M.E. especially has been amazing and so helpful getting me acclimated to the services and just feeling comfortable during each visit. This is a one stop shop for recovery. So happy you're here!"
+      },
+      {
+        "authorName": "Michael Lynch",
+        "authorUri": "https://www.google.com/maps/contrib/103604232312943321197/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "5-Star Review: Zivel in Parker is Pure Heaven for Recovery and Rejuvenation!\n\nI recently signed up for the monthly subscription at Zivel in Parker, and wow—what an incredible introduction to next-level wellness! The package includes cryotherapy, infrared sauna, red light therapy, compression and oxygen therapy.  There are also some premium services cyro slimming, toning and facial for an additional nominal fee!  It's already become my go-to for feeling refreshed and youthful.\n\nFrom the moment I walked in, I was greeted by two amazing young ladies—M.E. and Paige (I believe those were their names). They were incredibly helpful, pleasant, knowledgeable, and made the whole experience so welcoming and fun. They guided me through nearly everything on offer, and I left feeling like a new person!\n\nI started with the Cryolift facial—about 45 minutes of soothing cold therapy that left my skin glowing and, honestly, I swear it took 20 years off my wrinkles! Then came 15 minutes in the infrared sauna—pure bliss for these aching bones; it warmed me up and melted away tension like nothing else.\n\nNext, M.E. got me into the cryo chamber for a quick 3-minute session at -151 degrees. I walked out feeling completely rejuvenated, energized, and youthful—truly amazing!\nAfter that, 30 minutes of compression therapy on both legs—it circulated my blood and lymphatic system so effectively that my legs felt like they belonged to my 20-year-old self again. No more heaviness or soreness!\n\nI followed up with 15 minutes of red light therapy, which I know works best with consistency, so I'm committing to 3–4 sessions a week moving forward. The benefits for skin, recovery, and circulation are already noticeable.\n\nTo cap it all off, I ended with float therapy in their dry float bed—warm water, a heavy blanket, eye mask, and soothing music for 30 minutes. I fell asleep in about 5 minutes and woke up feeling like I'd had the best rest of my life. Incredible!\n\nOverall, Zivel Parker delivers an exceptional, luxurious experience in a clean, modern space with top-tier equipment and genuinely caring staff. If you're looking to recover faster, reduce pain and inflammation, boost your energy, or just treat yourself to some serious self-care, this place is a piece of heaven. Highly recommend carving out time in your day to try it—you won't regret it!\n\nMore updates to come as I keep going back. Thank you, Zivel team—you're changing lives one session at a time!"
+      },
+      {
+        "authorName": "Giovanni Tranquill",
+        "authorUri": "https://www.google.com/maps/contrib/109330347258608650796/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Got cryo done for the first time. Felt amazing after. The girls that work here are amazing. Super professional and fast. They keep the place clean and tidy. I’ll definitely be back."
+      },
+      {
+        "authorName": "Catherine Sze",
+        "authorUri": "https://www.google.com/maps/contrib/107246764535883659084/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I had a great experience at Zivel (Parker location) and highly recommend it. I did a dry float session and found it incredibly relaxing from start to finish. The atmosphere was calm and spa-like, with soothing scents that immediately helped me unwind.\n\nThe music options were surprisingly diverse and relaxing, which made it easy to personalize the experience, and the equipment was clearly high quality, spotless, and well maintained. What really stood out, though, was the staff—they were knowledgeable, welcoming, and took the time to explain everything so I felt completely comfortable.\n\nIt was a relaxing, high-quality experience and one I’d happily do again."
+      },
+      {
+        "authorName": "Alejandra Pizana",
+        "authorUri": "https://www.google.com/maps/contrib/110339129360929336281/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I absolutely love this place!! I got their unlimited membership because I really wanted some recovery services to help in my weight loss journey. It's a game changer. I also love that their is a huge anti aging component. The staff is all so friendly and I look forward to my appointments."
+      }
+    ]
   },
   "ChIJp1GibQmFUocRBLMZt3xJW9k": {
     "locationPath": "utah/riverton",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 246,
+    "googleMapsUri": "https://maps.google.com/?cid=15662192929107718916&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "aimee ibarra",
+        "authorUri": "https://www.google.com/maps/contrib/100457248235120820880/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "I have been coming here for a number of months now. Jolie the manager works very hard to make sure every client is taken care of and supported. All the staff are so sweet and personable. Big shout out to Naomi! She went above and beyond to make a recent visit for my daughter’s birthday extra special. They happened to be extra busy that day and even so she made sure we got to do all the modalities. Speaking of which, the infrared sauna and cryo chamber are my absolute favorites. I can go in to the cryo chamber so low energy and come out 3 minutes later ready to take on the world. Thank you Jolie and staff! Lovely to have a home away from home 🙏"
+      },
+      {
+        "authorName": "Jenny Perry",
+        "authorUri": "https://www.google.com/maps/contrib/109665948809477752678/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "Zivel has been great for my daughter who suffers from chronic migraines. She uses the float therapy that relaxes and feeds oxygen while she floats on an air bed. Jolie recommended this for her and I am so grateful. She knew of my daughter’s struggles and knew these therapies could help. Thank you Jolie! Kortney is so good to work with also, and makes sure you are taken care of. Thanks again."
+      },
+      {
+        "authorName": "M L",
+        "authorUri": "https://www.google.com/maps/contrib/117772613103206036264/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "Zivel in Riverton is a wonderful place to unwind after a long day, if you need after care from an injury or mental health clarity, as well.  The staff is great at listening and helping with your individual needs, whatever they maybe. I highly recommend Jolie and Adri they are FANTASTIC😊"
+      },
+      {
+        "authorName": "William Blackburn",
+        "authorUri": "https://www.google.com/maps/contrib/100817038751328534464/reviews",
+        "rating": 5,
+        "relativeTime": "3 months ago",
+        "text": "Wow!!! I love this place! I have a membership and I put it to good use. The staff is great!\nJolie Fazio is amazing to work with. She addresses any concerns or questions and she's just fun to have a conversation with.\nI have noticed big improvements with my health. The sauna, cryotherapy, red light, etc. It all helps! I recommend this to anyone. It especially helps me with depression and my soreness after a workout.\nI also just had a cryotherapy facial from Annie. Instant results! Puffy face is gone. And it just looks really vibrant. Annie is very friendly and has a sweet soul."
+      },
+      {
+        "authorName": "jennifer prince",
+        "authorUri": "https://www.google.com/maps/contrib/109133359069181343978/reviews",
+        "rating": 5,
+        "relativeTime": "3 months ago",
+        "text": "Annie Thurston has done it again! Today I had the opportunity to gift cryofacials at ZIVEL in Riverton to my 4 Besties (and myself) for some much needed \"self care during the holidays\" time. ❤️ Annie is a leading professional in the esthetician industry, who takes quality time with genuine care to provide the very best cryo service experience to her clients. Thank you Annie, and thank you ZIVEL! Having a membership at your facility with access to all of the many wonderful services you offer has enriched my life greatly."
+      }
+    ]
   },
   "ChIJAxzaK14RyYcR1S8wLP9Gq4I": {
     "locationPath": "arkansas/rogers",
-    "rating": null,
-    "userRatingCount": null,
-    "googleMapsUri": null,
-    "reviews": []
+    "rating": 5,
+    "userRatingCount": 38,
+    "googleMapsUri": "https://maps.google.com/?cid=9415697507720114133&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviews": [
+      {
+        "authorName": "Leanne Namio",
+        "authorUri": "https://www.google.com/maps/contrib/107485828376235011088/reviews",
+        "rating": 5,
+        "relativeTime": "3 weeks ago",
+        "text": "Love Zivel. The compression works wonders on my arthritic shoulder. The staff and owners are very professional and extremely pleasant. Thank you, Zivel."
+      },
+      {
+        "authorName": "Zachary Miller",
+        "authorUri": "https://www.google.com/maps/contrib/116784439019808948704/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "I love this place. I have been going to Zivel for months now, and can't say enough good things about it. The staff, particularly Kare, Candice and Lauren are all so friendly and helpful. The owners, Joe and Cheri are also great.\nThe spa offers a number of different services, and I have meshed into a regular routine here. My sleep is improved, as is my eczema. I feel much better coming to Zivel, and highly recommend this establishment. Thanks, folks."
+      },
+      {
+        "authorName": "David Burris",
+        "authorUri": "https://www.google.com/maps/contrib/111078868798809006339/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "This location is the best. Candace greets me with a smile every time. Kare has been absolutely amazing since my first time there. She made sure to answer all my questions and explain all the options to me. Kare is truly passionate about helping me achieving my goals and that means a lot. I don’t feel like just a customer there. Candace and Kare give amazing personalized customer service. These two are the reason I drive all the way to  this location in Rogers. Thank you Candace and Kare!"
+      },
+      {
+        "authorName": "Jake McCullar",
+        "authorUri": "https://www.google.com/maps/contrib/117646043763668389966/reviews",
+        "rating": 5,
+        "relativeTime": "2 months ago",
+        "text": "Around the holidays, like most people, I spent my time around an abundance of food, family, and festivities. Overindulgence is a consistent theme during this time of the year.\n\nI was looking for something to compliment my goals heading into the new year and was fortunate enough to stumble upon Zivel - Rogers.\n\nTheir state of the art equipment and variety of services are sure to deliver no matter what needs you have. From Cryo, to saunas, red light therapy, cold tank, etc... the list goes on and on. You will always leave refreshed and relaxed.\n\nBut it isn't the equipment or the results that leave the lasting impression and makes you excited to come back, it's the people. After a personalized meet and greet with the owner, I was placed in the great hands of Candace and Kare and the rest is history.\n\nCandace welcomes you in with a warm smile and enthusiastic presence that makes you feel like you are their top client. She takes time to get to know you and ensure you are well taken care of. The conversations are always thoughtful and present and guarantees to have you looking forward to your next visit.\n\nKare is nothing short of exceptional. After a thorough tour of all their offerings, she takes her time to better understand your needs and goals. Her personality and positivity radiates thru the entire office and makes you feel like you are in the best hands possible. She is someone who cares deeply about her clients and wants them to have an elevated experience that leaves a lasting impression. You come in for the treatments, but you stay because of her.\n\nIn a world where customer service is hard to find, the Zivel team has raised the bar. I can honestly say that my time spent there has been nothing short of incredible and I would encourage you to go see for yourself.\n\nKare/Candace, I genuinely appreciate you both and look forward to many future visits. Thanks for always taking such great care of me!"
+      },
+      {
+        "authorName": "Penny",
+        "authorUri": "https://www.google.com/maps/contrib/114335294362611120239/reviews",
+        "rating": 5,
+        "relativeTime": "a month ago",
+        "text": "So much fun with my friend, we had compression to our legs and hip compression. The oxygen therapy made it all worth the trip. If you ever want to feel good on a regular basis try Zivel with Brianna and Kare. Thank you for the experience and the opportunity to share my experience"
+      }
+    ]
   }
 }
