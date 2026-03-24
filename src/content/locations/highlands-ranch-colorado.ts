@@ -40,11 +40,7 @@ export const zivel_highlands_ranch_location: Location = {
     "slug": "cryotherapy"
   },
   {
-    "name": "Red Light Therapy",
-    "slug": "red-light-therapy"
-  },
-  {
-    "name": "Infrared Sauna",
+    "name": "Infrared Sauna w/ Red Light",
     "slug": "infrared-sauna"
   },
   {
@@ -103,7 +99,7 @@ export const zivel_highlands_ranch_location: Location = {
     ],
     standardPrices: [
       { name: "Cryotherapy", price: "$45", note: "Single session" },
-      { name: "Infrared Sauna", price: "$50", note: "Single session" },
+      { name: "Infrared Sauna w/ Red Light", price: "$50", note: "Single session" },
       { name: "Dry Float", price: "$50", note: "Single session" },
       { name: "Compression Therapy", price: "$30", note: "Single session" },
       { name: "Oxygen Bar", price: "$20", note: "Single session" },
