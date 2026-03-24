@@ -969,7 +969,7 @@ export default async function LocationPage({
               <p className="zv-tagline">Client Feedback</p>
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Clients Are Saying</h2>
             </ScrollReveal>
-            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} />
+            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} variant="light" />
           </div>
         </section>
       ) : (
@@ -979,7 +979,7 @@ export default async function LocationPage({
               <p className="zv-tagline">Client Feedback</p>
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Clients Are Saying</h2>
             </ScrollReveal>
-            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} />
+            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} variant="dark" />
           </div>
         </section>
       )}
