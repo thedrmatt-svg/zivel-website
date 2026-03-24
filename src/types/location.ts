@@ -91,6 +91,14 @@ export type Location = {
       bookingUrl: string;
       featured?: boolean;
     }[];
+    specialDealsBottom?: {
+      name: string;
+      price: string;
+      savings?: string;
+      benefits?: string[];
+      bookingUrl: string;
+      featured?: boolean;
+    }[];
     standardPrices?: {
       name: string;
       price: string;

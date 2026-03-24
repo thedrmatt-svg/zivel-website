@@ -82,18 +82,6 @@ export const zivel_cumming_windermere_location: Location = {
     mapEmbedUrl: "",
   },
 
-  announcement: {
-    headline: "Grand Opening Event This Weekend!",
-    dates: "Friday, March 20 – Sunday, March 22",
-    body: "Join us at 3775 Windermere Pkwy for big savings and to try out our Recovery Services!",
-    cta: "Take advantage of Grand Opening Savings below!",
-    buttons: [
-      { label: "5 Cryo Facials for $500", href: "https://app.clubready.com/JoinUs/14944/648827", variant: "gold" },
-      { label: "5 Cryo Slimmings for $1,000", href: "https://app.clubready.com/JoinUs/14944/648827", variant: "gold" },
-      { label: "10 Cryo Slimmings for $1,500", href: "https://app.clubready.com/JoinUs/14944/648829", variant: "gold" },
-    ],
-  },
-
   pricing: {
     specialDealsPosition: "top",
     membershipTiers: [
@@ -136,6 +124,23 @@ export const zivel_cumming_windermere_location: Location = {
           "Discounts on Premium Services",
         ],
         bookingUrl: "https://app.clubready.com/JoinUs/14944/637626",
+      },
+    ],
+    specialDealsBottom: [
+      {
+        name: "5 Cryo Facials",
+        price: "$500",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/648827",
+      },
+      {
+        name: "5 Cryo Slimmings",
+        price: "$1,000",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/648827",
+      },
+      {
+        name: "10 Cryo Slimmings",
+        price: "$1,500",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/648829",
       },
     ],
     standardPrices: [
