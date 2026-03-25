@@ -12,44 +12,36 @@ import HorizontalScroller from "@/components/ui/HorizontalScroller";
 
 const SITE_URL = "https://www.zivel.com";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const enUrl = `${SITE_URL}/`;
-  const esUrl = `${SITE_URL}/es/`;
-  const canonicalUrl = locale === "es" ? esUrl : enUrl;
-
-  return {
+export const metadata: Metadata = {
+  title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+  description:
+    "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session at Zivel today.",
+  keywords: ["cryotherapy", "infrared sauna", "red light therapy", "cryo facial", "recovery", "performance"],
+  alternates: {
+    canonical: `${SITE_URL}/`,
+    languages: {
+      en: `${SITE_URL}/`,
+      es: `${SITE_URL}/es/`,
+      "x-default": `${SITE_URL}/`,
+    },
+  },
+  openGraph: {
     title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
     description:
-      "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session at Zivel today.",
-    alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        en: enUrl,
-        es: esUrl,
-        "x-default": enUrl,
-      },
-    },
-    openGraph: {
-      title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
-      description: "Science-backed recovery, performance, and aesthetics services.",
-      url: "https://www.zivel.com",
-      siteName: "Zivel",
-      type: "website",
-      images: [{ url: "https://www.zivel.com/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
-      description: "Science-backed recovery, performance, and aesthetics services.",
-      images: ["https://www.zivel.com/images/og-image.jpg"],
-    },
-  };
-}
+      "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more.",
+    url: `${SITE_URL}`,
+    siteName: "Zivel",
+    type: "website",
+    images: [{ url: `${SITE_URL}/images/og-image.jpg`, width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+    description:
+      "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more.",
+    images: [`${SITE_URL}/images/og-image.jpg`],
+  },
+};
 
 const serviceImageMap: Record<string, string> = {
   "cryotherapy": "/images/home/service-cryo.jpg",
