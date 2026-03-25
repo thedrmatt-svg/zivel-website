@@ -25,7 +25,7 @@ export async function generateMetadata({
   return {
     title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
     description:
-      "Zivel delivers cutting-edge wellness technology nationwide — expert-led recovery, body contouring, and skin rejuvenation in serene private studios. Book cryo, red light, infrared sauna, CryoLift Facial and more.",
+      "Zivel offers science-backed recovery, performance, and aesthetics services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session today.",
     alternates: {
       canonical: canonicalUrl,
       languages: {
