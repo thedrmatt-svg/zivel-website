@@ -136,35 +136,15 @@ export default function HomePage() {
           </ScrollReveal>
 
           <ScrollReveal variant="scale" delay={200}>
-            <div className="rounded-2xl zv-card-glass p-6 md:p-8">
-              <p className="mb-8 text-center max-w-lg mx-auto">
-                Choose your location, select a service, and pick a time that works for you.
-              </p>
-
-              <div className="overflow-hidden rounded-xl border border-black/10">
-                <iframe
-                  className="block h-[640px] w-full bg-white"
-                  style={{ marginBottom: '-60px' }}
-                  src="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
-                  title="Book an appointment at Zivel"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-              </div>
-
-              <p className="mt-6 text-center text-sm text-black/40">
-                If the booking form does not load,{" "}
-                <a
-                  href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-[var(--zivel-gold-dark)] zv-gold-underline"
-                >
-                  open the booking page
-                </a>
-                .
-              </p>
+            <div className="flex justify-center my-12">
+              <a
+                href="https://zivel.myperformanceiq.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#FFD700] hover:bg-[#E6C200] text-black font-semibold text-xl px-12 py-5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
+              >
+                Book Now
+              </a>
             </div>
           </ScrollReveal>
         </div>
