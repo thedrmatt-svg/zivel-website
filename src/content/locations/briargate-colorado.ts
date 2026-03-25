@@ -3,6 +3,7 @@ import type { Location } from "@/types/location";
 export const zivel_briargate_location: Location = {
   name: "Zivel Briargate",
   slug: "briargate",
+  city: "Colorado Springs",
   state: "CO",
   stateSlug: "colorado",
   citySlug: "briargate",
