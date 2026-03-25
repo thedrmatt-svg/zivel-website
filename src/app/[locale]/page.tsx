@@ -23,7 +23,7 @@ export async function generateMetadata({
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
 
   return {
-    title: "Zivel | Recovery, Performance & Aesthetics",
+    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
     description:
       "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session at Zivel today.",
     alternates: {
@@ -36,17 +36,17 @@ export async function generateMetadata({
     },
     openGraph: {
       title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
-      description:
-        "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
+      description: "Science-backed recovery, performance, and aesthetics services.",
       url: "https://www.zivel.com",
-      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
+      siteName: "Zivel",
+      type: "website",
+      images: [{ url: "https://www.zivel.com/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
     },
     twitter: {
       card: "summary_large_image",
       title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
-      description:
-        "Modern wellness technology for pain relief, fat loss, skin rejuvenation, and performance. Find your local studio and book today.",
-      images: ["/images/og-image.jpg"],
+      description: "Science-backed recovery, performance, and aesthetics services.",
+      images: ["https://www.zivel.com/images/og-image.jpg"],
     },
   };
 }
