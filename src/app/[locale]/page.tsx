@@ -105,7 +105,7 @@ export default function HomePage() {
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="#book" className="zv-btn-luxury zv-btn-gold">
+            <a href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417" target="_blank" rel="noopener noreferrer" className="zv-btn-luxury zv-btn-gold">
               Book Your Session
             </a>
             <a href="#services" className="zv-btn-luxury zv-btn-outline">
@@ -132,7 +132,7 @@ export default function HomePage() {
           <ScrollReveal variant="scale" delay={200}>
             <div className="flex justify-center my-12">
               <a
-                href="https://zivel.myperformanceiq.com/"
+                href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-[#FFD700] hover:bg-[#E6C200] text-black font-semibold text-xl px-12 py-5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
@@ -443,7 +443,7 @@ export default function HomePage() {
               Book a session today—or build a routine with memberships designed for consistency.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="#book" className="zv-btn-luxury zv-btn-gold">
+              <a href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417" target="_blank" rel="noopener noreferrer" className="zv-btn-luxury zv-btn-gold">
                 Book Now
               </a>
               <Link href="/memberships" className="zv-btn-luxury zv-btn-outline">

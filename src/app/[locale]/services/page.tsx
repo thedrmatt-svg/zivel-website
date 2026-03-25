@@ -58,12 +58,14 @@ export default function ServicesIndexPage() {
                 >
                   View Locations
                 </Link>
-                <Link
-                  href="/#book"
+                <a
+                  href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="zv-btn-luxury zv-btn-gold"
                 >
                   Book Now
-                </Link>
+                </a>
               </div>
             </ScrollReveal>
           </div>

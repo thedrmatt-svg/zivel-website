@@ -250,7 +250,7 @@ export default async function LocationPage({
             )}
 
             <div className="flex flex-wrap gap-4 pt-6 zv-hero-animate-4">
-              <a href="#book" className="zv-btn-luxury zv-btn-gold">
+              <a href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417" target="_blank" rel="noopener noreferrer" className="zv-btn-luxury zv-btn-gold">
                 Book Now
               </a>
               <Link href="/services" className="zv-btn-luxury zv-btn-outline">
@@ -1063,7 +1063,7 @@ export default async function LocationPage({
                 <div className="text-center max-w-3xl mx-auto space-y-6">
                   <h2 className="font-serif text-5xl md:text-6xl font-light tracking-tight">{location.finalCTA.headline}</h2>
                   <div className="mt-8">
-                    <a href="#book" className="zv-btn-luxury zv-btn-gold">
+                    <a href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417" target="_blank" rel="noopener noreferrer" className="zv-btn-luxury zv-btn-gold">
                       Book Your Visit
                     </a>
                   </div>
