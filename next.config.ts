@@ -39,10 +39,13 @@ const nextConfig: NextConfig = {
       { source: "/:path*", has: [{ type: "host" as const, value: "coralgables.zivel.com" }], destination: "https://www.zivel.com/locations/florida/coral-gables/:path*", permanent: true },
       { source: "/:path*", has: [{ type: "host" as const, value: "brecksville.zivel.com"  }], destination: "https://www.zivel.com/locations/ohio/brecksville/:path*",     permanent: true },
 
+      // ── Franchisee domain redirects ─────────────────────────────────────
+      { source: "/locations/north-carolina/belmont{/}?", destination: "https://www.belmontzivel.com", permanent: true },
+
       // ── Legacy / typo path redirects ────────────────────────────────────
       { source: "/riverton{/}?",                                  destination: "https://www.zivel.com/locations/utah/riverton",           permanent: true },
       { source: "/locations/mississippi/hernando/fieldhouse{/}?", destination: "https://www.zivel.com/locations/mississippi/fieldhouse",  permanent: true },
-      { source: "/locations/northcarolina/belmont{/}?",           destination: "https://www.zivel.com/locations/north-carolina/belmont",  permanent: true },
+      { source: "/locations/northcarolina/belmont{/}?",           destination: "https://www.belmontzivel.com",                           permanent: true },
       { source: "/locations/florida/coralgables{/}?",             destination: "https://www.zivel.com/locations/florida/coral-gables",    permanent: true },
       { source: "/locations/colorado/highlandsranch{/}?",         destination: "https://www.zivel.com/locations/colorado/highlands-ranch",permanent: true },
       { source: "/locations/georgie/cumming/windermere{/}?",      destination: "https://www.zivel.com/locations/georgia/windermere",      permanent: true },
@@ -51,7 +54,7 @@ const nextConfig: NextConfig = {
       // ── Squarespace-era bare-slug shortcuts ─────────────────────────────
       { source: "/coolspot{/}?",        destination: "https://www.zivel.com",                                       permanent: true },
       { source: "/cherryhills{/}?",     destination: "https://www.zivel.com",                                       permanent: true },
-      { source: "/belmont{/}?",         destination: "https://www.zivel.com/locations/north-carolina/belmont",      permanent: true },
+      { source: "/belmont{/}?",         destination: "https://www.belmontzivel.com",                                permanent: true },
       { source: "/bentonville{/}?",     destination: "https://www.zivel.com/locations/arkansas/bentonville",        permanent: true },
       { source: "/brecksville{/}?",     destination: "https://www.zivel.com/locations/ohio/brecksville",            permanent: true },
       { source: "/briargate{/}?",       destination: "https://www.zivel.com/locations/colorado/briargate",          permanent: true },
