@@ -23,9 +23,9 @@ export async function generateMetadata({
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
 
   return {
-    title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+    title: "Zivel | Recovery, Performance & Aesthetics",
     description:
-      "Zivel offers science-backed recovery, performance, and aesthetics services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session today.",
+      "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session at Zivel today.",
     alternates: {
       canonical: canonicalUrl,
       languages: {
