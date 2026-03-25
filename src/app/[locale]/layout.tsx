@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { headers } from "next/headers";
 import { Playfair_Display, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 
@@ -22,66 +21,41 @@ const inter = Inter({
   display: "swap",
 });
 
-const SITE_URL = "https://www.zivel.com";
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  await params;
-  const headersList = await headers();
-  const pathname = headersList.get("x-pathname") ?? "/";
-
-  const enPathname = pathname.startsWith("/es")
-    ? pathname.replace(/^\/es/, "") || "/"
-    : pathname;
-  const esPathname = pathname.startsWith("/es") ? pathname : `/es${pathname}`;
-
-  return {
-    title: {
-      default: "Zivel | Recovery, Performance & Aesthetics",
-      template: "%s | Zivel",
-    },
+export const metadata: Metadata = {
+  title: {
+    default: "Zivel | Recovery, Performance & Aesthetics",
+    template: "%s | Zivel",
+  },
+  description:
+    "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session at Zivel today.",
+  openGraph: {
+    title: "Zivel | Recovery, Performance & Aesthetics",
     description:
-      "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session at Zivel today.",
-    openGraph: {
-      title: "Zivel | Recovery, Performance & Aesthetics",
-      description:
-        "Science-backed recovery, performance, and aesthetics services. Find your local Zivel studio and book today.",
-      url: "https://www.zivel.com",
-      siteName: "Zivel",
-      type: "website",
-      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Zivel | Recovery, Performance & Aesthetics",
-      description:
-        "Science-backed recovery, performance, and aesthetics services. Find your local Zivel studio and book today.",
-      images: ["/images/og-image.jpg"],
-    },
-    robots: {
+      "Science-backed recovery, performance, and aesthetics services. Find your local Zivel studio and book today.",
+    url: "https://www.zivel.com",
+    siteName: "Zivel",
+    type: "website",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zivel | Recovery, Performance & Aesthetics",
+    description:
+      "Science-backed recovery, performance, and aesthetics services. Find your local Zivel studio and book today.",
+    images: ["/images/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
       index: true,
       follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
-    alternates: {
-      canonical: `${SITE_URL}${pathname}`,
-      languages: {
-        en: `${SITE_URL}${enPathname}`,
-        es: `${SITE_URL}${esPathname}`,
-        "x-default": `${SITE_URL}${enPathname}`,
-      },
-    },
-  };
-}
+  },
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
