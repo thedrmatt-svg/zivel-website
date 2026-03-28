@@ -1,3 +1,7 @@
+# Generated intermediate assets (not for deployment)
+attached_assets/generated_images/
+attached_assets/generated_videos/
+
 # Logs
 logs
 *.log
