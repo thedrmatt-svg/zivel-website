@@ -227,17 +227,19 @@ export default async function LocationPage({
       {/* ========== HERO (DARK) ========== */}
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="location-hero-title">
         <div className="pt-20">
-          <Image
-            src={heroImage}
-            alt={location.name}
-            width={1920}
-            height={800}
-            priority
-            fetchPriority="high"
-            sizes="100vw"
-            quality={80}
-            style={{ width: '100%', height: 'auto', display: 'block' }}
-          />
+          <div style={{ overflow: 'hidden', aspectRatio: '1920/672' }}>
+            <Image
+              src={heroImage}
+              alt={location.name}
+              width={1920}
+              height={800}
+              priority
+              fetchPriority="high"
+              sizes="100vw"
+              quality={80}
+              style={{ width: '100%', height: 'auto', display: 'block', marginTop: '-3.333vw' }}
+            />
+          </div>
         </div>
 
         <div className="bg-black text-white px-6 pt-6 md:pt-8 pb-10 md:pb-14">
