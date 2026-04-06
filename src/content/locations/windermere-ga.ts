@@ -55,7 +55,7 @@ const windermere_ga: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11617,
   },
 
   faqs: [

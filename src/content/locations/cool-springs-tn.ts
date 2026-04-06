@@ -55,7 +55,7 @@ const cool_springs_tn: Location = {
   ],
 
   booking: {
-    locationId: 11417,
+    locationId: 11436,
   },
 
   faqs: [
