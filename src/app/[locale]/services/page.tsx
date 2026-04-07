@@ -38,7 +38,7 @@ function hexToRgba(hex: string, alpha: number) {
 
 export default function ServicesIndexPage() {
   return (
-    <div className="space-y-0">
+    <main className="space-y-0">
       <title>Services | Zivel</title>
       <meta name="description" content="Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more." />
       {/* HERO (DARK) */}
@@ -187,6 +187,6 @@ export default function ServicesIndexPage() {
           </section>
         );
       })()}
-    </div>
+    </main>
   );
 }
