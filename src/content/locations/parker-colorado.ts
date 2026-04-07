@@ -86,18 +86,18 @@ export const zivel_parker_location: Location = {
     membershipTiers: [
       {
         name: "Essential",
-        price: "$99",
+        price: "$119",
         cadence: "/mo",
         description: "A great entry point for regular recovery.",
-        features: ["4 Recovery Sessions/Month", "Good for Beginners"],
+        features: ["4 Recovery visits/month", "8 total Recovery Sessions", "Good for Beginners"],
         mostPopular: false,
       },
       {
         name: "Elite",
-        price: "$139",
+        price: "$159",
         cadence: "/mo",
         description: "More sessions, more value.",
-        features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
+        features: ["8 Recovery visits/month", "16 total Recovery Sessions", "Premium Service Discounts"],
         mostPopular: true,
       },
     ],
