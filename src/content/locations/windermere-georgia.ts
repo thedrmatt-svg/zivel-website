@@ -107,6 +107,7 @@ export const zivel_cumming_windermere_location: Location = {
         name: "Day Pass — 3 Recovery Sessions",
         price: "$49",
         savings: "Completed in 1 day",
+        benefits: ["First Time Clients Only", "Single use"],
         bookingUrl: "https://app.clubready.com/JoinUs/14944/641756",
       },
       {
