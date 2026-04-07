@@ -107,7 +107,7 @@ export const zivel_rogers_location: Location = {
       { name: "Infrared Sauna", price: "$40", note: "Single session" },
       { name: "Dry Float", price: "$40", note: "Single session" },
       { name: "Compression Therapy", price: "$40", note: "Single session" },
-      { name: "Oxygen Bar", price: "$40", note: "Single session" },
+      { name: "Oxygen Bar", price: "$20", note: "Single session" },
       { name: "Cryo Slimming", price: "$350", note: "Single session" },
       { name: "Cryo Toning", price: "$350", note: "Single session" },
       { name: "CryoLift Facial", price: "$150", note: "Single session" },
