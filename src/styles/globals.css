@@ -271,7 +271,7 @@ button {
 }
 
 .zv-light .zv-tagline {
-  color: var(--zivel-gold-dark);
+  color: #7a5c00;
 }
 
 .zv-light .zv-quote-large {
@@ -568,7 +568,7 @@ noscript + .zv-reveal,
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--zivel-gold);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .zv-immersive-section {
