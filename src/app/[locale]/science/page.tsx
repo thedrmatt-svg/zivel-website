@@ -62,7 +62,9 @@ export default function ScienceIndexPage() {
     .slice(0, 6);
 
   return (
-    <div className="space-y-0 -mt-20">
+    <main className="space-y-0 -mt-20">
+      <title>Science &amp; Recovery Hub | Zivel</title>
+      <meta name="description" content="Evidence-informed articles on recovery, performance, longevity, and modern wellness technology—written for clarity and practical use." />
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-30" />
@@ -112,7 +114,7 @@ export default function ScienceIndexPage() {
                       <p className="mt-3 text-sm text-black/55 leading-relaxed">{a.description}</p>
 
                       {a.relatedServiceSlugs?.length ? (
-                        <div className="mt-4 text-xs text-black/45">
+                        <div className="mt-4 text-xs text-black/60">
                           Related:{" "}
                           {a.relatedServiceSlugs.map((slug: string, i: number) => {
                             const s = getServiceBySlug(slug);
@@ -127,7 +129,7 @@ export default function ScienceIndexPage() {
                         </div>
                       ) : null}
 
-                      <div className="mt-4 text-xs text-black/40">
+                      <div className="mt-4 text-xs text-black/60">
                         {a.readingTimeMinutes ? `${a.readingTimeMinutes} min read` : ""}
                       </div>
                     </Link>
@@ -174,7 +176,7 @@ export default function ScienceIndexPage() {
                         </p>
 
                         {a.relatedServiceSlugs?.length ? (
-                          <div className="mt-4 text-xs text-white/45">
+                          <div className="mt-4 text-xs text-white/65">
                             Related:{" "}
                             {a.relatedServiceSlugs.map((slug: string, i: number) => {
                               const s = getServiceBySlug(slug);
@@ -189,7 +191,7 @@ export default function ScienceIndexPage() {
                           </div>
                         ) : null}
 
-                        <div className="mt-4 text-xs text-white/40">
+                        <div className="mt-4 text-xs text-white/60">
                           {a.readingTimeMinutes ? `${a.readingTimeMinutes} min read` : ""}
                         </div>
                       </Link>
@@ -206,16 +208,16 @@ export default function ScienceIndexPage() {
 
       {/* FOOTER NOTE (LIGHT) */}
       <section className="zv-bleed zv-section-light zv-light py-12">
-        <div className="mx-auto max-w-6xl px-6 text-sm text-black/50">
+        <div className="mx-auto max-w-6xl px-6 text-sm text-black/65">
           Science articles reference peer-reviewed research.{" "}
           <Link
             href="/research"
-            className="text-black/70 underline hover:text-[var(--zivel-gold-dark)]"
+            className="text-black/75 underline hover:text-[var(--zivel-gold-dark)]"
           >
             View sources →
           </Link>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
