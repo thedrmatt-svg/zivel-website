@@ -113,7 +113,7 @@ export const zivel_cumming_windermere_location: Location = {
         name: "Individual All Access Plan",
         price: "$99 1st month",
         savings: "Then $179/mo from month 2",
-        bookingUrl: "https://app.clubready.com/JoinUs/14944/637622",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/637624",
         featured: true,
       },
       {
