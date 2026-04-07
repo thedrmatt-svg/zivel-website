@@ -637,6 +637,10 @@ export default async function ServicePage({ params }: PageProps) {
               );
             })}
           </div>
+
+          <p className="mt-10 text-sm text-black/50 text-center">
+            Contact the local studio for specific pricing options and plans.
+          </p>
         </div>
       </section>
 

@@ -94,7 +94,7 @@ export const zivel_riverton_location: Location = {
       },
       {
         name: "Elite",
-        price: "$129",
+        price: "$175",
         cadence: "/mo",
         description: "More sessions, more value.",
         features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
