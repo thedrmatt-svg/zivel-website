@@ -225,7 +225,7 @@ export default async function LocationPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="space-y-0 -mt-20">
+      <main className="space-y-0 -mt-20">
 
       {/* ========== HERO (DARK) ========== */}
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="location-hero-title">
@@ -1081,7 +1081,7 @@ export default async function LocationPage({
         </>
       )}
 
-    </div>
+    </main>
     </>
   );
 }
