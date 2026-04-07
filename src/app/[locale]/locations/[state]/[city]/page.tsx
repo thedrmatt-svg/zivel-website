@@ -366,7 +366,7 @@ export default async function LocationPage({
                         <div className="flex items-baseline gap-2 mt-4 mb-5">
                           <span className="text-2xl font-semibold text-white">{deal.price}</span>
                           {isSavingsDollar && (
-                            <span className="text-sm text-white/35 line-through">
+                            <span className="text-sm text-white/60 line-through">
                               ${(parseInt(deal.price.replace(/\D/g, "")) + parseInt(deal.savings!.replace(/\D/g, ""))).toLocaleString()}
                             </span>
                           )}
@@ -440,7 +440,7 @@ export default async function LocationPage({
                     {location.contact.parking && <p className="text-black/55 text-sm">{location.contact.parking}</p>}
                     {location.contact.notes && <p className="text-black/55 text-sm">{location.contact.notes}</p>}
                     <div className="pt-4 border-t border-black/8">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-black/40 mb-3">Hours</p>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-black/60 mb-3">Hours</p>
                       <dl className="space-y-1.5">
                         {groupedHours.map(({ label, time }) => (
                           <div key={label} className="flex items-baseline justify-between gap-6">
@@ -468,7 +468,7 @@ export default async function LocationPage({
                     {location.contact.parking && <p className="text-white/60 text-sm">{location.contact.parking}</p>}
                     {location.contact.notes && <p className="text-white/60 text-sm">{location.contact.notes}</p>}
                     <div className="pt-4 border-t border-white/10">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-white/35 mb-3">Hours</p>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-white/60 mb-3">Hours</p>
                       <dl className="space-y-1.5">
                         {groupedHours.map(({ label, time }) => (
                           <div key={label} className="flex items-baseline justify-between gap-6">
@@ -588,6 +588,7 @@ export default async function LocationPage({
               <PricingSection
                 tiers={location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS}
                 standardPrices={location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES}
+                variant="light"
               />
             </ScrollReveal>
           </div>
@@ -603,6 +604,7 @@ export default async function LocationPage({
               <PricingSection
                 tiers={location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS}
                 standardPrices={location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES}
+                variant="dark"
               />
             </ScrollReveal>
           </div>
@@ -742,7 +744,7 @@ export default async function LocationPage({
                   <p className="zv-tagline">Limited Time</p>
                   <h2 className="mt-3 mb-2 font-serif text-4xl md:text-5xl font-light tracking-tight">Special Deals</h2>
                   {location.pricing?.specialDealsExpiry && (
-                    <p className="mb-12 text-base text-black/50 italic">Offers expire {location.pricing.specialDealsExpiry}</p>
+                    <p className="mb-12 text-base text-black/65 italic">Offers expire {location.pricing.specialDealsExpiry}</p>
                   )}
                   {!location.pricing?.specialDealsExpiry && <div className="mb-14" />}
                 </ScrollReveal>
@@ -794,7 +796,7 @@ export default async function LocationPage({
                             <div className="flex items-baseline gap-2 mt-4 mb-5">
                               <span className="text-2xl font-semibold text-black">{deal.price}</span>
                               {isSavingsDollar && (
-                                <span className="text-sm text-black/40 line-through">
+                                <span className="text-sm text-black/55 line-through">
                                   ${(parseInt(deal.price.replace(/\D/g, "")) + parseInt(deal.savings!.replace(/\D/g, ""))).toLocaleString()}
                                 </span>
                               )}
@@ -874,7 +876,7 @@ export default async function LocationPage({
                             <div className="flex items-baseline gap-2 mt-4 mb-5">
                               <span className="text-2xl font-semibold text-white">{deal.price}</span>
                               {isSavingsDollar && (
-                                <span className="text-sm text-white/35 line-through">
+                                <span className="text-sm text-white/60 line-through">
                                   ${(parseInt(deal.price.replace(/\D/g, "")) + parseInt(deal.savings!.replace(/\D/g, ""))).toLocaleString()}
                                 </span>
                               )}
