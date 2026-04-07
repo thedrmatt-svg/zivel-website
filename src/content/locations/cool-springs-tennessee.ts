@@ -6,6 +6,7 @@ export const zivel_franklin_cool_springs_location: Location = {
   state: "TN",
   stateSlug: "tennessee",
   citySlug: "cool-springs",
+  city: "Franklin",
 
   seo: {
     title: "Zivel Franklin-Cool Springs | Zivel",
