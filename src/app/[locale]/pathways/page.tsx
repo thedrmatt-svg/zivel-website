@@ -28,6 +28,8 @@ export async function generateMetadata({
 export default function PathwaysIndexPage() {
   return (
     <main className="space-y-0 -mt-20">
+      <title>Pathways | Zivel</title>
+      <meta name="description" content="Goal-based wellness pathways built from Zivel services—designed to make routines clear, repeatable, and easy to book." />
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-40" />
