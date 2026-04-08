@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
+import ContactForm from "@/components/location/ContactForm";
 import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
 import GoogleReviews from "@/components/location/GoogleReviews";
 // import JobsSection from "@/components/location/JobsSection"; // hidden until ready
@@ -1058,6 +1059,43 @@ export default async function LocationPage({
           </section>
         </>
       )}
+
+      {/* ========== CONTACT FORM (DARK) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      <section className="zv-bleed zv-immersive-section zv-section-elevated">
+        <div className="mx-auto max-w-3xl px-6">
+          <ScrollReveal variant="fade-up">
+            <p className="zv-tagline">Get In Touch</p>
+            <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">
+              Questions or Request? Reach Out!
+            </h2>
+            {location.contact?.phone && (
+              <p className="mt-4 mb-12 text-white/65 text-lg leading-relaxed">
+                Ready to start your recovery journey? Call or text us at{" "}
+                <a
+                  href={`tel:${location.contact.phone}`}
+                  className="text-[var(--zivel-gold)] underline hover:text-[var(--zivel-gold-light)] transition-colors"
+                >
+                  {location.contact.phone}
+                </a>
+                .
+              </p>
+            )}
+            {!location.contact?.phone && (
+              <p className="mt-4 mb-12 text-white/65 text-lg leading-relaxed">
+                Ready to start your recovery journey? Fill out the form below and we&apos;ll be in touch.
+              </p>
+            )}
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={100}>
+            <ContactForm
+              locationSlug={location.slug}
+              locationName={location.name}
+              locationPhone={location.contact?.phone ?? ""}
+            />
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* ========== FINAL CTA (DARK) ========== */}
       {location.finalCTA && (
