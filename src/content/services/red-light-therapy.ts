@@ -9,7 +9,7 @@ export const redLightTherapy: Service = {
   },
 
   seo: {
-    title: "Red Light Therapy | Zivel Wellness",
+    title: "Red Light Therapy | Zivel",
     description:
       "Red Light Therapy at Zivel supports recovery, skin health, inflammation reduction, and cellular performance. Learn what it is, what to expect, and book a session.",
     canonical: "/services/red-light-therapy",

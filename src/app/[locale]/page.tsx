@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}`,
     siteName: "Zivel",
     type: "website",
-    images: [{ url: `${SITE_URL}/images/og-image.jpg`, width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
+    images: [{ url: `${SITE_URL}/images/og-image.jpg`, width: 1200, height: 630, alt: "Zivel Studios" }],
   },
   twitter: {
     card: "summary_large_image",

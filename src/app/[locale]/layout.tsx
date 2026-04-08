@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: "https://www.zivel.com",
     siteName: "Zivel",
     type: "website",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Wellness Studios" }],
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Zivel Studios" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -79,7 +79,7 @@ export default async function LocaleLayout({
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Zivel Wellness",
+    name: "Zivel",
     url: "https://www.zivel.com",
     logo: "https://www.zivel.com/images/brand/zivel-logo.png",
     description:
@@ -90,7 +90,7 @@ export default async function LocaleLayout({
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Zivel Wellness",
+    name: "Zivel",
     url: "https://www.zivel.com",
     potentialAction: {
       "@type": "SearchAction",

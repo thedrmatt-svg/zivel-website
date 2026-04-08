@@ -76,7 +76,7 @@ export default async function ServicePage({ params }: PageProps) {
     url: `${SITE_URL}/services/${service.slug}`,
     provider: {
       "@type": "Organization",
-      name: "Zivel Wellness",
+      name: "Zivel",
       url: SITE_URL,
     },
     serviceType: service.name,

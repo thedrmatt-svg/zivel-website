@@ -57,7 +57,7 @@ function buildEmailHtml({
           <!-- Header -->
           <tr>
             <td style="background:#0a0a0a;padding:32px 40px;text-align:center;">
-              <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c8971f;">Zivel Wellness</p>
+              <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c8971f;">Zivel</p>
               <h1 style="margin:10px 0 0;font-size:22px;font-weight:300;color:#ffffff;letter-spacing:0.5px;">New Contact Form Submission</h1>
               <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.5);">${locationName}</p>
             </td>

@@ -1,4 +1,4 @@
-# Zivel Wellness — Next.js 15
+# Zivel — Next.js 15
 
 ## Overview
 A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, Tailwind CSS, and App Router. Dark-only theme with black background, white text, and gold accents. Internationalized with next-intl (English + Spanish).

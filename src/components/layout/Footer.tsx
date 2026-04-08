@@ -111,7 +111,7 @@ export default function Footer() {
       <div className="zv-divider-white" />
 
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-8 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
-        <p>© {new Date().getFullYear()} Zivel Wellness. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Zivel. All rights reserved.</p>
         <p>
           Wellness services are not medical treatments and do not diagnose, treat,
           cure, or prevent disease.

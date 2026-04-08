@@ -100,7 +100,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "Zivel Wellness",
+      name: "Zivel",
       url: SITE_URL,
       logo: { "@type": "ImageObject", url: `${SITE_URL}/images/brand/zivel-logo.png` },
     },
