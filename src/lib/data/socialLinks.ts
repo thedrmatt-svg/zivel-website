@@ -1,6 +1,7 @@
 export type SocialLinks = {
   facebook?: string;
   instagram?: string;
+  tiktok?: string;
 };
 
 const socialLinks: Record<string, SocialLinks> = {
@@ -53,6 +54,7 @@ const socialLinks: Record<string, SocialLinks> = {
   hollywood: {
     facebook: "https://www.facebook.com/zivelhollywood",
     instagram: "https://www.instagram.com/zivelhollywood/",
+    tiktok: "https://www.tiktok.com/@zivelhollywood",
   },
   metairie: {
     facebook: "https://www.facebook.com/zivelmetairie",
