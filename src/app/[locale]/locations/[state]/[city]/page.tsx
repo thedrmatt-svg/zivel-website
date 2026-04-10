@@ -579,7 +579,6 @@ export default async function LocationPage({
               </ScrollReveal>
             </div>
           </section>
-          {(() => { sectionParity++; return null; })()}
         </>
       )}
 
