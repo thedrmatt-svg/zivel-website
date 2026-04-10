@@ -83,6 +83,39 @@ export const zivel_hollywood_location: Location = {
   },
 
   pricing: {
+    specialDealsPosition: "top",
+    specialDeals: [
+      {
+        name: "Essential Membership — 1st Anniversary Special",
+        price: "$79 1st month",
+        savings: "Then $99/mo from month 2",
+        benefits: ["8 Recovery Sessions/Month", "Good for Beginners"],
+        bookingUrl: "https://zivel.myperformanceiq.com/book-appointment?set_location=11433",
+      },
+      {
+        name: "Elite Membership — 1st Anniversary Special",
+        price: "$99 1st month",
+        savings: "Then $129/mo from month 2",
+        benefits: ["12 Recovery Sessions/Month", "Premium Service Discounts"],
+        bookingUrl: "https://zivel.myperformanceiq.com/book-appointment?set_location=11433",
+        featured: true,
+      },
+      {
+        name: "5 Cryo Facials",
+        price: "$500",
+        bookingUrl: "https://zivel.myperformanceiq.com/book-appointment?set_location=11433",
+      },
+      {
+        name: "5 Cryo Slimmings",
+        price: "$1,000",
+        bookingUrl: "https://zivel.myperformanceiq.com/book-appointment?set_location=11433",
+      },
+      {
+        name: "10 Cryo Slimmings",
+        price: "$1,500",
+        bookingUrl: "https://zivel.myperformanceiq.com/book-appointment?set_location=11433",
+      },
+    ],
     membershipTiers: [
       {
         name: "Essential",
