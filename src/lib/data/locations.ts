@@ -27,7 +27,7 @@ const GEO_BY_LOCATION_PATH: Record<string, { lat: number; lng: number }> = {
   "florida/coral-gables": { lat: 25.7215, lng: -80.2684 },
   "georgia/windermere": { lat: 34.2071, lng: -84.1274 },
   "arkansas/fayetteville": { lat: 36.0822, lng: -94.1719 },
-  "mississippi/fieldhouse": { lat: 32.2988, lng: -90.1848 },
+  "mississippi/fieldhouse": { lat: 34.9998, lng: -90.0530 },
   "tennessee/cool-springs": { lat: 35.9270, lng: -86.8186 },
   "colorado/highlands-ranch": { lat: 39.5519, lng: -104.9686 },
   "florida/hollywood": { lat: 26.0112, lng: -80.1495 },
