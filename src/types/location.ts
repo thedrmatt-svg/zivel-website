@@ -81,6 +81,7 @@ export type Location = {
       mostPopular?: boolean;
       bookingUrl?: string;
     }[];
+    specialDealsTagline?: string;
     specialDealsExpiry?: string;
     specialDealsPosition?: "top" | "default";
     specialDeals?: {
@@ -90,6 +91,7 @@ export type Location = {
       benefits?: string[];
       bookingUrl: string;
       featured?: boolean;
+      image?: string;
     }[];
     specialDealsBottom?: {
       name: string;
@@ -98,6 +100,7 @@ export type Location = {
       benefits?: string[];
       bookingUrl: string;
       featured?: boolean;
+      image?: string;
     }[];
     standardPrices?: {
       name: string;
