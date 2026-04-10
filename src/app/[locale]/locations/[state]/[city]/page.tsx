@@ -558,6 +558,31 @@ export default async function LocationPage({
         </>
       )}
 
+      {/* ========== RIVERTON STOREFRONT IMAGE ========== */}
+      {location.slug === "riverton" && (
+        <>
+          <div className="zv-bleed zv-divider-dark-to-light" />
+          <section className="zv-bleed zv-section-light zv-light py-16 md:py-20">
+            <div className="mx-auto max-w-5xl px-6">
+              <ScrollReveal variant="fade-up">
+                <div className="flex justify-center">
+                  <Image
+                    src="/images/locations/riverton/storefront.avif"
+                    alt="Zivel Riverton — storefront exterior"
+                    width={1400}
+                    height={933}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1000px"
+                    quality={85}
+                    className="rounded-2xl shadow-lg object-cover w-full"
+                  />
+                </div>
+              </ScrollReveal>
+            </div>
+          </section>
+          {(() => { sectionParity++; return null; })()}
+        </>
+      )}
+
       {/* ========== GOOGLE MAP (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (
