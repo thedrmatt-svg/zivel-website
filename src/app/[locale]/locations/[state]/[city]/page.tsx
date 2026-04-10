@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
@@ -228,6 +229,21 @@ export default async function LocationPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {/* Google Ads tag — Riverton only (AW-11334656695) */}
+      {location.slug === "riverton" && (
+        <>
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=AW-11334656695"
+            strategy="afterInteractive"
+          />
+          <Script id="gtag-riverton" strategy="afterInteractive">{`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-11334656695');
+          `}</Script>
+        </>
+      )}
       <main className="space-y-0 -mt-20">
 
       {/* ========== HERO (DARK) ========== */}
