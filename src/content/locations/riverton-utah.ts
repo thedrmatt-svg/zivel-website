@@ -13,6 +13,10 @@ export const zivel_riverton_location: Location = {
     canonical: "https://www.zivel.com/locations/utah/riverton",
   },
 
+  hero: {
+    image: "/images/locations/riverton/hero.avif",
+  },
+
   contact: {
     address: "2722 W 12600 S #1, Riverton, UT 84065",
     phone: "(385) 443-8778",
