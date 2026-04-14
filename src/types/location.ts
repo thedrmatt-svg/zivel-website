@@ -30,8 +30,8 @@ export type Location = {
   };
 
   hero?: {
-    headline: string;
-    subheadline: string;
+    headline?: string;
+    subheadline?: string;
     image: string;
   };
 
