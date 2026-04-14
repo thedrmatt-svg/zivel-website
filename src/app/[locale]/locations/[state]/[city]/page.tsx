@@ -349,44 +349,43 @@ export default async function LocationPage({
                   <div className="grid gap-6 md:grid-cols-2">
                     {recoveryDeals.map((deal, idx) => {
                       const isSavingsDollar = deal.savings && /^\$\d+$/.test(deal.savings.trim());
-                      return (
-                        <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
-                          <a
-                            href={deal.bookingUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className={[
-                              "group block rounded-2xl border hover:-translate-y-1 transition-all duration-300 overflow-hidden",
-                              deal.featured
-                                ? "border-[var(--zivel-gold)] bg-white/10 ring-1 ring-[var(--zivel-gold)] shadow-lg shadow-[var(--zivel-gold)]/10"
-                                : "border-white/10 bg-white/5 hover:bg-white/10",
-                            ].join(" ")}
-                          >
-                            {deal.featured && (
-                              <div className="bg-[var(--zivel-gold)] px-6 py-2 text-center text-xs font-bold tracking-widest uppercase text-black">
-                                ★ Best Value
-                              </div>
-                            )}
-                            <div className="p-6 flex flex-col h-full">
-                              <div className="flex-1">
-                                <h4 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h4>
-                                {deal.benefits && deal.benefits.length > 0 && (
-                                  <ul className="mt-2 mb-2 space-y-1">
-                                    {deal.benefits.map((b, i) => (
-                                      <li key={i} className="flex items-start gap-2 text-sm text-white/60">
-                                        <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>
-                                        {b}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                )}
-                                {deal.savings && !isSavingsDollar && (
-                                  <p className="text-sm text-white/50 mt-2 italic">{deal.savings}</p>
-                                )}
-                              </div>
-                              <div className="flex items-baseline gap-2 mt-4 mb-5">
-                                <span className="text-2xl font-semibold text-white">{deal.price}</span>
-                              </div>
+                      const cardClass = [
+                        "group block rounded-2xl border transition-all duration-300 overflow-hidden",
+                        deal.featured
+                          ? "border-[var(--zivel-gold)] bg-white/10 ring-1 ring-[var(--zivel-gold)] shadow-lg shadow-[var(--zivel-gold)]/10"
+                          : "border-white/10 bg-white/5",
+                        !deal.contactMessage ? "hover:-translate-y-1 hover:bg-white/10 cursor-pointer" : "cursor-default",
+                      ].join(" ");
+                      const inner = (
+                        <>
+                          {deal.featured && (
+                            <div className="bg-[var(--zivel-gold)] px-6 py-2 text-center text-xs font-bold tracking-widest uppercase text-black">
+                              ★ Best Value
+                            </div>
+                          )}
+                          <div className="p-6 flex flex-col h-full">
+                            <div className="flex-1">
+                              <h4 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h4>
+                              {deal.benefits && deal.benefits.length > 0 && (
+                                <ul className="mt-2 mb-2 space-y-1">
+                                  {deal.benefits.map((b, i) => (
+                                    <li key={i} className="flex items-start gap-2 text-sm text-white/60">
+                                      <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>
+                                      {b}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                              {deal.savings && !isSavingsDollar && (
+                                <p className="text-sm text-white/50 mt-2 italic">{deal.savings}</p>
+                              )}
+                            </div>
+                            <div className="flex items-baseline gap-2 mt-4 mb-5">
+                              <span className="text-2xl font-semibold text-white">{deal.price}</span>
+                            </div>
+                            {deal.contactMessage ? (
+                              <p className="text-sm text-[var(--zivel-gold)] font-medium">{deal.contactMessage}</p>
+                            ) : (
                               <span className={[
                                 "block w-full rounded-full py-2.5 text-center text-sm font-semibold tracking-wide transition-colors duration-200",
                                 deal.featured
@@ -395,8 +394,17 @@ export default async function LocationPage({
                               ].join(" ")}>
                                 Claim Deal
                               </span>
-                            </div>
-                          </a>
+                            )}
+                          </div>
+                        </>
+                      );
+                      return (
+                        <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                          {deal.bookingUrl ? (
+                            <a href={deal.bookingUrl} target="_blank" rel="noreferrer" className={cardClass}>{inner}</a>
+                          ) : (
+                            <div className={cardClass}>{inner}</div>
+                          )}
                         </ScrollReveal>
                       );
                     })}
@@ -411,21 +419,20 @@ export default async function LocationPage({
                     <h3 className="mt-14 mb-6 font-serif text-2xl md:text-3xl font-light tracking-tight text-white/80">Premium Specials</h3>
                   </ScrollReveal>
                   <div className="grid gap-6 md:grid-cols-3">
-                    {premiumDeals.map((deal, idx) => (
-                      <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
-                        <a
-                          href={deal.bookingUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="group block rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-                        >
+                    {premiumDeals.map((deal, idx) => {
+                      const premiumCardClass = [
+                        "group block rounded-2xl border border-white/10 bg-white/5 transition-all duration-300 overflow-hidden",
+                        !deal.contactMessage ? "hover:bg-white/10 hover:-translate-y-1 cursor-pointer" : "cursor-default",
+                      ].join(" ");
+                      const premiumInner = (
+                        <>
                           <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
                             <Image
                               src={deal.image!}
                               alt={deal.name}
                               fill
                               sizes="(max-width: 768px) 100vw, 33vw"
-                              className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              className={["object-cover transition-transform duration-500", !deal.contactMessage ? "group-hover:scale-105" : ""].join(" ")}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                           </div>
@@ -437,13 +444,26 @@ export default async function LocationPage({
                             <div className="flex items-baseline gap-2 mb-4">
                               <span className="text-2xl font-semibold text-white">{deal.price}</span>
                             </div>
-                            <span className="block w-full rounded-full py-2.5 text-center text-sm font-semibold tracking-wide border border-[var(--zivel-gold)] text-[var(--zivel-gold)] group-hover:bg-[var(--zivel-gold)] group-hover:text-black transition-colors duration-200">
-                              Book Package
-                            </span>
+                            {deal.contactMessage ? (
+                              <p className="text-sm text-[var(--zivel-gold)] font-medium">{deal.contactMessage}</p>
+                            ) : (
+                              <span className="block w-full rounded-full py-2.5 text-center text-sm font-semibold tracking-wide border border-[var(--zivel-gold)] text-[var(--zivel-gold)] group-hover:bg-[var(--zivel-gold)] group-hover:text-black transition-colors duration-200">
+                                Book Package
+                              </span>
+                            )}
                           </div>
-                        </a>
-                      </ScrollReveal>
-                    ))}
+                        </>
+                      );
+                      return (
+                        <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                          {deal.bookingUrl ? (
+                            <a href={deal.bookingUrl} target="_blank" rel="noreferrer" className={premiumCardClass}>{premiumInner}</a>
+                          ) : (
+                            <div className={premiumCardClass}>{premiumInner}</div>
+                          )}
+                        </ScrollReveal>
+                      );
+                    })}
                   </div>
                 </>
               )}

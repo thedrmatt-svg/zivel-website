@@ -89,7 +89,8 @@ export type Location = {
       price: string;
       savings?: string;
       benefits?: string[];
-      bookingUrl: string;
+      bookingUrl?: string;
+      contactMessage?: string;
       featured?: boolean;
       image?: string;
     }[];
@@ -98,7 +99,8 @@ export type Location = {
       price: string;
       savings?: string;
       benefits?: string[];
-      bookingUrl: string;
+      bookingUrl?: string;
+      contactMessage?: string;
       featured?: boolean;
       image?: string;
     }[];
