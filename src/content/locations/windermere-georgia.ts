@@ -91,6 +91,7 @@ export const zivel_cumming_windermere_location: Location = {
         description: "A great entry point for regular recovery.",
         features: ["6 Recovery Sessions/Month", "Good for Beginners"],
         mostPopular: false,
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/630695",
       },
       {
         name: "Elite",
@@ -99,6 +100,7 @@ export const zivel_cumming_windermere_location: Location = {
         description: "More sessions, more value.",
         features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
         mostPopular: true,
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/630696",
       },
     ],
     specialDealsBottom: [
