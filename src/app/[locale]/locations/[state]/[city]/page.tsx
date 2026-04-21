@@ -830,57 +830,55 @@ export default async function LocationPage({
       )}
       {(() => { sectionParity++; return null; })()}
 
-      {/* ========== SPECIAL DEALS BOTTOM (below memberships) ========== */}
+      {/* ========== SPECIAL DEALS BOTTOM (always dark/black, flows from Pricing) ========== */}
       {location.pricing?.specialDealsBottom && location.pricing.specialDealsBottom.length > 0 && (
         <>
-          <div className="zv-bleed zv-divider-dark-to-light" />
-          {sectionParity % 2 === 0 ? (
-            <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
-              <div className="mx-auto max-w-6xl px-6">
-                <ScrollReveal variant="fade-up">
-                  <p className="zv-tagline">Special Offers</p>
-                  <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Package Deals</h2>
-                </ScrollReveal>
-                <div className="grid gap-6 md:grid-cols-3">
-                  {location.pricing.specialDealsBottom.map((deal, idx) => (
-                    <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
-                      <a
-                        href={deal.bookingUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={[
-                          "group block rounded-2xl border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden",
-                          deal.featured
-                            ? "border-[var(--zivel-gold)] bg-white shadow-md ring-1 ring-[var(--zivel-gold)]"
-                            : "border-black/10 bg-white shadow-sm",
-                        ].join(" ")}
-                      >
-                        {deal.featured && (
-                          <div className="bg-[var(--zivel-gold)] px-6 py-2 text-center text-xs font-bold tracking-widest uppercase text-black">★ Featured Deal</div>
+          <section className="zv-bleed zv-immersive-section bg-black pt-0">
+            <div className="mx-auto max-w-6xl px-6 pt-16">
+              <ScrollReveal variant="fade-up">
+                <p className="zv-tagline">Special Offers</p>
+                <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Package Deals</h2>
+              </ScrollReveal>
+              <div className="grid gap-6 md:grid-cols-3">
+                {location.pricing.specialDealsBottom.map((deal, idx) => (
+                  <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                    <a
+                      href={deal.bookingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={[
+                        "group block rounded-2xl border hover:-translate-y-1 transition-all duration-300 overflow-hidden",
+                        deal.featured
+                          ? "border-[var(--zivel-gold)] bg-white/10 ring-1 ring-[var(--zivel-gold)] shadow-lg shadow-[var(--zivel-gold)]/10"
+                          : "border-white/10 bg-white/5 hover:bg-white/10",
+                      ].join(" ")}
+                    >
+                      {deal.featured && (
+                        <div className="bg-[var(--zivel-gold)] px-6 py-2 text-center text-xs font-bold tracking-widest uppercase text-black">★ Featured Deal</div>
+                      )}
+                      <div className="p-6 flex flex-col h-full">
+                        {deal.benefits && deal.benefits.length > 0 && (
+                          <ul className="mb-3 space-y-1">
+                            {deal.benefits.map((b, i) => (
+                              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                                <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>{b}
+                              </li>
+                            ))}
+                          </ul>
                         )}
-                        <div className="p-6 flex flex-col h-full">
-                          {deal.benefits && deal.benefits.length > 0 && (
-                            <ul className="mb-3 space-y-1">
-                              {deal.benefits.map((b, i) => (
-                                <li key={i} className="flex items-start gap-2 text-sm text-black/65">
-                                  <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>{b}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                          <div className="flex-1">
-                            <h3 className="font-serif text-xl font-light leading-snug text-black/90 mb-2">{deal.name}</h3>
-                            {deal.savings && <p className="text-sm text-black/55 mt-1 italic">{deal.savings}</p>}
-                          </div>
-                          <div className="flex items-baseline gap-2 mt-4 mb-5">
-                            <span className="text-2xl font-semibold text-black">{deal.price}</span>
-                          </div>
-                          <span className={[
-                            "block w-full rounded-full py-2.5 text-center text-sm font-semibold tracking-wide transition-colors duration-200",
-                            deal.featured
-                              ? "bg-[var(--zivel-gold)] text-black group-hover:bg-[var(--zivel-gold-dark)]"
-                              : "bg-black text-white group-hover:bg-[var(--zivel-gold)] group-hover:text-black",
-                          ].join(" ")}>
+                        <div className="flex-1">
+                          <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h3>
+                          {deal.savings && <p className="text-sm text-white/55 mt-1 italic">{deal.savings}</p>}
+                        </div>
+                        <div className="flex items-baseline gap-2 mt-4 mb-5">
+                          <span className="text-2xl font-semibold text-white">{deal.price}</span>
+                        </div>
+                        <span className={[
+                          "block w-full rounded-full py-2.5 text-center text-sm font-semibold tracking-wide transition-colors duration-200",
+                          deal.featured
+                            ? "bg-[var(--zivel-gold)] text-black group-hover:bg-[var(--zivel-gold-dark)]"
+                            : "border border-white/20 text-white/80 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]",
+                        ].join(" ")}>
                             Claim Deal
                           </span>
                         </div>
@@ -890,63 +888,6 @@ export default async function LocationPage({
                 </div>
               </div>
             </section>
-          ) : (
-            <section className="zv-bleed zv-immersive-section zv-section-gradient">
-              <div className="mx-auto max-w-6xl px-6">
-                <ScrollReveal variant="fade-up">
-                  <p className="zv-tagline">Special Offers</p>
-                  <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Package Deals</h2>
-                </ScrollReveal>
-                <div className="grid gap-6 md:grid-cols-3">
-                  {location.pricing.specialDealsBottom.map((deal, idx) => (
-                    <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
-                      <a
-                        href={deal.bookingUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={[
-                          "group block rounded-2xl border hover:-translate-y-1 transition-all duration-300 overflow-hidden",
-                          deal.featured
-                            ? "border-[var(--zivel-gold)] bg-white/10 ring-1 ring-[var(--zivel-gold)] shadow-lg"
-                            : "border-white/10 bg-white/5 hover:bg-white/10",
-                        ].join(" ")}
-                      >
-                        {deal.featured && (
-                          <div className="bg-[var(--zivel-gold)] px-6 py-2 text-center text-xs font-bold tracking-widest uppercase text-black">★ Featured Deal</div>
-                        )}
-                        <div className="p-6 flex flex-col h-full">
-                          {deal.benefits && deal.benefits.length > 0 && (
-                            <ul className="mb-3 space-y-1">
-                              {deal.benefits.map((b, i) => (
-                                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                                  <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>{b}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                          <div className="flex-1">
-                            <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h3>
-                            {deal.savings && <p className="text-sm text-white/55 mt-1 italic">{deal.savings}</p>}
-                          </div>
-                          <div className="flex items-baseline gap-2 mt-4 mb-5">
-                            <span className="text-2xl font-semibold text-white">{deal.price}</span>
-                          </div>
-                          <span className={[
-                            "block w-full rounded-full py-2.5 text-center text-sm font-semibold tracking-wide transition-colors duration-200",
-                            deal.featured
-                              ? "bg-[var(--zivel-gold)] text-black group-hover:bg-[var(--zivel-gold-dark)]"
-                              : "bg-white/10 text-white border border-white/20 group-hover:bg-[var(--zivel-gold)] group-hover:text-black",
-                          ].join(" ")}>
-                            Claim Deal
-                          </span>
-                        </div>
-                      </a>
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </div>
-            </section>
-          )}
           {(() => { sectionParity++; return null; })()}
         </>
       )}

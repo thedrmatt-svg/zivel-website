@@ -83,7 +83,6 @@ export const zivel_cumming_windermere_location: Location = {
   },
 
   pricing: {
-    specialDealsPosition: "top",
     membershipTiers: [
       {
         name: "Essential",
@@ -102,7 +101,7 @@ export const zivel_cumming_windermere_location: Location = {
         mostPopular: true,
       },
     ],
-    specialDeals: [
+    specialDealsBottom: [
       {
         name: "Day Pass — 3 Recovery Sessions",
         price: "$49",
@@ -127,8 +126,6 @@ export const zivel_cumming_windermere_location: Location = {
         ],
         bookingUrl: "https://app.clubready.com/JoinUs/14944/637626",
       },
-    ],
-    specialDealsBottom: [
       {
         name: "5 Cryo Facials",
         price: "$500",
