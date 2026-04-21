@@ -807,8 +807,87 @@ export default async function LocationPage({
                 tiers={location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS}
                 standardPrices={location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES}
                 variant="light"
+                hideStandardPrices={!!location.pricing?.specialDealsBottomInlinePricing}
               />
             </ScrollReveal>
+            {location.pricing?.specialDealsBottomInlinePricing && location.pricing.specialDealsBottom && (() => {
+              const premiumStart = location.pricing!.specialDealsBottomPremiumStart ?? location.pricing!.specialDealsBottom!.length;
+              const accessDeals = location.pricing!.specialDealsBottom!.slice(0, premiumStart);
+              const premiumDeals = location.pricing!.specialDealsBottom!.slice(premiumStart);
+              return (
+                <div className="mt-14 space-y-14">
+                  {accessDeals.length > 0 && (
+                    <div>
+                      <div className={`grid gap-6 md:grid-cols-${accessDeals.length > 1 ? "2" : "1"}`}>
+                        {accessDeals.map((deal, idx) => (
+                          <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                            <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
+                              className="group block rounded-2xl border border-black/10 bg-white shadow-sm hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                              <div className="p-6 flex flex-col h-full">
+                                {deal.benefits && deal.benefits.length > 0 && (
+                                  <ul className="mb-3 space-y-1">
+                                    {deal.benefits.map((b, i) => (
+                                      <li key={i} className="flex items-start gap-2 text-sm text-black/65">
+                                        <span className="mt-0.5 shrink-0 text-[var(--zivel-gold-dark)]">✓</span>{b}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                                <div className="flex-1">
+                                  <h3 className="font-serif text-xl font-light leading-snug text-black/90 mb-2">{deal.name}</h3>
+                                  {deal.savings && <p className="text-sm text-black/55 mt-1 italic">{deal.savings}</p>}
+                                </div>
+                                <div className="flex items-baseline gap-2 mt-4 mb-5">
+                                  <span className="text-2xl font-semibold text-black/90">{deal.price}</span>
+                                </div>
+                                <span className="block w-full rounded-full border border-black/20 py-2.5 text-center text-sm font-semibold tracking-wide text-black/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black group-hover:border-[var(--zivel-gold-dark)]">
+                                  Claim Deal
+                                </span>
+                              </div>
+                            </a>
+                          </ScrollReveal>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {premiumDeals.length > 0 && (
+                    <div>
+                      <ScrollReveal variant="fade-up">
+                        <p className="zv-tagline">Exclusive</p>
+                        <h3 className="mt-3 mb-10 font-serif text-3xl md:text-4xl font-light tracking-tight text-black/90">Premium Deals</h3>
+                      </ScrollReveal>
+                      <div className="grid gap-6 md:grid-cols-3">
+                        {premiumDeals.map((deal, idx) => (
+                          <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                            <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
+                              className="group block rounded-2xl border border-black/10 bg-white shadow-sm hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                              <div className="p-6 flex flex-col h-full">
+                                <div className="flex-1">
+                                  <h3 className="font-serif text-xl font-light leading-snug text-black/90 mb-2">{deal.name}</h3>
+                                  {deal.savings && <p className="text-sm text-black/55 mt-1 italic">{deal.savings}</p>}
+                                </div>
+                                <div className="flex items-baseline gap-2 mt-4 mb-5">
+                                  <span className="text-2xl font-semibold text-black/90">{deal.price}</span>
+                                </div>
+                                <span className="block w-full rounded-full border border-black/20 py-2.5 text-center text-sm font-semibold tracking-wide text-black/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black group-hover:border-[var(--zivel-gold-dark)]">
+                                  Claim Deal
+                                </span>
+                              </div>
+                            </a>
+                          </ScrollReveal>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div>
+                    <PricingSection
+                      standardPrices={location.pricing!.standardPrices ?? DEFAULT_STANDARD_PRICES}
+                      variant="light"
+                    />
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </section>
       ) : (
@@ -823,15 +902,94 @@ export default async function LocationPage({
                 tiers={location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS}
                 standardPrices={location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES}
                 variant="dark"
+                hideStandardPrices={!!location.pricing?.specialDealsBottomInlinePricing}
               />
             </ScrollReveal>
+            {location.pricing?.specialDealsBottomInlinePricing && location.pricing.specialDealsBottom && (() => {
+              const premiumStart = location.pricing!.specialDealsBottomPremiumStart ?? location.pricing!.specialDealsBottom!.length;
+              const accessDeals = location.pricing!.specialDealsBottom!.slice(0, premiumStart);
+              const premiumDeals = location.pricing!.specialDealsBottom!.slice(premiumStart);
+              return (
+                <div className="mt-14 space-y-14">
+                  {accessDeals.length > 0 && (
+                    <div>
+                      <div className={`grid gap-6 md:grid-cols-${accessDeals.length > 1 ? "2" : "1"}`}>
+                        {accessDeals.map((deal, idx) => (
+                          <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                            <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
+                              className="group block rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                              <div className="p-6 flex flex-col h-full">
+                                {deal.benefits && deal.benefits.length > 0 && (
+                                  <ul className="mb-3 space-y-1">
+                                    {deal.benefits.map((b, i) => (
+                                      <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                                        <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>{b}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                                <div className="flex-1">
+                                  <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h3>
+                                  {deal.savings && <p className="text-sm text-white/55 mt-1 italic">{deal.savings}</p>}
+                                </div>
+                                <div className="flex items-baseline gap-2 mt-4 mb-5">
+                                  <span className="text-2xl font-semibold text-white">{deal.price}</span>
+                                </div>
+                                <span className="block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
+                                  Claim Deal
+                                </span>
+                              </div>
+                            </a>
+                          </ScrollReveal>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {premiumDeals.length > 0 && (
+                    <div>
+                      <ScrollReveal variant="fade-up">
+                        <p className="zv-tagline">Exclusive</p>
+                        <h3 className="mt-3 mb-10 font-serif text-3xl md:text-4xl font-light tracking-tight">Premium Deals</h3>
+                      </ScrollReveal>
+                      <div className="grid gap-6 md:grid-cols-3">
+                        {premiumDeals.map((deal, idx) => (
+                          <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                            <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
+                              className="group block rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                              <div className="p-6 flex flex-col h-full">
+                                <div className="flex-1">
+                                  <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h3>
+                                  {deal.savings && <p className="text-sm text-white/55 mt-1 italic">{deal.savings}</p>}
+                                </div>
+                                <div className="flex items-baseline gap-2 mt-4 mb-5">
+                                  <span className="text-2xl font-semibold text-white">{deal.price}</span>
+                                </div>
+                                <span className="block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
+                                  Claim Deal
+                                </span>
+                              </div>
+                            </a>
+                          </ScrollReveal>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div>
+                    <PricingSection
+                      standardPrices={location.pricing!.standardPrices ?? DEFAULT_STANDARD_PRICES}
+                      variant="dark"
+                    />
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </section>
       )}
       {(() => { sectionParity++; return null; })()}
 
       {/* ========== SPECIAL DEALS BOTTOM (always dark/black, flows from Pricing) ========== */}
-      {location.pricing?.specialDealsBottom && location.pricing.specialDealsBottom.length > 0 && (
+      {location.pricing?.specialDealsBottom && location.pricing.specialDealsBottom.length > 0 && !location.pricing.specialDealsBottomInlinePricing && (
         <>
           <section className="zv-bleed zv-immersive-section bg-black pt-0">
             <div className="mx-auto max-w-6xl px-6 pt-16">

@@ -84,6 +84,8 @@ export type Location = {
     specialDealsTagline?: string;
     specialDealsExpiry?: string;
     specialDealsPosition?: "top" | "default";
+    specialDealsBottomInlinePricing?: boolean;
+    specialDealsBottomPremiumStart?: number;
     specialDeals?: {
       name: string;
       price: string;

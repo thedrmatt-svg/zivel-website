@@ -18,13 +18,15 @@ export default function PricingSection({
   tiers,
   standardPrices,
   variant = "dark",
+  hideStandardPrices = false,
 }: {
   tiers?: PricingTier[];
   standardPrices?: StandardPrice[];
   variant?: "dark" | "light";
+  hideStandardPrices?: boolean;
 }) {
   const hasTiers = !!tiers?.length;
-  const hasStandard = !!standardPrices?.length;
+  const hasStandard = !hideStandardPrices && !!standardPrices?.length;
 
   const isLight = variant === "light";
 

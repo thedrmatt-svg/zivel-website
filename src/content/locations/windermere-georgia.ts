@@ -102,7 +102,18 @@ export const zivel_cumming_windermere_location: Location = {
         mostPopular: true,
         bookingUrl: "https://app.clubready.com/JoinUs/14944/630696",
       },
+      {
+        name: "Individual All Access Plan",
+        price: "$99",
+        cadence: "1st month",
+        description: "Then $179/mo from month 2.",
+        features: ["Unlimited Recovery Services", "All Locations Access"],
+        mostPopular: false,
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/637624",
+      },
     ],
+    specialDealsBottomInlinePricing: true,
+    specialDealsBottomPremiumStart: 2,
     specialDealsBottom: [
       {
         name: "Day Pass — 3 Recovery Sessions",
@@ -110,13 +121,6 @@ export const zivel_cumming_windermere_location: Location = {
         savings: "Completed in 1 day",
         benefits: ["First Time Clients Only", "Single use"],
         bookingUrl: "https://app.clubready.com/JoinUs/14944/641756",
-      },
-      {
-        name: "Individual All Access Plan",
-        price: "$99 1st month",
-        savings: "Then $179/mo from month 2",
-        bookingUrl: "https://app.clubready.com/JoinUs/14944/637624",
-        featured: true,
       },
       {
         name: "Family Unlimited",
