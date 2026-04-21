@@ -105,6 +105,7 @@ export type Location = {
       contactMessage?: string;
       featured?: boolean;
       image?: string;
+      buttonLabel?: string;
     }[];
     standardPrices?: {
       name: string;

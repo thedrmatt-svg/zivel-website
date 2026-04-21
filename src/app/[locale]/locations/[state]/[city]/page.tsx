@@ -818,14 +818,14 @@ export default async function LocationPage({
                 <div className="mt-14 space-y-14">
                   {accessDeals.length > 0 && (
                     <div>
-                      <div className={`grid gap-6 md:grid-cols-${accessDeals.length > 1 ? "2" : "1"}`}>
+                      <div className="grid gap-6 md:grid-cols-3">
                         {accessDeals.map((deal, idx) => (
                           <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
                             <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
-                              className="group block rounded-2xl border border-black/10 bg-white shadow-sm hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                              <div className="p-6 flex flex-col h-full">
+                              className="group flex flex-col rounded-2xl border border-black/10 bg-white shadow-sm hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full">
+                              <div className="p-6 flex flex-col flex-1">
                                 {deal.benefits && deal.benefits.length > 0 && (
-                                  <ul className="mb-3 space-y-1">
+                                  <ul className="mb-4 space-y-2">
                                     {deal.benefits.map((b, i) => (
                                       <li key={i} className="flex items-start gap-2 text-sm text-black/65">
                                         <span className="mt-0.5 shrink-0 text-[var(--zivel-gold-dark)]">✓</span>{b}
@@ -833,16 +833,14 @@ export default async function LocationPage({
                                     ))}
                                   </ul>
                                 )}
-                                <div className="flex-1">
-                                  <h3 className="font-serif text-xl font-light leading-snug text-black/90 mb-2">{deal.name}</h3>
-                                  {deal.savings && <p className="text-sm text-black/55 mt-1 italic">{deal.savings}</p>}
+                                <div className="font-semibold text-black/90 mb-3">{deal.name}</div>
+                                {deal.savings && <p className="text-sm text-black/55 italic mb-3">{deal.savings}</p>}
+                                <div className="mt-auto pt-4">
+                                  <div className="text-2xl font-semibold text-black/90 mb-5">{deal.price}</div>
+                                  <span className="block w-full rounded-full border border-black/20 py-2.5 text-center text-sm font-semibold tracking-wide text-black/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black group-hover:border-[var(--zivel-gold-dark)]">
+                                    {deal.buttonLabel ?? "Claim Deal"}
+                                  </span>
                                 </div>
-                                <div className="flex items-baseline gap-2 mt-4 mb-5">
-                                  <span className="text-2xl font-semibold text-black/90">{deal.price}</span>
-                                </div>
-                                <span className="block w-full rounded-full border border-black/20 py-2.5 text-center text-sm font-semibold tracking-wide text-black/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black group-hover:border-[var(--zivel-gold-dark)]">
-                                  Claim Deal
-                                </span>
                               </div>
                             </a>
                           </ScrollReveal>
@@ -860,18 +858,16 @@ export default async function LocationPage({
                         {premiumDeals.map((deal, idx) => (
                           <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
                             <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
-                              className="group block rounded-2xl border border-black/10 bg-white shadow-sm hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                              <div className="p-6 flex flex-col h-full">
-                                <div className="flex-1">
-                                  <h3 className="font-serif text-xl font-light leading-snug text-black/90 mb-2">{deal.name}</h3>
-                                  {deal.savings && <p className="text-sm text-black/55 mt-1 italic">{deal.savings}</p>}
+                              className="group flex flex-col rounded-2xl border border-black/10 bg-white shadow-sm hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full">
+                              <div className="p-6 flex flex-col flex-1">
+                                <div className="font-semibold text-black/90 mb-3">{deal.name}</div>
+                                {deal.savings && <p className="text-sm text-black/55 italic mb-3">{deal.savings}</p>}
+                                <div className="mt-auto pt-4">
+                                  <div className="text-2xl font-semibold text-black/90 mb-5">{deal.price}</div>
+                                  <span className="block w-full rounded-full border border-black/20 py-2.5 text-center text-sm font-semibold tracking-wide text-black/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black group-hover:border-[var(--zivel-gold-dark)]">
+                                    {deal.buttonLabel ?? "Claim Deal"}
+                                  </span>
                                 </div>
-                                <div className="flex items-baseline gap-2 mt-4 mb-5">
-                                  <span className="text-2xl font-semibold text-black/90">{deal.price}</span>
-                                </div>
-                                <span className="block w-full rounded-full border border-black/20 py-2.5 text-center text-sm font-semibold tracking-wide text-black/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black group-hover:border-[var(--zivel-gold-dark)]">
-                                  Claim Deal
-                                </span>
                               </div>
                             </a>
                           </ScrollReveal>
@@ -913,14 +909,14 @@ export default async function LocationPage({
                 <div className="mt-14 space-y-14">
                   {accessDeals.length > 0 && (
                     <div>
-                      <div className={`grid gap-6 md:grid-cols-${accessDeals.length > 1 ? "2" : "1"}`}>
+                      <div className="grid gap-6 md:grid-cols-3">
                         {accessDeals.map((deal, idx) => (
                           <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
                             <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
-                              className="group block rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                              <div className="p-6 flex flex-col h-full">
+                              className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full">
+                              <div className="p-6 flex flex-col flex-1">
                                 {deal.benefits && deal.benefits.length > 0 && (
-                                  <ul className="mb-3 space-y-1">
+                                  <ul className="mb-4 space-y-2">
                                     {deal.benefits.map((b, i) => (
                                       <li key={i} className="flex items-start gap-2 text-sm text-white/65">
                                         <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>{b}
@@ -928,16 +924,14 @@ export default async function LocationPage({
                                     ))}
                                   </ul>
                                 )}
-                                <div className="flex-1">
-                                  <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h3>
-                                  {deal.savings && <p className="text-sm text-white/55 mt-1 italic">{deal.savings}</p>}
+                                <div className="font-semibold text-white/90 mb-3">{deal.name}</div>
+                                {deal.savings && <p className="text-sm text-white/55 italic mb-3">{deal.savings}</p>}
+                                <div className="mt-auto pt-4">
+                                  <div className="text-2xl font-semibold text-white mb-5">{deal.price}</div>
+                                  <span className="block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
+                                    {deal.buttonLabel ?? "Claim Deal"}
+                                  </span>
                                 </div>
-                                <div className="flex items-baseline gap-2 mt-4 mb-5">
-                                  <span className="text-2xl font-semibold text-white">{deal.price}</span>
-                                </div>
-                                <span className="block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
-                                  Claim Deal
-                                </span>
                               </div>
                             </a>
                           </ScrollReveal>
@@ -955,18 +949,16 @@ export default async function LocationPage({
                         {premiumDeals.map((deal, idx) => (
                           <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
                             <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
-                              className="group block rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                              <div className="p-6 flex flex-col h-full">
-                                <div className="flex-1">
-                                  <h3 className="font-serif text-xl font-light leading-snug text-white/90 mb-2">{deal.name}</h3>
-                                  {deal.savings && <p className="text-sm text-white/55 mt-1 italic">{deal.savings}</p>}
+                              className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full">
+                              <div className="p-6 flex flex-col flex-1">
+                                <div className="font-semibold text-white/90 mb-3">{deal.name}</div>
+                                {deal.savings && <p className="text-sm text-white/55 italic mb-3">{deal.savings}</p>}
+                                <div className="mt-auto pt-4">
+                                  <div className="text-2xl font-semibold text-white mb-5">{deal.price}</div>
+                                  <span className="block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
+                                    {deal.buttonLabel ?? "Claim Deal"}
+                                  </span>
                                 </div>
-                                <div className="flex items-baseline gap-2 mt-4 mb-5">
-                                  <span className="text-2xl font-semibold text-white">{deal.price}</span>
-                                </div>
-                                <span className="block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
-                                  Claim Deal
-                                </span>
                               </div>
                             </a>
                           </ScrollReveal>

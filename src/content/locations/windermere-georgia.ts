@@ -99,7 +99,7 @@ export const zivel_cumming_windermere_location: Location = {
         cadence: "/mo",
         description: "More sessions, more value.",
         features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
-        mostPopular: true,
+        mostPopular: false,
         bookingUrl: "https://app.clubready.com/JoinUs/14944/630696",
       },
       {
@@ -108,7 +108,7 @@ export const zivel_cumming_windermere_location: Location = {
         cadence: "1st month",
         description: "Then $179/mo from month 2.",
         features: ["Unlimited Recovery Services", "All Locations Access"],
-        mostPopular: false,
+        mostPopular: true,
         bookingUrl: "https://app.clubready.com/JoinUs/14944/637624",
       },
     ],
@@ -131,6 +131,7 @@ export const zivel_cumming_windermere_location: Location = {
           "Discounts on Premium Services",
         ],
         bookingUrl: "https://app.clubready.com/JoinUs/14944/637626",
+        buttonLabel: "Join Now",
       },
       {
         name: "5 Cryo Facials",
