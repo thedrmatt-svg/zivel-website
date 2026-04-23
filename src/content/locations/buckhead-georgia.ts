@@ -22,9 +22,9 @@ export const zivel_buckhead_location: Location = {
 
   hours: {
     monday: "10am – 7pm",
-    tuesday: "10am – 7pm",
+    tuesday: "10am – 8pm",
     wednesday: "10am – 7pm",
-    thursday: "10am – 7pm",
+    thursday: "10am – 8pm",
     friday: "10am – 5pm",
     saturday: "10am – 5pm",
     sunday: "Closed",
