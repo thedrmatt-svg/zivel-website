@@ -82,7 +82,7 @@ export const zivel_fayetteville_location: Location = {
     membershipTiers: [
       {
         name: "Essential",
-        price: "$49",
+        price: "$99",
         cadence: "/mo",
         description: "A great entry point for regular recovery.",
         features: ["4 Recovery Sessions/Month", "Good for Beginners"],
@@ -90,10 +90,10 @@ export const zivel_fayetteville_location: Location = {
       },
       {
         name: "Elite",
-        price: "$99",
+        price: "$149",
         cadence: "/mo",
         description: "More sessions, more value.",
-        features: ["12 Recovery Sessions/Month", "Premium Service Discounts"],
+        features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
         mostPopular: true,
       },
     ],
