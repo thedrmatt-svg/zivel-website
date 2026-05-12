@@ -857,10 +857,19 @@ export default async function LocationPage({
                           <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
                             <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
                               className="group flex flex-col rounded-2xl border border-black/10 bg-white shadow-sm hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full">
+                              {deal.regularPrice && (
+                                <div className="bg-[var(--zivel-gold-dark)] px-6 py-1.5 text-center text-xs font-bold tracking-widest uppercase text-black">
+                                  Limited Time
+                                </div>
+                              )}
                               <div className="p-6 flex flex-col flex-1">
-                                <div className="font-semibold text-black/90 mb-3">{deal.name}</div>
+                                <div className="font-semibold text-black/90 mb-2">{deal.name}</div>
+                                {deal.description && <p className="text-sm text-black/60 mb-4 leading-relaxed">{deal.description}</p>}
                                 {deal.savings && <p className="text-sm text-black/55 italic mb-3">{deal.savings}</p>}
                                 <div className="mt-auto pt-4">
+                                  {deal.regularPrice && (
+                                    <div className="text-sm text-black/35 line-through mb-1">{deal.regularPrice}</div>
+                                  )}
                                   <div className="text-2xl font-semibold text-black/90 mb-5">{deal.price}</div>
                                   <span className="block w-full rounded-full border border-black/20 py-2.5 text-center text-sm font-semibold tracking-wide text-black/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold-dark)] group-hover:text-black group-hover:border-[var(--zivel-gold-dark)]">
                                     {deal.buttonLabel ?? "Claim Deal"}
@@ -946,10 +955,19 @@ export default async function LocationPage({
                           <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
                             <a href={deal.bookingUrl} target="_blank" rel="noreferrer"
                               className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full">
+                              {deal.regularPrice && (
+                                <div className="bg-[var(--zivel-gold)] px-6 py-1.5 text-center text-xs font-bold tracking-widest uppercase text-black">
+                                  Limited Time
+                                </div>
+                              )}
                               <div className="p-6 flex flex-col flex-1">
-                                <div className="font-semibold text-white/90 mb-3">{deal.name}</div>
+                                <div className="font-semibold text-white/90 mb-2">{deal.name}</div>
+                                {deal.description && <p className="text-sm text-white/60 mb-4 leading-relaxed">{deal.description}</p>}
                                 {deal.savings && <p className="text-sm text-white/55 italic mb-3">{deal.savings}</p>}
                                 <div className="mt-auto pt-4">
+                                  {deal.regularPrice && (
+                                    <div className="text-sm text-white/40 line-through mb-1">{deal.regularPrice}</div>
+                                  )}
                                   <div className="text-2xl font-semibold text-white mb-5">{deal.price}</div>
                                   <span className="block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
                                     {deal.buttonLabel ?? "Claim Deal"}

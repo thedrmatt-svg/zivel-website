@@ -136,16 +136,22 @@ export const zivel_cumming_windermere_location: Location = {
       {
         name: "5 Cryo Facials",
         price: "$500",
+        regularPrice: "$750",
+        description: "Rejuvenate and tighten skin with five targeted CryoLift Facial sessions.",
         bookingUrl: "https://app.clubready.com/JoinUs/14944/648827",
       },
       {
         name: "5 Cryo Slimmings",
         price: "$1,000",
+        regularPrice: "$1,750",
+        description: "Sculpt and contour your body with five precision Cryo Slimming treatments.",
         bookingUrl: "https://app.clubready.com/JoinUs/14944/648827",
       },
       {
         name: "10 Cryo Slimmings",
         price: "$1,500",
+        regularPrice: "$3,500",
+        description: "Our best value — ten Cryo Slimming sessions for maximum, lasting results.",
         bookingUrl: "https://app.clubready.com/JoinUs/14944/648829",
       },
     ],
