@@ -79,7 +79,7 @@ export default function ServicesIndexPage() {
       {/* AVAILABILITY DISCLAIMER */}
       <div className="zv-bleed zv-section-light zv-light">
         <div className="mx-auto max-w-6xl px-4 py-5 border-b border-black/8">
-          <p className="text-sm text-black/55 italic">
+          <p className="text-sm text-black/55 italic text-center">
             Not all services are available at all locations. Visit a specific location page or contact them directly for availability.
           </p>
         </div>
