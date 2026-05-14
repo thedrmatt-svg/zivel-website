@@ -76,6 +76,15 @@ export default function ServicesIndexPage() {
 
       <div className="zv-bleed zv-divider-dark-to-light" />
 
+      {/* AVAILABILITY DISCLAIMER */}
+      <div className="zv-bleed zv-section-light zv-light">
+        <div className="mx-auto max-w-6xl px-4 py-5 border-b border-black/8">
+          <p className="text-sm text-black/55 italic">
+            Not all services are available at all locations. Visit a specific location page or contact them directly for availability.
+          </p>
+        </div>
+      </div>
+
       {/* SERVICES GROUPS (LIGHT) */}
       {(() => {
         const groups = [
