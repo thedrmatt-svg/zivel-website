@@ -100,6 +100,7 @@ export const zivel_hollywood_location: Location = {
         regularPrice: "$1,750",
         description: "Sculpt and contour your body with five precision Cryo Slimming treatments.",
         image: "/images/services/cryo-slimming/intro.avif",
+        bookingUrl: "https://app.clubready.com/JoinUs/14829/632490",
       },
       {
         name: "10 Cryo Slimmings",
