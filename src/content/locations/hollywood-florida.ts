@@ -92,6 +92,7 @@ export const zivel_hollywood_location: Location = {
         regularPrice: "$750",
         description: "Rejuvenate and tighten skin with five targeted CryoLift Facial sessions.",
         image: "/images/services/cryo-lift-facial/intro.avif",
+        bookingUrl: "https://app.clubready.com/JoinUs/14829/632488",
       },
       {
         name: "5 Cryo Slimmings",
