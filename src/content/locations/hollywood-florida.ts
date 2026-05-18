@@ -107,6 +107,7 @@ export const zivel_hollywood_location: Location = {
         regularPrice: "$3,500",
         description: "Our best value — ten Cryo Slimming sessions for maximum, lasting results.",
         image: "/images/services/cryo-slimming/hero.avif",
+        bookingUrl: "https://app.clubready.com/JoinUs/14829/632491",
       },
     ],
     membershipTiers: [
