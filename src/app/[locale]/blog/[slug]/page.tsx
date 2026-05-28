@@ -75,6 +75,21 @@ function renderContentBlocks(blocks: BlogContentBlock[]) {
       case "paragraph":
         return <p key={i} className="text-black/60 text-lg leading-relaxed">{block.text}</p>;
 
+      case "source":
+        return (
+          <p key={i} className="text-black/45 text-sm italic border-t border-black/10 pt-6 mt-2">
+            Source:{" "}
+            <a
+              href={block.url}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[var(--zivel-gold-dark)] underline underline-offset-2 hover:text-black transition-colors duration-200"
+            >
+              {block.label}
+            </a>
+          </p>
+        );
+
       default:
         return null;
     }

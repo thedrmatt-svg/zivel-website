@@ -135,6 +135,11 @@ const blogPost: BlogPost = {
       type: "paragraph",
       text:
         "The body remembers. The question is what you want it to remember."
+    },
+    {
+      type: "source",
+      label: "Human haematopoietic stem cells remember inflammatory stress — Nature (2026)",
+      url: "https://www.nature.com/articles/s41586-026-10522-7",
     }
   ]
 };

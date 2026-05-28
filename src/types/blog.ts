@@ -1,7 +1,8 @@
 export type BlogContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; level: 2 | 3; text: string }
-  | { type: "list"; items: string[] };
+  | { type: "list"; items: string[] }
+  | { type: "source"; label: string; url: string };
 
 export type BlogPost = {
   slug: string;
