@@ -33,6 +33,7 @@ export type Location = {
     headline?: string;
     subheadline?: string;
     image: string;
+    note?: { headline: string; body: string };
   };
 
   announcement?: {

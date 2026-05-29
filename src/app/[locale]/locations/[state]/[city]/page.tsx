@@ -266,6 +266,12 @@ export default async function LocationPage({
 
         <div className="bg-black text-white px-6 pt-6 md:pt-8 pb-10 md:pb-14">
           <div className="mx-auto max-w-6xl">
+            {location.hero?.note && (
+              <div className="mb-6 zv-hero-animate-1">
+                <p className="zv-tagline">{location.hero.note.headline}</p>
+                <p className="mt-2 text-base text-white/70 leading-relaxed max-w-2xl">{location.hero.note.body}</p>
+              </div>
+            )}
             <h1 id="location-hero-title" className="font-serif text-5xl md:text-7xl font-light tracking-tight max-w-4xl zv-hero-animate-2">
               {location.hero?.headline ?? location.name}
             </h1>

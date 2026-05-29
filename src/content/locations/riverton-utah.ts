@@ -15,6 +15,10 @@ export const zivel_riverton_location: Location = {
 
   hero: {
     image: "/images/locations/riverton/hero.jpg",
+    note: {
+      headline: "Proud to be a 2026 Best of SLC Winner",
+      body: "Thank you for supporting Zivel Riverton and trusting us with your recovery and wellness.",
+    },
   },
 
   contact: {
