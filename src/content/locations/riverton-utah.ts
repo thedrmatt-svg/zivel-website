@@ -14,7 +14,7 @@ export const zivel_riverton_location: Location = {
   },
 
   hero: {
-    image: "/images/locations/riverton/hero.avif",
+    image: "/images/locations/riverton/hero.jpg",
   },
 
   contact: {
