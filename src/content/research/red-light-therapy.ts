@@ -33,7 +33,6 @@ export const redLightTherapyResearch: ResearchSource[] = [
   {
     id: "rlt-004",
     title: "Photobiomodulation improves mitochondrial function",
-    authors: ["Zhao X et al."],
     journal: "Scientific Reports (Nature)",
     year: 2025,
     url: "https://www.nature.com/articles/s41598-025-09785-3",
