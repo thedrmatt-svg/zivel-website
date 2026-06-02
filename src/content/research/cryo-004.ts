@@ -1,9 +1,9 @@
 export const research = {
   slug: "cryo-004",
   title: "Cryotherapy and Pain Modulation",
-  source: "Pain Research and Management",
-  year: 2016,
+  source: "Journal of Orthopaedic Science",
+  year: 2023,
   summary:
     "Cryotherapy may temporarily reduce pain perception through neural and vascular mechanisms.",
-  url: "https://pubmed.ncbi.nlm.nih.gov/27103930/",
+  url: "https://www.sciencedirect.com/science/article/abs/pii/S0949265821003511",
 };
