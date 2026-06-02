@@ -24,7 +24,6 @@ export const redLightTherapyResearch: ResearchSource[] = [
   {
     id: "rlt-003",
     title: "Advances in photobiomodulation mechanisms",
-    authors: ["de Freitas LF", "Hamblin MR"],
     journal: "Journal of Biophotonics (Wiley)",
     year: 2023,
     url: "https://onlinelibrary.wiley.com/doi/10.1002/jbio.202300521",
