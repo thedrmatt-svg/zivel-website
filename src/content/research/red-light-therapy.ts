@@ -4,7 +4,6 @@ export const redLightTherapyResearch: ResearchSource[] = [
   {
     id: "rlt-001",
     title: "Photobiomodulation therapy: mechanisms and clinical applications",
-    authors: ["Hamblin MR"],
     journal: "Scientific Reports (Nature)",
     year: 2021,
     url: "https://www.nature.com/articles/s41598-021-02311-1",
