@@ -14,7 +14,6 @@ export const redLightTherapyResearch: ResearchSource[] = [
   {
     id: "rlt-002",
     title: "Low-level laser therapy effects on tissue repair",
-    authors: ["Chung H et al."],
     journal: "PLOS ONE",
     year: 2012,
     url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0057828",
