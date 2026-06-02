@@ -45,9 +45,9 @@ export const redLightTherapyResearch: ResearchSource[] = [
     id: "rlt-005",
     title: "Photobiomodulation: A Review of the Evidence",
     authors: ["Hamblin MR"],
-    journal: "NIH / PubMed",
-    year: 2017,
-    url: "https://pubmed.ncbi.nlm.nih.gov/28670177/",
+    journal: "Cells",
+    year: 2024,
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11171912/",
     summary:
       "Comprehensive NIH-backed review of photobiomodulation mechanisms, dosing considerations, and clinical relevance.",
   },
