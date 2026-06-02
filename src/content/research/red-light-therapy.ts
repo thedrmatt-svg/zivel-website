@@ -44,7 +44,6 @@ export const redLightTherapyResearch: ResearchSource[] = [
   {
     id: "rlt-005",
     title: "Photobiomodulation: A Review of the Evidence",
-    authors: ["Hamblin MR"],
     journal: "Cells",
     year: 2024,
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11171912/",
