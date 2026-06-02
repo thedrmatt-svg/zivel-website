@@ -1,9 +1,9 @@
 export const research = {
   slug: "cryo-006",
   title: "Whole-Body Cryotherapy Safety Profile",
-  source: "Open Access Journal of Sports Medicine",
-  year: 2014,
+  source: "European Journal of Medical Research",
+  year: 2023,
   summary:
     "When administered properly, whole-body cryotherapy demonstrates a favorable safety profile in healthy adults.",
-  url: "https://pubmed.ncbi.nlm.nih.gov/25395806/",
+  url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10537204/",
 };
