@@ -296,7 +296,7 @@ export default async function LocationPage({
         <section className="zv-bleed bg-black py-10 md:py-16 px-6">
           <div className="mx-auto max-w-2xl text-center">
             <ScrollReveal variant="fade-up">
-              <p className="zv-tagline text-center mb-6">{location.award.headline}</p>
+              <p className="zv-tagline text-center mb-6" style={{ paddingLeft: "0.25em" }}>{location.award.headline}</p>
               <div className="mx-auto overflow-hidden rounded-2xl" style={{ maxWidth: 480 }}>
                 <Image
                   src={location.award.image}
