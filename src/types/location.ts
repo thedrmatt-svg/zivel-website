@@ -32,7 +32,7 @@ export type Location = {
   hero?: {
     headline?: string;
     subheadline?: string;
-    image: string;
+    image?: string;
     note?: { headline: string; body: string };
   };
 
