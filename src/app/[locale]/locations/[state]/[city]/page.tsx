@@ -264,7 +264,7 @@ export default async function LocationPage({
           </div>
         </div>
 
-        <div className="bg-black text-white px-6 pt-6 md:pt-8 pb-10 md:pb-14">
+        <div className="bg-black text-white px-6 pt-6 md:pt-8 pb-6 md:pb-8">
           <div className="mx-auto max-w-6xl">
             {location.hero?.note && (
               <div className="mb-6 zv-hero-animate-1">
@@ -293,10 +293,10 @@ export default async function LocationPage({
 
       {/* ========== AWARD SECTION ========== */}
       {location.award && (
-        <section className="zv-bleed bg-black py-16 md:py-24 px-6">
+        <section className="zv-bleed bg-black py-10 md:py-16 px-6">
           <div className="mx-auto max-w-2xl text-center">
             <ScrollReveal variant="fade-up">
-              <p className="zv-tagline mb-6">{location.award.headline}</p>
+              <p className="zv-tagline text-center mb-6">{location.award.headline}</p>
               <div className="mx-auto overflow-hidden rounded-2xl" style={{ maxWidth: 480 }}>
                 <Image
                   src={location.award.image}
