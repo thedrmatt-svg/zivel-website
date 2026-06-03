@@ -13,11 +13,10 @@ export const zivel_riverton_location: Location = {
     canonical: "https://www.zivel.com/locations/utah/riverton",
   },
 
-  hero: {
-    note: {
-      headline: "Proud to be a 2026 Best of SLC Winner",
-      body: "Thank you for supporting Zivel Riverton and trusting us with your recovery and wellness.",
-    },
+  award: {
+    image: "/images/locations/riverton/award.avif",
+    headline: "Proud to be a 2026 Best of SLC Winner",
+    body: "Thank you for supporting Zivel Riverton and trusting us with your recovery and wellness.",
   },
 
   contact: {

@@ -36,6 +36,12 @@ export type Location = {
     note?: { headline: string; body: string };
   };
 
+  award?: {
+    image: string;
+    headline: string;
+    body: string;
+  };
+
   announcement?: {
     headline: string;
     dates?: string;

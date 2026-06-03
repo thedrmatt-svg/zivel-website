@@ -291,6 +291,29 @@ export default async function LocationPage({
         </div>
       </section>
 
+      {/* ========== AWARD SECTION ========== */}
+      {location.award && (
+        <section className="zv-bleed bg-black py-16 md:py-24 px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline mb-6">{location.award.headline}</p>
+              <div className="mx-auto overflow-hidden rounded-2xl" style={{ maxWidth: 480 }}>
+                <Image
+                  src={location.award.image}
+                  alt={location.award.headline}
+                  width={960}
+                  height={720}
+                  sizes="(max-width: 640px) 100vw, 480px"
+                  quality={85}
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                />
+              </div>
+              <p className="mt-8 text-white/70 text-lg leading-relaxed">{location.award.body}</p>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+
       {/* ========== GRAND OPENING / ANNOUNCEMENT BANNER ========== */}
       {location.announcement && (
         <>
