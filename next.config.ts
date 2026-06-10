@@ -40,7 +40,8 @@ const nextConfig: NextConfig = {
       { source: "/:path*", has: [{ type: "host" as const, value: "brecksville.zivel.com"  }], destination: "https://www.zivel.com/locations/ohio/brecksville/:path*",     permanent: true },
 
       // ── Franchisee domain redirects ─────────────────────────────────────
-      { source: "/locations/north-carolina/belmont{/}?", destination: "https://www.belmontzivel.com", permanent: true },
+      { source: "/locations/north-carolina/belmont{/}?", destination: "https://www.belmontzivel.com",    permanent: true },
+      { source: "/locations/florida/palm-coast{/}?",     destination: "https://www.palmcoastzivel.com", permanent: true },
 
       // ── Legacy / typo path redirects ────────────────────────────────────
       { source: "/riverton{/}?",                                  destination: "https://www.zivel.com/locations/utah/riverton",           permanent: true },
@@ -71,8 +72,8 @@ const nextConfig: NextConfig = {
       { source: "/metairie{/}?",        destination: "https://www.zivel.com/locations/louisiana/metairie",          permanent: true },
       { source: "/murfreesboro{/}?",    destination: "https://www.zivel.com/locations/tennessee/murfreesboro",      permanent: true },
       { source: "/newport{/}?",         destination: "https://www.zivel.com/locations/kentucky/newport",            permanent: true },
-      { source: "/palm-coast{/}?",      destination: "https://www.zivel.com/locations/florida/palm-coast",          permanent: true },
-      { source: "/palmcoast{/}?",       destination: "https://www.zivel.com/locations/florida/palm-coast",          permanent: true },
+      { source: "/palm-coast{/}?",      destination: "https://www.palmcoastzivel.com", permanent: true },
+      { source: "/palmcoast{/}?",       destination: "https://www.palmcoastzivel.com", permanent: true },
       { source: "/parker{/}?",          destination: "https://www.zivel.com/locations/colorado/parker",             permanent: true },
       { source: "/rogers{/}?",          destination: "https://www.zivel.com/locations/arkansas/rogers",             permanent: true },
       { source: "/windermere{/}?",      destination: "https://www.zivel.com/locations/georgia/windermere",          permanent: true },
