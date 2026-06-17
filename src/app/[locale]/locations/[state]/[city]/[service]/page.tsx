@@ -6,6 +6,9 @@ import { notFound } from "next/navigation";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { getLocationByPath } from "@/lib/data/locations";
 import { getServiceBySlug } from "@/lib/data/services";
+import type { Location } from "@/types/location";
+import type { Service } from "@/types/service";
+import rawPlacesCache from "@/data/places-cache.json";
 
 const SITE_URL = "https://www.zivel.com";
 
@@ -50,9 +53,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const svc = getServiceBySlug(service);
   if (!location || !svc) return {};
   const key = `${state}/${city}/${service}`;
+  const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const meta = META_MAP[key] ?? {
-    title: `${svc.name} in ${location.name} | Zivel`,
-    description: `${svc.name} at ${location.name}.`,
+    title: `${svc.name} in ${cityDisplay}, ${location.state} | ${location.name}`,
+    description: `${svc.name} at ${location.name}. ${svc.seo.description}`,
   };
   const basePath = `/locations/${state}/${city}/${service}`;
   const enUrl = `${SITE_URL}${basePath}`;
@@ -68,39 +72,228 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const LOCAL_CONTENT: Record<
-  string,
-  {
-    h1: string;
-    subtitle: string;
-    servingLine: string;
-    trustBar: { stat: string; label: string }[];
-    bookingCtaLabel: string;
-    heroImage: string;
-    heroImageAlt: string;
-    whatIsTagline: string;
-    whatIsHeadline: string;
-    whatIsParagraphs: string[];
-    whatIsOverviewLabel: string;
-    whatIsOverviewHref: string;
-    whatIsImage: string;
-    whatIsImageAlt: string;
-    localExpect: { title: string; body: string }[];
-    benefitsTagline: string;
-    benefits: { title: string; body: string }[];
-    benefitsScienceHref: string;
-    servicesHeading: string;
-    services: { name: string; desc: string; price: string }[];
-    frequencyHeadline: string;
-    frequency: { goal: string; rec: string }[];
-    faqsHeadline: string;
-    faqs: { q: string; a: string }[];
-    pathways: { slug: string; name: string; tagline: string }[];
-    testimonials: { name: string; location: string; quote: string }[];
-    ctaHeadline: string;
-    ctaBody: string;
+// ─────────────────────────────────────────────────────────────────────────────
+// SMART TEMPLATE GENERATOR
+// Used for any location/service page that doesn't have a LOCAL_CONTENT override.
+// ─────────────────────────────────────────────────────────────────────────────
+
+type CacheEntry = { rating: number; userRatingCount: number };
+
+function getCacheEntry(placeId: string | undefined): CacheEntry | null {
+  if (!placeId) return null;
+  const entry = (rawPlacesCache as Record<string, unknown>)[placeId];
+  if (entry && typeof entry === "object" && "rating" in entry && "userRatingCount" in entry) {
+    return entry as CacheEntry;
   }
-> = {
+  return null;
+}
+
+function buildTrustBar(location: Location, cityDisplay: string): { stat: string; label: string }[] {
+  const cached = getCacheEntry(location.google?.placeId);
+  const yr = location.openedYear ?? 2023;
+  if (cached && cached.userRatingCount > 0) {
+    const n = cached.userRatingCount;
+    const countLabel = n >= 200 ? "200+" : n >= 100 ? `${Math.floor(n / 10) * 10}+` : `${n}+`;
+    const ratingLabel = cached.rating === 5 ? "5.0" : cached.rating.toFixed(1);
+    return [
+      { stat: countLabel, label: `${ratingLabel}-Star Reviews` },
+      { stat: "1,000s", label: "Sessions Delivered" },
+      { stat: `Since ${yr}`, label: `Serving ${cityDisplay}` },
+    ];
+  }
+  return [
+    { stat: "200+", label: "5.0-Star Reviews" },
+    { stat: "1,000s", label: "Sessions Delivered" },
+    { stat: `Since ${yr}`, label: `Serving ${cityDisplay}` },
+  ];
+}
+
+function buildLocalExpectCards(location: Location, svc: Service, cityDisplay: string) {
+  return [
+    {
+      title: "Friendly, Expert Staff",
+      body: `Our ${cityDisplay} team guides you through every step — first visit or hundredth, you'll always feel supported and prepared.`,
+    },
+    {
+      title: "Professional-Grade Equipment",
+      body: `${location.name} uses clinical-grade ${svc.name} equipment maintained to exacting standards for consistent, effective results every session.`,
+    },
+    {
+      title: location.contact?.parking ? "Easy Parking" : "Convenient Location",
+      body: location.contact?.parking
+        ? `${location.contact.parking}. Walk in and focus entirely on your wellness.`
+        : `${location.name} is conveniently located. Check our map for directions and nearby parking.`,
+    },
+    {
+      title: "Stack Your Session",
+      body: `Many clients combine ${svc.name} with other services at ${location.name} for a complete recovery or wellness protocol in a single visit.`,
+    },
+  ];
+}
+
+function formatHoursAsText(hours: Location["hours"]): string {
+  if (!hours) return "Please check our booking page for current hours.";
+  const map: [keyof NonNullable<Location["hours"]>, string][] = [
+    ["monday", "Mon"],
+    ["tuesday", "Tue"],
+    ["wednesday", "Wed"],
+    ["thursday", "Thu"],
+    ["friday", "Fri"],
+    ["saturday", "Sat"],
+    ["sunday", "Sun"],
+  ];
+  const parts = map.filter(([k]) => hours[k]).map(([k, label]) => `${label}: ${hours[k]}`);
+  return parts.join("  ·  ") + ". Book ahead to secure your preferred time slot.";
+}
+
+function parseSchemaTime(t: string): string {
+  const m = t.trim().match(/^(\d+)(am|pm)$/i);
+  if (!m) return "00:00";
+  let h = parseInt(m[1]);
+  if (m[2].toLowerCase() === "pm" && h !== 12) h += 12;
+  if (m[2].toLowerCase() === "am" && h === 12) h = 0;
+  return `${h.toString().padStart(2, "0")}:00`;
+}
+
+function buildOpeningHoursSpec(hours: Location["hours"]) {
+  if (!hours) return [];
+  const map: [keyof NonNullable<Location["hours"]>, string][] = [
+    ["monday", "Monday"], ["tuesday", "Tuesday"], ["wednesday", "Wednesday"],
+    ["thursday", "Thursday"], ["friday", "Friday"], ["saturday", "Saturday"], ["sunday", "Sunday"],
+  ];
+  return map
+    .filter(([k]) => hours[k])
+    .map(([k, dayName]) => {
+      const parts = (hours[k] as string).split(/\s*[–\-]\s*/);
+      return {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: dayName,
+        opens: parts[0] ? parseSchemaTime(parts[0]) : "00:00",
+        closes: parts[1] ? parseSchemaTime(parts[1]) : "00:00",
+      };
+    });
+}
+
+type LocalServiceContent = {
+  h1: string;
+  subtitle: string;
+  servingLine: string;
+  trustBar: { stat: string; label: string }[];
+  bookingCtaLabel: string;
+  heroImage: string;
+  heroImageAlt: string;
+  whatIsTagline: string;
+  whatIsHeadline: string;
+  whatIsParagraphs: string[];
+  whatIsOverviewLabel: string;
+  whatIsOverviewHref: string;
+  whatIsImage: string;
+  whatIsImageAlt: string;
+  localExpect: { title: string; body: string }[];
+  benefitsTagline: string;
+  benefits: { title: string; body: string }[];
+  benefitsScienceHref: string;
+  servicesHeading: string;
+  services: { name: string; desc: string; price: string }[];
+  frequencyHeadline: string;
+  frequency: { goal: string; rec: string }[];
+  faqsHeadline: string;
+  faqs: { q: string; a: string }[];
+  pathways: { slug: string; name: string; tagline: string }[];
+  testimonials: { name: string; location: string; quote: string }[];
+  ctaHeadline: string;
+  ctaBody: string;
+};
+
+function generateLocalContent(location: Location, svc: Service, state: string, city: string): LocalServiceContent {
+  const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+
+  const trustBar = buildTrustBar(location, cityDisplay);
+
+  const priceEntry = location.pricing?.standardPrices?.find(
+    (p) => p.name.toLowerCase() === svc.name.toLowerCase()
+  );
+
+  const services = priceEntry
+    ? [{ name: svc.name, desc: svc.intro.paragraphs[0] ?? svc.hero.subheadline, price: `${priceEntry.price}${priceEntry.note ? ` / ${priceEntry.note}` : " / session"}` }]
+    : [{ name: svc.name, desc: svc.intro.paragraphs[0] ?? svc.hero.subheadline, price: "Ask about pricing" }];
+
+  const benefits = svc.benefits.items.slice(0, 6).map((b) => ({
+    title: b.title,
+    body: b.description ?? "",
+  }));
+
+  const locationFaqs = [
+    {
+      q: `Where is ${location.name} located?`,
+      a: location.contact?.address
+        ? `We're located at ${location.contact.address}${location.contact.parking ? `. ${location.contact.parking}.` : "."}`
+        : `Visit us at ${location.name}. Check our location page for directions.`,
+    },
+    {
+      q: `What are ${location.name}'s hours?`,
+      a: formatHoursAsText(location.hours),
+    },
+    {
+      q: `Do I need to book ${svc.name} in advance?`,
+      a: `We recommend booking ahead to secure your preferred time, though walk-ins are welcome based on availability. Use our online booking system for the fastest experience.`,
+    },
+  ];
+  const serviceFaqs = svc.faqs.items.slice(0, 6).map((f) => ({ q: f.question, a: f.answer }));
+  const faqs = [...locationFaqs, ...serviceFaqs].slice(0, 9);
+
+  const testimonials = svc.testimonials.items.slice(0, 3).map((t) => ({
+    name: t.name,
+    location: t.location ?? "Zivel Client",
+    quote: t.quote,
+  }));
+
+  return {
+    h1: `${svc.name} in ${cityDisplay}, ${location.state}`,
+    subtitle: svc.hero.subheadline,
+    servingLine: `Serving ${cityDisplay} and surrounding areas`,
+    trustBar,
+    bookingCtaLabel: `Book Your ${svc.name} Session`,
+    heroImage: svc.hero.media?.src ?? `/images/services/${svc.slug}/hero.jpg`,
+    heroImageAlt: svc.hero.media?.alt ?? `${svc.name} at ${location.name}`,
+    whatIsTagline: "The Treatment",
+    whatIsHeadline: svc.intro.headline,
+    whatIsParagraphs: [
+      ...svc.intro.paragraphs,
+      `At ${location.name}, every ${svc.name.toLowerCase()} session is guided by knowledgeable staff and designed to fit seamlessly into your routine.`,
+    ],
+    whatIsOverviewLabel: `Full ${svc.name} Overview →`,
+    whatIsOverviewHref: `/services/${svc.slug}`,
+    whatIsImage: svc.intro.media?.src ?? `/images/services/${svc.slug}/intro.jpg`,
+    whatIsImageAlt: svc.intro.media?.alt ?? `${svc.name} session at ${location.name}`,
+    localExpect: buildLocalExpectCards(location, svc, cityDisplay),
+    benefitsTagline: `Why ${svc.name}`,
+    benefits,
+    benefitsScienceHref: svc.benefits.viewResearchCTA?.href ?? "/science",
+    servicesHeading: `${svc.name} Services at ${location.name}`,
+    services,
+    frequencyHeadline: `How Often Should You Do ${svc.name}?`,
+    frequency: [
+      { goal: "General Wellness", rec: `2–3 sessions per week is a great starting point for most clients. Consistency over time drives the best cumulative results with ${svc.name}.` },
+      { goal: "Athletic Recovery & Training", rec: `3–5 sessions per week, especially around training days. Many athletes use ${svc.name} post-workout or on active recovery days.` },
+      { goal: "Therapeutic / Targeted Goals", rec: `Higher frequency (daily or every other day) during focused phases, then settle into 2–3x per week for long-term maintenance.` },
+      { goal: "First-Timer", rec: `Start with 2–3 sessions in your first week to experience how your body responds, then find your ideal cadence with guidance from our team.` },
+    ],
+    faqsHeadline: `${svc.name} FAQs — ${cityDisplay}`,
+    faqs,
+    pathways: [
+      { slug: "recovery-pain-support", name: "Recovery & Pain Support", tagline: "A structured approach to reducing soreness, managing inflammation, and getting back to full capacity faster." },
+      { slug: "performance-athletic-optimization", name: "Performance & Athletic Optimization", tagline: "Recovery and performance protocols designed for athletes and serious fitness enthusiasts." },
+    ],
+    testimonials,
+    ctaHeadline: `Book Your ${svc.name} Session at ${location.name}`,
+    ctaBody: `${svc.hero.subheadline} Join clients throughout ${cityDisplay} who have made ${svc.name} a regular part of their wellness routine at ${location.name}.`,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+const LOCAL_CONTENT: Record<string, LocalServiceContent> = {
   "utah/riverton/cryotherapy": {
     h1: "Cryotherapy in Riverton, UT",
     subtitle:
@@ -577,8 +770,11 @@ export default async function LocalServicePage({ params }: Props) {
   if (!location || !svc) return notFound();
 
   const key = `${state}/${city}/${service}`;
-  const local = LOCAL_CONTENT[key];
-  if (!local) return notFound();
+  const local = LOCAL_CONTENT[key] ?? generateLocalContent(location, svc, state, city);
+
+  const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  const stateDisplay = state.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  const postalCode = location.contact?.address?.match(/\b\d{5}\b/)?.[0] ?? "";
 
   const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
   const locationPageUrl = `/locations/${state}/${city}`;
@@ -593,21 +789,13 @@ export default async function LocalServicePage({ params }: Props) {
     telephone: location.contact?.phone,
     address: {
       "@type": "PostalAddress",
-      streetAddress: location.contact?.address?.split(",")[0],
-      addressLocality: "Riverton",
-      addressRegion: "UT",
-      postalCode: "84065",
+      streetAddress: location.contact?.address?.split(",")[0]?.trim(),
+      addressLocality: cityDisplay,
+      addressRegion: location.state,
+      postalCode,
       addressCountry: "US",
     },
-    openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "07:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "10:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "07:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "10:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "08:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "20:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "10:00", closes: "14:00" },
-    ],
+    openingHoursSpecification: buildOpeningHoursSpec(location.hours),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: `${svc.name} Services`,
@@ -628,8 +816,8 @@ export default async function LocalServicePage({ params }: Props) {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Locations", item: `${SITE_URL}/locations` },
-      { "@type": "ListItem", position: 3, name: "Utah", item: `${SITE_URL}/locations/utah` },
-      { "@type": "ListItem", position: 4, name: "Riverton", item: `${SITE_URL}${locationPageUrl}` },
+      { "@type": "ListItem", position: 3, name: stateDisplay, item: `${SITE_URL}/locations/${state}` },
+      { "@type": "ListItem", position: 4, name: cityDisplay, item: `${SITE_URL}${locationPageUrl}` },
       { "@type": "ListItem", position: 5, name: svc.name, item: canonicalUrl },
     ],
   };
@@ -675,9 +863,9 @@ export default async function LocalServicePage({ params }: Props) {
           <li className="text-white/20">/</li>
           <li><Link href="/locations" className="hover:text-white/70 transition-colors">Locations</Link></li>
           <li className="text-white/20">/</li>
-          <li><Link href="/locations/utah" className="hover:text-white/70 transition-colors">Utah</Link></li>
+          <li><Link href={`/locations/${state}`} className="hover:text-white/70 transition-colors">{stateDisplay}</Link></li>
           <li className="text-white/20">/</li>
-          <li><Link href={locationPageUrl} className="hover:text-white/70 transition-colors">Riverton</Link></li>
+          <li><Link href={locationPageUrl} className="hover:text-white/70 transition-colors">{cityDisplay}</Link></li>
           <li className="text-white/20">/</li>
           <li className="text-white/60">{svc.name}</li>
         </ol>

@@ -7,6 +7,8 @@ export const zivel_riverton_location: Location = {
   stateSlug: "utah",
   citySlug: "riverton",
 
+  openedYear: 2023,
+
   seo: {
     title: "Zivel Riverton | Zivel",
     description: "Zivel Riverton offers modern wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, compression therapy, and more. Book a session or explore memberships.",

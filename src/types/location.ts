@@ -73,9 +73,13 @@ export type Location = {
     lng: number;
   };
 
+  openedYear?: number;
+
   google?: {
     placeId?: string;
     mapEmbedUrl?: string;
+    rating?: number;
+    userRatingCount?: number;
   };
 
   pricing?: {

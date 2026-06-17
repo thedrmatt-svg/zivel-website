@@ -1,0 +1,1 @@
+- [Local service page template](local-service-template.md) — generateLocalContent() auto-derives all sections; LOCAL_CONTENT map is per-page override; trust bar reads places-cache.json by placeId.
