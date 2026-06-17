@@ -587,7 +587,7 @@ export default async function LocalServicePage({ params }: Props) {
                   </div>
                 )}
                 <div className="pt-2">
-                  <Link href={locationPageUrl} className="zv-btn-luxury zv-btn-gold">
+                  <Link href="/locations/utah/riverton" scroll={true} className="zv-btn-luxury zv-btn-gold">
                     Full Location Page
                   </Link>
                 </div>
@@ -733,7 +733,7 @@ export default async function LocalServicePage({ params }: Props) {
               >
                 Book Your Cryotherapy Session
               </a>
-              <Link href={locationPageUrl} className="zv-btn-luxury zv-btn-outline">
+              <Link href="/locations/utah/riverton" scroll={true} className="zv-btn-luxury zv-btn-outline">
                 Zivel Riverton
               </Link>
             </div>
