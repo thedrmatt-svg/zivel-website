@@ -12,6 +12,8 @@ const SITE_URL = "https://www.zivel.com";
 const LOCAL_SERVICE_COMBOS = [
   { locale: "en", state: "utah", city: "riverton", service: "cryotherapy" },
   { locale: "es", state: "utah", city: "riverton", service: "cryotherapy" },
+  { locale: "en", state: "utah", city: "riverton", service: "red-light-therapy" },
+  { locale: "es", state: "utah", city: "riverton", service: "red-light-therapy" },
 ];
 
 export function generateStaticParams() {
@@ -27,6 +29,11 @@ const META_MAP: Record<string, { title: string; description: string }> = {
     title: "Cryotherapy in Riverton, UT | Zivel Riverton",
     description:
       "Whole body and localized cryotherapy at Zivel Riverton. Fast recovery, inflammation support, and performance optimization. Serving Riverton, Herriman, Bluffdale & South Jordan.",
+  },
+  "utah/riverton/red-light-therapy": {
+    title: "Red Light Therapy in Riverton, UT | Zivel Riverton",
+    description:
+      "Professional red light therapy at Zivel Riverton for recovery, skin health, reduced inflammation, and performance. Serving Riverton, Herriman, Bluffdale & South Jordan.",
   },
 };
 
@@ -61,12 +68,30 @@ const LOCAL_CONTENT: Record<
     subtitle: string;
     servingLine: string;
     trustBar: { stat: string; label: string }[];
+    bookingCtaLabel: string;
+    heroImage: string;
+    heroImageAlt: string;
+    whatIsTagline: string;
+    whatIsHeadline: string;
+    whatIsParagraphs: string[];
+    whatIsOverviewLabel: string;
+    whatIsOverviewHref: string;
+    whatIsImage: string;
+    whatIsImageAlt: string;
     localExpect: { title: string; body: string }[];
+    benefitsTagline: string;
+    benefits: { title: string; body: string }[];
+    benefitsScienceHref: string;
+    servicesHeading: string;
     services: { name: string; desc: string; price: string }[];
+    frequencyHeadline: string;
     frequency: { goal: string; rec: string }[];
+    faqsHeadline: string;
     faqs: { q: string; a: string }[];
     pathways: { slug: string; name: string; tagline: string }[];
     testimonials: { name: string; location: string; quote: string }[];
+    ctaHeadline: string;
+    ctaBody: string;
   }
 > = {
   "utah/riverton/cryotherapy": {
@@ -79,6 +104,20 @@ const LOCAL_CONTENT: Record<
       { stat: "1,000s", label: "Sessions Delivered" },
       { stat: "Since 2023", label: "Serving Riverton" },
     ],
+    bookingCtaLabel: "Book Your Cryotherapy Session",
+    heroImage: "/images/services/cryotherapy/hero.jpg",
+    heroImageAlt: "Cryotherapy at Zivel Riverton",
+    whatIsTagline: "The Treatment",
+    whatIsHeadline: "What is Cryotherapy?",
+    whatIsParagraphs: [
+      "Cryotherapy uses short-duration, controlled cold exposure to trigger natural physiological responses that may support recovery, circulation, and overall resilience.",
+      "At Zivel Riverton, sessions are quick, supported by staff, and designed to fit seamlessly into a consistent wellness routine — whether your goal is recovery, performance, or simply feeling better day-to-day.",
+      "Results can vary by individual and goal, but consistency and smart programming tend to produce the best outcomes.",
+    ],
+    whatIsOverviewLabel: "Full Cryotherapy Overview →",
+    whatIsOverviewHref: "/services/cryotherapy",
+    whatIsImage: "/images/services/cryotherapy/intro.jpg",
+    whatIsImageAlt: "Client preparing for cryotherapy at Zivel Riverton",
     localExpect: [
       {
         title: "Friendly, Expert Staff",
@@ -97,6 +136,17 @@ const LOCAL_CONTENT: Record<
         body: "After cryo, many clients add red light therapy, compression, or a dry float to maximize the recovery window.",
       },
     ],
+    benefitsTagline: "Why Cryotherapy",
+    benefits: [
+      { title: "Supports Muscle Recovery", body: "Cold exposure may help reduce perceived soreness and support recovery routines — especially when used consistently." },
+      { title: "Inflammation Response Support", body: "Cold exposure can influence inflammatory signaling and circulation dynamics used in post-training recovery strategies." },
+      { title: "Boosts Alertness & Mental Clarity", body: "Many clients report feeling refreshed and focused after sessions due to cold-driven arousal responses." },
+      { title: "Circulation & Recovery Cadence", body: "Used as part of a routine, cryotherapy may complement other recovery modalities and training schedules." },
+      { title: "Time-Efficient", body: "Short sessions — just 2–3 minutes — make it easy to maintain consistency within a busy weekly routine." },
+      { title: "Pairs with Other Modalities", body: "Often combined with red light therapy, infrared sauna, compression, and dry float for a complete recovery stack." },
+    ],
+    benefitsScienceHref: "/science/cold-exposure",
+    servicesHeading: "Cryotherapy Services at Zivel Riverton",
     services: [
       {
         name: "Whole Body Cryotherapy",
@@ -109,6 +159,7 @@ const LOCAL_CONTENT: Record<
         price: "$30 / session",
       },
     ],
+    frequencyHeadline: "How Often Should You Do Cryotherapy?",
     frequency: [
       {
         goal: "General Recovery & Wellness",
@@ -127,6 +178,7 @@ const LOCAL_CONTENT: Record<
         rec: "Start with 3 sessions in your first week to experience the compound effect, then settle into your ideal cadence.",
       },
     ],
+    faqsHeadline: "FAQs — Cryotherapy in Riverton",
     faqs: [
       {
         q: "Where is Zivel Riverton located?",
@@ -193,6 +245,165 @@ const LOCAL_CONTENT: Record<
           "The team walks you through everything so it doesn't feel intimidating. I stack it with compression and red light — three minutes of cold and I feel like a different person.",
       },
     ],
+    ctaHeadline: "Book Your Session at Zivel Riverton",
+    ctaBody:
+      "Three minutes of cold. Faster recovery. More energy. Join thousands of clients across Riverton, Herriman, Bluffdale, and South Jordan who have made cryotherapy part of their weekly routine.",
+  },
+
+  "utah/riverton/red-light-therapy": {
+    h1: "Red Light Therapy in Riverton, UT",
+    subtitle:
+      "Advanced therapeutic red and near-infrared light therapy for faster recovery, better skin, and whole-body wellness at Zivel Riverton",
+    servingLine: "Serving Riverton, Herriman, Bluffdale, and South Jordan",
+    trustBar: [
+      { stat: "200+", label: "5-Star Reviews" },
+      { stat: "1,000s", label: "Sessions Delivered" },
+      { stat: "Since 2023", label: "Serving Riverton" },
+    ],
+    bookingCtaLabel: "Book Your Red Light Session",
+    heroImage: "/images/services/red-light-therapy/hero.jpg",
+    heroImageAlt: "Red light therapy at Zivel Riverton",
+    whatIsTagline: "The Treatment",
+    whatIsHeadline: "What is Red Light Therapy?",
+    whatIsParagraphs: [
+      "Red Light Therapy (RLT), also known as photobiomodulation, uses specific wavelengths of red and near-infrared light to support the body's natural recovery and performance processes.",
+      "Unlike UV light, these wavelengths are non-thermal and are used to help support cellular energy production, circulation, tissue recovery, and skin health — all in a comfortable, relaxing session.",
+      "At Zivel Riverton, sessions are designed to be consistent and easy to stack with other services as part of a complete wellness routine.",
+    ],
+    whatIsOverviewLabel: "Full Red Light Therapy Overview →",
+    whatIsOverviewHref: "/services/red-light-therapy",
+    whatIsImage: "/images/services/red-light-therapy/intro.jpg",
+    whatIsImageAlt: "Red light therapy equipment at Zivel Riverton",
+    localExpect: [
+      {
+        title: "Friendly, Expert Staff",
+        body: "Our Riverton team will position you correctly, answer your questions, and make sure every session is comfortable and effective.",
+      },
+      {
+        title: "Clinical-Grade Equipment",
+        body: "Zivel Riverton uses professional-grade red and near-infrared panels maintained to exacting standards for consistent, reliable results.",
+      },
+      {
+        title: "Easy Parking",
+        body: "Free parking right outside the studio. No stress, no circling — just walk in and get your session done.",
+      },
+      {
+        title: "Stack Your Session",
+        body: "Many clients pair red light therapy with cryotherapy, infrared sauna, or compression therapy on the same visit for a complete recovery protocol.",
+      },
+    ],
+    benefitsTagline: "Why Red Light Therapy",
+    benefits: [
+      { title: "Supports Muscle Recovery", body: "Often used to support tissue recovery and post-exercise soreness by assisting normal inflammatory and circulation processes." },
+      { title: "Promotes Healthy Skin", body: "Commonly used to support collagen-related outcomes and overall skin appearance — tone, texture, and clarity." },
+      { title: "Supports Circulation", body: "May support local blood flow and circulation, which can assist recovery routines and overall cellular function." },
+      { title: "Joint Comfort & Mobility", body: "Frequently used as part of wellness routines aimed at maintaining mobility and joint comfort over time." },
+      { title: "Sleep & Daily Resilience", body: "Some clients incorporate RLT into their evening routines to support relaxation and overall daily wellness habits." },
+      { title: "Easy to Stack", body: "Pairs naturally with cryotherapy, infrared sauna, compression, and dry float for a comprehensive recovery protocol." },
+    ],
+    benefitsScienceHref: "/science/red-light-mechanisms",
+    servicesHeading: "Red Light Therapy Services at Zivel Riverton",
+    services: [
+      {
+        name: "Full Body Red Light Therapy",
+        desc: "Relax in our full-panel red and near-infrared light system for a 15–20 minute session targeting your whole body. Supports recovery, circulation, skin health, and cellular energy — all in a single, comfortable visit.",
+        price: "$30 / session",
+      },
+      {
+        name: "Targeted Red Light Therapy",
+        desc: "Focused red and near-infrared light applied to a specific area — a joint, muscle group, or area of concern. Ideal for supplementing whole-body sessions or isolating a recovery target.",
+        price: "$30 / session",
+      },
+    ],
+    frequencyHeadline: "How Often Should You Do Red Light Therapy?",
+    frequency: [
+      {
+        goal: "General Wellness & Skin Health",
+        rec: "2–4x per week. Consistency is the key driver of visible results — especially for skin and cellular recovery outcomes.",
+      },
+      {
+        goal: "Athletic Recovery & Performance",
+        rec: "3–5x per week around training. Best used post-workout or on active recovery days to support tissue repair.",
+      },
+      {
+        goal: "Joint Comfort & Mobility Support",
+        rec: "Daily or every other day during flare-ups, then dial back to 2–3x per week for maintenance.",
+      },
+      {
+        goal: "Introductory / First-Timer",
+        rec: "Start with 3–4 sessions in your first two weeks to establish a baseline response, then build your ideal cadence.",
+      },
+    ],
+    faqsHeadline: "FAQs — Red Light Therapy in Riverton",
+    faqs: [
+      {
+        q: "Where is Zivel Riverton located?",
+        a: "We're at 2722 W 12600 S #1, Riverton, UT 84065 — with free parking right outside. Easy access from Herriman, Bluffdale, and South Jordan.",
+      },
+      {
+        q: "What red light therapy services does Zivel Riverton offer?",
+        a: "We offer full body red light therapy and targeted red light sessions. Both use professional-grade panels delivering red and near-infrared wavelengths. Sessions can be booked individually or as part of a membership.",
+      },
+      {
+        q: "How much does red light therapy cost at Zivel Riverton?",
+        a: "Single sessions start at $30. Members receive discounted rates — memberships start at $99/month. Stacking multiple services in one visit is a popular way to get more value per trip.",
+      },
+      {
+        q: "What are Zivel Riverton's hours?",
+        a: "Mon & Wed 7am–8pm, Tue & Thu 10am–8pm, Fri 8am–8pm, Sat 9am–8pm, Sun 10am–2pm. Book in advance to secure your preferred time.",
+      },
+      {
+        q: "How long is a red light therapy session?",
+        a: "Most sessions run 15–20 minutes. Add a few minutes for check-in and setup. You can often complete a full session and be back in your day within 30 minutes.",
+      },
+      {
+        q: "Does red light therapy hurt or feel uncomfortable?",
+        a: "No — RLT is non-invasive and generally very comfortable. Most clients feel a mild warmth or nothing at all. There is no UV light involved, and sessions do not cause burns or skin damage.",
+      },
+      {
+        q: "What should I wear to my red light therapy session?",
+        a: "Wear minimal clothing or a swimsuit to maximize skin exposure to the light panels. We provide eye protection. Remove any metal jewelry or accessories before your session.",
+      },
+      {
+        q: "Can I combine red light therapy with other services at Zivel Riverton?",
+        a: "Absolutely. Our most popular stack is cryotherapy → red light therapy → compression therapy. You can book multiple services in a single visit. Our team can help you sequence them based on your goals.",
+      },
+    ],
+    pathways: [
+      {
+        slug: "recovery-pain-support",
+        name: "Recovery & Pain Support",
+        tagline: "A structured approach to reducing soreness, managing inflammation, and getting back to full capacity faster.",
+      },
+      {
+        slug: "performance-athletic-optimization",
+        name: "Performance & Athletic Optimization",
+        tagline: "Recovery and performance protocols designed for athletes, serious fitness enthusiasts, and anyone who trains hard.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Ashley M.",
+        location: "Riverton, UT",
+        quote:
+          "I started doing red light therapy twice a week and within a month my skin looked noticeably better. I sleep better too. It's become a non-negotiable part of my week.",
+      },
+      {
+        name: "Jason K.",
+        location: "South Jordan, UT",
+        quote:
+          "I stack red light with cryo after my long runs. My legs recover so much faster — I used to dread Monday runs after a hard weekend. Not anymore.",
+      },
+      {
+        name: "Natalie R.",
+        location: "Herriman, UT",
+        quote:
+          "The staff here are so knowledgeable. They helped me figure out the right frequency for my goals. I've been coming for six months and I won't stop.",
+      },
+    ],
+    ctaHeadline: "Book Your Red Light Session at Zivel Riverton",
+    ctaBody:
+      "Recovery. Better skin. More energy. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who have made red light therapy part of their weekly wellness routine.",
   },
 };
 
@@ -236,7 +447,7 @@ export default async function LocalServicePage({ params }: Props) {
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Cryotherapy Services",
+      name: `${svc.name} Services`,
       itemListElement: local.services.map((s) => ({
         "@type": "Offer",
         itemOffered: {
@@ -256,7 +467,7 @@ export default async function LocalServicePage({ params }: Props) {
       { "@type": "ListItem", position: 2, name: "Locations", item: `${SITE_URL}/locations` },
       { "@type": "ListItem", position: 3, name: "Utah", item: `${SITE_URL}/locations/utah` },
       { "@type": "ListItem", position: 4, name: "Riverton", item: `${SITE_URL}${locationPageUrl}` },
-      { "@type": "ListItem", position: 5, name: "Cryotherapy", item: canonicalUrl },
+      { "@type": "ListItem", position: 5, name: svc.name, item: canonicalUrl },
     ],
   };
 
@@ -305,7 +516,7 @@ export default async function LocalServicePage({ params }: Props) {
           <li className="text-white/20">/</li>
           <li><Link href={locationPageUrl} className="hover:text-white/70 transition-colors">Riverton</Link></li>
           <li className="text-white/20">/</li>
-          <li className="text-white/60">Cryotherapy</li>
+          <li className="text-white/60">{svc.name}</li>
         </ol>
       </nav>
 
@@ -316,8 +527,8 @@ export default async function LocalServicePage({ params }: Props) {
       >
         <div className="relative overflow-hidden" style={{ minHeight: 480 }}>
           <Image
-            src="/images/services/cryotherapy/hero.jpg"
-            alt="Cryotherapy at Zivel Riverton"
+            src={local.heroImage}
+            alt={local.heroImageAlt}
             fill
             priority
             fetchPriority="high"
@@ -341,7 +552,7 @@ export default async function LocalServicePage({ params }: Props) {
                 rel="noopener noreferrer"
                 className="zv-btn-luxury zv-btn-gold"
               >
-                Book Your Cryotherapy Session
+                {local.bookingCtaLabel}
               </a>
               <Link href={servicePageUrl} className="zv-btn-luxury zv-btn-outline">
                 Learn More
@@ -370,41 +581,31 @@ export default async function LocalServicePage({ params }: Props) {
         </div>
       </section>
 
-      {/* ========== WHAT IS CRYOTHERAPY (DARK) ========== */}
+      {/* ========== WHAT IS IT (DARK) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-elevated" style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}>
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <ScrollReveal variant="fade-right">
-              <p className="zv-tagline mb-4">The Treatment</p>
+              <p className="zv-tagline mb-4">{local.whatIsTagline}</p>
               <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-6">
-                What is Cryotherapy?
+                {local.whatIsHeadline}
               </h2>
               <div className="space-y-4 text-white/70 text-lg leading-relaxed">
-                <p>
-                  Cryotherapy uses short-duration, controlled cold exposure to trigger natural
-                  physiological responses that may support recovery, circulation, and overall resilience.
-                </p>
-                <p>
-                  At Zivel Riverton, sessions are quick, supported by staff, and designed to fit
-                  seamlessly into a consistent wellness routine — whether your goal is recovery,
-                  performance, or simply feeling better day-to-day.
-                </p>
-                <p>
-                  Results can vary by individual and goal, but consistency and smart programming
-                  tend to produce the best outcomes.
-                </p>
+                {local.whatIsParagraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href={servicePageUrl} className="text-[var(--zivel-gold)] text-sm hover:underline">
-                  Full Cryotherapy Overview →
+                <Link href={local.whatIsOverviewHref} className="text-[var(--zivel-gold)] text-sm hover:underline">
+                  {local.whatIsOverviewLabel}
                 </Link>
               </div>
             </ScrollReveal>
             <ScrollReveal variant="fade-left">
               <div className="rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/services/cryotherapy/intro.jpg"
-                  alt="Client preparing for cryotherapy at Zivel Riverton"
+                  src={local.whatIsImage}
+                  alt={local.whatIsImageAlt}
                   width={700}
                   height={500}
                   quality={80}
@@ -446,20 +647,13 @@ export default async function LocalServicePage({ params }: Props) {
       <section className="zv-bleed zv-immersive-section" style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}>
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
-            <p className="zv-tagline mb-4">Why Cryotherapy</p>
+            <p className="zv-tagline mb-4">{local.benefitsTagline}</p>
             <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-14">
               Key Benefits
             </h2>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {[
-              { title: "Supports Muscle Recovery", body: "Cold exposure may help reduce perceived soreness and support recovery routines — especially when used consistently." },
-              { title: "Inflammation Response Support", body: "Cold exposure can influence inflammatory signaling and circulation dynamics used in post-training recovery strategies." },
-              { title: "Boosts Alertness & Mental Clarity", body: "Many clients report feeling refreshed and focused after sessions due to cold-driven arousal responses." },
-              { title: "Circulation & Recovery Cadence", body: "Used as part of a routine, cryotherapy may complement other recovery modalities and training schedules." },
-              { title: "Time-Efficient", body: "Short sessions — just 2–3 minutes — make it easy to maintain consistency within a busy weekly routine." },
-              { title: "Pairs with Other Modalities", body: "Often combined with red light therapy, infrared sauna, compression, and dry float for a complete recovery stack." },
-            ].map((b, idx) => (
+            {local.benefits.map((b, idx) => (
               <ScrollReveal key={b.title} variant="fade-up" delay={idx * 60}>
                 <div className="zv-card-glass rounded-2xl p-6 h-full">
                   <div className="w-6 h-0.5 bg-[var(--zivel-gold)] mb-4" />
@@ -470,7 +664,7 @@ export default async function LocalServicePage({ params }: Props) {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <Link href="/science/cold-exposure" className="text-[var(--zivel-gold)] text-sm hover:underline">
+            <Link href={local.benefitsScienceHref} className="text-[var(--zivel-gold)] text-sm hover:underline">
               View the Science →
             </Link>
           </div>
@@ -484,7 +678,7 @@ export default async function LocalServicePage({ params }: Props) {
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline mb-4">What We Offer</p>
             <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-14">
-              Cryotherapy Services at Zivel Riverton
+              {local.servicesHeading}
             </h2>
           </ScrollReveal>
           <div className="grid md:grid-cols-2 gap-8">
@@ -518,7 +712,7 @@ export default async function LocalServicePage({ params }: Props) {
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline mb-4">Frequency Guide</p>
             <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-4">
-              How Often Should You Do Cryotherapy?
+              {local.frequencyHeadline}
             </h2>
             <p className="text-white/60 text-lg mb-14 max-w-2xl">
               The right frequency depends on your goals. Here&apos;s a general starting point — our Riverton team can help you dial in the ideal schedule.
@@ -629,7 +823,7 @@ export default async function LocalServicePage({ params }: Props) {
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline mb-4">Common Questions</p>
             <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-14">
-              FAQs — Cryotherapy in Riverton
+              {local.faqsHeadline}
             </h2>
           </ScrollReveal>
           <div className="space-y-3">
@@ -717,12 +911,10 @@ export default async function LocalServicePage({ params }: Props) {
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline mb-6">Ready to Start</p>
             <h2 className="font-serif text-4xl md:text-6xl font-light tracking-tight mb-6">
-              Book Your Session at Zivel Riverton
+              {local.ctaHeadline}
             </h2>
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-              Three minutes of cold. Faster recovery. More energy. Join thousands of clients across
-              Riverton, Herriman, Bluffdale, and South Jordan who have made cryotherapy part of their
-              weekly routine.
+              {local.ctaBody}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
@@ -731,7 +923,7 @@ export default async function LocalServicePage({ params }: Props) {
                 rel="noopener noreferrer"
                 className="zv-btn-luxury zv-btn-gold"
               >
-                Book Your Cryotherapy Session
+                {local.bookingCtaLabel}
               </a>
               <Link href="/locations/utah/riverton" scroll={true} className="zv-btn-luxury zv-btn-outline">
                 Zivel Riverton

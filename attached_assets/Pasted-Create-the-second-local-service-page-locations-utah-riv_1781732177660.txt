@@ -1,0 +1,52 @@
+Create the second local service page: /locations/utah/riverton/red-light-therapy
+
+Use the same dynamic route structure: app/locations/[state]/[city]/[service]/page.tsx
+
+Pull existing data from the Riverton location page (address, phone, hours, etc.) and from the main /services/red-light-therapy page. Reuse and adapt content — do not duplicate unnecessarily.
+
+Page Title / Meta:
+- Title: "Red Light Therapy in Riverton, UT | Zivel Riverton"
+- Description: "Professional red light therapy at Zivel Riverton for recovery, skin health, reduced inflammation, and performance. Serving Riverton, Herriman, Bluffdale & South Jordan."
+
+Hero Section:
+- H1: "Red Light Therapy in Riverton, UT"
+- Subtitle: "Advanced therapeutic red and near-infrared light therapy for faster recovery, better skin, and whole-body wellness at Zivel Riverton"
+- Local line: "Serving Riverton, Herriman, Bluffdale, and South Jordan"
+- Strong CTAs: "Book Your Red Light Session" + "Learn More"
+
+Trust Bar (right below hero):
+- Over 200 5.0 Star Reviews
+- Thousands of Sessions Delivered
+- Serving Riverton Since 2023
+
+Key Sections (same flow as Cryotherapy page):
+
+1. What is Red Light Therapy? (reuse/adapt from main red light page + local "What to Expect at Zivel Riverton")
+
+2. Key Benefits (grid) – adapt from main service page
+
+3. Red Light Therapy Services at Zivel Riverton
+   - Full Body Red Light Therapy
+   - Targeted / Localized Sessions
+   - Include session options and "Book Now" buttons
+
+4. How Often Should You Do Red Light Therapy?
+
+5. Location Details (pull from Riverton location data)
+
+6. Local FAQs (accordion – 6-8 relevant questions)
+
+7. Related Recovery Pathways (cards)
+
+8. Testimonials
+
+9. Final Strong CTA Section
+
+Technical Requirements:
+- Match the exact styling, components, and structure of the new Riverton Cryotherapy page
+- Fix the two buttons ("Full Location Page" and "Zivel Riverton") to link to the top of /locations/utah/riverton
+- Add proper breadcrumbs, LocalBusiness + Service schema
+- Use the standard Riverton Performance IQ booking link for CTAs
+- Ensure fast loading and mobile responsiveness
+
+Run `npm run build` after creating the page. Do not push yet.
