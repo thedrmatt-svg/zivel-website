@@ -1,0 +1,53 @@
+Create the first local service page: /locations/utah/riverton/cryotherapy
+
+Use dynamic route: app/locations/[state]/[city]/[service]/page.tsx
+
+Pull existing data from the Riverton location page (address, phone, hours, map, etc.) and from the main /services/cryotherapy page. Do NOT duplicate or recreate content — reuse and adapt where appropriate.
+
+Page Title / Meta:
+- Title: "Cryotherapy in Riverton, UT | Zivel Riverton"
+- Description: "Whole body and localized cryotherapy at Zivel Riverton. Fast recovery, inflammation support, and performance optimization. Serving Riverton, Herriman, Bluffdale & South Jordan."
+
+Hero Section:
+- H1: "Cryotherapy in Riverton, UT"
+- Subtitle: "Advanced cold therapy for recovery, pain relief, and performance at Zivel Riverton"
+- Local line: "Serving Riverton, Herriman, Bluffdale, and South Jordan"
+- Strong CTAs: "Book Your Cryotherapy Session" + secondary "Learn More"
+
+Trust Bar (right below hero):
+- Over 200 5.0 Star Reviews
+- Thousands of Sessions Delivered
+- Serving Riverton Since 2023
+
+Key Sections (in this order):
+
+1. What is Cryotherapy? (reuse/adapt from main cryotherapy page + add local "What to Expect at Zivel Riverton")
+
+2. Key Benefits (grid) – adapt from main service page
+
+3. Cryotherapy Services Available at Zivel Riverton
+   - Whole Body Cryotherapy
+   - Localized Cryotherapy
+   - Include pricing context and "Book Now" buttons
+
+4. How Often Should You Do Cryotherapy? (guidance tied to goals, link to relevant Pathways)
+
+5. Location Details (pull address, phone, hours, directions from Riverton location data)
+
+6. Local FAQs (accordion – create 6-8 relevant questions)
+
+7. Related Recovery Pathways (cards)
+
+8. Testimonials (use Riverton or nearby if available)
+
+9. Final Strong CTA Section
+
+Technical Instructions:
+- Reuse components, styling, and patterns from existing location pages and service pages.
+- Add proper breadcrumb navigation.
+- Include LocalBusiness + Service structured data.
+- For booking buttons: Use the existing Performance IQ booking link from the Riverton location page. Optionally add a deep link if possible (e.g. pre-selecting cryotherapy), but default to the standard location booking link.
+- Make sure the page is fast, SSR, and mobile-friendly.
+- Internally link to main /services/cryotherapy and parent /locations/utah/riverton
+
+Run `npm run build` after creating the page. Do not push yet.
