@@ -14,6 +14,8 @@ const LOCAL_SERVICE_COMBOS = [
   { locale: "es", state: "utah", city: "riverton", service: "cryotherapy" },
   { locale: "en", state: "utah", city: "riverton", service: "red-light-therapy" },
   { locale: "es", state: "utah", city: "riverton", service: "red-light-therapy" },
+  { locale: "en", state: "utah", city: "riverton", service: "infrared-sauna" },
+  { locale: "es", state: "utah", city: "riverton", service: "infrared-sauna" },
 ];
 
 export function generateStaticParams() {
@@ -34,6 +36,11 @@ const META_MAP: Record<string, { title: string; description: string }> = {
     title: "Red Light Therapy in Riverton, UT | Zivel Riverton",
     description:
       "Professional red light therapy at Zivel Riverton for recovery, skin health, reduced inflammation, and performance. Serving Riverton, Herriman, Bluffdale & South Jordan.",
+  },
+  "utah/riverton/infrared-sauna": {
+    title: "Infrared Sauna in Riverton, UT | Zivel Riverton",
+    description:
+      "Therapeutic infrared sauna sessions at Zivel Riverton for detoxification, relaxation, pain relief, and recovery. Serving Riverton, Herriman, Bluffdale & South Jordan.",
   },
 };
 
@@ -404,6 +411,162 @@ const LOCAL_CONTENT: Record<
     ctaHeadline: "Book Your Red Light Session at Zivel Riverton",
     ctaBody:
       "Recovery. Better skin. More energy. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who have made red light therapy part of their weekly wellness routine.",
+  },
+
+  "utah/riverton/infrared-sauna": {
+    h1: "Infrared Sauna in Riverton, UT",
+    subtitle:
+      "Deep-penetrating infrared heat therapy for detoxification, muscle recovery, stress relief, and improved circulation at Zivel Riverton",
+    servingLine: "Serving Riverton, Herriman, Bluffdale, and South Jordan",
+    trustBar: [
+      { stat: "200+", label: "5-Star Reviews" },
+      { stat: "1,000s", label: "Sessions Delivered" },
+      { stat: "Since 2023", label: "Serving Riverton" },
+    ],
+    bookingCtaLabel: "Book Your Sauna Session",
+    heroImage: "/images/services/infrared-sauna/hero.jpg",
+    heroImageAlt: "Infrared sauna at Zivel Riverton",
+    whatIsTagline: "The Treatment",
+    whatIsHeadline: "What is Infrared Sauna?",
+    whatIsParagraphs: [
+      "Infrared saunas use light-based heat that penetrates more deeply than traditional hot-air saunas — warming your body from the inside out rather than just heating the surrounding air.",
+      "Unlike conventional saunas that can feel stifling and humid, infrared heat is gentle and comfortable. Sessions at Zivel Riverton are private, relaxing, and easy to fit into your weekly routine.",
+      "Whether your goal is muscle recovery, stress relief, better sleep, or simply a deep, cleansing sweat — infrared sauna delivers a restorative experience that clients come back to week after week.",
+    ],
+    whatIsOverviewLabel: "Full Infrared Sauna Overview →",
+    whatIsOverviewHref: "/services/infrared-sauna",
+    whatIsImage: "/images/services/infrared-sauna/intro.jpg",
+    whatIsImageAlt: "Infrared sauna session at Zivel Riverton",
+    localExpect: [
+      {
+        title: "Private Sessions",
+        body: "Each infrared sauna session at Zivel Riverton takes place in your own private room — fully comfortable and designed for deep relaxation.",
+      },
+      {
+        title: "Clean, Maintained Equipment",
+        body: "Our sauna units are cleaned between every session and maintained to the highest standards for a safe, effective experience every time.",
+      },
+      {
+        title: "Easy Parking",
+        body: "Free parking right outside the studio. Walk in, unwind, and leave feeling like a new person — no hassle.",
+      },
+      {
+        title: "Stack Your Session",
+        body: "Pair infrared sauna with compression therapy, red light therapy, or dry float on the same visit for a complete recovery and wellness protocol.",
+      },
+    ],
+    benefitsTagline: "Why Infrared Sauna",
+    benefits: [
+      { title: "Relaxation & Stress Support", body: "Heat-based sessions provide a deep, calming reset that helps lower tension and quiet a busy mind after a long day or hard week." },
+      { title: "Supports Muscle Recovery", body: "Infrared heat increases circulation and may help relieve post-workout soreness — often used the day after intense training." },
+      { title: "Circulation & Blood Flow", body: "Heat promotes vasodilation, supporting healthy blood flow throughout the body and contributing to overall cardiovascular wellness." },
+      { title: "Sweat-Based Detox Support", body: "A deep, sustained sweat helps your body flush out impurities. Many clients describe feeling noticeably lighter and clearer after sessions." },
+      { title: "Sleep Routine Support", body: "Used by many clients as part of an evening wind-down. The relaxation response from infrared heat can make it easier to fall and stay asleep." },
+      { title: "Pairs with Other Modalities", body: "Stacks naturally with compression therapy, red light therapy, and dry float for a comprehensive recovery and wellness visit." },
+    ],
+    benefitsScienceHref: "/science/infrared-sauna",
+    servicesHeading: "Infrared Sauna Services at Zivel Riverton",
+    services: [
+      {
+        name: "Infrared Sauna Session",
+        desc: "A 20–25 minute private infrared sauna session delivering comfortable, penetrating heat. Supports muscle recovery, circulation, stress relief, and detoxification. Great as a standalone session or as part of a recovery stack.",
+        price: "$35 / session",
+      },
+      {
+        name: "Extended Infrared Session",
+        desc: "A longer 30–35 minute session for clients looking for a deeper, more immersive experience. Ideal for those working on chronic tension, enhanced detoxification goals, or a fuller relaxation reset.",
+        price: "$35 / session",
+      },
+    ],
+    frequencyHeadline: "How Often Should You Use Infrared Sauna?",
+    frequency: [
+      {
+        goal: "General Wellness & Stress Relief",
+        rec: "1–3x per week. A consistent routine is what builds the cumulative benefits — even once a week makes a meaningful difference.",
+      },
+      {
+        goal: "Athletic Recovery & Post-Training",
+        rec: "2–4x per week, typically on training days or the day after. Heat exposure supports circulation and muscle recovery when used regularly.",
+      },
+      {
+        goal: "Detoxification & Cleansing Goals",
+        rec: "3–5x per week during an active detox phase, then dial back to 1–2x per week for ongoing maintenance.",
+      },
+      {
+        goal: "Sleep & Evening Wind-Down",
+        rec: "2–3x per week in the evening. Many clients schedule sauna sessions 1–2 hours before bed to support their sleep routine.",
+      },
+    ],
+    faqsHeadline: "FAQs — Infrared Sauna in Riverton",
+    faqs: [
+      {
+        q: "Where is Zivel Riverton located?",
+        a: "We're at 2722 W 12600 S #1, Riverton, UT 84065 — free parking right outside the studio. Easy access from Herriman, Bluffdale, and South Jordan.",
+      },
+      {
+        q: "What infrared sauna services does Zivel Riverton offer?",
+        a: "We offer private infrared sauna sessions in standard (20–25 min) and extended (30–35 min) formats. Sessions can be booked individually or as part of a membership.",
+      },
+      {
+        q: "How much does infrared sauna cost at Zivel Riverton?",
+        a: "Single sessions start at $35. Members receive discounted rates — memberships start at $99/month. Stacking sauna with other services is a popular way to maximize each visit.",
+      },
+      {
+        q: "What are Zivel Riverton's hours?",
+        a: "Mon & Wed 7am–8pm, Tue & Thu 10am–8pm, Fri 8am–8pm, Sat 9am–8pm, Sun 10am–2pm. Book in advance to secure your preferred time slot.",
+      },
+      {
+        q: "How long is an infrared sauna session?",
+        a: "Standard sessions are 20–25 minutes. Extended sessions run 30–35 minutes. Add a few minutes for check-in. Most clients are in and out within 45 minutes total.",
+      },
+      {
+        q: "Is infrared sauna safe? Are there any restrictions?",
+        a: "Infrared sauna is generally well-tolerated by healthy adults when properly hydrated and when session length is appropriate. We recommend consulting your healthcare provider if you are pregnant, have uncontrolled blood pressure, heat sensitivity, or are on medications that affect heat tolerance. Our team will review any relevant health considerations before your session.",
+      },
+      {
+        q: "What should I wear to my infrared sauna session?",
+        a: "Wear minimal clothing — a swimsuit or comfortable undergarments work best. Greater skin exposure maximizes the effectiveness of infrared heat. Each session is fully private.",
+      },
+      {
+        q: "Can I combine infrared sauna with other services at Zivel Riverton?",
+        a: "Absolutely. A popular recovery stack is infrared sauna → compression therapy → red light therapy. You can book multiple services in a single visit and our team can help you sequence them based on your goals.",
+      },
+    ],
+    pathways: [
+      {
+        slug: "stress-sleep-reset",
+        name: "Stress & Sleep Reset",
+        tagline: "A structured approach to reducing chronic stress, improving sleep quality, and restoring your body's natural recovery rhythms.",
+      },
+      {
+        slug: "recovery-pain-support",
+        name: "Recovery & Pain Support",
+        tagline: "A structured approach to reducing soreness, managing inflammation, and getting back to full capacity faster.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Rachel P.",
+        location: "Riverton, UT",
+        quote:
+          "I started doing infrared sauna twice a week and it has completely changed how I handle stress. I sleep better, I'm less tense, and I feel lighter. I wish I'd started sooner.",
+      },
+      {
+        name: "Tyler B.",
+        location: "Herriman, UT",
+        quote:
+          "I use the sauna the day after my long training runs. My legs recover so much faster now — it's become a non-negotiable part of my weekly routine.",
+      },
+      {
+        name: "Sarah W.",
+        location: "South Jordan, UT",
+        quote:
+          "The private rooms, the comfortable heat, the staff — everything about Zivel Riverton is a cut above. The sauna is my favorite way to end a hard week.",
+      },
+    ],
+    ctaHeadline: "Book Your Sauna Session at Zivel Riverton",
+    ctaBody:
+      "Deep heat. Faster recovery. Real relaxation. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who have made infrared sauna a cornerstone of their weekly wellness routine.",
   },
 };
 

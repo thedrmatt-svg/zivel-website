@@ -1,0 +1,52 @@
+Create the third local service page: /locations/utah/riverton/infrared-sauna
+
+Use the same dynamic route structure and styling as the previous Riverton Cryotherapy and Red Light Therapy pages.
+
+Pull existing data from the Riverton location page (address, phone, hours, etc.) and from the main /services/infrared-sauna page. Reuse and adapt content — do not duplicate unnecessarily.
+
+Page Title / Meta:
+- Title: "Infrared Sauna in Riverton, UT | Zivel Riverton"
+- Description: "Therapeutic infrared sauna sessions at Zivel Riverton for detoxification, relaxation, pain relief, and recovery. Serving Riverton, Herriman, Bluffdale & South Jordan."
+
+Hero Section:
+- H1: "Infrared Sauna in Riverton, UT"
+- Subtitle: "Deep-penetrating infrared heat therapy for detoxification, muscle recovery, stress relief, and improved circulation at Zivel Riverton"
+- Local line: "Serving Riverton, Herriman, Bluffdale, and South Jordan"
+- Strong CTAs: "Book Your Sauna Session" + "Learn More"
+
+Trust Bar (right below hero):
+- Over 200 5.0 Star Reviews
+- Thousands of Sessions Delivered
+- Serving Riverton Since 2023
+
+Key Sections (follow the exact same flow as the Cryotherapy and Red Light pages):
+
+1. What is Infrared Sauna? (reuse/adapt from main infrared sauna page + local "What to Expect at Zivel Riverton")
+
+2. Key Benefits (grid) – adapt from main service page
+
+3. Infrared Sauna Services at Zivel Riverton
+   - Full Spectrum Infrared Sauna
+   - Session options and duration details
+   - Include "Book Now" buttons
+
+4. How Often Should You Use Infrared Sauna?
+
+5. Location Details (pull from Riverton location data)
+
+6. Local FAQs (accordion – 6-8 relevant questions)
+
+7. Related Recovery Pathways (cards)
+
+8. Testimonials
+
+9. Final Strong CTA Section
+
+Technical Requirements:
+- Match the exact styling, components, and structure of the previous Riverton local service pages
+- Ensure the two buttons ("Full Location Page" and "Zivel Riverton") link to the top of /locations/utah/riverton
+- Add proper breadcrumbs, LocalBusiness + Service schema
+- Use the standard Riverton Performance IQ booking link for all CTAs
+- Keep the page fast, SSR, and fully responsive
+
+Run `npm run build` after creating the page. Do not push yet.
