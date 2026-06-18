@@ -753,6 +753,162 @@ const LOCAL_CONTENT: Record<string, LocalServiceContent> = {
     ctaBody:
       "Deep heat. Faster recovery. Real relaxation. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who have made infrared sauna a cornerstone of their weekly wellness routine.",
   },
+
+  "utah/riverton/cryo-slimming": {
+    h1: "Cryo Slimming in Riverton, UT",
+    subtitle:
+      "Advanced cryo slimming and body contouring for targeted fat reduction and skin tightening at Zivel Riverton",
+    servingLine: "Serving Riverton, Herriman, Bluffdale, and South Jordan",
+    trustBar: [
+      { stat: "200+", label: "5-Star Reviews" },
+      { stat: "1,000s", label: "Sessions Delivered" },
+      { stat: "Since 2023", label: "Serving Riverton" },
+    ],
+    bookingCtaLabel: "Book Your Cryo Slimming Session",
+    heroImage: "/images/services/cryo-slimming/hero.jpg",
+    heroImageAlt: "Cryo slimming body contouring at Zivel Riverton",
+    whatIsTagline: "The Treatment",
+    whatIsHeadline: "What is Cryo Slimming?",
+    whatIsParagraphs: [
+      "Cryo Slimming is a non-invasive body contouring service that uses controlled cold temperatures to target areas where clients want to reduce stubborn fat — without surgery, needles, or required downtime.",
+      "At Zivel Riverton, sessions are private, comfortable, and guided by trained staff who take the time to understand your goals and set realistic expectations from day one.",
+      "Most clients use Cryo Slimming as part of a broader wellness routine — often pairing it with red light therapy or compression for a more complete contouring and recovery visit.",
+    ],
+    whatIsOverviewLabel: "Full Cryo Slimming Overview →",
+    whatIsOverviewHref: "/services/cryo-slimming",
+    whatIsImage: "/images/services/cryo-slimming/intro.jpg",
+    whatIsImageAlt: "Cryo slimming session in progress at Zivel Riverton",
+    localExpect: [
+      {
+        title: "Personalized Consultation",
+        body: "Every cryo slimming visit at Zivel Riverton starts with a goal-setting conversation. Your specialist will walk you through the treatment, identify target areas, and tailor the session to your body composition goals.",
+      },
+      {
+        title: "Private, Comfortable Sessions",
+        body: "Sessions take place in a private room using professional-grade cooling applicators. Most clients find the experience comfortable and easy to work into a regular routine.",
+      },
+      {
+        title: "Easy Parking",
+        body: "Free parking right outside the studio. Walk in, get your session done, and head back to your day — no hassle, no downtime required.",
+      },
+      {
+        title: "Stack Your Visit",
+        body: "Many clients pair cryo slimming with red light therapy or compression on the same visit to support circulation and complement the body contouring effects.",
+      },
+    ],
+    benefitsTagline: "Why Cryo Slimming",
+    benefits: [
+      { title: "Targets Stubborn Fat Areas", body: "Controlled cold is applied to specific zones — abdomen, thighs, arms, flanks — where diet and exercise alone often fall short." },
+      { title: "Non-Invasive, No Downtime", body: "No needles, no surgery, and no recovery period. Most clients return to normal activities immediately after sessions." },
+      { title: "Skin Tightening Support", body: "Cold-based contouring protocols are often paired with red light therapy to support skin firmness alongside fat reduction goals." },
+      { title: "Comfortable Treatment Experience", body: "Most clients describe sessions as tolerable and relaxing. Many use the time to decompress between other wellness services." },
+      { title: "Natural-Looking, Gradual Results", body: "Results develop progressively as the body processes treated areas over several weeks — delivering subtle, natural changes rather than dramatic overnight shifts." },
+      { title: "Pairs with Wellness Routines", body: "Often stacked with red light therapy, compression, or cryotherapy for a complete wellness and body contouring visit at Zivel Riverton." },
+    ],
+    benefitsScienceHref: "/science/cold-exposure",
+    servicesHeading: "Cryo Slimming Services at Zivel Riverton",
+    services: [
+      {
+        name: "Cryo Slimming Session",
+        desc: "A single-area cryo slimming session using cooling applicators to target stubborn fat in a specific zone — abdomen, thighs, flanks, or arms. Includes consultation to identify the right target area and session parameters for your goals.",
+        price: "$75 / session",
+      },
+      {
+        name: "Cryo Slimming Series",
+        desc: "A multi-session series spaced over several weeks to build on cumulative results. Best suited for clients with specific contouring goals who want consistent progress over time. Series pricing provides better value than individual sessions.",
+        price: "From $250 / series",
+      },
+    ],
+    frequencyHeadline: "How Often Should You Do Cryo Slimming?",
+    frequency: [
+      {
+        goal: "Initial Contouring Phase",
+        rec: "1–2x per week for 4–6 weeks. Consistent spacing allows the body to process treated fat cells between sessions for optimal cumulative results.",
+      },
+      {
+        goal: "Maintenance After Initial Series",
+        rec: "Once or twice per month once target results are achieved. Regular maintenance sessions help sustain progress alongside diet and activity.",
+      },
+      {
+        goal: "Skin Tightening Focus",
+        rec: "Pair with red light therapy at each visit. The combination of cold contouring and light-based collagen stimulation supports both fat reduction and skin firmness goals.",
+      },
+      {
+        goal: "Stacking with Other Services",
+        rec: "Cryo slimming → red light therapy → compression is a popular same-visit sequence. The order supports circulation and maximizes the window of effect from each modality.",
+      },
+    ],
+    faqsHeadline: "FAQs — Cryo Slimming in Riverton",
+    faqs: [
+      {
+        q: "Where is Zivel Riverton located?",
+        a: "We're at 2722 W 12600 S #1, Riverton, UT 84065 — free parking right outside the studio. Conveniently accessible from Herriman, Bluffdale, and South Jordan.",
+      },
+      {
+        q: "What cryo slimming services does Zivel Riverton offer?",
+        a: "We offer single-area cryo slimming sessions and multi-session series packages. Sessions can be booked individually or as part of a membership plan. Common target areas include abdomen, thighs, flanks, and arms.",
+      },
+      {
+        q: "How much does cryo slimming cost at Zivel Riverton?",
+        a: "Single sessions start at $75. Series packages start at $250 and offer better value for clients committing to a full contouring protocol. Members receive discounted rates — memberships start at $99/month.",
+      },
+      {
+        q: "What are Zivel Riverton's hours?",
+        a: "Mon & Wed 7am–8pm, Tue & Thu 10am–8pm, Fri 8am–8pm, Sat 9am–8pm, Sun 10am–2pm. Book in advance to secure your preferred appointment.",
+      },
+      {
+        q: "How long is a cryo slimming session?",
+        a: "Sessions typically run 30–45 minutes depending on the target area and protocol. Add a few minutes for check-in and consultation. Most clients are in and out within an hour.",
+      },
+      {
+        q: "How many sessions will I need to see results?",
+        a: "Most clients see visible changes after 3–6 sessions spaced consistently over several weeks. Results develop gradually as the body processes treated fat cells — a series of sessions typically delivers the best outcome.",
+      },
+      {
+        q: "Is cryo slimming safe? Are there any restrictions?",
+        a: "Cryo Slimming is generally well tolerated when administered by trained professionals. We recommend consulting your healthcare provider if you are pregnant, have cold sensitivity, circulatory disorders, or active skin conditions in the treatment area. Our team reviews your health history before every session.",
+      },
+      {
+        q: "Can I combine cryo slimming with other services at Zivel Riverton?",
+        a: "Yes — and we encourage it. A popular visit sequence is cryo slimming → red light therapy → compression. Red light supports skin tightening and collagen, while compression promotes circulation. Our team can help you plan a complete visit based on your goals.",
+      },
+    ],
+    pathways: [
+      {
+        slug: "body-composition-metabolic-support",
+        name: "Body Composition & Metabolic Support",
+        tagline: "A structured wellness pathway designed to support body composition goals using non-invasive modalities as part of a broader health journey.",
+      },
+      {
+        slug: "skin-health-regenerative-aesthetics",
+        name: "Skin Health & Regenerative Aesthetics",
+        tagline: "A structured approach to supporting skin health, firmness, and long-term appearance goals using non-invasive modalities and consistent protocols.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Alicia M.",
+        location: "Riverton, UT",
+        quote:
+          "I've been doing cryo slimming once a week for about six weeks and I can already see a noticeable difference in my midsection. The staff at Zivel Riverton made me feel comfortable from the very first session.",
+      },
+      {
+        name: "Jason K.",
+        location: "South Jordan, UT",
+        quote:
+          "I paired the cryo slimming sessions with red light therapy and the results have been great. No downtime, no discomfort — I fit it in on my lunch break and go right back to work.",
+      },
+      {
+        name: "Natalie R.",
+        location: "Herriman, UT",
+        quote:
+          "I was nervous to try something like this but the team walked me through everything. Three sessions in and my clothes are fitting noticeably better. I'm hooked.",
+      },
+    ],
+    ctaHeadline: "Book Your Cryo Slimming Session at Zivel Riverton",
+    ctaBody:
+      "Non-invasive. No downtime. Real results. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who are using cryo slimming to target stubborn areas and support their body composition goals.",
+  },
 };
 
 export default async function LocalServicePage({ params }: Props) {
