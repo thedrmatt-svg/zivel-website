@@ -6,6 +6,7 @@ export const zivel_palm_coast_location: Location = {
   state: "FL",
   stateSlug: "florida",
   citySlug: "palm-coast",
+  openedYear: 2025,
 
   seo: {
     title: "Zivel Palm Coast | Zivel",

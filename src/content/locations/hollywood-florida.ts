@@ -6,6 +6,7 @@ export const zivel_hollywood_location: Location = {
   state: "FL",
   stateSlug: "florida",
   citySlug: "hollywood",
+  openedYear: 2025,
 
   seo: {
     title: "Zivel Hollywood | Zivel",

@@ -6,6 +6,7 @@ export const zivel_newport_location: Location = {
   state: "KY",
   stateSlug: "kentucky",
   citySlug: "newport",
+  openedYear: 2025,
 
   seo: {
     title: "Zivel Newport | Zivel",

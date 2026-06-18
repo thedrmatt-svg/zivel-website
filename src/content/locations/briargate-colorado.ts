@@ -7,6 +7,7 @@ export const zivel_briargate_location: Location = {
   state: "CO",
   stateSlug: "colorado",
   citySlug: "briargate",
+  openedYear: 2026,
 
   seo: {
     title: "Zivel Briargate | Zivel",

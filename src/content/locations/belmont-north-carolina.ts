@@ -6,6 +6,7 @@ export const zivel_belmont_location: Location = {
   state: "NC",
   stateSlug: "north-carolina",
   citySlug: "belmont",
+  openedYear: 2025,
 
   seo: {
     title: "Zivel Belmont | Zivel",

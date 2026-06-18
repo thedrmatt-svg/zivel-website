@@ -6,6 +6,7 @@ export const zivel_rogers_location: Location = {
   state: "AR",
   stateSlug: "arkansas",
   citySlug: "rogers",
+  openedYear: 2024,
 
   seo: {
     title: "Zivel Rogers | Zivel",

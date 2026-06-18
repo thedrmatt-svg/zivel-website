@@ -6,6 +6,7 @@ export const zivel_buckhead_location: Location = {
   state: "GA",
   stateSlug: "georgia",
   citySlug: "buckhead",
+  openedYear: 2026,
 
   seo: {
     title: "Zivel Buckhead | Zivel",

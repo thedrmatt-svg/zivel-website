@@ -6,6 +6,7 @@ export const zivel_fieldhouse_location: Location = {
   state: "MS",
   stateSlug: "mississippi",
   citySlug: "fieldhouse",
+  openedYear: 2023,
 
   seo: {
     title: "Zivel Fieldhouse | Zivel",

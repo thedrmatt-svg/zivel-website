@@ -6,6 +6,7 @@ export const zivel_metairie_location: Location = {
   state: "LA",
   stateSlug: "louisiana",
   citySlug: "metairie",
+  openedYear: 2025,
 
   seo: {
     title: "Zivel Metairie | Zivel",

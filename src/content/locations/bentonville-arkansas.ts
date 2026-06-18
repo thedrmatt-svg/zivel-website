@@ -6,6 +6,7 @@ export const zivel_bentonville_location: Location = {
   state: "AR",
   stateSlug: "arkansas",
   citySlug: "bentonville",
+  openedYear: 2023,
 
   seo: {
     title: "Zivel Bentonville | Zivel",

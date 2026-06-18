@@ -6,6 +6,7 @@ export const zivel_parker_location: Location = {
   state: "CO",
   stateSlug: "colorado",
   citySlug: "parker",
+  openedYear: 2026,
 
   seo: {
     title: "Zivel Parker | Zivel",

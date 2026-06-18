@@ -6,6 +6,7 @@ export const zivel_highlands_ranch_location: Location = {
   state: "CO",
   stateSlug: "colorado",
   citySlug: "highlands-ranch",
+  openedYear: 2024,
 
   seo: {
     title: "Zivel Highlands Ranch | Zivel",

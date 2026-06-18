@@ -6,6 +6,7 @@ export const zivel_fayetteville_location: Location = {
   state: "AR",
   stateSlug: "arkansas",
   citySlug: "fayetteville",
+  openedYear: 2025,
 
   seo: {
     title: "Zivel Fayetteville | Zivel",

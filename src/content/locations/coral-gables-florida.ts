@@ -6,6 +6,7 @@ export const zivel_coral_gables_location: Location = {
   state: "FL",
   stateSlug: "florida",
   citySlug: "coral-gables",
+  openedYear: 2025,
 
   seo: {
     title: "Zivel Coral Gables | Zivel",

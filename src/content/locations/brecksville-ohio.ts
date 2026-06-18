@@ -6,6 +6,7 @@ export const zivel_brecksville_location: Location = {
   state: "OH",
   stateSlug: "ohio",
   citySlug: "brecksville",
+  openedYear: 2025,
 
   seo: {
     title: "Zivel Brecksville | Zivel",

@@ -6,6 +6,7 @@ export const zivel_murfreesboro_location: Location = {
   state: "TN",
   stateSlug: "tennessee",
   citySlug: "murfreesboro",
+  openedYear: 2024,
 
   seo: {
     title: "Zivel Murfreesboro | Zivel",

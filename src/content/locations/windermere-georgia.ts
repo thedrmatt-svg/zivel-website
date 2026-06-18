@@ -6,6 +6,7 @@ export const zivel_cumming_windermere_location: Location = {
   state: "GA",
   stateSlug: "georgia",
   citySlug: "windermere",
+  openedYear: 2025,
 
   seo: {
     title: "Zivel Cumming-Windermere | Zivel",
