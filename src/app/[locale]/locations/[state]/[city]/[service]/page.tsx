@@ -1058,7 +1058,7 @@ export default async function LocalServicePage({ params }: Props) {
               {local.frequencyHeadline}
             </h2>
             <p className="text-white/60 text-lg mb-14 max-w-2xl">
-              The right frequency depends on your goals. Here&apos;s a general starting point — our Riverton team can help you dial in the ideal schedule.
+              The right frequency depends on your goals. Here&apos;s a general starting point — our {cityDisplay} team can help you dial in the ideal schedule.
             </p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 gap-6">
@@ -1124,8 +1124,8 @@ export default async function LocalServicePage({ params }: Props) {
                   </div>
                 )}
                 <div className="pt-2">
-                  <Link href="/locations/utah/riverton" scroll={true} className="zv-btn-luxury zv-btn-gold">
-                    Full Location Page
+                  <Link href={locationPageUrl} scroll={true} className="zv-btn-luxury zv-btn-gold">
+                    View {cityDisplay} Location
                   </Link>
                 </div>
               </div>
@@ -1228,7 +1228,7 @@ export default async function LocalServicePage({ params }: Props) {
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline mb-4">Real Results</p>
             <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-14">
-              What Clients in Riverton Say
+              What Clients in {cityDisplay} Say
             </h2>
           </ScrollReveal>
           <div className="grid sm:grid-cols-3 gap-6">
@@ -1268,8 +1268,8 @@ export default async function LocalServicePage({ params }: Props) {
               >
                 {local.bookingCtaLabel}
               </a>
-              <Link href="/locations/utah/riverton" scroll={true} className="zv-btn-luxury zv-btn-outline">
-                Zivel Riverton
+              <Link href={locationPageUrl} scroll={true} className="zv-btn-luxury zv-btn-outline">
+                Back to {location.name}
               </Link>
             </div>
           </ScrollReveal>
