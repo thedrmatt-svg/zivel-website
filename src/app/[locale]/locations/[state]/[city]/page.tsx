@@ -15,6 +15,7 @@ import PricingSection from "@/components/location/PricingSection";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import ServiceImageCard from "@/components/location/ServiceImageCard";
 import { getLocationByPath, locations } from "@/lib/data/locations";
+import { getLocalServiceHref } from "@/lib/data/local-service-pages";
 import { getLocationSocial } from "@/lib/data/socialLinks";
 
 export function generateStaticParams() {
@@ -792,6 +793,7 @@ export default async function LocationPage({
                     citySlug={location.citySlug}
                     cityName={cityName}
                     variant="light"
+                    localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
                   />
                 </ScrollReveal>
               ))}
@@ -815,6 +817,7 @@ export default async function LocationPage({
                     citySlug={location.citySlug}
                     cityName={cityName}
                     variant="dark"
+                    localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
                   />
                 </ScrollReveal>
               ))}

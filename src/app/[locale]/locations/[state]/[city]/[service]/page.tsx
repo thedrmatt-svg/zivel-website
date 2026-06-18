@@ -9,17 +9,9 @@ import { getServiceBySlug } from "@/lib/data/services";
 import type { Location } from "@/types/location";
 import type { Service } from "@/types/service";
 import rawPlacesCache from "@/data/places-cache.json";
+import { LOCAL_SERVICE_COMBOS } from "@/lib/data/local-service-pages";
 
 const SITE_URL = "https://www.zivel.com";
-
-const LOCAL_SERVICE_COMBOS = [
-  { locale: "en", state: "utah", city: "riverton", service: "cryotherapy" },
-  { locale: "es", state: "utah", city: "riverton", service: "cryotherapy" },
-  { locale: "en", state: "utah", city: "riverton", service: "red-light-therapy" },
-  { locale: "es", state: "utah", city: "riverton", service: "red-light-therapy" },
-  { locale: "en", state: "utah", city: "riverton", service: "infrared-sauna" },
-  { locale: "es", state: "utah", city: "riverton", service: "infrared-sauna" },
-];
 
 export function generateStaticParams() {
   return LOCAL_SERVICE_COMBOS;

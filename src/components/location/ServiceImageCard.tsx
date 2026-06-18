@@ -24,6 +24,7 @@ type ServiceImageCardProps = {
   citySlug: string;
   cityName: string;
   variant: "light" | "dark";
+  localHref?: string;
 };
 
 export default function ServiceImageCard({
@@ -33,16 +34,18 @@ export default function ServiceImageCard({
   citySlug,
   cityName,
   variant,
+  localHref,
 }: ServiceImageCardProps) {
   const customSrc = `/locations/${citySlug}/services/${slug}.jpg`;
   const nationalSrc = nationalImageMap[slug] || fallbackImage;
   const [src, setSrc] = useState(customSrc);
 
   const isDark = variant === "dark";
+  const href = localHref ?? `/services/${slug}`;
 
   return (
     <Link
-      href={`/services/${slug}`}
+      href={href}
       className="block zv-luxury-card overflow-hidden h-full group"
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden">
