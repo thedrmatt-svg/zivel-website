@@ -786,8 +786,8 @@ const LOCAL_CONTENT: Record<string, LocalServiceContent> = {
     ],
     whatIsOverviewLabel: "Full Cryo Slimming Overview →",
     whatIsOverviewHref: "/services/cryo-slimming",
-    whatIsImage: "/images/services/cryo-slimming/intro.jpg",
-    whatIsImageAlt: "Cryo slimming session in progress at Zivel Riverton",
+    whatIsImage: "/images/services/cryo-slimming/science.avif",
+    whatIsImageAlt: "Cryo slimming treatment at Zivel Riverton",
     localExpect: [
       {
         title: "Personalized Consultation",
