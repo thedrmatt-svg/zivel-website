@@ -92,6 +92,15 @@ const nextConfig: NextConfig = {
     qualities: [75, 80, 85, 90],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
+  webpack(config, { dev, isServer }) {
+    if (dev && isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: false,
+      };
+    }
+    return config;
+  },
 };
 
 export default withNextIntl(nextConfig);
