@@ -128,6 +128,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ========== TRUST BAR ========== */}
+      <section
+        className="zv-bleed bg-[#0a0a0a] border-b border-white/10"
+        aria-label="Zivel by the numbers"
+      >
+        <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
+          <div className="grid grid-cols-3 gap-4 md:gap-8 text-center">
+            <div>
+              <div className="font-serif text-3xl md:text-4xl text-[var(--zivel-gold)] font-light">1,500+</div>
+              <div className="mt-1 text-xs md:text-sm text-white/55 uppercase tracking-widest leading-snug">5.0&#8209;Star Reviews</div>
+            </div>
+            <div>
+              <div className="font-serif text-3xl md:text-4xl text-[var(--zivel-gold)] font-light">100,000+</div>
+              <div className="mt-1 text-xs md:text-sm text-white/55 uppercase tracking-widest leading-snug">Services Completed</div>
+            </div>
+            <div>
+              <div className="font-serif text-3xl md:text-4xl text-[var(--zivel-gold)] font-light">Since 2000</div>
+              <div className="mt-1 text-xs md:text-sm text-white/55 uppercase tracking-widest leading-snug">Helping People Feel Their Best</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ========== TRANSITION: DARK → LIGHT ========== */}
       <div className="zv-divider-dark-to-light" />
 
