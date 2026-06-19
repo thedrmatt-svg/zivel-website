@@ -42,6 +42,11 @@ const META_MAP: Record<string, { title: string; description: string }> = {
     description:
       "Experience weightless dry float therapy at Zivel Riverton. Deep relaxation, stress relief, pain reduction, and nervous system reset without getting wet. Serving Riverton, Herriman, Bluffdale & South Jordan.",
   },
+  "utah/riverton/cryo-lift-facial": {
+    title: "CryoLift Facial in Riverton, UT | Zivel Riverton",
+    description:
+      "Experience the CryoLift Facial at Zivel Riverton. Advanced cryo facial therapy for skin tightening, collagen boost, reduced puffiness, and glowing skin. Serving Riverton, Herriman, Bluffdale & South Jordan.",
+  },
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -1087,6 +1092,180 @@ const LOCAL_CONTENT: Record<string, LocalServiceContent> = {
     ctaHeadline: "Book Your Dry Float Session at Zivel Riverton",
     ctaBody:
       "Weightless. Restorative. Completely dry. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who have made dry float therapy a cornerstone of their weekly wellness and recovery routine.",
+  },
+
+  "utah/riverton/cryo-lift-facial": {
+    h1: "CryoLift Facial in Riverton, UT",
+    subtitle:
+      "Cryogenic facial therapy for tighter, brighter, and rejuvenated skin at Zivel Riverton",
+    servingLine: "Serving Riverton, Herriman, Bluffdale, and South Jordan",
+    trustBar: [
+      { stat: "200+", label: "5-Star Reviews" },
+      { stat: "1,000s", label: "Sessions Delivered" },
+      { stat: "Since 2023", label: "Serving Riverton" },
+    ],
+    bookingCtaLabel: "Book Your CryoLift Facial",
+    heroImage: "/images/services/cryo-lift-facial/hero.avif",
+    heroImageAlt: "CryoLift Facial session at Zivel Riverton",
+    whatIsTagline: "The Treatment",
+    whatIsHeadline: "What is a CryoLift Facial?",
+    whatIsParagraphs: [
+      "CryoLift Facial is a non-invasive facial service that uses controlled cold exposure and targeted technique to support skin appearance — firmer-looking skin, reduced puffiness, and a visible post-session glow, all without needles, surgery, or downtime.",
+      "Unlike traditional facials, the CryoLift uses cold therapy to temporarily tighten the skin, support collagen-producing pathways, and de-puff the face — making it a popular choice both as a regular skin routine and ahead of events, weddings, and photoshoots.",
+      "At Zivel Riverton, every CryoLift Facial is performed by trained staff using professional-grade cryo tools. Sessions are comfortable, quick, and easy to fit into your schedule — with results you can see and feel immediately.",
+    ],
+    whatIsOverviewLabel: "Full CryoLift Facial Overview →",
+    whatIsOverviewHref: "/services/cryo-lift-facial",
+    whatIsImage: "/images/services/cryo-lift-facial/intro.avif",
+    whatIsImageAlt: "CryoLift Facial treatment at Zivel Riverton",
+    localExpect: [
+      {
+        title: "Trained Aesthetic Professionals",
+        body: "Our Riverton team delivers every CryoLift Facial with precision and care — tailoring the technique to your skin's needs and ensuring a comfortable, effective session.",
+      },
+      {
+        title: "Professional Cryo Equipment",
+        body: "Zivel Riverton uses clinical-grade cryo facial tools maintained to the highest standards for consistent, reliable results session after session.",
+      },
+      {
+        title: "Easy Parking",
+        body: "Free parking right outside the studio. Walk in, get your facial, and leave glowing — no stress, no circling.",
+      },
+      {
+        title: "Stack Your Session",
+        body: "Many clients pair a CryoLift Facial with red light therapy for a complete skin-health protocol in a single visit. Our team can help you build the right sequence.",
+      },
+    ],
+    benefitsTagline: "Why CryoLift Facial",
+    benefits: [
+      {
+        title: "Supports a Refreshed, Glowing Look",
+        body: "A visible post-session glow and refreshed appearance are among the most commonly reported results. Many clients use it specifically for this immediate effect.",
+      },
+      {
+        title: "Helps Reduce the Look of Puffiness",
+        body: "Cold exposure is highly effective at de-puffing — supporting a sculpted, more defined facial appearance without any invasive procedures.",
+      },
+      {
+        title: "Supports Firmer-Looking Skin",
+        body: "Targeted cryo technique is designed to support a tighter, firmer facial appearance — a popular alternative to more aggressive cosmetic procedures.",
+      },
+      {
+        title: "Comfortable with Zero Downtime",
+        body: "No recovery period, no redness, no swelling. Most clients return to their normal day — or their event — immediately after the session.",
+      },
+      {
+        title: "Pairs Well with Red Light Therapy",
+        body: "CryoLift Facial and red light therapy make a powerful skin-health stack. Cold supports tightening and de-puffing; red light supports collagen and cellular recovery.",
+      },
+      {
+        title: "Ideal for Routine and Special Occasions",
+        body: "Whether you book regularly as part of an ongoing skin routine or before weddings, photoshoots, and special events — CryoLift delivers a consistent, visible result.",
+      },
+    ],
+    benefitsScienceHref: "/science/cold-exposure",
+    servicesHeading: "CryoLift Facial Services at Zivel Riverton",
+    services: [
+      {
+        name: "CryoLift Facial Session",
+        desc: "A full CryoLift Facial performed by our trained Riverton team. Controlled cold exposure is applied to the face and neck using targeted technique to reduce puffiness, support skin tightening, and deliver a visible glow. Sessions run approximately 20–30 minutes with no downtime required.",
+        price: "$150 / session",
+      },
+      {
+        name: "CryoLift Facial Series",
+        desc: "A foundation series of five sessions spaced approximately one week apart — designed to build cumulative results and establish a skin baseline. After the initial series, most clients move to maintenance sessions every 4–8 weeks. Series pricing provides better value than individual bookings.",
+        price: "Ask about series pricing",
+      },
+    ],
+    frequencyHeadline: "How Often Should You Get a CryoLift Facial?",
+    frequency: [
+      {
+        goal: "Foundation Series (New Clients)",
+        rec: "Begin with 5 sessions spaced about one week apart. This builds cumulative results and gives your skin time to respond to each session before the next.",
+      },
+      {
+        goal: "Ongoing Maintenance",
+        rec: "Every 4–8 weeks once your foundation series is complete. Regular maintenance sustains skin quality and keeps results consistent over time.",
+      },
+      {
+        goal: "Special Occasion Prep",
+        rec: "Book 1–3 days before your event for peak glow and de-puffing effect. Many clients combine this with their regular routine rather than relying on it as a one-off.",
+      },
+      {
+        goal: "Skin-Stacking Protocol",
+        rec: "Pair your CryoLift Facial with red light therapy at the same visit. The combination supports tightening, collagen stimulation, and lasting skin health together.",
+      },
+    ],
+    faqsHeadline: "FAQs — CryoLift Facial in Riverton",
+    faqs: [
+      {
+        q: "Where is Zivel Riverton located?",
+        a: "We're at 2722 W 12600 S #1, Riverton, UT 84065 — free parking right outside the studio. Easily accessible from Herriman, Bluffdale, and South Jordan.",
+      },
+      {
+        q: "How much does a CryoLift Facial cost at Zivel Riverton?",
+        a: "Single sessions are $150. We also offer a foundation series of five sessions at a discounted rate — ask our team about current series and membership pricing when you visit.",
+      },
+      {
+        q: "What are Zivel Riverton's hours?",
+        a: "Mon & Wed 7am–8pm, Tue & Thu 10am–8pm, Fri 8am–8pm, Sat 9am–8pm, Sun 10am–2pm. We recommend booking in advance to secure your preferred appointment.",
+      },
+      {
+        q: "Is there any downtime after a CryoLift Facial?",
+        a: "No. Most clients return to their normal day immediately after the session. There's no redness, swelling, or recovery period — making it easy to book before work, events, or a night out.",
+      },
+      {
+        q: "Is the CryoLift Facial painful?",
+        a: "Most clients find it very comfortable. You'll feel cool sensations during the session, which are closely monitored by your provider. It's typically described as refreshing rather than uncomfortable.",
+      },
+      {
+        q: "How long is a CryoLift Facial session at Zivel Riverton?",
+        a: "Sessions typically run 20–30 minutes. Add a few minutes for check-in and consultation. Most clients are in and out within 45 minutes.",
+      },
+      {
+        q: "How many sessions do I need to see results?",
+        a: "Many clients notice a visible glow and reduced puffiness after their very first session. For longer-term skin tightening and texture improvements, a foundation series of five sessions spaced weekly is recommended, followed by regular maintenance every 4–8 weeks.",
+      },
+      {
+        q: "Can I combine a CryoLift Facial with other services at Zivel Riverton?",
+        a: "Absolutely. CryoLift Facial pairs especially well with red light therapy for a complete skin-health protocol in a single visit. Our Riverton team can help you build the right sequence based on your goals.",
+      },
+    ],
+    pathways: [
+      {
+        slug: "skin-health-regenerative-aesthetics",
+        name: "Skin Health & Regenerative Aesthetics",
+        tagline: "A structured approach to supporting skin health, firmness, and long-term appearance goals using non-invasive modalities and consistent protocols.",
+      },
+      {
+        slug: "longevity-healthy-aging",
+        name: "Longevity & Healthy Aging",
+        tagline: "A comprehensive wellness pathway focused on supporting long-term health, vitality, and graceful aging through science-backed modalities.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Megan T.",
+        location: "Riverton, UT",
+        quote:
+          "I booked a CryoLift Facial before my sister's wedding and I could not believe how my skin looked in photos. Instantly glowing, no puffiness, no downtime. I've made it part of my regular routine now.",
+      },
+      {
+        name: "Rachel B.",
+        location: "South Jordan, UT",
+        quote:
+          "I was skeptical about a cryo facial but the results genuinely surprised me. My skin felt tighter after the first session and the glow lasted for days. The staff at Zivel Riverton were incredible — professional, knowledgeable, and so welcoming.",
+      },
+      {
+        name: "Cassandra W.",
+        location: "Herriman, UT",
+        quote:
+          "I've done five sessions as part of the foundation series and the difference in my skin is real — less puffiness, tighter around my jawline, and just a consistent healthy glow. I pair it with red light therapy every time.",
+      },
+    ],
+    ctaHeadline: "Book Your CryoLift Facial at Zivel Riverton",
+    ctaBody:
+      "Non-invasive. Zero downtime. Instantly glowing. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who trust Zivel Riverton for professional cryo facial treatments that deliver visible results — every session.",
   },
 };
 
