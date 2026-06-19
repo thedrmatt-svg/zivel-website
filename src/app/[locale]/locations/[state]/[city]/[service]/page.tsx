@@ -47,6 +47,21 @@ const META_MAP: Record<string, { title: string; description: string }> = {
     description:
       "CryoLift Facial at Zivel Riverton for skin tightening, collagen boost, reduced puffiness, and glowing skin. Serving Riverton & South Jordan.",
   },
+  "utah/riverton/compression-therapy": {
+    title: "Compression Therapy in Riverton, UT | Zivel Riverton",
+    description:
+      "Compression Therapy at Zivel Riverton for recovery, circulation, and reduced soreness. Serving Riverton, Herriman & South Jordan.",
+  },
+  "utah/riverton/cryo-slimming": {
+    title: "Cryo Slimming in Riverton, UT | Zivel Riverton",
+    description:
+      "Cryo Slimming at Zivel Riverton — non-invasive body contouring for fat reduction and skin tightening. Serving Riverton & South Jordan.",
+  },
+  "utah/riverton/cryo-toning": {
+    title: "Cryo Toning in Riverton, UT | Zivel Riverton",
+    description:
+      "Cryo Toning at Zivel Riverton — non-invasive firming and toning for muscle definition and skin appearance. Serving Riverton & South Jordan.",
+  },
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -56,9 +71,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!location || !svc) return {};
   const key = `${state}/${city}/${service}`;
   const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  const fallbackDesc = `${svc.name} in ${cityDisplay}, ${location.state} at ${location.name}. ${svc.hero.subheadline}`;
   const meta = META_MAP[key] ?? {
     title: `${svc.name} in ${cityDisplay}, ${location.state} | ${location.name}`,
-    description: `${svc.name} at ${location.name}. ${svc.seo.description}`,
+    description: fallbackDesc.length <= 155 ? fallbackDesc : fallbackDesc.slice(0, 152) + "…",
   };
   const basePath = `/locations/${state}/${city}/${service}`;
   const enUrl = `${SITE_URL}${basePath}`;
@@ -1412,7 +1428,7 @@ export default async function LocalServicePage({ params }: Props) {
                 {local.bookingCtaLabel}
               </a>
               <Link href={servicePageUrl} className="zv-btn-luxury zv-btn-outline">
-                Learn More
+                View {svc.name} Overview
               </Link>
             </div>
           </div>
@@ -1563,6 +1579,7 @@ export default async function LocalServicePage({ params }: Props) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="zv-btn-luxury zv-btn-gold text-sm px-5 py-2"
+                      aria-label={`Book your ${s.name} session`}
                     >
                       Book Now
                     </a>
