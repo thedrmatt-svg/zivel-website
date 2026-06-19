@@ -1,0 +1,88 @@
+# Zivel
+
+> Zivel is a science-backed wellness studio brand offering recovery, performance, and aesthetics services. Studios are located across the United States and focus on evidence-informed modalities including cryotherapy, red light therapy, infrared sauna, and compression therapy.
+
+## About Zivel
+
+Zivel operates wellness studios designed around the principle that recovery is the foundation of performance, longevity, and appearance. Every service offered is selected based on peer-reviewed research and clinical evidence. Studios are designed to be accessible, premium, and results-oriented — serving athletes, professionals, and wellness-focused individuals.
+
+Tagline: Recover Smarter. Look Better. Feel Stronger.
+
+Website: https://www.zivel.com
+
+## Services
+
+Zivel offers eight core service modalities:
+
+- **Cryotherapy** — Whole-body and localized cold exposure for recovery, inflammation reduction, and energy. Sessions are 2–3 minutes in a cryo chamber at ultra-low temperatures. URL: /services/cryotherapy
+- **Red Light Therapy** — Near-infrared and red wavelength light panels targeting cellular energy production, skin health, and muscle recovery. URL: /services/red-light-therapy
+- **Infrared Sauna** — Full-spectrum infrared heat for detoxification, cardiovascular support, and deep relaxation. URL: /services/infrared-sauna
+- **Dry Float** — Zero-gravity pod sessions using Epsom salt solution for decompression, stress relief, and nervous system reset. URL: /services/dry-float
+- **Cryo Slimming** — Non-invasive body contouring using controlled cold to target and reduce localized fat cells. URL: /services/cryo-slimming
+- **Cryo Toning** — Thermal contrast technique alternating cold and mild warmth to firm and tone skin on targeted areas. URL: /services/cryo-toning
+- **CryoLift Facial** — Cryo-based facial treatment that reduces puffiness, tightens skin, and improves complexion. URL: /services/cryo-lift-facial
+- **Compression Therapy** — Pneumatic compression sleeves promoting lymphatic drainage, circulation, and recovery. URL: /services/compression-therapy
+
+## Wellness Pathways
+
+Zivel organizes services into goal-based Pathways — curated multi-service programs aligned to specific outcomes:
+
+- **Recovery** — Reduce soreness, support healing, and return to peak performance faster
+- **Performance** — Optimize energy, endurance, and physical output
+- **Beauty** — Improve skin quality, tone, and facial appearance
+- **Longevity** — Support cellular health, inflammation control, and long-term vitality
+
+Pathway details: https://www.zivel.com/pathways
+
+## Locations
+
+Zivel has 19 studio locations across the United States:
+
+- Bentonville, AR
+- Rogers, AR
+- Fayetteville, AR
+- Briargate (Colorado Springs), CO
+- Highlands Ranch, CO
+- Parker, CO
+- Coral Gables, FL
+- Hollywood, FL
+- Palm Coast, FL
+- Buckhead (Atlanta), GA
+- Windermere (Cumming), GA
+- Newport, KY
+- Metairie, LA
+- Fieldhouse, MS
+- Belmont, NC
+- Brecksville, OH
+- Cool Springs (Franklin), TN
+- Murfreesboro, TN
+- Riverton, UT
+
+Location finder: https://www.zivel.com/locations
+
+## Booking
+
+Appointments can be booked online through each location's booking page. Booking links are available on individual location and service pages throughout the site.
+
+Locations index: https://www.zivel.com/locations
+
+## Science & Research
+
+Zivel maintains a science content section and research library covering the evidence base for each modality:
+
+- Science overview: https://www.zivel.com/science
+- Research library: https://www.zivel.com/research
+
+## Blog
+
+The Zivel blog covers recovery education, wellness lifestyle content, and service-specific guidance:
+
+- Blog: https://www.zivel.com/blog
+
+## Languages
+
+The site is available in English (default) and Spanish (/es/).
+
+## Sitemap
+
+Full sitemap: https://www.zivel.com/sitemap.xml
