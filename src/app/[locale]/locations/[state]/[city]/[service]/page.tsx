@@ -1357,7 +1357,7 @@ export default async function LocalServicePage({ params }: Props) {
   const hours = location.hours;
 
   return (
-    <div className="overflow-x-hidden">
+    <main className="overflow-x-hidden">
       <Script
         id="schema-local-business"
         type="application/ld+json"
@@ -1380,16 +1380,16 @@ export default async function LocalServicePage({ params }: Props) {
         className="zv-bleed bg-black border-b border-white/10 px-6 py-3"
         style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}
       >
-        <ol className="mx-auto max-w-6xl flex flex-wrap items-center gap-1.5 text-xs text-white/40">
-          <li><Link href="/" className="hover:text-white/70 transition-colors">Home</Link></li>
-          <li className="text-white/20">/</li>
-          <li><Link href="/locations" className="hover:text-white/70 transition-colors">Locations</Link></li>
-          <li className="text-white/20">/</li>
-          <li><Link href={`/locations/${state}`} className="hover:text-white/70 transition-colors">{stateDisplay}</Link></li>
-          <li className="text-white/20">/</li>
-          <li><Link href={locationPageUrl} className="hover:text-white/70 transition-colors">{cityDisplay}</Link></li>
-          <li className="text-white/20">/</li>
-          <li className="text-white/60">{svc.name}</li>
+        <ol className="mx-auto max-w-6xl flex flex-wrap items-center gap-1.5 text-xs text-white/60">
+          <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+          <li aria-hidden="true" className="text-white/30">/</li>
+          <li><Link href="/locations" className="hover:text-white transition-colors">Locations</Link></li>
+          <li aria-hidden="true" className="text-white/30">/</li>
+          <li><Link href={`/locations/${state}`} className="hover:text-white transition-colors">{stateDisplay}</Link></li>
+          <li aria-hidden="true" className="text-white/30">/</li>
+          <li><Link href={locationPageUrl} className="hover:text-white transition-colors">{cityDisplay}</Link></li>
+          <li aria-hidden="true" className="text-white/30">/</li>
+          <li className="text-white/80">{svc.name}</li>
         </ol>
       </nav>
 
@@ -1519,7 +1519,7 @@ export default async function LocalServicePage({ params }: Props) {
                 <div className="zv-luxury-card rounded-2xl p-6 h-full">
                   <div className="w-8 h-0.5 bg-[var(--zivel-gold)] mb-4" />
                   <h3 className="font-serif text-lg font-light mb-3">{item.title}</h3>
-                  <p className="text-sm text-black/60 leading-relaxed">{item.body}</p>
+                  <p className="text-sm text-black/70 leading-relaxed">{item.body}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -1782,7 +1782,7 @@ export default async function LocalServicePage({ params }: Props) {
                   <p className="text-white/75 leading-relaxed flex-1 italic">{t.quote}</p>
                   <div className="mt-6 pt-4 border-t border-white/10">
                     <p className="text-white font-medium text-sm">{t.name}</p>
-                    <p className="text-white/40 text-xs mt-0.5">{t.location}</p>
+                    <p className="text-white/60 text-xs mt-0.5">{t.location}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -1818,6 +1818,6 @@ export default async function LocalServicePage({ params }: Props) {
           </ScrollReveal>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
