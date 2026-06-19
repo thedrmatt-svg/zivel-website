@@ -37,6 +37,11 @@ const META_MAP: Record<string, { title: string; description: string }> = {
     description:
       "Therapeutic infrared sauna sessions at Zivel Riverton for detoxification, relaxation, pain relief, and recovery. Serving Riverton, Herriman, Bluffdale & South Jordan.",
   },
+  "utah/riverton/dry-float": {
+    title: "Dry Float Therapy in Riverton, UT | Zivel Riverton",
+    description:
+      "Experience weightless dry float therapy at Zivel Riverton. Deep relaxation, stress relief, pain reduction, and nervous system reset without getting wet. Serving Riverton, Herriman, Bluffdale & South Jordan.",
+  },
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -908,6 +913,180 @@ const LOCAL_CONTENT: Record<string, LocalServiceContent> = {
     ctaHeadline: "Book Your Cryo Slimming Session at Zivel Riverton",
     ctaBody:
       "Non-invasive. No downtime. Real results. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who are using cryo slimming to target stubborn areas and support their body composition goals.",
+  },
+
+  "utah/riverton/dry-float": {
+    h1: "Dry Float Therapy in Riverton, UT",
+    subtitle:
+      "Zero-gravity dry float therapy for profound relaxation, recovery, and mental clarity at Zivel Riverton",
+    servingLine: "Serving Riverton, Herriman, Bluffdale, and South Jordan",
+    trustBar: [
+      { stat: "200+", label: "5-Star Reviews" },
+      { stat: "1,000s", label: "Sessions Delivered" },
+      { stat: "Since 2023", label: "Serving Riverton" },
+    ],
+    bookingCtaLabel: "Book Your Dry Float Session",
+    heroImage: "/images/services/dry-float/hero.jpg",
+    heroImageAlt: "Dry float therapy session at Zivel Riverton",
+    whatIsTagline: "The Treatment",
+    whatIsHeadline: "What is Dry Float Therapy?",
+    whatIsParagraphs: [
+      "Dry Float therapy delivers many of the deep relaxation benefits of traditional floating — without water or Epsom salt. You lie on a soft membrane while warm water below creates a weightless, zero-gravity sensation that melts away tension and quiets the nervous system.",
+      "Unlike traditional float tanks, you remain fully clothed and completely dry throughout the session. There's no prep, no showering, and no adjustment period — you simply lie back, relax, and let your body reset.",
+      "At Zivel Riverton, every dry float session is guided by our team, designed to be easy and seamless whether you're using it for stress relief, post-workout recovery, or simply as a restorative break in your week.",
+    ],
+    whatIsOverviewLabel: "Full Dry Float Therapy Overview →",
+    whatIsOverviewHref: "/services/dry-float",
+    whatIsImage: "/images/services/dry-float/intro.jpg",
+    whatIsImageAlt: "Client relaxing on dry float bed at Zivel Riverton",
+    localExpect: [
+      {
+        title: "Friendly, Expert Staff",
+        body: "Our Riverton team gets you set up, answers any questions, and ensures the session is as comfortable and restorative as possible — first visit or fiftieth.",
+      },
+      {
+        title: "Clean, Peaceful Environment",
+        body: "Zivel Riverton's dry float room is designed specifically for deep relaxation. Dim lighting, ambient sound, and a calm atmosphere help your nervous system fully unwind.",
+      },
+      {
+        title: "Easy Parking",
+        body: "Free parking right outside the studio. No stress, no circling — just walk in, float, and leave feeling reset.",
+      },
+      {
+        title: "Stack Your Session",
+        body: "Many clients pair dry float with red light therapy, infrared sauna, or compression therapy in a single visit for a complete relaxation and recovery experience.",
+      },
+    ],
+    benefitsTagline: "Why Dry Float",
+    benefits: [
+      {
+        title: "Deep Relaxation & Stress Reduction",
+        body: "Many clients use dry float as a nervous system reset — quiet, calm, and restorative. A single session can shift your entire mood and stress state.",
+      },
+      {
+        title: "Supports Recovery Days",
+        body: "A weightless-feeling session reduces the physical load on muscles and joints, making it an excellent tool on rest days or after intense training blocks.",
+      },
+      {
+        title: "May Support Sleep Routines",
+        body: "Often used in evening routines or high-stress weeks to promote deep relaxation before bed, helping you wind down and fall asleep more easily.",
+      },
+      {
+        title: "Mental Clarity & Mood Support",
+        body: "Quiet time and reduced sensory input help many clients emerge from sessions feeling clear-headed, refreshed, and emotionally reset.",
+      },
+      {
+        title: "Comfortable and Accessible",
+        body: "You stay fully clothed and completely dry throughout. No prep, no shower required. It's one of the most accessible recovery and relaxation services we offer.",
+      },
+      {
+        title: "Stacks Well with Other Modalities",
+        body: "Dry float pairs naturally with red light therapy, infrared sauna, and compression — creating a full-body relaxation and recovery session in a single visit.",
+      },
+    ],
+    benefitsScienceHref: "/science/recovery-modalities-float-compression",
+    servicesHeading: "Dry Float Services at Zivel Riverton",
+    services: [
+      {
+        name: "Dry Float Session",
+        desc: "A single dry float session on our premium Starpool float bed. Warm water beneath the membrane creates a zero-gravity feel while you relax fully clothed. Most clients experience profound relaxation within the first few minutes. Sessions typically run 20–30 minutes.",
+        price: "$65 / session",
+      },
+      {
+        name: "Dry Float Membership",
+        desc: "Unlock regular dry float sessions as part of a Zivel wellness membership. Members enjoy discounted per-session rates, priority booking, and the ability to stack dry float with other services on the same visit. Ask our Riverton team about current membership options.",
+        price: "Members save — from $99/mo",
+      },
+    ],
+    frequencyHeadline: "How Often Should You Do Dry Float Therapy?",
+    frequency: [
+      {
+        goal: "Stress Relief & Nervous System Reset",
+        rec: "1–2x per week for ongoing stress management. A single session can shift your entire stress state — consistent weekly sessions build a cumulative relaxation baseline.",
+      },
+      {
+        goal: "Athletic Recovery & Rest Days",
+        rec: "Once or twice per week on rest days or after hard training blocks. The zero-gravity environment reduces load on the body and supports active recovery without adding physical stress.",
+      },
+      {
+        goal: "Sleep & Evening Routine Support",
+        rec: "1–2x per week, ideally in the afternoon or evening. Many clients notice improved sleep quality after making dry float a regular part of their wind-down routine.",
+      },
+      {
+        goal: "First-Timer",
+        rec: "Start with 2–3 sessions in your first two weeks to experience how your body and mind respond. Many people find their ideal rhythm quickly — our Riverton team can help you plan.",
+      },
+    ],
+    faqsHeadline: "FAQs — Dry Float Therapy in Riverton",
+    faqs: [
+      {
+        q: "Where is Zivel Riverton located?",
+        a: "We're at 2722 W 12600 S #1, Riverton, UT 84065 — free parking right outside the studio. Easily accessible from Herriman, Bluffdale, and South Jordan.",
+      },
+      {
+        q: "How much does dry float therapy cost at Zivel Riverton?",
+        a: "Single sessions are $65. Members receive discounted rates — memberships start at $99/month and include access to dry float alongside other services. Ask our team about current membership options when you visit.",
+      },
+      {
+        q: "What are Zivel Riverton's hours?",
+        a: "Mon & Wed 7am–8pm, Tue & Thu 10am–8pm, Fri 8am–8pm, Sat 9am–8pm, Sun 10am–2pm. We recommend booking ahead to secure your preferred time slot.",
+      },
+      {
+        q: "Do I get wet during a dry float?",
+        a: "No — you stay completely dry throughout the entire session. You lie on a soft membrane surface while warm water underneath creates the floating sensation. There's no water contact at all.",
+      },
+      {
+        q: "What should I wear to a dry float session?",
+        a: "Comfortable clothing works perfectly. Many clients choose athletic wear, joggers, or loungewear. You don't need to change and there's no showering before or after.",
+      },
+      {
+        q: "How long is a dry float session at Zivel Riverton?",
+        a: "Sessions typically run 20–30 minutes. Add a few minutes for check-in and getting settled. Most clients are in and out within 45 minutes total.",
+      },
+      {
+        q: "How often should I do dry float therapy?",
+        a: "Most clients benefit from 1–2 sessions per week. For stress management and sleep support, consistency matters more than frequency — even one session per week makes a meaningful difference over time.",
+      },
+      {
+        q: "Can I combine dry float with other services at Zivel Riverton?",
+        a: "Absolutely — and many clients do. Dry float pairs especially well with red light therapy, infrared sauna, and compression therapy. You can book multiple services in a single visit. Our staff can help you sequence them based on your goals.",
+      },
+    ],
+    pathways: [
+      {
+        slug: "recovery-pain-support",
+        name: "Recovery & Pain Support",
+        tagline: "A structured approach to reducing soreness, managing inflammation, and getting back to full capacity faster.",
+      },
+      {
+        slug: "stress-sleep-reset",
+        name: "Stress & Sleep Reset",
+        tagline: "A wellness pathway designed to reduce chronic stress, calm the nervous system, and restore healthy sleep patterns.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Lauren P.",
+        location: "Riverton, UT",
+        quote:
+          "I had no idea what to expect from dry float but I was completely sold after my first session. Twenty minutes in and I felt like I'd slept for eight hours. I use it every week now.",
+      },
+      {
+        name: "Tyler M.",
+        location: "South Jordan, UT",
+        quote:
+          "I started doing dry float on my rest days and it's made a huge difference in my recovery. No soreness the next day, better sleep, and I feel mentally sharper all week. It's become a non-negotiable.",
+      },
+      {
+        name: "Stephanie A.",
+        location: "Herriman, UT",
+        quote:
+          "I've been going through a stressful stretch at work and dry float has been a game changer. One session and I feel completely reset. The staff at Zivel Riverton are so welcoming and the environment is incredibly peaceful.",
+      },
+    ],
+    ctaHeadline: "Book Your Dry Float Session at Zivel Riverton",
+    ctaBody:
+      "Weightless. Restorative. Completely dry. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who have made dry float therapy a cornerstone of their weekly wellness and recovery routine.",
   },
 };
 
