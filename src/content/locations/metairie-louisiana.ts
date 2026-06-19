@@ -10,7 +10,7 @@ export const zivel_metairie_location: Location = {
 
   seo: {
     title: "Zivel Metairie | Zivel",
-    description: "Zivel Metairie offers modern wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, compression therapy, and more. Book a session or explore memberships.",
+    description: "Zivel Metairie offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Metairie, LA. Book your session today.",
     canonical: "https://www.zivel.com/locations/louisiana/metairie",
   },
 

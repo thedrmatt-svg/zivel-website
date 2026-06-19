@@ -7,7 +7,7 @@ export const mobilityActiveLifestyle: Pathway = {
   seo: {
     title: "Mobility & Active Lifestyle Pathway | Zivel",
     description:
-      "A structured recovery pathway designed to support mobility, comfort, and consistency so clients can stay active long term without burning out or stopping due to soreness.",
+      "A recovery pathway to support mobility, comfort, and consistency so clients can stay active long term without burning out or stopping due to soreness.",
     canonical: "/pathways/mobility-active-lifestyle",
   },
 

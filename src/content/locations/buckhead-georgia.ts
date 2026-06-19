@@ -10,7 +10,7 @@ export const zivel_buckhead_location: Location = {
 
   seo: {
     title: "Zivel Buckhead | Zivel",
-    description: "Zivel Buckhead offers modern wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, compression therapy, and more. Book a session or explore memberships.",
+    description: "Zivel Buckhead offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Buckhead, Atlanta, GA. Book today.",
     canonical: "https://www.zivel.com/locations/georgia/buckhead",
   },
 

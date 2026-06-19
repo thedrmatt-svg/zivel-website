@@ -7,7 +7,7 @@ export const bodyCompositionMetabolicSupport: Pathway = {
   seo: {
     title: "Body Composition & Metabolic Support Pathway | Zivel",
     description:
-      "A structured wellness pathway designed to support body composition goals using non-invasive modalities as part of a broader health journey and consistent routine.",
+      "A wellness pathway to support body composition goals using non-invasive modalities as part of a broader health journey and consistent routine.",
     canonical: "/pathways/body-composition-metabolic-support",
   },
 

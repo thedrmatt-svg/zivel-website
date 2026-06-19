@@ -15,7 +15,7 @@ const SITE_URL = "https://www.zivel.com";
 export const metadata: Metadata = {
   title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
   description:
-    "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session at Zivel today.",
+    "Science-backed recovery at Zivel: cryotherapy, infrared sauna, red light therapy, and CryoLift facials. Book your session today.",
   keywords: ["cryotherapy", "infrared sauna", "red light therapy", "cryo facial", "recovery", "performance"],
   alternates: {
     canonical: `${SITE_URL}/`,
@@ -54,6 +54,17 @@ const serviceImageMap: Record<string, string> = {
   "cryo-lift-facial": "/images/home/service-facial.avif",
 };
 
+const serviceAltMap: Record<string, string> = {
+  "cryotherapy": "Whole body cryotherapy chamber at Zivel wellness studio",
+  "red-light-therapy": "Red light therapy panel session at Zivel wellness studio",
+  "infrared-sauna": "Private infrared sauna room at Zivel wellness studio",
+  "dry-float": "Client relaxing on a dry float therapy bed at Zivel",
+  "compression-therapy": "Compression therapy boots in a Zivel recovery lounge",
+  "cryo-slimming": "Cryo slimming body contouring session at Zivel",
+  "cryo-toning": "Cryo toning treatment session at Zivel wellness studio",
+  "cryo-lift-facial": "CryoLift facial treatment at Zivel wellness studio",
+};
+
 const scienceImages = [
   "/images/home/science-1.jpg",
   "/images/home/science-2.jpg",
@@ -76,7 +87,7 @@ export default function HomePage() {
   return (
     <main className="-mt-20">
       <title>Zivel | Recover Smarter. Look Better. Feel Stronger.</title>
-      <meta name="description" content="Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session at Zivel today." />
+      <meta name="description" content="Science-backed recovery at Zivel: cryotherapy, infrared sauna, red light therapy, and CryoLift facials. Book your session today." />
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="home-hero-title">
         <div className="pt-20">
@@ -179,7 +190,7 @@ export default function HomePage() {
                   <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image
                       src={serviceImageMap[service.slug] || "/images/home/service-exercise.jpg"}
-                      alt={service.name}
+                      alt={serviceAltMap[service.slug] ?? `${service.name} at Zivel wellness studio`}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -392,7 +403,7 @@ export default function HomePage() {
                   <div className="relative aspect-[16/9] w-full overflow-hidden">
                     <Image
                       src={scienceImages[i] || scienceImages[0]}
-                      alt={article.title}
+                      alt={`${article.title} — Zivel Science Hub article`}
                       fill
                       className={`object-cover transition-transform duration-700 group-hover:scale-105 ${i === 1 ? 'object-top' : i === 2 ? 'object-bottom' : ''}`}
                       sizes="(max-width: 768px) 100vw, 33vw"

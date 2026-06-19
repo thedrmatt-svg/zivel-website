@@ -10,7 +10,7 @@ export const zivel_cumming_windermere_location: Location = {
 
   seo: {
     title: "Zivel Cumming-Windermere | Zivel",
-    description: "Zivel Cumming-Windermere offers modern wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, compression therapy, and more. Book a session or explore memberships.",
+    description: "Zivel Cumming-Windermere offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Cumming, GA. Book your session today.",
     canonical: "https://www.zivel.com/locations/georgia/windermere",
   },
 

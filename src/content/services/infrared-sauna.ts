@@ -8,7 +8,7 @@ export const infraredSauna: Service = {
   seo: {
     title: "Infrared Sauna | Zivel",
     description:
-      "Unwind, sweat, and recover with infrared heat designed to support circulation, relaxation, and post-workout recovery.",
+      "Unwind, sweat, and recover with infrared heat designed to support circulation, relaxation, and post-workout recovery. Book your session today.",
     canonical: "/services/infrared-sauna",
   },
 
@@ -18,7 +18,7 @@ export const infraredSauna: Service = {
     media: {
       type: "image",
       src: "/images/services/infrared-sauna/hero.jpg",
-      alt: "Infrared sauna room at Zivel (placeholder)",
+      alt: "Private infrared sauna room at Zivel wellness studio",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
     secondaryCTA: { label: "View Locations", href: "/locations" },
@@ -38,7 +38,7 @@ export const infraredSauna: Service = {
     media: {
       type: "image",
       src: "/images/services/infrared-sauna/intro.jpg",
-      alt: "Infrared sauna session (placeholder)",
+      alt: "Client relaxing in an infrared sauna session at Zivel",
     },
   },
 
@@ -74,7 +74,7 @@ export const infraredSauna: Service = {
     media: {
       type: "image",
       src: "/images/services/infrared-sauna/science.jpg",
-      alt: "Infrared heat concept illustration (placeholder)",
+      alt: "Infrared heat penetration concept illustration for sauna therapy",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },
   },

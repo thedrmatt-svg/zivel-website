@@ -10,7 +10,7 @@ export const zivel_fieldhouse_location: Location = {
 
   seo: {
     title: "Zivel Fieldhouse | Zivel",
-    description: "Zivel Fieldhouse offers modern wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, compression therapy, and more. Book a session or explore memberships.",
+    description: "Zivel Fieldhouse offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Ridgeland, MS. Book your session today.",
     canonical: "https://www.zivel.com/locations/mississippi/fieldhouse",
   },
 

@@ -286,7 +286,7 @@ export default async function LocationPage({
           <div style={{ overflow: 'hidden', aspectRatio: '1920/672' }}>
             <Image
               src={heroImage}
-              alt={location.name}
+              alt={`${location.name} — wellness studio interior`}
               width={1920}
               height={800}
               priority
@@ -336,7 +336,7 @@ export default async function LocationPage({
               <div className="mx-auto overflow-hidden rounded-2xl" style={{ maxWidth: 480 }}>
                 <Image
                   src={location.award.image}
-                  alt={location.award.headline}
+                  alt={`${location.award.headline} — ${location.name}`}
                   width={960}
                   height={720}
                   sizes="(max-width: 640px) 100vw, 480px"

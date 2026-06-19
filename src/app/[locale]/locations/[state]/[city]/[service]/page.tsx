@@ -25,27 +25,27 @@ const META_MAP: Record<string, { title: string; description: string }> = {
   "utah/riverton/cryotherapy": {
     title: "Cryotherapy in Riverton, UT | Zivel Riverton",
     description:
-      "Whole body and localized cryotherapy at Zivel Riverton. Fast recovery, inflammation support, and performance optimization. Serving Riverton, Herriman, Bluffdale & South Jordan.",
+      "Whole body and localized cryotherapy at Zivel Riverton. Fast recovery, inflammation support, and performance. Serving Riverton & South Jordan.",
   },
   "utah/riverton/red-light-therapy": {
     title: "Red Light Therapy in Riverton, UT | Zivel Riverton",
     description:
-      "Professional red light therapy at Zivel Riverton for recovery, skin health, reduced inflammation, and performance. Serving Riverton, Herriman, Bluffdale & South Jordan.",
+      "Professional red light therapy at Zivel Riverton for recovery, skin health, and reduced inflammation. Serving Riverton, Herriman & South Jordan.",
   },
   "utah/riverton/infrared-sauna": {
     title: "Infrared Sauna in Riverton, UT | Zivel Riverton",
     description:
-      "Therapeutic infrared sauna sessions at Zivel Riverton for detoxification, relaxation, pain relief, and recovery. Serving Riverton, Herriman, Bluffdale & South Jordan.",
+      "Therapeutic infrared sauna at Zivel Riverton for detoxification, relaxation, and recovery. Serving Riverton, Herriman & South Jordan.",
   },
   "utah/riverton/dry-float": {
     title: "Dry Float Therapy in Riverton, UT | Zivel Riverton",
     description:
-      "Experience weightless dry float therapy at Zivel Riverton. Deep relaxation, stress relief, pain reduction, and nervous system reset without getting wet. Serving Riverton, Herriman, Bluffdale & South Jordan.",
+      "Weightless dry float at Zivel Riverton for deep relaxation, stress relief, and nervous system reset — stay fully dry. Serving Riverton & South Jordan.",
   },
   "utah/riverton/cryo-lift-facial": {
     title: "CryoLift Facial in Riverton, UT | Zivel Riverton",
     description:
-      "Experience the CryoLift Facial at Zivel Riverton. Advanced cryo facial therapy for skin tightening, collagen boost, reduced puffiness, and glowing skin. Serving Riverton, Herriman, Bluffdale & South Jordan.",
+      "CryoLift Facial at Zivel Riverton for skin tightening, collagen boost, reduced puffiness, and glowing skin. Serving Riverton & South Jordan.",
   },
 };
 

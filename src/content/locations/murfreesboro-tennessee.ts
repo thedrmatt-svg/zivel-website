@@ -10,7 +10,7 @@ export const zivel_murfreesboro_location: Location = {
 
   seo: {
     title: "Zivel Murfreesboro | Zivel",
-    description: "Zivel Murfreesboro offers modern wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, compression therapy, and more. Book a session or explore memberships.",
+    description: "Zivel Murfreesboro offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Murfreesboro, TN. Book your session today.",
     canonical: "https://www.zivel.com/locations/tennessee/murfreesboro",
   },
 

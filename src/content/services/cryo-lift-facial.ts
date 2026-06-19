@@ -8,7 +8,7 @@ export const cryoLiftFacial: Service = {
   seo: {
     title: "CryoLift Facial | Skin Tightening & Glow | Zivel",
     description:
-      "CryoLift Facial is commonly used as a non-invasive approach to support the appearance of skin firmness and tone. While some clients schedule sessions ahead of events, many incorporate CryoLift into an ongoing skin-health routine as an alternative to more aggressive cosmetic procedures.",
+      "CryoLift Facial at Zivel — non-invasive cold therapy for firmer skin, reduced puffiness, and a radiant glow. No downtime. Book your session today.",
     canonical: "/services/cryo-lift-facial",
   },
 
@@ -18,7 +18,7 @@ export const cryoLiftFacial: Service = {
     media: {
       type: "image",
       src: "/images/services/cryo-lift-facial/hero.avif",
-      alt: "CryoLift facial session at Zivel (placeholder)",
+      alt: "CryoLift facial treatment in progress at Zivel wellness studio",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
     secondaryCTA: { label: "View Locations", href: "/locations" },
@@ -39,7 +39,7 @@ export const cryoLiftFacial: Service = {
     media: {
       type: "image",
       src: "/images/services/cryo-lift-facial/intro.avif",
-      alt: "Cryo facial tools and treatment room (placeholder)",
+      alt: "Cryo facial tools and treatment room at Zivel",
     },
   },
 
@@ -121,7 +121,7 @@ export const cryoLiftFacial: Service = {
     media: {
       type: "image",
       src: "/images/services/cryo-lift-facial/science.avif",
-      alt: "Skin and circulation concept visual (placeholder)",
+      alt: "Skin and circulation concept visual for CryoLift facial science",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },
   },

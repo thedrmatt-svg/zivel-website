@@ -8,7 +8,7 @@ export const cryoSlimming: Service = {
   seo: {
     title: "Cryo Slimming | Non-Invasive Body Contouring | Zivel",
     description:
-      "Cryo Slimming at Zivel is a non-invasive body contouring service designed to support fat reduction and skin tightening. Learn what to expect and book a session.",
+      "Cryo Slimming at Zivel — non-invasive body contouring for fat reduction and skin tightening. No downtime. Book a session today.",
     canonical: "/services/cryo-slimming",
   },
 
@@ -18,7 +18,7 @@ export const cryoSlimming: Service = {
     media: {
       type: "image",
       src: "/images/services/cryo-slimming/hero.avif",
-      alt: "Cryo slimming treatment at Zivel (placeholder)",
+      alt: "Cryo slimming body contouring treatment at Zivel wellness studio",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
     secondaryCTA: { label: "View Locations", href: "/locations" },
@@ -39,7 +39,7 @@ export const cryoSlimming: Service = {
     media: {
       type: "image",
       src: "/images/services/cryo-slimming/intro.avif",
-      alt: "Cryo slimming body contouring equipment (placeholder)",
+      alt: "Cryo slimming body contouring equipment at Zivel studio",
     },
   },
 
@@ -121,7 +121,7 @@ export const cryoSlimming: Service = {
     media: {
       type: "image",
       src: "/images/services/cryo-slimming/science.avif",
-      alt: "Cryo slimming science visualization (placeholder)",
+      alt: "Cold-based fat reduction science visualization for Cryo Slimming",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },
   },

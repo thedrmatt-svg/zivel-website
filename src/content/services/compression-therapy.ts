@@ -8,7 +8,7 @@ export const compressionTherapy: Service = {
   seo: {
     title: "Compression Therapy | Recovery & Circulation Support | Zivel",
     description:
-      "Compression Therapy at Zivel supports recovery, circulation, and reduced muscle soreness using guided pneumatic compression. Learn what to expect and book a session.",
+      "Compression Therapy at Zivel uses pneumatic compression to support recovery, circulation, and reduced soreness. Book your session today.",
     canonical: "/services/compression-therapy",
   },
 
@@ -18,7 +18,7 @@ export const compressionTherapy: Service = {
     media: {
       type: "image",
       src: "/images/services/compression-therapy/hero.jpg",
-      alt: "Compression therapy session at Zivel (placeholder)",
+      alt: "Compression therapy pneumatic boots in recovery lounge at Zivel",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
     secondaryCTA: { label: "View Locations", href: "/locations" },
@@ -39,7 +39,7 @@ export const compressionTherapy: Service = {
     media: {
       type: "image",
       src: "/images/services/compression-therapy/intro.jpg",
-      alt: "Compression boots in a recovery lounge (placeholder)",
+      alt: "Client relaxing with compression boots in a Zivel recovery lounge",
     },
   },
 
@@ -121,7 +121,7 @@ export const compressionTherapy: Service = {
     media: {
       type: "image",
       src: "/images/services/compression-therapy/science.jpg",
-      alt: "Compression and circulation concept visual (placeholder)",
+      alt: "Pneumatic compression and circulation science concept at Zivel",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },
   },

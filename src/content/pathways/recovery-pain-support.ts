@@ -7,7 +7,7 @@ export const recoveryPainSupport: Pathway = {
   seo: {
     title: "Recovery & Pain Support Pathway | Zivel",
     description:
-      "A structured, non-invasive recovery pathway designed to support comfort, mobility, and resilience for adults navigating daily physical stress, training load, or lingering stiffness.",
+      "A non-invasive recovery pathway to support comfort, mobility, and resilience for adults managing daily physical stress, training load, or lingering stiffness.",
     canonical: "/pathways/recovery-pain-support",
   },
 

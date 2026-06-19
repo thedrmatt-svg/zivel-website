@@ -8,7 +8,7 @@ export const cryoToning: Service = {
   seo: {
     title: "Cryo Toning | Muscle Toning & Firming | Zivel",
     description:
-      "Cryo Toning at Zivel is a non-invasive firming and toning service designed to support muscle definition and skin appearance. Learn what to expect and book a session.",
+      "Cryo Toning at Zivel — non-invasive firming and toning designed to support muscle definition and skin appearance. Book a session today.",
     canonical: "/services/cryo-toning",
   },
 
@@ -18,7 +18,7 @@ export const cryoToning: Service = {
     media: {
       type: "image",
       src: "/images/services/cryo-toning/hero.avif",
-      alt: "Cryo toning treatment at Zivel (placeholder)",
+      alt: "Cryo toning treatment in progress at Zivel wellness studio",
     },
     primaryCTA: { label: "Book Now", href: "#book" },
     secondaryCTA: { label: "View Locations", href: "/locations" },
@@ -39,7 +39,7 @@ export const cryoToning: Service = {
     media: {
       type: "image",
       src: "/images/services/cryo-toning/intro.avif",
-      alt: "Cryo toning device and session (placeholder)",
+      alt: "Cryo toning device and session at Zivel studio",
     },
   },
 
@@ -121,7 +121,7 @@ export const cryoToning: Service = {
     media: {
       type: "image",
       src: "/images/services/cryo-toning/science.avif",
-      alt: "Cryo toning science concept visual (placeholder)",
+      alt: "Cryo toning science concept visual — muscle toning with cold therapy",
     },
     cta: { label: "Learn More in the Science Hub", href: "/science" },
   },

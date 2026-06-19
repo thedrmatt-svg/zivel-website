@@ -10,7 +10,7 @@ export const zivel_belmont_location: Location = {
 
   seo: {
     title: "Zivel Belmont | Zivel",
-    description: "Zivel Belmont offers modern wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, compression therapy, and more. Book a session or explore memberships.",
+    description: "Zivel Belmont offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Belmont, NC. Book your session today.",
     canonical: "https://www.zivel.com/locations/north-carolina/belmont",
   },
 
