@@ -1116,7 +1116,7 @@ const LOCAL_CONTENT: Record<string, LocalServiceContent> = {
     ],
     whatIsOverviewLabel: "Full CryoLift Facial Overview →",
     whatIsOverviewHref: "/services/cryo-lift-facial",
-    whatIsImage: "/images/services/cryo-lift-facial/intro.avif",
+    whatIsImage: "/images/services/cryo-lift-facial/science.avif",
     whatIsImageAlt: "CryoLift Facial treatment at Zivel Riverton",
     localExpect: [
       {
