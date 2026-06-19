@@ -1426,12 +1426,24 @@ export default async function LocalServicePage({ params }: Props) {
       >
         <div className="mx-auto max-w-6xl px-6 py-8">
           <div className="grid grid-cols-3 gap-6 text-center">
-            {local.trustBar.map((t) => (
+            {local.trustBar.map((t, i) => (
               <div key={t.label}>
                 <div className="font-serif text-3xl md:text-4xl text-[var(--zivel-gold)] font-light">
                   {t.stat}
                 </div>
                 <div className="mt-1 text-sm text-white/55 uppercase tracking-widest">{t.label}</div>
+                {i === 0 && state === "utah" && city === "riverton" && (
+                  <div className="mt-3 flex justify-center">
+                    <Image
+                      src="/images/badges/best-of-slc.avif"
+                      alt="Best of SLC Award — Zivel Riverton"
+                      width={72}
+                      height={72}
+                      style={{ width: 72, height: "auto" }}
+                      className="object-contain"
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>
