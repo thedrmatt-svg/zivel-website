@@ -17,6 +17,38 @@ import ServiceImageCard from "@/components/location/ServiceImageCard";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 import { getLocalServiceHref } from "@/lib/data/local-service-pages";
 import { getLocationSocial } from "@/lib/data/socialLinks";
+import rawPlacesCache from "@/data/places-cache.json";
+
+type CacheEntry = { rating: number; userRatingCount: number };
+
+function getCacheEntry(placeId: string | undefined): CacheEntry | null {
+  if (!placeId) return null;
+  const entry = (rawPlacesCache as Record<string, unknown>)[placeId];
+  if (entry && typeof entry === "object" && "rating" in entry && "userRatingCount" in entry) {
+    return entry as CacheEntry;
+  }
+  return null;
+}
+
+function buildTrustBar(location: import("@/types/location").Location, cityDisplay: string): { stat: string; label: string }[] {
+  const cached = getCacheEntry(location.google?.placeId);
+  const yr = location.openedYear ?? 2023;
+  if (cached && cached.userRatingCount > 0) {
+    const n = cached.userRatingCount;
+    const countLabel = n >= 200 ? "200+" : n >= 100 ? `${Math.floor(n / 10) * 10}+` : `${n}+`;
+    const ratingLabel = cached.rating === 5 ? "5.0" : cached.rating.toFixed(1);
+    return [
+      { stat: countLabel, label: `${ratingLabel}-Star Reviews` },
+      { stat: "1,000s", label: "Sessions Delivered" },
+      { stat: `Since ${yr}`, label: `Serving ${cityDisplay}` },
+    ];
+  }
+  return [
+    { stat: "200+", label: "5.0-Star Reviews" },
+    { stat: "1,000s", label: "Sessions Delivered" },
+    { stat: `Since ${yr}`, label: `Serving ${cityDisplay}` },
+  ];
+}
 
 export function generateStaticParams() {
   return locations.map((loc) => ({
@@ -70,6 +102,7 @@ export default async function LocationPage({
   const heroImage = location.hero?.image ?? "/images/home/hero.jpg";
   const cityName = location.city ?? location.citySlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
   const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
+  const trustBar = buildTrustBar(location, cityName);
   const social = getLocationSocial(location.slug);
 
   const jsonLd = {
@@ -595,6 +628,25 @@ export default async function LocationPage({
           {(() => { sectionParity = 1; return null; })()}
         </>
       )}
+
+      {/* ========== TRUST BAR ========== */}
+      <section
+        className="zv-bleed bg-[#0a0a0a] border-y border-white/10"
+        style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-8">
+          <div className="grid grid-cols-3 gap-6 text-center">
+            {trustBar.map((t) => (
+              <div key={t.label}>
+                <div className="font-serif text-3xl md:text-4xl text-[var(--zivel-gold)] font-light">
+                  {t.stat}
+                </div>
+                <div className="mt-1 text-sm text-white/55 uppercase tracking-widest">{t.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ========== CONTACT INFO (alternating) ========== */}
       {location.contact?.address && (
