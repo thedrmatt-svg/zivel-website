@@ -144,7 +144,7 @@ export default function HomePage() {
               <div className="mt-1 text-xs md:text-sm text-white/55 uppercase tracking-widest leading-snug">Services Completed</div>
             </div>
             <div>
-              <div className="font-serif text-3xl md:text-4xl text-[var(--zivel-gold)] font-light">Since 2000</div>
+              <div className="font-serif text-3xl md:text-4xl text-[var(--zivel-gold)] font-light">Since 2020</div>
               <div className="mt-1 text-xs md:text-sm text-white/55 uppercase tracking-widest leading-snug">Helping People Feel Their Best</div>
             </div>
           </div>
