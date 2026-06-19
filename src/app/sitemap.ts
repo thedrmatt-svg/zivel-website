@@ -5,6 +5,7 @@ import { scienceArticles } from "@/lib/data/science";
 import { researchSources } from "@/lib/data/research";
 import { pathways } from "@/lib/data/pathways";
 import { locations } from "@/lib/data/locations";
+import { LOCAL_SERVICE_COMBOS } from "@/lib/data/local-service-pages";
 
 const SITE_URL = "https://www.zivel.com";
 
@@ -61,6 +62,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const localServicePages: MetadataRoute.Sitemap = LOCAL_SERVICE_COMBOS
+    .filter((c) => c.locale === "en")
+    .map((c) => ({
+      url: `${SITE_URL}/locations/${c.state}/${c.city}/${c.service}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.75,
+    }));
+
   return [
     ...staticPages,
     ...servicePages,
@@ -69,5 +79,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...researchPages,
     ...pathwayPages,
     ...locationPages,
+    ...localServicePages,
   ];
 }
