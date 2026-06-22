@@ -881,6 +881,44 @@ export default async function LocationPage({
       )}
       {(() => { sectionParity++; return null; })()}
 
+      {/* ========== LOCAL BLOG (only when configured) ========== */}
+      {location.localBlog && (() => {
+        const blog = location.localBlog!;
+        const isDark = sectionParity % 2 !== 0;
+        return (
+          <>
+            <div className="zv-bleed zv-divider-dark-to-light" />
+            <section className={`zv-bleed zv-immersive-section ${isDark ? "zv-section-elevated" : "zv-section-light zv-light"}`}>
+              <div className="mx-auto max-w-6xl px-6">
+                <div className="max-w-3xl">
+                  <ScrollReveal variant="fade-up">
+                    <p className="zv-tagline">From the Team</p>
+                    <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">
+                      {blog.heading ?? "Local Wellness Insights"}
+                    </h2>
+                    <p className={`mt-6 text-lg leading-relaxed ${isDark ? "text-white/65" : "text-black/60"}`}>
+                      {blog.description}
+                    </p>
+                    <div className="mt-10">
+                      <Link
+                        href={blog.href}
+                        className="zv-btn-luxury zv-btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium tracking-wider uppercase"
+                      >
+                        {blog.ctaLabel ?? "Read the Blog"}
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </ScrollReveal>
+                </div>
+              </div>
+            </section>
+          </>
+        );
+      })()}
+      {location.localBlog && (() => { sectionParity++; return null; })()}
+
       {/* ========== PRICING (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (

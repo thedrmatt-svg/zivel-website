@@ -172,6 +172,13 @@ export type Location = {
   finalCTA?: {
     headline: string;
   };
+
+  localBlog?: {
+    href: string;
+    heading?: string;
+    description?: string;
+    ctaLabel?: string;
+  };
 };
 
 export type LocationOwner = {
