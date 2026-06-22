@@ -311,6 +311,13 @@ function generateLocalContent(location: Location, svc: Service, state: string, c
 
 // ─────────────────────────────────────────────────────────────────────────────
 
+const WHAT_IS_IMAGE_OVERRIDES: Record<string, { src: string; alt: string }> = {
+  "colorado/highlands-ranch/infrared-sauna": {
+    src: "/images/locations/highlands-ranch/infrared-sauna-what-is.jpg",
+    alt: "Infrared sauna session at Zivel Highlands Ranch",
+  },
+};
+
 const LOCAL_CONTENT: Record<string, LocalServiceContent> = {
   "utah/riverton/cryotherapy": {
     h1: "Cryotherapy in Riverton, UT",
@@ -1293,6 +1300,11 @@ export default async function LocalServicePage({ params }: Props) {
 
   const key = `${state}/${city}/${service}`;
   const local = LOCAL_CONTENT[key] ?? generateLocalContent(location, svc, state, city);
+  const whatIsOvr = WHAT_IS_IMAGE_OVERRIDES[key];
+  if (whatIsOvr) {
+    local.whatIsImage = whatIsOvr.src;
+    local.whatIsImageAlt = whatIsOvr.alt;
+  }
 
   const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const stateDisplay = state.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
