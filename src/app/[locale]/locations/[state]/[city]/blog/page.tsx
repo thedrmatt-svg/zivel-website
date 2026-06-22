@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/lib/data/blog";
+import { getLocationBlogPosts } from "@/lib/data/locationBlog";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const SITE_URL = "https://www.zivel.com";
@@ -79,6 +80,9 @@ export default async function LocationBlogPage({
   const cfg = LOCATION_BLOG_CONFIG[city];
   if (!cfg) notFound();
 
+  const localPosts = getLocationBlogPosts(city);
+  const allPosts = [...localPosts, ...blogPosts];
+
   return (
     <main className="space-y-0 -mt-20">
       <title>{cfg.title}</title>
@@ -106,28 +110,39 @@ export default async function LocationBlogPage({
       <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-6 md:grid-cols-2">
-            {blogPosts.map((p, idx) => (
-              <ScrollReveal key={p.slug} variant="fade-up" delay={idx * 80}>
-                <Link
-                  href={`/blog/${p.slug}`}
-                  className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
-                >
-                  <div className="flex items-center gap-3 text-xs text-black/45">
-                    <span>{p.publishDate}</span>
-                    <span className="h-1 w-1 rounded-full bg-[var(--zivel-gold)]" />
-                    <span>{p.category}</span>
-                    <span className="h-1 w-1 rounded-full bg-[var(--zivel-gold)]" />
-                    <span>{p.readingTime}</span>
-                  </div>
-                  <div className="mt-3 font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">
-                    {p.title}
-                  </div>
-                  <p className="mt-3 text-sm text-black/55 leading-relaxed">
-                    {p.description}
-                  </p>
-                </Link>
-              </ScrollReveal>
-            ))}
+            {allPosts.map((p, idx) => {
+              const isLocal = localPosts.some((lp) => lp.slug === p.slug);
+              const href = isLocal
+                ? `/locations/${state}/${city}/blog/${p.slug}`
+                : `/blog/${p.slug}`;
+              return (
+                <ScrollReveal key={p.slug} variant="fade-up" delay={idx * 80}>
+                  <Link
+                    href={href}
+                    className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    {isLocal && (
+                      <span className="inline-block mb-3 text-[10px] uppercase tracking-[0.18em] font-semibold text-[var(--zivel-gold-dark)] bg-[var(--zivel-gold)]/10 px-3 py-1 rounded-full">
+                        {cfg.cityName} Exclusive
+                      </span>
+                    )}
+                    <div className="flex items-center gap-3 text-xs text-black/45">
+                      <span>{p.publishDate}</span>
+                      <span className="h-1 w-1 rounded-full bg-[var(--zivel-gold)]" />
+                      <span>{p.category}</span>
+                      <span className="h-1 w-1 rounded-full bg-[var(--zivel-gold)]" />
+                      <span>{p.readingTime}</span>
+                    </div>
+                    <div className="mt-3 font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">
+                      {p.title}
+                    </div>
+                    <p className="mt-3 text-sm text-black/55 leading-relaxed">
+                      {p.description}
+                    </p>
+                  </Link>
+                </ScrollReveal>
+              );
+            })}
           </div>
 
           {/* BOTTOM ACTIONS */}
