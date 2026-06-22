@@ -31,6 +31,10 @@ export const zivel_highlands_ranch_location: Location = {
     sunday: "10am – 3pm",
   },
 
+  hero: {
+    subheadline: "South Denver's leader in recovery and regenerative aesthetics. Advanced cryotherapy, infrared sauna with red light therapy, and non-invasive body contouring in Highlands Ranch.",
+  },
+
   booking: {
     locationId: 11431,
   },
