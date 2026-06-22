@@ -42,11 +42,13 @@ export const zivel_highlands_ranch_location: Location = {
   services: [
   {
     "name": "Cryotherapy",
-    "slug": "cryotherapy"
+    "slug": "cryotherapy",
+    "imageAlt": "Person stepping into a cryotherapy chamber at Zivel Highlands Ranch"
   },
   {
     "name": "Infrared Sauna w/ Red Light",
-    "slug": "infrared-sauna"
+    "slug": "infrared-sauna",
+    "imageAlt": "Woman relaxing in an infrared sauna with red light at Zivel Highlands Ranch"
   },
   {
     "name": "Dry Float",
@@ -62,7 +64,8 @@ export const zivel_highlands_ranch_location: Location = {
   },
   {
     "name": "CryoLift Facial",
-    "slug": "cryo-lift-facial"
+    "slug": "cryo-lift-facial",
+    "imageAlt": "CryoLift Facial treatment close-up at Zivel Highlands Ranch"
   },
   {
     "name": "Compression Therapy",

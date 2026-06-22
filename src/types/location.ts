@@ -60,6 +60,7 @@ export type Location = {
     slug: string;
     name: string;
     description?: string;
+    imageAlt?: string;
   }[];
 
   owners?: {

@@ -846,6 +846,7 @@ export default async function LocationPage({
                     cityName={cityName}
                     variant="light"
                     localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
+                    imageAlt={s.imageAlt}
                   />
                 </ScrollReveal>
               ))}
@@ -870,6 +871,7 @@ export default async function LocationPage({
                     cityName={cityName}
                     variant="dark"
                     localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
+                    imageAlt={s.imageAlt}
                   />
                 </ScrollReveal>
               ))}

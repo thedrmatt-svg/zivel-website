@@ -25,6 +25,7 @@ type ServiceImageCardProps = {
   cityName: string;
   variant: "light" | "dark";
   localHref?: string;
+  imageAlt?: string;
 };
 
 export default function ServiceImageCard({
@@ -35,6 +36,7 @@ export default function ServiceImageCard({
   cityName,
   variant,
   localHref,
+  imageAlt,
 }: ServiceImageCardProps) {
   const customSrc = `/locations/${citySlug}/services/${slug}.jpg`;
   const nationalSrc = nationalImageMap[slug] || fallbackImage;
@@ -51,7 +53,7 @@ export default function ServiceImageCard({
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <Image
           src={src}
-          alt={`Zivel ${name} at ${cityName} Location`}
+          alt={imageAlt ?? `Zivel ${name} at ${cityName} Location`}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-110"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
