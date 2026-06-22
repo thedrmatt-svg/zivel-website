@@ -22,6 +22,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  verification: {
+    google: "Nx0wahWkUBMr-kDzL1w4nuvxoMJm6AjKa6H24E3w0M4",
+  },
   title: {
     default: "Zivel | Recovery, Performance & Aesthetics",
     template: "%s | Zivel",
