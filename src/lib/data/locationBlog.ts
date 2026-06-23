@@ -5,7 +5,7 @@ import brecksvilleCryoVsColdPlunge from "@/content/blog/brecksville-cryotherapy-
 import briargateCryoVsColdPlunge from "@/content/blog/briargate-cryotherapy-vs-cold-plunge";
 import buckheadCryoVsColdPlunge from "@/content/blog/buckhead-cryotherapy-vs-cold-plunge";
 import coolSpringsCryoVsColdPlunge from "@/content/blog/cool-springs-cryotherapy-vs-cold-plunge";
-import coralGablesCryoVsColdPlunge from "@/content/blog/coral-gables-cryotherapy-vs-cold-plunge";
+import coralGablesExecutiveRecovery from "@/content/blog/coral-gables-executive-recovery";
 import fayettevilleCryoVsColdPlunge from "@/content/blog/fayetteville-cryotherapy-vs-cold-plunge";
 import fieldhouseCryoVsColdPlunge from "@/content/blog/fieldhouse-cryotherapy-vs-cold-plunge";
 import highlandsRanchCryoVsColdPlunge from "@/content/blog/highlands-ranch-cryotherapy-vs-cold-plunge";
@@ -24,7 +24,7 @@ const LOCATION_BLOG_POSTS: Record<string, BlogPost[]> = {
   briargate: [briargateCryoVsColdPlunge],
   buckhead: [buckheadCryoVsColdPlunge],
   "cool-springs": [coolSpringsCryoVsColdPlunge],
-  "coral-gables": [coralGablesCryoVsColdPlunge],
+  "coral-gables": [coralGablesExecutiveRecovery],
   fayetteville: [fayettevilleCryoVsColdPlunge],
   fieldhouse: [fieldhouseCryoVsColdPlunge],
   "highlands-ranch": [highlandsRanchCryoVsColdPlunge],
