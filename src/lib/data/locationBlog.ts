@@ -1,8 +1,10 @@
 import type { BlogPost } from "@/types/blog";
 import bentonvilleCryoVsColdPlunge from "@/content/blog/bentonville-cryotherapy-vs-cold-plunge";
+import rogersCryoVsColdPlunge from "@/content/blog/rogers-cryotherapy-vs-cold-plunge";
 
 const LOCATION_BLOG_POSTS: Record<string, BlogPost[]> = {
   bentonville: [bentonvilleCryoVsColdPlunge],
+  rogers: [rogersCryoVsColdPlunge],
 };
 
 export function getLocationBlogPosts(citySlug: string): BlogPost[] {
