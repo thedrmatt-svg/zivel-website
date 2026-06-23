@@ -35,6 +35,9 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // ── Canonical domain: non-www → www ─────────────────────────────────
+      { source: "/:path*", has: [{ type: "host" as const, value: "zivel.com" }], destination: "https://www.zivel.com/:path*", permanent: true },
+
       // ── Subdomain redirects ─────────────────────────────────────────────
       { source: "/:path*", has: [{ type: "host" as const, value: "coralgables.zivel.com" }], destination: "https://www.zivel.com/locations/florida/coral-gables/:path*", permanent: true },
       { source: "/:path*", has: [{ type: "host" as const, value: "brecksville.zivel.com"  }], destination: "https://www.zivel.com/locations/ohio/brecksville/:path*",     permanent: true },
