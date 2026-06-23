@@ -152,6 +152,14 @@ export const zivel_metairie_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/louisiana/metairie/blog",
+    heading: "Metairie Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Metairie team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Metairie and Greater New Orleans feel and perform their best.",
+    ctaLabel: "Read the Metairie Blog",
+  },
 };
 
 export default zivel_metairie_location;

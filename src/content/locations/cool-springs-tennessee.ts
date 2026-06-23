@@ -140,6 +140,14 @@ export const zivel_franklin_cool_springs_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/tennessee/cool-springs/blog",
+    heading: "Cool Springs Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Cool Springs team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Franklin, Cool Springs, and Middle Tennessee feel and perform their best.",
+    ctaLabel: "Read the Cool Springs Blog",
+  },
 };
 
 export default zivel_franklin_cool_springs_location;

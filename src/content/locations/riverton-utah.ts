@@ -152,6 +152,14 @@ export const zivel_riverton_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/utah/riverton/blog",
+    heading: "Riverton Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Riverton team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Riverton and along the Wasatch Front feel and perform their best.",
+    ctaLabel: "Read the Riverton Blog",
+  },
 };
 
 export default zivel_riverton_location;

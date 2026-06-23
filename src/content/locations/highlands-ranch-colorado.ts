@@ -147,6 +147,14 @@ export const zivel_highlands_ranch_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/colorado/highlands-ranch/blog",
+    heading: "Highlands Ranch Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Highlands Ranch team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Highlands Ranch and the South Denver area feel and perform their best.",
+    ctaLabel: "Read the Highlands Ranch Blog",
+  },
 };
 
 export default zivel_highlands_ranch_location;

@@ -26,6 +26,96 @@ const CITY_META: Record<
     bookingUrl:
       "https://zivel.myperformanceiq.com/book-appointment?set_location=11442",
   },
+  brecksville: {
+    cityName: "Brecksville",
+    stateSlug: "ohio",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11438",
+  },
+  briargate: {
+    cityName: "Briargate",
+    stateSlug: "colorado",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11779",
+  },
+  buckhead: {
+    cityName: "Buckhead",
+    stateSlug: "georgia",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11537",
+  },
+  "cool-springs": {
+    cityName: "Cool Springs",
+    stateSlug: "tennessee",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11436",
+  },
+  "coral-gables": {
+    cityName: "Coral Gables",
+    stateSlug: "florida",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11432",
+  },
+  fayetteville: {
+    cityName: "Fayetteville",
+    stateSlug: "arkansas",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11616",
+  },
+  fieldhouse: {
+    cityName: "Fieldhouse",
+    stateSlug: "mississippi",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11441",
+  },
+  "highlands-ranch": {
+    cityName: "Highlands Ranch",
+    stateSlug: "colorado",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11431",
+  },
+  hollywood: {
+    cityName: "Hollywood",
+    stateSlug: "florida",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11433",
+  },
+  metairie: {
+    cityName: "Metairie",
+    stateSlug: "louisiana",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11435",
+  },
+  murfreesboro: {
+    cityName: "Murfreesboro",
+    stateSlug: "tennessee",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11430",
+  },
+  newport: {
+    cityName: "Newport",
+    stateSlug: "kentucky",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11437",
+  },
+  parker: {
+    cityName: "Parker",
+    stateSlug: "colorado",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11680",
+  },
+  riverton: {
+    cityName: "Riverton",
+    stateSlug: "utah",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11445",
+  },
+  windermere: {
+    cityName: "Cumming-Windermere",
+    stateSlug: "georgia",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11617",
+  },
 };
 
 type PageProps = {

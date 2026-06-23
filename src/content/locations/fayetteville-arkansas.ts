@@ -141,6 +141,14 @@ export const zivel_fayetteville_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/arkansas/fayetteville/blog",
+    heading: "Fayetteville Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Fayetteville team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Fayetteville and Northwest Arkansas feel and perform their best.",
+    ctaLabel: "Read the Fayetteville Blog",
+  },
 };
 
 export default zivel_fayetteville_location;

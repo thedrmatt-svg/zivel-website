@@ -145,6 +145,14 @@ export const zivel_fieldhouse_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/mississippi/fieldhouse/blog",
+    heading: "Fieldhouse Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Fieldhouse team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Hernando, DeSoto County, and the Greater Memphis area feel and perform their best.",
+    ctaLabel: "Read the Fieldhouse Blog",
+  },
 };
 
 export default zivel_fieldhouse_location;

@@ -49,6 +49,216 @@ const LOCATION_BLOG_CONFIG: Record<
       "Recovery tips, local wellness news, and expert insights from the Zivel Rogers team",
     tagline: "Insights from Northwest Arkansas",
   },
+  brecksville: {
+    cityName: "Brecksville",
+    stateSlug: "ohio",
+    citySlug: "brecksville",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11438",
+    title: "Zivel Brecksville Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Brecksville. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Brecksville and Cuyahoga Valley community.",
+    h1: "Brecksville Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Brecksville team",
+    tagline: "Insights from Cuyahoga Valley",
+  },
+  briargate: {
+    cityName: "Briargate",
+    stateSlug: "colorado",
+    citySlug: "briargate",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11779",
+    title: "Zivel Briargate Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Briargate. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Colorado Springs community.",
+    h1: "Briargate Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Briargate team",
+    tagline: "Insights from Colorado Springs",
+  },
+  buckhead: {
+    cityName: "Buckhead",
+    stateSlug: "georgia",
+    citySlug: "buckhead",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11537",
+    title: "Zivel Buckhead Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Buckhead. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Buckhead and Atlanta community.",
+    h1: "Buckhead Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Buckhead team",
+    tagline: "Insights from Atlanta",
+  },
+  "cool-springs": {
+    cityName: "Cool Springs",
+    stateSlug: "tennessee",
+    citySlug: "cool-springs",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11436",
+    title: "Zivel Cool Springs Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Cool Springs. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Franklin and Middle Tennessee community.",
+    h1: "Cool Springs Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Cool Springs team",
+    tagline: "Insights from Middle Tennessee",
+  },
+  "coral-gables": {
+    cityName: "Coral Gables",
+    stateSlug: "florida",
+    citySlug: "coral-gables",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11432",
+    title: "Zivel Coral Gables Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Coral Gables. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Coral Gables and South Florida community.",
+    h1: "Coral Gables Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Coral Gables team",
+    tagline: "Insights from South Florida",
+  },
+  fayetteville: {
+    cityName: "Fayetteville",
+    stateSlug: "arkansas",
+    citySlug: "fayetteville",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11616",
+    title: "Zivel Fayetteville Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Fayetteville. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Fayetteville and Northwest Arkansas community.",
+    h1: "Fayetteville Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Fayetteville team",
+    tagline: "Insights from Northwest Arkansas",
+  },
+  fieldhouse: {
+    cityName: "Fieldhouse",
+    stateSlug: "mississippi",
+    citySlug: "fieldhouse",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11441",
+    title: "Zivel Fieldhouse Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Fieldhouse in Hernando, MS. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the DeSoto County and Greater Memphis community.",
+    h1: "Fieldhouse Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Fieldhouse team",
+    tagline: "Insights from DeSoto County",
+  },
+  "highlands-ranch": {
+    cityName: "Highlands Ranch",
+    stateSlug: "colorado",
+    citySlug: "highlands-ranch",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11431",
+    title: "Zivel Highlands Ranch Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Highlands Ranch. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Highlands Ranch and South Denver community.",
+    h1: "Highlands Ranch Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Highlands Ranch team",
+    tagline: "Insights from South Denver",
+  },
+  hollywood: {
+    cityName: "Hollywood",
+    stateSlug: "florida",
+    citySlug: "hollywood",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11433",
+    title: "Zivel Hollywood Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Hollywood, FL. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Hollywood and Broward County community.",
+    h1: "Hollywood Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Hollywood team",
+    tagline: "Insights from South Florida",
+  },
+  metairie: {
+    cityName: "Metairie",
+    stateSlug: "louisiana",
+    citySlug: "metairie",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11435",
+    title: "Zivel Metairie Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Metairie. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Metairie and Greater New Orleans community.",
+    h1: "Metairie Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Metairie team",
+    tagline: "Insights from Greater New Orleans",
+  },
+  murfreesboro: {
+    cityName: "Murfreesboro",
+    stateSlug: "tennessee",
+    citySlug: "murfreesboro",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11430",
+    title: "Zivel Murfreesboro Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Murfreesboro. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Murfreesboro and Middle Tennessee community.",
+    h1: "Murfreesboro Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Murfreesboro team",
+    tagline: "Insights from Middle Tennessee",
+  },
+  newport: {
+    cityName: "Newport",
+    stateSlug: "kentucky",
+    citySlug: "newport",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11437",
+    title: "Zivel Newport Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Newport, KY. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Newport and Greater Cincinnati community.",
+    h1: "Newport Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Newport team",
+    tagline: "Insights from Greater Cincinnati",
+  },
+  parker: {
+    cityName: "Parker",
+    stateSlug: "colorado",
+    citySlug: "parker",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11680",
+    title: "Zivel Parker Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Parker, CO. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Parker and South Denver community.",
+    h1: "Parker Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Parker team",
+    tagline: "Insights from South Denver",
+  },
+  riverton: {
+    cityName: "Riverton",
+    stateSlug: "utah",
+    citySlug: "riverton",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11445",
+    title: "Zivel Riverton Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Riverton, UT. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Riverton and Wasatch Front community.",
+    h1: "Riverton Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Riverton team",
+    tagline: "Insights from the Wasatch Front",
+  },
+  windermere: {
+    cityName: "Cumming-Windermere",
+    stateSlug: "georgia",
+    citySlug: "windermere",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11617",
+    title: "Zivel Cumming-Windermere Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Cumming-Windermere. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Cumming and North Atlanta community.",
+    h1: "Cumming-Windermere Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Cumming-Windermere team",
+    tagline: "Insights from North Atlanta",
+  },
 };
 
 export async function generateStaticParams() {

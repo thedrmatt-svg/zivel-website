@@ -140,6 +140,14 @@ export const zivel_briargate_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/colorado/briargate/blog",
+    heading: "Briargate Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Briargate team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Colorado Springs and the Briargate area feel and perform their best.",
+    ctaLabel: "Read the Briargate Blog",
+  },
 };
 
 export default zivel_briargate_location;

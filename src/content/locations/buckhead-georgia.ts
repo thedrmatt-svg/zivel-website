@@ -140,6 +140,14 @@ export const zivel_buckhead_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/georgia/buckhead/blog",
+    heading: "Buckhead Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Buckhead team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Buckhead and across Atlanta feel and perform their best.",
+    ctaLabel: "Read the Buckhead Blog",
+  },
 };
 
 export default zivel_buckhead_location;

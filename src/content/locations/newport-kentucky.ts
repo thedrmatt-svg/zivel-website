@@ -145,6 +145,14 @@ export const zivel_newport_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/kentucky/newport/blog",
+    heading: "Newport Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Newport team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Newport and Greater Cincinnati feel and perform their best.",
+    ctaLabel: "Read the Newport Blog",
+  },
 };
 
 export default zivel_newport_location;

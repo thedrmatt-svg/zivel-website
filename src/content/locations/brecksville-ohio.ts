@@ -144,6 +144,14 @@ export const zivel_brecksville_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/ohio/brecksville/blog",
+    heading: "Brecksville Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Brecksville team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Brecksville and the Cuyahoga Valley area feel and perform their best.",
+    ctaLabel: "Read the Brecksville Blog",
+  },
 };
 
 export default zivel_brecksville_location;

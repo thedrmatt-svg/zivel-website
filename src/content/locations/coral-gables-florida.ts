@@ -145,6 +145,14 @@ export const zivel_coral_gables_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/florida/coral-gables/blog",
+    heading: "Coral Gables Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Coral Gables team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Coral Gables and South Florida feel and perform their best.",
+    ctaLabel: "Read the Coral Gables Blog",
+  },
 };
 
 export default zivel_coral_gables_location;

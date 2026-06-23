@@ -199,6 +199,14 @@ export const zivel_cumming_windermere_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/georgia/windermere/blog",
+    heading: "Cumming-Windermere Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Cumming-Windermere team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Cumming, Forsyth County, and North Atlanta feel and perform their best.",
+    ctaLabel: "Read the Cumming-Windermere Blog",
+  },
 };
 
 export default zivel_cumming_windermere_location;

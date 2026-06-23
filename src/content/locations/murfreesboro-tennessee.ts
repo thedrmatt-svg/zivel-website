@@ -144,6 +144,14 @@ export const zivel_murfreesboro_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/tennessee/murfreesboro/blog",
+    heading: "Murfreesboro Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Murfreesboro team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Murfreesboro and Middle Tennessee feel and perform their best.",
+    ctaLabel: "Read the Murfreesboro Blog",
+  },
 };
 
 export default zivel_murfreesboro_location;
