@@ -145,6 +145,14 @@ export const zivel_rogers_location: Location = {
       url: "https://example.com/shop",
     },
   ],
+
+  localBlog: {
+    href: "/locations/arkansas/rogers/blog",
+    heading: "Rogers Wellness Insights",
+    description:
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Rogers team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Rogers, Bentonville, and Northwest Arkansas feel and perform their best.",
+    ctaLabel: "Read the Rogers Blog",
+  },
 };
 
 export default zivel_rogers_location;

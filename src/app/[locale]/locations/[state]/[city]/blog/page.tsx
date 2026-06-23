@@ -35,6 +35,20 @@ const LOCATION_BLOG_CONFIG: Record<
       "Recovery tips, local wellness news, and expert insights from the Zivel Bentonville team",
     tagline: "Insights from Northwest Arkansas",
   },
+  rogers: {
+    cityName: "Rogers",
+    stateSlug: "arkansas",
+    citySlug: "rogers",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11442",
+    title: "Zivel Rogers Blog | Local Wellness & Recovery Insights",
+    metaDescription:
+      "Wellness, recovery, and beauty insights from Zivel Rogers. Local tips on cryotherapy, red light therapy, infrared sauna, body contouring and more for the Rogers, Bentonville & Northwest Arkansas community.",
+    h1: "Rogers Wellness Blog",
+    subtitle:
+      "Recovery tips, local wellness news, and expert insights from the Zivel Rogers team",
+    tagline: "Insights from Northwest Arkansas",
+  },
 };
 
 export async function generateStaticParams() {

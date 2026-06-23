@@ -20,6 +20,12 @@ const CITY_META: Record<
     bookingUrl:
       "https://zivel.myperformanceiq.com/book-appointment?set_location=11443",
   },
+  rogers: {
+    cityName: "Rogers",
+    stateSlug: "arkansas",
+    bookingUrl:
+      "https://zivel.myperformanceiq.com/book-appointment?set_location=11442",
+  },
 };
 
 type PageProps = {
