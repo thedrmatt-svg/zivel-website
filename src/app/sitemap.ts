@@ -6,6 +6,10 @@ import { researchSources } from "@/lib/data/research";
 import { pathways } from "@/lib/data/pathways";
 import { locations } from "@/lib/data/locations";
 import { LOCAL_SERVICE_COMBOS } from "@/lib/data/local-service-pages";
+import {
+  getLocationBlogPosts,
+  getLocationBlogSlugs,
+} from "@/lib/data/locationBlog";
 
 const SITE_URL = "https://www.zivel.com";
 
@@ -71,6 +75,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     }));
 
+  const locationBlogIndexPages: MetadataRoute.Sitemap = locations
+    .filter((l) => getLocationBlogPosts(l.citySlug).length > 0)
+    .map((l) => ({
+      url: `${SITE_URL}/locations/${l.stateSlug}/${l.citySlug}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }));
+
+  const locationBlogPostPages: MetadataRoute.Sitemap = locations.flatMap((l) =>
+    getLocationBlogSlugs(l.citySlug).map((slug) => ({
+      url: `${SITE_URL}/locations/${l.stateSlug}/${l.citySlug}/blog/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
+  );
+
   return [
     ...staticPages,
     ...servicePages,
@@ -80,5 +102,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pathwayPages,
     ...locationPages,
     ...localServicePages,
+    ...locationBlogIndexPages,
+    ...locationBlogPostPages,
   ];
 }
