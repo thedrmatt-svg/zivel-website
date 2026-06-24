@@ -221,6 +221,15 @@ type LocalServiceContent = {
   testimonials: { name: string; location: string; quote: string }[];
   ctaHeadline: string;
   ctaBody: string;
+  beforeAfter?: {
+    items: {
+      src: string;
+      alt: string;
+      caption: string;
+      objectPosition?: string;
+    }[];
+    disclaimer: string;
+  };
 };
 
 function generateLocalContent(location: Location, svc: Service, state: string, city: string): LocalServiceContent {
@@ -306,6 +315,22 @@ function generateLocalContent(location: Location, svc: Service, state: string, c
     testimonials,
     ctaHeadline: `Book Your ${svc.name} Session at ${location.name}`,
     ctaBody: `${svc.hero.subheadline} Join clients throughout ${cityDisplay} who have made ${svc.name} a regular part of their wellness routine at ${location.name}.`,
+    beforeAfter: svc.beforeAfter
+      ? {
+          items: svc.beforeAfter.items
+            .filter((item): item is typeof item & { src: string } => Boolean(item.src))
+            .map((item, i) => ({
+              src: item.src,
+              alt: item.alt,
+              caption:
+                i === 0
+                  ? `Client results from ${svc.name} sessions at ${location.name}`
+                  : `Before & after — ${svc.name} at ${location.name}`,
+              objectPosition: item.objectPosition,
+            })),
+          disclaimer: "Individual results may vary. Photos are from real Zivel clients.",
+        }
+      : undefined,
   };
 }
 
@@ -1289,6 +1314,21 @@ const LOCAL_CONTENT: Record<string, LocalServiceContent> = {
     ctaHeadline: "Book Your CryoLift Facial at Zivel Riverton",
     ctaBody:
       "Non-invasive. Zero downtime. Instantly glowing. Join clients across Riverton, Herriman, Bluffdale, and South Jordan who trust Zivel Riverton for professional cryo facial treatments that deliver visible results — every session.",
+    beforeAfter: {
+      items: [
+        {
+          src: "/images/services/cryo-lift-facial/result-1.avif",
+          alt: "CryoLift Facial results at Zivel Riverton",
+          caption: "Client results from CryoLift Facial sessions at Zivel Riverton",
+        },
+        {
+          src: "/images/services/cryo-lift-facial/result-2.avif",
+          alt: "CryoLift Facial transformation at Zivel Riverton",
+          caption: "Before & after — CryoLift Facial at Zivel Riverton",
+        },
+      ],
+      disclaimer: "Individual results may vary. Photos are from real Zivel clients.",
+    },
   },
 };
 
@@ -1571,6 +1611,45 @@ export default async function LocalServicePage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ========== REAL RESULTS / BEFORE & AFTER (DARK RECESSED) ========== */}
+      {local.beforeAfter && (
+        <section className="zv-bleed zv-immersive-section zv-section-recessed" style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}>
+          <div className="mx-auto max-w-6xl px-6">
+            <ScrollReveal variant="fade-up">
+              <p className="zv-tagline mb-4">Before &amp; After</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-4">
+                Real Results
+              </h2>
+              <p className="text-white/60 text-lg mb-14 max-w-2xl">
+                See what clients have experienced at {location.name}. Results are individual — our team will help you set realistic expectations based on your goals.
+              </p>
+            </ScrollReveal>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+              {local.beforeAfter.items.map((item, idx) => (
+                <ScrollReveal key={idx} variant="fade-up" delay={idx * 120}>
+                  <div className="zv-card-glass rounded-2xl overflow-hidden">
+                    <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        quality={85}
+                        style={{ objectFit: "cover", objectPosition: item.objectPosition ?? "center" }}
+                      />
+                    </div>
+                    <p className="px-5 py-4 text-sm text-white/55 italic leading-relaxed">{item.caption}</p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+            <p className="mt-10 text-center text-xs text-white/30 max-w-lg mx-auto">
+              {local.beforeAfter.disclaimer}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* ========== SERVICES AVAILABLE (LIGHT) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }} />
