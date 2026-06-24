@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { services } from "@/lib/data/services";
+import { services, getServiceBySlug } from "@/lib/data/services";
 import { blogPosts } from "@/lib/data/blog";
 import { scienceArticles } from "@/lib/data/science";
 import { researchSources } from "@/lib/data/research";
@@ -10,8 +10,25 @@ import {
   getLocationBlogPosts,
   getLocationBlogSlugs,
 } from "@/lib/data/locationBlog";
+import type { Media } from "@/types/service";
 
 const SITE_URL = "https://www.zivel.com";
+
+function imgUrl(media: Media | undefined): string | null {
+  if (!media || media.type !== "image") return null;
+  if (media.src.endsWith(".svg")) return null;
+  return `${SITE_URL}${media.src}`;
+}
+
+function serviceImgUrls(service: ReturnType<typeof getServiceBySlug>): string[] {
+  if (!service) return [];
+  const imgs: string[] = [];
+  const hero = imgUrl(service.hero?.media);
+  if (hero) imgs.push(hero);
+  const intro = imgUrl(service.intro?.media);
+  if (intro) imgs.push(intro);
+  return imgs;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
@@ -29,6 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.8,
+    images: serviceImgUrls(s),
   }));
 
   const blogPages: MetadataRoute.Sitemap = blogPosts.map((p) => ({
@@ -59,21 +77,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const LOCATION_IMAGES = [
+    `${SITE_URL}/images/locations/studio-hero.jpg`,
+    `${SITE_URL}/images/locations/studio-about.jpg`,
+  ];
+
   const locationPages: MetadataRoute.Sitemap = locations.map((l) => ({
     url: `${SITE_URL}/locations/${l.stateSlug}/${l.citySlug}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.8,
+    images: LOCATION_IMAGES,
   }));
 
   const localServicePages: MetadataRoute.Sitemap = LOCAL_SERVICE_COMBOS
     .filter((c) => c.locale === "en")
-    .map((c) => ({
-      url: `${SITE_URL}/locations/${c.state}/${c.city}/${c.service}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.75,
-    }));
+    .map((c) => {
+      const svc = getServiceBySlug(c.service);
+      const hero = imgUrl(svc?.hero?.media);
+      return {
+        url: `${SITE_URL}/locations/${c.state}/${c.city}/${c.service}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.75,
+        images: hero ? [hero] : undefined,
+      };
+    });
 
   const locationBlogIndexPages: MetadataRoute.Sitemap = locations
     .filter((l) => getLocationBlogPosts(l.citySlug).length > 0)
