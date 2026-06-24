@@ -27,6 +27,9 @@ function serviceImgUrls(service: ReturnType<typeof getServiceBySlug>): string[] 
   if (hero) imgs.push(hero);
   const intro = imgUrl(service.intro?.media);
   if (intro) imgs.push(intro);
+  service.beforeAfter?.items
+    .filter((item) => item.src && !item.src.endsWith(".svg"))
+    .forEach((item) => imgs.push(`${SITE_URL}${item.src!}`));
   return imgs;
 }
 
@@ -94,13 +97,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((c) => c.locale === "en")
     .map((c) => {
       const svc = getServiceBySlug(c.service);
-      const hero = imgUrl(svc?.hero?.media);
+      const imgs = serviceImgUrls(svc);
       return {
         url: `${SITE_URL}/locations/${c.state}/${c.city}/${c.service}`,
         lastModified: new Date(),
         changeFrequency: "weekly" as const,
         priority: 0.75,
-        images: hero ? [hero] : undefined,
+        images: imgs.length > 0 ? imgs : undefined,
       };
     });
 
