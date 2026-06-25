@@ -105,7 +105,6 @@ export const zivel_newport_location: Location = {
         name: "Individual Unlimited",
         price: "$150",
         cadence: "/mo",
-        description: "Unlimited recovery. Discounts on premium services.",
         features: ["Unlimited Recovery Services", "Discounts on Premium Services"],
         mostPopular: true,
       },
