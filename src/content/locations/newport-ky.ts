@@ -54,63 +54,6 @@ export const newportKY: Location = {
     { name: "Healthcare Partner", type: "Wellness" },
   ],
 
-  pricing: {
-    membershipTiers: [
-      {
-        name: "Essential",
-        price: "$99",
-        cadence: "/mo",
-        description: "Great entry point for regular recovery.",
-        features: [
-          "Cryotherapy — $40/session",
-          "Red Light Therapy — $40/session",
-          "Infrared Sauna — $40/session",
-          "Dry Float — $40/session",
-          "Compression Therapy — $40/session",
-          "Member priority scheduling",
-        ],
-      },
-      {
-        name: "Elite",
-        price: "$129",
-        cadence: "/mo",
-        description: "More sessions, more value.",
-        features: [
-          "All Essential services — $40/session",
-          "CryoLift Facial — $150/session",
-          "Priority booking",
-          "Maximize your outcomes",
-        ],
-      },
-      {
-        name: "Individual Unlimited",
-        price: "$150",
-        cadence: "/mo",
-        description: "Unlimited recovery. Discounts on premium services.",
-        features: [
-          "Unlimited Recovery Services",
-          "Discounts on Premium Services",
-          "Priority booking",
-          "Best value for frequent visitors",
-        ],
-        mostPopular: true,
-      },
-      {
-        name: "Exclusive",
-        price: "$169",
-        cadence: "/mo",
-        description: "The complete Zivel experience.",
-        features: [
-          "All Elite services — $40/session",
-          "Cryo Slimming — $350/session",
-          "Cryo Toning — $350/session",
-          "Premium scheduling perks",
-          "Members save more",
-        ],
-      },
-    ],
-  },
-
   booking: {
     locationId: 11437,
   },
