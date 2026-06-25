@@ -26,7 +26,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
     title: pathway.seo.title,
-    description: pathway.seo.description,
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },
@@ -41,6 +40,7 @@ export default async function PathwayPage({ params }: PageProps) {
 
   return (
     <main className="space-y-0 -mt-20">
+      <meta name="description" content={pathway.seo.description} />
       {/* ========== HERO (DARK) ========== */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[70vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-30" />

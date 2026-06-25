@@ -29,8 +29,6 @@ export const metadata: Metadata = {
     default: "Zivel | Recovery, Performance & Aesthetics",
     template: "%s | Zivel",
   },
-  description:
-    "Experience science-backed recovery and performance services including cryotherapy, infrared sauna, red light therapy, CryoLift facials, and more. Book your session at Zivel today.",
   openGraph: {
     title: "Zivel | Recovery, Performance & Aesthetics",
     description:

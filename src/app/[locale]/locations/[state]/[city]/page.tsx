@@ -74,7 +74,6 @@ export async function generateMetadata({
 
   return {
     title: location.seo.title,
-    description: location.seo.description,
     alternates: {
       canonical: canonicalUrl,
       languages: {
@@ -247,6 +246,7 @@ export default async function LocationPage({
 
   return (
     <>
+      <meta name="description" content={location.seo.description} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

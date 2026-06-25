@@ -27,7 +27,6 @@ export async function generateMetadata({
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
     title: post.title,
-    description: post.description,
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },
@@ -140,6 +139,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="space-y-0 -mt-20">
+      <meta name="description" content={post.description} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 

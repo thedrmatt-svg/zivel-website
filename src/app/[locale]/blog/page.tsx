@@ -16,7 +16,6 @@ export async function generateMetadata({
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
     title: "Blog",
-    description: "Evidence-informed wellness, recovery, and longevity education.",
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },
@@ -27,6 +26,7 @@ export async function generateMetadata({
 export default function BlogIndexPage() {
   return (
     <main className="space-y-0 -mt-20">
+      <meta name="description" content="Evidence-informed wellness, recovery, and longevity education." />
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-40" />

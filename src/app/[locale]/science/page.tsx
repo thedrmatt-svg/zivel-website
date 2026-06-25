@@ -17,8 +17,6 @@ export async function generateMetadata({
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
     title: "Science & Recovery Hub",
-    description:
-      "Evidence-informed articles on recovery, performance, longevity, and modern wellness technology—written for clarity and practical use.",
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },
@@ -63,6 +61,7 @@ export default function ScienceIndexPage() {
 
   return (
     <main className="space-y-0 -mt-20">
+      <meta name="description" content="Evidence-informed articles on recovery, performance, longevity, and modern wellness technology—written for clarity and practical use." />
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-30" />

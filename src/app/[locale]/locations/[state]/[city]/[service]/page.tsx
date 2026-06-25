@@ -82,7 +82,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
     title: meta.title,
-    description: meta.description,
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },
@@ -1348,6 +1347,7 @@ export default async function LocalServicePage({ params }: Props) {
 
   const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const stateDisplay = state.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  const pageDesc = META_MAP[key]?.description ?? location.seo.description;
   const postalCode = location.contact?.address?.match(/\b\d{5}\b/)?.[0] ?? "";
 
   const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
@@ -1410,6 +1410,7 @@ export default async function LocalServicePage({ params }: Props) {
 
   return (
     <main className="overflow-x-hidden">
+      <meta name="description" content={pageDesc} />
       <Script
         id="schema-local-business"
         type="application/ld+json"
