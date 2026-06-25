@@ -55,7 +55,7 @@ export default function PricingSection({
       {hasTiers ? (
         <div>
           <h3 className={`mb-6 text-lg ${textPrimary}`}>Membership Options</h3>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className={`grid gap-6 ${tiers!.length >= 4 ? "sm:grid-cols-2" : "md:grid-cols-3"}`}>
             {tiers!.map((t) => (
               <div
                 key={t.name}
