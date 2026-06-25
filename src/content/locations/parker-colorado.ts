@@ -9,7 +9,7 @@ export const zivel_parker_location: Location = {
   openedYear: 2026,
 
   seo: {
-    title: "Zivel Parker | Zivel",
+    title: "Zivel Parker",
     description: "Zivel Parker offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Parker, CO. Book your session today.",
     canonical: "https://www.zivel.com/locations/colorado/parker",
   },

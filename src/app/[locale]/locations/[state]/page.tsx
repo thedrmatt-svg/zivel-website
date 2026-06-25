@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
 
   return {
-    title: `${stateName} Locations | Zivel`,
+    title: `${stateName} Locations`,
     description: `Find Zivel studios in ${stateName}. View services offered, booking, and local details for each location.`,
     alternates: {
       canonical: canonicalUrl,

@@ -6,7 +6,7 @@ export const cryoLiftFacial: Service = {
   accent: { name: "rose", hex: "#FB7185" },
 
   seo: {
-    title: "CryoLift Facial | Skin Tightening & Glow | Zivel",
+    title: "CryoLift Facial | Skin Tightening & Glow",
     description:
       "CryoLift Facial at Zivel — non-invasive cold therapy for firmer skin, reduced puffiness, and a radiant glow. No downtime. Book your session today.",
     canonical: "/services/cryo-lift-facial",

@@ -142,7 +142,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const esUrl = `${SITE_URL}/es${canonicalPath}`;
 
   return {
-    title: `${post.title} | Zivel ${CITY_META[city]?.cityName ?? city}`,
+    title: `${post.title} | ${CITY_META[city]?.cityName ?? city}`,
     description: post.description,
     alternates: {
       canonical: locale === "es" ? esUrl : canonicalUrl,

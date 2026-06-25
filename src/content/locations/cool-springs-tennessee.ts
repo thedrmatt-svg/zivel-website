@@ -10,7 +10,7 @@ export const zivel_franklin_cool_springs_location: Location = {
   openedYear: 2025,
 
   seo: {
-    title: "Zivel Franklin-Cool Springs | Zivel",
+    title: "Zivel Franklin-Cool Springs",
     description: "Zivel Franklin-Cool Springs offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Franklin, TN. Book today.",
     canonical: "https://www.zivel.com/locations/tennessee/cool-springs",
   },

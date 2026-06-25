@@ -9,7 +9,7 @@ export const zivel_rogers_location: Location = {
   openedYear: 2024,
 
   seo: {
-    title: "Zivel Rogers | Zivel",
+    title: "Zivel Rogers",
     description: "Zivel Rogers offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Rogers, AR. Book your session today.",
     canonical: "https://www.zivel.com/locations/arkansas/rogers",
   },

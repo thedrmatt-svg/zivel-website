@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const esUrl = `${SITE_URL}/es${basePath}`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
-    title: `${s.title} | Zivel Research`,
+    title: s.title,
     description: s.summary,
     alternates: {
       canonical: canonicalUrl,

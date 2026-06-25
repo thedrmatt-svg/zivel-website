@@ -15,7 +15,7 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es/blog`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
-    title: "Blog | Zivel",
+    title: "Blog",
     description: "Evidence-informed wellness, recovery, and longevity education.",
     alternates: {
       canonical: canonicalUrl,

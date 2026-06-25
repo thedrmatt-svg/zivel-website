@@ -10,7 +10,7 @@ export const zivel_riverton_location: Location = {
   openedYear: 2023,
 
   seo: {
-    title: "Zivel Riverton | Zivel",
+    title: "Zivel Riverton",
     description: "Zivel Riverton offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Riverton, UT. Book your session today.",
     canonical: "https://www.zivel.com/locations/utah/riverton",
   },

@@ -9,7 +9,7 @@ export const zivel_palm_coast_location: Location = {
   openedYear: 2025,
 
   seo: {
-    title: "Zivel Palm Coast | Zivel",
+    title: "Zivel Palm Coast",
     description: "Zivel Palm Coast offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Palm Coast, FL. Book your session today.",
     canonical: "https://www.zivel.com/locations/florida/palm-coast",
   },

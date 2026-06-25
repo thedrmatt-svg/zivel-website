@@ -9,7 +9,7 @@ export const zivel_fayetteville_location: Location = {
   openedYear: 2025,
 
   seo: {
-    title: "Zivel Fayetteville | Zivel",
+    title: "Zivel Fayetteville",
     description: "Zivel Fayetteville offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Fayetteville, AR. Book your session today.",
     canonical: "https://www.zivel.com/locations/arkansas/fayetteville",
   },

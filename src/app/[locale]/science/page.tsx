@@ -16,7 +16,7 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es/science`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
-    title: "Science & Recovery Hub | Zivel",
+    title: "Science & Recovery Hub",
     description:
       "Evidence-informed articles on recovery, performance, longevity, and modern wellness technology—written for clarity and practical use.",
     alternates: {

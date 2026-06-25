@@ -9,7 +9,7 @@ export const zivel_coral_gables_location: Location = {
   openedYear: 2025,
 
   seo: {
-    title: "Zivel Coral Gables | Zivel",
+    title: "Zivel Coral Gables",
     description: "Zivel Coral Gables offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Coral Gables, FL. Book your session today.",
     canonical: "https://www.zivel.com/locations/florida/coral-gables",
   },

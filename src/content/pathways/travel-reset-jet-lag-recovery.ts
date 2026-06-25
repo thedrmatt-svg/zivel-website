@@ -5,7 +5,7 @@ export const travelResetJetLagRecovery: Pathway = {
   name: "Travel Reset & Jet Lag Recovery",
 
   seo: {
-    title: "Travel Reset & Jet Lag Recovery Pathway | Zivel",
+    title: "Travel Reset & Jet Lag Recovery Pathway",
     description:
       "A recovery pathway to support circulation and recovery after flights, long drives, and demanding travel schedules. Book your reset session today.",
     canonical: "/pathways/travel-reset-jet-lag-recovery",

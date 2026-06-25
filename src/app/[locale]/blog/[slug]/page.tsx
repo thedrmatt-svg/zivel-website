@@ -26,7 +26,7 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es${basePath}`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
-    title: post.title + " | Zivel",
+    title: post.title,
     description: post.description,
     alternates: {
       canonical: canonicalUrl,

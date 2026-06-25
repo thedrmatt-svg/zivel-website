@@ -14,7 +14,7 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es/research`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
-    title: "Research Sources | Zivel",
+    title: "Research Sources",
     description: "Citations and sources referenced across Zivel service pages and science articles.",
     alternates: {
       canonical: canonicalUrl,

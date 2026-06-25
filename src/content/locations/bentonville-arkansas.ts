@@ -9,7 +9,7 @@ export const zivel_bentonville_location: Location = {
   openedYear: 2023,
 
   seo: {
-    title: "Zivel Bentonville | Zivel",
+    title: "Zivel Bentonville",
     description: "Zivel Bentonville offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Bentonville, AR. Book your session today.",
     canonical: "https://www.zivel.com/locations/arkansas/bentonville",
   },

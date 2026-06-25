@@ -6,7 +6,7 @@ export const cryoSlimming: Service = {
   accent: { name: "teal", hex: "#14B8A6" },
 
   seo: {
-    title: "Cryo Slimming | Non-Invasive Body Contouring | Zivel",
+    title: "Cryo Slimming | Non-Invasive Body Contouring",
     description:
       "Cryo Slimming at Zivel — non-invasive body contouring for fat reduction and skin tightening. No downtime. Book a session today.",
     canonical: "/services/cryo-slimming",

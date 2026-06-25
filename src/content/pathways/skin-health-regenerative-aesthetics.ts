@@ -5,7 +5,7 @@ export const skinHealthRegenerativeAesthetics: Pathway = {
   name: "Skin Health & Regenerative Aesthetics",
 
   seo: {
-    title: "Skin Health & Regenerative Aesthetics Pathway | Zivel",
+    title: "Skin Health & Regenerative Aesthetics Pathway",
     description:
       "A wellness pathway to support skin health, firmness, and appearance goals using non-invasive modalities including CryoLift Facial and red light therapy.",
     canonical: "/pathways/skin-health-regenerative-aesthetics",

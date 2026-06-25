@@ -6,7 +6,7 @@ export const dryFloat: Service = {
   accent: { name: "green", hex: "#22C55E" },
 
   seo: {
-    title: "Dry Float | Deep Relaxation & Recovery | Zivel",
+    title: "Dry Float | Deep Relaxation & Recovery",
     description:
       "Experience dry float therapy at Zivel—deep relaxation without getting wet. Support recovery, stress reduction, and nervous system reset. Book a session today.",
     canonical: "/services/dry-float",

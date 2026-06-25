@@ -6,7 +6,7 @@ export const infraredSauna: Service = {
   accent: { name: "amber", hex: "#F59E0B" },
 
   seo: {
-    title: "Infrared Sauna | Zivel",
+    title: "Infrared Sauna",
     description:
       "Unwind, sweat, and recover with infrared heat designed to support circulation, relaxation, and post-workout recovery. Book your session today.",
     canonical: "/services/infrared-sauna",

@@ -17,7 +17,7 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es/locations`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
-    title: "Locations | Zivel",
+    title: "Locations",
     description:
       "Find a Zivel studio near you. Browse by state to view local wellness and recovery services including cryotherapy, red light therapy, infrared sauna, dry float, and more.",
     alternates: {

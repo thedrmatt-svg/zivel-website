@@ -9,7 +9,7 @@ export const zivel_highlands_ranch_location: Location = {
   openedYear: 2024,
 
   seo: {
-    title: "Zivel Highlands Ranch | Zivel",
+    title: "Zivel Highlands Ranch",
     description: "Zivel Highlands Ranch offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Highlands Ranch, CO. Book today.",
     canonical: "https://www.zivel.com/locations/colorado/highlands-ranch",
   },

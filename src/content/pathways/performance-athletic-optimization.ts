@@ -5,7 +5,7 @@ export const performanceAthleticOptimization: Pathway = {
   name: "Performance & Athletic Optimization",
 
   seo: {
-    title: "Performance & Athletic Optimization Pathway | Zivel",
+    title: "Performance & Athletic Optimization Pathway",
     description:
       "A recovery pathway to support training consistency, recovery quality, and performance habits for athletes and active individuals of all ages.",
     canonical: "/pathways/performance-athletic-optimization",

@@ -5,7 +5,7 @@ export const stressSleepReset: Pathway = {
   name: "Stress & Sleep Reset",
 
   seo: {
-    title: "Stress & Sleep Reset Pathway | Zivel",
+    title: "Stress & Sleep Reset Pathway",
     description:
       "A structured wellness pathway designed to support nervous system regulation and healthier sleep routines through repeatable, non-invasive recovery modalities.",
     canonical: "/pathways/stress-sleep-reset",

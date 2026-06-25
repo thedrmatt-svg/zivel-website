@@ -9,7 +9,7 @@ export const zivel_newport_location: Location = {
   openedYear: 2025,
 
   seo: {
-    title: "Zivel Newport | Zivel",
+    title: "Zivel Newport",
     description: "Zivel Newport offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Newport, KY. Book your session today.",
     canonical: "https://www.zivel.com/locations/kentucky/newport",
   },

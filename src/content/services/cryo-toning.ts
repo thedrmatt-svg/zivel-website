@@ -6,7 +6,7 @@ export const cryoToning: Service = {
   accent: { name: "cool-blue", hex: "#3B82F6" },
 
   seo: {
-    title: "Cryo Toning | Muscle Toning & Firming | Zivel",
+    title: "Cryo Toning | Muscle Toning & Firming",
     description:
       "Cryo Toning at Zivel — non-invasive firming and toning designed to support muscle definition and skin appearance. Book a session today.",
     canonical: "/services/cryo-toning",

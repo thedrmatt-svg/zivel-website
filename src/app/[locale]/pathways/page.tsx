@@ -15,7 +15,7 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es/pathways`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
-    title: "Pathways | Zivel",
+    title: "Pathways",
     description:
       "Goal-based wellness pathways built from Zivel services—designed to make routines clear, repeatable, and easy to book.",
     alternates: {

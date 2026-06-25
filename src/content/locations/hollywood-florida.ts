@@ -9,7 +9,7 @@ export const zivel_hollywood_location: Location = {
   openedYear: 2025,
 
   seo: {
-    title: "Zivel Hollywood | Zivel",
+    title: "Zivel Hollywood",
     description: "Zivel Hollywood offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Hollywood, FL. Book your session today.",
     canonical: "https://www.zivel.com/locations/florida/hollywood",
   },

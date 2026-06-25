@@ -6,7 +6,7 @@ export const compressionTherapy: Service = {
   accent: { name: "silver", hex: "#A1A1AA" },
 
   seo: {
-    title: "Compression Therapy | Recovery & Circulation Support | Zivel",
+    title: "Compression Therapy | Recovery & Circulation Support",
     description:
       "Compression Therapy at Zivel uses pneumatic compression to support recovery, circulation, and reduced soreness. Book your session today.",
     canonical: "/services/compression-therapy",

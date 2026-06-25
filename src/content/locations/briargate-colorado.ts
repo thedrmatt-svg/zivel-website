@@ -10,7 +10,7 @@ export const zivel_briargate_location: Location = {
   openedYear: 2026,
 
   seo: {
-    title: "Zivel Briargate | Zivel",
+    title: "Zivel Briargate",
     description: "Zivel Briargate offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Colorado Springs, CO. Book your session today.",
     canonical: "https://www.zivel.com/locations/colorado/briargate",
   },

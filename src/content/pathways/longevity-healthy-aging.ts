@@ -5,7 +5,7 @@ export const longevityHealthyAging: Pathway = {
   name: "Longevity & Healthy Aging",
 
   seo: {
-    title: "Longevity & Healthy Aging Pathway | Zivel",
+    title: "Longevity & Healthy Aging Pathway",
     description:
       "A wellness pathway for long-term resilience through recovery routines that prioritize body-system strength, repair capacity, and consistency.",
     canonical: "/pathways/longevity-healthy-aging",
