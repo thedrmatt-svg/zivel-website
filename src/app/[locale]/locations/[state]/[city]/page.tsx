@@ -247,8 +247,6 @@ export default async function LocationPage({
 
   return (
     <>
-      <title>{location.seo.title}</title>
-      <meta name="description" content={location.seo.description} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

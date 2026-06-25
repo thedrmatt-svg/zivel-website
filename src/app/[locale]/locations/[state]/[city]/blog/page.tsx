@@ -309,9 +309,6 @@ export default async function LocationBlogPage({
 
   return (
     <main className="space-y-0 -mt-20">
-      <title>{cfg.title}</title>
-      <meta name="description" content={cfg.metaDescription} />
-
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-40" />

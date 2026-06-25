@@ -1408,12 +1408,8 @@ export default async function LocalServicePage({ params }: Props) {
 
   const hours = location.hours;
 
-  const _fallbackDesc = `${svc.name} in ${cityDisplay}, ${location.state} at ${location.name}. ${svc.hero.subheadline}`;
-  const pageDesc = META_MAP[key]?.description ?? (_fallbackDesc.length <= 155 ? _fallbackDesc : _fallbackDesc.slice(0, 152) + "…");
-
   return (
     <main className="overflow-x-hidden">
-      <meta name="description" content={pageDesc} />
       <Script
         id="schema-local-business"
         type="application/ld+json"

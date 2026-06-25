@@ -129,8 +129,6 @@ export default async function ServicePage({ params }: PageProps) {
 
   return (
     <main style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-0 zivel-service-page -mt-20" aria-labelledby="service-hero-title">
-      <title>{service.seo.title}</title>
-      <meta name="description" content={service.seo.description} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

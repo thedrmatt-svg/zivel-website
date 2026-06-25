@@ -88,7 +88,7 @@ export type Location = {
       name: string;
       price: string;
       cadence: string;
-      description: string;
+      description?: string;
       features: string[];
       mostPopular?: boolean;
       bookingUrl?: string;
