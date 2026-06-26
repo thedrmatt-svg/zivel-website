@@ -40,8 +40,6 @@ const SERVICE_IMAGES: Record<string, string> = {
   "cryo-toning":             "/images/services/cryo-toning/hero.avif",
   "cryo-lift-facial":        "/images/services/cryo-lift-facial/hero.avif",
   "cryolift-facial":         "/images/services/cryo-lift-facial/hero.avif",
-  "cryo-soothe":             "/images/home/service-facial.avif",
-  "cryosoothe":              "/images/home/service-facial.avif",
 };
 const FALLBACK_SERVICE_IMAGE = "/images/home/service-exercise.jpg";
 
@@ -58,8 +56,8 @@ const SERVICE_DESCRIPTIONS: Record<string, string> = {
   "cryo toning":             "Cold-assisted muscle sculpting",
   "cryolift facial":         "Anti-aging cryo lift facial",
   "cryo lift facial":        "Anti-aging cryo lift facial",
-  "cryo soothe":             "Soothing anti-inflammatory skin care",
-  "cryosoothe":              "Soothing anti-inflammatory skin care",
+  "cryo soothe":             "Targeted inflammation reduction",
+  "cryosoothe":              "Targeted inflammation reduction",
 };
 
 function nameToSlug(name: string) {
