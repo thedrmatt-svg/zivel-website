@@ -27,6 +27,13 @@ const PREMIUM_SERVICES = [
   "CryoSoothe",
 ];
 
+const NAV_ITEMS = [
+  { label: "Memberships", href: "#memberships" },
+  { label: "Services", href: "#services" },
+  { label: "Packages", href: "#packages" },
+  { label: "Specials", href: "#specials" },
+];
+
 export function generateStaticParams() {
   return locations.map((loc) => ({
     state: loc.stateSlug,
@@ -69,6 +76,7 @@ export default async function LocationPricingPage({
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
   const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
+  const phone = location.contact?.phone;
 
   const allPrices = location.pricing?.standardPrices ?? [];
   const recoveryPrices = allPrices.filter((p) =>
@@ -82,8 +90,7 @@ export default async function LocationPricingPage({
     )
   );
   const otherPrices = allPrices.filter(
-    (p) =>
-      !recoveryPrices.includes(p) && !premiumPrices.includes(p)
+    (p) => !recoveryPrices.includes(p) && !premiumPrices.includes(p)
   );
 
   const tiers = location.pricing?.membershipTiers ?? [
@@ -141,14 +148,39 @@ export default async function LocationPricingPage({
         </div>
       </section>
 
+      {/* SECTION NAV */}
+      <nav
+        aria-label="Pricing sections"
+        className="zv-bleed sticky top-[64px] z-10 border-b border-white/8 bg-black/90 backdrop-blur-md"
+      >
+        <div className="mx-auto max-w-6xl px-6">
+          <ol className="flex items-center gap-0 overflow-x-auto">
+            {NAV_ITEMS.map((item, i) => (
+              <li key={item.href} className="flex items-center shrink-0">
+                {i > 0 && (
+                  <span className="h-3.5 w-px bg-white/15 mx-1" aria-hidden="true" />
+                )}
+                <a
+                  href={item.href}
+                  className="group flex items-center gap-1.5 px-4 py-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/45 transition-colors duration-200 hover:text-[var(--zivel-gold)]"
+                >
+                  <span className="h-1 w-1 rounded-full bg-[var(--zivel-gold)]/0 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)]" />
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </nav>
+
       {/* GATED CONTENT */}
       <section className="zv-bleed zv-section-elevated py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay}>
             <div className="space-y-20">
 
-              {/* MEMBERSHIP TIERS */}
-              <div>
+              {/* ── MEMBERSHIPS ── */}
+              <div id="memberships" className="scroll-mt-36">
                 <ScrollReveal variant="fade-up">
                   <p className="zv-tagline mb-3">Memberships</p>
                   <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
@@ -210,99 +242,179 @@ export default async function LocationPricingPage({
                 </p>
               </div>
 
-              {/* RECOVERY SERVICES */}
-              {recoveryPrices.length > 0 && (
-                <div>
-                  <ScrollReveal variant="fade-up">
-                    <p className="zv-tagline mb-3">Single Sessions</p>
-                    <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
-                      Recovery & Longevity Services
-                    </h2>
-                  </ScrollReveal>
-                  <ScrollReveal variant="fade-up" delay={80}>
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
-                      <div className="grid gap-4 md:grid-cols-2">
-                        {recoveryPrices.map((s) => (
-                          <div
-                            key={s.name}
-                            className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
-                          >
-                            <div>
-                              <div className="text-white/85 font-medium">{s.name}</div>
-                              {s.note && <div className="text-xs text-white/45 mt-0.5">{s.note}</div>}
+              {/* ── SERVICES ── */}
+              <div id="services" className="scroll-mt-36">
+                {recoveryPrices.length > 0 && (
+                  <div>
+                    <ScrollReveal variant="fade-up">
+                      <p className="zv-tagline mb-3">Single Sessions</p>
+                      <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
+                        Recovery & Longevity Services
+                      </h2>
+                    </ScrollReveal>
+                    <ScrollReveal variant="fade-up" delay={80}>
+                      <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
+                        <div className="grid gap-4 md:grid-cols-2">
+                          {recoveryPrices.map((s) => (
+                            <div
+                              key={s.name}
+                              className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
+                            >
+                              <div>
+                                <div className="text-white/85 font-medium">{s.name}</div>
+                                {s.note && <div className="text-xs text-white/45 mt-0.5">{s.note}</div>}
+                              </div>
+                              <div className="font-semibold text-white shrink-0">{s.price}</div>
                             </div>
-                            <div className="font-semibold text-white shrink-0">{s.price}</div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  </div>
+                )}
+
+                {premiumPrices.length > 0 && (
+                  <div className={recoveryPrices.length > 0 ? "mt-14" : ""}>
+                    <ScrollReveal variant="fade-up">
+                      <p className="zv-tagline mb-3">Aesthetics & Body</p>
+                      <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
+                        Premium & Anti-Aging Services
+                      </h2>
+                    </ScrollReveal>
+                    <ScrollReveal variant="fade-up" delay={80}>
+                      <div className="rounded-2xl border border-[var(--zivel-gold)]/20 bg-[var(--zivel-gold)]/5 p-6 md:p-8">
+                        <div className="grid gap-4 md:grid-cols-2">
+                          {premiumPrices.map((s) => (
+                            <div
+                              key={s.name}
+                              className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
+                            >
+                              <div>
+                                <div className="text-white/85 font-medium">{s.name}</div>
+                                {s.note && <div className="text-xs text-white/45 mt-0.5">{s.note}</div>}
+                              </div>
+                              <div className="font-semibold text-white shrink-0">{s.price}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                    <p className="mt-4 text-sm text-white/40 italic">
+                      Premium services recommended as a series for best results. Package pricing available — ask the studio.
+                    </p>
+                  </div>
+                )}
+
+                {otherPrices.length > 0 && (
+                  <div className="mt-14">
+                    <ScrollReveal variant="fade-up">
+                      <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
+                        Additional Services
+                      </h2>
+                    </ScrollReveal>
+                    <ScrollReveal variant="fade-up" delay={80}>
+                      <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
+                        <div className="grid gap-4 md:grid-cols-2">
+                          {otherPrices.map((s) => (
+                            <div
+                              key={s.name}
+                              className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
+                            >
+                              <div>
+                                <div className="text-white/85 font-medium">{s.name}</div>
+                                {s.note && <div className="text-xs text-white/45 mt-0.5">{s.note}</div>}
+                              </div>
+                              <div className="font-semibold text-white shrink-0">{s.price}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  </div>
+                )}
+              </div>
+
+              {/* ── PACKAGES ── */}
+              <div id="packages" className="scroll-mt-36">
+                <ScrollReveal variant="fade-up">
+                  <p className="zv-tagline mb-3">Packages</p>
+                  <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
+                    Session Packages
+                  </h2>
+                </ScrollReveal>
+                <ScrollReveal variant="fade-up" delay={80}>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-8 md:p-12 text-center">
+                    <div className="mx-auto max-w-md">
+                      <p className="text-white/40 text-sm uppercase tracking-widest font-semibold mb-3">
+                        Coming Soon
+                      </p>
+                      <p className="font-serif text-xl text-white/70 font-light leading-relaxed mb-6">
+                        Multi-session packages and bundle pricing are available — contact the studio directly for current offers.
+                      </p>
+                      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                        {phone && (
+                          <a
+                            href={`tel:${phone.replace(/\D/g, "")}`}
+                            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-white/70 transition-all duration-200 hover:border-white/40 hover:text-white"
+                          >
+                            {phone}
+                          </a>
+                        )}
+                        <a
+                          href={bookingUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-6 py-2.5 text-sm font-semibold text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
+                        >
+                          Book a Session
+                        </a>
                       </div>
                     </div>
-                  </ScrollReveal>
-                </div>
-              )}
+                  </div>
+                </ScrollReveal>
+              </div>
 
-              {/* PREMIUM & ANTI-AGING */}
-              {premiumPrices.length > 0 && (
-                <div>
-                  <ScrollReveal variant="fade-up">
-                    <p className="zv-tagline mb-3">Aesthetics & Body</p>
-                    <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
-                      Premium & Anti-Aging Services
-                    </h2>
-                  </ScrollReveal>
-                  <ScrollReveal variant="fade-up" delay={80}>
-                    <div className="rounded-2xl border border-[var(--zivel-gold)]/20 bg-[var(--zivel-gold)]/5 p-6 md:p-8">
-                      <div className="grid gap-4 md:grid-cols-2">
-                        {premiumPrices.map((s) => (
-                          <div
-                            key={s.name}
-                            className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
+              {/* ── SPECIALS ── */}
+              <div id="specials" className="scroll-mt-36">
+                <ScrollReveal variant="fade-up">
+                  <p className="zv-tagline mb-3">Limited Time</p>
+                  <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
+                    Current Specials
+                  </h2>
+                </ScrollReveal>
+                <ScrollReveal variant="fade-up" delay={80}>
+                  <div className="rounded-2xl border border-[var(--zivel-gold)]/15 bg-[var(--zivel-gold)]/5 p-8 md:p-12 text-center">
+                    <div className="mx-auto max-w-md">
+                      <p className="text-[var(--zivel-gold)]/60 text-sm uppercase tracking-widest font-semibold mb-3">
+                        Check Back Soon
+                      </p>
+                      <p className="font-serif text-xl text-white/70 font-light leading-relaxed mb-6">
+                        Promotions and seasonal specials rotate regularly. Reach out to the studio or follow us on social media for the latest offers.
+                      </p>
+                      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                        {phone && (
+                          <a
+                            href={`tel:${phone.replace(/\D/g, "")}`}
+                            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-white/70 transition-all duration-200 hover:border-white/40 hover:text-white"
                           >
-                            <div>
-                              <div className="text-white/85 font-medium">{s.name}</div>
-                              {s.note && <div className="text-xs text-white/45 mt-0.5">{s.note}</div>}
-                            </div>
-                            <div className="font-semibold text-white shrink-0">{s.price}</div>
-                          </div>
-                        ))}
+                            {phone}
+                          </a>
+                        )}
+                        <a
+                          href={bookingUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-6 py-2.5 text-sm font-semibold text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
+                        >
+                          Book a Session
+                        </a>
                       </div>
                     </div>
-                  </ScrollReveal>
-                  <p className="mt-4 text-sm text-white/40 italic">
-                    Premium services recommended as a series for best results. Package pricing available — ask the studio.
-                  </p>
-                </div>
-              )}
+                  </div>
+                </ScrollReveal>
+              </div>
 
-              {/* OTHER PRICES (if any don't fit categories) */}
-              {otherPrices.length > 0 && (
-                <div>
-                  <ScrollReveal variant="fade-up">
-                    <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
-                      Additional Services
-                    </h2>
-                  </ScrollReveal>
-                  <ScrollReveal variant="fade-up" delay={80}>
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
-                      <div className="grid gap-4 md:grid-cols-2">
-                        {otherPrices.map((s) => (
-                          <div
-                            key={s.name}
-                            className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
-                          >
-                            <div>
-                              <div className="text-white/85 font-medium">{s.name}</div>
-                              {s.note && <div className="text-xs text-white/45 mt-0.5">{s.note}</div>}
-                            </div>
-                            <div className="font-semibold text-white shrink-0">{s.price}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                </div>
-              )}
-
-              {/* CTA */}
+              {/* ── BOOK CTA ── */}
               <div className="rounded-2xl border border-white/10 bg-white/5 p-8 md:p-12 text-center">
                 <ScrollReveal variant="fade-up">
                   <p className="zv-tagline mb-4">Ready to Start?</p>
@@ -321,12 +433,12 @@ export default async function LocationPricingPage({
                     >
                       Book Appointment
                     </a>
-                    {location.contact?.phone && (
+                    {phone && (
                       <a
-                        href={`tel:${location.contact.phone.replace(/\D/g, "")}`}
+                        href={`tel:${phone.replace(/\D/g, "")}`}
                         className="inline-flex items-center gap-2 rounded-full border border-white/20 px-8 py-3.5 text-sm font-semibold tracking-wide text-white/80 transition-all duration-200 hover:border-white/40 hover:text-white"
                       >
-                        {location.contact.phone}
+                        {phone}
                       </a>
                     )}
                   </div>
