@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getLocationByPath, locations } from "@/lib/data/locations";
@@ -26,6 +27,50 @@ const PREMIUM_SERVICES = [
   "Cryo Soothe",
   "CryoSoothe",
 ];
+
+const SERVICE_IMAGES: Record<string, string> = {
+  "cryotherapy":             "/images/home/service-cryo.jpg",
+  "whole-body-cryotherapy":  "/images/home/service-cryo.jpg",
+  "red-light-therapy":       "/images/home/service-redlight.jpg",
+  "infrared-sauna":          "/images/home/service-sauna.jpg",
+  "dry-float":               "/images/home/service-dryfloat.jpg",
+  "compression-therapy":     "/images/home/service-compression.jpg",
+  "normatec":                "/images/home/service-compression.jpg",
+  "cryo-slimming":           "/images/home/service-slimming.jpg",
+  "cryo-toning":             "/images/services/cryo-toning/hero.avif",
+  "cryo-lift-facial":        "/images/services/cryo-lift-facial/hero.avif",
+  "cryolift-facial":         "/images/services/cryo-lift-facial/hero.avif",
+  "cryo-soothe":             "/images/home/service-facial.avif",
+  "cryosoothe":              "/images/home/service-facial.avif",
+};
+const FALLBACK_SERVICE_IMAGE = "/images/home/service-exercise.jpg";
+
+const SERVICE_DESCRIPTIONS: Record<string, string> = {
+  "cryotherapy":             "Whole-body cold exposure therapy",
+  "whole body cryotherapy":  "Full-body cryogenic recovery",
+  "red light therapy":       "Cellular repair & tissue renewal",
+  "infrared sauna":          "Deep-heat detox & relaxation",
+  "dry float":               "Zero-gravity decompression & rest",
+  "compression therapy":     "Sequential pressure recovery massage",
+  "oxygen therapy":          "Purified oxygen inhalation boost",
+  "normatec":                "Dynamic pneumatic compression",
+  "cryo slimming":           "Targeted cold fat reduction",
+  "cryo toning":             "Cold-assisted muscle sculpting",
+  "cryolift facial":         "Anti-aging cryo lift facial",
+  "cryo lift facial":        "Anti-aging cryo lift facial",
+  "cryo soothe":             "Soothing anti-inflammatory skin care",
+  "cryosoothe":              "Soothing anti-inflammatory skin care",
+};
+
+function nameToSlug(name: string) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+function getServiceImage(name: string) {
+  return SERVICE_IMAGES[nameToSlug(name)] ?? FALLBACK_SERVICE_IMAGE;
+}
+function getServiceDesc(name: string) {
+  return SERVICE_DESCRIPTIONS[name.toLowerCase()] ?? "";
+}
 
 const MEMBERSHIP_LINKS: Record<string, string> = {
   essential: "https://app.clubready.com/JoinUs/14831/642900",
@@ -259,21 +304,28 @@ export default async function LocationPricingPage({
                       </h2>
                     </ScrollReveal>
                     <ScrollReveal variant="fade-up" delay={80}>
-                      <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
-                        <div className="grid gap-4 md:grid-cols-2">
-                          {recoveryPrices.map((s) => (
-                            <div
-                              key={s.name}
-                              className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
-                            >
-                              <div>
-                                <div className="text-white/85 font-medium">{s.name}</div>
-                                {s.note && <div className="text-xs text-white/55 mt-0.5">{s.note}</div>}
-                              </div>
-                              <div className="font-semibold text-white shrink-0">{s.price}</div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {recoveryPrices.map((s) => (
+                          <div
+                            key={s.name}
+                            className="flex items-center gap-4 rounded-xl border border-white/8 bg-white/[0.04] px-4 py-3"
+                          >
+                            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
+                              <Image
+                                src={getServiceImage(s.name)}
+                                alt={s.name}
+                                fill
+                                className="object-cover"
+                                sizes="56px"
+                              />
                             </div>
-                          ))}
-                        </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-white/85 text-sm leading-tight">{s.name}</div>
+                              <div className="text-xs text-white/55 mt-0.5">{getServiceDesc(s.name)}</div>
+                            </div>
+                            <div className="font-semibold text-white shrink-0 text-sm">{s.price}</div>
+                          </div>
+                        ))}
                       </div>
                     </ScrollReveal>
                   </div>
@@ -288,21 +340,28 @@ export default async function LocationPricingPage({
                       </h2>
                     </ScrollReveal>
                     <ScrollReveal variant="fade-up" delay={80}>
-                      <div className="rounded-2xl border border-[var(--zivel-gold)]/20 bg-[var(--zivel-gold)]/5 p-6 md:p-8">
-                        <div className="grid gap-4 md:grid-cols-2">
-                          {premiumPrices.map((s) => (
-                            <div
-                              key={s.name}
-                              className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
-                            >
-                              <div>
-                                <div className="text-white/85 font-medium">{s.name}</div>
-                                {s.note && <div className="text-xs text-white/55 mt-0.5">{s.note}</div>}
-                              </div>
-                              <div className="font-semibold text-white shrink-0">{s.price}</div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {premiumPrices.map((s) => (
+                          <div
+                            key={s.name}
+                            className="flex items-center gap-4 rounded-xl border border-[var(--zivel-gold)]/15 bg-[var(--zivel-gold)]/[0.04] px-4 py-3"
+                          >
+                            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
+                              <Image
+                                src={getServiceImage(s.name)}
+                                alt={s.name}
+                                fill
+                                className="object-cover"
+                                sizes="56px"
+                              />
                             </div>
-                          ))}
-                        </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-white/85 text-sm leading-tight">{s.name}</div>
+                              <div className="text-xs text-white/55 mt-0.5">{getServiceDesc(s.name)}</div>
+                            </div>
+                            <div className="font-semibold text-white shrink-0 text-sm">{s.price}</div>
+                          </div>
+                        ))}
                       </div>
                     </ScrollReveal>
                     <p className="mt-4 text-sm text-white/55 italic">
@@ -319,21 +378,28 @@ export default async function LocationPricingPage({
                       </h2>
                     </ScrollReveal>
                     <ScrollReveal variant="fade-up" delay={80}>
-                      <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
-                        <div className="grid gap-4 md:grid-cols-2">
-                          {otherPrices.map((s) => (
-                            <div
-                              key={s.name}
-                              className="flex items-baseline justify-between gap-4 border-b border-white/8 pb-4 last:border-b-0 last:pb-0"
-                            >
-                              <div>
-                                <div className="text-white/85 font-medium">{s.name}</div>
-                                {s.note && <div className="text-xs text-white/55 mt-0.5">{s.note}</div>}
-                              </div>
-                              <div className="font-semibold text-white shrink-0">{s.price}</div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {otherPrices.map((s) => (
+                          <div
+                            key={s.name}
+                            className="flex items-center gap-4 rounded-xl border border-white/8 bg-white/[0.04] px-4 py-3"
+                          >
+                            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
+                              <Image
+                                src={getServiceImage(s.name)}
+                                alt={s.name}
+                                fill
+                                className="object-cover"
+                                sizes="56px"
+                              />
                             </div>
-                          ))}
-                        </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-white/85 text-sm leading-tight">{s.name}</div>
+                              <div className="text-xs text-white/55 mt-0.5">{getServiceDesc(s.name)}</div>
+                            </div>
+                            <div className="font-semibold text-white shrink-0 text-sm">{s.price}</div>
+                          </div>
+                        ))}
                       </div>
                     </ScrollReveal>
                   </div>
