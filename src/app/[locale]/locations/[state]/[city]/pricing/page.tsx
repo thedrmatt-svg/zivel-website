@@ -162,7 +162,7 @@ export default async function LocationPricingPage({
                 )}
                 <a
                   href={item.href}
-                  className="group flex items-center gap-1.5 px-4 py-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/45 transition-colors duration-200 hover:text-[var(--zivel-gold)]"
+                  className="group flex items-center gap-1.5 px-4 py-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/60 transition-colors duration-200 hover:text-[var(--zivel-gold)]"
                 >
                   <span className="h-1 w-1 rounded-full bg-[var(--zivel-gold)]/0 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)]" />
                   {item.label}
@@ -237,7 +237,7 @@ export default async function LocationPricingPage({
                     </ScrollReveal>
                   ))}
                 </div>
-                <p className="mt-6 text-sm text-white/40 italic">
+                <p className="mt-6 text-sm text-white/55 italic">
                   Memberships renew monthly. Cancel anytime. Contact the studio for terms.
                 </p>
               </div>
@@ -262,7 +262,7 @@ export default async function LocationPricingPage({
                             >
                               <div>
                                 <div className="text-white/85 font-medium">{s.name}</div>
-                                {s.note && <div className="text-xs text-white/45 mt-0.5">{s.note}</div>}
+                                {s.note && <div className="text-xs text-white/55 mt-0.5">{s.note}</div>}
                               </div>
                               <div className="font-semibold text-white shrink-0">{s.price}</div>
                             </div>
@@ -291,7 +291,7 @@ export default async function LocationPricingPage({
                             >
                               <div>
                                 <div className="text-white/85 font-medium">{s.name}</div>
-                                {s.note && <div className="text-xs text-white/45 mt-0.5">{s.note}</div>}
+                                {s.note && <div className="text-xs text-white/55 mt-0.5">{s.note}</div>}
                               </div>
                               <div className="font-semibold text-white shrink-0">{s.price}</div>
                             </div>
@@ -299,7 +299,7 @@ export default async function LocationPricingPage({
                         </div>
                       </div>
                     </ScrollReveal>
-                    <p className="mt-4 text-sm text-white/40 italic">
+                    <p className="mt-4 text-sm text-white/55 italic">
                       Premium services recommended as a series for best results. Package pricing available — ask the studio.
                     </p>
                   </div>
@@ -322,7 +322,7 @@ export default async function LocationPricingPage({
                             >
                               <div>
                                 <div className="text-white/85 font-medium">{s.name}</div>
-                                {s.note && <div className="text-xs text-white/45 mt-0.5">{s.note}</div>}
+                                {s.note && <div className="text-xs text-white/55 mt-0.5">{s.note}</div>}
                               </div>
                               <div className="font-semibold text-white shrink-0">{s.price}</div>
                             </div>
@@ -345,7 +345,7 @@ export default async function LocationPricingPage({
                 <ScrollReveal variant="fade-up" delay={80}>
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-8 md:p-12 text-center">
                     <div className="mx-auto max-w-md">
-                      <p className="text-white/40 text-sm uppercase tracking-widest font-semibold mb-3">
+                      <p className="text-white/55 text-sm uppercase tracking-widest font-semibold mb-3">
                         Coming Soon
                       </p>
                       <p className="font-serif text-xl text-white/70 font-light leading-relaxed mb-6">
@@ -385,7 +385,7 @@ export default async function LocationPricingPage({
                 <ScrollReveal variant="fade-up" delay={80}>
                   <div className="rounded-2xl border border-[var(--zivel-gold)]/15 bg-[var(--zivel-gold)]/5 p-8 md:p-12 text-center">
                     <div className="mx-auto max-w-md">
-                      <p className="text-[var(--zivel-gold)]/60 text-sm uppercase tracking-widest font-semibold mb-3">
+                      <p className="text-[var(--zivel-gold)] text-sm uppercase tracking-widest font-semibold mb-3">
                         Check Back Soon
                       </p>
                       <p className="font-serif text-xl text-white/70 font-light leading-relaxed mb-6">
