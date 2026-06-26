@@ -1015,6 +1015,14 @@ export default async function LocationPage({
                 </div>
               );
             })()}
+            <div className="mt-14 text-center">
+              <Link
+                href={`/locations/${location.stateSlug}/${location.citySlug}/pricing`}
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-3.5 text-sm font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
+              >
+                See Full Pricing & Memberships →
+              </Link>
+            </div>
           </div>
         </section>
       ) : (
@@ -1113,6 +1121,14 @@ export default async function LocationPage({
                 </div>
               );
             })()}
+            <div className="mt-14 text-center">
+              <Link
+                href={`/locations/${location.stateSlug}/${location.citySlug}/pricing`}
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-3.5 text-sm font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
+              >
+                See Full Pricing & Memberships →
+              </Link>
+            </div>
           </div>
         </section>
       )}

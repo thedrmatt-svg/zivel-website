@@ -107,6 +107,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
+  const locationPricingPages: MetadataRoute.Sitemap = locations.map((l) => ({
+    url: `${SITE_URL}/locations/${l.stateSlug}/${l.citySlug}/pricing`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   const locationBlogIndexPages: MetadataRoute.Sitemap = locations
     .filter((l) => getLocationBlogPosts(l.citySlug).length > 0)
     .map((l) => ({
@@ -134,6 +141,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pathwayPages,
     ...locationPages,
     ...localServicePages,
+    ...locationPricingPages,
     ...locationBlogIndexPages,
     ...locationBlogPostPages,
   ];
