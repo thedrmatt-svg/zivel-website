@@ -27,6 +27,12 @@ const PREMIUM_SERVICES = [
   "CryoSoothe",
 ];
 
+const MEMBERSHIP_LINKS: Record<string, string> = {
+  essential: "https://app.clubready.com/JoinUs/14831/642900",
+  gold: "https://app.clubready.com/JoinUs/14831/642907",
+  elite: "https://app.clubready.com/JoinUs/14831/642913",
+};
+
 const NAV_ITEMS = [
   { label: "Memberships", href: "#memberships" },
   { label: "Services", href: "#services" },
@@ -226,7 +232,7 @@ export default async function LocationPricingPage({
                           </ul>
                         )}
                         <a
-                          href={bookingUrl}
+                          href={MEMBERSHIP_LINKS[tier.name.toLowerCase()] ?? bookingUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="mt-6 block w-full rounded-full border border-[var(--zivel-gold)] py-3 text-center text-sm font-semibold text-[var(--zivel-gold)] transition-all duration-200 hover:bg-[var(--zivel-gold)] hover:text-black"
