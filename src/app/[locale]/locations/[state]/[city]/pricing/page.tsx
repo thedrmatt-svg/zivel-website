@@ -216,7 +216,7 @@ export default async function LocationPricingPage({
                   <ScrollReveal variant="fade-up">
                     <p className="zv-tagline mb-3">Single Sessions</p>
                     <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
-                      Recovery Services
+                      Recovery & Longevity Services
                     </h2>
                   </ScrollReveal>
                   <ScrollReveal variant="fade-up" delay={80}>
