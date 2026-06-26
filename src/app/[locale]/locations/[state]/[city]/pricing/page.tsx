@@ -40,6 +40,8 @@ const SERVICE_IMAGES: Record<string, string> = {
   "cryo-toning":             "/images/services/cryo-toning/hero.avif",
   "cryo-lift-facial":        "/images/services/cryo-lift-facial/hero.avif",
   "cryolift-facial":         "/images/services/cryo-lift-facial/hero.avif",
+  "cryo-soothe":             "/images/home/service-cryosoothe.avif",
+  "cryosoothe":              "/images/home/service-cryosoothe.avif",
 };
 const FALLBACK_SERVICE_IMAGE = "/images/home/service-exercise.jpg";
 
