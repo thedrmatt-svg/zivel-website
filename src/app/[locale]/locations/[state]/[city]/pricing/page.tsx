@@ -171,8 +171,11 @@ export default async function LocationPricingPage({
     },
   ];
 
+  const metaDescription = `View local pricing, membership tiers, and current offers at ${location.name}. Cryotherapy, red light therapy, infrared sauna, CryoLift facial, and more.`;
+
   return (
     <main className="space-y-0">
+      <meta name="description" content={metaDescription} />
       {/* HERO */}
       <section className="zv-bleed zv-hero-bg zv-noise py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
