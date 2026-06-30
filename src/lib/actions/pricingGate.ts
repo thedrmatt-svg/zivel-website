@@ -1,6 +1,7 @@
 "use server";
 
 import { Resend } from "resend";
+import { locations } from "@/lib/data/locations";
 
 export type PricingGateState = {
   status: "idle" | "success" | "error";
@@ -102,7 +103,7 @@ export async function submitPricingGate(
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from: "Zivel Website <no-reply@zivel.com>",
-      to: locationEmail || `${citySlug}@zivel.com`,
+      to: locations.find((l) => l.citySlug === citySlug)?.contact?.email || `${citySlug}@zivel.com`,
       replyTo: email,
       subject: `Website Lead - Pricing Inquiry — ${firstName} ${lastName}`,
       html,

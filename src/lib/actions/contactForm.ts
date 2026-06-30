@@ -1,6 +1,7 @@
 "use server";
 
 import { Resend } from "resend";
+import { locations } from "@/lib/data/locations";
 
 export type ContactFormState = {
   status: "idle" | "success" | "error";
@@ -215,7 +216,7 @@ export async function submitContactForm(
     };
   }
 
-  const toEmail = locationEmail || `${locationSlug}@zivel.com`;
+  const toEmail = locations.find((l) => l.slug === locationSlug)?.contact?.email || `${locationSlug}@zivel.com`;
 
   const html = buildEmailHtml({
     firstName,
