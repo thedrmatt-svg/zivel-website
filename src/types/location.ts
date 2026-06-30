@@ -15,6 +15,7 @@ export type Location = {
   contact?: {
     address?: string;
     phone?: string;
+    email?: string;
     parking?: string;
     notes?: string;
   };

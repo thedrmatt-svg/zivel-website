@@ -15,8 +15,9 @@ export const zivel_highlands_ranch_location: Location = {
   },
 
   contact: {
-    address: "9325 Dorchester St ste f-121, Highlands Ranch, CO 80129",
+    address: "9325 Dorchester St ste f121, Highlands Ranch, CO 80129",
     phone: "(720) 827-6311",
+    email: "highlandsranch@zivel.com",
     parking: "Free parking or street available",
     notes: "",
   },

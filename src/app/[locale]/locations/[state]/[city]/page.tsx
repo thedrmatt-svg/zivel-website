@@ -661,6 +661,9 @@ export default async function LocationPage({
                     {location.contact.phone && (
                       <p><a href={`tel:${location.contact.phone}`} className="text-[var(--zivel-gold-dark)] underline">{location.contact.phone}</a></p>
                     )}
+                    {location.contact.email && (
+                      <p><a href={`mailto:${location.contact.email}`} className="text-[var(--zivel-gold-dark)] underline">{location.contact.email}</a></p>
+                    )}
                     {location.contact.parking && <p className="text-black/55 text-sm">{location.contact.parking}</p>}
                     {location.contact.notes && <p className="text-black/55 text-sm">{location.contact.notes}</p>}
                     <div className="pt-4 border-t border-black/8">
@@ -714,6 +717,9 @@ export default async function LocationPage({
                     <p className="text-white/85 text-lg">{location.contact.address}</p>
                     {location.contact.phone && (
                       <p><a href={`tel:${location.contact.phone}`} className="text-[var(--zivel-gold)] underline">{location.contact.phone}</a></p>
+                    )}
+                    {location.contact.email && (
+                      <p><a href={`mailto:${location.contact.email}`} className="text-[var(--zivel-gold)] underline">{location.contact.email}</a></p>
                     )}
                     {location.contact.parking && <p className="text-white/60 text-sm">{location.contact.parking}</p>}
                     {location.contact.notes && <p className="text-white/60 text-sm">{location.contact.notes}</p>}
