@@ -419,6 +419,89 @@ export default async function LocationPricingPage({
                     Session Packages
                   </h2>
                 </ScrollReveal>
+                {location.pricing?.specialDealsBottom && location.pricing.specialDealsBottom.length > 0 ? (() => {
+                  const premiumStart = location.pricing!.specialDealsBottomPremiumStart ?? location.pricing!.specialDealsBottom!.length;
+                  const accessDeals = location.pricing!.specialDealsBottom!.slice(0, premiumStart);
+                  const premiumDeals = location.pricing!.specialDealsBottom!.slice(premiumStart);
+                  return (
+                    <div className="space-y-12">
+                      {accessDeals.length > 0 && (
+                        <div className="grid gap-6 md:grid-cols-3">
+                          {accessDeals.map((deal, idx) => (
+                            <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                              <a
+                                href={deal.bookingUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full"
+                              >
+                                <div className="p-6 flex flex-col flex-1">
+                                  <div className="font-semibold text-white/90 mb-2">{deal.name}</div>
+                                  <div className="text-2xl font-semibold text-white mb-3">{deal.price}</div>
+                                  {deal.savings && <p className="text-sm text-white/55 italic mb-3">{deal.savings}</p>}
+                                  {deal.benefits && deal.benefits.length > 0 && (
+                                    <ul className="mb-4 space-y-1.5">
+                                      {deal.benefits.map((b, i) => (
+                                        <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                                          <span className="mt-0.5 shrink-0 text-[var(--zivel-gold)]">✓</span>{b}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                  <div className="mt-auto pt-4">
+                                    <span className="block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
+                                      {deal.buttonLabel ?? "Claim Deal"}
+                                    </span>
+                                  </div>
+                                </div>
+                              </a>
+                            </ScrollReveal>
+                          ))}
+                        </div>
+                      )}
+                      {premiumDeals.length > 0 && (
+                        <div>
+                          <ScrollReveal variant="fade-up">
+                            <p className="zv-tagline mb-3">Premium</p>
+                            <h3 className="font-serif text-2xl md:text-3xl font-light tracking-tight text-white mb-8">Multi-Session Packages</h3>
+                          </ScrollReveal>
+                          <div className="grid gap-6 md:grid-cols-3">
+                            {premiumDeals.map((deal, idx) => (
+                              <ScrollReveal key={idx} variant="fade-up" delay={idx * 80}>
+                                <a
+                                  href={deal.bookingUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full"
+                                >
+                                  {deal.regularPrice && (
+                                    <div className="bg-[var(--zivel-gold)] px-6 py-1.5 text-center text-xs font-bold tracking-widest uppercase text-black">
+                                      Limited Time
+                                    </div>
+                                  )}
+                                  <div className="p-6 flex flex-col flex-1">
+                                    <div className="font-semibold text-white/90 mb-2">{deal.name}</div>
+                                    {deal.description && <p className="text-sm text-white/60 mb-4 leading-relaxed">{deal.description}</p>}
+                                    {deal.savings && <p className="text-sm text-white/55 italic mb-3">{deal.savings}</p>}
+                                    <div className="mt-auto pt-4">
+                                      {deal.regularPrice && (
+                                        <div className="text-sm text-white/40 line-through mb-1">{deal.regularPrice}</div>
+                                      )}
+                                      <div className="text-2xl font-semibold text-white mb-5">{deal.price}</div>
+                                      <span className="block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
+                                        {deal.buttonLabel ?? "Get Package"}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </a>
+                              </ScrollReveal>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })() : (
                 <ScrollReveal variant="fade-up" delay={80}>
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-8 md:p-12 text-center">
                     <div className="mx-auto max-w-md">
@@ -449,6 +532,7 @@ export default async function LocationPricingPage({
                     </div>
                   </div>
                 </ScrollReveal>
+                )}
               </div>
 
               {/* ── SPECIALS ── */}
