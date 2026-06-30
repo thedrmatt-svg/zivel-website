@@ -10,9 +10,10 @@ type Props = {
   locationSlug: string;
   locationName: string;
   locationPhone: string;
+  locationEmail?: string;
 };
 
-export default function ContactForm({ locationSlug, locationName, locationPhone }: Props) {
+export default function ContactForm({ locationSlug, locationName, locationPhone, locationEmail }: Props) {
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -32,6 +33,7 @@ export default function ContactForm({ locationSlug, locationName, locationPhone 
       <input type="hidden" name="locationSlug" value={locationSlug} />
       <input type="hidden" name="locationName" value={locationName} />
       <input type="hidden" name="locationPhone" value={locationPhone} />
+      <input type="hidden" name="locationEmail" value={locationEmail ?? ""} />
 
       {/* Name row */}
       <div className="grid gap-4 sm:grid-cols-2 mb-4">

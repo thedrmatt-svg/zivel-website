@@ -78,6 +78,7 @@ export async function submitPricingGate(
   const email = ((formData.get("email") as string) ?? "").trim();
   const citySlug = ((formData.get("citySlug") as string) ?? "").trim();
   const cityDisplay = ((formData.get("cityDisplay") as string) ?? "").trim();
+  const locationEmail = ((formData.get("locationEmail") as string) ?? "").trim();
   const smsConsent = formData.get("smsConsent") === "on";
 
   if (!firstName || !lastName || !phone || !email) {
@@ -101,7 +102,7 @@ export async function submitPricingGate(
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from: "Zivel Website <no-reply@zivel.com>",
-      to: `${citySlug}@zivel.com`,
+      to: locationEmail || `${citySlug}@zivel.com`,
       replyTo: email,
       subject: `Website Lead - Pricing Inquiry — ${firstName} ${lastName}`,
       html,

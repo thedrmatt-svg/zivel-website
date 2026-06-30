@@ -1335,6 +1335,7 @@ export default async function LocationPage({
               locationSlug={location.slug}
               locationName={location.name}
               locationPhone={location.contact?.phone ?? ""}
+              locationEmail={location.contact?.email}
             />
           </ScrollReveal>
         </div>

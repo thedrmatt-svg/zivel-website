@@ -192,6 +192,7 @@ export async function submitContactForm(
   const locationSlug = (formData.get("locationSlug") as string | null) ?? "";
   const locationName = (formData.get("locationName") as string | null) ?? "";
   const locationPhone = (formData.get("locationPhone") as string | null) ?? "";
+  const locationEmail = (formData.get("locationEmail") as string | null)?.trim() ?? "";
 
   if (!firstName || !lastName || !email || !phone || !messageText || !acceptTerms) {
     return {
@@ -214,7 +215,7 @@ export async function submitContactForm(
     };
   }
 
-  const toEmail = `${locationSlug}@zivel.com`;
+  const toEmail = locationEmail || `${locationSlug}@zivel.com`;
 
   const html = buildEmailHtml({
     firstName,

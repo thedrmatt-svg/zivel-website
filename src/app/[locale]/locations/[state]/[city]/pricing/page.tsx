@@ -232,7 +232,7 @@ export default async function LocationPricingPage({
       {/* GATED CONTENT */}
       <section className="zv-bleed zv-section-elevated py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay}>
+          <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay} locationEmail={location.contact?.email}>
             <div className="space-y-20">
 
               {/* ── MEMBERSHIPS ── */}

@@ -35,10 +35,12 @@ function setUnlocked(citySlug: string) {
 export default function PricingGateModal({
   citySlug,
   cityDisplay,
+  locationEmail,
   children,
 }: {
   citySlug: string;
   cityDisplay: string;
+  locationEmail?: string;
   children: React.ReactNode;
 }) {
   const [unlocked, setUnlockedState] = useState(false);
@@ -60,6 +62,7 @@ export default function PricingGateModal({
     const formData = new FormData(e.currentTarget);
     formData.set("citySlug", citySlug);
     formData.set("cityDisplay", cityDisplay);
+    formData.set("locationEmail", locationEmail ?? "");
 
     startTransition(async () => {
       const result = await submitPricingGate(formData);
