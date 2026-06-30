@@ -935,6 +935,16 @@ export default async function LocationPage({
                 </Link>
               </p>
             </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={60}>
+              <div className="mb-10">
+                <Link
+                  href={`/locations/${location.stateSlug}/${location.citySlug}/pricing`}
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-4 text-base font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
+                >
+                  Memberships &amp; Packages →
+                </Link>
+              </div>
+            </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
               <PricingSection
                 tiers={location.citySlug === "fayetteville" ? (location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS).filter(t => t.mostPopular) : undefined}
@@ -959,6 +969,16 @@ export default async function LocationPage({
                   click here
                 </Link>
               </p>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" delay={60}>
+              <div className="mb-10">
+                <Link
+                  href={`/locations/${location.stateSlug}/${location.citySlug}/pricing`}
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-4 text-base font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
+                >
+                  Memberships &amp; Packages →
+                </Link>
+              </div>
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
               <PricingSection
