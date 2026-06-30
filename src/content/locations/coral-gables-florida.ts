@@ -17,6 +17,7 @@ export const zivel_coral_gables_location: Location = {
   contact: {
     address: "348 Minorca Ave, Coral Gables, FL 33134",
     phone: "(786) 527-0842",
+    email: "coralgables@zivel.com",
     parking: "Street and municipal parking available",
     notes: "",
   },
