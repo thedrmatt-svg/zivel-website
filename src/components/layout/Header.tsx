@@ -182,6 +182,9 @@ export default function Header() {
             <Link href="/blog" className={`${navLinkClass} ${isActive("/blog") ? "text-[var(--zivel-gold)]" : ""}`}>
               Blog
             </Link>
+            <Link href="/press" className={`${navLinkClass} ${isActive("/press") ? "text-[var(--zivel-gold)]" : ""}`}>
+              Press
+            </Link>
             <a href="https://www.zivelfranchise.com" target="_blank" rel="noopener noreferrer" className={navLinkClass}>
               Franchise
             </a>
@@ -329,6 +332,13 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
               >
                 Blog
+              </Link>
+              <Link
+                href="/press"
+                className="block px-3 py-3 text-sm font-medium tracking-wide uppercase text-white hover:text-[var(--zivel-gold)] transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                Press
               </Link>
               <a
                 href="https://www.zivelfranchise.com"

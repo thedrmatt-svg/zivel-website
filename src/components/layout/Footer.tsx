@@ -63,6 +63,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link className="hover:text-[var(--zivel-gold)] transition-colors duration-300" href="/press">
+                  Press
+                </Link>
+              </li>
+              <li>
                 <a className="hover:text-[var(--zivel-gold)] transition-colors duration-300" href="https://www.zivelfranchise.com" target="_blank" rel="noopener noreferrer">
                   Franchise
                 </a>

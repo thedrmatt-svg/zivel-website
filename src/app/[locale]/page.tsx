@@ -148,6 +148,31 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ========== AS SEEN IN ========== */}
+      <section className="zv-bleed border-t border-white/[0.06] bg-[#0a0a0a]" aria-label="As seen in">
+        <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
+          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+            <Link
+              href="/press"
+              className="shrink-0 text-xs font-semibold uppercase tracking-widest text-white/35 hover:text-[var(--zivel-gold)] transition-colors duration-300"
+            >
+              As Seen In
+            </Link>
+            <div className="flex flex-wrap gap-3">
+              {["Entrepreneur", "Forbes", "Inc.", "Well+Good", "mindbodygreen", "Shape", "Healthline", "Franchise Times"].map((pub) => (
+                <Link
+                  key={pub}
+                  href="/press"
+                  className="rounded-full border border-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/45 transition-all duration-200 hover:border-[var(--zivel-gold)]/40 hover:text-[var(--zivel-gold)]"
+                >
+                  {pub}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ========== TRANSITION: DARK → LIGHT ========== */}
       <div className="zv-divider-dark-to-light" />
 
