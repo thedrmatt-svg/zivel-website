@@ -925,23 +925,12 @@ export default async function LocationPage({
             <ScrollReveal variant="fade-up">
               <p className="zv-tagline">Investment</p>
               <h2 className="mt-3 mb-4 font-serif text-4xl md:text-5xl font-light tracking-tight">Pricing</h2>
-              <p className="mb-12 text-sm text-black/60">
-                To see all options for individual or family members, packages, and seasonal deals,{" "}
+              <div className="mb-12">
                 <Link
                   href={`/locations/${location.stateSlug}/${location.citySlug}/pricing`}
-                  className="font-semibold text-[var(--zivel-gold-dark)] underline-offset-4 hover:underline"
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-4 text-sm font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
                 >
-                  click here
-                </Link>
-              </p>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={60}>
-              <div className="mb-10">
-                <Link
-                  href={`/locations/${location.stateSlug}/${location.citySlug}/pricing`}
-                  className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-4 text-base font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
-                >
-                  Memberships &amp; Packages →
+                  To see all options for individual or family members, packages, and seasonal deals, click here
                 </Link>
               </div>
             </ScrollReveal>
@@ -960,23 +949,12 @@ export default async function LocationPage({
             <ScrollReveal variant="fade-up">
               <p className="zv-tagline">Investment</p>
               <h2 className="mt-3 mb-4 font-serif text-4xl md:text-5xl font-light tracking-tight">Pricing</h2>
-              <p className="mb-12 text-sm text-white/55">
-                To see all options for individual or family members, packages, and seasonal deals,{" "}
+              <div className="mb-12">
                 <Link
                   href={`/locations/${location.stateSlug}/${location.citySlug}/pricing`}
-                  className="font-semibold text-[var(--zivel-gold)] underline-offset-4 hover:underline"
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-4 text-sm font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
                 >
-                  click here
-                </Link>
-              </p>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={60}>
-              <div className="mb-10">
-                <Link
-                  href={`/locations/${location.stateSlug}/${location.citySlug}/pricing`}
-                  className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-4 text-base font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
-                >
-                  Memberships &amp; Packages →
+                  To see all options for individual or family members, packages, and seasonal deals, click here
                 </Link>
               </div>
             </ScrollReveal>
