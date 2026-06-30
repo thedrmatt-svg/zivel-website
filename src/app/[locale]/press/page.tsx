@@ -81,7 +81,6 @@ const featuredPubs = [
 export default function PressPage() {
   return (
     <main className="pt-20">
-      <meta name="description" content="Zivel in the press — read coverage from national publications, wellness media, franchise industry outlets, and local news. Media inquiries welcome." />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
