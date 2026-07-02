@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "name": "Zivel Wellness",
+  "description": "Zivel is a nationwide franchise of premium recovery and performance studios offering science-backed services including whole body cryotherapy, red light therapy, infrared sauna, CryoLift facials, cryo slimming/toning, dry float therapy, and compression therapy.",
+  "url": "https://www.zivel.com",
+  "contact": {
+    "email": "info@zivel.com",
+    "form": "https://www.zivel.com/contact"
+  },
+  "capabilities": [
+    "service_discovery",
+    "location_finder",
+    "booking",
+    "contact_form",
+    "pathway_recommendation"
+  ],
+  "services": [
+    "cryotherapy",
+    "red_light_therapy",
+    "infrared_sauna",
+    "cryo_lift_facial",
+    "cryo_slimming",
+    "cryo_toning",
+    "dry_float",
+    "compression_therapy"
+  ],
+  "locations": "19+ studios across the United States"
+}
