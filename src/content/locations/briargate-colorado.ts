@@ -20,6 +20,7 @@ export const zivel_briargate_location: Location = {
     phone: "(719) 500-1638",
     parking: "Free parking or street available",
     notes: "",
+    email: "zivelbriargate@gmail.com",
   },
 
   hours: {
