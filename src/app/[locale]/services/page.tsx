@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import CherryWidget from "@/components/widgets/CherryWidget";
 
 import { services } from "@/lib/data/services";
 
@@ -196,6 +197,8 @@ export default function ServicesIndexPage() {
           </section>
         );
       })()}
+
+      <CherryWidget />
     </main>
     </>
   );

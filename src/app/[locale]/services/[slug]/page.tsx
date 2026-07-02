@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import CherryWidget from "@/components/widgets/CherryWidget";
 import { getServiceBySlug, services } from "@/lib/data/services";
 import { pathways } from "@/lib/data/pathways";
 import { getLinksForServiceSlug } from "@/lib/data/serviceLinks";
@@ -116,6 +117,9 @@ export default async function ServicePage({ params }: PageProps) {
   );
 
   const accentRGB = `rgb(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]})`;
+
+  const CHERRY_WIDGET_SLUGS = ["cryo-slimming", "cryo-toning", "cryo-lift-facial"];
+  const showCherryWidget = CHERRY_WIDGET_SLUGS.includes(__zivelSlug);
 
   const researchBaseHref =
     service.benefits.viewResearchCTA?.href ?? "/research";
@@ -823,6 +827,8 @@ export default async function ServicePage({ params }: PageProps) {
           </ScrollReveal>
         </div>
       </section>
+
+      {showCherryWidget ? <CherryWidget /> : null}
     </main>
   );
 }
