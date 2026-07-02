@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 import PricingGateModal from "@/components/location/PricingGateModal";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import CherryWidget from "@/components/widgets/CherryWidget";
 
 const SITE_URL = "https://www.zivel.com";
 
@@ -610,6 +611,8 @@ export default async function LocationPricingPage({
           </PricingGateModal>
         </div>
       </section>
+
+      <CherryWidget />
     </main>
   );
 }

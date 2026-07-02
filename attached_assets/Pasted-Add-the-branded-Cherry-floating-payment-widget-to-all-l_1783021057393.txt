@@ -1,0 +1,60 @@
+Add the branded Cherry floating payment widget to all local Pricing & Memberships pages.
+
+Target: app/[locale]/locations/[state]/[city]/pricing/page.tsx
+
+Use this exact optimized widget code and place it at the very end of the main content (just before the closing </main> tag or right before the footer):
+
+<!-- CHERRY WIDGET BEGIN -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script>
+    (function (w, d, s, o, f, js, fjs) {
+        w[o] = w[o] || function () {
+            (w[o].q = w[o].q || []).push(arguments);
+        };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+    })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
+
+    _hw("init", {
+        debug: false,
+        variables: {
+            slug: 'zivel',
+            name: "Zivel",
+            images: [26],
+            customLogo: '',
+            defaultPurchaseAmount: 750,
+            imageCategory: 'medspa',
+            language: 'en',
+        },
+        styles: {
+            primaryColor: '#cab14c',
+            secondaryColor: '#0f766e10',
+            fontFamily: 'Montserrat',
+            headerFontFamily: 'Montserrat',
+            floatingEstimator: {
+                position: 'bottom-right',
+                offset: { x: '20px', y: '20px' },
+                zIndex: 9999,
+                ctaFontFamily: 'Montserrat',
+                bodyFontFamily: 'Montserrat',
+                ctaColor: '#cab14c',
+                ctaTextColor: '#FFFFFF'
+            }
+        }
+    }, ['floatingEstimator']);
+</script>
+
+<div id="floatingEstimator"></div>
+<!-- CHERRY WIDGET END -->
+
+After adding:
+- Run `npm run build`
+- Confirm there are no build errors
+- Verify the floating widget appears on at least one location pricing page (e.g. Metairie)
+- Do not push yet
+
+Let me know when it's complete.
