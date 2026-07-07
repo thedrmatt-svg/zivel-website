@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import FranchiseLeadForm from "@/components/franchise/FranchiseLeadForm";
+import FranchiseInvestmentReveal from "@/components/franchise/FranchiseInvestmentReveal";
 
 const SITE_URL = "https://www.zivel.com";
 const CALENDLY_URL = "https://calendly.com/matto-zivel/zivel-franchise-intro-zoom";
@@ -69,62 +71,94 @@ const WHY_OWN = [
   {
     icon: "◈",
     title: "All-in-One Model",
-    body:
-      "Eight premium recovery and aesthetic services under one roof — cryotherapy, red light, sauna, float, compression, slimming, toning, and facial. Multiple revenue streams, one seamless client experience.",
+    body: "Eight premium recovery and aesthetic services under one roof — cryotherapy, red light, sauna, float, compression, slimming, toning, and facial. Multiple revenue streams, one seamless client experience.",
   },
   {
     icon: "◇",
     title: "Low Cost of Entry",
-    body:
-      "Initial investment of $327,400–$429,000 compares favorably to other health-related franchises. Designed for capital efficiency at every stage of build-out.",
+    body: "Initial investment compares favorably to other health-related franchises. Designed for capital efficiency at every stage of build-out.",
   },
   {
     icon: "◉",
     title: "Efficient Operations",
-    body:
-      "Just 1–2 employees on-site at a time. No medical licensing required. All-in-one scheduling, billing, and membership management built in.",
+    body: "Just 1–2 employees on-site at a time. No medical licensing required. All-in-one scheduling, billing, and membership management built in.",
   },
   {
     icon: "◆",
     title: "Semi-Absentee Ownership",
-    body:
-      "Hire a manager and provide strategic oversight. Zivel is designed for owners who want a high-performing business — not a second job.",
+    body: "Hire a manager and provide strategic oversight. Zivel is designed for owners who want a high-performing business — not a second job.",
   },
   {
     icon: "◑",
     title: "Multiple Income Streams",
-    body:
-      "Memberships, single-session retail, packages, and aesthetic services drive predictable recurring revenue and strong client lifetime value.",
+    body: "Memberships, single-session retail, packages, and aesthetic services drive predictable recurring revenue and strong client lifetime value.",
   },
   {
     icon: "◐",
     title: "Straightforward to Build",
-    body:
-      "Small footprint, cost containment at every stage, straightforward real estate approvals. Zivel supports your build-out from site selection through opening day.",
+    body: "Small footprint, cost containment at every stage, straightforward real estate approvals. Zivel supports your build-out from site selection through opening day.",
   },
 ];
 
-const INVESTMENT_ROWS = [
-  { label: "Initial Investment", value: "$327,400 – $429,000" },
-  { label: "Liquidity Required", value: "$100,000" },
-  { label: "Net Worth Required", value: "$350,000" },
-  { label: "Franchise Fee", value: "$39,500" },
-  { label: "Royalty Fee", value: "6%" },
-  { label: "Ad Fund Contribution", value: "0%" },
-  { label: "Technology Fee", value: "$1,500" },
-  { label: "Agreement Term", value: "10 years, renewable" },
-  { label: "Veterans Incentive", value: "$9,500 off franchise fee" },
-];
-
+// ─── Path to Ownership steps with image placeholders ───
+// TODO: Replace each `image` path with a condensed/custom step image when ready.
 const STEPS = [
-  { n: "01", title: "Introduction Call", body: "A focused conversation to explore your goals, market opportunity, and mutual fit." },
-  { n: "02", title: "Complete Application", body: "Submit your franchise application so we can begin the formal review process." },
-  { n: "03", title: "Budgeting & Funding", body: "Explore financing paths — SBA loans, private lenders, HELOC, or ROBS — with our support team." },
-  { n: "04", title: "Extended Introduction & Education", body: "Deep-dive into operations, technology, marketing, and what a day in a Zivel studio looks like." },
-  { n: "05", title: "Territory Selection", body: "Work with our team to identify and secure your exclusive territory before the market matures." },
-  { n: "06", title: "Discovery Day & Site Visit", body: "Visit a live Zivel studio, meet the team, and experience the brand firsthand." },
-  { n: "07", title: "Final Agreement", body: "Review and execute your Franchise Disclosure Document and Franchise Agreement." },
-  { n: "08", title: "Onboarding", body: "Training, build-out support, technology setup, and a grand opening plan tailored to your market." },
+  {
+    n: "01",
+    title: "Introduction Call",
+    body: "A focused conversation to explore your goals, market opportunity, and mutual fit.",
+    image: "/images/home/hero-bg.jpg",
+    imageAlt: "Step 01 — Introduction Call (replace with custom image)",
+  },
+  {
+    n: "02",
+    title: "Complete Application",
+    body: "Submit your franchise application so we can begin the formal review process.",
+    image: "/images/home/about-studio.jpg",
+    imageAlt: "Step 02 — Complete Application (replace with custom image)",
+  },
+  {
+    n: "03",
+    title: "Budgeting & Funding",
+    body: "Explore financing paths — SBA loans, private lenders, HELOC, or ROBS — with our support team.",
+    image: "/images/home/science-1.jpg",
+    imageAlt: "Step 03 — Budgeting & Funding (replace with custom image)",
+  },
+  {
+    n: "04",
+    title: "Extended Introduction & Education",
+    body: "Deep-dive into operations, technology, marketing, and what a day in a Zivel studio looks like.",
+    image: "/images/home/service-cryo.jpg",
+    imageAlt: "Step 04 — Extended Introduction & Education (replace with custom image)",
+  },
+  {
+    n: "05",
+    title: "Territory Selection",
+    body: "Work with our team to identify and secure your exclusive territory before the market matures.",
+    image: "/images/home/service-redlight.jpg",
+    imageAlt: "Step 05 — Territory Selection (replace with custom image)",
+  },
+  {
+    n: "06",
+    title: "Discovery Day & Site Visit",
+    body: "Visit a live Zivel studio, meet the team, and experience the brand firsthand.",
+    image: "/images/home/service-sauna.jpg",
+    imageAlt: "Step 06 — Discovery Day & Site Visit (replace with custom image)",
+  },
+  {
+    n: "07",
+    title: "Final Agreement",
+    body: "Review and execute your Franchise Disclosure Document and Franchise Agreement.",
+    image: "/images/home/quote-bg.jpg",
+    imageAlt: "Step 07 — Final Agreement (replace with custom image)",
+  },
+  {
+    n: "08",
+    title: "Onboarding",
+    body: "Training, build-out support, technology setup, and a grand opening plan tailored to your market.",
+    image: "/images/home/service-dryfloat.jpg",
+    imageAlt: "Step 08 — Onboarding (replace with custom image)",
+  },
 ];
 
 const SERVICES = [
@@ -151,20 +185,17 @@ const PATHWAYS = [
 
 const TESTIMONIALS = [
   {
-    quote:
-      "I tried cryotherapy at Zivel on a whim and left feeling better than I had in years. Now I'm in three times a week. This is the kind of place that keeps people coming back — and that's exactly what made me want to own one.",
+    quote: "I tried cryotherapy at Zivel on a whim and left feeling better than I had in years. Now I'm in three times a week. This is the kind of place that keeps people coming back — and that's exactly what made me want to own one.",
     name: "Marcus T.",
     location: "Draper, UT",
   },
   {
-    quote:
-      "The red light therapy and infrared sauna sessions have completely changed my recovery. I sleep better, move better, and feel like myself again. Zivel isn't a luxury — it's become essential.",
+    quote: "The red light therapy and infrared sauna sessions have completely changed my recovery. I sleep better, move better, and feel like myself again. Zivel isn't a luxury — it's become essential.",
     name: "Sarah M.",
     location: "Riverton, UT",
   },
   {
-    quote:
-      "I've been to a lot of wellness studios and nothing compares to what Zivel offers in one visit. It's efficient, high-end, and the results are real. I tell everyone I know about this place.",
+    quote: "I've been to a lot of wellness studios and nothing compares to what Zivel offers in one visit. It's efficient, high-end, and the results are real. I tell everyone I know about this place.",
     name: "Jennifer K.",
     location: "South Jordan, UT",
   },
@@ -265,6 +296,7 @@ export default function FranchisePage() {
             ))}
           </div>
 
+          {/* Growth callout + CTA */}
           <ScrollReveal variant="fade-up" delay={200}>
             <div className="mt-12 rounded-2xl border border-[var(--zivel-gold)]/20 bg-[var(--zivel-gold)]/5 px-8 py-6 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
               <div className="flex-shrink-0 text-4xl font-serif text-[var(--zivel-gold)]">+466.7%</div>
@@ -275,12 +307,12 @@ export default function FranchisePage() {
                   Zivel&rsquo;s machine-based, multi-service model is built for the expanding recovery economy.
                 </p>
               </div>
-              <div className="flex-shrink-0">
-                <a
-                  href="#franchise-form"
-                  className="zv-btn-gold px-6 py-3 text-xs font-semibold tracking-widest uppercase whitespace-nowrap"
-                >
-                  Get Started →
+              <div className="flex-shrink-0 flex flex-col sm:flex-row gap-3">
+                <a href="#franchise-form" className="zv-btn-gold px-6 py-3 text-xs font-semibold tracking-widest uppercase whitespace-nowrap">
+                  Request Info →
+                </a>
+                <a href="/franchise-brochure.pdf" target="_blank" rel="noopener noreferrer" className="zv-btn-outline px-6 py-3 text-xs font-semibold tracking-widest uppercase whitespace-nowrap">
+                  Download Brochure
                 </a>
               </div>
             </div>
@@ -291,57 +323,32 @@ export default function FranchisePage() {
       <div className="zv-divider-gold" />
 
       {/* ── INVESTMENT AT A GLANCE ── */}
-      <section className="zv-bleed zv-section-elevated zv-immersive-section">
+      <section id="investment" className="zv-bleed zv-section-elevated zv-immersive-section">
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal variant="fade-up">
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <p className="zv-tagline mb-4">Transparent from Day One</p>
               <h2 className="text-4xl md:text-5xl font-serif font-light text-white mb-6">
                 Investment at a Glance
               </h2>
               <div className="zv-gold-line mx-auto" />
-              <p className="text-white/55 mt-6 max-w-xl mx-auto text-sm leading-relaxed">
-                Zivel is designed to compete favorably with other health-related franchises on both capital
-                requirements and operating costs. The numbers below reflect our current FDD disclosures.
-              </p>
             </div>
           </ScrollReveal>
+
+          {/* Collapsible investment table — client component */}
+          <FranchiseInvestmentReveal />
 
           <ScrollReveal variant="fade-up" delay={100}>
-            <div className="rounded-2xl overflow-hidden border border-white/10">
-              {INVESTMENT_ROWS.map((row, i) => (
-                <div
-                  key={row.label}
-                  className={`flex items-center justify-between px-8 py-5 ${
-                    i % 2 === 0 ? "bg-white/3" : "bg-transparent"
-                  } ${row.label === "Veterans Incentive" ? "border-t border-[var(--zivel-gold)]/30 bg-[var(--zivel-gold)]/5" : ""}`}
-                >
-                  <p className="text-sm text-white/60 font-medium tracking-wide">{row.label}</p>
-                  <p
-                    className={`text-base font-semibold ${
-                      row.label === "Ad Fund Contribution"
-                        ? "text-[var(--zivel-gold)]"
-                        : row.label === "Veterans Incentive"
-                        ? "text-[var(--zivel-gold)]"
-                        : "text-white"
-                    }`}
-                  >
-                    {row.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal variant="fade-up" delay={200}>
             <div className="mt-8 text-center">
-              <p className="text-white/35 text-xs leading-relaxed max-w-2xl mx-auto">
-                Zivel does not provide lending directly. We work with private lenders, SBA loans, HELOC, and
-                ROBS financing options to help qualified candidates find the right path.
-              </p>
-              <a href="#franchise-form" className="zv-btn-gold inline-block mt-6 px-10 py-4 text-sm font-semibold tracking-widest uppercase">
-                Request Full Investment Details
+              <a
+                href="#franchise-form"
+                className="zv-btn-gold inline-block px-10 py-4 text-sm font-semibold tracking-widest uppercase"
+              >
+                Request Full Investment Details →
               </a>
+              <p className="mt-4 text-white/30 text-xs">
+                We&rsquo;ll send you the complete breakdown plus available financing paths.
+              </p>
             </div>
           </ScrollReveal>
         </div>
@@ -397,6 +404,31 @@ export default function FranchisePage() {
               </ScrollReveal>
             ))}
           </div>
+
+          {/* CTA after support pillars */}
+          <ScrollReveal variant="fade-up" delay={200}>
+            <div className="mt-16 text-center">
+              <p className="text-[#1a1a1a]/50 text-sm mb-6">
+                Ready to see what owning a Zivel looks like in your market?
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="#franchise-form"
+                  className="inline-block bg-[#1a1a1a] text-white text-sm font-semibold tracking-widest uppercase px-10 py-4 rounded-full hover:bg-black transition-colors duration-200"
+                >
+                  Request Franchise Info →
+                </a>
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block border border-[#1a1a1a]/25 text-[#1a1a1a] text-sm font-semibold tracking-widest uppercase px-10 py-4 rounded-full hover:border-[#1a1a1a]/60 transition-colors duration-200"
+                >
+                  Schedule a Call
+                </a>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -404,7 +436,7 @@ export default function FranchisePage() {
 
       {/* ── PATH TO OWNERSHIP ── */}
       <section className="zv-bleed bg-black zv-immersive-section">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-20">
               <p className="zv-tagline mb-4">A Clear Path Forward</p>
@@ -412,37 +444,60 @@ export default function FranchisePage() {
                 Your Path to Ownership
               </h2>
               <div className="zv-gold-line mx-auto" />
+              <p className="text-white/45 mt-6 text-sm max-w-lg mx-auto leading-relaxed">
+                Eight focused steps from first conversation to grand opening — with our team
+                alongside you at every stage.
+              </p>
             </div>
           </ScrollReveal>
 
-          <div className="relative">
-            <div className="absolute left-8 md:left-12 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--zivel-gold)]/60 via-[var(--zivel-gold)]/20 to-transparent" />
-
-            <div className="space-y-10">
-              {STEPS.map((step, i) => (
-                <ScrollReveal key={step.n} variant="fade-left" delay={i * 60}>
-                  <div className="flex gap-8 md:gap-12 items-start">
-                    <div className="flex-shrink-0 relative">
-                      <div className="w-16 md:w-24 h-16 md:h-24 rounded-full border border-[var(--zivel-gold)]/30 bg-black flex items-center justify-center">
-                        <span className="text-[var(--zivel-gold)] text-sm font-semibold tracking-widest">{step.n}</span>
-                      </div>
+          {/* 2×4 card grid with image placeholders */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {STEPS.map((step, i) => (
+              <ScrollReveal key={step.n} variant="fade-up" delay={Math.floor(i / 2) * 80}>
+                {/*
+                  IMAGE PLACEHOLDER — Step {step.n}: {step.title}
+                  Replace `image` in the STEPS array in page.tsx with the condensed step image.
+                  Current: {step.image}
+                */}
+                <div className="group rounded-2xl overflow-hidden border border-white/8 bg-white/[0.03] hover:border-white/15 transition-all duration-300">
+                  <div className="relative h-44 overflow-hidden">
+                    <Image
+                      src={step.image}
+                      alt={step.imageAlt}
+                      fill
+                      className="object-cover opacity-60 group-hover:opacity-75 group-hover:scale-105 transition-all duration-500"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                    {/* Step label in corner — easy to identify for replacement */}
+                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm rounded-lg px-2.5 py-1 border border-white/10">
+                      <span className="text-[10px] text-white/40 font-mono tracking-widest">STEP {step.n}</span>
                     </div>
-                    <div className="pt-4 md:pt-5">
-                      <h3 className="text-lg md:text-xl font-semibold text-white mb-2 tracking-wide">{step.title}</h3>
-                      <p className="text-sm text-white/50 leading-relaxed max-w-lg">{step.body}</p>
+                    <div className="absolute bottom-4 left-5">
+                      <span className="text-3xl font-serif text-[var(--zivel-gold)] leading-none opacity-80">{step.n}</span>
                     </div>
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
+                  <div className="p-6">
+                    <h3 className="text-base font-semibold text-white mb-2 tracking-wide">{step.title}</h3>
+                    <p className="text-sm text-white/50 leading-relaxed">{step.body}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
 
           <ScrollReveal variant="fade-up" delay={200}>
-            <div className="text-center mt-20">
-              <p className="text-white/50 text-sm mb-6">Ready to start with Step 1?</p>
-              <a href="#franchise-form" className="zv-btn-gold px-10 py-4 text-sm font-semibold tracking-widest uppercase">
-                Begin the Conversation →
-              </a>
+            <div className="text-center mt-16">
+              <p className="text-white/40 text-sm mb-6">Ready to start with Step 1?</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#franchise-form" className="zv-btn-gold px-10 py-4 text-sm font-semibold tracking-widest uppercase">
+                  Begin the Conversation →
+                </a>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="zv-btn-outline px-10 py-4 text-sm font-semibold tracking-widest uppercase">
+                  Schedule Intro Call
+                </a>
+              </div>
             </div>
           </ScrollReveal>
         </div>
@@ -507,7 +562,7 @@ export default function FranchisePage() {
             </ScrollReveal>
           </div>
 
-          <ScrollReveal variant="fade-up" delay={200}>
+          <ScrollReveal variant="fade-up" delay={100}>
             <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               {[
                 { stat: "1–2", label: "Employees on-site at a time" },
@@ -519,6 +574,18 @@ export default function FranchisePage() {
                   <p className="text-xs text-white/50 tracking-widest uppercase">{item.label}</p>
                 </div>
               ))}
+            </div>
+          </ScrollReveal>
+
+          {/* CTA after services */}
+          <ScrollReveal variant="fade-up" delay={200}>
+            <div className="mt-12 text-center">
+              <a
+                href="#franchise-form"
+                className="zv-btn-gold inline-block px-10 py-4 text-sm font-semibold tracking-widest uppercase"
+              >
+                Learn More — Request Franchise Info →
+              </a>
             </div>
           </ScrollReveal>
         </div>
@@ -557,12 +624,18 @@ export default function FranchisePage() {
           </div>
 
           <ScrollReveal variant="fade-up" delay={200}>
-            <div className="mt-12 text-center">
+            <div className="mt-14 flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#franchise-form"
+                className="inline-block bg-[#1a1a1a] text-white text-sm font-semibold tracking-widest uppercase px-10 py-4 rounded-full hover:bg-black transition-colors duration-200"
+              >
+                Request Franchise Info →
+              </a>
               <Link
                 href="/locations"
-                className="text-sm font-semibold tracking-widest uppercase text-[#1a1a1a] opacity-50 hover:opacity-80 transition-opacity duration-200 zv-gold-underline"
+                className="inline-block border border-[#1a1a1a]/25 text-[#1a1a1a] text-sm font-semibold tracking-widest uppercase px-10 py-4 rounded-full hover:border-[#1a1a1a]/60 transition-colors duration-200 text-center"
               >
-                Explore Our Studio Locations →
+                Explore Our Studios
               </Link>
             </div>
           </ScrollReveal>
@@ -584,8 +657,8 @@ export default function FranchisePage() {
                 </h2>
                 <div className="zv-gold-line mb-8" />
                 <p className="text-white/55 text-sm leading-relaxed mb-8">
-                  Fill out Step 1 and we&rsquo;ll be in touch. You&rsquo;ll then have the option to schedule
-                  a 1-on-1 Zoom intro call directly with our CEO.
+                  Fill out Step 1 and we&rsquo;ll be in touch within one business day. You&rsquo;ll then have
+                  the option to schedule a 1-on-1 Zoom intro call directly with our CEO.
                 </p>
 
                 <div className="space-y-4 mb-10">
@@ -595,6 +668,7 @@ export default function FranchisePage() {
                     "Semi-absentee ownership available",
                     "0% required ad fund contribution",
                     "$9,500 veterans incentive available",
+                    "Respond within 1 business day",
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--zivel-gold)] flex-shrink-0 mt-1.5" />
@@ -605,7 +679,7 @@ export default function FranchisePage() {
 
                 <div className="rounded-xl border border-white/10 p-6 bg-white/3">
                   <p className="text-xs text-white/40 leading-relaxed mb-4">
-                    Not ready to fill out the form? Schedule a call directly:
+                    Prefer to talk first? Schedule directly:
                   </p>
                   <a
                     href={CALENDLY_URL}
