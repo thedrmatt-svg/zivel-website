@@ -112,9 +112,21 @@ export const zivel_cumming_windermere_location: Location = {
         mostPopular: true,
         bookingUrl: "https://app.clubready.com/JoinUs/14944/637624",
       },
+      {
+        name: "Family Unlimited",
+        price: "$189",
+        cadence: "1st month",
+        description: "Then $299/mo from month 2.",
+        features: [
+          "Unlimited Recovery Services for up to 4 family members",
+          "Discounts on Premium Services",
+        ],
+        mostPopular: false,
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/637626",
+      },
     ],
     specialDealsBottomInlinePricing: true,
-    specialDealsBottomPremiumStart: 2,
+    specialDealsBottomPremiumStart: 1,
     specialDealsBottom: [
       {
         name: "Day Pass — 3 Recovery Sessions",
@@ -122,17 +134,6 @@ export const zivel_cumming_windermere_location: Location = {
         savings: "Completed in 1 day",
         benefits: ["First Time Clients Only", "Single use"],
         bookingUrl: "https://app.clubready.com/JoinUs/14944/641756",
-      },
-      {
-        name: "Family Unlimited",
-        price: "$189/mo",
-        savings: "Then $299/mo from month 2",
-        benefits: [
-          "Unlimited Recovery Services for up to 4 family members",
-          "Discounts on Premium Services",
-        ],
-        bookingUrl: "https://app.clubready.com/JoinUs/14944/637626",
-        buttonLabel: "Join Now",
       },
       {
         name: "5 Cryo Facials",
