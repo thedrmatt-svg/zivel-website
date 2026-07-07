@@ -133,6 +133,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
+  const locationPathwayPages: MetadataRoute.Sitemap = locations.map((l) => ({
+    url: `${SITE_URL}/locations/${l.stateSlug}/${l.citySlug}/pathways`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticPages,
     ...servicePages,
@@ -143,6 +150,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...locationPages,
     ...localServicePages,
     ...locationPricingPages,
+    ...locationPathwayPages,
     ...locationBlogIndexPages,
     ...locationBlogPostPages,
   ];
