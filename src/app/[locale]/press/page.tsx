@@ -9,7 +9,7 @@ const SITE_URL = "https://www.zivel.com";
 export const metadata: Metadata = {
   title: "Press & Media | Zivel",
   description:
-    "Zivel in the press — read coverage from national publications, wellness media, franchise industry outlets, and local news. Media inquiries welcome.",
+    "Zivel Press and Media — Learn about our story, scientific research, media features, and wellness innovations in recovery and performance.",
   alternates: {
     canonical: `${SITE_URL}/press`,
     languages: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Press & Media | Zivel",
     description:
-      "Zivel in the press — read coverage from national publications, wellness media, franchise industry outlets, and local news.",
+      "Zivel Press and Media — Learn about our story, scientific research, media features, and wellness innovations in recovery and performance.",
     url: `${SITE_URL}/press`,
     siteName: "Zivel",
     type: "website",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Press & Media | Zivel",
     description:
-      "Zivel in the press — read coverage from national publications, wellness media, franchise industry outlets, and local news.",
+      "Zivel Press and Media — Learn about our story, scientific research, media features, and wellness innovations in recovery and performance.",
   },
 };
 
