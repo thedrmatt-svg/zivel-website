@@ -14,6 +14,17 @@ export type PressItem = {
 
 export const pressItems: PressItem[] = [
   {
+    id: "clubready-blog-2025",
+    publication: "ClubReady",
+    publicationShort: "ClubReady",
+    headline: "4 Software Providers Failed This Brand – But the 5th Hit the Mark",
+    excerpt:
+      "Zivel switched to ClubReady and found new features built just for their needs. Founder Dr. Matt O'Neill knows that he's finally found his people after trying four other software providers.",
+    date: "2025-08-25",
+    url: "https://www.clubready.club/blog/4-software-providers-failed-this-brand-but-the-5th-hit-the-mark/",
+    category: "National",
+  },
+  {
     id: "club-solutions-2025",
     publication: "Club Solutions Magazine",
     publicationShort: "Club Solutions",
