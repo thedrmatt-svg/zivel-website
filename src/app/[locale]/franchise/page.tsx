@@ -322,6 +322,179 @@ export default function FranchisePage() {
 
       <div className="zv-divider-gold" />
 
+      {/* ── MARKET OPPORTUNITY ── */}
+      <section className="zv-bleed bg-black zv-immersive-section relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[var(--zivel-gold)]/3 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-blue-900/10 blur-[100px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <ScrollReveal variant="fade-up">
+            <div className="text-center mb-16">
+              <p className="zv-tagline mb-4">Industry Tailwinds</p>
+              <h2 className="text-4xl md:text-5xl font-serif font-light text-white mb-6 max-w-3xl mx-auto leading-tight">
+                The Wellness Opportunity Has Never Been Bigger
+              </h2>
+              <div className="zv-gold-line mx-auto" />
+            </div>
+          </ScrollReveal>
+
+          {/* Headline stat cards */}
+          <ScrollReveal variant="fade-up" delay={80}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+              {[
+                { value: "$6.8T", label: "Global wellness economy (2024)", sub: "→ $9.8T by 2029" },
+                { value: "7.6%", label: "Annual industry growth rate", sub: "Outpacing global GDP" },
+                { value: "$1.13B", label: "Red light therapy market by 2033", sub: "9.8% CAGR" },
+                { value: "30–35%", label: "Annual unit growth", sub: "Top wellness franchises" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-6 text-center"
+                >
+                  <p className="text-3xl md:text-4xl font-serif font-light text-[var(--zivel-gold)] leading-none mb-2">
+                    {stat.value}
+                  </p>
+                  <p className="text-xs text-white/55 leading-snug mb-1">{stat.label}</p>
+                  <p className="text-[10px] text-[var(--zivel-gold)]/60 tracking-wide">{stat.sub}</p>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          {/* Main content — bullets + placeholder visual */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start mb-16">
+            {/* Bullet list — 3 cols */}
+            <div className="lg:col-span-3 space-y-5">
+              {[
+                {
+                  headline: "A $6.8 trillion global economy — growing fast.",
+                  body: "The global wellness economy reached $6.8 trillion in 2024 and is projected to grow to $9.8 trillion by 2029 — expanding at 7.6% annually, significantly faster than global GDP.",
+                },
+                {
+                  headline: "Recovery services are the fastest-growing segment.",
+                  body: "Cryotherapy, red light therapy, infrared sauna, compression, and aesthetics are among the highest-growth modalities in the entire wellness industry.",
+                },
+                {
+                  headline: "Red Light Therapy alone is expected to nearly double.",
+                  body: "From ~$534 million in 2025 to over $1.13 billion by 2033 at a 9.8% CAGR — one of eight services Zivel delivers under a single roof.",
+                },
+                {
+                  headline: "Top-performing franchises are scaling at 30–35% annually.",
+                  body: "Boutique wellness and recovery concepts are among the fastest-scaling franchise categories, with leading brands posting 30–35% annual unit growth.",
+                },
+                {
+                  headline: "Consumers want integrated, membership-based experiences.",
+                  body: "Single-modality studios are losing ground. Clients are moving toward integrated recovery + aesthetics destinations with recurring memberships — exactly what Zivel delivers.",
+                },
+              ].map((item, i) => (
+                <ScrollReveal key={i} variant="fade-right" delay={i * 60}>
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="w-6 h-6 rounded-full border border-[var(--zivel-gold)]/40 bg-[var(--zivel-gold)]/10 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-[var(--zivel-gold)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-white mb-1">{item.headline}</p>
+                      <p className="text-sm text-white/50 leading-relaxed">{item.body}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* Placeholder visual — 2 cols */}
+            <div className="lg:col-span-2 space-y-4">
+              <ScrollReveal variant="fade-left" delay={100}>
+                {/* Chart placeholder */}
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden">
+                  <div className="relative h-48 flex items-end justify-around px-6 pb-6 pt-8 gap-2">
+                    {/* Simulated bar chart */}
+                    {[
+                      { year: "2020", h: "35%", highlight: false },
+                      { year: "2022", h: "52%", highlight: false },
+                      { year: "2024", h: "68%", highlight: false },
+                      { year: "2026", h: "78%", highlight: false },
+                      { year: "2029", h: "100%", highlight: true },
+                    ].map((bar) => (
+                      <div key={bar.year} className="flex flex-col items-center gap-2 flex-1">
+                        <div
+                          className={`w-full rounded-t-lg transition-all duration-700 ${
+                            bar.highlight
+                              ? "bg-[var(--zivel-gold)]/70"
+                              : "bg-white/15"
+                          }`}
+                          style={{ height: bar.h }}
+                        />
+                        <span className="text-[10px] text-white/35 tracking-wide">{bar.year}</span>
+                      </div>
+                    ))}
+                    {/* Y-axis label */}
+                    <div className="absolute top-3 left-4 text-[10px] text-white/25 tracking-widest uppercase">Global Wellness Economy</div>
+                  </div>
+                  <div className="border-t border-white/8 px-5 py-3 flex items-center justify-between">
+                    <span className="text-[11px] text-white/30">$4.5T → $9.8T projection</span>
+                    <span className="text-[10px] text-[var(--zivel-gold)]/50 tracking-widest uppercase">Placeholder chart</span>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal variant="fade-left" delay={160}>
+                {/* Studio image placeholder */}
+                <div className="rounded-2xl border border-white/10 overflow-hidden relative h-40">
+                  <Image
+                    src="/images/home/service-redlight.jpg"
+                    alt="Red light therapy studio — market opportunity visual (replace with growth chart)"
+                    fill
+                    className="object-cover opacity-40"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute bottom-4 left-5 right-5">
+                    <p className="text-xs text-white/60 font-semibold">Recovery Economy</p>
+                    <p className="text-[10px] text-white/30 mt-0.5 tracking-widest uppercase">Replace with modality icons or infographic</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal variant="fade-left" delay={200}>
+                <div className="rounded-xl border border-[var(--zivel-gold)]/20 bg-[var(--zivel-gold)]/5 p-5">
+                  <p className="text-xs font-semibold tracking-widest uppercase text-[var(--zivel-gold)] mb-2">Source Note</p>
+                  <p className="text-xs text-white/35 leading-relaxed">
+                    Market data sourced from Global Wellness Institute, Grand View Research, and Entrepreneur
+                    franchise rankings. Replace placeholder chart with licensed data visualization when available.
+                  </p>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+
+          {/* Closing statement */}
+          <ScrollReveal variant="fade-up" delay={100}>
+            <div className="rounded-2xl border border-white/12 bg-white/[0.03] px-8 md:px-12 py-10 text-center">
+              <p className="zv-quote-mark mx-auto mb-4">&ldquo;</p>
+              <p className="text-xl md:text-2xl font-serif font-light text-white leading-relaxed max-w-3xl mx-auto italic">
+                Zivel is perfectly positioned at the intersection of explosive industry growth,
+                proven membership economics, and consumer demand for science-backed results.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#franchise-form" className="zv-btn-gold px-10 py-4 text-sm font-semibold tracking-widest uppercase">
+                  Explore Ownership →
+                </a>
+                <a href="#investment" className="zv-btn-outline px-10 py-4 text-sm font-semibold tracking-widest uppercase">
+                  View Investment Details
+                </a>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <div className="zv-divider-gold" />
+
       {/* ── INVESTMENT AT A GLANCE ── */}
       <section id="investment" className="zv-bleed zv-section-elevated zv-immersive-section">
         <div className="max-w-5xl mx-auto px-6">
