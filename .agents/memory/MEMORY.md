@@ -1,1 +1,2 @@
 - [Local service page template](local-service-template.md) — generateLocalContent() auto-derives all sections; LOCAL_CONTENT map is per-page override; trust bar reads places-cache.json by placeId.
+- [Franchise website brief](franchise-brief.md) — full audit, confirmed financials, recommended 14-section outline, two-step lead form spec, and SEO structure for zivel.com/franchise.
