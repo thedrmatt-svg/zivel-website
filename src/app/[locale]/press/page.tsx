@@ -7,7 +7,7 @@ import { pressItems } from "@/lib/data/press";
 const SITE_URL = "https://www.zivel.com";
 
 export const metadata: Metadata = {
-  title: "Press & Media | Zivel",
+  title: "Press & Media",
   description:
     "Zivel Press and Media — Learn about our story, scientific research, media features, and wellness innovations in recovery and performance.",
   alternates: {
