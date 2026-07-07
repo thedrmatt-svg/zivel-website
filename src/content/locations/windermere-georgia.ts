@@ -126,7 +126,7 @@ export const zivel_cumming_windermere_location: Location = {
       },
     ],
     specialDealsBottomInlinePricing: true,
-    specialDealsBottomPremiumStart: 1,
+    specialDealsBottomPremiumStart: 2,
     specialDealsBottom: [
       {
         name: "Day Pass — 3 Recovery Sessions",
@@ -134,6 +134,17 @@ export const zivel_cumming_windermere_location: Location = {
         savings: "Completed in 1 day",
         benefits: ["First Time Clients Only", "Single use"],
         bookingUrl: "https://app.clubready.com/JoinUs/14944/641756",
+      },
+      {
+        name: "Student Summer Package",
+        price: "$249",
+        savings: "Valid through August 31, 2026",
+        benefits: [
+          "20 Recovery Sessions",
+          "Use anytime before August 31, 2026",
+        ],
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/650654",
+        buttonLabel: "Get Package",
       },
       {
         name: "5 Cryo Facials",
