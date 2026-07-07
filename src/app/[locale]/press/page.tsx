@@ -68,14 +68,14 @@ const jsonLd = {
 };
 
 const featuredPubs = [
+  "Club Solutions",
+  "FOX 8 NOLA",
   "Entrepreneur",
-  "Forbes",
-  "Inc.",
-  "Well+Good",
-  "mindbodygreen",
-  "Shape",
-  "Healthline",
-  "Franchise Times",
+  "Williamson Herald",
+  "City Lifestyle",
+  "DeSoto County News",
+  "ABC4 Utah",
+  "NWAhomepage",
 ];
 
 export default function PressPage() {
