@@ -885,6 +885,85 @@ export default async function LocationPage({
       )}
       {(() => { sectionParity++; return null; })()}
 
+      {/* ========== PATHWAYS (alternating) ========== */}
+      <div className="zv-bleed zv-divider-dark-to-light" />
+      {sectionParity % 2 === 0 ? (
+        <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid gap-12 md:grid-cols-2 items-center">
+              <ScrollReveal variant="fade-up">
+                <p className="zv-tagline">Goal-Based Wellness</p>
+                <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">Pathways</h2>
+                <p className="mt-6 text-lg text-black/60 leading-relaxed max-w-md">
+                  Structured wellness plans designed to help you achieve specific goals using our science-backed services — from pain relief and athletic recovery to skin health and longevity.
+                </p>
+                <div className="mt-10">
+                  <Link
+                    href={`/locations/${location.stateSlug}/${location.citySlug}/pathways`}
+                    className="zv-btn-luxury zv-btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium tracking-wider uppercase"
+                  >
+                    Explore Local Pathways
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-right" delay={100}>
+                <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/images/home/about-studio.jpg"
+                    alt={`Wellness pathways at ${cityName}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/30 to-transparent" />
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="zv-bleed zv-immersive-section zv-section-elevated">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid gap-12 md:grid-cols-2 items-center">
+              <ScrollReveal variant="fade-right">
+                <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/images/home/about-studio.jpg"
+                    alt={`Wellness pathways at ${cityName}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent" />
+                </div>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-up" delay={100}>
+                <p className="zv-tagline">Goal-Based Wellness</p>
+                <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">Pathways</h2>
+                <p className="mt-6 text-lg text-white/65 leading-relaxed max-w-md">
+                  Structured wellness plans designed to help you achieve specific goals using our science-backed services — from pain relief and athletic recovery to skin health and longevity.
+                </p>
+                <div className="mt-10">
+                  <Link
+                    href={`/locations/${location.stateSlug}/${location.citySlug}/pathways`}
+                    className="zv-btn-luxury zv-btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium tracking-wider uppercase"
+                  >
+                    Explore Local Pathways
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+      )}
+      {(() => { sectionParity++; return null; })()}
+
       {/* ========== LOCAL BLOG (only when configured) ========== */}
       {location.localBlog && (() => {
         const blog = location.localBlog!;
