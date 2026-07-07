@@ -158,11 +158,11 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
           />
           <span>
             By checking, I accept{" "}
-            <Link href="/terms" className="text-[var(--zivel-gold)] underline hover:text-[var(--zivel-gold-light)]">
+            <Link href="/terms-and-conditions" className="text-[var(--zivel-gold)] underline hover:text-[var(--zivel-gold-light)]">
               Terms of Service
             </Link>{" "}
             &amp;{" "}
-            <Link href="/privacy" className="text-[var(--zivel-gold)] underline hover:text-[var(--zivel-gold-light)]">
+            <Link href="/privacy-policy" className="text-[var(--zivel-gold)] underline hover:text-[var(--zivel-gold-light)]">
               Privacy Policy
             </Link>
             . <span className="text-[var(--zivel-gold)]">*</span>
