@@ -73,7 +73,6 @@ export default async function LocationPathwaysPage({
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
   const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
-
   return (
     <main className="space-y-0 pt-20">
 
