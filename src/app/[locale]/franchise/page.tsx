@@ -108,10 +108,10 @@ const WHY_OWN = [
 const STEPS = [
   {
     n: "01",
-    title: "Introduction Call",
+    title: "Introductory Call",
     body: "A focused conversation to explore your goals, market opportunity, and mutual fit.",
-    image: "/images/home/hero-bg.jpg",
-    imageAlt: "Step 01 — Introduction Call (replace with custom image)",
+    image: "/images/franchise/introductory-call.avif",
+    imageAlt: "Step 01 — Introductory Call",
   },
   {
     n: "02",
