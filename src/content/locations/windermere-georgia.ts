@@ -86,6 +86,15 @@ export const zivel_cumming_windermere_location: Location = {
   pricing: {
     membershipTiers: [
       {
+        name: "Individual Unlimited Plan",
+        price: "$99",
+        cadence: "1st month",
+        description: "Then $179/mo from month 2.",
+        features: ["Unlimited Recovery Services", "All Locations Access"],
+        mostPopular: true,
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/637624",
+      },
+      {
         name: "Essential",
         price: "$99",
         cadence: "/mo",
@@ -102,15 +111,6 @@ export const zivel_cumming_windermere_location: Location = {
         features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
         mostPopular: false,
         bookingUrl: "https://app.clubready.com/JoinUs/14944/630696",
-      },
-      {
-        name: "Individual All Access Plan",
-        price: "$99",
-        cadence: "1st month",
-        description: "Then $179/mo from month 2.",
-        features: ["Unlimited Recovery Services", "All Locations Access"],
-        mostPopular: true,
-        bookingUrl: "https://app.clubready.com/JoinUs/14944/637624",
       },
       {
         name: "Family Unlimited",
