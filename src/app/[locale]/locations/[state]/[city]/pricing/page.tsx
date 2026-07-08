@@ -296,7 +296,7 @@ export default async function LocationPricingPage({
                 </div>
                 <p className="mt-6 text-sm text-white/55 italic">
                   {location.pricing?.membershipTerms ??
-                    "Memberships renew monthly. Cancel anytime. Contact the studio for terms."}
+                    "Memberships renew monthly. Cancel with at least a 30 day written notice. Contact the studio for terms."}
                 </p>
               </div>
 
