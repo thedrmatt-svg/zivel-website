@@ -30,6 +30,15 @@ html {
   scroll-margin-top: 5rem;
 }
 
+.zv-scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.zv-scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   min-height: 100vh;
   background-color: var(--zivel-black);

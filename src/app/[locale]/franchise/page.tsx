@@ -6,6 +6,7 @@ import FranchiseLeadForm from "@/components/franchise/FranchiseLeadForm";
 import FranchiseInvestmentReveal from "@/components/franchise/FranchiseInvestmentReveal";
 import InvestmentGateProvider from "@/components/franchise/InvestmentGateProvider";
 import ViewInvestmentDetailsButton from "@/components/franchise/ViewInvestmentDetailsButton";
+import FranchiseNavBanner from "@/components/franchise/FranchiseNavBanner";
 
 const SITE_URL = "https://www.zivel.com";
 const CALENDLY_URL = "https://calendly.com/matto-zivel/zivel-franchise-intro-zoom";
@@ -273,8 +274,10 @@ export default function FranchisePage() {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent" />
       </section>
 
+      <FranchiseNavBanner />
+
       {/* ── WHY OWN A ZIVEL ── */}
-      <section className="zv-bleed zv-section-gradient zv-immersive-section">
+      <section id="why-own-zivel" style={{ scrollMarginTop: "10rem" }} className="zv-bleed zv-section-gradient zv-immersive-section">
         <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-16">
@@ -326,7 +329,7 @@ export default function FranchisePage() {
 
       {/* ── MARKET OPPORTUNITY ── */}
       <InvestmentGateProvider>
-      <section className="zv-bleed bg-black zv-immersive-section relative overflow-hidden">
+      <section id="growth-proof" style={{ scrollMarginTop: "10rem" }} className="zv-bleed bg-black zv-immersive-section relative overflow-hidden">
         {/* Subtle background glow */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[var(--zivel-gold)]/3 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-blue-900/10 blur-[100px] pointer-events-none" />
@@ -499,7 +502,7 @@ export default function FranchisePage() {
       <div className="zv-divider-gold" />
 
       {/* ── INVESTMENT AT A GLANCE ── */}
-      <section id="investment" className="zv-bleed zv-section-elevated zv-immersive-section">
+      <section id="investment" style={{ scrollMarginTop: "10rem" }} className="zv-bleed zv-section-elevated zv-immersive-section">
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-12">
@@ -534,7 +537,7 @@ export default function FranchisePage() {
       <div className="zv-divider-white" />
 
       {/* ── SUPPORT PILLARS ── */}
-      <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+      <section id="support-training" style={{ scrollMarginTop: "10rem" }} className="zv-bleed zv-section-light zv-light zv-immersive-section">
         <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-16">
@@ -612,7 +615,7 @@ export default function FranchisePage() {
       <div className="zv-divider-dark-to-light" />
 
       {/* ── PATH TO OWNERSHIP ── */}
-      <section className="zv-bleed bg-black zv-immersive-section">
+      <section id="path-to-ownership" style={{ scrollMarginTop: "10rem" }} className="zv-bleed bg-black zv-immersive-section">
         <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-20">
@@ -683,7 +686,7 @@ export default function FranchisePage() {
       <div className="zv-divider-gold" />
 
       {/* ── SERVICES & PATHWAYS ── */}
-      <section className="zv-bleed zv-section-recessed zv-immersive-section">
+      <section id="services-pathways" style={{ scrollMarginTop: "10rem" }} className="zv-bleed zv-section-recessed zv-immersive-section">
         <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-16">
@@ -771,7 +774,7 @@ export default function FranchisePage() {
       <div className="zv-divider-white" />
 
       {/* ── TESTIMONIALS ── */}
-      <section className="zv-bleed zv-section-light-warm zv-light zv-immersive-section">
+      <section id="testimonials" style={{ scrollMarginTop: "10rem" }} className="zv-bleed zv-section-light-warm zv-light zv-immersive-section">
         <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal variant="fade-up">
             <div className="text-center mb-16">
@@ -822,7 +825,7 @@ export default function FranchisePage() {
       <div className="zv-divider-dark-to-light" />
 
       {/* ── LEAD CAPTURE FORM ── */}
-      <section id="franchise-form" className="zv-bleed bg-black zv-immersive-section">
+      <section id="franchise-form" style={{ scrollMarginTop: "10rem" }} className="zv-bleed bg-black zv-immersive-section">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <ScrollReveal variant="fade-right">
