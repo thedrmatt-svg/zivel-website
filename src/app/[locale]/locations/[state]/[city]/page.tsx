@@ -973,7 +973,18 @@ export default async function LocationPage({
             <div className="zv-bleed zv-divider-dark-to-light" />
             <section className={`zv-bleed zv-immersive-section ${isDark ? "zv-section-elevated" : "zv-section-light zv-light"}`}>
               <div className="mx-auto max-w-6xl px-6">
-                <div className="max-w-3xl">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                  <ScrollReveal variant="fade-right">
+                    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+                      <Image
+                        src="/images/blog/local-wellness-insights.avif"
+                        alt={blog.heading ?? "Local Wellness Insights"}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </ScrollReveal>
                   <ScrollReveal variant="fade-up">
                     <p className="zv-tagline">From the Team</p>
                     <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">
