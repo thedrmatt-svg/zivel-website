@@ -118,8 +118,9 @@ const STEPS = [
     n: "02",
     title: "Complete Application",
     body: "Submit your franchise application so we can begin the formal review process.",
-    image: "/images/home/about-studio.jpg",
-    imageAlt: "Step 02 — Complete Application (replace with custom image)",
+    image: "/images/franchise/complete-application.avif",
+    imageAlt: "Step 02 — Complete Application",
+    imagePosition: "object-[50%_85%]",
   },
   {
     n: "03",
