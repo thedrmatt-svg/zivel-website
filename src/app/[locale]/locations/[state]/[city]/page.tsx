@@ -978,7 +978,7 @@ export default async function LocationPage({
                     <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
                       <Image
                         src="/images/blog/local-wellness-insights.avif"
-                        alt={blog.heading ?? "Local Wellness Insights"}
+                        alt="Healthy female learning about wellness benefits and science"
                         fill
                         sizes="(max-width: 1024px) 100vw, 50vw"
                         className="object-cover"
