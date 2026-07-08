@@ -112,7 +112,7 @@ const STEPS = [
     body: "A focused conversation to explore your goals, market opportunity, and mutual fit.",
     image: "/images/franchise/introductory-call.avif",
     imageAlt: "Step 01 — Introductory Call",
-    imagePosition: "object-top",
+    imagePosition: "object-[50%_25%]",
   },
   {
     n: "02",
@@ -651,10 +651,6 @@ export default function FranchisePage() {
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                    {/* Step label in corner — easy to identify for replacement */}
-                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm rounded-lg px-2.5 py-1 border border-white/10">
-                      <span className="text-[10px] text-white/40 font-mono tracking-widest">STEP {step.n}</span>
-                    </div>
                     <div className="absolute bottom-4 left-5">
                       <span className="text-3xl font-serif text-[var(--zivel-gold)] leading-none opacity-80">{step.n}</span>
                     </div>
