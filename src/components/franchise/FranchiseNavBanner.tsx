@@ -2,7 +2,7 @@ const NAV_LINKS = [
   { href: "#why-own-zivel", label: "Why Own a Zivel" },
   { href: "#investment", label: "Investment at a Glance" },
   { href: "#support-training", label: "Support & Training" },
-  { href: "#growth-proof", label: "Growth & Proof" },
+  { href: "#growth-proof", label: "Industry Growth" },
   { href: "#path-to-ownership", label: "Path to Ownership" },
   { href: "#services-pathways", label: "Services & Pathways" },
   { href: "#testimonials", label: "Testimonials" },
