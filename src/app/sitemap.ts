@@ -44,6 +44,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/science`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/research`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/pathways`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/memberships`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/privacy-policy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE_URL}/terms-and-conditions`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const servicePages: MetadataRoute.Sitemap = services.map((s) => ({
@@ -93,6 +98,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "weekly",
     priority: 0.8,
     images: LOCATION_IMAGES,
+  }));
+
+  const stateSlugs = Array.from(new Set(locations.map((l) => l.stateSlug)));
+  const stateIndexPages: MetadataRoute.Sitemap = stateSlugs.map((stateSlug) => ({
+    url: `${SITE_URL}/locations/${stateSlug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.7,
   }));
 
   const localServicePages: MetadataRoute.Sitemap = LOCAL_SERVICE_COMBOS
@@ -149,6 +162,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...researchPages,
     ...pathwayPages,
     ...locationPages,
+    ...stateIndexPages,
     ...localServicePages,
     ...locationPricingPages,
     ...locationPathwayPages,
