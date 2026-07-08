@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useInvestmentGate } from "@/components/franchise/InvestmentGateProvider";
 
 const INVESTMENT_ROWS = [
   { label: "Initial Investment", value: "$327,400 – $429,000" },
@@ -15,7 +16,20 @@ const INVESTMENT_ROWS = [
 ];
 
 export default function FranchiseInvestmentReveal() {
+  const { unlocked, revealed, requestReveal } = useInvestmentGate();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (revealed) setOpen(true);
+  }, [revealed]);
+
+  function handleOpen() {
+    if (unlocked) {
+      setOpen(true);
+    } else {
+      requestReveal();
+    }
+  }
 
   return (
     <div>
@@ -26,7 +40,7 @@ export default function FranchiseInvestmentReveal() {
             capital requirements and operating costs.
           </p>
           <button
-            onClick={() => setOpen(true)}
+            onClick={handleOpen}
             className="group inline-flex items-center gap-3 rounded-2xl border border-[var(--zivel-gold)]/40 bg-[var(--zivel-gold)]/5 hover:bg-[var(--zivel-gold)]/10 hover:border-[var(--zivel-gold)]/70 transition-all duration-300 px-8 py-5"
           >
             <span className="flex items-center justify-center w-8 h-8 rounded-full border border-[var(--zivel-gold)]/50 group-hover:border-[var(--zivel-gold)] transition-colors duration-300">

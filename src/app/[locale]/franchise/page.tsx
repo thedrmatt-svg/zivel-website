@@ -4,6 +4,8 @@ import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import FranchiseLeadForm from "@/components/franchise/FranchiseLeadForm";
 import FranchiseInvestmentReveal from "@/components/franchise/FranchiseInvestmentReveal";
+import InvestmentGateProvider from "@/components/franchise/InvestmentGateProvider";
+import ViewInvestmentDetailsButton from "@/components/franchise/ViewInvestmentDetailsButton";
 
 const SITE_URL = "https://www.zivel.com";
 const CALENDLY_URL = "https://calendly.com/matto-zivel/zivel-franchise-intro-zoom";
@@ -323,6 +325,7 @@ export default function FranchisePage() {
       <div className="zv-divider-gold" />
 
       {/* ── MARKET OPPORTUNITY ── */}
+      <InvestmentGateProvider>
       <section className="zv-bleed bg-black zv-immersive-section relative overflow-hidden">
         {/* Subtle background glow */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[var(--zivel-gold)]/3 blur-[120px] pointer-events-none" />
@@ -484,9 +487,9 @@ export default function FranchisePage() {
                 <a href="#franchise-form" className="zv-btn-gold px-10 py-4 text-sm font-semibold tracking-widest uppercase">
                   Explore Ownership →
                 </a>
-                <a href="#investment" className="zv-btn-outline px-10 py-4 text-sm font-semibold tracking-widest uppercase">
+                <ViewInvestmentDetailsButton className="zv-btn-outline px-10 py-4 text-sm font-semibold tracking-widest uppercase">
                   View Investment Details
-                </a>
+                </ViewInvestmentDetailsButton>
               </div>
             </div>
           </ScrollReveal>
@@ -526,6 +529,7 @@ export default function FranchisePage() {
           </ScrollReveal>
         </div>
       </section>
+      </InvestmentGateProvider>
 
       <div className="zv-divider-white" />
 
