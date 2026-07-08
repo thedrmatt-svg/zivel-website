@@ -112,6 +112,7 @@ const STEPS = [
     body: "A focused conversation to explore your goals, market opportunity, and mutual fit.",
     image: "/images/franchise/introductory-call.avif",
     imageAlt: "Step 01 — Introductory Call",
+    imagePosition: "object-top",
   },
   {
     n: "02",
@@ -646,7 +647,7 @@ export default function FranchisePage() {
                       src={step.image}
                       alt={step.imageAlt}
                       fill
-                      className="object-cover opacity-60 group-hover:opacity-75 group-hover:scale-105 transition-all duration-500"
+                      className={`object-cover ${step.imagePosition ?? "object-center"} opacity-60 group-hover:opacity-75 group-hover:scale-105 transition-all duration-500`}
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
