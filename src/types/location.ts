@@ -127,6 +127,7 @@ export type Location = {
       price: string;
       note?: string;
     }[];
+    membershipTerms?: string;
   };
 
   partners?: {

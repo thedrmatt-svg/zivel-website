@@ -180,6 +180,8 @@ export const zivel_cumming_windermere_location: Location = {
       { name: "CryoLift Facial", price: "$150", note: "Single session" },
       { name: "Cryo Soothe", price: "$40", note: "Single session" },
     ],
+    membershipTerms:
+      "Memberships renew monthly. Cancel with written 30 day notice after 3 month minimum. Contact the studio for terms.",
   },
 
   partners: [
