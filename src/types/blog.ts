@@ -9,6 +9,7 @@ export type BlogPost = {
   title: string;
   description: string;
   publishDate: string; // YYYY-MM-DD
+  updatedAt?: string; // YYYY-MM-DD, most recent meaningful content change
   author: string;
   category: string;
   readingTime: string;

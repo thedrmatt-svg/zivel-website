@@ -6,6 +6,11 @@ export type Location = {
   city?: string;
   citySlug: string;
 
+  // Content freshness (used for sitemap <lastmod>; bump updatedAt whenever
+  // meaningful location data changes — pricing, hours, services, images, etc.)
+  createdAt?: string; // ISO date, first published
+  updatedAt?: string; // ISO date, most recent meaningful content change
+
   seo: {
     title: string;
     description: string;
@@ -128,6 +133,7 @@ export type Location = {
       note?: string;
     }[];
     membershipTerms?: string;
+    pricingUpdatedAt?: string; // ISO date, most recent pricing-specific change
   };
 
   partners?: {

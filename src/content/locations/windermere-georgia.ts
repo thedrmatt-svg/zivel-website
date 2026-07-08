@@ -7,6 +7,7 @@ export const zivel_cumming_windermere_location: Location = {
   stateSlug: "georgia",
   citySlug: "windermere",
   openedYear: 2025,
+  updatedAt: "2026-07-08",
 
   seo: {
     title: "Zivel Cumming-Windermere",
@@ -84,6 +85,7 @@ export const zivel_cumming_windermere_location: Location = {
   },
 
   pricing: {
+    pricingUpdatedAt: "2026-07-08",
     membershipTiers: [
       {
         name: "Individual Unlimited Plan",

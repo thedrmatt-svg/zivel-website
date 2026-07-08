@@ -99,6 +99,11 @@ export type Service = {
   name: string; // H1
   accent: Accent;
 
+  // Content freshness (used for sitemap <lastmod>; bump updatedAt whenever
+  // meaningful content on this service page changes)
+  createdAt?: string; // ISO date, first published
+  updatedAt?: string; // ISO date, most recent meaningful content change
+
   // SECTION 1 — HERO
   hero: {
     media?: Media; // image/video background

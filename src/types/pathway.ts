@@ -2,6 +2,11 @@ export type Pathway = {
   slug: string;
   name: string;
 
+  // Content freshness (used for sitemap <lastmod>; bump updatedAt whenever
+  // meaningful content on this pathway page changes)
+  createdAt?: string; // ISO date, first published
+  updatedAt?: string; // ISO date, most recent meaningful content change
+
   seo: {
     title: string;
     description: string;

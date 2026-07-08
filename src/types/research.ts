@@ -11,4 +11,8 @@ export type ResearchSource = {
   tags?: string[];
   relatedServiceSlugs?: string[];
 
+  // Content freshness (used for sitemap <lastmod>; bump updatedAt whenever
+  // meaningful content on this research entry changes)
+  publishedAt?: string; // ISO date, first published
+  updatedAt?: string; // ISO date, most recent meaningful content change
 };

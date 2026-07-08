@@ -1,4 +1,5 @@
 import type { Service } from "@/types/service";
+import { withContentDateFallback } from "@/lib/data/contentDates";
 
 import { cryotherapy } from "@/content/services/cryotherapy";
 import { redLightTherapy } from "@/content/services/red-light-therapy";
@@ -18,7 +19,7 @@ export const services: Service[] = [
   infraredSauna,
   cryoToning,
   compressionTherapy,
-];
+].map((service) => withContentDateFallback(service));
 
 export function getServiceBySlug(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);

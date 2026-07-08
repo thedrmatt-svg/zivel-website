@@ -1,4 +1,5 @@
 import type { Location } from "@/types/location";
+import { withContentDateFallback } from "@/lib/data/contentDates";
 import zivel_bentonville_location from "@/content/locations/bentonville-arkansas";
 import zivel_belmont_location from "@/content/locations/belmont-north-carolina";
 import zivel_brecksville_location from "@/content/locations/brecksville-ohio";
@@ -87,14 +88,14 @@ export const locations: Location[] = rawLocations.map((loc) => {
   const key = `${loc.stateSlug}/${loc.citySlug}`;
   const placeId = PLACE_ID_BY_LOCATION_PATH[key];
   const geo = GEO_BY_LOCATION_PATH[key];
-  return {
+  return withContentDateFallback({
     ...loc,
     ...(geo ? { geo } : {}),
     google: {
       ...(loc.google ?? {}),
       ...(placeId ? { placeId } : {}),
     },
-  };
+  });
 });
 
 export function getLocationByPath(state: string, city: string): Location | undefined {
