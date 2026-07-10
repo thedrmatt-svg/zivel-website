@@ -319,6 +319,20 @@ export default async function LocationPage({
                 View Services
               </Link>
             </div>
+
+            {location.slug === "riverton" && (
+              <div className="pt-6 zv-hero-animate-4">
+                <Link
+                  href={`/locations/${location.stateSlug}/${location.citySlug}/pricing`}
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-4 text-sm font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
+                >
+                  To see all options for individual or family members, packages, and seasonal deals, click here
+                </Link>
+                <p className="mt-4 text-base text-white/70 leading-relaxed max-w-2xl">
+                  Consistency is where results compound — using your services regularly is what turns a single great session into lasting recovery and performance gains. A Zivel membership is built to reward that consistency, giving you the best value per visit so you can show up often without a second thought.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
