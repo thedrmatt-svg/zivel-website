@@ -14,6 +14,7 @@ import PricingSection from "@/components/location/PricingSection";
 // import StoreSection from "@/components/location/StoreSection"; // hidden until ready
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import ServiceImageCard from "@/components/location/ServiceImageCard";
+import CherryWidget from "@/components/widgets/CherryWidget";
 import { getLocationByPath, locations } from "@/lib/data/locations";
 import { getLocalServiceHref } from "@/lib/data/local-service-pages";
 import { getLocationSocial } from "@/lib/data/socialLinks";
@@ -1468,6 +1469,7 @@ export default async function LocationPage({
       )}
 
     </main>
+    <CherryWidget />
     </>
   );
 }

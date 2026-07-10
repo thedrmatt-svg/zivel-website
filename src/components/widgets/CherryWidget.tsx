@@ -1,4 +1,21 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const CHERRY_LOAD_DELAY_MS = 5000;
+
 export default function CherryWidget() {
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShouldLoad(true), CHERRY_LOAD_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!shouldLoad) {
+    return null;
+  }
+
   return (
     <>
       <link
