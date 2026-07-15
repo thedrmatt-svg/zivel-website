@@ -283,7 +283,7 @@ export default async function LocationPricingPage({
                           </ul>
                         )}
                         <a
-                          href={LOCATION_MEMBERSHIP_LINKS[location.citySlug]?.[tier.name.toLowerCase()] ?? bookingUrl}
+                          href={tier.bookingUrl ?? LOCATION_MEMBERSHIP_LINKS[location.citySlug]?.[tier.name.toLowerCase()] ?? bookingUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="mt-6 block w-full rounded-full border border-[var(--zivel-gold)] py-3 text-center text-sm font-semibold text-[var(--zivel-gold)] transition-all duration-200 hover:bg-[var(--zivel-gold)] hover:text-black"
