@@ -111,8 +111,8 @@ export const zivel_parker_location: Location = {
       { name: "Oxygen Bar", price: "$20", note: "Single session" },
       { name: "Cryo Slimming", price: "$350", note: "Single session" },
       { name: "Cryo Toning", price: "$350", note: "Single session" },
-      { name: "CryoLift Facial", price: "$150", note: "Single session" },
-      { name: "Cryo Soothe", price: "$40", note: "Single session" },
+      { name: "CryoLift Facial", price: "$179", note: "Single session" },
+      { name: "Cryo Soothe", price: "$50", note: "Single session" },
     ],
   },
 
