@@ -1,5 +1,3 @@
-import React from "react";
-
 type Props = {
   title: string;
   embedUrl?: string;
@@ -7,19 +5,18 @@ type Props = {
   query?: string;
 };
 
+/**
+ * Renders a Google Maps embed using the free iframe format.
+ * Does NOT use the Maps Embed API v1 or the Maps JavaScript API —
+ * those load the JS API internally and trigger a Lighthouse console error.
+ */
 export default function GoogleMapEmbed({ title, embedUrl, placeId, query }: Props) {
-  const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY;
-
   const src =
-    (embedUrl || null) ??
-    (key && placeId
-      ? `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(
-          key
-        )}&q=place_id:${encodeURIComponent(placeId)}`
-      : key && query
-      ? `https://www.google.com/maps/embed/v1/search?key=${encodeURIComponent(
-          key
-        )}&q=${encodeURIComponent(query)}`
+    embedUrl ||
+    (placeId
+      ? `https://maps.google.com/maps?q=place_id:${encodeURIComponent(placeId)}&output=embed&hl=en`
+      : query
+      ? `https://maps.google.com/maps?q=${encodeURIComponent(query)}&output=embed&hl=en`
       : null);
 
   return (
@@ -33,14 +30,14 @@ export default function GoogleMapEmbed({ title, embedUrl, placeId, query }: Prop
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           allowFullScreen
+          aria-label={`Map showing ${title}`}
+          style={{ border: 0, display: "block" }}
         />
       ) : (
         <div className="p-6 text-white/70">
-          Map coming soon. Add either:
-          <ul className="list-disc ml-5 mt-2 space-y-1">
-            <li><span className="text-white/85">NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY</span> and a <span className="text-white/85">placeId</span> or <span className="text-white/85">query</span>, or</li>
-            <li>a full <span className="text-white/85">embedUrl</span> on the location.</li>
-          </ul>
+          Map coming soon. Add a <span className="text-white/85">placeId</span>,{" "}
+          <span className="text-white/85">query</span>, or full{" "}
+          <span className="text-white/85">embedUrl</span> to the location.
         </div>
       )}
     </div>
