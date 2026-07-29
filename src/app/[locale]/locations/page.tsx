@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { locations } from "@/lib/data/locations";
-import LocationsMap from "@/components/location/LocationsMap";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const SITE_URL = "https://www.zivel.com";
@@ -67,27 +66,6 @@ export default function LocationsIndexPage() {
               services offered, booking, local partners, and FAQs.
             </p>
           </ScrollReveal>
-        </div>
-      </section>
-
-      <div className="zv-bleed zv-divider-dark-to-light" />
-
-      {/* ========== MAP (LIGHT) ========== */}
-      <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
-        <div className="mx-auto max-w-6xl px-6">
-          <ScrollReveal variant="fade-up">
-            <p className="zv-tagline">Find a Studio</p>
-            <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Our Locations</h2>
-          </ScrollReveal>
-          <LocationsMap locations={locations.filter(l => l.geo?.lat && l.geo?.lng).map(l => ({
-            name: l.name,
-            address: l.contact?.address ?? "",
-            phone: l.contact?.phone ?? "",
-            lat: l.geo!.lat!,
-            lng: l.geo!.lng!,
-            href: `/locations/${l.stateSlug}/${l.citySlug}`,
-            bookingId: l.booking?.locationId ?? undefined,
-          }))} />
         </div>
       </section>
 
