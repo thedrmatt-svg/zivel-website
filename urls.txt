@@ -1,0 +1,13 @@
+# Sample URLs for Google Indexing API submission
+# Lines starting with # are ignored. One URL per line.
+
+https://www.zivel.com/
+https://www.zivel.com/services
+https://www.zivel.com/locations
+https://www.zivel.com/locations/utah/riverton
+https://www.zivel.com/locations/utah/riverton/pricing
+https://www.zivel.com/locations/colorado/parker
+https://www.zivel.com/locations/colorado/parker/pricing
+https://www.zivel.com/services/cryotherapy
+https://www.zivel.com/services/red-light-therapy
+https://www.zivel.com/services/infrared-sauna
