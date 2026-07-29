@@ -11,12 +11,14 @@ type Props = {
  * those load the JS API internally and trigger a Lighthouse console error.
  */
 export default function GoogleMapEmbed({ title, embedUrl, placeId, query }: Props) {
+  // Address-based query is most reliable for the free embed format.
+  // place_id: prefix is NOT supported by maps.google.com?output=embed and shows a world view.
   const src =
     embedUrl ||
-    (placeId
-      ? `https://maps.google.com/maps?q=place_id:${encodeURIComponent(placeId)}&output=embed&hl=en`
-      : query
+    (query
       ? `https://maps.google.com/maps?q=${encodeURIComponent(query)}&output=embed&hl=en`
+      : placeId
+      ? `https://maps.google.com/maps?q=${encodeURIComponent(placeId)}&output=embed&hl=en`
       : null);
 
   return (
