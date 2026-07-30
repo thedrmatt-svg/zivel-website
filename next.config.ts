@@ -44,6 +44,14 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: "frame-ancestors 'self'",
           },
+          // ── AI/LLM discovery — point crawlers to sitemap and llms.txt ───────
+          {
+            key: "Link",
+            value: [
+              '<https://www.zivel.com/sitemap.xml>; rel="sitemap"; type="application/xml"',
+              '<https://www.zivel.com/llms.txt>; rel="describedby"; type="text/plain"',
+            ].join(", "),
+          },
           // ── Disable browser features this site does not use ────────────────
           {
             key: "Permissions-Policy",

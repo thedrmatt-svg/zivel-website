@@ -3,38 +3,22 @@ import type { MetadataRoute } from "next";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      {
-        userAgent: "GPTBot",
-        allow: "/",
-      },
-      {
-        userAgent: "Google-Extended",
-        allow: "/",
-      },
-      {
-        userAgent: "ClaudeBot",
-        allow: "/",
-      },
-      {
-        userAgent: "PerplexityBot",
-        allow: "/",
-      },
-      {
-        userAgent: "OAI-SearchBot",
-        allow: "/",
-      },
-      {
-        userAgent: "anthropic-ai",
-        allow: "/",
-      },
-      {
-        userAgent: "Applebot-Extended",
-        allow: "/",
-      },
-      {
-        userAgent: "YouBot",
-        allow: "/",
-      },
+      // ── AI assistants & search crawlers — explicitly allow all content ──
+      { userAgent: "GPTBot",              allow: "/" },
+      { userAgent: "OAI-SearchBot",       allow: "/" },
+      { userAgent: "Google-Extended",     allow: "/" },
+      { userAgent: "ClaudeBot",           allow: "/" },
+      { userAgent: "anthropic-ai",        allow: "/" },
+      { userAgent: "PerplexityBot",       allow: "/" },
+      { userAgent: "Applebot-Extended",   allow: "/" },
+      { userAgent: "YouBot",              allow: "/" },
+      { userAgent: "cohere-ai",           allow: "/" },
+      { userAgent: "Meta-ExternalAgent",  allow: "/" },
+      { userAgent: "Amazonbot",           allow: "/" },
+      { userAgent: "DuckAssistBot",       allow: "/" },
+      { userAgent: "Bytespider",          allow: "/" },
+      { userAgent: "Diffbot",             allow: "/" },
+      // ── All other crawlers — allow everything except internal Next.js paths ──
       {
         userAgent: "*",
         allow: "/",

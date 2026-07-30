@@ -1,10 +1,6 @@
 # Zivel
 
-> Zivel is a science-backed wellness studio brand offering recovery, performance, and aesthetics services. Studios are located across the United States and focus on evidence-informed modalities including cryotherapy, red light therapy, infrared sauna, and compression therapy.
-
-## About Zivel
-
-Zivel operates wellness studios designed around the principle that recovery is the foundation of performance, longevity, and appearance. Every service offered is selected based on peer-reviewed research and clinical evidence. Studios are designed to be accessible, premium, and results-oriented — serving athletes, professionals, and wellness-focused individuals.
+> Zivel is a science-backed wellness franchise brand offering recovery, performance, and aesthetics services across 19 studio locations in the United States. Every service is selected based on peer-reviewed research and clinical evidence.
 
 Tagline: Recover Smarter. Look Better. Feel Stronger.
 
@@ -14,61 +10,75 @@ Website: https://www.zivel.com
 
 Zivel offers eight core service modalities:
 
-- **Cryotherapy** — Whole-body and localized cold exposure for recovery, inflammation reduction, and energy. Sessions are 2–3 minutes in a cryo chamber at ultra-low temperatures. URL: /services/cryotherapy
-- **Red Light Therapy** — Near-infrared and red wavelength light panels targeting cellular energy production, skin health, and muscle recovery. URL: /services/red-light-therapy
-- **Infrared Sauna** — Full-spectrum infrared heat for detoxification, cardiovascular support, and deep relaxation. URL: /services/infrared-sauna
-- **Dry Float** — Zero-gravity pod sessions using Epsom salt solution for decompression, stress relief, and nervous system reset. URL: /services/dry-float
-- **Cryo Slimming** — Non-invasive body contouring using controlled cold to target and reduce localized fat cells. URL: /services/cryo-slimming
-- **Cryo Toning** — Thermal contrast technique alternating cold and mild warmth to firm and tone skin on targeted areas. URL: /services/cryo-toning
-- **CryoLift Facial** — Cryo-based facial treatment that reduces puffiness, tightens skin, and improves complexion. URL: /services/cryo-lift-facial
-- **Compression Therapy** — Pneumatic compression sleeves promoting lymphatic drainage, circulation, and recovery. URL: /services/compression-therapy
+- **Cryotherapy** — Whole-body cold exposure (2–3 min, ultra-low temperatures) for recovery, inflammation reduction, and energy. https://www.zivel.com/services/cryotherapy
+- **Red Light Therapy** — Near-infrared and red wavelength light panels for cellular energy, skin health, and muscle recovery. https://www.zivel.com/services/red-light-therapy
+- **Infrared Sauna** — Full-spectrum infrared heat for detoxification, cardiovascular support, and deep relaxation. https://www.zivel.com/services/infrared-sauna
+- **Dry Float** — Zero-gravity pod sessions using Epsom salt solution for decompression, stress relief, and nervous system reset. https://www.zivel.com/services/dry-float
+- **Cryo Slimming** — Non-invasive body contouring using controlled cold to target and reduce localized fat cells. https://www.zivel.com/services/cryo-slimming
+- **Cryo Toning** — Thermal contrast technique alternating cold and mild warmth to firm and tone skin. https://www.zivel.com/services/cryo-toning
+- **CryoLift Facial** — Cryo-based facial treatment reducing puffiness, tightening skin, and improving complexion. https://www.zivel.com/services/cryo-lift-facial
+- **Compression Therapy** — Pneumatic compression sleeves for lymphatic drainage, circulation, and recovery. https://www.zivel.com/services/compression-therapy
+
+All services index: https://www.zivel.com/services
 
 ## Wellness Pathways
 
 Zivel organizes services into goal-based Pathways — curated multi-service programs aligned to specific outcomes:
 
-- **Recovery** — Reduce soreness, support healing, and return to peak performance faster
-- **Performance** — Optimize energy, endurance, and physical output
-- **Beauty** — Improve skin quality, tone, and facial appearance
-- **Longevity** — Support cellular health, inflammation control, and long-term vitality
+- **Recovery** — Reduce soreness, support healing, and return to peak performance faster. https://www.zivel.com/pathways/recovery
+- **Performance** — Optimize energy, endurance, and physical output. https://www.zivel.com/pathways/performance
+- **Beauty** — Improve skin quality, tone, and facial appearance. https://www.zivel.com/pathways/beauty
+- **Longevity** — Support cellular health, inflammation control, and long-term vitality. https://www.zivel.com/pathways/longevity
 
-Pathway details: https://www.zivel.com/pathways
+All pathways: https://www.zivel.com/pathways
+
+## Memberships
+
+Zivel offers membership plans that provide discounted access to services across all studio locations. Membership details and pricing vary by location.
+
+Memberships: https://www.zivel.com/memberships
 
 ## Locations
 
 Zivel has 19 studio locations across the United States:
 
-- Bentonville, AR
-- Rogers, AR
-- Fayetteville, AR
-- Briargate (Colorado Springs), CO
-- Highlands Ranch, CO
-- Parker, CO
-- Coral Gables, FL
-- Hollywood, FL
-- Palm Coast, FL
-- Buckhead (Atlanta), GA
-- Windermere (Cumming), GA
-- Newport, KY
-- Metairie, LA
-- Fieldhouse, MS
-- Belmont, NC
-- Brecksville, OH
-- Cool Springs (Franklin), TN
-- Murfreesboro, TN
-- Riverton, UT
+- Bentonville, AR — https://www.zivel.com/locations/arkansas/bentonville
+- Rogers, AR — https://www.zivel.com/locations/arkansas/rogers
+- Fayetteville, AR — https://www.zivel.com/locations/arkansas/fayetteville
+- Briargate (Colorado Springs), CO — https://www.zivel.com/locations/colorado/briargate
+- Highlands Ranch, CO — https://www.zivel.com/locations/colorado/highlands-ranch
+- Parker, CO — https://www.zivel.com/locations/colorado/parker
+- Coral Gables, FL — https://www.zivel.com/locations/florida/coral-gables
+- Hollywood, FL — https://www.zivel.com/locations/florida/hollywood
+- Palm Coast, FL — https://www.palmcoastzivel.com
+- Buckhead (Atlanta), GA — https://www.zivel.com/locations/georgia/buckhead
+- Windermere (Cumming), GA — https://www.zivel.com/locations/georgia/windermere
+- Newport, KY — https://www.zivel.com/locations/kentucky/newport
+- Metairie, LA — https://www.zivel.com/locations/louisiana/metairie
+- Fieldhouse, MS — https://www.zivel.com/locations/mississippi/fieldhouse
+- Belmont, NC — https://www.belmontzivel.com
+- Brecksville, OH — https://www.zivel.com/locations/ohio/brecksville
+- Cool Springs (Franklin), TN — https://www.zivel.com/locations/tennessee/cool-springs
+- Murfreesboro, TN — https://www.zivel.com/locations/tennessee/murfreesboro
+- Riverton, UT — https://www.zivel.com/locations/utah/riverton
 
 Location finder: https://www.zivel.com/locations
 
 ## Booking
 
-Appointments can be booked online through each location's booking page. Booking links are available on individual location and service pages throughout the site.
+Appointments are booked online through each location's booking page. Booking links are available on individual location and service pages.
 
 Locations index: https://www.zivel.com/locations
 
+## Franchise
+
+Zivel offers franchise opportunities for entrepreneurs and investors seeking to open a wellness studio. The franchise model includes training, support, and a proven operating system.
+
+Franchise information: https://www.zivel.com/franchise
+
 ## Science & Research
 
-Zivel maintains a science content section and research library covering the evidence base for each modality:
+Zivel maintains a science content section and research library covering the evidence base for each service modality:
 
 - Science overview: https://www.zivel.com/science
 - Research library: https://www.zivel.com/research
@@ -79,9 +89,20 @@ The Zivel blog covers recovery education, wellness lifestyle content, and servic
 
 - Blog: https://www.zivel.com/blog
 
+## Press
+
+Media coverage, press releases, and brand assets:
+
+- Press: https://www.zivel.com/press
+
+## About & Contact
+
+- About Zivel: https://www.zivel.com/about
+- Contact: https://www.zivel.com/contact
+
 ## Languages
 
-The site is available in English (default) and Spanish (/es/).
+The site is available in English (default) and Spanish (/es/ prefix for all routes).
 
 ## Sitemap
 

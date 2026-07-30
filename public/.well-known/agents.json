@@ -1,28 +1,41 @@
 {
   "schema_version": "1.0",
   "name": "Zivel Wellness",
-  "description": "Zivel is a nationwide franchise of premium recovery and performance studios offering science-backed services including whole body cryotherapy, red light therapy, infrared sauna, CryoLift facials, cryo slimming/toning, dry float therapy, and compression therapy.",
+  "description": "Zivel is a nationwide franchise of premium recovery and performance studios offering science-backed services including whole body cryotherapy, red light therapy, infrared sauna, CryoLift facials, cryo slimming, cryo toning, dry float therapy, and compression therapy. 19 studio locations across the United States.",
   "url": "https://www.zivel.com",
+  "llms_txt": "https://www.zivel.com/llms.txt",
+  "sitemap": "https://www.zivel.com/sitemap.xml",
   "contact": {
     "email": "info@zivel.com",
     "form": "https://www.zivel.com/contact"
   },
+  "languages": ["en", "es"],
   "capabilities": [
     "service_discovery",
     "location_finder",
     "booking",
     "contact_form",
-    "pathway_recommendation"
+    "pathway_recommendation",
+    "franchise_inquiry"
   ],
   "services": [
-    "cryotherapy",
-    "red_light_therapy",
-    "infrared_sauna",
-    "cryo_lift_facial",
-    "cryo_slimming",
-    "cryo_toning",
-    "dry_float",
-    "compression_therapy"
+    { "id": "cryotherapy",          "url": "https://www.zivel.com/services/cryotherapy" },
+    { "id": "red_light_therapy",    "url": "https://www.zivel.com/services/red-light-therapy" },
+    { "id": "infrared_sauna",       "url": "https://www.zivel.com/services/infrared-sauna" },
+    { "id": "dry_float",            "url": "https://www.zivel.com/services/dry-float" },
+    { "id": "cryo_slimming",        "url": "https://www.zivel.com/services/cryo-slimming" },
+    { "id": "cryo_toning",          "url": "https://www.zivel.com/services/cryo-toning" },
+    { "id": "cryo_lift_facial",     "url": "https://www.zivel.com/services/cryo-lift-facial" },
+    { "id": "compression_therapy",  "url": "https://www.zivel.com/services/compression-therapy" }
   ],
-  "locations": "19+ studios across the United States"
+  "pathways": [
+    { "id": "recovery",    "url": "https://www.zivel.com/pathways/recovery" },
+    { "id": "performance", "url": "https://www.zivel.com/pathways/performance" },
+    { "id": "beauty",      "url": "https://www.zivel.com/pathways/beauty" },
+    { "id": "longevity",   "url": "https://www.zivel.com/pathways/longevity" }
+  ],
+  "locations_count": 19,
+  "locations_url": "https://www.zivel.com/locations",
+  "franchise_url": "https://www.zivel.com/franchise",
+  "memberships_url": "https://www.zivel.com/memberships"
 }
