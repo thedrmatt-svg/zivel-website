@@ -41,7 +41,7 @@ export default function ServicesIndexPage() {
   return (
     <>
       <meta name="description" content="Explore Zivel's science-backed wellness services including cryotherapy, red light therapy, infrared sauna, CryoLift facials, compression, dry float, and more for recovery, performance, and aesthetics." />
-      <main className="space-y-0">
+      <main id="main-content" tabIndex={-1} className="space-y-0">
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-4">

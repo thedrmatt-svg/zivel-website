@@ -80,7 +80,7 @@ const featuredPubs = [
 
 export default function PressPage() {
   return (
-    <main className="pt-20">
+    <main id="main-content" tabIndex={-1} className="pt-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

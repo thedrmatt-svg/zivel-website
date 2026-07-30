@@ -25,7 +25,7 @@ export async function generateMetadata({
 
 export default function BlogIndexPage() {
   return (
-    <main className="space-y-0 -mt-20">
+    <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
       <meta name="description" content="Evidence-informed wellness, recovery, and longevity education." />
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">

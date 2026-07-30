@@ -60,7 +60,7 @@ export default function ScienceIndexPage() {
     .slice(0, 6);
 
   return (
-    <main className="space-y-0 -mt-20">
+    <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
       <meta name="description" content="Evidence-informed articles on recovery, performance, longevity, and modern wellness technology—written for clarity and practical use." />
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">

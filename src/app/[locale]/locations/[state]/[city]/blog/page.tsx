@@ -308,7 +308,7 @@ export default async function LocationBlogPage({
   const allPosts = [...localPosts, ...blogPosts];
 
   return (
-    <main className="space-y-0 -mt-20">
+    <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-40" />

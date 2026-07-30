@@ -83,7 +83,7 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="-mt-20">
+    <main id="main-content" tabIndex={-1} className="-mt-20">
       <meta name="description" content="Science-backed recovery at Zivel: cryotherapy, infrared sauna, red light therapy, and CryoLift facials. Book your session today." />
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="home-hero-title">

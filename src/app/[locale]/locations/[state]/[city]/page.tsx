@@ -277,7 +277,7 @@ export default async function LocationPage({
           `}</Script>
         </>
       )}
-      <main className="space-y-0 -mt-20">
+      <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
 
       {/* ========== HERO (DARK) ========== */}
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="location-hero-title">

@@ -76,7 +76,7 @@ export default function Header() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex">
             <div className="relative group">
               <Link
                 href="/services"

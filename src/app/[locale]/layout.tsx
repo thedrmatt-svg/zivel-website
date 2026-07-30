@@ -111,6 +111,13 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="min-h-screen bg-black text-white overflow-x-hidden font-[var(--font-inter)]">
+        {/* Skip link — first focusable element, visually hidden until focused */}
+        <a
+          href="#main-content"
+          className="fixed -top-full left-4 z-[9999] px-6 py-3 bg-[var(--zivel-gold)] text-black font-semibold text-sm tracking-wide rounded shadow-[0_4px_20px_rgba(0,0,0,0.6)] focus:top-4 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-[var(--zivel-gold)] transition-[top] duration-150"
+        >
+          Skip to main content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}

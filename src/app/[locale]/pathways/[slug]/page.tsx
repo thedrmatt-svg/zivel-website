@@ -39,7 +39,7 @@ export default async function PathwayPage({ params }: PageProps) {
   if (!pathway) return notFound();
 
   return (
-    <main className="space-y-0 -mt-20">
+    <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
       <meta name="description" content={pathway.seo.description} />
       {/* ========== HERO (DARK) ========== */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[70vh] flex items-end overflow-hidden">

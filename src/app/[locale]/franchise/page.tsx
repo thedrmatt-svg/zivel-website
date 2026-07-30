@@ -208,7 +208,7 @@ const TESTIMONIALS = [
 
 export default function FranchisePage() {
   return (
-    <main className="space-y-0">
+    <main id="main-content" tabIndex={-1} className="space-y-0">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
