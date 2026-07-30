@@ -33,28 +33,34 @@ html {
 /* ── Skip navigation link ──────────────────────────────────────────────────
    Visually hidden off-screen by default; slides into view on keyboard focus.
    Plain CSS so specificity is predictable — no Tailwind JIT ordering issues.
+   .skip-link:focus-visible (0,2,0) always beats .skip-link (0,1,0),
+   so no !important needed.
    ────────────────────────────────────────────────────────────────────────── */
 .skip-link {
-  position: fixed !important;
-  top: -100% !important;
-  left: 1rem !important;
-  z-index: 99999 !important;
-  padding: 1rem 1.5rem !important;
-  background-color: #FFD700 !important;
-  color: #000 !important;
-  font-weight: 700 !important;
-  font-size: 1rem !important;
-  border: 3px solid #000 !important;
-  border-radius: 4px !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--zivel-gold);
+  color: #000;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  transition: top 0.15s ease;
 }
 
 .skip-link:focus,
 .skip-link:focus-visible {
-  top: 1rem !important;
-  outline: 3px solid #000 !important;
-  outline-offset: 3px !important;
+  top: 1rem;
+  outline: 2px solid rgba(0, 0, 0, 0.75);
+  outline-offset: 2px;
 }
 
 .zv-scrollbar-hide {
