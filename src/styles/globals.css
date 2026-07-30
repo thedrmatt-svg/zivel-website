@@ -31,16 +31,16 @@ html {
 }
 
 /* ── Skip navigation link ──────────────────────────────────────────────────
-   Visually hidden off-screen by default; slides into view on keyboard focus.
-   Plain CSS so specificity is predictable — no Tailwind JIT ordering issues.
-   .skip-link:focus-visible (0,2,0) always beats .skip-link (0,1,0),
-   so no !important needed.
+   Visually hidden above the viewport by default; slides into view on focus.
+   Two !important notes:
+   1. top: !important in the base rule — a later rule in the sheet overrides
+      it otherwise (confirmed: without !important, top gets clobbered).
+   2. No transform/translate properties — the body has overflow-x:hidden,
+      which creates a stacking context that re-parents position:fixed elements
+      that also carry a transform, breaking their viewport-relative placement.
    ────────────────────────────────────────────────────────────────────────── */
 .skip-link {
   position: fixed;
-  /* !important on top keeps any later cascade rule from overriding the
-     hidden position. The body has overflow-x:hidden which creates a stacking
-     context that breaks transform-based hiding on fixed elements. */
   top: -100% !important;
   left: 1rem;
   z-index: 9999;
