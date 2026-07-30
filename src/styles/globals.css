@@ -38,9 +38,12 @@ html {
    ────────────────────────────────────────────────────────────────────────── */
 .skip-link {
   position: fixed;
-  top: -100%;
+  /* Always sits at top: 1rem — transform moves it off-screen instead of top,
+     so no cascade fight with other 'top' rules and GPU-accelerated animation. */
+  top: 1rem;
   left: 1rem;
   z-index: 9999;
+  transform: translateY(calc(-100% - 2rem));
   padding: 0.75rem 1.5rem;
   background-color: var(--zivel-gold);
   color: #000;
@@ -53,12 +56,12 @@ html {
   border-radius: 3px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   white-space: nowrap;
-  transition: top 0.15s ease;
+  transition: transform 0.15s ease;
 }
 
 .skip-link:focus,
 .skip-link:focus-visible {
-  top: 1rem;
+  transform: translateY(0);
   outline: 2px solid rgba(0, 0, 0, 0.75);
   outline-offset: 2px;
 }
