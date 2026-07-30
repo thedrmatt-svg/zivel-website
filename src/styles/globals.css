@@ -38,12 +38,12 @@ html {
    ────────────────────────────────────────────────────────────────────────── */
 .skip-link {
   position: fixed;
-  /* Always sits at top: 1rem — transform moves it off-screen instead of top,
-     so no cascade fight with other 'top' rules and GPU-accelerated animation. */
-  top: 1rem;
+  /* !important on top keeps any later cascade rule from overriding the
+     hidden position. The body has overflow-x:hidden which creates a stacking
+     context that breaks transform-based hiding on fixed elements. */
+  top: -100% !important;
   left: 1rem;
   z-index: 9999;
-  transform: translateY(calc(-100% - 2rem));
   padding: 0.75rem 1.5rem;
   background-color: var(--zivel-gold);
   color: #000;
@@ -56,12 +56,12 @@ html {
   border-radius: 3px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   white-space: nowrap;
-  transition: transform 0.15s ease;
+  transition: top 0.15s ease;
 }
 
 .skip-link:focus,
 .skip-link:focus-visible {
-  transform: translateY(0);
+  top: 1rem !important;
   outline: 2px solid rgba(0, 0, 0, 0.75);
   outline-offset: 2px;
 }
