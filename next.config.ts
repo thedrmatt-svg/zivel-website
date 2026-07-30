@@ -38,6 +38,32 @@ const nextConfig: NextConfig = {
             key: "Cross-Origin-Opener-Policy",
             value: "same-origin",
           },
+          // ── Prefer CSP frame-ancestors over X-Frame-Options (modern browsers)
+          // X-Frame-Options above remains for legacy browser compatibility.
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self'",
+          },
+          // ── Disable browser features this site does not use ────────────────
+          {
+            key: "Permissions-Policy",
+            value: [
+              "camera=()",
+              "microphone=()",
+              "geolocation=()",
+              "payment=()",
+              "usb=()",
+              "bluetooth=()",
+              "midi=()",
+              "magnetometer=()",
+              "gyroscope=()",
+              "accelerometer=()",
+              "ambient-light-sensor=()",
+              "display-capture=()",
+              "interest-cohort=()",
+              // fullscreen intentionally omitted — Google Maps iframes use it
+            ].join(", "),
+          },
         ],
       },
     ];
