@@ -30,6 +30,35 @@ html {
   scroll-margin-top: 5rem;
 }
 
+/* ── Skip navigation link ──────────────────────────────────────────────────
+   Visually hidden off-screen by default; slides into view on keyboard focus.
+   Plain CSS so specificity is predictable — no Tailwind JIT ordering issues.
+   ────────────────────────────────────────────────────────────────────────── */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--zivel-gold);
+  color: #000;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  transition: top 0.15s ease;
+  white-space: nowrap;
+}
+
+/* :focus-visible adds one pseudo-class to specificity → always beats the base rule */
+.skip-link:focus-visible {
+  top: 1rem;
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
 .zv-scrollbar-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;
