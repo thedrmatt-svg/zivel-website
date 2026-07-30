@@ -35,28 +35,26 @@ html {
    Plain CSS so specificity is predictable — no Tailwind JIT ordering issues.
    ────────────────────────────────────────────────────────────────────────── */
 .skip-link {
-  position: fixed;
-  top: -100%;
-  left: 1rem;
-  z-index: 9999;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--zivel-gold);
-  color: #000;
-  font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-  border-radius: 0.25rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  text-decoration: none;
-  transition: top 0.15s ease;
-  white-space: nowrap;
+  position: fixed !important;
+  top: -100% !important;
+  left: 1rem !important;
+  z-index: 99999 !important;
+  padding: 1rem 1.5rem !important;
+  background-color: #FFD700 !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  border: 3px solid #000 !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
 }
 
-/* :focus-visible adds one pseudo-class to specificity → always beats the base rule */
+.skip-link:focus,
 .skip-link:focus-visible {
-  top: 1rem;
-  outline: 2px solid #000;
-  outline-offset: 2px;
+  top: 1rem !important;
+  outline: 3px solid #000 !important;
+  outline-offset: 3px !important;
 }
 
 .zv-scrollbar-hide {
