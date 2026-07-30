@@ -149,7 +149,7 @@ export default function Header() {
                 className={`${navLinkClass} inline-flex items-center gap-1 ${isActive("/locations") ? "text-[var(--zivel-gold)]" : ""}`}
               >
                 Locations
-                <span className="text-white/40 text-xs">▾</span>
+                <span className="text-white/60 text-xs">▾</span>
               </Link>
 
               <div className="invisible absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
@@ -230,7 +230,7 @@ export default function Header() {
                 aria-label="Toggle services"
               >
                 <span>Services</span>
-                <span className="text-white/40">{mobileServicesOpen ? "−" : "+"}</span>
+                <span className="text-white/60">{mobileServicesOpen ? "−" : "+"}</span>
               </button>
 
               {mobileServicesOpen ? (
@@ -261,7 +261,7 @@ export default function Header() {
                 aria-label="Toggle pathways"
               >
                 <span>Pathways</span>
-                <span className="text-white/40">{mobilePathwaysOpen ? "−" : "+"}</span>
+                <span className="text-white/60">{mobilePathwaysOpen ? "−" : "+"}</span>
               </button>
 
               {mobilePathwaysOpen ? (
@@ -292,7 +292,7 @@ export default function Header() {
                 aria-label="Toggle locations"
               >
                 <span>Locations</span>
-                <span className="text-white/40">{mobileLocationsOpen ? "−" : "+"}</span>
+                <span className="text-white/60">{mobileLocationsOpen ? "−" : "+"}</span>
               </button>
 
               {mobileLocationsOpen && (

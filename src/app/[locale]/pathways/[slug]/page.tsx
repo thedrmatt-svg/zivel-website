@@ -88,7 +88,7 @@ export default async function PathwayPage({ params }: PageProps) {
                   <p key={i}>{p}</p>
                 ))}
                 {pathway.whoItsFor.note ? (
-                  <p className="text-xs text-black/40 italic">{pathway.whoItsFor.note}</p>
+                  <p className="text-xs text-black/65 italic">{pathway.whoItsFor.note}</p>
                 ) : null}
               </div>
             </ScrollReveal>
@@ -148,7 +148,7 @@ export default async function PathwayPage({ params }: PageProps) {
               </div>
               <Link
                 href="/services"
-                className="text-sm font-medium text-black/50 hover:text-black transition-colors zv-gold-underline hidden md:inline"
+                className="text-sm font-medium text-black/65 hover:text-black transition-colors zv-gold-underline hidden md:inline"
               >
                 View all services →
               </Link>
@@ -178,7 +178,7 @@ export default async function PathwayPage({ params }: PageProps) {
           </div>
 
           {pathway.services.note ? (
-            <p className="mt-6 text-xs text-black/40 italic">{pathway.services.note}</p>
+            <p className="mt-6 text-xs text-black/65 italic">{pathway.services.note}</p>
           ) : null}
         </div>
       </section>

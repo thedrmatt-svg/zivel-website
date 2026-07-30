@@ -265,7 +265,7 @@ export default async function ServicePage({ params }: PageProps) {
                     />
                   </div>
                 ) : (
-                  <div className="flex aspect-[4/3] items-center justify-center text-black/30 bg-black/[0.03]">
+                  <div className="flex aspect-[4/3] items-center justify-center text-black/60 bg-black/[0.03]">
                     Intro media placeholder
                   </div>
                 )}
@@ -355,7 +355,7 @@ export default async function ServicePage({ params }: PageProps) {
                   </div>
                   <Link
                     href="/pathways"
-                    className="text-sm font-medium text-black/50 hover:text-black transition-colors zv-gold-underline hidden md:inline"
+                    className="text-sm font-medium text-black/65 hover:text-black transition-colors zv-gold-underline hidden md:inline"
                   >
                     View all pathways
                   </Link>
@@ -458,7 +458,7 @@ export default async function ServicePage({ params }: PageProps) {
                     />
                   </div>
                 ) : (
-                  <div className="flex aspect-[4/3] items-center justify-center text-black/30 bg-black/[0.03]">
+                  <div className="flex aspect-[4/3] items-center justify-center text-black/60 bg-black/[0.03]">
                     Science diagram placeholder
                   </div>
                 )}
@@ -487,7 +487,7 @@ export default async function ServicePage({ params }: PageProps) {
                     <p key={idx}>{p}</p>
                   ))}
                 </div>
-                <p className="mt-6 text-xs text-white/40 italic">{service.safety.disclaimer}</p>
+                <p className="mt-6 text-xs text-white/60 italic">{service.safety.disclaimer}</p>
               </div>
             </ScrollReveal>
 
@@ -609,7 +609,7 @@ export default async function ServicePage({ params }: PageProps) {
                       }}
                     />
                   )}
-                  <div className="text-sm font-semibold uppercase tracking-wider text-black/50">{card.title}</div>
+                  <div className="text-sm font-semibold uppercase tracking-wider text-black/65">{card.title}</div>
                   {!isSingleSession && (
                     <div className={`mt-2 font-serif text-2xl ${isMemberRate ? "font-semibold text-[var(--zivel-gold-dark)]" : "font-light text-black/85"}`}>
                       {isMemberRate ? "Save with a Plan" : card.priceLine}
@@ -640,7 +640,7 @@ export default async function ServicePage({ params }: PageProps) {
             })}
           </div>
 
-          <p className="mt-10 text-sm text-black/50 text-center">
+          <p className="mt-10 text-sm text-black/65 text-center">
             Contact the local studio for specific pricing options and plans.
           </p>
         </div>
@@ -743,7 +743,7 @@ export default async function ServicePage({ params }: PageProps) {
                 {linkedScience.length > 0 ? (
                   <ScrollReveal variant="fade-left">
                     <div className="zv-luxury-card rounded-2xl p-8" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
-                      <div className="text-xs font-semibold text-black/40 tracking-wider uppercase mb-6">Science Articles</div>
+                      <div className="text-xs font-semibold text-black/65 tracking-wider uppercase mb-6">Science Articles</div>
                       <div className="space-y-4">
                         {linkedScience.map((a) => (
                           <Link
@@ -757,7 +757,7 @@ export default async function ServicePage({ params }: PageProps) {
                           >
                             <div className="font-serif text-black/80">{a.title}</div>
                             {a.description ? (
-                              <div className="mt-1 text-xs text-black/45 line-clamp-2">{a.description}</div>
+                              <div className="mt-1 text-xs text-black/65 line-clamp-2">{a.description}</div>
                             ) : null}
                           </Link>
                         ))}
@@ -768,7 +768,7 @@ export default async function ServicePage({ params }: PageProps) {
                 {linkedResearch.length > 0 ? (
                   <ScrollReveal variant="fade-right">
                     <div className="zv-luxury-card rounded-2xl p-8" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
-                      <div className="text-xs font-semibold text-black/40 tracking-wider uppercase mb-6">Research Sources</div>
+                      <div className="text-xs font-semibold text-black/65 tracking-wider uppercase mb-6">Research Sources</div>
                       <div className="space-y-4">
                         {linkedResearch.map((r) => (
                           <Link
@@ -782,7 +782,7 @@ export default async function ServicePage({ params }: PageProps) {
                           >
                             <div className="font-serif text-black/80">{r.title}</div>
                             {r.journal ? (
-                              <div className="mt-1 text-xs text-black/45">{r.journal} {r.year ? `(${r.year})` : ""}</div>
+                              <div className="mt-1 text-xs text-black/65">{r.journal} {r.year ? `(${r.year})` : ""}</div>
                             ) : null}
                           </Link>
                         ))}

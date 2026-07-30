@@ -820,6 +820,14 @@ noscript + .zv-reveal,
   transform: translateY(-2px);
 }
 
+/* ── Button focus indicators (all surfaces) ──────────────────────────────── */
+.zv-btn-luxury:focus-visible,
+.zv-btn-gold:focus-visible,
+.zv-btn-outline:focus-visible {
+  outline: 2px solid var(--zivel-gold);
+  outline-offset: 3px;
+}
+
 /* Elegant image with mask */
 .zv-img-mask {
   -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
