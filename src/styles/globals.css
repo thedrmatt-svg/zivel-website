@@ -31,18 +31,18 @@ html {
 }
 
 /* ── Skip navigation link ──────────────────────────────────────────────────
-   Visually hidden above the viewport by default; slides into view on focus.
-   Two !important notes:
-   1. top: !important in the base rule — a later rule in the sheet overrides
-      it otherwise (confirmed: without !important, top gets clobbered).
-   2. No transform/translate properties — the body has overflow-x:hidden,
-      which creates a stacking context that re-parents position:fixed elements
-      that also carry a transform, breaking their viewport-relative placement.
+   Hidden via position:absolute + left:-9999px (the classic off-left pattern).
+   On focus, switches to position:fixed so it is viewport-relative and always
+   visible regardless of scroll position or overflow on any ancestor.
+   No top-animation, no transform — both broke under body overflow-x:hidden.
    ────────────────────────────────────────────────────────────────────────── */
 .skip-link {
-  position: fixed;
-  top: -100% !important;
-  left: 1rem;
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
   z-index: 9999;
   padding: 0.75rem 1.5rem;
   background-color: var(--zivel-gold);
@@ -54,16 +54,20 @@ html {
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 3px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   white-space: nowrap;
-  transition: top 0.15s ease;
 }
 
 .skip-link:focus,
 .skip-link:focus-visible {
-  top: 1rem !important;
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  overflow: visible;
   outline: 2px solid rgba(0, 0, 0, 0.75);
   outline-offset: 2px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .zv-scrollbar-hide {
