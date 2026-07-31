@@ -162,8 +162,9 @@ export default function FranchiseLeadForm() {
       </div>
 
       <div className="mb-5">
-        <label className={labelClass}>Have you set up funding options yet?</label>
-        <div className="flex flex-wrap gap-4">
+        {/* id links the visible heading to the radio group via aria-labelledby */}
+        <span id="funding-group-label" className={labelClass}>Have you set up funding options yet?</span>
+        <div role="group" aria-labelledby="funding-group-label" className="flex flex-wrap gap-4 mt-2">
           {[
             { value: "Yes", label: "Yes" },
             { value: "No", label: "No" },
@@ -184,8 +185,9 @@ export default function FranchiseLeadForm() {
       </div>
 
       <div className="mb-8">
-        <label className={labelClass}>I&rsquo;m looking for:</label>
-        <div className="flex flex-wrap gap-4">
+        {/* id links the visible heading to the radio group via aria-labelledby */}
+        <span id="location-interest-group-label" className={labelClass}>I&rsquo;m looking for:</span>
+        <div role="group" aria-labelledby="location-interest-group-label" className="flex flex-wrap gap-4 mt-2">
           {[
             { value: "Single Location", label: "Single Location" },
             { value: "Multiple Locations", label: "Multiple Locations" },
@@ -206,7 +208,11 @@ export default function FranchiseLeadForm() {
       </div>
 
       {state.status === "error" && (
-        <div className="mb-5 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/25 text-red-300 text-sm">
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="mb-5 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/25 text-red-300 text-sm"
+        >
           {state.message}
         </div>
       )}

@@ -165,11 +165,15 @@ export default function LocationSearch({ locations, variant = "dark" }: { locati
       </div>
 
       {error ? (
-        <div className={
-          isLight
-            ? "mt-6 rounded-2xl border border-black/8 bg-black/[0.03] p-6 text-black/60"
-            : "mt-6 rounded-2xl border-subtle bg-card p-6 text-white/70"
-        }>
+        <div
+          role="alert"
+          aria-live="polite"
+          className={
+            isLight
+              ? "mt-6 rounded-2xl border border-black/8 bg-black/[0.03] p-6 text-black/60"
+              : "mt-6 rounded-2xl border-subtle bg-card p-6 text-white/70"
+          }
+        >
           {error}
         </div>
       ) : null}

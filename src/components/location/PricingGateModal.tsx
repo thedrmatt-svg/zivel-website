@@ -205,7 +205,7 @@ export default function PricingGateModal({
             </div>
 
             {error && (
-              <p className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-2.5 text-sm text-red-400">
+              <p role="alert" aria-live="assertive" className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-2.5 text-sm text-red-400">
                 {error}
               </p>
             )}
