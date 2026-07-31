@@ -37,6 +37,16 @@ const HOURS: { day: string; hours: string }[] = [
 const PROTOCOL_STEPS = [
   {
     step: 1,
+    service: "Infrared Sauna",
+    tagline: "Warm Up. Open Up.",
+    body: "Full-spectrum infrared heat penetrates deep into muscle and joint tissue — improving circulation, easing stiffness, and priming your body for the recovery that follows. Most members feel noticeably looser within the first session.",
+    image: "/images/home/service-sauna.jpg",
+    alt: "Infrared sauna session at Zivel Riverton wellness studio",
+    imageW: 800,
+    imageH: 533,
+  },
+  {
+    step: 2,
     service: "Cryotherapy",
     tagline: "Calm Inflammation. Reset.",
     body: "Whole-body cold exposure rapidly reduces inflammation and gives your nervous system a hard reset. Members consistently report that cryo is the fastest way to dial down chronic aches and feel sharp again — in under 3 minutes.",
@@ -46,20 +56,10 @@ const PROTOCOL_STEPS = [
     imageH: 533,
   },
   {
-    step: 2,
-    service: "Infrared Sauna",
-    tagline: "Deepen Recovery. Restore Mobility.",
-    body: "Full-spectrum infrared heat penetrates deep into muscle and joint tissue — improving circulation, easing stiffness, and helping your body flush what built up during the week. Most members feel noticeably looser within the first session.",
-    image: "/images/home/service-sauna.jpg",
-    alt: "Infrared sauna session at Zivel Riverton wellness studio",
-    imageW: 800,
-    imageH: 533,
-  },
-  {
     step: 3,
     service: "Red Light Therapy",
     tagline: "Support Tissue. Sustain Comfort.",
-    body: "Low-level wavelengths stimulate cellular repair and support the body's natural recovery process — reducing soreness, promoting tissue health, and helping the results from cryo and sauna last longer between visits.",
+    body: "Low-level wavelengths stimulate cellular repair and support the body's natural recovery process — reducing soreness, promoting tissue health, and helping the results from the sauna and cryo last longer between visits.",
     image: "/images/home/service-redlight.jpg",
     alt: "Red light therapy panel treatment at Zivel Riverton",
     imageW: 800,
