@@ -77,9 +77,9 @@ function blogPostDate(post: BlogPost): string {
  * that would waste crawl budget if accidentally included.
  *
  * Pattern: any route ending in "/ads" or matching "/<city>-ads" at the root.
- * Current entries: /riverton-ads
+ * Current entries: /riverton-google
  */
-const SITEMAP_EXCLUDED_PATHS = new Set(["/riverton-ads"]);
+const SITEMAP_EXCLUDED_PATHS = new Set(["/riverton-google"]);
 
 /** Returns true when a URL should be kept out of the sitemap. */
 function isExcludedFromSitemap(url: string): boolean {
