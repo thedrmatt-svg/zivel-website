@@ -110,14 +110,6 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${playfair.variable} ${inter.variable}`}>
-      <head>
-        <link
-          rel="preload"
-          href="/images/brand/zivel-logo.png"
-          as="image"
-          fetchPriority="high"
-        />
-      </head>
       <body className="min-h-screen bg-black text-white font-[var(--font-inter)]">
         {/* Skip link — first focusable element, visually hidden until focused */}
         <a href="#main-content" className="skip-link">
