@@ -16,9 +16,9 @@ const GOOGLE_ADS_ID = "AW-11334656695";
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "Zivel Riverton — Recovery & Wellness Memberships",
+  title: "Pain Relief & Recovery | Zivel Riverton — Cryotherapy, Infrared Sauna, Red Light",
   description:
-    "Join Zivel Riverton for science-backed cryotherapy, infrared sauna, red light therapy, and more. Ask about membership pricing today.",
+    "Struggling with pain or slow recovery? Zivel Riverton combines cryotherapy, infrared sauna, and red light therapy into a simple weekly protocol. Ask about membership pricing today.",
   robots: { index: false, follow: false },
 };
 
@@ -33,10 +33,44 @@ const HOURS: { day: string; hours: string }[] = [
   { day: "Sunday", hours: "10am – 2pm" },
 ];
 
+// Recovery protocol steps — the heart of this campaign
+const PROTOCOL_STEPS = [
+  {
+    step: 1,
+    service: "Cryotherapy",
+    tagline: "Calm Inflammation. Reset.",
+    body: "Whole-body cold exposure rapidly reduces inflammation and gives your nervous system a hard reset. Members consistently report that cryo is the fastest way to dial down chronic aches and feel sharp again — in under 3 minutes.",
+    image: "/images/home/service-cryo.jpg",
+    alt: "Person stepping into the cryotherapy chamber at Zivel Riverton",
+    imageW: 800,
+    imageH: 533,
+  },
+  {
+    step: 2,
+    service: "Infrared Sauna",
+    tagline: "Deepen Recovery. Restore Mobility.",
+    body: "Full-spectrum infrared heat penetrates deep into muscle and joint tissue — improving circulation, easing stiffness, and helping your body flush what built up during the week. Most members feel noticeably looser within the first session.",
+    image: "/images/home/service-sauna.jpg",
+    alt: "Infrared sauna session at Zivel Riverton wellness studio",
+    imageW: 800,
+    imageH: 533,
+  },
+  {
+    step: 3,
+    service: "Red Light Therapy",
+    tagline: "Support Tissue. Sustain Comfort.",
+    body: "Low-level wavelengths stimulate cellular repair and support the body's natural recovery process — reducing soreness, promoting tissue health, and helping the results from cryo and sauna last longer between visits.",
+    image: "/images/home/service-redlight.jpg",
+    alt: "Red light therapy panel treatment at Zivel Riverton",
+    imageW: 800,
+    imageH: 533,
+  },
+];
+
 const SERVICES = [
-  { name: "Cryotherapy", price: "$45", desc: "2–3 min whole-body cold exposure for recovery and energy" },
-  { name: "Infrared Sauna", price: "$35", desc: "Full-spectrum heat for detox and deep relaxation" },
-  { name: "Red Light Therapy", price: "$30", desc: "Cellular repair, skin health, and muscle recovery" },
+  { name: "Cryotherapy", price: "$45", desc: "2–3 min whole-body cold exposure for inflammation and recovery" },
+  { name: "Infrared Sauna", price: "$35", desc: "Full-spectrum heat for deep tissue relief and mobility" },
+  { name: "Red Light Therapy", price: "$30", desc: "Cellular repair, reduced soreness, and tissue support" },
   { name: "Dry Float", price: "$65", desc: "Zero-gravity decompression and nervous system reset" },
   { name: "Compression Therapy", price: "$30", desc: "Lymphatic drainage and circulation support" },
   { name: "CryoLift Facial", price: "$150", desc: "Cryo-based facial tightening and complexion treatment" },
@@ -62,20 +96,20 @@ const REVIEWS = [
 
 const FAQS = [
   {
+    q: "Which services are best for pain and recovery?",
+    a: "Cryotherapy, infrared sauna, and red light therapy are the three modalities most directly tied to inflammation reduction, tissue recovery, and pain management. Many of our members use all three in rotation each week — some within the same visit. Our staff can help you build the right protocol for your specific situation.",
+  },
+  {
+    q: "How soon will I feel a difference?",
+    a: "Many members notice an improvement after their first or second session — especially from cryotherapy and infrared sauna. Consistency is what drives lasting results. Members who come in 2–3 times per week typically report meaningful, sustained improvement within the first two to three weeks.",
+  },
+  {
     q: "Is a membership worth it if I'm just getting started?",
     a: "Yes — the Essential membership at $99/mo is designed specifically for beginners. Six sessions a month gives you enough frequency to actually feel results, at a fraction of the walk-in rate. Most members see a difference within the first two weeks.",
   },
   {
     q: "What's included in a membership?",
     a: "Essential includes 6 recovery sessions per month ($99/mo). Elite includes 8 sessions plus premium service discounts ($175/mo, most popular). Both plans work across any of our core services — cryo, sauna, red light, float, compression, and more.",
-  },
-  {
-    q: "Is there a long-term commitment?",
-    a: "No long-term contract required. Ask our team about flexible month-to-month options when you call — we'll find a plan that works for you.",
-  },
-  {
-    q: "Can I apply my membership sessions to any service?",
-    a: "Yes. Your sessions work across cryotherapy, infrared sauna, red light therapy, dry float, and compression therapy. Your team can help you build the right weekly protocol for your goal.",
   },
   {
     q: "Is cryotherapy safe?",
@@ -143,7 +177,7 @@ function OutlineBtn({
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
-export default function RivertonAdsPage() {
+export default function RivertonGooglePage() {
   return (
     <>
       {/* Google Ads tag — consent-gated */}
@@ -202,17 +236,17 @@ export default function RivertonAdsPage() {
 
       <main id="main-content" tabIndex={-1}>
 
-        {/* ── 2. Hero ───────────────────────────────────────────────────────── */}
+        {/* ── 2. Hero — pain/recovery focus ─────────────────────────────────── */}
         <section className="relative min-h-[88vh] flex items-center">
           <Image
             src="/images/locations/riverton/hero.jpg"
-            alt="Zivel Riverton wellness studio"
+            alt="Zivel Riverton wellness studio — cryotherapy, infrared sauna, and red light therapy"
             fill
             className="object-cover object-center"
             priority
           />
-          {/* Dark overlay — gradient so bottom feels grounded */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/65 to-black/85" />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/65 to-black/90" />
 
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-20 text-center">
             {/* Eyebrow */}
@@ -228,22 +262,22 @@ export default function RivertonAdsPage() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Build the Recovery Habit
+              Stop Managing Pain.
               <br />
-              <span style={{ color: "var(--zivel-gold)" }}>That Actually Sticks.</span>
+              <span style={{ color: "var(--zivel-gold)" }}>Start Actually Recovering.</span>
             </h1>
 
             {/* Subhead */}
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Join hundreds of Riverton members using science-backed cryotherapy, infrared
-              sauna, and red light therapy to recover faster, look better, and feel
-              their best — every single week.
+              Hundreds of Riverton members use our three-step protocol — cryotherapy,
+              infrared sauna, and red light therapy — to reduce inflammation, ease
+              chronic discomfort, and feel genuinely better. Week after week.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <GoldBtn href="#lead-form" className="text-center">
-                Ask About Membership Pricing →
+              <GoldBtn href="#protocol" className="text-center">
+                See the Recovery Protocol ↓
               </GoldBtn>
               <OutlineBtn href={PHONE_TEL} className="text-center">
                 Call {PHONE_DISPLAY}
@@ -264,7 +298,137 @@ export default function RivertonAdsPage() {
           </div>
         </section>
 
-        {/* ── 3. Services / single-session pricing (secondary) ─────────────── */}
+        {/* ── 3. Recovery Protocol — the new visual flow ────────────────────── */}
+        <section
+          id="protocol"
+          className="py-24 scroll-mt-16"
+          style={{ backgroundColor: "#080808" }}
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+
+            {/* Section header */}
+            <div className="text-center mb-16">
+              <p
+                className="text-xs font-bold tracking-[0.2em] uppercase mb-4"
+                style={{ color: "var(--zivel-gold)" }}
+              >
+                Your Recovery Protocol
+              </p>
+              <h2
+                className="text-3xl sm:text-4xl font-bold mb-5 leading-tight"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                A Simple Routine That Addresses Pain
+                <br className="hidden sm:block" /> From Multiple Angles
+              </h2>
+              <p className="text-white/60 max-w-2xl mx-auto leading-relaxed">
+                These three services work together — each targeting a different part of
+                the recovery process. Most members rotate through all three across the
+                week, some in a single visit. You don&rsquo;t need to do it perfectly
+                to feel the difference.
+              </p>
+            </div>
+
+            {/* Step cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 relative">
+
+              {PROTOCOL_STEPS.map((step, idx) => (
+                <div key={step.service} className="flex flex-col">
+
+                  {/* Card */}
+                  <div
+                    className="flex flex-col rounded-2xl overflow-hidden border border-white/10 h-full"
+                    style={{ backgroundColor: "rgba(255,255,255,0.03)" }}
+                  >
+                    {/* Image — container defines reserved space via aspect-ratio */}
+                    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "3/2" }}>
+                      <Image
+                        src={step.image}
+                        alt={step.alt}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                        style={{ objectFit: "cover", objectPosition: "center" }}
+                      />
+                      {/* Step number badge */}
+                      <div
+                        className="absolute top-4 left-4 w-9 h-9 rounded-full flex items-center justify-center text-sm font-black text-black z-10"
+                        style={{ backgroundColor: "var(--zivel-gold)" }}
+                        aria-label={`Step ${step.step}`}
+                      >
+                        {step.step}
+                      </div>
+                    </div>
+
+                    {/* Copy */}
+                    <div className="flex flex-col flex-1 p-6 sm:p-7">
+                      <h3
+                        className="text-xl font-bold text-white mb-1"
+                        style={{ fontFamily: "var(--font-playfair)" }}
+                      >
+                        {step.service}
+                      </h3>
+                      <p
+                        className="text-xs font-bold tracking-[0.15em] uppercase mb-4"
+                        style={{ color: "var(--zivel-gold)" }}
+                      >
+                        {step.tagline}
+                      </p>
+                      <p className="text-white/65 text-sm leading-relaxed flex-1">
+                        {step.body}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Arrow connector between cards — desktop only */}
+                  {idx < PROTOCOL_STEPS.length - 1 && (
+                    <div
+                      className="hidden lg:flex absolute items-center justify-center"
+                      style={{
+                        // position arrow between cards: 33.333% per card, offset to the right edge of each card
+                        left: `calc(${(idx + 1) * 33.333}% - 16px)`,
+                        top: "calc(30% - 16px)", // vertically centered in image area
+                        width: 32,
+                        height: 32,
+                        pointerEvents: "none",
+                      }}
+                      aria-hidden="true"
+                    >
+                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path
+                          d="M8 16h16M20 10l6 6-6 6"
+                          stroke="var(--zivel-gold)"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile step connector — decorative vertical line shown between cards on small screens */}
+            {/* (handled by grid stacking; no extra element needed) */}
+
+            {/* Protocol CTA */}
+            <div className="mt-14 text-center">
+              <p className="text-white/50 text-sm mb-5">
+                Ask our team which combination is right for your situation.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <GoldBtn href="#lead-form" className="text-center">
+                  Ask About Membership Pricing →
+                </GoldBtn>
+                <OutlineBtn href={PHONE_TEL} className="text-center">
+                  Call {PHONE_DISPLAY}
+                </OutlineBtn>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 4. Services / single-session pricing (secondary reference) ───── */}
         <section className="py-20 bg-[#0d0d0d]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-4">
@@ -282,7 +446,11 @@ export default function RivertonAdsPage() {
               </h2>
               <p className="text-white/60 max-w-lg mx-auto text-sm">
                 Try any service at walk-in rates — or{" "}
-                <a href="#lead-form" className="underline underline-offset-2 hover:text-white transition-colors" style={{ color: "var(--zivel-gold)" }}>
+                <a
+                  href="#lead-form"
+                  className="underline underline-offset-2 hover:text-white transition-colors"
+                  style={{ color: "var(--zivel-gold)" }}
+                >
                   ask about membership pricing
                 </a>{" "}
                 to save significantly on every visit.
@@ -345,7 +513,7 @@ export default function RivertonAdsPage() {
           </div>
         </section>
 
-        {/* ── 4. Phone CTA band ─────────────────────────────────────────────── */}
+        {/* ── 5. Phone CTA band ─────────────────────────────────────────────── */}
         <section className="py-14 bg-black border-y border-white/10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
             <p className="text-white/60 text-sm uppercase tracking-widest mb-3 font-semibold">
@@ -365,12 +533,13 @@ export default function RivertonAdsPage() {
               {PHONE_DISPLAY}
             </a>
             <p className="text-white/50 text-sm mt-4">
-              Our team will answer your questions about membership, services, and scheduling.
+              Our team will walk you through the right protocol for your situation —
+              no pressure, no commitment required.
             </p>
           </div>
         </section>
 
-        {/* ── 5. Social proof ───────────────────────────────────────────────── */}
+        {/* ── 6. Social proof ───────────────────────────────────────────────── */}
         <section className="py-20 bg-[#0d0d0d]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
@@ -416,7 +585,7 @@ export default function RivertonAdsPage() {
           </div>
         </section>
 
-        {/* ── 6. Visit / location block ─────────────────────────────────────── */}
+        {/* ── 7. Visit / location block ─────────────────────────────────────── */}
         <section className="py-20 bg-black">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
@@ -437,7 +606,6 @@ export default function RivertonAdsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
               {/* Info */}
               <div className="space-y-8">
-                {/* Address & phone */}
                 <div>
                   <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/50 mb-2">
                     Address
@@ -478,16 +646,10 @@ export default function RivertonAdsPage() {
 
                 {/* Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <GoldBtn
-                    href={DIRECTIONS_URL}
-                    className="text-center"
-                  >
+                  <GoldBtn href={DIRECTIONS_URL} className="text-center">
                     📍 Get Directions
                   </GoldBtn>
-                  <OutlineBtn
-                    href={GOOGLE_MAPS_URL}
-                    className="text-center"
-                  >
+                  <OutlineBtn href={GOOGLE_MAPS_URL} className="text-center">
                     View Google Profile
                   </OutlineBtn>
                 </div>
@@ -510,7 +672,7 @@ export default function RivertonAdsPage() {
           </div>
         </section>
 
-        {/* ── 7. FAQ ────────────────────────────────────────────────────────── */}
+        {/* ── 8. FAQ ────────────────────────────────────────────────────────── */}
         <section className="py-20 bg-[#0d0d0d]">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
@@ -544,7 +706,7 @@ export default function RivertonAdsPage() {
           </div>
         </section>
 
-        {/* ── 8. Final CTA band + lead form ─────────────────────────────────── */}
+        {/* ── 9. Final CTA band + lead form ─────────────────────────────────── */}
         <section id="lead-form" className="py-20 bg-black border-t border-white/10 scroll-mt-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -554,7 +716,7 @@ export default function RivertonAdsPage() {
                   className="text-xs font-bold tracking-[0.2em] uppercase mb-4"
                   style={{ color: "var(--zivel-gold)" }}
                 >
-                  Ready to Get Started?
+                  Ready to Feel Better?
                 </p>
                 <h2
                   className="text-3xl sm:text-4xl font-bold mb-5 leading-tight"
@@ -566,17 +728,18 @@ export default function RivertonAdsPage() {
                 </h2>
                 <p className="text-white/65 leading-relaxed mb-8">
                   Fill out the form and our Riverton team will reach out to walk you
-                  through membership options, answer your questions, and help you pick
-                  the right plan for your goals. No commitment required.
+                  through which services fit your goals, how the protocol works in
+                  practice, and which membership plan makes sense for you.
+                  No commitment required.
                 </p>
 
                 {/* Bullets */}
                 <ul className="space-y-3 text-sm text-white/70">
                   {[
+                    "Cryo, sauna & red light — the core pain & recovery protocol",
                     "Essential membership from $99/mo — 6 sessions",
                     "Elite membership from $175/mo — 8 sessions + discounts",
                     "Month-to-month, no long-term contracts",
-                    "Works across cryo, sauna, red light, float & more",
                     "Free parking · 7 days a week",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
@@ -620,7 +783,7 @@ export default function RivertonAdsPage() {
           </div>
         </section>
 
-        {/* ── 9. Minimal footer ─────────────────────────────────────────────── */}
+        {/* ── 10. Minimal footer ────────────────────────────────────────────── */}
         <footer className="py-8 border-t border-white/10 bg-[#080808]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
             <p>© {new Date().getFullYear()} Zivel. All rights reserved.</p>
