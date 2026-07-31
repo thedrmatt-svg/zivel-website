@@ -13,9 +13,9 @@ import HorizontalScroller from "@/components/ui/HorizontalScroller";
 const SITE_URL = "https://www.zivel.com";
 
 export const metadata: Metadata = {
-  title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
   description:
     "Science-backed recovery at Zivel: cryotherapy, infrared sauna, red light therapy, and CryoLift facials. Find a studio near you and book today.",
+  title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
   keywords: ["cryotherapy", "infrared sauna", "red light therapy", "cryo facial", "recovery", "performance"],
   alternates: {
     canonical: `${SITE_URL}/`,
