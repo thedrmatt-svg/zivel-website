@@ -6,6 +6,19 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const nextConfig: NextConfig = {
   async headers() {
     return [
+      // ── Ads landing pages: belt-and-suspenders noindex header ────────────
+      // These pages already set `robots: { index: false }` in their metadata,
+      // but an explicit response header ensures crawlers never index them even
+      // if the metadata is accidentally removed.
+      {
+        source: "/riverton-ads",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow",
+          },
+        ],
+      },
       {
         source: "/es/:path*",
         headers: [

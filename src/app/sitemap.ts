@@ -71,6 +71,26 @@ function blogPostDate(post: BlogPost): string {
   return post.updatedAt ?? post.publishDate;
 }
 
+/**
+ * Paths that must NEVER appear in the sitemap, regardless of how route
+ * generation evolves. These are paid-ads landing pages (noindex by design)
+ * that would waste crawl budget if accidentally included.
+ *
+ * Pattern: any route ending in "/ads" or matching "/<city>-ads" at the root.
+ * Current entries: /riverton-ads
+ */
+const SITEMAP_EXCLUDED_PATHS = new Set(["/riverton-ads"]);
+
+/** Returns true when a URL should be kept out of the sitemap. */
+function isExcludedFromSitemap(url: string): boolean {
+  const path = url.replace(SITE_URL, "");
+  if (SITEMAP_EXCLUDED_PATHS.has(path)) return true;
+  // Belt-and-suspenders: exclude any route whose last segment ends with "-ads"
+  // (e.g. /dallas-ads, /locations/utah/riverton-ads)
+  if (/(?:^|\/)[\w-]+-ads\/?$/.test(path)) return true;
+  return false;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: new Date(STATIC_PAGE_DATES.home), changeFrequency: "weekly", priority: 1 },
@@ -225,5 +245,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...locationPathwayPages,
     ...locationBlogIndexPages,
     ...locationBlogPostPages,
-  ];
+  ].filter((entry) => !isExcludedFromSitemap(entry.url));
 }
