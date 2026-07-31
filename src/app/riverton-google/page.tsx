@@ -428,88 +428,87 @@ export default function RivertonGooglePage() {
           </div>
         </section>
 
-        {/* ── 4. Services / single-session pricing (secondary reference) ───── */}
+        {/* ── 4. Membership pricing + single-session link ───────────────────── */}
         <section className="py-20 bg-[#0d0d0d]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="text-center mb-4">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+
+            {/* Membership tiers */}
+            <div className="text-center mb-10">
               <p
                 className="text-xs font-bold tracking-[0.2em] uppercase mb-3"
                 style={{ color: "var(--zivel-gold)" }}
               >
-                Walk-In Rates
+                Membership Plans
               </p>
               <h2
                 className="text-2xl sm:text-3xl font-bold mb-3"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                Single Session Pricing
+                Simple, Flexible Memberships
               </h2>
               <p className="text-white/60 max-w-lg mx-auto text-sm">
-                Try any service at walk-in rates — or{" "}
-                <a
-                  href="#lead-form"
-                  className="underline underline-offset-2 hover:text-white transition-colors"
-                  style={{ color: "var(--zivel-gold)" }}
-                >
-                  ask about membership pricing
-                </a>{" "}
-                to save significantly on every visit.
+                Sessions work across cryotherapy, infrared sauna, red light therapy,
+                dry float, compression, and more. No long-term contracts required.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
-              {SERVICES.map((s) => (
-                <div
-                  key={s.name}
-                  className="rounded-lg border border-white/10 p-6 hover:border-white/20 transition-colors"
-                  style={{ backgroundColor: "rgba(255,255,255,0.03)" }}
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-semibold text-white">{s.name}</h3>
-                    <span
-                      className="text-lg font-bold"
-                      style={{ color: "var(--zivel-gold)" }}
-                    >
-                      {s.price}
-                    </span>
-                  </div>
-                  <p className="text-sm text-white/55 leading-relaxed">{s.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Membership upsell */}
             <div
-              className="mt-10 rounded-xl p-8 text-center border"
+              className="rounded-xl border p-8 sm:p-10"
               style={{ borderColor: "var(--zivel-gold)", backgroundColor: "rgba(201,169,110,0.06)" }}
             >
-              <p
-                className="text-xs font-bold tracking-[0.2em] uppercase mb-3"
-                style={{ color: "var(--zivel-gold)" }}
-              >
-                Better Value With a Membership
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-6">
-                <div>
-                  <p className="text-2xl font-bold text-white">$99<span className="text-base text-white/50">/mo</span></p>
-                  <p className="text-sm text-white/60 mt-1">Essential · 6 sessions/month</p>
+              <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-8">
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-white">$99<span className="text-base text-white/50">/mo</span></p>
+                  <p
+                    className="text-xs font-bold tracking-[0.15em] uppercase mt-2 mb-1"
+                    style={{ color: "var(--zivel-gold)" }}
+                  >
+                    Essential
+                  </p>
+                  <p className="text-sm text-white/60">6 sessions / month</p>
                 </div>
-                <div className="hidden sm:block text-white/20 text-2xl">|</div>
-                <div>
-                  <p className="text-2xl font-bold text-white">$175<span className="text-base text-white/50">/mo</span></p>
-                  <p className="text-sm text-white/60 mt-1">
-                    Elite · 8 sessions + discounts{" "}
+
+                <div className="hidden sm:block w-px h-16 bg-white/15" aria-hidden="true" />
+
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-white">$175<span className="text-base text-white/50">/mo</span></p>
+                  <p
+                    className="text-xs font-bold tracking-[0.15em] uppercase mt-2 mb-1"
+                    style={{ color: "var(--zivel-gold)" }}
+                  >
+                    Elite{" "}
                     <span
-                      className="text-xs font-bold tracking-wider uppercase px-2 py-0.5 rounded-full"
+                      className="text-xs font-bold tracking-wider uppercase px-2 py-0.5 rounded-full align-middle"
                       style={{ backgroundColor: "var(--zivel-gold)", color: "#000" }}
                     >
                       Most Popular
                     </span>
                   </p>
+                  <p className="text-sm text-white/60">8 sessions + service discounts</p>
                 </div>
               </div>
-              <GoldBtn href="#lead-form">Ask About Membership Pricing →</GoldBtn>
+
+              <div className="text-center">
+                <GoldBtn href="#lead-form" className="text-center">
+                  Ask About Membership Pricing →
+                </GoldBtn>
+              </div>
             </div>
+
+            {/* Single-session link — unobtrusive */}
+            <p className="text-center text-sm text-white/40 mt-6">
+              Prefer to try a single session first?{" "}
+              <a
+                href="https://www.zivel.com/locations/utah/riverton/pricing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-white/70 transition-colors"
+                style={{ color: "var(--zivel-gold)" }}
+              >
+                View walk-in rates →
+              </a>
+            </p>
+
           </div>
         </section>
 
