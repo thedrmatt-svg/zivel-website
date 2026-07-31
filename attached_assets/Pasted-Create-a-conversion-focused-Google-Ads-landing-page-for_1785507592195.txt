@@ -1,0 +1,74 @@
+Create a conversion-focused Google Ads landing page for Zivel Riverton.
+
+URL path: /locations/utah/riverton/ads (or /riverton-ads — choose the cleanest route that fits our existing structure)
+
+This is NOT an SEO page. Its only job is to convert paid-search traffic into:
+1. A phone call
+2. A directions click
+3. A form submission (membership interest is the primary goal)
+
+STRICT RULES:
+- No main site navigation, header menu, or full footer links
+- Only conversion actions allowed (Call, Get Directions, Form, optional de-emphasized secondary links)
+- Primary CTA throughout: "Ask About Membership Pricing"
+- Do NOT show or link to membership login/pricing pages — membership interest must route only to call / text / form
+- Single-session prices may appear as secondary information only
+- No competing primary CTAs
+
+PAGE STRUCTURE (top to bottom):
+
+1. Minimal sticky header
+   - Logo
+   - Phone number (tel: link)
+   - Get Directions link
+   - Single CTA button: "Ask About Membership Pricing" (or "Book Now / Request Membership Info")
+
+2. Hero
+   - Headline + subhead focused on membership / consistency (not single-session deals)
+   - Primary CTA: "Ask About Membership Pricing"
+   - Secondary CTA: Call
+   - Trust row: star rating, review count, any award badges
+
+3. Services / pricing block (secondary)
+   - Show single-session prices if useful for walk-ins
+   - Keep this clearly secondary to the membership pitch
+
+4. Offer / contact prompt band
+   - Strong secondary phone CTA
+
+5. Social proof
+   - Star rating + review count
+   - 3 short paraphrased reviews (first name + last initial only — do not use full verbatim reviews)
+
+6. Visit / location block
+   - Address, phone, hours, parking note
+   - Get Directions button (use proper Google Maps directions URL with Place ID when available)
+   - View Google Profile button
+
+7. FAQ
+   - 4–6 short objection-handling Q&As
+
+8. Final CTA band
+   - Phone CTA
+   - Lead form (see fields below)
+
+9. Footer
+   - Required legal disclaimer only
+   - No full site footer links
+
+LEAD FORM FIELDS (max 4–5):
+- Name
+- Phone
+- Service interest (dropdown — "Membership pricing" must be first/default option)
+- Optional: email or preferred contact method
+- Submit button
+
+TECH / DESIGN:
+- Match existing Zivel dark/luxury visual language (black, gold accents, clean typography)
+- Mobile-first, fast loading
+- Sticky header on scroll
+- Use existing location data for Riverton where possible (address, hours, phone, place ID, reviews)
+- Server-side friendly / Next.js App Router
+- After building, run a build and confirm zero errors
+
+Do not push yet. Show me the page structure and key components created.
