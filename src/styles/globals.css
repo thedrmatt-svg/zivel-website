@@ -24,8 +24,25 @@ html {
   scroll-behavior: smooth;
   background-color: var(--zivel-black);
   scroll-padding-top: 5rem;
-  /* Reserve scrollbar gutter width from the start so the vertical scrollbar
-     appearing after content loads never causes a layout reflow (CLS). */
+  /* Reserve scrollbar gutter on <html> — the document-level scroll container.
+     This prevents the vertical scrollbar from stealing layout width when it
+     appears, which would reflow all block-level content and cause CLS. */
+  scrollbar-gutter: stable;
+}
+
+body {
+  /* overflow-x: clip instead of overflow-x: hidden.
+     "hidden" triggers the CSS spec's overflow-y promotion: when overflow-x is
+     not visible/clip, overflow-y is computed as "auto", silently making <body>
+     its own scroll container. That breaks the scrollbar-gutter reservation on
+     <html> and can cause the body's scrollbar to appear without any gutter,
+     shifting all 100%-width content by ~17px — CLS attributed to <body>.
+     "clip" clips horizontal overflow without creating a BFC and without
+     triggering the overflow-y promotion, so <html> remains the scroll
+     container and scrollbar-gutter: stable above applies correctly. */
+  overflow-x: clip;
+  /* Belt-and-suspenders: reserve gutter on body too in case any browser
+     treats body as the scroll container despite the clip fix. */
   scrollbar-gutter: stable;
 }
 

@@ -28,7 +28,6 @@ export async function generateMetadata({
 export default function PathwaysIndexPage() {
   return (
     <>
-      <meta name="description" content="Explore Zivel's science-backed wellness services including cryotherapy, red light therapy, infrared sauna, CryoLift facials, compression, dry float, and more for recovery, performance, and aesthetics." />
       <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">

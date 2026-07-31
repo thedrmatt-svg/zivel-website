@@ -118,7 +118,7 @@ export default async function LocaleLayout({
           fetchPriority="high"
         />
       </head>
-      <body className="min-h-screen bg-black text-white overflow-x-hidden font-[var(--font-inter)]">
+      <body className="min-h-screen bg-black text-white font-[var(--font-inter)]">
         {/* Skip link — first focusable element, visually hidden until focused */}
         <a href="#main-content" className="skip-link">
           Skip to main content
