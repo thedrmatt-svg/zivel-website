@@ -12,7 +12,11 @@ import CookieConsent from "@/components/consent/CookieConsent";
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
-  display: "swap",
+  // "optional" prevents FOUT: the browser won't swap the font in after paint,
+  // eliminating the layout shift caused by the large serif H1 changing metrics.
+  // Next.js self-hosts and preloads this font, so it loads from the same origin
+  // and will be available before first paint on most connections.
+  display: "optional",
   weight: ["400", "500", "600", "700"],
 });
 

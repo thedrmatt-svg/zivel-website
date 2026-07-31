@@ -425,7 +425,9 @@ button {
 
 .zv-reveal {
   opacity: 0;
-  will-change: transform, opacity;
+  /* will-change removed: blanket promotion of every reveal element to a GPU
+     compositing layer wastes memory and hurts Lighthouse performance. The
+     browser promotes elements naturally when transitions actually begin. */
   transition-property: opacity, transform, filter;
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }

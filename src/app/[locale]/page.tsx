@@ -88,17 +88,19 @@ export default function HomePage() {
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="home-hero-title">
         <div className="pt-20">
-          <div style={{ overflow: 'hidden', aspectRatio: '1920/672' }}>
+          {/* Container's aspect-ratio fully determines the reserved space —
+              no dependency on the image's intrinsic dimensions → zero CLS.
+              objectPosition matches the original crop (upper-centre of image). */}
+          <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '1920/672' }}>
             <Image
               src="/images/home/hero.jpg"
               alt="Zivel wellness services — cryotherapy, facial treatment, and infrared sauna"
-              width={1920}
-              height={800}
+              fill
               priority
               fetchPriority="high"
               sizes="100vw"
               quality={80}
-              style={{ width: '100%', height: 'auto', display: 'block', marginTop: '-3.333vw' }}
+              style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
             />
           </div>
         </div>
