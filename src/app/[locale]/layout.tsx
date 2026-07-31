@@ -23,7 +23,10 @@ const playfair = Playfair_Display({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
+  // "optional" prevents FOUT on body text: same reasoning as Playfair above.
+  // Next.js self-hosts and preloads Inter from the same origin, so it arrives
+  // before or at first paint on most connections. No swap = no CLS.
+  display: "optional",
 });
 
 export const metadata: Metadata = {

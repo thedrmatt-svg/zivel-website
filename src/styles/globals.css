@@ -24,6 +24,9 @@ html {
   scroll-behavior: smooth;
   background-color: var(--zivel-black);
   scroll-padding-top: 5rem;
+  /* Reserve scrollbar gutter width from the start so the vertical scrollbar
+     appearing after content loads never causes a layout reflow (CLS). */
+  scrollbar-gutter: stable;
 }
 
 [id] {

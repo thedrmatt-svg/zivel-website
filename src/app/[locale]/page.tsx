@@ -14,6 +14,8 @@ const SITE_URL = "https://www.zivel.com";
 
 export const metadata: Metadata = {
   title: "Zivel | Recover Smarter. Look Better. Feel Stronger.",
+  description:
+    "Science-backed recovery at Zivel: cryotherapy, infrared sauna, red light therapy, and CryoLift facials. Find a studio near you and book today.",
   keywords: ["cryotherapy", "infrared sauna", "red light therapy", "cryo facial", "recovery", "performance"],
   alternates: {
     canonical: `${SITE_URL}/`,
@@ -84,9 +86,10 @@ export default function HomePage() {
 
   return (
     <main id="main-content" tabIndex={-1} className="-mt-20">
-      <meta name="description" content="Science-backed recovery at Zivel: cryotherapy, infrared sauna, red light therapy, and CryoLift facials. Book your session today." />
       {/* ========== FULL-SCREEN HERO (DARK) ========== */}
-      <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="home-hero-title">
+      {/* No position/width/left/transform — parent chain is already full-viewport-width,
+          so those were no-ops that only created an extra stacking context (CLS risk). */}
+      <section className="bg-black" style={{ marginTop: '-5rem' }} aria-labelledby="home-hero-title">
         <div className="pt-20">
           {/* Container's aspect-ratio fully determines the reserved space —
               no dependency on the image's intrinsic dimensions → zero CLS.
