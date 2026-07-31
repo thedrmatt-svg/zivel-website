@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Script from "next/script";
 import LeadForm from "./LeadForm";
+import GoogleAdsScript from "@/components/consent/GoogleAdsScript";
 
 // ── Location constants ────────────────────────────────────────────────────────
 const PHONE_DISPLAY = "(385) 443-8778";
@@ -146,17 +146,8 @@ function OutlineBtn({
 export default function RivertonAdsPage() {
   return (
     <>
-      {/* Google Ads tag */}
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="gtag-riverton-ads" strategy="afterInteractive">{`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${GOOGLE_ADS_ID}');
-      `}</Script>
+      {/* Google Ads tag — consent-gated */}
+      <GoogleAdsScript id={GOOGLE_ADS_ID} />
 
       {/* ── 1. Sticky minimal header ───────────────────────────────────────── */}
       <header

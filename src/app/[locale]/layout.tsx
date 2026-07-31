@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CookieConsent from "@/components/consent/CookieConsent";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -128,6 +129,7 @@ export default async function LocaleLayout({
           <div className="w-full pt-20">{children}</div>
           <Footer />
         </NextIntlClientProvider>
+        <CookieConsent />
       </body>
     </html>
   );

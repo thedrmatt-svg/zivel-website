@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import CookieConsent from "@/components/consent/CookieConsent";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function AdsLayout({ children }: { children: React.ReactNode }) {
       <body className="min-h-screen bg-black text-white overflow-x-hidden font-[var(--font-inter)]">
         {children}
         <Analytics />
+        <CookieConsent />
       </body>
     </html>
   );
