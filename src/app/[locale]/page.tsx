@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { services } from "@/lib/data/services";
 import { scienceArticles } from "@/lib/data/science";
 import { locations } from "@/lib/data/locations";
@@ -71,8 +71,8 @@ const scienceImages = [
   "/images/home/science-3.jpg",
 ];
 
-export default function HomePage() {
-  const t = useTranslations();
+export default async function HomePage() {
+  const t = await getTranslations();
   const featuredServices = services.slice(0, 6);
   const featuredArticles = scienceArticles.slice(0, 3);
 
