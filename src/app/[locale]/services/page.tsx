@@ -8,25 +8,23 @@ import { services } from "@/lib/data/services";
 
 const SITE_URL = "https://www.zivel.com";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const enUrl = `${SITE_URL}/services`;
-  const esUrl = `${SITE_URL}/es/services`;
-  const canonicalUrl = locale === "es" ? esUrl : enUrl;
-  return {
-    title: "Services",
-    description:
-      "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
-    alternates: {
-      canonical: canonicalUrl,
-      languages: { en: enUrl, es: esUrl, "x-default": enUrl },
+// Static export so Next.js can inject title + description into the initial
+// <head> before any streaming begins. An async generateMetadata({ params })
+// would put metadata into the Suspense-fill streaming chunk, arriving after
+// </head> in production and causing Lighthouse SEO to miss the description.
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
+  alternates: {
+    canonical: `${SITE_URL}/services`,
+    languages: {
+      en: `${SITE_URL}/services`,
+      es: `${SITE_URL}/es/services`,
+      "x-default": `${SITE_URL}/services`,
     },
-  };
-}
+  },
+};
 
 function hexToRgba(hex: string, alpha: number) {
   const h = hex.replace("#", "").trim();
