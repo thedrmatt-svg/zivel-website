@@ -12,6 +12,17 @@ import HorizontalScroller from "@/components/ui/HorizontalScroller";
 
 const SITE_URL = "https://www.zivel.com";
 
+// Force static pre-rendering so Next.js builds this page at compile time for
+// each locale from generateStaticParams. Without this, next-intl's middleware
+// (which calls NextResponse.next({ request: { headers } }) on every request)
+// signals dynamic rendering to the framework, pushing <title> and
+// <meta name="description"> into $RC streaming fill chunks that arrive after
+// </head> in the production HTML — making them invisible to Lighthouse/crawlers.
+// All locale variants are covered by generateStaticParams on the [locale] layout,
+// and no runtime Dynamic APIs (headers, cookies) are used on this page, so
+// force-static is safe.
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   description:
     "Science-backed recovery at Zivel: cryotherapy, infrared sauna, red light therapy, and CryoLift facials. Find a studio near you and book today.",

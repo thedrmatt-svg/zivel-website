@@ -8,6 +8,13 @@ import { services } from "@/lib/data/services";
 
 const SITE_URL = "https://www.zivel.com";
 
+// Force static pre-rendering — same reasoning as [locale]/page.tsx.
+// next-intl's middleware calls NextResponse.next({ request: { headers } }),
+// which signals dynamic rendering and pushes metadata into streaming fill
+// chunks after </head>. force-static overrides that signal. All locales are
+// covered by generateStaticParams on the layout; no Dynamic APIs are used here.
+export const dynamic = "force-static";
+
 // Static export so Next.js can inject title + description into the initial
 // <head> before any streaming begins. An async generateMetadata({ params })
 // would put metadata into the Suspense-fill streaming chunk, arriving after

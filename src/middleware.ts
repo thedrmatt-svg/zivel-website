@@ -1,20 +1,19 @@
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
-
-  // Inject x-pathname into the request headers before next-intl processes it.
-  // next-intl forwards request headers via NextResponse.next({ request: { headers } }),
-  // so Server Components can read them with headers() from next/headers.
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-pathname", pathname);
-  const patchedRequest = new NextRequest(request, { headers: requestHeaders });
-
-  return intlMiddleware(patchedRequest);
+  // Pass the request directly to next-intl's middleware.
+  // Previously we injected an x-pathname header here so server components
+  // could read the current pathname via headers(). That call to headers()
+  // opted every [locale] route into dynamic streaming rendering, which caused
+  // <title> and <meta name="description"> to arrive in $RC streaming fill
+  // chunks after </head> — invisible to Lighthouse and crawlers.
+  // x-pathname is no longer read anywhere; removing it keeps the middleware
+  // header surface minimal.
+  return intlMiddleware(request);
 }
 
 export const config = {

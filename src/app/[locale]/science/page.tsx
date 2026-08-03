@@ -6,6 +6,15 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const SITE_URL = "https://www.zivel.com";
 
+// Force static pre-rendering — same reasoning as [locale]/page.tsx and
+// [locale]/services/page.tsx. next-intl's middleware calls
+// NextResponse.next({ request: { headers } }) on every request, which signals
+// dynamic rendering and causes title/description metadata to land in $RC
+// streaming fill chunks after </head>. force-static overrides that. All
+// locales are covered by generateStaticParams on the [locale] layout; the only
+// async here is await params (not a Dynamic API), so this is safe.
+export const dynamic = "force-static";
+
 export async function generateMetadata({
   params,
 }: {
