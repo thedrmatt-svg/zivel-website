@@ -43,12 +43,12 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 
 ## Security
 
-- [ ] HSTS header — Strict-Transport-Security set
-- [ ] X-Content-Type-Options — nosniff header present
-- [ ] X-Frame-Options / frame-ancestors — clickjacking protection configured
-- [ ] Referrer-Policy — set to strict-origin-when-cross-origin or tighter
-- [ ] Permissions-Policy — camera, microphone, geolocation scoped appropriately
-- [ ] Content-Security-Policy — baseline policy defined
+- [x] HSTS header — Strict-Transport-Security: max-age=63072000; includeSubDomains (no preload)
+- [x] X-Content-Type-Options — nosniff header present on all routes
+- [x] X-Frame-Options / frame-ancestors — SAMEORIGIN + CSP frame-ancestors 'self' on all routes
+- [x] Referrer-Policy — strict-origin-when-cross-origin on all routes
+- [x] Permissions-Policy — camera=(), microphone=(), geolocation=() (+ payment, usb, bluetooth, and others) on all routes
+- [x] Content-Security-Policy — frame-ancestors 'self' baseline present; CSP extended as needed for maps/booking iframe
 
 ## Legal / Privacy
 
