@@ -73,6 +73,16 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es${basePath}`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
 
+  // Use the location's hero image if it is a JPEG (safe for social crawlers).
+  // AVIF and SVG are not reliably supported by Facebook/Twitter/LinkedIn crawlers.
+  // Most locations use the shared studio-hero.jpg; specific locations with JPG
+  // hero images get their own. Falls back to the brand share image otherwise.
+  const heroPath = location.hero?.image ?? "";
+  const ogImagePath = /\.(jpg|jpeg)$/i.test(heroPath)
+    ? heroPath
+    : "/images/locations/studio-hero.jpg";
+  const ogImage = `${SITE_URL}${ogImagePath}`;
+
   return {
     title: location.seo.title,
     alternates: {
@@ -82,6 +92,27 @@ export async function generateMetadata({
         es: esUrl,
         "x-default": enUrl,
       },
+    },
+    openGraph: {
+      title: location.seo.title,
+      description: location.seo.description,
+      url: canonicalUrl,
+      siteName: "Zivel",
+      type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `Zivel ${location.name ?? "Studio"}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: location.seo.title,
+      description: location.seo.description,
+      images: [ogImage],
     },
   };
 }

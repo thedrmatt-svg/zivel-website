@@ -31,6 +31,29 @@ export const metadata: Metadata = {
       "x-default": `${SITE_URL}/services`,
     },
   },
+  openGraph: {
+    title: "Services | Zivel",
+    description:
+      "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
+    url: `${SITE_URL}/services`,
+    siteName: "Zivel",
+    type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/images/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Zivel Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | Zivel",
+    description:
+      "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
+    images: [`${SITE_URL}/images/og-image.jpg`],
+  },
 };
 
 function hexToRgba(hex: string, alpha: number) {
