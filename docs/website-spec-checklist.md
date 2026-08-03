@@ -60,7 +60,7 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 ## Error Handling
 
 - [x] Custom 404 page — branded, with nav and suggested links; returns HTTP 404 status
-- [ ] Custom 500 page — branded error page for server errors; returns HTTP 500 status
+- [x] Custom 500 page — global-error.tsx (root) + [locale]/error.tsx (with header/footer); returns HTTP 500 in production
 
 ## Agent-Readiness
 
