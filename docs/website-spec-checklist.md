@@ -52,14 +52,14 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 
 ## Legal / Privacy
 
-- [ ] Cookie consent — banner present if non-essential cookies are set (analytics, marketing)
-- [ ] Privacy policy completeness — covers data collection, third-party services, user rights
-- [ ] Terms and conditions — present and linked from footer
-- [ ] CCPA / GDPR opt-out mechanism — if applicable based on user geography
+- [x] Cookie consent — banner present if non-essential cookies are set (analytics, marketing)
+- [x] Privacy policy completeness — covers data collection, third-party services, user rights
+- [x] Terms and conditions — present and linked from footer
+- [x] CCPA / GDPR opt-out mechanism — if applicable based on user geography
 
 ## Error Handling
 
-- [ ] Custom 404 page — branded, with nav and suggested links; returns HTTP 404 status
+- [x] Custom 404 page — branded, with nav and suggested links; returns HTTP 404 status
 - [ ] Custom 500 page — branded error page for server errors; returns HTTP 500 status
 
 ## Agent-Readiness
