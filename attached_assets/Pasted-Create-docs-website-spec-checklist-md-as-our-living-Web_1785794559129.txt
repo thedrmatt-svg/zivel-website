@@ -1,0 +1,55 @@
+Create docs/website-spec-checklist.md as our living Website Spec tracker for https://www.zivel.com.
+
+Source the items from the Website Specification (required + high-ROI recommended). Group by category.
+
+Format every line exactly like this:
+- [ ] Item name — short note or evidence
+- [x] Item name — evidence / what we verified
+
+Pre-mark ONLY the items we have already verified from recent work. Do not invent passes.
+
+Already verified (mark [x] with the note shown):
+
+SEO / Foundations
+- [x] Meta description in initial <head> (not late-streamed) — fixed with force-static + clean middleware; Lighthouse SEO 100
+- [x] Title element present and unique — verified in production source
+- [x] Canonical + hreflang — present
+- [x] robots meta index,follow — present
+- [x] Server-side / static rendering on key pages — force-static on homepage, services, science
+- [x] XML sitemap — live at /sitemap.xml, includes locations, services, local service pages, blogs
+- [x] robots.txt — present; AI crawlers explicitly allowed
+- [x] URL structure — clean /locations/state/city and /services/slug patterns
+- [x] Structured data (JSON-LD) — Organization, WebSite, Service, BreadcrumbList present
+- [x] IndexNow — key file + helper wired
+- [x] Stable redirects (301) for old paths/subdomains — configured
+
+Accessibility / Semantics
+- [x] Skip to main content link — present
+- [x] Main landmark — added on local service pages and key templates
+- [x] Contrast fixes on location/service pages — Lighthouse Accessibility improved
+- [x] Document lang attribute — html lang="en" (and /es/ routes)
+
+Performance
+- [x] CLS fixed — overflow-x clip + related layout fixes; Lighthouse Performance 100
+- [x] LCP/hero image handling — preload + next/image
+
+Agent-Readiness
+- [x] /llms.txt — H1 + blockquote + Markdown [text](url) links; Lighthouse Agentic Browsing 3/3
+- [x] robots.txt AI crawler allows — GPTBot, Google-Extended, ClaudeBot, etc.
+
+Leave everything else unchecked, including:
+- Security headers (HSTS, X-Content-Type-Options, frame-ancestors, Referrer-Policy, etc.)
+- Cookie consent (if non-essential cookies exist)
+- Custom 404/500 status + branded pages
+- Privacy policy completeness
+- agents.json / .well-known agents
+- Per-page .md endpoints, MCP, A2A, and other optional agent protocols
+- Any remaining contrast/focus/form items not explicitly verified
+
+At the top of the file add a short header:
+# Zivel Website Spec Checklist
+Last updated: 2026-08-03
+Live site: https://www.zivel.com
+Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 · Best Practices 100 · Agentic 3/3
+
+Do not change any site code. Only create/update this checklist file.
