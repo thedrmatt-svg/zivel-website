@@ -83,7 +83,11 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  // Pass locale explicitly so next-intl reads from the messages file directly
+  // without touching headers(). Calling getMessages() without args auto-detects
+  // locale from request headers, which opts the entire [locale] tree into
+  // dynamic streaming rendering and causes page metadata to arrive after </head>.
+  const messages = await getMessages({ locale });
 
   const orgSchema = {
     "@context": "https://schema.org",

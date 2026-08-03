@@ -71,8 +71,19 @@ const scienceImages = [
   "/images/home/science-3.jpg",
 ];
 
-export default async function HomePage() {
-  const t = await getTranslations();
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  // Destructure locale from params (resolved from the URL, not a Dynamic API)
+  // and pass it explicitly to getTranslations so next-intl reads messages from
+  // the file system without calling headers(). Without an explicit locale,
+  // getTranslations() auto-detects via headers(), opts this segment into dynamic
+  // streaming, and pushes the metadata React nodes into the $RC fill chunk
+  // (which arrives after </head> in production HTML, hiding description from crawlers).
+  const { locale } = await params;
+  const t = await getTranslations({ locale });
   const featuredServices = services.slice(0, 6);
   const featuredArticles = scienceArticles.slice(0, 3);
 
