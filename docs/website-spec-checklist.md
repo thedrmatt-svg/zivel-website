@@ -67,7 +67,7 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 
 - [x] /llms.txt — H1 + blockquote + Markdown [text](url) links; Lighthouse Agentic Browsing 3/3
 - [x] robots.txt AI crawler allows — GPTBot, Google-Extended, ClaudeBot, etc.
-- [ ] agents.json / .well-known/agents — optional agent identity manifest
+- [x] agents.json / .well-known/agents — optional agent identity manifest (public/.well-known/agents.json; includes all 8 services, 4 pathways, bilingual support, sitemap, llms.txt, franchise + memberships URLs)
 - [ ] Per-page .md endpoints — optional machine-readable page content
 - [ ] MCP endpoint — optional Model Context Protocol integration
 - [ ] A2A protocol — optional agent-to-agent handshake support
