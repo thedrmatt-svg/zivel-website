@@ -2,3 +2,4 @@
 - [Franchise website brief](franchise-brief.md) — full audit, confirmed financials, recommended 14-section outline, two-step lead form spec, and SEO structure for zivel.com/franchise.
 - [Next.js build/dev cache conflict](next-build-dev-cache-conflict.md) — npm run build corrupts .next/ for the dev server; fix is rm -rf .next then restart workflow.
 - [next-intl explicit locale to avoid Dynamic API](next-intl-dynamic-api.md) — getMessages()/getTranslations() without args call headers(), opting routes into streaming and pushing metadata after </head>; always pass { locale }.
+- [Form field error pattern](form-field-errors.md) — all four forms use fieldErrors on state type; server actions return fieldErrors map; components render aria-invalid + aria-describedby + inline red hint per field.

@@ -31,7 +31,7 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 - [ ] All images have meaningful alt text or explicit alt="" for decorative images
 - [x] Focus styles visible on all interactive elements — focus-visible:ring-2 gold added to all form inputs (ContactForm, PricingGateModal, FranchiseLeadForm, InvestmentGateProvider, LocationSearch, riverton-google LeadForm); global CSS fallback covers all button/link/input elements
 - [x] Form labels associated with inputs — confirmed correct htmlFor/id pairs on all forms; radio groups use role="group" + aria-labelledby; no missing labels
-- [ ] Keyboard navigation works through header nav and modals — InvestmentGateProvider modal now has full focus trap (Tab/Shift-Tab cycle, Escape to close, return focus to trigger); mobile nav toggles have aria-expanded + aria-controls + panel IDs; desktop nav dropdowns (hover-only, task #34) and mobile nav Escape key (task #35) still pending
+- [x] Keyboard navigation works through header nav and modals — InvestmentGateProvider modal: full focus trap, Escape to close, return focus to trigger; mobile nav: Escape closes menu + restores focus to toggle; desktop nav dropdowns: group-focus-within:visible opens them on keyboard focus; all toggles have aria-expanded + aria-controls + panel IDs
 
 ## Performance
 

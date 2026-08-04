@@ -5,6 +5,7 @@ import { Resend } from "resend";
 export type FranchiseInvestmentGateState = {
   status: "idle" | "success" | "error";
   message: string;
+  fieldErrors?: Partial<Record<"firstName" | "lastName" | "email" | "phone", string>>;
 };
 
 function buildLeadHtml({
@@ -76,13 +77,16 @@ export async function submitFranchiseInvestmentGate(
   const email = ((formData.get("email") as string) ?? "").trim();
   const consent = formData.get("consent") === "on";
 
-  if (!firstName || !lastName || !phone || !email) {
-    return { status: "error", message: "Please fill in all required fields." };
-  }
-
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return { status: "error", message: "Please enter a valid email address." };
+  const fieldErrors: FranchiseInvestmentGateState["fieldErrors"] = {};
+  if (!firstName) fieldErrors.firstName = "First name is required.";
+  if (!lastName) fieldErrors.lastName = "Last name is required.";
+  if (!phone) fieldErrors.phone = "Phone number is required.";
+  if (!email) fieldErrors.email = "Email is required.";
+  else if (!emailRegex.test(email)) fieldErrors.email = "Please enter a valid email address.";
+
+  if (Object.keys(fieldErrors).length > 0) {
+    return { status: "error", message: "Please fix the errors below.", fieldErrors };
   }
 
   if (!consent) {

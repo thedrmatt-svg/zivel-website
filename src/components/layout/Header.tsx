@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { services } from "@/lib/data/services";
 import { pathways } from "@/lib/data/pathways";
 import { getLocationNav } from "@/lib/data/locationNav";
@@ -18,6 +18,7 @@ export default function Header() {
   const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
   const [mobilePathwaysOpen, setMobilePathwaysOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +28,21 @@ export default function Header() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Task #35 — Escape key closes the mobile menu and returns focus to the toggle button
+  useEffect(() => {
+    if (!mobileOpen) return;
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      setMobileOpen(false);
+      setMobileServicesOpen(false);
+      setMobilePathwaysOpen(false);
+      setMobileLocationsOpen(false);
+      menuToggleRef.current?.focus();
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen]);
 
   const serviceLinks = useMemo(
     () =>
@@ -85,7 +101,7 @@ export default function Header() {
                 Services
               </Link>
 
-              <div className="invisible absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+              <div className="invisible absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                 <div className="w-[360px] rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl p-3 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
                   <Link
                     href="/services"
@@ -118,7 +134,7 @@ export default function Header() {
                 Pathways
               </Link>
 
-              <div className="invisible absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+              <div className="invisible absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                 <div className="w-[420px] rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl p-3 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
                   <Link
                     href="/pathways"
@@ -152,7 +168,7 @@ export default function Header() {
                 <span className="text-white/60 text-xs">▾</span>
               </Link>
 
-              <div className="invisible absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+              <div className="invisible absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                 <div className="w-[260px] rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl p-3 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
                   <Link
                     href="/locations"
@@ -209,6 +225,7 @@ export default function Header() {
 
           <div className="flex items-center gap-2 lg:hidden">
             <button
+              ref={menuToggleRef}
               className="border border-white/20 bg-transparent px-3 py-2 text-xs font-medium tracking-wider uppercase text-white hover:border-[var(--zivel-gold)] transition-all duration-300"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}

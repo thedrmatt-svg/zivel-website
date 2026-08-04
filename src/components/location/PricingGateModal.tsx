@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
-import { submitPricingGate } from "@/lib/actions/pricingGate";
+import { submitPricingGate, type PricingGateState } from "@/lib/actions/pricingGate";
 
 const GATE_VERSION = "v1";
 const GATE_DURATION_MS = 14 * 24 * 60 * 60 * 1000;
@@ -46,6 +46,7 @@ export default function PricingGateModal({
   const [unlocked, setUnlockedState] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<PricingGateState["fieldErrors"]>({});
   const [isPending, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -59,6 +60,7 @@ export default function PricingGateModal({
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
+    setFieldErrors({});
     const formData = new FormData(e.currentTarget);
     formData.set("citySlug", citySlug);
     formData.set("cityDisplay", cityDisplay);
@@ -71,6 +73,7 @@ export default function PricingGateModal({
         setUnlockedState(true);
       } else {
         setError(result.message);
+        setFieldErrors(result.fieldErrors ?? {});
       }
     });
   }
@@ -126,9 +129,14 @@ export default function PricingGateModal({
                   type="text"
                   required
                   autoComplete="given-name"
+                  aria-invalid={!!fieldErrors?.firstName}
+                  aria-describedby={fieldErrors?.firstName ? "pg-firstName-error" : undefined}
                   className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                   placeholder="First"
                 />
+                {fieldErrors?.firstName && (
+                  <p id="pg-firstName-error" className="mt-1 text-xs text-red-400">{fieldErrors.firstName}</p>
+                )}
               </div>
               <div>
                 <label
@@ -143,9 +151,14 @@ export default function PricingGateModal({
                   type="text"
                   required
                   autoComplete="family-name"
+                  aria-invalid={!!fieldErrors?.lastName}
+                  aria-describedby={fieldErrors?.lastName ? "pg-lastName-error" : undefined}
                   className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                   placeholder="Last"
                 />
+                {fieldErrors?.lastName && (
+                  <p id="pg-lastName-error" className="mt-1 text-xs text-red-400">{fieldErrors.lastName}</p>
+                )}
               </div>
             </div>
 
@@ -162,9 +175,14 @@ export default function PricingGateModal({
                 type="tel"
                 required
                 autoComplete="tel"
+                aria-invalid={!!fieldErrors?.phone}
+                aria-describedby={fieldErrors?.phone ? "pg-phone-error" : undefined}
                 className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                 placeholder="(555) 000-0000"
               />
+              {fieldErrors?.phone && (
+                <p id="pg-phone-error" className="mt-1 text-xs text-red-400">{fieldErrors.phone}</p>
+              )}
             </div>
 
             <div>
@@ -180,9 +198,14 @@ export default function PricingGateModal({
                 type="email"
                 required
                 autoComplete="email"
+                aria-invalid={!!fieldErrors?.email}
+                aria-describedby={fieldErrors?.email ? "pg-email-error" : undefined}
                 className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                 placeholder="you@example.com"
               />
+              {fieldErrors?.email && (
+                <p id="pg-email-error" className="mt-1 text-xs text-red-400">{fieldErrors.email}</p>
+              )}
             </div>
 
             <div className="flex items-start gap-3 pt-1">

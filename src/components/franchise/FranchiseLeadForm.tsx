@@ -108,8 +108,13 @@ export default function FranchiseLeadForm() {
             placeholder="Jane"
             required
             autoComplete="given-name"
+            aria-invalid={!!state.fieldErrors?.firstName}
+            aria-describedby={state.fieldErrors?.firstName ? "ff-firstName-error" : undefined}
             className={inputClass}
           />
+          {state.fieldErrors?.firstName && (
+            <p id="ff-firstName-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.firstName}</p>
+          )}
         </div>
         <div>
           <label htmlFor="lastName" className={labelClass}>Last Name</label>
@@ -120,8 +125,13 @@ export default function FranchiseLeadForm() {
             placeholder="Smith"
             required
             autoComplete="family-name"
+            aria-invalid={!!state.fieldErrors?.lastName}
+            aria-describedby={state.fieldErrors?.lastName ? "ff-lastName-error" : undefined}
             className={inputClass}
           />
+          {state.fieldErrors?.lastName && (
+            <p id="ff-lastName-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.lastName}</p>
+          )}
         </div>
         <div>
           <label htmlFor="email" className={labelClass}>Email Address</label>
@@ -132,8 +142,13 @@ export default function FranchiseLeadForm() {
             placeholder="jane@example.com"
             required
             autoComplete="email"
+            aria-invalid={!!state.fieldErrors?.email}
+            aria-describedby={state.fieldErrors?.email ? "ff-email-error" : undefined}
             className={inputClass}
           />
+          {state.fieldErrors?.email && (
+            <p id="ff-email-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.email}</p>
+          )}
         </div>
         <div>
           <label htmlFor="phone" className={labelClass}>Phone Number</label>
@@ -144,8 +159,13 @@ export default function FranchiseLeadForm() {
             placeholder="(555) 000-0000"
             required
             autoComplete="tel"
+            aria-invalid={!!state.fieldErrors?.phone}
+            aria-describedby={state.fieldErrors?.phone ? "ff-phone-error" : undefined}
             className={inputClass}
           />
+          {state.fieldErrors?.phone && (
+            <p id="ff-phone-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.phone}</p>
+          )}
         </div>
       </div>
 
@@ -157,8 +177,13 @@ export default function FranchiseLeadForm() {
           type="text"
           placeholder="e.g. Austin, TX or Pacific Northwest"
           required
+          aria-invalid={!!state.fieldErrors?.territory}
+          aria-describedby={state.fieldErrors?.territory ? "ff-territory-error" : undefined}
           className={inputClass}
         />
+        {state.fieldErrors?.territory && (
+          <p id="ff-territory-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.territory}</p>
+        )}
       </div>
 
       <div className="mb-5">

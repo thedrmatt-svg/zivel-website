@@ -6,6 +6,7 @@ import { locations } from "@/lib/data/locations";
 export type PricingGateState = {
   status: "idle" | "success" | "error";
   message: string;
+  fieldErrors?: Partial<Record<"firstName" | "lastName" | "phone" | "email", string>>;
 };
 
 function buildLeadHtml({
@@ -82,13 +83,16 @@ export async function submitPricingGate(
   const locationEmail = ((formData.get("locationEmail") as string) ?? "").trim();
   const smsConsent = formData.get("smsConsent") === "on";
 
-  if (!firstName || !lastName || !phone || !email) {
-    return { status: "error", message: "Please fill in all required fields." };
-  }
-
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return { status: "error", message: "Please enter a valid email address." };
+  const fieldErrors: PricingGateState["fieldErrors"] = {};
+  if (!firstName) fieldErrors.firstName = "First name is required.";
+  if (!lastName) fieldErrors.lastName = "Last name is required.";
+  if (!phone) fieldErrors.phone = "Phone number is required.";
+  if (!email) fieldErrors.email = "Email is required.";
+  else if (!emailRegex.test(email)) fieldErrors.email = "Please enter a valid email address.";
+
+  if (Object.keys(fieldErrors).length > 0) {
+    return { status: "error", message: "Please fix the errors below.", fieldErrors };
   }
 
   const apiKey = process.env.RESEND_API_KEY;

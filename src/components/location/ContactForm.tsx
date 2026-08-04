@@ -48,8 +48,13 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
             autoComplete="given-name"
             placeholder="Jane"
             required
+            aria-invalid={!!state.fieldErrors?.firstName}
+            aria-describedby={state.fieldErrors?.firstName ? "cf-firstName-error" : undefined}
             className={inputClass}
           />
+          {state.fieldErrors?.firstName && (
+            <p id="cf-firstName-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.firstName}</p>
+          )}
         </div>
         <div>
           <label htmlFor="cf-lastName" className={labelClass}>
@@ -62,8 +67,13 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
             autoComplete="family-name"
             placeholder="Smith"
             required
+            aria-invalid={!!state.fieldErrors?.lastName}
+            aria-describedby={state.fieldErrors?.lastName ? "cf-lastName-error" : undefined}
             className={inputClass}
           />
+          {state.fieldErrors?.lastName && (
+            <p id="cf-lastName-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.lastName}</p>
+          )}
         </div>
       </div>
 
@@ -80,8 +90,13 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
             autoComplete="email"
             placeholder="jane@example.com"
             required
+            aria-invalid={!!state.fieldErrors?.email}
+            aria-describedby={state.fieldErrors?.email ? "cf-email-error" : undefined}
             className={inputClass}
           />
+          {state.fieldErrors?.email && (
+            <p id="cf-email-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.email}</p>
+          )}
         </div>
         <div>
           <label htmlFor="cf-phone" className={labelClass}>
@@ -94,8 +109,13 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
             autoComplete="tel"
             placeholder="(615) 555-0100"
             required
+            aria-invalid={!!state.fieldErrors?.phone}
+            aria-describedby={state.fieldErrors?.phone ? "cf-phone-error" : undefined}
             className={inputClass}
           />
+          {state.fieldErrors?.phone && (
+            <p id="cf-phone-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.phone}</p>
+          )}
         </div>
       </div>
 
@@ -110,8 +130,13 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
           rows={5}
           placeholder="Tell us how we can help…"
           required
+          aria-invalid={!!state.fieldErrors?.message}
+          aria-describedby={state.fieldErrors?.message ? "cf-message-error" : undefined}
           className={`${inputClass} resize-none`}
         />
+        {state.fieldErrors?.message && (
+          <p id="cf-message-error" className="mt-1 text-xs text-red-400">{state.fieldErrors.message}</p>
+        )}
       </div>
 
       {/* SMS Transactional consent */}
@@ -151,9 +176,12 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
       <div className="mb-8 zv-luxury-card rounded-xl p-4">
         <label className={checkboxLabelClass}>
           <input
+            id="cf-acceptTerms"
             name="acceptTerms"
             type="checkbox"
             required
+            aria-invalid={!!state.fieldErrors?.acceptTerms}
+            aria-describedby={state.fieldErrors?.acceptTerms ? "cf-acceptTerms-error" : undefined}
             className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--zivel-gold)] rounded"
           />
           <span>
@@ -168,6 +196,9 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
             . <span className="text-[var(--zivel-gold)]">*</span>
           </span>
         </label>
+        {state.fieldErrors?.acceptTerms && (
+          <p id="cf-acceptTerms-error" className="mt-2 text-xs text-red-400">{state.fieldErrors.acceptTerms}</p>
+        )}
       </div>
 
       {/* Status messages */}

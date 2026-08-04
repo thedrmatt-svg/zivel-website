@@ -6,6 +6,7 @@ import { locations } from "@/lib/data/locations";
 export type ContactFormState = {
   status: "idle" | "success" | "error";
   message: string;
+  fieldErrors?: Partial<Record<"firstName" | "lastName" | "email" | "phone" | "message" | "acceptTerms", string>>;
 };
 
 function buildEmailHtml({
@@ -195,16 +196,18 @@ export async function submitContactForm(
   const locationPhone = (formData.get("locationPhone") as string | null) ?? "";
   const locationEmail = (formData.get("locationEmail") as string | null)?.trim() ?? "";
 
-  if (!firstName || !lastName || !email || !phone || !messageText || !acceptTerms) {
-    return {
-      status: "error",
-      message: "Please fill in all required fields and accept the Terms of Service.",
-    };
-  }
-
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return { status: "error", message: "Please enter a valid email address." };
+  const fieldErrors: ContactFormState["fieldErrors"] = {};
+  if (!firstName) fieldErrors.firstName = "First name is required.";
+  if (!lastName) fieldErrors.lastName = "Last name is required.";
+  if (!email) fieldErrors.email = "Email is required.";
+  else if (!emailRegex.test(email)) fieldErrors.email = "Please enter a valid email address.";
+  if (!phone) fieldErrors.phone = "Phone number is required.";
+  if (!messageText) fieldErrors.message = "Message is required.";
+  if (!acceptTerms) fieldErrors.acceptTerms = "Please accept the Terms of Service to continue.";
+
+  if (Object.keys(fieldErrors).length > 0) {
+    return { status: "error", message: "Please fix the errors below.", fieldErrors };
   }
 
   const apiKey = process.env.RESEND_API_KEY;

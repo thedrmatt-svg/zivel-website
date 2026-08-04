@@ -5,6 +5,7 @@ import { Resend } from "resend";
 export type FranchiseFormState = {
   status: "idle" | "success" | "error";
   message: string;
+  fieldErrors?: Partial<Record<"firstName" | "lastName" | "email" | "phone" | "territory", string>>;
 };
 
 function buildFranchiseEmailHtml({
@@ -126,13 +127,22 @@ export async function submitFranchiseForm(
   const funding = (formData.get("funding") as string | null)?.trim() ?? "";
   const locationInterest = (formData.get("locationInterest") as string | null)?.trim() ?? "";
 
-  if (!firstName || !lastName || !email || !phone || !territory || !funding || !locationInterest) {
-    return { status: "error", message: "Please fill in all required fields." };
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const fieldErrors: FranchiseFormState["fieldErrors"] = {};
+  if (!firstName) fieldErrors.firstName = "First name is required.";
+  if (!lastName) fieldErrors.lastName = "Last name is required.";
+  if (!email) fieldErrors.email = "Email is required.";
+  else if (!emailRegex.test(email)) fieldErrors.email = "Please enter a valid email address.";
+  if (!phone) fieldErrors.phone = "Phone number is required.";
+  if (!territory) fieldErrors.territory = "Territory of interest is required.";
+
+  if (Object.keys(fieldErrors).length > 0) {
+    return { status: "error", message: "Please fix the errors below.", fieldErrors };
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return { status: "error", message: "Please enter a valid email address." };
+  // Radio fields aren't individually addressable via fieldErrors — keep generic guard
+  if (!funding || !locationInterest) {
+    return { status: "error", message: "Please select your funding status and location interest." };
   }
 
   const apiKey = process.env.RESEND_API_KEY;

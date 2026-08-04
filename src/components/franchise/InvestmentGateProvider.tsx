@@ -8,7 +8,7 @@ import {
   useState,
   useTransition,
 } from "react";
-import { submitFranchiseInvestmentGate } from "@/lib/actions/franchiseInvestmentGate";
+import { submitFranchiseInvestmentGate, type FranchiseInvestmentGateState } from "@/lib/actions/franchiseInvestmentGate";
 
 const STORAGE_KEY = "zivel_franchise_investment_gate_v1";
 const GATE_DURATION_MS = 14 * 24 * 60 * 60 * 1000;
@@ -59,6 +59,7 @@ export default function InvestmentGateProvider({ children }: { children: React.R
   const [revealed, setRevealed] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<FranchiseInvestmentGateState["fieldErrors"]>({});
   const [isPending, startTransition] = useTransition();
 
   // Focus management refs
@@ -120,6 +121,7 @@ export default function InvestmentGateProvider({ children }: { children: React.R
       scrollToInvestment();
     } else {
       setError("");
+      setFieldErrors({});
       // Capture trigger so focus can be restored when the modal closes
       triggerRef.current = document.activeElement as HTMLElement;
       setShowModal(true);
@@ -141,6 +143,7 @@ export default function InvestmentGateProvider({ children }: { children: React.R
         scrollToInvestment();
       } else {
         setError(result.message);
+        setFieldErrors(result.fieldErrors ?? {});
       }
     });
   }
@@ -193,9 +196,14 @@ export default function InvestmentGateProvider({ children }: { children: React.R
                     type="text"
                     required
                     autoComplete="given-name"
+                    aria-invalid={!!fieldErrors?.firstName}
+                    aria-describedby={fieldErrors?.firstName ? "ig-firstName-error" : undefined}
                     className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                     placeholder="First"
                   />
+                  {fieldErrors?.firstName && (
+                    <p id="ig-firstName-error" className="mt-1 text-xs text-red-400">{fieldErrors.firstName}</p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -210,9 +218,14 @@ export default function InvestmentGateProvider({ children }: { children: React.R
                     type="text"
                     required
                     autoComplete="family-name"
+                    aria-invalid={!!fieldErrors?.lastName}
+                    aria-describedby={fieldErrors?.lastName ? "ig-lastName-error" : undefined}
                     className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                     placeholder="Last"
                   />
+                  {fieldErrors?.lastName && (
+                    <p id="ig-lastName-error" className="mt-1 text-xs text-red-400">{fieldErrors.lastName}</p>
+                  )}
                 </div>
               </div>
 
@@ -229,9 +242,14 @@ export default function InvestmentGateProvider({ children }: { children: React.R
                   type="email"
                   required
                   autoComplete="email"
+                  aria-invalid={!!fieldErrors?.email}
+                  aria-describedby={fieldErrors?.email ? "ig-email-error" : undefined}
                   className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                   placeholder="you@example.com"
                 />
+                {fieldErrors?.email && (
+                  <p id="ig-email-error" className="mt-1 text-xs text-red-400">{fieldErrors.email}</p>
+                )}
               </div>
 
               <div>
@@ -247,9 +265,14 @@ export default function InvestmentGateProvider({ children }: { children: React.R
                   type="tel"
                   required
                   autoComplete="tel"
+                  aria-invalid={!!fieldErrors?.phone}
+                  aria-describedby={fieldErrors?.phone ? "ig-phone-error" : undefined}
                   className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                   placeholder="(555) 000-0000"
                 />
+                {fieldErrors?.phone && (
+                  <p id="ig-phone-error" className="mt-1 text-xs text-red-400">{fieldErrors.phone}</p>
+                )}
               </div>
 
               <div className="flex items-start gap-3 pt-1">
