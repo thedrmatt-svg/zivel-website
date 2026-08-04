@@ -24,7 +24,7 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
   }, [state.status]);
 
   const inputClass =
-    "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/35 transition focus:border-[var(--zivel-gold)] focus:outline-none focus:ring-1 focus:ring-[var(--zivel-gold)]";
+    "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/35 transition focus:border-[var(--zivel-gold)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black";
   const labelClass = "block text-xs font-semibold uppercase tracking-wider text-white/60 mb-1.5";
   const checkboxLabelClass = "flex items-start gap-3 text-sm text-white/60 leading-relaxed cursor-pointer";
 

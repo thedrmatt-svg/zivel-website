@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useRef,
   useState,
   useTransition,
 } from "react";
@@ -60,11 +61,58 @@ export default function InvestmentGateProvider({ children }: { children: React.R
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
 
+  // Focus management refs
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     if (isUnlocked()) {
       setUnlocked(true);
     }
   }, []);
+
+  // When the modal opens: move focus inside and trap Tab/Shift-Tab.
+  // When it closes: return focus to the element that triggered it.
+  // Escape key dismisses the modal.
+  useEffect(() => {
+    if (!showModal) return;
+
+    const container = dialogRef.current;
+    if (!container) return;
+
+    const FOCUSABLE =
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    // Auto-focus first focusable child (close button or first input)
+    const firstFocusable = container.querySelector<HTMLElement>(FOCUSABLE);
+    firstFocusable?.focus();
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setShowModal(false);
+        return;
+      }
+      if (e.key !== "Tab" || !container) return;
+      const focusable = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      // Return focus to the element that opened the modal
+      triggerRef.current?.focus();
+    };
+  }, [showModal]);
 
   function requestReveal() {
     if (unlocked) {
@@ -72,6 +120,8 @@ export default function InvestmentGateProvider({ children }: { children: React.R
       scrollToInvestment();
     } else {
       setError("");
+      // Capture trigger so focus can be restored when the modal closes
+      triggerRef.current = document.activeElement as HTMLElement;
       setShowModal(true);
     }
   }
@@ -101,6 +151,7 @@ export default function InvestmentGateProvider({ children }: { children: React.R
 
       {showModal && (
         <div
+          ref={dialogRef}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4 py-8"
           role="dialog"
           aria-modal="true"
@@ -142,7 +193,7 @@ export default function InvestmentGateProvider({ children }: { children: React.R
                     type="text"
                     required
                     autoComplete="given-name"
-                    className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8"
+                    className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                     placeholder="First"
                   />
                 </div>
@@ -159,7 +210,7 @@ export default function InvestmentGateProvider({ children }: { children: React.R
                     type="text"
                     required
                     autoComplete="family-name"
-                    className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8"
+                    className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                     placeholder="Last"
                   />
                 </div>
@@ -178,7 +229,7 @@ export default function InvestmentGateProvider({ children }: { children: React.R
                   type="email"
                   required
                   autoComplete="email"
-                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8"
+                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                   placeholder="you@example.com"
                 />
               </div>
@@ -196,7 +247,7 @@ export default function InvestmentGateProvider({ children }: { children: React.R
                   type="tel"
                   required
                   autoComplete="tel"
-                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8"
+                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                   placeholder="(555) 000-0000"
                 />
               </div>

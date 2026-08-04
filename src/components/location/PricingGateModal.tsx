@@ -126,7 +126,7 @@ export default function PricingGateModal({
                   type="text"
                   required
                   autoComplete="given-name"
-                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8"
+                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                   placeholder="First"
                 />
               </div>
@@ -143,7 +143,7 @@ export default function PricingGateModal({
                   type="text"
                   required
                   autoComplete="family-name"
-                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8"
+                  className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                   placeholder="Last"
                 />
               </div>
@@ -162,7 +162,7 @@ export default function PricingGateModal({
                 type="tel"
                 required
                 autoComplete="tel"
-                className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8"
+                className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                 placeholder="(555) 000-0000"
               />
             </div>
@@ -180,7 +180,7 @@ export default function PricingGateModal({
                 type="email"
                 required
                 autoComplete="email"
-                className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8"
+                className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none transition focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
                 placeholder="you@example.com"
               />
             </div>

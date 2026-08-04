@@ -8,7 +8,7 @@ const CALENDLY_URL = "https://calendly.com/matto-zivel/zivel-franchise-intro-zoo
 const initialState: FranchiseFormState = { status: "idle", message: "" };
 
 const inputClass =
-  "w-full bg-white/5 border border-white/15 rounded-lg px-4 py-3 text-white placeholder-white/35 text-sm focus:outline-none focus:border-[var(--zivel-gold)] focus:bg-white/8 transition-all duration-200";
+  "w-full bg-white/5 border border-white/15 rounded-lg px-4 py-3 text-white placeholder-white/35 text-sm focus:outline-none focus:border-[var(--zivel-gold)] focus:bg-white/8 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black transition-all duration-200";
 
 const labelClass = "block text-xs font-semibold tracking-widest uppercase text-white/50 mb-2";
 

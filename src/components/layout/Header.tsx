@@ -211,7 +211,9 @@ export default function Header() {
             <button
               className="border border-white/20 bg-transparent px-3 py-2 text-xs font-medium tracking-wider uppercase text-white hover:border-[var(--zivel-gold)] transition-all duration-300"
               onClick={() => setMobileOpen((v) => !v)}
-              aria-label="Toggle menu"
+              aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav-panel"
             >
               {mobileOpen ? "Close" : "Menu"}
             </button>
@@ -219,7 +221,7 @@ export default function Header() {
         </div>
 
         {mobileOpen ? (
-          <div className="lg:hidden pb-6 pt-2">
+          <div id="mobile-nav-panel" className="lg:hidden pb-6 pt-2">
             <div
               className="space-y-1 rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl p-4 overflow-y-auto"
               style={{ maxHeight: "calc(100dvh - 5rem)" }}
@@ -227,14 +229,16 @@ export default function Header() {
               <button
                 className="flex w-full items-center justify-between px-3 py-3 text-sm font-medium tracking-wide uppercase text-white hover:text-[var(--zivel-gold)] transition-colors"
                 onClick={() => setMobileServicesOpen((v) => !v)}
-                aria-label="Toggle services"
+                aria-expanded={mobileServicesOpen}
+                aria-controls="mobile-services-panel"
+                aria-label={mobileServicesOpen ? "Collapse services menu" : "Expand services menu"}
               >
                 <span>Services</span>
-                <span className="text-white/60">{mobileServicesOpen ? "−" : "+"}</span>
+                <span className="text-white/60" aria-hidden="true">{mobileServicesOpen ? "−" : "+"}</span>
               </button>
 
               {mobileServicesOpen ? (
-                <div className="space-y-1 px-2 pb-2">
+                <div id="mobile-services-panel" className="space-y-1 px-2 pb-2">
                   <Link
                     href="/services"
                     className="block px-3 py-2 text-sm text-white/70 hover:text-[var(--zivel-gold)] transition-colors"
@@ -258,14 +262,16 @@ export default function Header() {
               <button
                 className="flex w-full items-center justify-between px-3 py-3 text-sm font-medium tracking-wide uppercase text-white hover:text-[var(--zivel-gold)] transition-colors"
                 onClick={() => setMobilePathwaysOpen((v) => !v)}
-                aria-label="Toggle pathways"
+                aria-expanded={mobilePathwaysOpen}
+                aria-controls="mobile-pathways-panel"
+                aria-label={mobilePathwaysOpen ? "Collapse pathways menu" : "Expand pathways menu"}
               >
                 <span>Pathways</span>
-                <span className="text-white/60">{mobilePathwaysOpen ? "−" : "+"}</span>
+                <span className="text-white/60" aria-hidden="true">{mobilePathwaysOpen ? "−" : "+"}</span>
               </button>
 
               {mobilePathwaysOpen ? (
-                <div className="space-y-1 px-2 pb-2">
+                <div id="mobile-pathways-panel" className="space-y-1 px-2 pb-2">
                   <Link
                     href="/pathways"
                     className="block px-3 py-2 text-sm text-white/70 hover:text-[var(--zivel-gold)] transition-colors"
@@ -289,14 +295,16 @@ export default function Header() {
               <button
                 className="flex w-full items-center justify-between px-3 py-3 text-sm font-medium tracking-wide uppercase text-white hover:text-[var(--zivel-gold)] transition-colors"
                 onClick={() => setMobileLocationsOpen((v) => !v)}
-                aria-label="Toggle locations"
+                aria-expanded={mobileLocationsOpen}
+                aria-controls="mobile-locations-panel"
+                aria-label={mobileLocationsOpen ? "Collapse locations menu" : "Expand locations menu"}
               >
                 <span>Locations</span>
-                <span className="text-white/60">{mobileLocationsOpen ? "−" : "+"}</span>
+                <span className="text-white/60" aria-hidden="true">{mobileLocationsOpen ? "−" : "+"}</span>
               </button>
 
               {mobileLocationsOpen && (
-                <div className="space-y-1 px-2 pb-2">
+                <div id="mobile-locations-panel" className="space-y-1 px-2 pb-2">
                   <Link
                     href="/locations"
                     className="block px-3 py-2 text-sm text-white/70 hover:text-[var(--zivel-gold)] transition-colors"

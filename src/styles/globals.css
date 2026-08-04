@@ -863,6 +863,32 @@ noscript + .zv-reveal,
   outline-offset: 3px;
 }
 
+/* ── Universal focus indicator fallback ──────────────────────────────────── */
+/* Catches any interactive element that does not have an explicit component-  */
+/* level focus rule. Only fires for keyboard navigation (:focus-visible).     */
+/* Higher-specificity rules above (.zv-btn-*:focus-visible) always override.  */
+/* For form controls styled with Tailwind focus-visible:ring-* the ring uses  */
+/* box-shadow, not outline, so there is no conflict with these rules.         */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--zivel-gold);
+  outline-offset: 2px;
+}
+
+/* ── Form control focus indicators ──────────────────────────────────────── */
+/* Belt-and-suspenders: ensures inputs, selects, and textareas always show    */
+/* the gold ring on keyboard focus, even if a component uses outline:none.    */
+/* These element+pseudo rules have specificity (0,1,1) — they sit below       */
+/* Tailwind class+pseudo rules (0,2,0) written in the same cascade layer,     */
+/* so components can still override. The global fallback wins over browser    */
+/* defaults and over focus:outline-none applied without a replacement.        */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--zivel-gold) !important;
+  outline-offset: 2px;
+}
+
 /* Elegant image with mask */
 .zv-img-mask {
   -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);

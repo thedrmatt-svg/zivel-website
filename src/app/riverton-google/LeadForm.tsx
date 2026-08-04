@@ -37,7 +37,7 @@ export default function LeadForm() {
   }
 
   const inputClass =
-    "w-full px-4 py-3 bg-white/10 border border-white/20 rounded text-white placeholder-white/40 focus:outline-none focus:border-[var(--zivel-gold)] transition-colors text-sm";
+    "w-full px-4 py-3 bg-white/10 border border-white/20 rounded text-white placeholder-white/40 focus:outline-none focus:border-[var(--zivel-gold)] focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black transition-colors text-sm";
   const labelClass = "block text-xs font-semibold tracking-wider uppercase text-white/60 mb-1.5";
 
   return (

@@ -146,8 +146,8 @@ export default function LocationSearch({ locations, variant = "dark" }: { locati
           placeholder="Enter ZIP code or city name"
           className={
             isLight
-              ? "h-12 rounded-2xl border border-black/12 bg-white px-4 text-sm text-black placeholder:text-black/40 outline-none focus:border-black/25 shadow-sm"
-              : "h-12 rounded-2xl border border-white/12 bg-black/30 px-4 text-sm text-white placeholder:text-white/40 outline-none focus:border-white/25"
+              ? "h-12 rounded-2xl border border-black/12 bg-white px-4 text-sm text-black placeholder:text-black/40 outline-none focus:border-black/25 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)]/70 focus-visible:ring-offset-1 focus-visible:ring-offset-white shadow-sm"
+              : "h-12 rounded-2xl border border-white/12 bg-black/30 px-4 text-sm text-white placeholder:text-white/40 outline-none focus:border-white/25 focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black"
           }
         />
         <button
