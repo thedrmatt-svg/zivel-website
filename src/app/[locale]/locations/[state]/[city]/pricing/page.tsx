@@ -176,12 +176,38 @@ export default async function LocationPricingPage({
 
   const metaDescription = `View local pricing, membership tiers, and current offers at ${location.name}. Cryotherapy, red light therapy, infrared sauna, CryoLift facial, and more.`;
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",        item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Locations",   item: `${SITE_URL}/locations` },
+      { "@type": "ListItem", position: 3, name: location.state, item: `${SITE_URL}/locations/${location.stateSlug}` },
+      { "@type": "ListItem", position: 4, name: cityDisplay,   item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}` },
+      { "@type": "ListItem", position: 5, name: "Pricing",     item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}/pricing` },
+    ],
+  };
+
   return (
     <main id="main-content" tabIndex={-1} className="space-y-0">
       <meta name="description" content={metaDescription} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* HERO */}
       <section className="zv-bleed zv-hero-bg zv-noise py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/50">
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li><Link href="/locations" className="hover:text-white transition-colors">Locations</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li><Link href={`/locations/${location.stateSlug}`} className="hover:text-white transition-colors">{location.state}</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li><Link href={`/locations/${location.stateSlug}/${location.citySlug}`} className="hover:text-white transition-colors">{cityDisplay}</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li className="text-white/70">Pricing</li>
+            </ol>
+          </nav>
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline mb-4">Investment</p>
             <h1 className="font-serif text-4xl md:text-6xl font-light tracking-tight text-white">

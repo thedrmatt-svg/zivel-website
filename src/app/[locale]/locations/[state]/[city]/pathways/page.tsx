@@ -73,13 +73,40 @@ export default async function LocationPathwaysPage({
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
   const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",        item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Locations",   item: `${SITE_URL}/locations` },
+      { "@type": "ListItem", position: 3, name: location.state, item: `${SITE_URL}/locations/${location.stateSlug}` },
+      { "@type": "ListItem", position: 4, name: cityDisplay,   item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}` },
+      { "@type": "ListItem", position: 5, name: "Pathways",    item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}/pathways` },
+    ],
+  };
+
   return (
     <main id="main-content" tabIndex={-1} className="space-y-0 pt-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* ── HERO (DARK) ── */}
       <section className="zv-bleed zv-hero-bg zv-noise relative overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-30" />
         <div className="relative z-10 mx-auto max-w-5xl px-6 py-28 md:py-36">
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/50">
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li><Link href="/locations" className="hover:text-white transition-colors">Locations</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li><Link href={`/locations/${location.stateSlug}`} className="hover:text-white transition-colors">{location.state}</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li><Link href={`/locations/${location.stateSlug}/${location.citySlug}`} className="hover:text-white transition-colors">{cityDisplay}</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li className="text-white/70">Pathways</li>
+            </ol>
+          </nav>
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline zv-hero-animate-1 mb-4">
               {location.name}

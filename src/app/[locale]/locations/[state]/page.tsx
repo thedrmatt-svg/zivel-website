@@ -61,17 +61,32 @@ export default async function StateLocationsPage({ params }: { params: Promise<{
 
   const stateName = titleCase(state);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",      item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Locations", item: `${SITE_URL}/locations` },
+      { "@type": "ListItem", position: 3, name: stateName,   item: `${SITE_URL}/locations/${state}` },
+    ],
+  };
+
   return (
     <div className="space-y-0 -mt-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* ========== HERO (DARK) ========== */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-30" />
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
           <ScrollReveal variant="fade-up">
-            <nav className="text-sm text-white/50 mb-6 zv-hero-animate-1">
-              <Link href="/locations" className="hover:text-white transition-colors">Locations</Link>
-              <span className="mx-2">/</span>
-              <span className="text-white/70">{stateName}</span>
+            <nav aria-label="Breadcrumb" className="text-sm text-white/50 mb-6 zv-hero-animate-1">
+              <ol className="flex flex-wrap items-center">
+                <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li aria-hidden="true"><span className="mx-2">/</span></li>
+                <li><Link href="/locations" className="hover:text-white transition-colors">Locations</Link></li>
+                <li aria-hidden="true"><span className="mx-2">/</span></li>
+                <li className="text-white/70">{stateName}</li>
+              </ol>
             </nav>
             <h1 className="font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">{stateName}</h1>
             <p className="mt-6 max-w-2xl text-lg text-white/70 leading-relaxed zv-hero-animate-3">
