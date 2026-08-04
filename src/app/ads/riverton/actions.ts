@@ -99,7 +99,7 @@ function buildLeadHtml({
                 </tr>
                 <tr>
                   <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#555;">Page</td>
-                  <td style="padding:12px 16px;font-size:14px;color:#888;">zivel.com/riverton-ads</td>
+                  <td style="padding:12px 16px;font-size:14px;color:#888;">zivel.com/ads/riverton</td>
                 </tr>
               </table>
             </td>

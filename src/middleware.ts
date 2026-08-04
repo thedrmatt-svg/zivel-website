@@ -17,8 +17,10 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Exclude API routes, Next.js internals, static files, and any standalone
-  // ad landing pages (e.g. /riverton-google) from the i18n middleware so they
-  // are served directly without locale detection or redirection.
-  matcher: ["/((?!api|_next|_vercel|riverton-google|.*\\..*).*)"],
+  // Exclude API routes, Next.js internals, static files, and all ads landing
+  // pages from the i18n middleware so they are served directly without locale
+  // detection or redirection.
+  // - /ads/* — new convention (/ads/riverton, /ads/riverton-google, etc.)
+  // - /riverton-ads, /riverton-google — legacy root paths that redirect to /ads/*
+  matcher: ["/((?!api|_next|_vercel|ads|riverton-ads|riverton-google|.*\\..*).*)"],
 };

@@ -7,11 +7,12 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       // ── Ads landing pages: belt-and-suspenders noindex header ────────────
-      // These pages already set `robots: { index: false }` in their metadata,
-      // but an explicit response header ensures crawlers never index them even
-      // if the metadata is accidentally removed.
+      // All ads pages live under /ads/:city — this single pattern covers every
+      // current and future city landing page. Pages also set
+      // `robots: { index: false }` in their layout metadata, but the header
+      // is a belt-and-suspenders backstop that survives metadata mistakes.
       {
-        source: "/riverton-ads",
+        source: "/ads/:path*",
         headers: [
           {
             key: "X-Robots-Tag",
@@ -101,6 +102,12 @@ const nextConfig: NextConfig = {
       // ── Franchisee domain redirects ─────────────────────────────────────
       { source: "/locations/north-carolina/belmont{/}?", destination: "https://www.belmontzivel.com",    permanent: true },
       { source: "/locations/florida/palm-coast{/}?",     destination: "https://www.palmcoastzivel.com", permanent: true },
+
+      // ── Ads page canonical redirects ────────────────────────────────────
+      // Old root-level ad URLs are preserved as permanent redirects so any
+      // existing ad campaign links keep working.
+      { source: "/riverton-ads{/}?",    destination: "https://www.zivel.com/ads/riverton",        permanent: true },
+      { source: "/riverton-google{/}?", destination: "https://www.zivel.com/ads/riverton-google", permanent: true },
 
       // ── Legacy / typo path redirects ────────────────────────────────────
       { source: "/riverton{/}?",                                  destination: "https://www.zivel.com/locations/utah/riverton",           permanent: true },

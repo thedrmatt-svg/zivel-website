@@ -70,24 +70,21 @@ function maxDate(...dates: (string | undefined)[]): string {
 function blogPostDate(post: BlogPost): string {
   return post.updatedAt ?? post.publishDate;
 }
-
 /**
- * Paths that must NEVER appear in the sitemap, regardless of how route
- * generation evolves. These are paid-ads landing pages (noindex by design)
- * that would waste crawl budget if accidentally included.
+ * Returns true when a URL should be kept out of the sitemap.
  *
- * Pattern: any route ending in "/ads" or matching "/<city>-ads" at the root.
- * Current entries: /riverton-google
+ * All paid-ads landing pages live under /ads/:city — a single pattern
+ * automatically covers every current and future city page without requiring
+ * manual entries. No hard-coded set is needed.
  */
-const SITEMAP_EXCLUDED_PATHS = new Set(["/riverton-google"]);
-
-/** Returns true when a URL should be kept out of the sitemap. */
 function isExcludedFromSitemap(url: string): boolean {
   const path = url.replace(SITE_URL, "");
-  if (SITEMAP_EXCLUDED_PATHS.has(path)) return true;
-  // Belt-and-suspenders: exclude any route whose last segment ends with "-ads"
-  // (e.g. /dallas-ads, /locations/utah/riverton-ads)
-  if (/(?:^|\/)[\w-]+-ads\/?$/.test(path)) return true;
+  // Primary convention: /ads/:city (e.g. /ads/riverton, /ads/riverton-google)
+  if (/^\/ads(\/|$)/.test(path)) return true;
+  // Belt-and-suspenders: also exclude legacy root paths that redirect to /ads/*
+  // (e.g. /riverton-ads, /riverton-google)
+  if (/^\/[\w-]+-ads\/?$/.test(path)) return true;
+  if (/^\/riverton-google\/?$/.test(path)) return true;
   return false;
 }
 
