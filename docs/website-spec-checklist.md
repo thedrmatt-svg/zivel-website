@@ -1,5 +1,5 @@
 # Zivel Website Spec Checklist
-Last updated: 2026-08-03
+Last updated: 2026-08-04
 Live site: https://www.zivel.com
 Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 · Best Practices 100 · Agentic 3/3
 
@@ -18,7 +18,7 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 - [x] Structured data (JSON-LD) — Organization, WebSite, Service, BreadcrumbList present
 - [x] IndexNow — key file + helper wired
 - [x] Stable redirects (301) for old paths/subdomains — configured
-- [ ] Open Graph image — og:image tag present and resolves to a valid image
+- [x] Open Graph image — og:image + twitter:image added to homepage, services listing, all 8 service detail pages, and all location city pages; locale layout fallback covers remaining pages
 - [ ] Breadcrumb nav matches BreadcrumbList JSON-LD on all inner pages
 - [ ] Page speed — Core Web Vitals passing in field data (CrUX), not just lab
 
@@ -29,9 +29,9 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 - [x] Contrast fixes on location/service pages — Lighthouse Accessibility improved
 - [x] Document lang attribute — html lang="en" (and /es/ routes)
 - [ ] All images have meaningful alt text or explicit alt="" for decorative images
-- [ ] Focus styles visible on all interactive elements
-- [ ] Form labels associated with inputs (contact, booking forms)
-- [ ] Keyboard navigation works through header nav and modals
+- [x] Focus styles visible on all interactive elements — focus-visible:ring-2 gold added to all form inputs (ContactForm, PricingGateModal, FranchiseLeadForm, InvestmentGateProvider, LocationSearch, riverton-google LeadForm); global CSS fallback covers all button/link/input elements
+- [x] Form labels associated with inputs — confirmed correct htmlFor/id pairs on all forms; radio groups use role="group" + aria-labelledby; no missing labels
+- [ ] Keyboard navigation works through header nav and modals — InvestmentGateProvider modal now has full focus trap (Tab/Shift-Tab cycle, Escape to close, return focus to trigger); mobile nav toggles have aria-expanded + aria-controls + panel IDs; desktop nav dropdowns (hover-only, task #34) and mobile nav Escape key (task #35) still pending
 
 ## Performance
 
