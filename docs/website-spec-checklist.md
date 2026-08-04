@@ -38,7 +38,7 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 
 - [x] CLS fixed — overflow-x clip + related layout fixes; Lighthouse Performance 100
 - [x] LCP/hero image handling — preload + next/image
-- [ ] Font display strategy — font-display: optional or swap confirmed for all custom fonts
+- [x] Font display strategy — font-display: optional or swap confirmed for all custom fonts (next/font uses "optional" on main layout, "swap" on ads layouts; CherryWidget Montserrat Google Fonts link uses display=swap; no raw @font-face declarations in CSS)
 - [ ] Third-party scripts deferred — Cherry widget, analytics loaded after page is interactive
 - [ ] No render-blocking resources flagged in Lighthouse
 
