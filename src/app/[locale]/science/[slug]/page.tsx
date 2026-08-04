@@ -58,8 +58,9 @@ export default async function ScienceArticlePage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Science", item: `${SITE_URL}/science` },
-      { "@type": "ListItem", position: 2, name: a.title, item: `${SITE_URL}/science/${a.slug}` },
+      { "@type": "ListItem", position: 1, name: "Home",    item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Science", item: `${SITE_URL}/science` },
+      { "@type": "ListItem", position: 3, name: a.title,   item: `${SITE_URL}/science/${a.slug}` },
     ],
   };
 
@@ -76,10 +77,14 @@ export default async function ScienceArticlePage({ params }: Props) {
         <div className="absolute inset-0 zv-glow-gold opacity-20" />
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
           <ScrollReveal variant="fade-up">
-            <nav className="text-sm text-white/50 mb-6 zv-hero-animate-1">
-              <Link href="/science" className="hover:text-white transition-colors">Science</Link>
-              <span className="mx-2">/</span>
-              <span className="text-white/70">{a.category}</span>
+            <nav aria-label="Breadcrumb" className="text-sm text-white/50 mb-6 zv-hero-animate-1">
+              <ol className="flex flex-wrap items-center">
+                <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li aria-hidden="true"><span className="mx-2">/</span></li>
+                <li><Link href="/science" className="hover:text-white transition-colors">Science</Link></li>
+                <li aria-hidden="true"><span className="mx-2">/</span></li>
+                <li className="text-white/70">{a.title}</li>
+              </ol>
             </nav>
             <h1 className="font-serif text-4xl md:text-6xl font-light tracking-tight max-w-4xl zv-hero-animate-2">{a.title}</h1>
             <p className="mt-6 text-lg text-white/70 leading-relaxed max-w-3xl zv-hero-animate-3">{a.description}</p>

@@ -132,8 +132,9 @@ export default async function BlogPostPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Blog", item: `${SITE_URL}/blog` },
-      { "@type": "ListItem", position: 2, name: post.title, item: `${SITE_URL}/blog/${post.slug}` },
+      { "@type": "ListItem", position: 1, name: "Home",      item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog",      item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title,  item: `${SITE_URL}/blog/${post.slug}` },
     ],
   };
 
@@ -148,10 +149,14 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="absolute inset-0 zv-glow-gold opacity-20" />
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
           <ScrollReveal variant="fade-up">
-            <nav className="text-sm text-white/50 mb-6 zv-hero-animate-1">
-              <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-              <span className="mx-2">/</span>
-              <span className="text-white/70">{post.category}</span>
+            <nav aria-label="Breadcrumb" className="text-sm text-white/50 mb-6 zv-hero-animate-1">
+              <ol className="flex flex-wrap items-center">
+                <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li aria-hidden="true"><span className="mx-2">/</span></li>
+                <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                <li aria-hidden="true"><span className="mx-2">/</span></li>
+                <li className="text-white/70">{post.title}</li>
+              </ol>
             </nav>
 
             <div className="flex items-center gap-3 text-xs text-white/40 mb-4 zv-hero-animate-2">

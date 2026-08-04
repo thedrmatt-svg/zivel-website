@@ -129,8 +129,9 @@ export default async function ServicePage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Services", item: `${SITE_URL}/services` },
-      { "@type": "ListItem", position: 2, name: service.name, item: `${SITE_URL}/services/${service.slug}` },
+      { "@type": "ListItem", position: 1, name: "Home",       item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Services",   item: `${SITE_URL}/services` },
+      { "@type": "ListItem", position: 3, name: service.name, item: `${SITE_URL}/services/${service.slug}` },
     ],
   };
 
@@ -207,6 +208,15 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8 lg:px-12 py-32 md:py-40">
+          <nav aria-label="Breadcrumb" className="mb-6 zv-hero-animate-1">
+            <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/50">
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li><Link href="/services" className="hover:text-white transition-colors">Services</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li className="text-white/70">{service.name}</li>
+            </ol>
+          </nav>
           <p className="zv-tagline zv-hero-animate-1" style={{ color: accentRGB }}>
             {service.name.toUpperCase()}
           </p>

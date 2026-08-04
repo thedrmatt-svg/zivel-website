@@ -218,6 +218,13 @@ export default function FranchisePage() {
       <section className="zv-bleed zv-hero-bg zv-noise relative overflow-hidden min-h-screen flex items-center">
         <div className="absolute inset-0 zv-glow-gold opacity-25" />
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-40 text-center">
+          <nav aria-label="Breadcrumb" className="mb-8 text-left">
+            <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/50">
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li className="text-white/70">Franchise</li>
+            </ol>
+          </nav>
           <ScrollReveal variant="fade-in">
             <p className="zv-tagline mb-6">
               Entrepreneur 2026 — #45 Top New &amp; Emerging Franchise

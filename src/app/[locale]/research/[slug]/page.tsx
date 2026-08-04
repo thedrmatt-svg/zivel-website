@@ -55,8 +55,9 @@ export default async function ResearchSourcePage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Research", item: `${SITE_URL}/research` },
-      { "@type": "ListItem", position: 2, name: s.title, item: `${SITE_URL}/research/${identifier}` },
+      { "@type": "ListItem", position: 1, name: "Home",      item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Research",  item: `${SITE_URL}/research` },
+      { "@type": "ListItem", position: 3, name: s.title,     item: `${SITE_URL}/research/${identifier}` },
     ],
   };
 
@@ -67,6 +68,15 @@ export default async function ResearchSourcePage({ params }: Props) {
     <div className="section space-y-8 max-w-3xl">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <nav aria-label="Breadcrumb" className="mb-2">
+        <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/50">
+          <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+          <li aria-hidden="true" className="text-white/30">/</li>
+          <li><Link href="/research" className="hover:text-white transition-colors">Research</Link></li>
+          <li aria-hidden="true" className="text-white/30">/</li>
+          <li className="text-white/70">{s.title}</li>
+        </ol>
+      </nav>
       <div className="space-y-2">
         <h1>{s.title}</h1>
         <p className="text-white/70">{s.summary}</p>

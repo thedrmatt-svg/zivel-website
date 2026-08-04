@@ -166,24 +166,10 @@ export default async function LocationPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Locations",
-        item: `${SITE_URL}/locations`,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: location.state,
-        item: `${SITE_URL}/locations/${location.stateSlug}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: cityName,
-        item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}`,
-      },
+      { "@type": "ListItem", position: 1, name: "Home",         item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Locations",    item: `${SITE_URL}/locations` },
+      { "@type": "ListItem", position: 3, name: location.state, item: `${SITE_URL}/locations/${location.stateSlug}` },
+      { "@type": "ListItem", position: 4, name: cityName,       item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}` },
     ],
   };
 
@@ -319,6 +305,17 @@ export default async function LocationPage({
 
         <div className="bg-black text-white px-6 pt-6 md:pt-8 pb-6 md:pb-8">
           <div className="mx-auto max-w-6xl">
+            <nav aria-label="Breadcrumb" className="mb-4">
+              <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/50">
+                <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li aria-hidden="true" className="text-white/30">/</li>
+                <li><Link href="/locations" className="hover:text-white transition-colors">Locations</Link></li>
+                <li aria-hidden="true" className="text-white/30">/</li>
+                <li><Link href={`/locations/${location.stateSlug}`} className="hover:text-white transition-colors">{location.state}</Link></li>
+                <li aria-hidden="true" className="text-white/30">/</li>
+                <li className="text-white/70">{cityName}</li>
+              </ol>
+            </nav>
             {location.hero?.note && (
               <div className="mb-6 zv-hero-animate-1">
                 <p className="zv-tagline">{location.hero.note.headline}</p>
