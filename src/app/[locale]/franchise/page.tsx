@@ -127,42 +127,42 @@ const STEPS = [
     title: "Budgeting & Funding",
     body: "Explore financing paths — SBA loans, private lenders, HELOC, or ROBS — with our support team.",
     image: "/images/home/science-1.jpg",
-    imageAlt: "Step 03 — Budgeting & Funding (replace with custom image)",
+    imageAlt: "Wellness science research materials — Zivel franchise budgeting and funding overview",
   },
   {
     n: "04",
     title: "Extended Introduction & Education",
     body: "Deep-dive into operations, technology, marketing, and what a day in a Zivel studio looks like.",
     image: "/images/home/service-cryo.jpg",
-    imageAlt: "Step 04 — Extended Introduction & Education (replace with custom image)",
+    imageAlt: "Whole body cryotherapy chamber inside a Zivel studio",
   },
   {
     n: "05",
     title: "Territory Selection",
     body: "Work with our team to identify and secure your exclusive territory before the market matures.",
     image: "/images/home/service-redlight.jpg",
-    imageAlt: "Step 05 — Territory Selection (replace with custom image)",
+    imageAlt: "Red light therapy panel at Zivel — exclusive territory opportunity",
   },
   {
     n: "06",
     title: "Discovery Day & Site Visit",
     body: "Visit a live Zivel studio, meet the team, and experience the brand firsthand.",
     image: "/images/home/service-sauna.jpg",
-    imageAlt: "Step 06 — Discovery Day & Site Visit (replace with custom image)",
+    imageAlt: "Infrared sauna suite at Zivel — experienced during a Discovery Day visit",
   },
   {
     n: "07",
     title: "Final Agreement",
     body: "Review and execute your Franchise Disclosure Document and Franchise Agreement.",
     image: "/images/home/quote-bg.jpg",
-    imageAlt: "Step 07 — Final Agreement (replace with custom image)",
+    imageAlt: "Zivel studio ambient interior — final franchise agreement milestone",
   },
   {
     n: "08",
     title: "Onboarding",
     body: "Training, build-out support, technology setup, and a grand opening plan tailored to your market.",
     image: "/images/home/service-dryfloat.jpg",
-    imageAlt: "Step 08 — Onboarding (replace with custom image)",
+    imageAlt: "Client relaxing on a dry float therapy bed — Zivel studio onboarding experience",
   },
 ];
 
@@ -455,7 +455,7 @@ export default function FranchisePage() {
                 <div className="rounded-2xl border border-white/10 overflow-hidden relative h-40">
                   <Image
                     src="/images/home/service-redlight.jpg"
-                    alt="Red light therapy studio — market opportunity visual (replace with growth chart)"
+                    alt="Zivel red light therapy studio — Recovery Economy market visual"
                     fill
                     className="object-cover opacity-40"
                     sizes="(max-width: 1024px) 100vw, 40vw"

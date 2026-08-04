@@ -156,7 +156,7 @@ export default function ServicesIndexPage() {
                   {heroSrc ? (
                     <Image
                       src={heroSrc}
-                      alt={s.name}
+                      alt={s.hero.media?.alt ?? s.name}
                       fill
                       loading="lazy"
                       sizes="(max-width: 1024px) 100vw, 33vw"

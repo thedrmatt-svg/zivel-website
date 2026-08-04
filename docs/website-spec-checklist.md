@@ -28,7 +28,7 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 - [x] Main landmark — added on local service pages and key templates
 - [x] Contrast fixes on location/service pages — Lighthouse Accessibility improved
 - [x] Document lang attribute — html lang="en" (and /es/ routes)
-- [ ] All images have meaningful alt text or explicit alt="" for decorative images
+- [x] All images have meaningful alt text or explicit alt="" for decorative images — 42 images audited; 8 fixed in franchise/page.tsx (6 step imageAlts had developer "(replace with custom image)" notes, 1 inline had "(replace with growth chart)" note); services listing now uses s.hero.media?.alt from content files instead of bare s.name; all other images were already correct
 - [x] Focus styles visible on all interactive elements — focus-visible:ring-2 gold added to all form inputs (ContactForm, PricingGateModal, FranchiseLeadForm, InvestmentGateProvider, LocationSearch, riverton-google LeadForm); global CSS fallback covers all button/link/input elements
 - [x] Form labels associated with inputs — confirmed correct htmlFor/id pairs on all forms; radio groups use role="group" + aria-labelledby; no missing labels
 - [x] Keyboard navigation works through header nav and modals — InvestmentGateProvider modal: full focus trap, Escape to close, return focus to trigger; mobile nav: Escape closes menu + restores focus to toggle; desktop nav dropdowns: group-focus-within:visible opens them on keyboard focus; all toggles have aria-expanded + aria-controls + panel IDs
