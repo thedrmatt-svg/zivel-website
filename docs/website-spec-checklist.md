@@ -19,7 +19,7 @@ Lighthouse (homepage/services): Performance 100 · SEO 100 · Accessibility 100 
 - [x] IndexNow — key file + helper wired
 - [x] Stable redirects (301) for old paths/subdomains — configured
 - [x] Open Graph image — og:image + twitter:image added to homepage, services listing, all 8 service detail pages, and all location city pages; locale layout fallback covers remaining pages
-- [ ] Breadcrumb nav matches BreadcrumbList JSON-LD on all inner pages
+- [x] Breadcrumb nav matches BreadcrumbList JSON-LD on all inner pages — audited 8 templates; local-service page was already aligned; fixed 7 others (city, service detail, franchise, blog, science, location-blog, research): added "Home" as position 1 to all JSON-LD schemas that were missing it, added visible breadcrumb nav to pages that had none, corrected blog/science/location-blog visible navs that were showing post category instead of post title
 - [ ] Page speed — Core Web Vitals passing in field data (CrUX), not just lab
 
 ## Accessibility / Semantics
