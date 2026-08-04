@@ -307,13 +307,40 @@ export default async function LocationBlogPage({
   const localPosts = getLocationBlogPosts(city);
   const allPosts = [...localPosts, ...blogPosts];
 
+  const stateDisplay = state.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",        item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Locations",   item: `${SITE_URL}/locations` },
+      { "@type": "ListItem", position: 3, name: stateDisplay,  item: `${SITE_URL}/locations/${cfg.stateSlug}` },
+      { "@type": "ListItem", position: 4, name: cfg.cityName,  item: `${SITE_URL}/locations/${cfg.stateSlug}/${cfg.citySlug}` },
+      { "@type": "ListItem", position: 5, name: "Blog",        item: `${SITE_URL}/locations/${cfg.stateSlug}/${cfg.citySlug}/blog` },
+    ],
+  };
+
   return (
     <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* HERO (DARK) */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-40" />
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
           <ScrollReveal variant="fade-up">
+            <nav aria-label="Breadcrumb" className="mb-6 zv-hero-animate-1">
+              <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/50">
+                <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li aria-hidden="true" className="text-white/30">/</li>
+                <li><Link href="/locations" className="hover:text-white transition-colors">Locations</Link></li>
+                <li aria-hidden="true" className="text-white/30">/</li>
+                <li><Link href={`/locations/${cfg.stateSlug}`} className="hover:text-white transition-colors">{stateDisplay}</Link></li>
+                <li aria-hidden="true" className="text-white/30">/</li>
+                <li><Link href={`/locations/${cfg.stateSlug}/${cfg.citySlug}`} className="hover:text-white transition-colors">{cfg.cityName}</Link></li>
+                <li aria-hidden="true" className="text-white/30">/</li>
+                <li className="text-white/70">Blog</li>
+              </ol>
+            </nav>
             <p className="zv-tagline zv-hero-animate-1">{cfg.tagline}</p>
             <h1 className="mt-4 font-serif text-5xl md:text-7xl font-light tracking-tight zv-hero-animate-2">
               {cfg.h1}

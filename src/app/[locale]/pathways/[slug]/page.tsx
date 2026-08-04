@@ -38,13 +38,33 @@ export default async function PathwayPage({ params }: PageProps) {
   const pathway = getPathwayBySlug(slug);
   if (!pathway) return notFound();
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",      item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Pathways",  item: `${SITE_URL}/pathways` },
+      { "@type": "ListItem", position: 3, name: pathway.name, item: `${SITE_URL}/pathways/${pathway.slug}` },
+    ],
+  };
+
   return (
     <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
       <meta name="description" content={pathway.seo.description} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* ========== HERO (DARK) ========== */}
       <section className="zv-bleed zv-hero-bg zv-noise relative min-h-[70vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 zv-glow-gold opacity-30" />
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 md:py-40">
+          <nav aria-label="Breadcrumb" className="mb-6 zv-hero-animate-1">
+            <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/50">
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li><Link href="/pathways" className="hover:text-white transition-colors">Pathways</Link></li>
+              <li aria-hidden="true" className="text-white/30">/</li>
+              <li className="text-white/70">{pathway.name}</li>
+            </ol>
+          </nav>
           <ScrollReveal variant="fade-up">
             <div className="max-w-3xl space-y-5">
               <p className="zv-tagline zv-hero-animate-1">Pathway</p>
