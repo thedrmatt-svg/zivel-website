@@ -228,7 +228,7 @@ export default function RivertonGooglePage() {
               className="px-4 sm:px-5 py-2.5 text-xs font-bold tracking-widest uppercase rounded text-black transition-opacity hover:opacity-90 whitespace-nowrap"
               style={{ backgroundColor: "var(--zivel-gold)" }}
             >
-              Ask About Membership
+              Contact Zivel Riverton
             </a>
           </nav>
         </div>
@@ -277,7 +277,7 @@ export default function RivertonGooglePage() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <GoldBtn href="#protocol" className="text-center">
-                See the Recovery Protocol ↓
+                View Our Services
               </GoldBtn>
               <OutlineBtn href={PHONE_TEL} className="text-center">
                 Call {PHONE_DISPLAY}
@@ -312,10 +312,10 @@ export default function RivertonGooglePage() {
                 className="text-xs font-bold tracking-[0.2em] uppercase mb-4"
                 style={{ color: "var(--zivel-gold)" }}
               >
-                Your Recovery Protocol
+                Explore Our Services
               </p>
               <h2
-                className="text-3xl sm:text-4xl font-bold mb-5 leading-tight"
+                className="text-3xl sm:text-4xl font-bold mb-5 leading-tight text-center"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 A Simple Routine That Addresses Pain
@@ -411,14 +411,38 @@ export default function RivertonGooglePage() {
             {/* Mobile step connector — decorative vertical line shown between cards on small screens */}
             {/* (handled by grid stacking; no extra element needed) */}
 
+            {/* Additional services — scannable availability list */}
+            <div className="mt-10 border-t border-white/10 pt-8">
+              <p className="text-center text-xs font-bold tracking-[0.15em] uppercase text-white/40 mb-5">
+                Also available at this location
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { name: "Dry Float",           desc: "Zero-gravity decompression" },
+                  { name: "Compression Therapy", desc: "Lymphatic drainage & circulation" },
+                  { name: "CryoLift Facial",     desc: "Cryo-based facial treatment" },
+                  { name: "Cryo Slimming",       desc: "Body contouring" },
+                ].map((s) => (
+                  <div
+                    key={s.name}
+                    className="rounded-lg border border-white/10 px-4 py-3 text-center"
+                    style={{ backgroundColor: "rgba(255,255,255,0.02)" }}
+                  >
+                    <p className="text-sm font-semibold text-white">{s.name}</p>
+                    <p className="text-xs text-white/45 mt-1">{s.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Protocol CTA */}
-            <div className="mt-14 text-center">
+            <div className="mt-12 text-center">
               <p className="text-white/50 text-sm mb-5">
-                Ask our team which combination is right for your situation.
+                Ask our team which services are right for your situation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <GoldBtn href="#lead-form" className="text-center">
-                  Ask About Membership Pricing →
+                  Explore Your Options
                 </GoldBtn>
                 <OutlineBtn href={PHONE_TEL} className="text-center">
                   Call {PHONE_DISPLAY}
@@ -490,22 +514,20 @@ export default function RivertonGooglePage() {
 
               <div className="text-center">
                 <GoldBtn href="#lead-form" className="text-center">
-                  Ask About Membership Pricing →
+                  Ask About Membership →
                 </GoldBtn>
               </div>
             </div>
 
-            {/* Single-session link — unobtrusive */}
+            {/* Single-session note — on-page, no external navigation */}
             <p className="text-center text-sm text-white/40 mt-6">
               Prefer to try a single session first?{" "}
               <a
-                href="https://www.zivel.com/locations/utah/riverton/pricing"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#lead-form"
                 className="underline underline-offset-2 hover:text-white/70 transition-colors"
                 style={{ color: "var(--zivel-gold)" }}
               >
-                View walk-in rates →
+                Contact us to explore your options.
               </a>
             </p>
 
@@ -721,25 +743,24 @@ export default function RivertonGooglePage() {
                   className="text-3xl sm:text-4xl font-bold mb-5 leading-tight"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
-                  Ask About
+                  Find the Right
                   <br />
-                  <span style={{ color: "var(--zivel-gold)" }}>Membership Pricing</span>
+                  <span style={{ color: "var(--zivel-gold)" }}>Option for You</span>
                 </h2>
                 <p className="text-white/65 leading-relaxed mb-8">
-                  Fill out the form and our Riverton team will reach out to walk you
-                  through which services fit your goals, how the protocol works in
-                  practice, and which membership plan makes sense for you.
-                  No commitment required.
+                  Whether you want to try a single session or explore membership
+                  options, tell us what you&rsquo;re interested in and our team
+                  will help you choose the right place to start.
                 </p>
 
                 {/* Bullets */}
                 <ul className="space-y-3 text-sm text-white/70">
                   {[
+                    "Single sessions available — no membership required to get started",
                     "Cryo, sauna & red light — the core pain & recovery protocol",
                     "Essential membership from $99/mo — 6 sessions",
                     "Elite membership from $175/mo — 8 sessions + discounts",
-                    "Month-to-month, no long-term contracts",
-                    "Free parking · 7 days a week",
+                    "Month-to-month, no long-term contracts · free parking",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span
@@ -774,7 +795,7 @@ export default function RivertonGooglePage() {
                 style={{ backgroundColor: "rgba(255,255,255,0.03)" }}
               >
                 <h3 className="text-lg font-bold text-white mb-6">
-                  Get Membership Info
+                  Contact Zivel Riverton
                 </h3>
                 <LeadForm />
               </div>

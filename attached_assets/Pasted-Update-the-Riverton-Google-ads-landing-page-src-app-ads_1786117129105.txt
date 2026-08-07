@@ -1,0 +1,55 @@
+Update the Riverton Google ads landing page (src/app/ads/riverton-google/ and related components) based on marketing feedback. Do not change other site pages.
+
+1) Primary CTA label
+- Change “See the Recovery Protocol” to “View Our Services”
+- Keep the same scroll/anchor behavior (to the services section)
+
+2) “Your Recovery Protocol” section
+- Rename heading to “Explore Our Services”
+- Keep the three primary highlighted services as they are
+- Under those three, add a simple scannable list of the remaining Zivel services offered at Riverton so visitors can quickly confirm availability
+- Keep styling consistent with the page; do not add a large new section
+
+3) Membership CTA tone
+- Keep some membership CTAs, but broaden several throughout the page
+- Replace a meaningful subset of “Ask About Membership” with softer options:
+  - “Explore Your Options”
+  - and/or “Contact Zivel Riverton”
+- Goal: single-session searchers are not pushed only toward membership
+
+4) Final CTA / form section
+- Heading: “Find the Right Option for You”
+- Supporting copy: “Whether you want to try a single session or explore membership options, tell us what you’re interested in and our team will help you choose the right place to start.”
+- Form heading: “Contact Zivel Riverton”
+- Default dropdown option: “Help me choose”
+- Submit button: “Explore My Options” (preferred) or “Request More Information”
+- Keep the form functional (same fields/server action behavior unless a small label change is required)
+
+5) Keep visitors on-page
+- Replace the “View walk-in rates” link with on-page copy:
+  “Prefer to try a single session first? Contact us to explore your options.”
+- This should scroll to the contact form section (no external navigation)
+
+6) Form success redirect
+- After successful form submit, redirect to:
+  https://www.zivel.com/riverton-google-thank-you
+- Create a simple branded thank-you page at that route if it does not exist
+- Thank-you page should confirm the request was received and offer a home/location link
+- Do not break existing lead email delivery
+
+7) Desktop layout cleanup
+- Fix section header text that appears off-center on desktop
+- Align headings consistently across sections without redesigning the page
+
+Constraints:
+- Keep brand styling (black/gold, fonts, spacing language)
+- Do not touch main marketing site pages outside this ads landing flow
+- Preserve lead capture + email to location
+- Confirm build passes
+- Do not push yet
+
+After changes, summarize:
+- Exact CTA text updates
+- Services list added under Explore Our Services
+- Form/redirect path
+- Any layout files touched

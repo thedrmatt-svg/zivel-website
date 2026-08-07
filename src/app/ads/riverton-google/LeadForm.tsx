@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { submitLead, type LeadFormState } from "./actions";
 
 export default function LeadForm() {
@@ -16,25 +16,12 @@ export default function LeadForm() {
     });
   }
 
-  if (state?.status === "success") {
-    return (
-      <div className="text-center py-12 px-4">
-        <div
-          className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl"
-          style={{ backgroundColor: "var(--zivel-gold)", color: "#000" }}
-        >
-          ✓
-        </div>
-        <p
-          className="text-xl font-semibold mb-3"
-          style={{ color: "var(--zivel-gold)" }}
-        >
-          Message received!
-        </p>
-        <p className="text-white/70 max-w-sm mx-auto">{state.message}</p>
-      </div>
-    );
-  }
+  // Redirect to thank-you page on successful submission
+  useEffect(() => {
+    if (state?.status === "success") {
+      window.location.href = "https://www.zivel.com/riverton-google-thank-you";
+    }
+  }, [state]);
 
   const inputClass =
     "w-full px-4 py-3 bg-white/10 border border-white/20 rounded text-white placeholder-white/40 focus:outline-none focus:border-[var(--zivel-gold)] focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black transition-colors text-sm";
@@ -85,10 +72,10 @@ export default function LeadForm() {
             style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
           >
             <option
-              value="Membership pricing"
+              value="Help me choose"
               style={{ backgroundColor: "#111", color: "#fff" }}
             >
-              Membership pricing
+              Help me choose
             </option>
             <option
               value="Cryotherapy"
@@ -174,7 +161,7 @@ export default function LeadForm() {
         className="w-full py-4 text-sm font-bold tracking-widest uppercase rounded transition-opacity disabled:opacity-60 hover:opacity-90"
         style={{ backgroundColor: "var(--zivel-gold)", color: "#000" }}
       >
-        {isPending ? "Sending…" : "Ask About Membership Pricing →"}
+        {isPending ? "Sending…" : "Explore My Options"}
       </button>
 
       <p className="text-xs text-white/40 text-center pt-1">
