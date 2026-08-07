@@ -515,7 +515,9 @@ export default function RivertonGooglePage() {
                   </p>
                   <p className="text-sm text-white/60 mb-4">30 sessions / month</p>
                   <a
-                    href="#"
+                    href="https://app.clubready.com/JoinUs/14841/649000"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-block px-6 py-2.5 text-xs font-bold tracking-widest uppercase rounded border transition-colors hover:bg-white/10"
                     style={{ borderColor: "var(--zivel-gold)", color: "var(--zivel-gold)" }}
                   >
