@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import LeadForm from "./LeadForm";
+import FAQAccordion from "./FAQAccordion";
 import GoogleAdsScript from "@/components/consent/GoogleAdsScript";
 
 // ── Location constants ────────────────────────────────────────────────────────
@@ -714,19 +715,7 @@ export default function RivertonGooglePage() {
               </h2>
             </div>
 
-            <div className="space-y-0 divide-y divide-white/10 border border-white/10 rounded-xl overflow-hidden">
-              {FAQS.map((faq, i) => (
-                <div key={i} className="p-6" style={{ backgroundColor: "rgba(255,255,255,0.02)" }}>
-                  <p
-                    className="font-semibold text-white mb-3 leading-snug"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    {faq.q}
-                  </p>
-                  <p className="text-white/65 text-sm leading-relaxed">{faq.a}</p>
-                </div>
-              ))}
-            </div>
+            <FAQAccordion faqs={FAQS} />
           </div>
         </section>
 
