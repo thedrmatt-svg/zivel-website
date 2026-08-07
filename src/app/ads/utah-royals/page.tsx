@@ -79,29 +79,14 @@ export default function UtahRoyalsPage() {
 
           {/* Athlete image — right half */}
           <div className="absolute inset-y-0 right-0 w-full lg:w-[52%]">
-            {/*
-              SWAP THIS DIV FOR:
-              <Image
-                src="/images/ads/royals-athlete.jpg"
-                alt="Utah Royals athlete"
-                fill
-                style={{ objectFit: "cover", objectPosition: "center top" }}
-                priority
-              />
-            */}
-            <div
-              className="absolute inset-0"
-              style={{ background: `linear-gradient(135deg, #00071a 0%, #000510 60%, #000308 100%)` }}
+            <Image
+              src="/images/ads/royals-athlete.jpg"
+              alt="Utah Royals athlete on the pitch"
+              fill
+              sizes="(max-width: 1024px) 100vw, 52vw"
+              style={{ objectFit: "cover", objectPosition: "center top" }}
+              priority
             />
-            <div
-              className="absolute inset-0 opacity-40"
-              style={{ background: `radial-gradient(ellipse at 70% 50%, ${NAVY}88, transparent 65%)` }}
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 select-none" aria-hidden="true">
-              <span className="text-[9rem] opacity-10">⚽</span>
-              <span className="text-xs uppercase tracking-[0.3em] text-white/10">Athlete photo · /images/ads/royals-athlete.jpg</span>
-            </div>
           </div>
 
           {/* Left-to-center fade */}

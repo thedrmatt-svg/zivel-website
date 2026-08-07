@@ -80,29 +80,14 @@ export default function SaltLakeBeesPage() {
 
           {/* Athlete image — right half, bleeds to edge */}
           <div className="absolute inset-y-0 right-0 w-full lg:w-[52%]">
-            {/*
-              SWAP THIS DIV FOR:
-              <Image
-                src="/images/ads/bees-athlete.jpg"
-                alt="Salt Lake Bees athlete"
-                fill
-                style={{ objectFit: "cover", objectPosition: "center top" }}
-                priority
-              />
-            */}
-            <div
-              className="absolute inset-0"
-              style={{ background: `linear-gradient(135deg, #1a1400 0%, #0d0a00 60%, #080600 100%)` }}
+            <Image
+              src="/images/ads/bees-athlete.jpg"
+              alt="Salt Lake Bees athlete in stadium"
+              fill
+              sizes="(max-width: 1024px) 100vw, 52vw"
+              style={{ objectFit: "cover", objectPosition: "center top" }}
+              priority
             />
-            <div
-              className="absolute inset-0 opacity-30"
-              style={{ background: `radial-gradient(ellipse at 70% 50%, ${TEAM_ACCENT}44, transparent 65%)` }}
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 select-none" aria-hidden="true">
-              <span className="text-[9rem] opacity-10">⚾</span>
-              <span className="text-xs uppercase tracking-[0.3em] text-white/10">Athlete photo · /images/ads/bees-athlete.jpg</span>
-            </div>
           </div>
 
           {/* Left-to-center gradient that ensures text legibility over the image */}
