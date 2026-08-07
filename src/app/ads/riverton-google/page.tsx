@@ -539,6 +539,12 @@ export default function RivertonGooglePage() {
         <section className="py-20 bg-[#0d0d0d]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
+              <p
+                className="text-xs font-bold tracking-[0.2em] uppercase mb-3"
+                style={{ color: "var(--zivel-gold)" }}
+              >
+                Google Reviews
+              </p>
               <div className="flex items-center justify-center gap-3 mb-2">
                 <StarRow count={5} />
                 <span className="text-2xl font-bold text-white">5.0</span>
