@@ -237,17 +237,7 @@ export default function RivertonGooglePage() {
       <main id="main-content" tabIndex={-1}>
 
         {/* ── 2. Hero — pain/recovery focus ─────────────────────────────────── */}
-        <section className="relative min-h-[88vh] flex items-center">
-          <Image
-            src="/images/locations/riverton/hero.jpg"
-            alt="Zivel Riverton wellness studio — cryotherapy, infrared sauna, and red light therapy"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/65 to-black/90" />
-
+        <section className="relative min-h-[88vh] flex items-center" style={{ backgroundColor: "#080808" }}>
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-20 text-center">
             {/* Eyebrow */}
             <p
