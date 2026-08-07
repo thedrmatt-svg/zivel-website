@@ -71,6 +71,10 @@ export default function PricingGateModal({
       if (result.status === "success") {
         setUnlocked(citySlug);
         setUnlockedState(true);
+        // Fire Meta Lead event on Coral Gables pages only (pixel loaded by MetaPixelCoralGables)
+        if (citySlug === "coral-gables") {
+          window.fbq?.("track", "Lead");
+        }
       } else {
         setError(result.message);
         setFieldErrors(result.fieldErrors ?? {});

@@ -1,0 +1,54 @@
+Install Meta Pixel for Zivel Coral Gables location pages only.
+
+Pixel ID: 565671302759908
+
+Scope (important):
+- Load this pixel ONLY on Coral Gables routes, not sitewide.
+- Target paths under:
+  - /locations/florida/coral-gables
+  - and any nested Coral Gables pages (local services, blog, pricing, pathways, etc. under that location)
+- Do NOT add this pixel to the national homepage, other locations, or unrelated ads landers.
+
+Implementation requirements (Next.js App Router):
+1. Use next/script (strategy="afterInteractive") — do not paste raw blocking <script> tags into layout HTML in a way that breaks App Router patterns.
+2. Fire standard PageView on Coral Gables page loads:
+   fbq('init', '565671302759908');
+   fbq('track', 'PageView');
+3. Include the noscript fallback image for PageView where appropriate.
+4. Prefer a small dedicated client component (e.g. MetaPixelCoralGables.tsx) that:
+   - mounts only on Coral Gables routes
+   - initializes once
+   - tracks PageView on route changes within Coral Gables if using client navigation
+5. If a contact/lead form succeeds on Coral Gables pages, also fire a conversion event:
+   - Prefer fbq('track', 'Lead')
+   - Or Contact if that better matches their Events Manager setup
+   - Fire only after successful submit (not on button click alone)
+
+CSP / third-party:
+- Update Content-Security-Policy if needed so the pixel can load:
+  - script-src / connect-src allowances for https://connect.facebook.net and https://www.facebook.com
+  - img-src allowance for Facebook pixel image endpoint
+- Do not loosen CSP more than necessary.
+
+Privacy / consent:
+- If the site has a cookie consent banner for marketing cookies, gate the Meta Pixel behind marketing consent when that system exists.
+- If no consent gate is wired for marketing scripts yet, still install the pixel as requested but note that in the summary so we can add consent gating later.
+
+Do not:
+- Change page design, SEO metadata, or Lighthouse-critical head structure
+- Add the pixel globally
+- Send form field values (name/email/phone) as event parameters unless explicitly required later
+- Break existing Coral Gables form email delivery
+
+Verification notes for Matt:
+- After deploy, use Meta Events Manager → Test Events / Pixel Helper
+- PageView should appear when visiting a Coral Gables URL
+- Lead/Contact should appear after a successful form submit (if implemented)
+
+After changes:
+- List files touched
+- Confirm which routes load the pixel
+- Confirm whether Lead event was wired on form success
+- Confirm CSP updates (if any)
+- Confirm build passes
+- Do not push yet

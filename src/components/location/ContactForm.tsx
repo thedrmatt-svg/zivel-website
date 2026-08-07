@@ -18,10 +18,14 @@ export default function ContactForm({ locationSlug, locationName, locationPhone,
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state.status === "success" && formRef.current) {
-      formRef.current.reset();
+    if (state.status === "success") {
+      if (formRef.current) formRef.current.reset();
+      // Fire Meta Lead event on Coral Gables pages only (pixel loaded by MetaPixelCoralGables)
+      if (locationSlug === "coral-gables") {
+        window.fbq?.("track", "Lead");
+      }
     }
-  }, [state.status]);
+  }, [state.status, locationSlug]);
 
   const inputClass =
     "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/35 transition focus:border-[var(--zivel-gold)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--zivel-gold)] focus-visible:ring-offset-1 focus-visible:ring-offset-black";

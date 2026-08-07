@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import GoogleAdsScript from "@/components/consent/GoogleAdsScript";
+import MetaPixelCoralGables from "@/components/consent/MetaPixelCoralGables";
 import { notFound } from "next/navigation";
 
 import BookingWidget from "@/components/booking/BookingWidget";
@@ -283,6 +284,8 @@ export default async function LocationPage({
       {location.slug === "riverton" && (
         <GoogleAdsScript id="AW-11334656695" />
       )}
+      {/* Meta Pixel — Coral Gables only, consent-gated */}
+      {location.slug === "coral-gables" && <MetaPixelCoralGables />}
       <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
 
       {/* ========== HERO (DARK) ========== */}
