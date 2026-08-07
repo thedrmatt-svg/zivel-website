@@ -1,0 +1,92 @@
+Create three new sports-team Google ads landing pages for Zivel, modeled on the existing Riverton Google ads landing page (src/app/ads/riverton-google/).
+
+Create these routes:
+1. /ads/salt-lake-bees
+2. /ads/real-salt-lake
+3. /ads/utah-royals
+
+Mirror the architecture of the Riverton Google ads page (layout, lead form, server action, thank-you redirect pattern, mobile + desktop structure). Do not change the main marketing site pages.
+
+═══════════════════════════════════════
+SHARED OFFER (all three pages)
+═══════════════════════════════════════
+- Headline offer: 30% OFF ANY SERVICE
+- Sub-offer: FIRST VISIT JUST $5 FOR FIRST-TIME VISITORS
+- Badge: OFFICIAL WELLNESS PARTNER
+- Lead form fields: Name, Email, Phone, Service Interested In (dropdown), submit button “GET STARTED”
+- Form note: New clients only
+- Service icons row (same five on all pages):
+  - Red Light Therapy
+  - Sauna or Cryochamber
+  - Compression Therapy
+  - Float Therapy
+  - Oxygen Therapy
+- Trust badges row:
+  - Science-Backed Solutions
+  - Trusted by Athletes
+  - Premium Equipment
+  - Locally Owned & Operated
+- Keep visitors on-page; form should capture the lead and email the Riverton / Utah location team (or the existing location email pattern used on riverton-google)
+- After successful submit, redirect to a dedicated thank-you page per team:
+  - /ads/salt-lake-bees-thank-you
+  - /ads/real-salt-lake-thank-you
+  - /ads/utah-royals-thank-you
+- Create simple branded thank-you pages confirming the request was received
+
+═══════════════════════════════════════
+PAGE 1 — SALT LAKE BEES
+Route: /ads/salt-lake-bees
+Theme: Black / gold / yellow (Bees identity)
+Hero visual: Baseball player motif (placeholder image OK until official assets arrive)
+Partner lockup: SALT LAKE BEES × ZIVEL — OFFICIAL WELLNESS PARTNER
+Tagline under services: WELLNESS. PERFORM. THRIVE.
+Supporting line: Premium wellness services trusted by athletes.
+Footer line: OFFICIAL WELLNESS PARTNER OF THE SALT LAKE BEES
+Footer CTA line: FEEL BETTER. PERFORM BETTER.
+Form panel color: dark navy/black with gold button
+
+═══════════════════════════════════════
+PAGE 2 — REAL SALT LAKE
+Route: /ads/real-salt-lake
+Theme: Maroon / burgundy / cream (RSL identity)
+Hero visual: Soccer player motif (placeholder OK)
+Partner lockup: REAL SALT LAKE × ZIVEL — OFFICIAL WELLNESS PARTNER
+Tagline under services: WELLNESS. ELEVATE. PERFORM.
+Supporting line: Advanced wellness. Elevated performance.
+Footer line: OFFICIAL WELLNESS PARTNER OF REAL SALT LAKE
+Footer CTA line: RECOVER TODAY. WIN TOMORROW.
+Form panel color: maroon with gold button
+
+═══════════════════════════════════════
+PAGE 3 — UTAH ROYALS
+Route: /ads/utah-royals
+Theme: Navy / gold (Royals identity)
+Hero visual: Women’s soccer player motif (placeholder OK)
+Partner lockup: UTAH ROYALS × ZIVEL — OFFICIAL WELLNESS PARTNER
+Tagline under services: WELLNESS. STRONGER. TOGETHER.
+Supporting line: Recovery solutions for every athlete.
+Footer line: OFFICIAL WELLNESS PARTNER OF UTAH ROYALS
+Footer CTA line: STRONGER WELLNESS. STRONGER TOGETHER.
+Form panel color: navy with gold button
+
+═══════════════════════════════════════
+IMPLEMENTATION NOTES
+═══════════════════════════════════════
+- Reuse as much as possible from src/app/ads/riverton-google/ (layout patterns, form component, server action, validation, email wiring)
+- Team logos: use placeholder image slots / alt text for now. Matt will supply official logos later — structure the components so logo paths are easy to swap (e.g. /images/ads/bees-logo.png, /images/ads/rsl-logo.png, /images/ads/royals-logo.png)
+- Hero athlete images: placeholders OK; keep next/image ready
+- Match the visual structure of the provided mockups (hero offer left, athlete right; services icons + form below; trust row; branded footer)
+- Desktop: section headers centered/aligned cleanly (no off-center headers)
+- Mobile: stack cleanly; form usable; CTA visible
+- Keep brand fonts consistent with existing ads layouts (Playfair / Inter or whatever riverton-google already uses)
+- SEO: basic title + meta description per page (noindex is fine if these are pure ad landers — match whatever riverton-google does)
+- Do not add these to the main sitemap unless riverton-google is already included
+- Confirm build passes
+- Do not push yet
+
+After implementation, summarize:
+1. Routes created
+2. Files added/changed
+3. Form email destination used
+4. Thank-you routes
+5. Where to drop the official team logos when ready
