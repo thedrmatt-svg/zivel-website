@@ -109,7 +109,7 @@ const FAQS = [
   },
   {
     q: "What's included in a membership?",
-    a: "Essential includes 6 recovery sessions per month ($99/mo). Elite includes 8 sessions plus premium service discounts ($175/mo, most popular). Both plans work across any of our core services — cryo, sauna, red light, float, compression, and more.",
+    a: "Essential includes 6 sessions per month ($99/mo). Premier includes 20 sessions per month ($175/mo, most popular). Platinum includes 30 sessions per month ($250/mo). All plans work across any of our core services — cryo, sauna, red light, float, compression, and more.",
   },
   {
     q: "Is cryotherapy safe?",
@@ -467,7 +467,14 @@ export default function RivertonGooglePage() {
                   >
                     Essential
                   </p>
-                  <p className="text-sm text-white/60">6 sessions / month</p>
+                  <p className="text-sm text-white/60 mb-4">6 sessions / month</p>
+                  <a
+                    href="#"
+                    className="inline-block px-6 py-2.5 text-xs font-bold tracking-widest uppercase rounded border transition-colors hover:bg-white/10"
+                    style={{ borderColor: "var(--zivel-gold)", color: "var(--zivel-gold)" }}
+                  >
+                    Buy Now
+                  </a>
                 </div>
 
                 <div className="hidden sm:block w-px h-16 bg-white/15" aria-hidden="true" />
@@ -478,7 +485,7 @@ export default function RivertonGooglePage() {
                     className="text-xs font-bold tracking-[0.15em] uppercase mt-2 mb-1"
                     style={{ color: "var(--zivel-gold)" }}
                   >
-                    Elite{" "}
+                    Premier{" "}
                     <span
                       className="text-xs font-bold tracking-wider uppercase px-2 py-0.5 rounded-full align-middle"
                       style={{ backgroundColor: "var(--zivel-gold)", color: "#000" }}
@@ -486,7 +493,34 @@ export default function RivertonGooglePage() {
                       Most Popular
                     </span>
                   </p>
-                  <p className="text-sm text-white/60">8 sessions + service discounts</p>
+                  <p className="text-sm text-white/60 mb-4">20 sessions / month</p>
+                  <a
+                    href="#"
+                    className="inline-block px-6 py-2.5 text-xs font-bold tracking-widest uppercase rounded text-black transition-opacity hover:opacity-90"
+                    style={{ backgroundColor: "var(--zivel-gold)" }}
+                  >
+                    Buy Now
+                  </a>
+                </div>
+
+                <div className="hidden sm:block w-px h-16 bg-white/15" aria-hidden="true" />
+
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-white">$250<span className="text-base text-white/50">/mo</span></p>
+                  <p
+                    className="text-xs font-bold tracking-[0.15em] uppercase mt-2 mb-1"
+                    style={{ color: "var(--zivel-gold)" }}
+                  >
+                    Platinum
+                  </p>
+                  <p className="text-sm text-white/60 mb-4">30 sessions / month</p>
+                  <a
+                    href="#"
+                    className="inline-block px-6 py-2.5 text-xs font-bold tracking-widest uppercase rounded border transition-colors hover:bg-white/10"
+                    style={{ borderColor: "var(--zivel-gold)", color: "var(--zivel-gold)" }}
+                  >
+                    Buy Now
+                  </a>
                 </div>
               </div>
 
@@ -716,7 +750,8 @@ export default function RivertonGooglePage() {
                     "Single sessions available — no membership required to get started",
                     "Cryo, sauna & red light — the core pain & recovery protocol",
                     "Essential membership from $99/mo — 6 sessions",
-                    "Elite membership from $175/mo — 8 sessions + discounts",
+                    "Premier membership from $175/mo — 20 sessions",
+                    "Platinum membership from $250/mo — 30 sessions",
                     "Month-to-month, no long-term contracts · free parking",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
