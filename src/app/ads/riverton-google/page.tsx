@@ -298,12 +298,6 @@ export default function RivertonGooglePage() {
 
             {/* Section header */}
             <div className="text-center mb-16">
-              <p
-                className="text-xs font-bold tracking-[0.2em] uppercase mb-4"
-                style={{ color: "var(--zivel-gold)" }}
-              >
-                Explore Our Services
-              </p>
               <h2
                 className="text-3xl sm:text-4xl font-bold mb-5 leading-tight text-center"
                 style={{ fontFamily: "var(--font-playfair)" }}
@@ -448,12 +442,6 @@ export default function RivertonGooglePage() {
 
             {/* Membership tiers */}
             <div className="text-center mb-10">
-              <p
-                className="text-xs font-bold tracking-[0.2em] uppercase mb-3"
-                style={{ color: "var(--zivel-gold)" }}
-              >
-                Membership Plans
-              </p>
               <h2
                 className="text-2xl sm:text-3xl font-bold mb-3"
                 style={{ fontFamily: "var(--font-playfair)" }}
@@ -527,9 +515,6 @@ export default function RivertonGooglePage() {
         {/* ── 5. Phone CTA band ─────────────────────────────────────────────── */}
         <section className="py-14 bg-black border-y border-white/10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-            <p className="text-white/60 text-sm uppercase tracking-widest mb-3 font-semibold">
-              Prefer to talk first?
-            </p>
             <p
               className="text-3xl sm:text-4xl font-bold mb-2"
               style={{ fontFamily: "var(--font-playfair)" }}
@@ -554,12 +539,6 @@ export default function RivertonGooglePage() {
         <section className="py-20 bg-[#0d0d0d]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
-              <p
-                className="text-xs font-bold tracking-[0.2em] uppercase mb-3"
-                style={{ color: "var(--zivel-gold)" }}
-              >
-                Google Reviews
-              </p>
               <div className="flex items-center justify-center gap-3 mb-2">
                 <StarRow count={5} />
                 <span className="text-2xl font-bold text-white">5.0</span>
@@ -600,12 +579,6 @@ export default function RivertonGooglePage() {
         <section className="py-20 bg-black">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
-              <p
-                className="text-xs font-bold tracking-[0.2em] uppercase mb-3"
-                style={{ color: "var(--zivel-gold)" }}
-              >
-                Find Us
-              </p>
               <h2
                 className="text-2xl sm:text-3xl font-bold"
                 style={{ fontFamily: "var(--font-playfair)" }}
@@ -687,12 +660,6 @@ export default function RivertonGooglePage() {
         <section className="py-20 bg-[#0d0d0d]">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
-              <p
-                className="text-xs font-bold tracking-[0.2em] uppercase mb-3"
-                style={{ color: "var(--zivel-gold)" }}
-              >
-                Got Questions?
-              </p>
               <h2
                 className="text-2xl sm:text-3xl font-bold"
                 style={{ fontFamily: "var(--font-playfair)" }}
@@ -723,12 +690,6 @@ export default function RivertonGooglePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               {/* Left: copy */}
               <div>
-                <p
-                  className="text-xs font-bold tracking-[0.2em] uppercase mb-4"
-                  style={{ color: "var(--zivel-gold)" }}
-                >
-                  Ready to Feel Better?
-                </p>
                 <h2
                   className="text-3xl sm:text-4xl font-bold mb-5 leading-tight"
                   style={{ fontFamily: "var(--font-playfair)" }}
