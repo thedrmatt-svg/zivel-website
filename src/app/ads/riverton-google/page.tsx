@@ -105,11 +105,11 @@ const FAQS = [
   },
   {
     q: "Is a membership worth it if I'm just getting started?",
-    a: "Yes — the Essential membership at $99/mo is designed specifically for beginners. Six sessions a month gives you enough frequency to actually feel results, at a fraction of the walk-in rate. Most members see a difference within the first two weeks.",
+    a: "Yes — the Core membership at $99/mo is designed specifically for beginners. Six sessions a month gives you enough frequency to actually feel results, at a fraction of the walk-in rate. Most members see a difference within the first two weeks.",
   },
   {
     q: "What's included in a membership?",
-    a: "Essential includes 6 sessions per month ($99/mo). Premier includes 20 sessions per month ($175/mo, most popular). Platinum includes 30 sessions per month ($250/mo). All plans work across any of our core services — cryo, sauna, red light, float, compression, and more.",
+    a: "Core includes 6 sessions per month ($99/mo). Premier includes 20 sessions per month ($175/mo, most popular). Platinum includes 30 sessions per month ($250/mo). All plans work across any of our core services — cryo, sauna, red light, float, compression, and more.",
   },
   {
     q: "Is cryotherapy safe?",
@@ -465,11 +465,13 @@ export default function RivertonGooglePage() {
                     className="text-xs font-bold tracking-[0.15em] uppercase mt-2 mb-1"
                     style={{ color: "var(--zivel-gold)" }}
                   >
-                    Essential
+                    Core
                   </p>
                   <p className="text-sm text-white/60 mb-4">6 sessions / month</p>
                   <a
-                    href="#"
+                    href="https://app.clubready.com/JoinUs/14841/649002"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-block px-6 py-2.5 text-xs font-bold tracking-widest uppercase rounded border transition-colors hover:bg-white/10"
                     style={{ borderColor: "var(--zivel-gold)", color: "var(--zivel-gold)" }}
                   >
@@ -753,7 +755,7 @@ export default function RivertonGooglePage() {
                   {[
                     "Single sessions available — no membership required to get started",
                     "Cryo, sauna & red light — the core pain & recovery protocol",
-                    "Essential membership from $99/mo — 6 sessions",
+                    "Core membership from $99/mo — 6 sessions",
                     "Premier membership from $175/mo — 20 sessions",
                     "Platinum membership from $250/mo — 30 sessions",
                     "Month-to-month, no long-term contracts · free parking",
