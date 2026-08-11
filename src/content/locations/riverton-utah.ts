@@ -117,6 +117,7 @@ export const zivel_riverton_location: Location = {
       { name: "Compression Therapy", price: "$30", note: "Single session" },
       { name: "Oxygen Bar", price: "$30", note: "Single session" },
       { name: "Cryo Slimming", price: "$350", note: "Single session" },
+      { name: "Cryo Slimming Series", price: "Contact store for pricing", note: "Series" },
       { name: "Cryo Toning", price: "$350", note: "Single session" },
       { name: "CryoLift Facial", price: "$150", note: "Single session" },
       { name: "Cryo Soothe", price: "$30", note: "Single session" },
