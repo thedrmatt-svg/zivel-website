@@ -868,12 +868,12 @@ const LOCAL_CONTENT: Record<string, LocalServiceContent> = {
       {
         name: "Cryo Slimming Session",
         desc: "A single-area cryo slimming session using cooling applicators to target stubborn fat in a specific zone — abdomen, thighs, flanks, or arms. Includes consultation to identify the right target area and session parameters for your goals.",
-        price: "$75 / session",
+        price: "$350 / session",
       },
       {
         name: "Cryo Slimming Series",
-        desc: "A multi-session series spaced over several weeks to build on cumulative results. Best suited for clients with specific contouring goals who want consistent progress over time. Series pricing provides better value than individual sessions.",
-        price: "From $250 / series",
+        desc: "A multi-session series spaced over several weeks to build on cumulative results. Best suited for clients with specific contouring goals who want consistent progress over time. Contact the store for series pricing.",
+        price: "Contact store for pricing",
       },
     ],
     frequencyHeadline: "How Often Should You Do Cryo Slimming?",
