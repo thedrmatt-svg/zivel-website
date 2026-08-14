@@ -26,12 +26,15 @@ const ALLOWED_SOURCES: ReadonlySet<string> = new Set([
 
 /** Allowlist — must match the <option> values in AdsLeadForm. */
 const ALLOWED_SERVICES: ReadonlySet<string> = new Set([
-  "Red Light Therapy",
-  "Cryotherapy / Cryochamber",
-  "Infrared Sauna",
-  "Compression Therapy",
-  "Float Therapy",
-  "Oxygen Therapy",
+  "Red Light Therapy - $5/service",
+  "Cryotherapy / Cryochamber - $5/service",
+  "Infrared Sauna - $5/service",
+  "Compression Therapy - $5/service",
+  "Float Therapy - $5/service",
+  "Oxygen Therapy - $5/service",
+  "CryoLift Facial (30% Off Retail)",
+  "Cryo Body Contouring (30% Off Retail)",
+  "Cryo Toning (30% Off Retail)",
   "Not sure — help me choose",
 ]);
 
