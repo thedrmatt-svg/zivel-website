@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import CookieConsent from "@/components/consent/CookieConsent";
+import GoogleTagManagerRiverton from "@/components/consent/GoogleTagManagerRiverton";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function AdsLayout({ children }: { children: React.ReactNode }) {
         {children}
         <Analytics />
         <CookieConsent />
+        <GoogleTagManagerRiverton />
       </body>
     </html>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import GoogleTagManagerRiverton from "@/components/consent/GoogleTagManagerRiverton";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default function ThankYouLayout({ children }: { children: React.ReactNode
       <body className="min-h-screen bg-[#080808] text-white overflow-x-hidden font-[var(--font-inter)]">
         {children}
         <Analytics />
+        <GoogleTagManagerRiverton />
       </body>
     </html>
   );
