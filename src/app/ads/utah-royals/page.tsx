@@ -101,13 +101,14 @@ export default function UtahRoyalsPage() {
 
             {/* Partnership bar */}
             <div className="pt-8 sm:pt-10 flex flex-wrap items-center gap-3 sm:gap-5">
-              <span
-                className="text-sm font-black tracking-[0.2em] uppercase"
-                style={{ color: "var(--zivel-gold)" }}
-                title={`Logo placeholder — swap for Image src="${LOGO_PATH}"`}
-              >
-                ⚽ {PARTNER_LOCKUP}
-              </span>
+              <Image
+                src={LOGO_PATH}
+                alt="Utah Royals"
+                width={52}
+                height={52}
+                className="h-12 w-auto"
+                priority
+              />
               <span className="text-white/25 text-lg font-thin">×</span>
               <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={80} height={28} className="h-7 w-auto" />
               <span className="text-xs text-white/50 font-semibold tracking-widest uppercase hidden sm:block">

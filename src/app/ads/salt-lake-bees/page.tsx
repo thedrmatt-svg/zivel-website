@@ -102,14 +102,14 @@ export default function SaltLakeBeesPage() {
 
             {/* Partnership bar */}
             <div className="pt-8 sm:pt-10 flex flex-wrap items-center gap-3 sm:gap-5">
-              {/* Team logo slot — replace span with <Image src={LOGO_PATH} ...> when asset arrives */}
-              <span
-                className="text-sm font-black tracking-[0.2em] uppercase"
-                style={{ color: TEAM_ACCENT }}
-                title={`Logo placeholder — swap for Image src="${LOGO_PATH}"`}
-              >
-                ⚾ {PARTNER_LOCKUP}
-              </span>
+              <Image
+                src={LOGO_PATH}
+                alt="Salt Lake Bees"
+                width={140}
+                height={44}
+                className="h-10 w-auto"
+                priority
+              />
               <span className="text-white/25 text-lg font-thin">×</span>
               <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={80} height={28} className="h-7 w-auto" />
               <span className="text-xs text-white/50 font-semibold tracking-widest uppercase hidden sm:block">
