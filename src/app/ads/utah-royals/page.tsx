@@ -48,11 +48,11 @@ export default function UtahRoyalsPage() {
         style={{ backgroundColor: "rgba(0,3,12,0.97)", backdropFilter: "blur(10px)" }}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-1.5">
-            <a href="https://www.zivel.com" aria-label="Zivel home">
+          <div className="flex items-center">
+            <a href="https://www.zivel.com" aria-label="Zivel home" className="-mr-1.5">
               <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={72} height={24} className="h-6 w-auto" />
             </a>
-            <span className="text-white text-sm font-bold leading-none">&amp;</span>
+            <span className="text-white text-sm font-bold leading-none mx-1.5">&amp;</span>
             <span className="text-xs font-black tracking-wide uppercase" style={{ color: "var(--zivel-gold)" }}>
               {PARTNER_LOCKUP}
             </span>
