@@ -53,13 +53,13 @@ export default function RealSaltLakePage() {
             <a href="https://www.zivel.com" aria-label="Zivel home">
               <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={72} height={24} className="h-6 w-auto" />
             </a>
-            <span className="text-white/25 text-base font-thin">×</span>
+            <span className="text-white text-base font-thin">&amp;</span>
             <span className="text-xs font-black tracking-[0.15em] uppercase" style={{ color: "var(--zivel-gold)" }}>
               {PARTNER_LOCKUP}
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <a href={PHONE_TEL} className="hidden sm:block text-xs text-white/60 hover:text-white transition-colors">
+            <a href={PHONE_TEL} className="hidden sm:block text-xs text-white hover:opacity-80 transition-opacity">
               {PHONE_DISPLAY}
             </a>
             <a
@@ -101,28 +101,28 @@ export default function RealSaltLakePage() {
           <div className="relative z-10 flex-1 flex flex-col max-w-7xl mx-auto w-full px-5 sm:px-10 lg:px-16">
 
             {/* Partnership bar */}
-            <div className="pt-8 sm:pt-10 flex flex-wrap items-center gap-3 sm:gap-5">
-              <Image
-                src={LOGO_PATH}
-                alt="Real Salt Lake"
-                width={52}
-                height={52}
-                className="h-12 w-auto"
-                priority
-              />
-              <span className="text-white text-lg font-thin">&amp;</span>
-              <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={80} height={28} className="h-7 w-auto" />
-              <span className="text-xs text-white font-semibold tracking-widest uppercase hidden sm:block">
+            <div className="pt-8 sm:pt-10 flex flex-col items-center gap-3">
+              <span
+                className="px-3 py-1 text-xs font-black tracking-widest uppercase rounded-sm text-white"
+                style={{ backgroundColor: MAROON }}
+              >
+                Official Wellness Partner
+              </span>
+              <div className="flex items-center gap-3 sm:gap-5">
+                <Image
+                  src={LOGO_PATH}
+                  alt="Real Salt Lake"
+                  width={52}
+                  height={52}
+                  className="h-12 w-auto"
+                  priority
+                />
+                <span className="text-white text-lg font-thin">&amp;</span>
+                <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={80} height={28} className="h-7 w-auto" />
+              </div>
+              <span className="text-xs text-white font-semibold tracking-widest uppercase">
                 Wellness Reimagined
               </span>
-              <div className="ml-auto hidden sm:block">
-                <span
-                  className="px-3 py-1 text-xs font-black tracking-widest uppercase rounded-sm text-white"
-                  style={{ backgroundColor: MAROON }}
-                >
-                  Official Wellness Partner
-                </span>
-              </div>
             </div>
 
             {/* Offer hero copy */}
