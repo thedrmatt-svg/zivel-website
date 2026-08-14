@@ -17,11 +17,12 @@ const HERO_BG = "#090700";
 const LOGO_PATH = "/images/ads/bees-logo.png";
 
 const SERVICES_ROW = [
-  { img: "/images/home/service-redlight.jpg",    name: "Red Light Therapy",    desc: "Enhances recovery and reduces inflammation." },
-  { img: "/images/home/service-cryo.jpg",        name: "Sauna or Cryochamber", desc: "Detox, relieve stress and reduce muscle soreness." },
-  { img: "/images/home/service-compression.jpg", name: "Compression Therapy",  desc: "Improve circulation and support deep muscle recovery." },
-  { img: "/images/home/service-dryfloat.jpg",   name: "Float Therapy",         desc: "Reduce stress and promote deep relaxation." },
-  { img: "/images/home/service-oxygen.jpg",      name: "Oxygen Therapy",        desc: "Increase energy and support peak performance." },
+  { img: "/images/home/service-redlight.jpg",    name: "Red Light Therapy",   desc: "Enhances recovery and reduces inflammation." },
+  { img: "/images/home/service-cryo.jpg",        name: "Cryotherapy",         desc: "Cold therapy to reduce soreness and boost recovery." },
+  { img: "/images/home/service-sauna.jpg",       name: "Infrared Sauna",      desc: "Detox, relieve stress and reduce muscle soreness." },
+  { img: "/images/home/service-compression.jpg", name: "Compression Therapy", desc: "Improve circulation and support deep muscle recovery." },
+  { img: "/images/home/service-dryfloat.jpg",   name: "Float Therapy",        desc: "Reduce stress and promote deep relaxation." },
+  { img: "/images/home/service-oxygen.jpg",      name: "Oxygen Therapy",       desc: "Increase energy and support peak performance." },
 ];
 
 const TRUST_BADGES = [
@@ -201,7 +202,7 @@ export default function SaltLakeBeesPage() {
                 <p className="text-gray-500 text-sm mb-10 text-center sm:text-left">{SUPPORTING}</p>
 
                 {/* Service icons */}
-                <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 mb-12">
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 mb-12">
                   {SERVICES_ROW.map((s) => (
                     <div key={s.name} className="flex flex-col items-center text-center">
                       <div className="w-14 h-14 rounded-xl mb-2 overflow-hidden relative shrink-0">
