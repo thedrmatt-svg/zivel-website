@@ -20,7 +20,7 @@ const SERVICES_ROW = [
   { img: "/images/home/service-cryo.jpg",        name: "Sauna or Cryochamber", desc: "Detox, relieve stress and reduce muscle soreness." },
   { img: "/images/home/service-compression.jpg", name: "Compression Therapy",  desc: "Improve circulation and support deep muscle recovery." },
   { img: "/images/home/service-dryfloat.jpg",   name: "Float Therapy",         desc: "Reduce stress and promote deep relaxation." },
-  { img: "/images/home/service-sauna.jpg",       name: "Oxygen Therapy",        desc: "Increase energy and support peak performance." },
+  { img: "/images/home/service-oxygen.jpg",      name: "Oxygen Therapy",        desc: "Increase energy and support peak performance." },
 ];
 
 const TRUST_BADGES = [
