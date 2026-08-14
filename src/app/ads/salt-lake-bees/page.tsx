@@ -118,7 +118,7 @@ export default function SaltLakeBeesPage() {
                   priority
                 />
                 <span className="text-white text-lg font-bold">&amp;</span>
-                <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={80} height={28} className="h-7 w-auto" />
+                <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={110} height={38} className="h-10 w-auto" />
               </div>
               <span className="text-xs text-white font-semibold tracking-widest uppercase">
                 Wellness Reimagined
