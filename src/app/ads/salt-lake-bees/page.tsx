@@ -17,11 +17,11 @@ const HERO_BG = "#090700";
 const LOGO_PATH = "/images/ads/bees-logo.png";
 
 const SERVICES_ROW = [
-  { icon: "🔴", name: "Red Light Therapy",     desc: "Enhances recovery and reduces inflammation." },
-  { icon: "❄️", name: "Sauna or Cryochamber",  desc: "Detox, relieve stress and reduce muscle soreness." },
-  { icon: "💆", name: "Compression Therapy",   desc: "Improve circulation and support deep muscle recovery." },
-  { icon: "🌊", name: "Float Therapy",          desc: "Reduce stress and promote deep relaxation." },
-  { icon: "💨", name: "Oxygen Therapy",         desc: "Increase energy and support peak performance." },
+  { img: "/images/home/service-redlight.jpg",    name: "Red Light Therapy",    desc: "Enhances recovery and reduces inflammation." },
+  { img: "/images/home/service-cryo.jpg",        name: "Sauna or Cryochamber", desc: "Detox, relieve stress and reduce muscle soreness." },
+  { img: "/images/home/service-compression.jpg", name: "Compression Therapy",  desc: "Improve circulation and support deep muscle recovery." },
+  { img: "/images/home/service-dryfloat.jpg",   name: "Float Therapy",         desc: "Reduce stress and promote deep relaxation." },
+  { img: "/images/home/service-sauna.jpg",       name: "Oxygen Therapy",        desc: "Increase energy and support peak performance." },
 ];
 
 const TRUST_BADGES = [
@@ -194,21 +194,18 @@ export default function SaltLakeBeesPage() {
               {/* Left: tagline + services + trust */}
               <div>
                 <h2
-                  className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tight mb-2 leading-tight"
+                  className="text-3xl sm:text-4xl font-black text-gray-900 uppercase tracking-tight mb-2 leading-tight text-center sm:text-left"
                 >
                   {TAGLINE}
                 </h2>
-                <p className="text-gray-500 text-sm mb-10">{SUPPORTING}</p>
+                <p className="text-gray-500 text-sm mb-10 text-center sm:text-left">{SUPPORTING}</p>
 
                 {/* Service icons */}
-                <div className="grid grid-cols-5 gap-3 mb-12">
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 mb-12">
                   {SERVICES_ROW.map((s) => (
                     <div key={s.name} className="flex flex-col items-center text-center">
-                      <div
-                        className="w-12 h-12 rounded-xl mb-2 flex items-center justify-center text-2xl"
-                        style={{ backgroundColor: "#ede9e0" }}
-                      >
-                        {s.icon}
+                      <div className="w-14 h-14 rounded-xl mb-2 overflow-hidden relative shrink-0">
+                        <Image src={s.img} alt={s.name} fill className="object-cover" sizes="56px" />
                       </div>
                       <p className="text-xs font-black uppercase text-gray-800 mb-1 leading-snug">{s.name}</p>
                       <p className="text-xs text-gray-400 leading-snug hidden sm:block">{s.desc}</p>
