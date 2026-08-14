@@ -6,7 +6,7 @@ import { submitAdsLead, type AdsLeadState } from "./actions";
 // Must match ALLOWED_SERVICES in actions.ts
 const SERVICES = [
   "Red Light Therapy - $5/service",
-  "Cryotherapy / Cryochamber - $5/service",
+  "Cryotherapy - $5/service",
   "Infrared Sauna - $5/service",
   "Compression Therapy - $5/service",
   "Float Therapy - $5/service",
