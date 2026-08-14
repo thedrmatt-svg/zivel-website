@@ -687,13 +687,15 @@ export default async function LocationPage({
               Local Partners
             </p>
             <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
-              <Image
-                src="/images/ads/bees-logo.png"
-                alt="Salt Lake Bees"
-                width={160}
-                height={50}
-                className="h-14 w-auto opacity-80 hover:opacity-100 transition-opacity"
-              />
+              <a href="https://www.mlb.com/milb/salt-lake" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/images/ads/bees-logo.png"
+                  alt="Salt Lake Bees"
+                  width={160}
+                  height={50}
+                  className="h-14 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                />
+              </a>
               <Image
                 src="/images/ads/rsl-logo.png"
                 alt="Real Salt Lake"
