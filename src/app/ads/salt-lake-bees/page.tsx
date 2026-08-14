@@ -110,9 +110,9 @@ export default function SaltLakeBeesPage() {
                 className="h-10 w-auto"
                 priority
               />
-              <span className="text-white/25 text-lg font-thin">&amp;</span>
+              <span className="text-white text-lg font-thin">&amp;</span>
               <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={80} height={28} className="h-7 w-auto" />
-              <span className="text-xs text-white/50 font-semibold tracking-widest uppercase hidden sm:block">
+              <span className="text-xs text-white font-semibold tracking-widest uppercase hidden sm:block">
                 Wellness Reimagined
               </span>
               <div className="ml-auto hidden sm:block">
