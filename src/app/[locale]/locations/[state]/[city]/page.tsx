@@ -682,10 +682,10 @@ export default async function LocationPage({
           className="zv-bleed bg-[#0a0a0a] border-b border-white/10"
           style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}
         >
-          <div className="mx-auto max-w-6xl px-6 py-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/35 mb-8 text-center w-full">
+          <div className="mx-auto max-w-6xl px-6 py-8 flex flex-col items-center">
+            <span className="block text-xs font-semibold uppercase tracking-[0.25em] text-white/35 mb-8">
               Local Partners
-            </p>
+            </span>
             <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
               <a href="https://www.mlb.com/milb/salt-lake" target="_blank" rel="noopener noreferrer">
                 <Image
