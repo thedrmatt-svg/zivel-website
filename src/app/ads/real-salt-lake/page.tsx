@@ -49,12 +49,12 @@ export default function RealSaltLakePage() {
         style={{ backgroundColor: "rgba(8,1,1,0.97)", backdropFilter: "blur(10px)" }}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5">
             <a href="https://www.zivel.com" aria-label="Zivel home">
               <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={72} height={24} className="h-6 w-auto" />
             </a>
-            <span className="text-white text-base font-thin">&amp;</span>
-            <span className="text-xs font-black tracking-[0.15em] uppercase" style={{ color: "var(--zivel-gold)" }}>
+            <span className="text-white text-sm font-bold leading-none">&amp;</span>
+            <span className="text-xs font-black tracking-wide uppercase" style={{ color: "var(--zivel-gold)" }}>
               {PARTNER_LOCKUP}
             </span>
           </div>
