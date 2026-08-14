@@ -683,30 +683,30 @@ export default async function LocationPage({
           style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}
         >
           <div className="mx-auto max-w-6xl px-6 py-8">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-white/35 mb-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/35 mb-8 text-center w-full">
               Local Partners
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+            <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
               <Image
                 src="/images/ads/bees-logo.png"
                 alt="Salt Lake Bees"
-                width={120}
-                height={38}
-                className="h-9 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                width={160}
+                height={50}
+                className="h-14 w-auto opacity-80 hover:opacity-100 transition-opacity"
               />
               <Image
                 src="/images/ads/rsl-logo.png"
                 alt="Real Salt Lake"
-                width={48}
-                height={48}
-                className="h-11 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                width={64}
+                height={64}
+                className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity"
               />
               <Image
                 src="/images/ads/royals-logo.png"
                 alt="Utah Royals"
-                width={48}
-                height={48}
-                className="h-11 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                width={64}
+                height={64}
+                className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity"
               />
             </div>
           </div>
