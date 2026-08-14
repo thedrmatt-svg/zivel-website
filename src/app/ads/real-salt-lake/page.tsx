@@ -117,7 +117,7 @@ export default function RealSaltLakePage() {
                   className="h-12 w-auto"
                   priority
                 />
-                <span className="text-white text-lg font-thin">&amp;</span>
+                <span className="text-white text-lg font-bold">&amp;</span>
                 <Image src="/images/brand/zivel-logo.png" alt="Zivel" width={80} height={28} className="h-7 w-auto" />
               </div>
               <span className="text-xs text-white font-semibold tracking-widest uppercase">
