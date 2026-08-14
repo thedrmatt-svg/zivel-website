@@ -676,6 +676,43 @@ export default async function LocationPage({
         </div>
       </section>
 
+      {/* ========== LOCAL PARTNERS (Riverton only) ========== */}
+      {location.slug === "riverton" && (
+        <section
+          className="zv-bleed bg-[#0a0a0a] border-b border-white/10"
+          style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}
+        >
+          <div className="mx-auto max-w-6xl px-6 py-8">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-white/35 mb-6">
+              Local Partners
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+              <Image
+                src="/images/ads/bees-logo.png"
+                alt="Salt Lake Bees"
+                width={120}
+                height={38}
+                className="h-9 w-auto opacity-80 hover:opacity-100 transition-opacity"
+              />
+              <Image
+                src="/images/ads/rsl-logo.png"
+                alt="Real Salt Lake"
+                width={48}
+                height={48}
+                className="h-11 w-auto opacity-80 hover:opacity-100 transition-opacity"
+              />
+              <Image
+                src="/images/ads/royals-logo.png"
+                alt="Utah Royals"
+                width={48}
+                height={48}
+                className="h-11 w-auto opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ========== CONTACT INFO (alternating) ========== */}
       {location.contact?.address && (
         <>
