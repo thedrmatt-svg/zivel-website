@@ -32,9 +32,9 @@ const ALLOWED_SERVICES: ReadonlySet<string> = new Set([
   "Compression Therapy - $5/service",
   "Float Therapy - $5/service",
   "Oxygen Therapy - $5/service",
-  "CryoLift Facial (30% Off Retail)",
-  "Cryo Body Contouring (30% Off Retail)",
-  "Cryo Toning (30% Off Retail)",
+  "CryoLift Facial - 30% Off Retail",
+  "Cryo Body Contouring - 30% Off Retail",
+  "Cryo Toning - 30% Off Retail",
   "Not sure — help me choose",
 ]);
 
