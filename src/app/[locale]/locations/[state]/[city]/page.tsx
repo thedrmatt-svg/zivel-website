@@ -705,13 +705,15 @@ export default async function LocationPage({
                   className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity"
                 />
               </a>
-              <Image
-                src="/images/ads/royals-logo.png"
-                alt="Utah Royals"
-                width={64}
-                height={64}
-                className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity"
-              />
+              <a href="https://www.rsl.com/utahroyals/" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/images/ads/royals-logo.png"
+                  alt="Utah Royals"
+                  width={64}
+                  height={64}
+                  className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                />
+              </a>
             </div>
           </div>
         </section>
