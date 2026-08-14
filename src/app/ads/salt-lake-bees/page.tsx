@@ -108,7 +108,7 @@ export default function SaltLakeBeesPage() {
               >
                 Official Wellness Partner
               </span>
-              <div className="flex items-center gap-3 sm:gap-5">
+              <div className="flex items-center justify-center gap-3 sm:gap-5">
                 <Image
                   src={LOGO_PATH}
                   alt="Salt Lake Bees"
