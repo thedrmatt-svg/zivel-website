@@ -162,7 +162,7 @@ export default function SaltLakeBeesPage() {
                 JUST $5
               </p>
               <p className="text-xs text-white/50 uppercase tracking-[0.2em] mb-10">
-                For first-time visitors
+                For Wellness Services Only
               </p>
 
               {/* CTAs */}
