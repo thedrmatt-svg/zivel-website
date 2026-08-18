@@ -215,7 +215,7 @@ export default async function LocationPricingPage({
             </h1>
             <p className="mt-4 text-lg text-white/60 max-w-xl leading-relaxed">
               Local pricing and membership options for Zivel {cityDisplay}.
-              Unlock full details below.
+              {location.citySlug !== "windermere" && " Unlock full details below."}
             </p>
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={150}>
@@ -259,7 +259,7 @@ export default async function LocationPricingPage({
       {/* GATED CONTENT */}
       <section className="zv-bleed zv-section-elevated py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay} locationEmail={location.contact?.email}>
+          <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay} locationEmail={location.contact?.email} bypass={location.citySlug === "windermere"}>
             <div className="space-y-20">
 
               {/* ── MEMBERSHIPS ── */}

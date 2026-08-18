@@ -37,11 +37,13 @@ export default function PricingGateModal({
   cityDisplay,
   locationEmail,
   children,
+  bypass = false,
 }: {
   citySlug: string;
   cityDisplay: string;
   locationEmail?: string;
   children: React.ReactNode;
+  bypass?: boolean;
 }) {
   const [unlocked, setUnlockedState] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -51,11 +53,15 @@ export default function PricingGateModal({
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
+    if (bypass) return;
     setMounted(true);
     if (isUnlocked(citySlug)) {
       setUnlockedState(true);
     }
-  }, [citySlug]);
+  }, [citySlug, bypass]);
+
+  // bypass mode: pricing is open — skip gate entirely
+  if (bypass) return <>{children}</>;
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
