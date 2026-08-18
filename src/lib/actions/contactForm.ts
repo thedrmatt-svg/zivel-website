@@ -219,7 +219,10 @@ export async function submitContactForm(
     };
   }
 
-  const toEmail = locations.find((l) => l.slug === locationSlug)?.contact?.email || `${locationSlug}@zivel.com`;
+  const primaryEmail = locations.find((l) => l.slug === locationSlug)?.contact?.email || `${locationSlug}@zivel.com`;
+  const toEmail: string | string[] = locationSlug === "coral-gables"
+    ? [primaryEmail, "mikeaguirre@zivel.com"]
+    : primaryEmail;
 
   const html = buildEmailHtml({
     firstName,
