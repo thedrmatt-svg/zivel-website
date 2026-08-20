@@ -29,12 +29,21 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/franchise`,
     siteName: "Zivel",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/images/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Zivel Studios",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Own a Zivel Franchise | Performance & Recovery",
     description:
       "Own the nation's first non-medical, all-in-one Performance & Recovery franchise. $327K–$429K investment, ranked #45 Entrepreneur 2026.",
+    images: [`${SITE_URL}/images/og-image.jpg`],
   },
 };
 

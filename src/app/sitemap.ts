@@ -142,10 +142,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const LOCATION_IMAGES = [
-    `${SITE_URL}/images/locations/studio-hero.jpg`,
-    `${SITE_URL}/images/locations/studio-about.jpg`,
-  ];
+  const LOCATION_IMAGES = [`${SITE_URL}/images/og-image.jpg`];
 
   const locationPages: MetadataRoute.Sitemap = locations.map((l) => ({
     url: `${SITE_URL}/locations/${l.stateSlug}/${l.citySlug}`,

@@ -24,12 +24,21 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/press`,
     siteName: "Zivel",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/images/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Zivel Studios",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Press & Media | Zivel",
     description:
       "Zivel Press and Media — Learn about our story, scientific research, media features, and wellness innovations in recovery and performance.",
+    images: [`${SITE_URL}/images/og-image.jpg`],
   },
 };
 
