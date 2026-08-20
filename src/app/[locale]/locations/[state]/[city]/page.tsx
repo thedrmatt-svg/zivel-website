@@ -73,14 +73,15 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es${basePath}`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
 
-  // Use the location's hero image if it is a JPEG (safe for social crawlers).
-  // AVIF and SVG are not reliably supported by Facebook/Twitter/LinkedIn crawlers.
-  // Most locations use the shared studio-hero.jpg; specific locations with JPG
-  // hero images get their own. Falls back to the brand share image otherwise.
+  // Use a location's real hero image when it is a JPEG (safe for social crawlers).
+  // The shared studio-hero.jpg is an old stock image, so do not use it for
+  // social previews. AVIF and SVG are also not reliably supported by crawlers.
   const heroPath = location.hero?.image ?? "";
-  const ogImagePath = /\.(jpg|jpeg)$/i.test(heroPath)
+  const hasUsableSocialImage =
+    /\.(jpg|jpeg)$/i.test(heroPath) && !heroPath.endsWith("/studio-hero.jpg");
+  const ogImagePath = hasUsableSocialImage
     ? heroPath
-    : "/images/locations/studio-hero.jpg";
+    : "/images/og-image.jpg";
   const ogImage = `${SITE_URL}${ogImagePath}`;
 
   return {
