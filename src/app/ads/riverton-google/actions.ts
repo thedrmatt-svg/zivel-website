@@ -7,7 +7,7 @@ export type LeadFormState = {
   message: string;
 } | null;
 
-const TO_ADDRESSES = ["riverton@zivel.com", "jackson@zivel.com"];
+const TO_ADDRESSES = ["vtzk5gc2@robot.zapier.com"];
 
 function buildLeadHtml({
   name,
@@ -123,7 +123,7 @@ function buildLeadHtml({
           <tr>
             <td style="background:#0a0a0a;padding:24px 40px;text-align:center;">
               <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.35);">Submitted ${now} MT · zivel.com</p>
-              <p style="margin:6px 0 0;font-size:12px;color:rgba(255,255,255,0.2);">Sent to riverton@zivel.com and jackson@zivel.com</p>
+              <p style="margin:6px 0 0;font-size:12px;color:rgba(255,255,255,0.2);">Submitted through the Zivel Riverton website</p>
             </td>
           </tr>
 
