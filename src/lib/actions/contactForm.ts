@@ -221,7 +221,7 @@ export async function submitContactForm(
 
   const primaryEmail = locations.find((l) => l.slug === locationSlug)?.contact?.email || `${locationSlug}@zivel.com`;
   const toEmail: string | string[] = locationSlug === "riverton"
-    ? "vtzk5gc2@robot.zapier.com"
+    ? ["vtzk5gc2@robot.zapier.com", "jackson@zivel.com"]
     : locationSlug === "coral-gables"
       ? [primaryEmail, "mikeaguirre@zivel.com"]
       : primaryEmail;

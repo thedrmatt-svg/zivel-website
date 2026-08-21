@@ -107,7 +107,7 @@ export async function submitPricingGate(
     const resend = new Resend(apiKey);
     const primaryEmail = locations.find((l) => l.citySlug === citySlug)?.contact?.email || `${citySlug}@zivel.com`;
     const toEmail: string | string[] = citySlug === "riverton"
-      ? "vtzk5gc2@robot.zapier.com"
+      ? ["vtzk5gc2@robot.zapier.com", "jackson@zivel.com"]
       : citySlug === "coral-gables"
         ? [primaryEmail, "mikeaguirre@zivel.com"]
         : primaryEmail;

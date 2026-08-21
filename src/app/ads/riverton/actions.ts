@@ -7,7 +7,7 @@ export type LeadFormState = {
   message: string;
 } | null;
 
-const TO_ADDRESSES = ["vtzk5gc2@robot.zapier.com"];
+const TO_ADDRESSES = ["vtzk5gc2@robot.zapier.com", "jackson@zivel.com"];
 
 function buildLeadHtml({
   name,
