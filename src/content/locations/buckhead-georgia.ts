@@ -107,6 +107,7 @@ export const zivel_buckhead_location: Location = {
       { name: "Red Light Therapy", price: "$30", note: "Single session" },
       { name: "Infrared Sauna", price: "$35", note: "Single session" },
       { name: "Compression Therapy", price: "$30", note: "Single session" },
+      { name: "Dry Float", price: "$65", note: "Single session" },
       { name: "Oxygen Bar", price: "$30", note: "Single session" },
       { name: "Cryo Slimming", price: "$350", note: "Single session" },
       { name: "Cryo Toning", price: "$350", note: "Single session" },
