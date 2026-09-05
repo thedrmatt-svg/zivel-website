@@ -63,6 +63,10 @@ export const zivel_buckhead_location: Location = {
   {
     "name": "Compression Therapy",
     "slug": "compression-therapy"
+  },
+  {
+    "name": "Dry Float",
+    "slug": "dry-float"
   }
 ],
 

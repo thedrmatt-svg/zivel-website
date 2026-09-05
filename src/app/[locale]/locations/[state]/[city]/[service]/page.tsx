@@ -42,6 +42,11 @@ const META_MAP: Record<string, { title: string; description: string }> = {
     description:
       "Weightless dry float at Zivel Riverton for deep relaxation, stress relief, and nervous system reset — stay fully dry. Serving Riverton & South Jordan.",
   },
+  "georgia/buckhead/dry-float": {
+    title: "Float Therapy in Buckhead, Atlanta | Zivel Buckhead",
+    description:
+      "Experience weightless dry float therapy at Zivel Buckhead for deep relaxation, recovery, and a nervous system reset — all while staying fully dry.",
+  },
   "utah/riverton/cryo-lift-facial": {
     title: "CryoLift Facial in Riverton, UT | Zivel Riverton",
     description:
