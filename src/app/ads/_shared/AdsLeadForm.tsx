@@ -21,11 +21,21 @@ interface Props {
   redirectUrl: string;
   source: string;
   serviceOptions?: string[];
+  referralOptions?: string[];
+  offerOptions?: string[];
   formNote?: string;
 }
 
-export default function AdsLeadForm({ redirectUrl, source, serviceOptions = SERVICES, formNote = "New clients only · No spam, ever." }: Props) {
+export default function AdsLeadForm({
+  redirectUrl,
+  source,
+  serviceOptions = SERVICES,
+  referralOptions,
+  offerOptions,
+  formNote = "New clients only · No spam, ever.",
+}: Props) {
   const uid = useId();
+  const requiresCampaignSelections = Boolean(referralOptions || offerOptions);
   const [state, setState] = useState<AdsLeadState>(null);
   const [isPending, startTransition] = useTransition();
 
@@ -117,17 +127,80 @@ export default function AdsLeadForm({ redirectUrl, source, serviceOptions = SERV
         />
       </div>
 
+      {referralOptions && (
+        <div>
+          <label htmlFor={`${uid}-referrer`} className={labelClass}>
+            Who Referred You? <span style={{ color: "var(--zivel-gold)" }}>*</span>
+          </label>
+          <div className="relative">
+            <select
+              id={`${uid}-referrer`}
+              name="referrer"
+              required
+              defaultValue=""
+              className={`${inputClass} appearance-none pr-10 cursor-pointer`}
+              style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+            >
+              <option value="" disabled style={{ backgroundColor: "#111", color: "#aaa" }}>
+                Select who referred you
+              </option>
+              {referralOptions.map((referrer) => (
+                <option key={referrer} value={referrer} style={{ backgroundColor: "#111", color: "#fff" }}>
+                  {referrer}
+                </option>
+              ))}
+            </select>
+            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/50">▾</span>
+          </div>
+        </div>
+      )}
+
+      {offerOptions && (
+        <div>
+          <label htmlFor={`${uid}-offer`} className={labelClass}>
+            Which Offer Fits Your Training? <span style={{ color: "var(--zivel-gold)" }}>*</span>
+          </label>
+          <div className="relative">
+            <select
+              id={`${uid}-offer`}
+              name="offer"
+              required
+              defaultValue=""
+              className={`${inputClass} appearance-none pr-10 cursor-pointer`}
+              style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+            >
+              <option value="" disabled style={{ backgroundColor: "#111", color: "#aaa" }}>
+                Select an offer
+              </option>
+              {offerOptions.map((offer) => (
+                <option key={offer} value={offer} style={{ backgroundColor: "#111", color: "#fff" }}>
+                  {offer}
+                </option>
+              ))}
+            </select>
+            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/50">▾</span>
+          </div>
+        </div>
+      )}
+
       <div>
         <label htmlFor={`${uid}-service`} className={labelClass}>
-          Service Interested In
+          Which Service Are You Interested In? <span style={{ color: "var(--zivel-gold)" }}>*</span>
         </label>
         <div className="relative">
           <select
             id={`${uid}-service`}
             name="service"
+            required={requiresCampaignSelections}
+            defaultValue={requiresCampaignSelections ? "" : undefined}
             className={`${inputClass} appearance-none pr-10 cursor-pointer`}
             style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
           >
+            {requiresCampaignSelections && (
+              <option value="" disabled style={{ backgroundColor: "#111", color: "#aaa" }}>
+                Select a service
+              </option>
+            )}
             {serviceOptions.map((s) => (
               <option key={s} value={s} style={{ backgroundColor: "#111", color: "#fff" }}>
                 {s}

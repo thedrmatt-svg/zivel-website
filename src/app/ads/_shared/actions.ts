@@ -42,6 +42,18 @@ const ALLOWED_SERVICES: ReadonlySet<string> = new Set([
   "Infrared Sauna",
   "Compression Therapy",
   "I'm not sure yet",
+  "CryoLift Facial",
+  "Cryo Slimming",
+]);
+
+const ALLOWED_REFERRERS: ReadonlySet<string> = new Set([
+  "American Top Team - Sandy Springs",
+]);
+
+const ALLOWED_OFFERS: ReadonlySet<string> = new Set([
+  "A — First recovery session free",
+  "B — $49 day pass, three standard services, same day",
+  "C — Fighter membership, $69 then $139",
 ]);
 
 /** Loose email check — just blocks obviously malformed values. */
@@ -82,12 +94,16 @@ function buildLeadHtml({
   phone,
   email,
   service,
+  referrer,
+  offer,
   source,
 }: {
   name: string;
   phone: string;
   email: string;
   service: string;
+  referrer: string;
+  offer: string;
   source: string;
 }) {
   // All values are HTML-escaped before interpolation.
@@ -95,6 +111,8 @@ function buildLeadHtml({
   const safePhone   = escapeHtml(phone);
   const safeEmail   = escapeHtml(email);
   const safeService = escapeHtml(service);
+  const safeReferrer = escapeHtml(referrer);
+  const safeOffer    = escapeHtml(offer);
   const safeSource  = escapeHtml(source);
   const telHref     = toTelHref(phone);        // digits + '+' only
   const mailtoHref  = email ? `mailto:${encodeURIComponent(email)}` : "";
@@ -147,8 +165,20 @@ function buildLeadHtml({
               <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#555;border-bottom:1px solid #ebebeb;">Email</td>
               <td style="padding:12px 16px;font-size:14px;border-bottom:1px solid #ebebeb;"><a href="${mailtoHref}" style="color:#c8971f;text-decoration:none;">${safeEmail}</a></td>
             </tr>` : ""}
+            ${safeReferrer ? `
             <tr ${email ? "" : 'style="background:#fafafa;"'}>
-              <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#555;">Service</td>
+              <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#555;border-bottom:1px solid #ebebeb;">Referred By</td>
+              <td style="padding:12px 16px;font-size:14px;color:#1a1a1a;border-bottom:1px solid #ebebeb;">${safeReferrer}</td>
+            </tr>
+            ` : ""}
+            ${safeOffer ? `
+            <tr style="background:#fafafa;">
+              <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#555;border-bottom:1px solid #ebebeb;">Training Offer</td>
+              <td style="padding:12px 16px;font-size:14px;color:#1a1a1a;border-bottom:1px solid #ebebeb;">${safeOffer}</td>
+            </tr>
+            ` : ""}
+            <tr>
+              <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#555;">Interested Service</td>
               <td style="padding:12px 16px;font-size:14px;color:#1a1a1a;">${safeService}</td>
             </tr>
           </table>
@@ -211,6 +241,8 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
   const phone   = (formData.get("phone")   as string ?? "").trim().slice(0, 30);
   const email   = (formData.get("email")   as string ?? "").trim().slice(0, 254);
   const service = (formData.get("service") as string ?? "").trim();
+  const referrer = (formData.get("referrer") as string ?? "").trim();
+  const offer   = (formData.get("offer")   as string ?? "").trim();
   const source  = (formData.get("source")  as string ?? "").trim();
 
   // ── Required field validation ─────────────────────────────────────────────
@@ -230,12 +262,19 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
 
   // ── Service allowlist ─────────────────────────────────────────────────────
   const safeService = ALLOWED_SERVICES.has(service) ? service : "General information";
+  const isAttLead = source === "American Top Team Sandy Springs Google Ads";
+  const safeReferrer = ALLOWED_REFERRERS.has(referrer) ? referrer : "";
+  const safeOffer = ALLOWED_OFFERS.has(offer) ? offer : "";
+
+  if (isAttLead && (!safeReferrer || !safeOffer || !ALLOWED_SERVICES.has(service))) {
+    return { status: "error", message: "Please select a referral source, training offer, and service." };
+  }
 
   // ── Source allowlist — never trust user-supplied value directly ───────────
   const safeSource = ALLOWED_SOURCES.has(source) ? source : "Sports Team Ads";
 
   // ── Build subject from trusted, bounded values only ───────────────────────
-  const subject = `New Lead — ${safeSource} · ${safeService} · ${name.slice(0, 60)}`;
+  const subject = `New Lead — ${safeSource} · ${safeOffer || safeService} · ${name.slice(0, 60)}`;
 
   // ── Send ──────────────────────────────────────────────────────────────────
   const apiKey = process.env.RESEND_API_KEY;
@@ -244,7 +283,15 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
     return { status: "error", message: "Something went wrong. Please call us at (385) 443-8778." };
   }
 
-  const html = buildLeadHtml({ name, phone, email, service: safeService, source: safeSource });
+  const html = buildLeadHtml({
+    name,
+    phone,
+    email,
+    service: safeService,
+    referrer: safeReferrer,
+    offer: safeOffer,
+    source: safeSource,
+  });
 
   try {
     const resend = new Resend(apiKey);
