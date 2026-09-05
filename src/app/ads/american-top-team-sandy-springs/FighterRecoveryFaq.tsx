@@ -12,7 +12,7 @@ const FAQS = [
   ["How often should fighters use recovery services?", "Training load matters more than a fixed number. A recreational athlete may visit around harder sessions, while a high-volume camp may use a consistent plan with coach and clinician input. Start conservatively, notice how you respond, and prioritize sleep, nutrition, hydration, and rest days."],
   ["How does recovery differ for grapplers versus strikers?", "Grapplers may notice more whole-body fatigue, grip and neck demand, and leg heaviness from repeated scrambles. Strikers may focus on footwork, hips, shoulders, and impact load. The right service depends on your session and symptoms—not your label—and a coach or qualified clinician can help shape the plan."],
   ["Do these services treat injuries?", "No. Zivel recovery services are not a diagnosis or treatment for an injury. For significant pain, swelling, numbness, concussion symptoms, a suspected fracture, or symptoms that persist, stop training and seek a qualified medical professional. Get clearance before returning to hard work."],
-  ["Where can ATT Sandy Springs members find recovery nearby?", "Zivel Buckhead is the nearby recovery partner for American Top Team Sandy Springs members. The studio is at 2221 Peachtree Rd NE Suite F, Atlanta, GA 30309. Call (404) 309-5954 for current availability and partnership information."],
+  ["Where can ATT Sandy Springs members find recovery nearby?", "Zivel Buckhead is a recovery partner for the fighters and members at American Top Team Sandy Springs. The studio is at 2221 Peachtree Rd NE Suite F, Atlanta, GA 30309. Call (404) 309-5954 for current availability and partnership information."],
 ];
 
 export default function FighterRecoveryFaq() {
