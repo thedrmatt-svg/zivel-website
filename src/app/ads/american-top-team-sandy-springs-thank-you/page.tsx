@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+const BOOKING_URL = "https://zivel.myperformanceiq.com/book-appointment?set_location=11537";
+
 export default function AmericanTopTeamThankYou() {
   return (
     <main className="min-h-screen bg-[#07101d] relative overflow-hidden flex items-center">
@@ -20,12 +22,13 @@ export default function AmericanTopTeamThankYou() {
           <div className="flex items-center gap-3 mb-12"><Link href="/locations/georgia/buckhead" aria-label="Visit the Zivel Buckhead location page"><Image src="/images/brand/zivel-logo.png" alt="Zivel" width={90} height={30} style={{ width: "auto", height: "auto" }} /></Link><span className="text-white/25 text-2xl">×</span><a href="https://www.attsandysprings.com/" aria-label="Visit American Top Team Sandy Springs"><Image src="/images/ads/american-top-team-logo.png" alt="American Top Team" width={51} height={52} /></a></div>
           <p className="ty-kicker">Request received</p>
           <h1 className="ty-h1">You’re<br /><span className="text-[#ff4040]">in the work.</span></h1>
-          <p className="ty-copy max-w-md">Thanks for reaching out about the Zivel Buckhead and American Top Team Sandy Springs partnership. A member of the team will follow up with the current details.</p>
+          <p className="ty-copy max-w-md">Thanks for reaching out about the Zivel Buckhead and American Top Team Sandy Springs partnership. We have your information and a member of our team will follow up with you.</p>
         </div>
         <div className="ty-box">
-          <p className="ty-kicker mb-3">While you wait</p>
-          <p className="text-xl font-bold leading-snug mb-8">Explore the studio built for recovery in Buckhead.</p>
-          <div className="flex flex-col items-start gap-3"><Link className="ty-link" href="/locations/georgia/buckhead">Visit Zivel Buckhead</Link><a className="text-[#c99a3b] hover:text-white transition-colors text-sm underline underline-offset-4" href="tel:+14043095954">Call (404) 309-5954</a></div>
+          <p className="ty-kicker mb-3">Ready when you are</p>
+          <p className="text-xl font-bold leading-snug mb-3">Book your first session for free.</p>
+          <p className="text-sm leading-relaxed text-white/60 mb-8">Choose a time that works for you now. The Zivel Buckhead team will still reach out to help with your partnership details.</p>
+          <div className="flex flex-col items-start gap-3"><a className="ty-link text-center" href={BOOKING_URL}>Book Your First Session for Free</a><Link className="text-[#c99a3b] hover:text-white transition-colors text-sm underline underline-offset-4" href="/locations/georgia/buckhead">View Zivel Buckhead</Link><a className="text-[#c99a3b] hover:text-white transition-colors text-sm underline underline-offset-4" href="tel:+14043095954">Call (404) 309-5954</a></div>
         </div>
       </div>
     </main>
