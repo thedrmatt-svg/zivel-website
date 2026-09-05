@@ -51,6 +51,7 @@ const ALLOWED_SERVICES: ReadonlySet<string> = new Set([
 
 const ALLOWED_REFERRERS: ReadonlySet<string> = new Set([
   "American Top Team - Sandy Springs",
+  "Bryson Evans",
 ]);
 
 const ALLOWED_OFFERS: ReadonlySet<string> = new Set([
