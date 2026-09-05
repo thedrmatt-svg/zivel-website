@@ -20,9 +20,11 @@ const SERVICES = [
 interface Props {
   redirectUrl: string;
   source: string;
+  serviceOptions?: string[];
+  formNote?: string;
 }
 
-export default function AdsLeadForm({ redirectUrl, source }: Props) {
+export default function AdsLeadForm({ redirectUrl, source, serviceOptions = SERVICES, formNote = "New clients only · No spam, ever." }: Props) {
   const uid = useId();
   const [state, setState] = useState<AdsLeadState>(null);
   const [isPending, startTransition] = useTransition();
@@ -126,7 +128,7 @@ export default function AdsLeadForm({ redirectUrl, source }: Props) {
             className={`${inputClass} appearance-none pr-10 cursor-pointer`}
             style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
           >
-            {SERVICES.map((s) => (
+            {serviceOptions.map((s) => (
               <option key={s} value={s} style={{ backgroundColor: "#111", color: "#fff" }}>
                 {s}
               </option>
@@ -154,7 +156,7 @@ export default function AdsLeadForm({ redirectUrl, source }: Props) {
       </button>
 
       <p className="text-xs text-white/40 text-center pt-1">
-        New clients only · No spam, ever.
+         {formNote}
       </p>
     </form>
   );

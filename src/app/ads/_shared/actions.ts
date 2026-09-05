@@ -22,6 +22,7 @@ const ALLOWED_SOURCES: ReadonlySet<string> = new Set([
   "Salt Lake Bees Google Ads",
   "Real Salt Lake Google Ads",
   "Utah Royals Google Ads",
+  "American Top Team Sandy Springs Google Ads",
 ]);
 
 /** Allowlist — must match the <option> values in AdsLeadForm. */
@@ -36,6 +37,11 @@ const ALLOWED_SERVICES: ReadonlySet<string> = new Set([
   "Cryo Body Contouring - 30% Off Retail",
   "Cryo Toning - 30% Off Retail",
   "Not sure — help me choose",
+  "Cryotherapy",
+  "Red Light Therapy",
+  "Infrared Sauna",
+  "Compression Therapy",
+  "I'm not sure yet",
 ]);
 
 /** Loose email check — just blocks obviously malformed values. */
