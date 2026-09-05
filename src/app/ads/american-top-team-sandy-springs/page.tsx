@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const PHONE = "(404) 309-5954";
 const TEL = "tel:+14043095954";
 const SOURCE = "American Top Team Sandy Springs Google Ads";
-const SERVICES = ["Cryotherapy", "Red Light Therapy", "Infrared Sauna", "Compression Therapy", "CryoLift Facial", "Cryo Slimming", "I'm not sure yet"];
+const SERVICES = ["Cryotherapy", "Red Light Therapy", "Infrared Sauna", "Compression Therapy", "Post Fight Facial", "Cryo Slimming", "I'm not sure yet"];
 const REFERRERS = ["American Top Team - Sandy Springs"];
 const OFFERS = [
   "A — First recovery session free",
@@ -21,12 +21,12 @@ const OFFERS = [
   "C — Fighter membership, $69 then $139",
 ];
 const RECOVERY_SERVICES = [
-  ["Cryotherapy", "/images/home/service-cryo.jpg", "Cold exposure for a deliberate post-training reset."],
-  ["Red Light Therapy", "/images/home/service-redlight.jpg", "A quiet light session for your recovery routine."],
-  ["Infrared Sauna", "/images/home/service-sauna.jpg", "Heat, stillness, and a hydration-first recovery window."],
-  ["Compression Therapy", "/images/home/service-compression.jpg", "Sequential pressure when hard-working legs feel loaded."],
-  ["CryoLift Facial", "/images/home/service-facial.jpg", "A focused facial recovery option for fight-week self-care."],
-  ["Cryo Slimming", "/images/home/service-slimming.jpg", "A body-contouring service for goals beyond the mat."],
+  ["Cryotherapy", "/images/home/service-cryo.jpg", "Like an ice-pack for your whole body."],
+  ["Red Light Therapy", "/images/home/service-redlight.jpg", "Fully recharge your training battery."],
+  ["Infrared Sauna", "/images/home/service-sauna.jpg", "Heat/training acclimation and weight control."],
+  ["Compression Therapy", "/images/home/service-compression.jpg", "Reduce inflammation and swelling in legs."],
+  ["Post Fight Facial", "/images/home/service-facial.jpg", "Reduce facial swelling following sparring or fights."],
+  ["Cryo Slimming", "/images/home/service-slimming.jpg", "Localized weight management."],
 ];
 
 export default function AmericanTopTeamPage() {

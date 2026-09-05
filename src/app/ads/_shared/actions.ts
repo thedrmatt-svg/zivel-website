@@ -44,6 +44,7 @@ const ALLOWED_SERVICES: ReadonlySet<string> = new Set([
   "I'm not sure yet",
   "CryoLift Facial",
   "Cryo Slimming",
+  "Post Fight Facial",
 ]);
 
 const ALLOWED_REFERRERS: ReadonlySet<string> = new Set([
