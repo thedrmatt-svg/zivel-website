@@ -217,6 +217,7 @@ export type AdsLeadState = {
 } | null;
 
 const TO_ADDRESSES = ["vtzk5gc2@robot.zapier.com", "jackson@zivel.com"];
+const ATT_SANDY_SPRINGS_TO_ADDRESSES = ["buckhead@zivel.com", "flanagan@zivel.com"];
 
 export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
   // ── Honeypot — bots fill this; real users leave it empty ──────────────────
@@ -299,9 +300,13 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
 
   try {
     const resend = new Resend(apiKey);
+    const recipients =
+      safeSource === "American Top Team Sandy Springs Google Ads"
+        ? ATT_SANDY_SPRINGS_TO_ADDRESSES
+        : TO_ADDRESSES;
     const { error } = await resend.emails.send({
       from: "Zivel Website <no-reply@zivel.com>",
-      to: TO_ADDRESSES,
+      to: recipients,
       ...(email ? { replyTo: email } : {}),
       subject,
       html,
