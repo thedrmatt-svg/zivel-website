@@ -18,6 +18,7 @@ export const zivel_franklin_cool_springs_location: Location = {
   contact: {
     address: "790 Jordan Rd #107, Franklin, TN 37067",
     phone: "(615) 997-4159",
+    email: "coolsprings@zivel.com",
     parking: "Free parking or street available",
     notes: "",
   },

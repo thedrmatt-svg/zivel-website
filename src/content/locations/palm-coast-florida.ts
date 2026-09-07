@@ -17,6 +17,7 @@ export const zivel_palm_coast_location: Location = {
   contact: {
     address: "5615 State Rte 100 Suite 118, Palm Coast, FL 32164",
     phone: "(386) 346-5126",
+    email: "palmcoast@zivel.com",
     parking: "Free parking or street available",
     notes: "",
   },
