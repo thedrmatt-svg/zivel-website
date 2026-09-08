@@ -5,13 +5,16 @@ type BookingWidgetProps = {
 };
 
 export default function BookingWidget({
+  locationId,
   className,
 }: BookingWidgetProps) {
+  const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${locationId ?? 11417}`;
+
   return (
     <section className={className}>
       <div className="flex justify-center my-12">
         <a
-          href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
+          href={bookingUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-[#FFD700] hover:bg-[#E6C200] text-black font-semibold text-xl px-12 py-5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
