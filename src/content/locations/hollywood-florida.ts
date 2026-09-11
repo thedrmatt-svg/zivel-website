@@ -128,6 +128,7 @@ export const zivel_hollywood_location: Location = {
         description: "More sessions, more value.",
         features: ["12 Recovery Sessions/Month", "Premium Service Discounts"],
         mostPopular: true,
+        bookingUrl: "https://app.clubready.com/JoinUs/14829/638726",
       },
     ],
     standardPrices: [
