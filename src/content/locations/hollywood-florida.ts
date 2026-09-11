@@ -120,6 +120,7 @@ export const zivel_hollywood_location: Location = {
         description: "A great entry point for regular recovery.",
         features: ["8 Recovery Sessions/Month", "Good for Beginners"],
         mostPopular: false,
+        bookingUrl: "https://app.clubready.com/JoinUs/14829/638721",
       },
       {
         name: "Elite",
