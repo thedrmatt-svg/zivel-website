@@ -86,7 +86,7 @@ export default function RealSaltLakePage() {
               alt="Real Salt Lake athlete on the pitch"
               fill
               sizes="(max-width: 1024px) 100vw, 52vw"
-              style={{ objectFit: "cover", objectPosition: "center top" }}
+              className="object-cover object-top scale-[1.06] translate-x-[3%] sm:translate-x-[5%] lg:translate-x-[7%]"
               priority
             />
           </div>
