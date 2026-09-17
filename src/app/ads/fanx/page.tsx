@@ -77,7 +77,7 @@ export default function FanXPage() {
 
         <section className="bg-[#f5edf5] py-16 text-[#131313] sm:py-24">
           <div className="mx-auto max-w-7xl px-5 sm:px-10 lg:px-16">
-            <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="mb-2 text-xs font-bold uppercase tracking-[.25em] text-[#8C1F7A]">Choose your scene</p><h2 className="font-black uppercase leading-none tracking-tight" style={{ fontFamily: "var(--font-fanx-display)", fontSize: "clamp(3rem, 7vw, 5.8rem)" }}>The recovery<br />lineup.</h2></div><p className="max-w-xs text-sm leading-relaxed text-black/60">Premium tools for the days when standing in line feels like an endurance sport.</p></div>
+            <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="mb-2 text-xs font-bold uppercase tracking-[.25em] text-[#8C1F7A]">Choose your scene</p><h2 className="font-black uppercase leading-none tracking-tight text-[#5D008C]" style={{ fontFamily: "var(--font-fanx-display)", fontSize: "clamp(3rem, 7vw, 5.8rem)" }}>The recovery<br />lineup.</h2></div><p className="max-w-xs text-sm leading-relaxed text-black/60">Premium tools for the days when standing in line feels like an endurance sport.</p></div>
             <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
               {services.map(([img, name, desc]) => (
                 <article key={name} className="border-t-2 border-[#8C1F7A] pt-4">
