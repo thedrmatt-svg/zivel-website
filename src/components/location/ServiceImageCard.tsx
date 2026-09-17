@@ -10,6 +10,8 @@ const nationalImageMap: Record<string, string> = {
   "infrared-sauna": "/images/home/service-sauna.jpg",
   "dry-float": "/images/home/service-dryfloat.jpg",
   "compression-therapy": "/images/home/service-compression.jpg",
+  "oxygen-bar": "/images/services/oxygen-bar/hero.jpg",
+  "cryo-soothe": "/images/services/cryo-soothe/hero.avif",
   "cryo-slimming": "/images/home/service-slimming.jpg",
   "cryo-toning": "/images/services/cryo-toning/hero.avif",
   "cryo-lift-facial": "/images/services/cryo-lift-facial/hero.avif",
