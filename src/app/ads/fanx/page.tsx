@@ -90,7 +90,7 @@ export default function FanXPage() {
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                     />
                   </div>
-                  <h3 className="text-base font-bold leading-tight text-black">{name}</h3>
+                  <h3 className="text-base font-bold leading-tight text-[#5D008C]">{name}</h3>
                   <p className="mt-2 text-xs leading-relaxed text-black/55">{desc}</p>
                 </article>
               ))}
