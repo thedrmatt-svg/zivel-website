@@ -8,7 +8,7 @@ export const cryoSoothe: Service = {
   name: "Cryo Soothe",
   accent: { name: "cryo-blue", hex: "#4ECDC4" },
   hero: {
-    media: { type: "image", src: "/images/home/service-cryosoothe.avif", alt: "Localized Cryo Soothe treatment with a Neveskin wand" },
+    media: { type: "image", src: "/images/services/cryo-soothe/hero.avif", alt: "Localized Cryo Soothe treatment with a Neveskin wand" },
     subheadline: "Targeted, non-invasive cold-and-contrast work on the Neveskin wand for comfort in a specific area—not slimming, not a facial, not whole-body cryo.",
     primaryCTA: { label: "Book Now", href: "#book" },
     secondaryCTA: { label: "View Locations", href: "/locations" },
@@ -21,7 +21,7 @@ export const cryoSoothe: Service = {
       "A session typically lasts about 10–15 minutes per area and has no downtime.",
     ],
     bullets: ["Localized comfort protocol", "Approximately 10–15 minutes per area", "Non-invasive with no downtime"],
-    media: { type: "image", src: "/images/home/service-cryosoothe.avif", alt: "Neveskin wand used for localized comfort cryotherapy" },
+    media: { type: "image", src: "/images/services/cryo-soothe/hero.avif", alt: "Neveskin wand used for localized comfort cryotherapy" },
   },
   benefits: {
     headline: "Key Benefits",
@@ -49,7 +49,7 @@ export const cryoSoothe: Service = {
       "Localized cold-and-contrast application creates temporary skin-temperature and regional blood-flow responses in the selected area.",
       "Unlike a whole-body chamber, Cryo Soothe delivers a regional stimulus. Zivel positions it as non-medical wellness support for targeted comfort, not as treatment for an injury or disease.",
     ],
-    media: { type: "image", src: "/images/home/service-cryosoothe.avif", alt: "Localized skin-temperature response during Cryo Soothe" },
+    media: { type: "image", src: "/images/services/cryo-soothe/hero.avif", alt: "Localized skin-temperature response during Cryo Soothe" },
     cta: { label: "Learn More in the Science Hub", href: "/science" },
   },
   safety: {

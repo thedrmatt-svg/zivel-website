@@ -8,7 +8,7 @@ export const oxygenBar: Service = {
   name: "Oxygen Bar",
   accent: { name: "cool-blue", hex: "#7DD3FC" },
   hero: {
-    media: { type: "image", src: "/images/home/service-oxygen.jpg", alt: "Seated Oxygen Bar wellness session at Zivel" },
+    media: { type: "image", src: "/images/services/oxygen-bar/hero.jpg", alt: "Zivel Oxygen Bar equipment for a seated wellness session" },
     subheadline: "A quiet, low-effort session using concentrated oxygen through a nasal cannula—often with an optional light aroma—for a simple mid-visit reset.",
     primaryCTA: { label: "Book Now", href: "#book" },
     secondaryCTA: { label: "View Locations", href: "/locations" },
@@ -21,7 +21,7 @@ export const oxygenBar: Service = {
       "It is a simple, low-demand reset that can fit between training, work, travel, or other recovery services.",
     ],
     bullets: ["Typically 10–20 minutes", "Seated and fully clothed", "Optional light aroma"],
-    media: { type: "image", src: "/images/home/service-oxygen.jpg", alt: "Oxygen concentrator and nasal cannula wellness setup" },
+    media: { type: "image", src: "/images/services/oxygen-bar/hero.jpg", alt: "Zivel Oxygen Bar equipment with optional aroma bottles" },
   },
   benefits: {
     headline: "Key Benefits",
@@ -49,7 +49,7 @@ export const oxygenBar: Service = {
       "Room air contains about 21% oxygen, and healthy hemoglobin is normally already near saturation. An Oxygen Bar should not be confused with hyperbaric oxygen therapy or prescribed medical oxygen.",
       "Zivel positions the Oxygen Bar as a calm recreational wellness experience within a broader recovery routine, without claims to treat disease or correct medical oxygen levels.",
     ],
-    media: { type: "image", src: "/images/home/service-oxygen.jpg", alt: "Recreational Oxygen Bar wellness experience at Zivel" },
+    media: { type: "image", src: "/images/services/oxygen-bar/hero.jpg", alt: "Recreational Oxygen Bar equipment at Zivel" },
     cta: { label: "Learn More in the Science Hub", href: "/science" },
   },
   safety: {
