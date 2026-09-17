@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 const PHONE = "(385) 443-8778";
 const PHONE_TEL = "tel:+13854438778";
 const services = [
-  ["Red Light Therapy", "Recharge tired bodies with targeted light."],
-  ["Cryotherapy", "A brisk reset after a full day on the floor."],
-  ["Infrared Sauna", "Unwind, sweat, and leave the noise behind."],
-  ["Compression Therapy", "Give your legs the standing-ovation treatment."],
-  ["Float Therapy", "The quietest room at the convention."],
-  ["Oxygen Therapy", "A fresh breath for your next big scene."],
+  ["/images/home/service-redlight.jpg", "Red Light Therapy", "Recharge tired bodies with targeted light."],
+  ["/images/home/service-cryo.jpg", "Cryotherapy", "A brisk reset after a full day on the floor."],
+  ["/images/home/service-sauna.jpg", "Infrared Sauna", "Unwind, sweat, and leave the noise behind."],
+  ["/images/home/service-compression.jpg", "Compression Therapy", "Give your legs the standing-ovation treatment."],
+  ["/images/home/service-dryfloat.jpg", "Float Therapy", "The quietest room at the convention."],
+  ["/images/home/service-oxygen.jpg", "Oxygen Therapy", "A fresh breath for your next big scene."],
 ];
 
 export default function FanXPage() {
@@ -79,7 +79,21 @@ export default function FanXPage() {
           <div className="mx-auto max-w-7xl px-5 sm:px-10 lg:px-16">
             <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="mb-2 text-xs font-bold uppercase tracking-[.25em] text-[#8C1F7A]">Choose your scene</p><h2 className="font-black uppercase leading-none tracking-tight" style={{ fontFamily: "var(--font-fanx-display)", fontSize: "clamp(3rem, 7vw, 5.8rem)" }}>The recovery<br />lineup.</h2></div><p className="max-w-xs text-sm leading-relaxed text-black/60">Premium tools for the days when standing in line feels like an endurance sport.</p></div>
             <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
-              {services.map(([name, desc]) => <article key={name} className="border-t-2 border-[#8C1F7A] pt-4"><h3 className="text-base font-bold leading-tight">{name}</h3><p className="mt-2 text-xs leading-relaxed text-black/55">{desc}</p></article>)}
+              {services.map(([img, name, desc]) => (
+                <article key={name} className="border-t-2 border-[#8C1F7A] pt-4">
+                  <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-lg bg-black/5">
+                    <Image
+                      src={img}
+                      alt={name}
+                      fill
+                      className="object-cover transition-transform duration-300 hover:scale-105"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                    />
+                  </div>
+                  <h3 className="text-base font-bold leading-tight text-black">{name}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-black/55">{desc}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
