@@ -17,7 +17,7 @@ export default function FanXThankYouPage() {
       <p className="mt-7 max-w-md text-base leading-relaxed text-white/65">Your FanX offer is reserved. The Zivel Riverton team will be in touch shortly to schedule your first visit.</p>
       <p className="mt-3 text-sm font-semibold text-white/40">30% off any service + first visit for $5.</p>
       <a href="tel:+13854438778" className="mt-10 text-xl font-bold text-[#f0b9ea] transition-opacity hover:opacity-70">(385) 443-8778</a>
-      <div className="mt-10 flex flex-col gap-3 sm:flex-row"><a href="https://www.zivel.com" className="rounded-full bg-[#8C1F7A] px-7 py-4 text-xs font-bold uppercase tracking-[.16em] text-white hover:opacity-85">Visit Zivel.com</a><a href="https://www.zivel.com/locations/utah/riverton" className="rounded-full border border-white/25 px-7 py-4 text-xs font-bold uppercase tracking-[.16em] text-white hover:bg-white/10">Riverton location</a></div>
+      <div className="mt-10 flex flex-col gap-3 sm:flex-row"><a href="https://zivel.myperformanceiq.com/book-appointment?set_location=11445" target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#8C1F7A] px-7 py-4 text-xs font-bold uppercase tracking-[.16em] text-white hover:opacity-85">Book Now</a><a href="https://www.zivel.com/locations/utah/riverton" className="rounded-full border border-white/25 px-7 py-4 text-xs font-bold uppercase tracking-[.16em] text-white hover:bg-white/10">Riverton location</a></div>
       <p className="mt-16 text-xs text-white/25">© {new Date().getFullYear()} Zivel. All rights reserved.</p>
     </main>
   );
