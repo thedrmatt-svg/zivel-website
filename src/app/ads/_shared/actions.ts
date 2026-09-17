@@ -22,6 +22,7 @@ const ALLOWED_SOURCES: ReadonlySet<string> = new Set([
   "Salt Lake Bees Google Ads",
   "Real Salt Lake Google Ads",
   "Utah Royals Google Ads",
+  "FanX Google Ads",
   "American Top Team Sandy Springs Google Ads",
 ]);
 
