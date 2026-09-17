@@ -51,6 +51,8 @@ export const travelResetJetLagRecovery: Pathway = {
     orderedServiceSlugs: [
       "cryotherapy",
       "compression-therapy",
+      "cryo-soothe",
+      "oxygen-bar",
       "red-light-therapy",
       "infrared-sauna",
     ],

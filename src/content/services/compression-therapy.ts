@@ -6,15 +6,15 @@ export const compressionTherapy: Service = {
   accent: { name: "silver", hex: "#A1A1AA" },
 
   seo: {
-    title: "Compression Therapy | Recovery & Circulation Support",
+    title: "Compression Therapy | Recovery & Circulation Support | Zivel",
     description:
-      "Compression Therapy at Zivel uses pneumatic compression to support recovery, circulation, and reduced soreness. Book your session today.",
+      "Compression Therapy at Zivel uses Hyperice/Normatec sequential pneumatic compression to support circulation, fluid movement, and post-activity recovery.",
     canonical: "/services/compression-therapy",
   },
 
   hero: {
     subheadline:
-      "A recovery-focused session using rhythmic pneumatic compression to support circulation and post-workout recovery routines.",
+      "A recovery-focused session using sequential pneumatic compression to support circulation, fluid movement, and that lighter-legged feeling after training, travel, or long days on your feet.",
     media: {
       type: "image",
       src: "/images/services/compression-therapy/hero.jpg",
@@ -27,9 +27,9 @@ export const compressionTherapy: Service = {
   intro: {
     headline: "What is Compression Therapy?",
     paragraphs: [
-      "Compression Therapy uses controlled, sequential pressure to support circulation and recovery routines. Many clients use it after training, travel, or long days on their feet.",
-      "Sessions are comfortable and hands-free—just relax while the system cycles pressure through the legs (or other applicable areas) to support movement of fluid and circulation.",
-      "At Zivel, compression is commonly stacked with services like cryotherapy, red light therapy, infrared sauna, and dry float for a complete recovery session.",
+      "Compression Therapy uses Hyperice/Normatec attachments on the legs, hips, or arms. The system applies a sequential pulse pattern through pulsing, gradients, and distal release.",
+      "Sessions typically last 20–30 minutes. You remain fully clothed and relax while the system works, making this a passive addition to a recovery routine.",
+      "At Zivel, compression is easy to stack with cryotherapy, red light therapy, infrared sauna, dry float, or an Oxygen Bar session.",
     ],
     bullets: [
       "Comfortable, hands-free recovery",
@@ -48,39 +48,39 @@ export const compressionTherapy: Service = {
     viewResearchCTA: { label: "View the Science →", href: "/science/recovery-modalities-float-compression" },
     items: [
       {
-        title: "Supports circulation and recovery routines",
+        title: "Supports circulation routines",
         description:
           "Sequential pressure can support blood flow and post-exercise recovery habits.",
         citations: ["comp-1"],
       },
       {
-        title: "May help reduce the feeling of soreness",
+        title: "May ease the heavy-legged feeling",
         description:
           "Often used after training days to support a lighter, less heavy-legged feeling.",
         citations: ["comp-2"],
       },
       {
-        title: "Supports swelling and fluid movement routines",
+        title: "Supports comfort after travel",
         description:
           "Commonly used after travel or long periods of standing.",
         citations: ["comp-3"],
       },
       {
-        title: "Relaxing, passive session",
+        title: "Passive recovery",
         description:
           "A comfortable option when you want recovery without more effort.",
         citations: ["comp-4"],
       },
       {
-        title: "Great for performance-minded clients",
+        title: "Performance-minded routine tool",
         description:
           "Often added between training sessions for faster turnaround.",
         citations: ["comp-5"],
       },
       {
-        title: "Easy to combine with other services",
+        title: "Easy to stack with other services",
         description:
-          "Pairs well with cryotherapy, red light therapy, sauna, and dry float.",
+          "Pairs well with cryotherapy, red light therapy, sauna, dry float, and Oxygen Bar.",
         citations: ["comp-6"],
       },
     ],
@@ -100,14 +100,14 @@ export const compressionTherapy: Service = {
           "Relax while sequential pressure cycles through chambers in a guided pattern.",
       },
       {
-        title: "Post-Session",
+        title: "After the Session",
         description:
           "Many clients feel lighter and more recovered. Return to normal activity immediately.",
       },
       {
-        title: "Recommended Frequency",
+        title: "Frequency",
         description:
-          "Commonly used 1–4x per week depending on training, travel, and recovery needs.",
+          "Many clients use compression 2–3 times per week when training or traveling.",
       },
     ],
   },
@@ -115,8 +115,8 @@ export const compressionTherapy: Service = {
   science: {
     headline: "The Science Behind Pneumatic Compression",
     body: [
-      "Pneumatic compression is used in recovery and wellness routines to support circulation and movement of fluid through the limbs.",
-      "Zivel's compression sessions are designed to be comfortable, consistent, and easy to stack with other recovery modalities.",
+      "Sequential pneumatic compression provides mechanical support for venous return and lymphatic fluid movement through the limbs.",
+      "Evidence is stronger for perceived recovery and comfort than for consistent performance-lab outcomes. Zivel positions compression as a non-medical wellness and recovery tool.",
     ],
     media: {
       type: "image",
@@ -134,10 +134,12 @@ export const compressionTherapy: Service = {
     ],
     contraindications: [
       "Known or suspected blood clots / DVT",
-      "Severe peripheral vascular disease",
-      "Uncontrolled heart failure (consult clinician)",
-      "Severe pain or active injury where compression is not advised",
-      "Any condition your clinician advises against compression therapy",
+      "Severe peripheral arterial disease",
+      "Uncontrolled congestive heart failure",
+      "Acute infection or open wounds in the treatment area",
+      "Recent surgery not cleared for compression",
+      "Severe neuropathy or impaired sensation",
+      "Pregnancy, according to studio protocol and clinical guidance",
     ],
     disclaimer:
       "This information is for educational purposes only and is not medical advice. Always consult a qualified healthcare professional with questions about your health.",
@@ -214,7 +216,7 @@ export const compressionTherapy: Service = {
       {
         question: "How long is a session?",
         answer:
-          "Session lengths vary by location and protocol. Your studio will confirm timing at booking.",
+          "Sessions typically last 20–30 minutes. Your local studio will confirm the protocol and timing.",
       },
       {
         question: "Does it hurt?",
@@ -222,31 +224,31 @@ export const compressionTherapy: Service = {
           "Most clients find it comfortable. Pressure is adjustable and should not be painful—tell your provider if anything feels too tight.",
       },
       {
-        question: "When should I use compression—before or after workouts?",
+        question: "When should I use compression therapy?",
         answer:
-          "Most clients use it after workouts or on rest days as part of a recovery routine.",
+          "Many clients use it after training, after travel, or on recovery days. It can also be used before activity as part of a warm-up routine.",
       },
       {
-        question: "How often should I do compression therapy?",
+        question: "Can I use the leg and arm attachments in the same visit?",
         answer:
-          "It depends on your activity and recovery needs. Many clients use it 1–4 times per week.",
+          "Availability and session protocols vary by studio. Ask your local Zivel team whether multiple areas can be included in one visit.",
       },
       {
-        question: "Can I stack it with other services?",
+        question: "Should I use compression before or after cryotherapy?",
         answer:
-          "Yes. Compression stacks well with cryotherapy, red light therapy, infrared sauna, and dry float.",
+          "Either order may fit a recovery routine. Your local team can recommend an order based on your goals and the services in your visit.",
       },
       {
-        question: "Who should avoid compression therapy?",
+        question: "How is this different from compression socks?",
         answer:
-          "If you have a history of blood clots, severe vascular issues, or clinician restrictions, consult your healthcare provider before use.",
+          "Compression socks provide steady wearable pressure. Normatec systems use powered, sequential pneumatic cycles with adjustable pressure during a dedicated session.",
       },
     ],
   },
 
   relatedServices: {
     headline: "Related Services",
-    slugs: ["dry-float", "red-light-therapy", "infrared-sauna"],
+    slugs: ["cryotherapy", "red-light-therapy", "infrared-sauna", "dry-float", "oxygen-bar"],
   },
 
   finalCTA: {

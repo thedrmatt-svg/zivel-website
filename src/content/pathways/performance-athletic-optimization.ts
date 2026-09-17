@@ -53,6 +53,7 @@ export const performanceAthleticOptimization: Pathway = {
       "red-light-therapy",
       "compression-therapy",
       "cryo-soothe",
+      "oxygen-bar",
     ],
     note:
       "Service selection and order can vary based on training load, sport demands, and individual preference. Zivel team members can help guide the routine.",

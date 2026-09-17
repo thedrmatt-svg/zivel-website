@@ -7,6 +7,14 @@ import CherryWidget from "@/components/widgets/CherryWidget";
 import { services } from "@/lib/data/services";
 
 const SITE_URL = "https://www.zivel.com";
+const SERVICE_CARD_BLURBS: Record<string, string> = {
+  "compression-therapy":
+    "A recovery-focused session using sequential pneumatic compression to support circulation and post-workout recovery routines.",
+  "oxygen-bar":
+    "A short seated oxygen session for a calm, low-effort reset between services.",
+  "cryo-soothe":
+    "Localized Neveskin cryo for comfort in a specific area—not a chamber and not body contouring.",
+};
 
 // Force static pre-rendering — same reasoning as [locale]/page.tsx.
 // next-intl's middleware calls NextResponse.next({ request: { headers } }),
@@ -22,7 +30,7 @@ export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
+    "Explore Zivel recovery services, including cryotherapy, red light, infrared sauna, dry float, compression therapy, Oxygen Bar, and Cryo Soothe.",
   alternates: {
     canonical: `${SITE_URL}/services`,
     languages: {
@@ -34,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Services | Zivel",
     description:
-      "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
+      "Explore Zivel recovery services, including cryotherapy, red light, infrared sauna, dry float, compression therapy, Oxygen Bar, and Cryo Soothe.",
     url: `${SITE_URL}/services`,
     siteName: "Zivel",
     type: "website",
@@ -51,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Services | Zivel",
     description:
-      "Explore Zivel's science-backed wellness and recovery services — cryotherapy, red light therapy, infrared sauna, dry float, compression, and more.",
+      "Explore Zivel recovery services, including cryotherapy, red light, infrared sauna, dry float, compression therapy, Oxygen Bar, and Cryo Soothe.",
     images: [`${SITE_URL}/images/og-image.jpg`],
   },
 };
@@ -118,7 +126,7 @@ export default function ServicesIndexPage() {
         const groups = [
           {
             label: "Recovery & Longevity",
-            slugs: ["cryotherapy", "red-light-therapy", "dry-float", "infrared-sauna", "compression-therapy"],
+            slugs: ["cryotherapy", "red-light-therapy", "dry-float", "infrared-sauna", "compression-therapy", "oxygen-bar", "cryo-soothe"],
           },
           {
             label: "Premium & Anti-Aging",
@@ -175,7 +183,7 @@ export default function ServicesIndexPage() {
                     <div className="min-w-0">
                       <h3 className="truncate text-xl font-semibold text-black/85">{s.name}</h3>
                       <p className="mt-2 text-sm text-black/55">
-                        {s.hero?.subheadline ?? s.seo?.description ?? "Explore this service at Zivel."}
+                        {SERVICE_CARD_BLURBS[s.slug] ?? s.hero?.subheadline ?? s.seo?.description ?? "Explore this service at Zivel."}
                       </p>
                     </div>
                     <span

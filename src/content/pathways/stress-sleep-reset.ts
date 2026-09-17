@@ -51,6 +51,8 @@ export const stressSleepReset: Pathway = {
     orderedServiceSlugs: [
       "cryotherapy",
       "dry-float",
+      "oxygen-bar",
+      "compression-therapy",
       "red-light-therapy",
     ],
     note:

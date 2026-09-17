@@ -87,6 +87,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
     title: meta.title,
+    description: meta.description,
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },

@@ -8,7 +8,7 @@ Tagline: Recover Smarter. Look Better. Feel Stronger.
 
 ## Services
 
-Zivel offers eight core service modalities:
+Zivel offers ten core service modalities:
 
 - **Cryotherapy** — Whole-body cold exposure (2–3 min, ultra-low temperatures) for recovery, inflammation reduction, and energy. [Cryotherapy](https://www.zivel.com/services/cryotherapy): Service detail page with protocols, benefits, and booking.
 - **Red Light Therapy** — Near-infrared and red wavelength light panels for cellular energy, skin health, and muscle recovery. [Red Light Therapy](https://www.zivel.com/services/red-light-therapy): Service detail page with protocols, benefits, and booking.
@@ -17,7 +17,9 @@ Zivel offers eight core service modalities:
 - **Cryo Slimming** — Non-invasive body contouring using controlled cold to target and reduce localized fat cells. [Cryo Slimming](https://www.zivel.com/services/cryo-slimming): Service detail page with protocols, benefits, and booking.
 - **Cryo Toning** — Thermal contrast technique alternating cold and mild warmth to firm and tone skin. [Cryo Toning](https://www.zivel.com/services/cryo-toning): Service detail page with protocols, benefits, and booking.
 - **CryoLift Facial** — Cryo-based facial treatment reducing puffiness, tightening skin, and improving complexion. [CryoLift Facial](https://www.zivel.com/services/cryo-lift-facial): Service detail page with protocols, benefits, and booking.
-- **Compression Therapy** — Pneumatic compression sleeves for lymphatic drainage, circulation, and recovery. [Compression Therapy](https://www.zivel.com/services/compression-therapy): Service detail page with protocols, benefits, and booking.
+- **Compression Therapy** — Hyperice/Normatec sequential pneumatic compression for circulation, fluid movement, and post-activity recovery. [Compression Therapy](https://www.zivel.com/services/compression-therapy): Service detail page with protocols, benefits, and booking.
+- **Oxygen Bar** — A short seated recreational oxygen session for a calm, low-effort reset between services. [Oxygen Bar](https://www.zivel.com/services/oxygen-bar): Service detail page with experience, safety, and booking.
+- **Cryo Soothe** — Localized Neveskin cryotherapy for comfort in a specific area, separate from chamber and body-contouring protocols. [Cryo Soothe](https://www.zivel.com/services/cryo-soothe): Service detail page with protocols, safety, and booking.
 
 [All Services](https://www.zivel.com/services): Complete index of Zivel wellness and recovery service offerings.
 

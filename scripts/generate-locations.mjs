@@ -13,6 +13,8 @@ const SERVICES_ALL = [
   {  name: "Cryo Toning", slug: "cryo-toning" },
   {  name: "CryoLift Facial", slug: "cryo-lift-facial" },
   {  name: "Compression Therapy", slug: "compression-therapy" },
+  {  name: "Oxygen Bar", slug: "oxygen-bar" },
+  {  name: "Cryo Soothe", slug: "cryo-soothe" },
 ];
 
 function servicesFromRule(rule) {

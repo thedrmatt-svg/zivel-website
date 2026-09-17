@@ -51,7 +51,6 @@ export const bodyCompositionMetabolicSupport: Pathway = {
       "cryotherapy",
       "cryo-slimming",
       "red-light-therapy",
-      "compression-therapy",
     ],
     note:
       "On non-slimming days, many clients repeat the sequence while skipping the Cryo Slimming step.",

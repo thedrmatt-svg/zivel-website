@@ -50,9 +50,7 @@ export const mobilityActiveLifestyle: Pathway = {
     orderedServiceSlugs: [
       "cryotherapy",
       "red-light-therapy",
-      "compression-therapy",
       "infrared-sauna",
-      "cryo-soothe",
     ],
     note:
       "Service selection can be adjusted based on activity level and how the body responds. Some clients prioritize sauna for relaxation and mobility, while others prioritize targeted Cryo Soothe for specific areas.",

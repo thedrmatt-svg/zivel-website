@@ -9,6 +9,8 @@ import { cryoSlimming } from "@/content/services/cryo-slimming";
 import { cryoToning } from "@/content/services/cryo-toning";
 import { cryoLiftFacial } from "@/content/services/cryo-lift-facial";
 import { compressionTherapy } from "@/content/services/compression-therapy";
+import { oxygenBar } from "@/content/services/oxygen-bar";
+import { cryoSoothe } from "@/content/services/cryo-soothe";
 
 export const services: Service[] = [
   cryotherapy,
@@ -19,6 +21,8 @@ export const services: Service[] = [
   infraredSauna,
   cryoToning,
   compressionTherapy,
+  oxygenBar,
+  cryoSoothe,
 ].map((service) => withContentDateFallback(service));
 
 export function getServiceBySlug(slug: string): Service | undefined {

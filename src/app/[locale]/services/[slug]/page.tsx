@@ -34,13 +34,15 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es${basePath}`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
 
-  // All service slugs have a verified hero.jpg at /images/services/<slug>/hero.jpg.
-  // AVIF is used for rendered page images but is not reliably supported by social
-  // crawlers, so we always point OG to the JPEG version.
-  const ogImage = `${SITE_URL}/images/services/${service.slug}/hero.jpg`;
+  const heroImage = service.hero.media?.type === "image" ? service.hero.media.src : "/images/og-image.jpg";
+  const ogImage = `${SITE_URL}${heroImage.endsWith(".avif") ? "/images/og-image.jpg" : heroImage}`;
+  const title = service.seo.title.endsWith("| Zivel")
+    ? { absolute: service.seo.title }
+    : service.seo.title;
 
   return {
-    title: service.seo.title,
+    title,
+    description: service.seo.description,
     alternates: {
       canonical: canonicalUrl,
       languages: {
@@ -83,6 +85,8 @@ export default async function ServicePage({ params }: PageProps) {
     "infrared-sauna": [245, 158, 11],
     "dry-float": [34, 197, 94],
     "compression-therapy": [161, 161, 170],
+    "oxygen-bar": [125, 211, 252],
+    "cryo-soothe": [78, 205, 196],
     "cryo-slimming": [20, 184, 166],
     "cryo-toning": [59, 130, 246],
     "cryo-lift-facial": [251, 113, 133],
@@ -159,7 +163,6 @@ export default async function ServicePage({ params }: PageProps) {
 
   return (
     <main id="main-content" tabIndex={-1} style={serviceStyle} data-zivel-service={__zivelSlug} className="space-y-0 zivel-service-page -mt-20" aria-labelledby="service-hero-title">
-      <meta name="description" content={service.seo.description} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
@@ -588,32 +591,35 @@ export default async function ServicePage({ params }: PageProps) {
 
       <div className="zv-divider-dark-to-light zv-bleed" />
 
-      {/* ========== SECTION 8 — TESTIMONIALS (DARK) ========== */}
-      <section className="zv-bleed zv-immersive-section zv-section-elevated">
-        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
-          <ScrollReveal variant="fade-up">
-            <p className="zv-tagline" style={{ color: accentRGB }}>Testimonials</p>
-            <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.testimonials.headline}</h2>
-          </ScrollReveal>
-
-          <div className="grid gap-8 md:grid-cols-3">
-            {service.testimonials.items.map((t, idx) => (
-              <ScrollReveal key={`${t.name}-${idx}`} variant="fade-up" delay={idx * 100}>
-                <div className="zv-luxury-card rounded-2xl p-8 h-full flex flex-col" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
-                  <div className="zv-quote-mark font-serif" style={{ color: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.3)` }}>&ldquo;</div>
-                  <p className="flex-1 text-white/80 italic leading-relaxed font-serif text-lg">{t.quote}</p>
-                  <div className="mt-6 pt-4" style={{ borderTop: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)` }}>
-                    <div className="text-sm font-semibold text-white">{t.name}</div>
-                    {t.location ? <div className="text-xs text-white/50 mt-0.5">{t.location}</div> : null}
-                  </div>
-                </div>
+      {service.testimonials.items.length > 0 ? (
+        <>
+          {/* ========== SECTION 8 — TESTIMONIALS (DARK) ========== */}
+          <section className="zv-bleed zv-immersive-section zv-section-elevated">
+            <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
+              <ScrollReveal variant="fade-up">
+                <p className="zv-tagline" style={{ color: accentRGB }}>Testimonials</p>
+                <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">{service.testimonials.headline}</h2>
               </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <div className="zv-divider-dark-to-light zv-bleed" />
+              <div className="grid gap-8 md:grid-cols-3">
+                {service.testimonials.items.map((t, idx) => (
+                  <ScrollReveal key={`${t.name}-${idx}`} variant="fade-up" delay={idx * 100}>
+                    <div className="zv-luxury-card rounded-2xl p-8 h-full flex flex-col" style={{ "--luxury-accent": accentRGB } as CSSProperties}>
+                      <div className="zv-quote-mark font-serif" style={{ color: `rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.3)` }}>&ldquo;</div>
+                      <p className="flex-1 text-white/80 italic leading-relaxed font-serif text-lg">{t.quote}</p>
+                      <div className="mt-6 pt-4" style={{ borderTop: `1px solid rgba(${__zivelRGB[0]}, ${__zivelRGB[1]}, ${__zivelRGB[2]}, 0.12)` }}>
+                        <div className="text-sm font-semibold text-white">{t.name}</div>
+                        {t.location ? <div className="text-xs text-white/50 mt-0.5">{t.location}</div> : null}
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
+          </section>
+          <div className="zv-divider-dark-to-light zv-bleed" />
+        </>
+      ) : null}
 
       {/* ========== SECTION 9 — PRICING (LIGHT) ========== */}
       <section className="zv-bleed zv-immersive-section zv-section-light zv-light">

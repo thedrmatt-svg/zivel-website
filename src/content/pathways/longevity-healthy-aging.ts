@@ -51,6 +51,8 @@ export const longevityHealthyAging: Pathway = {
       "red-light-therapy",
       "infrared-sauna",
       "cryotherapy",
+      "compression-therapy",
+      "oxygen-bar",
     ],
     note:
       "This pathway emphasizes services that align strongly with longevity-oriented recovery routines, while remaining compatible with additional modalities based on individual preferences and goals.",

@@ -1,0 +1,145 @@
+Update Zivel brand service pages. Do NOT push to Git. Do NOT change layout system, header/footer, booking button pattern, or Lighthouse metadata architecture.
+
+GOAL
+1) Rewrite existing /services/compression-therapy copy to the new Normatec/Hyperice-aligned content below.
+2) Create two NEW brand service pages that match the existing service page template exactly:
+   - /services/oxygen-bar
+   - /services/cryo-soothe
+3) Add both new services to:
+   - Header Services dropdown
+   - /services (All Services) page cards
+   - Any service registry / slugs list used by local service generators, sitemap, breadcrumbs, schema, and related-service modules
+4) Keep Compression in Recovery & Longevity.
+   Add Oxygen Bar and Cryo Soothe to Recovery & Longevity (NOT Premium/Anti-Aging).
+   Cryo Soothe is localized comfort — not Slimming, not Toning, not Facial.
+
+URL SLUGS (exact)
+- compression-therapy (already exists — update copy only)
+- oxygen-bar
+- cryo-soothe
+
+TECH / SEO RULES (non-negotiable)
+- App Router, Server Components, SSG/SSR only. No unnecessary "use client".
+- Title + meta description come ONLY from generateMetadata / static metadata export.
+- Do NOT add raw <title> or <meta name="description"> tags in JSX. That creates duplicates and breaks Bing/Lighthouse.
+- Do NOT call headers(), cookies(), or other dynamic APIs in layout generateMetadata.
+- Metadata must render in the initial HTML <head>, early, same pattern as cryotherapy / home after the Lighthouse 100% fix.
+- Unique title + unique description per page, descriptions 120–155 characters.
+- Canonical: https://www.zivel.com/services/[slug]
+- Add Service + FAQPage + BreadcrumbList JSON-LD consistent with other service pages.
+- Add both new URLs to sitemap.xml generator with same priority/changefreq pattern as other /services/[slug] pages (monthly, ~0.8).
+- Update llms.txt service list if that file lists services.
+- robots.txt unchanged unless a service list is hardcoded there.
+- Build must pass. Run npm run build and report path count + errors.
+- Do not change CSP, GTM, booking buttons, or iframe logic.
+
+PAGE TEMPLATE
+Clone the existing brand service page structure used by /services/cryotherapy and /services/compression-therapy:
+Hero → What is → Key Benefits → Pathways → What to Expect → Science → Safety & Contraindications → What Clients Say (reuse testimonial component if it pulls generic/service-agnostic quotes; do not invent fake reviews as schema) → Pricing Options (no hard prices; “Contact the local studio…”) → Book Now (same Book Now button/link pattern as other service pages) → FAQs → Related Services → Ready to Feel Better.
+
+COPY — COMPRESSION THERAPY (replace existing body/meta)
+
+Title: Compression Therapy | Recovery & Circulation Support | Zivel
+Meta description: Compression Therapy at Zivel uses Hyperice/Normatec sequential pneumatic compression to support circulation, fluid movement, and post-activity recovery.
+
+Hero subhead: A recovery-focused session using sequential pneumatic compression to support circulation, fluid movement, and that lighter-legged feeling after training, travel, or long days on your feet.
+
+What it is: Hyperice/Normatec attachments on legs, hips, or arms. Sequential pulse pattern: pulsing, gradients, distal release. Typically 20–30 minutes. Fully clothed. Passive.
+
+Benefits:
+- Supports circulation routines
+- May ease the heavy-legged feeling
+- Supports comfort after travel
+- Passive recovery
+- Easy to stack with cryotherapy, red light, sauna, or dry float
+- Performance-minded routine tool
+
+Pathways: Recovery & Pain Support; Performance & Athletic Optimization; Travel Reset & Jet Lag Recovery; Longevity & Healthy Aging; Stress & Sleep Reset.
+
+What to expect: 01 Arrival & Fit; 02 Compression Cycles; 03 After the Session; 04 Frequency 2–3x/week when training or traveling.
+
+Science: Frame as mechanical support for venous return and lymphatic movement. Perceived recovery/comfort stronger than consistent performance-lab outcomes. Non-medical.
+
+Safety: Educational only, not medical advice. Screen for DVT/clotting disorders, severe PAD, uncontrolled CHF, acute infection/open wounds, recent uncleared surgery, severe neuropathy, pregnancy per studio protocol.
+
+FAQs: session length; does it hurt; when to use; legs and arms same visit; before/after cryo; vs compression socks.
+
+Related: Cryotherapy, Red Light Therapy, Infrared Sauna, Dry Float, Oxygen Bar.
+
+COPY — OXYGEN BAR (new page)
+
+Title: Oxygen Bar | Calm Reset & Recovery Add-On | Zivel
+Meta description: Zivel’s Oxygen Bar is a short seated wellness session using concentrated oxygen through a nasal cannula—an easy reset between training, work, or other recovery services.
+
+Hero subhead: A quiet, low-effort session using concentrated oxygen through a nasal cannula—often with an optional light aroma—for a simple mid-visit reset.
+
+What it is: Recreational wellness oxygen bar (not medical oxygen therapy). Concentrator + nasal cannula. Typically 10–20 minutes. Optional aroma. Seated, clothed.
+
+Benefits (do NOT claim disease treatment, hangover cure, or medical oxygenation):
+- A simple nervous-system downshift
+- A mid-day clarity ritual
+- Pairs with compression or dry float
+- Low physical demand
+- Sensory reset with optional aroma
+- Easy consistency
+
+Pathways: Stress & Sleep Reset; Travel Reset & Jet Lag Recovery; Performance & Athletic Optimization; Longevity & Healthy Aging.
+
+Science: Room air ~21% O2. Healthy hemoglobin already near-saturated. Position as a calm wellness experience inside a recovery routine, not HBOT or prescribed oxygen.
+
+Safety: Not a substitute for medical oxygen. Caution: COPD/CO2 retention, unstable heart/lung disease, aroma/asthma sensitivity, anyone on prescribed oxygen.
+
+FAQs: medical vs recreational; length; how it feels; scents; stacking; weekly use.
+
+Related: Compression Therapy, Dry Float, Infrared Sauna, Red Light Therapy, Cryotherapy.
+
+COPY — CRYO SOOTHE (new page)
+
+Title: Cryo Soothe | Localized Comfort Cryotherapy | Zivel
+Meta description: Cryo Soothe at Zivel is localized Neveskin cryotherapy for a specific area—shoulders, back, knees, hips—without a full-body chamber or body-contouring protocol.
+
+Hero subhead: Targeted, non-invasive cold-and-contrast work on the Neveskin wand for comfort in a specific area—not slimming, not a facial, not whole-body cryo.
+
+What it is: Same Neveskin family as Slimming/Toning/Facial, different protocol. Manual wand, ~10–15 minutes per area. Localized comfort/recovery.
+
+Benefits:
+- Targeted comfort work
+- Localized cold exposure
+- No downtime
+- Complements whole-body cryotherapy
+- Flexible frequency
+- Stacks with compression and red light
+
+Do NOT describe inch-loss or facial results on this page. Link those services as related only.
+
+Pathways: Recovery & Pain Support; Performance & Athletic Optimization; Travel Reset.
+
+Science: Localized skin-temperature and blood-flow responses; regional stimulus vs chamber. Non-medical wellness for targeted comfort.
+
+Safety: Cold sensitivity/urticaria, poor circulation or sensory loss in area, open wounds, uncleared injury/surgery, Raynaud’s caution, pregnancy per studio protocol.
+
+FAQs: vs Cryo Slimming; session length; multiple areas; vs chamber; soreness; frequency; stacking with compression.
+
+Related: Cryotherapy, Compression Therapy, Red Light Therapy, Cryo Toning, Cryo Slimming.
+
+ALL SERVICES + NAV
+Card blurbs:
+- Compression Therapy: A recovery-focused session using sequential pneumatic compression to support circulation and post-workout recovery routines.
+- Oxygen Bar: A short seated oxygen session for a calm, low-effort reset between services.
+- Cryo Soothe: Localized Neveskin cryo for comfort in a specific area—not a chamber and not body contouring.
+
+LOCAL PAGES
+Do NOT mass-generate every location×service combo in this pass unless the existing LOCAL_SERVICE_COMBOS generator already auto-includes every brand service slug. If the generator is opt-in per slug, add oxygen-bar and cryo-soothe the same way cryotherapy was added, using fallback meta capped at 155 chars. Do not invent local-only copy yet.
+
+DISCLAIMER
+Use the same sitewide non-medical wellness disclaimer used on other service pages.
+
+AFTER CHANGES
+- Run npm run build
+- Confirm new routes prerender
+- Confirm sitemap includes:
+  https://www.zivel.com/services/oxygen-bar
+  https://www.zivel.com/services/cryo-soothe
+  https://www.zivel.com/services/compression-therapy
+- Confirm a single <title> and single meta description in the HTML for each
+- Report files changed and do not push

@@ -34,6 +34,14 @@ export const serviceLinks: ServiceLinkMap = {
     science: ["recovery-modalities-float-compression", "science-basics"],
     research: [],
   },
+  "oxygen-bar": {
+    science: ["science-basics"],
+    research: [],
+  },
+  "cryo-soothe": {
+    science: ["cold-exposure", "science-basics"],
+    research: [],
+  },
 
   // Premium aesthetics (kept conservative; can be expanded later)
   "cryo-slimming": {
