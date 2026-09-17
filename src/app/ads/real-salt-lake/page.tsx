@@ -14,7 +14,7 @@ const THANK_YOU_URL = "/ads/real-salt-lake-thank-you";
 const SOURCE_LABEL = "Real Salt Lake Google Ads";
 const MAROON = "#8b1a1a";
 const HERO_BG = "#08010 1";
-const LOGO_PATH = "/images/ads/rsl-logo.png";
+const LOGO_PATH = "/images/ads/rsl-logo-2026.png";
 
 const SERVICES_ROW = [
   { img: "/images/home/service-redlight.jpg",    name: "Red Light Therapy",   desc: "Enhances recovery and reduces inflammation." },

@@ -699,7 +699,7 @@ export default async function LocationPage({
               </a>
               <a href="https://www.rsl.com/" target="_blank" rel="noopener noreferrer">
                 <Image
-                  src="/images/ads/rsl-logo.png"
+                  src="/images/ads/rsl-logo-2026.png"
                   alt="Real Salt Lake"
                   width={64}
                   height={64}
