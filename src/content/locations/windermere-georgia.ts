@@ -68,6 +68,14 @@ export const zivel_cumming_windermere_location: Location = {
   {
     "name": "Compression Therapy",
     "slug": "compression-therapy"
+  },
+  {
+    "name": "Oxygen Bar",
+    "slug": "oxygen-bar"
+  },
+  {
+    "name": "Cryo Soothe",
+    "slug": "cryo-soothe"
   }
 ],
 

@@ -71,6 +71,14 @@ export const zivel_highlands_ranch_location: Location = {
   {
     "name": "Compression Therapy",
     "slug": "compression-therapy"
+  },
+  {
+    "name": "Oxygen Bar",
+    "slug": "oxygen-bar"
+  },
+  {
+    "name": "Cryo Soothe",
+    "slug": "cryo-soothe"
   }
 ],
 

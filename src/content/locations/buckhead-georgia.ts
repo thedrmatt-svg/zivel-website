@@ -67,6 +67,14 @@ export const zivel_buckhead_location: Location = {
   {
     "name": "Dry Float",
     "slug": "dry-float"
+  },
+  {
+    "name": "Oxygen Bar",
+    "slug": "oxygen-bar"
+  },
+  {
+    "name": "Cryo Soothe",
+    "slug": "cryo-soothe"
   }
 ],
 

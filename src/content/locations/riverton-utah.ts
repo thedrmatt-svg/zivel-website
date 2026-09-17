@@ -74,6 +74,14 @@ export const zivel_riverton_location: Location = {
   {
     "name": "Compression Therapy",
     "slug": "compression-therapy"
+  },
+  {
+    "name": "Oxygen Bar",
+    "slug": "oxygen-bar"
+  },
+  {
+    "name": "Cryo Soothe",
+    "slug": "cryo-soothe"
   }
 ],
 

@@ -126,11 +126,11 @@ export default function ServicesIndexPage() {
         const groups = [
           {
             label: "Recovery & Longevity",
-            slugs: ["cryotherapy", "red-light-therapy", "dry-float", "infrared-sauna", "compression-therapy", "oxygen-bar", "cryo-soothe"],
+            slugs: ["cryotherapy", "red-light-therapy", "dry-float", "infrared-sauna", "compression-therapy", "oxygen-bar"],
           },
           {
             label: "Premium & Anti-Aging",
-            slugs: ["cryo-slimming", "cryo-lift-facial", "cryo-toning"],
+            slugs: ["cryo-slimming", "cryo-lift-facial", "cryo-toning", "cryo-soothe"],
           },
         ];
 

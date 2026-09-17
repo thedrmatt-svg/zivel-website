@@ -16,6 +16,7 @@ const RECOVERY_SERVICES = [
   "Infrared Sauna",
   "Dry Float",
   "Compression Therapy",
+  "Oxygen Bar",
   "Oxygen Therapy",
   "NormaTec",
 ];
