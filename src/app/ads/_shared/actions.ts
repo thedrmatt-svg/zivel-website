@@ -23,7 +23,7 @@ const ALLOWED_SOURCES: ReadonlySet<string> = new Set([
   "Real Salt Lake Google Ads",
   "Utah Royals Google Ads",
   "FanX Google Ads",
-  "American Top Team Sandy Springs Google Ads",
+  "Buckhead Fighter Ad",
 ]);
 
 /** Allowlist — must match the <option> values in AdsLeadForm. */
@@ -119,6 +119,9 @@ function buildLeadHtml({
   const safeReferrer = escapeHtml(referrer);
   const safeOffer    = escapeHtml(offer);
   const safeSource  = escapeHtml(source);
+  const sourceDescription = source === "Buckhead Fighter Ad"
+    ? "Buckhead Fighter Ad"
+    : "Google Ads Landing Page";
   const telHref     = toTelHref(phone);        // digits + '+' only
   const mailtoHref  = email ? `mailto:${encodeURIComponent(email)}` : "";
 
@@ -143,7 +146,7 @@ function buildLeadHtml({
         <tr><td style="background:#0a0a0a;padding:32px 40px;text-align:center;">
           <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c8971f;">Zivel</p>
           <h1 style="margin:10px 0 0;font-size:22px;font-weight:300;color:#ffffff;letter-spacing:0.5px;">New Lead — ${safeSource}</h1>
-          <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.5);">Google Ads Landing Page</p>
+          <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.5);">${sourceDescription}</p>
         </td></tr>
 
         <tr><td style="height:3px;background:linear-gradient(90deg,#c8971f,#e8c547,#c8971f);"></td></tr>
@@ -218,7 +221,7 @@ export type AdsLeadState = {
 } | null;
 
 const TO_ADDRESSES = ["vtzk5gc2@robot.zapier.com", "jackson@zivel.com"];
-const ATT_SANDY_SPRINGS_TO_ADDRESSES = ["buckhead@zivel.com", "flanagan@zivel.com"];
+const BUCKHEAD_FIGHTER_TO_ADDRESSES = ["buckhead@zivel.com", "flanagan@zivel.com"];
 
 export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
   // ── Honeypot — bots fill this; real users leave it empty ──────────────────
@@ -268,11 +271,11 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
 
   // ── Service allowlist ─────────────────────────────────────────────────────
   const safeService = ALLOWED_SERVICES.has(service) ? service : "General information";
-  const isAttLead = source === "American Top Team Sandy Springs Google Ads";
+  const isBuckheadFighterLead = source === "Buckhead Fighter Ad";
   const safeReferrer = ALLOWED_REFERRERS.has(referrer) ? referrer : "";
   const safeOffer = ALLOWED_OFFERS.has(offer) ? offer : "";
 
-  if (isAttLead && (!safeReferrer || !safeOffer || !ALLOWED_SERVICES.has(service))) {
+  if (isBuckheadFighterLead && (!safeReferrer || !safeOffer || !ALLOWED_SERVICES.has(service))) {
     return { status: "error", message: "Please select a referral source, training offer, and service." };
   }
 
@@ -302,8 +305,8 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
   try {
     const resend = new Resend(apiKey);
     const recipients =
-      safeSource === "American Top Team Sandy Springs Google Ads"
-        ? ATT_SANDY_SPRINGS_TO_ADDRESSES
+      safeSource === "Buckhead Fighter Ad"
+        ? BUCKHEAD_FIGHTER_TO_ADDRESSES
         : TO_ADDRESSES;
     const { error } = await resend.emails.send({
       from: "Zivel Website <no-reply@zivel.com>",
