@@ -19,10 +19,10 @@ export default function AmericanTopTeamThankYou() {
       <div className="ty-circle" aria-hidden="true" />
       <div className="ty-wrap ty-grid relative z-10 py-20">
         <div>
-          <div className="flex items-center gap-3 mb-12"><Link href="/locations/georgia/buckhead" aria-label="Visit the Zivel Buckhead location page"><Image src="/images/brand/zivel-logo.png" alt="Zivel" width={90} height={30} style={{ width: "auto", height: "auto" }} /></Link><span className="text-white/25 text-2xl">×</span><a href="https://www.attsandysprings.com/" aria-label="Visit American Top Team Sandy Springs"><Image src="/images/ads/american-top-team-logo.png" alt="American Top Team" width={51} height={52} /></a></div>
+          <div className="mb-12"><Link href="/locations/georgia/buckhead" aria-label="Visit the Zivel Buckhead location page"><Image src="/images/brand/zivel-logo.png" alt="Zivel" width={90} height={30} style={{ width: "auto", height: "auto" }} /></Link></div>
           <p className="ty-kicker">Request received</p>
           <h1 className="ty-h1">Take the<br /><span className="text-[#ff4040]">Next Step!</span></h1>
-          <p className="ty-copy max-w-md">Thanks for reaching out about the Zivel Buckhead and American Top Team Sandy Springs partnership. We have your information and a member of our team will follow up with you.</p>
+          <p className="ty-copy max-w-md">Thanks for reaching out about fighter recovery at Zivel Buckhead. We have your information and a member of our team will follow up with you.</p>
         </div>
         <div className="ty-box">
           <p className="ty-kicker mb-3">Ready when you are</p>
