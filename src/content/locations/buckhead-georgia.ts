@@ -100,6 +100,7 @@ export const zivel_buckhead_location: Location = {
         description: "A great entry point for regular recovery.",
         features: ["6 Recovery Sessions/Month", "Good for Beginners"],
         mostPopular: false,
+        bookingUrl: "https://app.clubready.com/JoinUs/14900/630695",
       },
       {
         name: "Elite",
