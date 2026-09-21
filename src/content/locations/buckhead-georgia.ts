@@ -109,6 +109,7 @@ export const zivel_buckhead_location: Location = {
         description: "More sessions, more value.",
         features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
         mostPopular: true,
+        bookingUrl: "https://app.clubready.com/JoinUs/14900/630696",
       },
     ],
     standardPrices: [
