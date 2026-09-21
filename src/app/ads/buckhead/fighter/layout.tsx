@@ -1,0 +1,1 @@
+export { default, metadata } from "../../american-top-team-sandy-springs/layout";

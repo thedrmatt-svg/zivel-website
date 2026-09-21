@@ -92,6 +92,10 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // ── Buckhead fighter campaign moved to a shorter URL ───────────────
+      { source: "/ads/american-top-team-sandy-springs", destination: "/ads/buckhead/fighter", permanent: true },
+      { source: "/ads/american-top-team-sandy-springs-thank-you", destination: "/ads/buckhead/fighter/thank-you", permanent: true },
+
       // ── Canonical domain: non-www → www ─────────────────────────────────
       { source: "/:path*", has: [{ type: "host" as const, value: "zivel.com" }], destination: "https://www.zivel.com/:path*", permanent: true },
 
