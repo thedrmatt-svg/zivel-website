@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect, useRef, type MouseEvent } from "react";
 import { services } from "@/lib/data/services";
 import { pathways } from "@/lib/data/pathways";
 import { getLocationNav } from "@/lib/data/locationNav";
@@ -16,6 +16,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
+  const [desktopLocationsDismissed, setDesktopLocationsDismissed] = useState(false);
   const [mobilePathwaysOpen, setMobilePathwaysOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuToggleRef = useRef<HTMLButtonElement>(null);
@@ -66,6 +67,11 @@ export default function Header() {
 
   const isActive = (href: string) =>
     pathname === href || (href !== "/" && pathname?.startsWith(href));
+
+  const closeDesktopLocations = (event: MouseEvent<HTMLElement>) => {
+    setDesktopLocationsDismissed(true);
+    event.currentTarget.blur();
+  };
 
   const navLinkClass =
     "text-[13px] font-medium tracking-wide uppercase text-white/70 hover:text-[var(--zivel-gold)] transition-colors duration-300";
@@ -159,20 +165,29 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="relative group">
+            <div
+              className="relative group"
+              onMouseLeave={() => setDesktopLocationsDismissed(false)}
+            >
               <Link
                 href="/locations"
                 className={`${navLinkClass} inline-flex items-center gap-1 ${isActive("/locations") ? "text-[var(--zivel-gold)]" : ""}`}
+                onClick={closeDesktopLocations}
               >
                 Locations
                 <span className="text-white/60 text-xs">▾</span>
               </Link>
 
-              <div className="invisible absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div className={`invisible absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 transition-all duration-300 ${
+                desktopLocationsDismissed
+                  ? ""
+                  : "group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+              }`}>
                 <div className="w-[260px] rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl p-3 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
                   <Link
                     href="/locations"
                     className="block rounded-lg px-3 py-3 text-sm font-semibold text-white hover:bg-white/5 transition-colors"
+                    onClick={closeDesktopLocations}
                   >
                     View All Locations →
                   </Link>
@@ -183,6 +198,7 @@ export default function Header() {
                         key={c.href}
                         href={c.href}
                         className="block rounded-lg px-3 py-2 text-sm text-white/70 hover:bg-white/5 hover:text-white transition-colors"
+                        onClick={closeDesktopLocations}
                       >
                         {c.label}
                       </Link>
