@@ -146,17 +146,6 @@ export const zivel_cumming_windermere_location: Location = {
         bookingUrl: "https://app.clubready.com/JoinUs/14944/641756",
       },
       {
-        name: "Student Summer Package",
-        price: "$249",
-        savings: "Valid through August 31, 2026",
-        benefits: [
-          "20 Recovery Sessions",
-          "Use anytime before August 31, 2026",
-        ],
-        bookingUrl: "https://app.clubready.com/JoinUs/14944/650654",
-        buttonLabel: "Get Package",
-      },
-      {
         name: "5 Cryo Facials",
         price: "$500",
         regularPrice: "$750",
