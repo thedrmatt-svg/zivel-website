@@ -1,0 +1,32 @@
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(23, 19, 15, 0.45) 0%,
+    rgba(23, 19, 15, 0.84) 48%,
+    #17130f 90%
+  );
+}
+
+@media (min-width: 1024px) {
+  .heroOverlay {
+    background: linear-gradient(
+      90deg,
+      #17130f 0%,
+      rgba(23, 19, 15, 0.99) 30%,
+      rgba(23, 19, 15, 0.83) 52%,
+      rgba(23, 19, 15, 0.18) 100%
+    );
+  }
+}
+
+.lightSection h2,
+.lightText {
+  color: #2b211c;
+}
+
+.lightSection a:hover {
+  color: #5d3317;
+}
