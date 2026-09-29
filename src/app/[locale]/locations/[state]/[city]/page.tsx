@@ -140,7 +140,9 @@ export default async function LocationPage({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "HealthAndBeautyBusiness",
-    name: location.name,
+    name: location.stateSlug === "florida" && location.citySlug === "hollywood"
+      ? "Zivel - Hollywood"
+      : location.name,
     description: location.seo.description,
     url: canonicalUrl,
     ...(location.hero?.image && {
