@@ -96,7 +96,7 @@ export const zivel_briargate_location: Location = {
         price: "$99",
         cadence: "/mo",
         description: "A great entry point for regular recovery.",
-        features: ["6 Recovery Sessions/Month", "Good for Beginners"],
+        features: ["8 Recovery services per month", "Good for Beginners"],
         mostPopular: false,
       },
       {
