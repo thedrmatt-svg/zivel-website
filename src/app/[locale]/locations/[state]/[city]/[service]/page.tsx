@@ -1562,12 +1562,12 @@ export default async function LocalServicePage({ params }: Props) {
         </div>
       </section>
 
-      {/* ========== WHAT TO EXPECT AT RIVERTON (LIGHT) ========== */}
+      {/* ========== WHAT TO EXPECT AT THIS LOCATION (LIGHT) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }} />
       <section className="zv-bleed zv-section-light zv-light zv-immersive-section" style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}>
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal variant="fade-up">
-            <p className="zv-tagline mb-4">At Zivel Riverton</p>
+            <p className="zv-tagline mb-4">At {location.name}</p>
             <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight mb-14">
               What to Expect at Your Local Studio
             </h2>

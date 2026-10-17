@@ -10,6 +10,7 @@
       "build": "next build",
       "start": "next start -p 5000 -H 0.0.0.0",
       "lint": "next lint",
+      "test:local-service-identity": "node --test scripts/test-local-service-identity.cjs",
       "fetch-places": "node scripts/fetch-places-cache.mjs"
    },
    "dependencies": {
