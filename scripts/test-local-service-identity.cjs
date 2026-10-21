@@ -171,10 +171,8 @@ test("Windermere packages have the correct grouping, prices, and purchase links"
     assert.equal(item.price, price);
     assert.equal(item.bookingUrl, `https://app.clubready.com/JoinUs/14944/${purchaseId}`);
     assert.ok(item.description?.length > 0);
-    if (name.includes("Slimmings")) {
-      assert.equal(item.regularPrice, undefined);
-      assert.equal(item.savings, undefined);
-    }
+    assert.equal(item.regularPrice, undefined);
+    assert.equal(item.savings, undefined);
   }
 });
 
