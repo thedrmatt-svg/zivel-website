@@ -10,7 +10,7 @@ export const zivel_brecksville_location: Location = {
 
   seo: {
     title: "Zivel Brecksville",
-    description: "Zivel Brecksville offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Brecksville, OH. Book your session today.",
+    description: "Zivel Brecksville offers cryotherapy, infrared sauna, dry float, and recovery services in Brecksville, OH. Explore our studio and services.",
     canonical: "https://www.zivel.com/locations/ohio/brecksville",
   },
 
@@ -39,10 +39,6 @@ export const zivel_brecksville_location: Location = {
   {
     "name": "Cryotherapy",
     "slug": "cryotherapy"
-  },
-  {
-    "name": "Red Light Therapy",
-    "slug": "red-light-therapy"
   },
   {
     "name": "Infrared Sauna",
@@ -153,13 +149,6 @@ export const zivel_brecksville_location: Location = {
     },
   ],
 
-  localBlog: {
-    href: "/locations/ohio/brecksville/blog",
-    heading: "Brecksville Wellness Insights",
-    description:
-      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Brecksville team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Brecksville and the Cuyahoga Valley area feel and perform their best.",
-    ctaLabel: "Read the Brecksville Blog",
-  },
 };
 
 export default zivel_brecksville_location;

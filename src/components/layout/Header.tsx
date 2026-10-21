@@ -14,7 +14,8 @@ const LOCATIONS_NAV = getLocationNav({ featuredCount: 4 });
 
 export default function Header() {
   const pathname = usePathname();
-  const bookingDisabled = isBrecksvilleLocationPath(pathname);
+  const isBrecksville = isBrecksvilleLocationPath(pathname);
+  const bookingDisabled = isBrecksville;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
@@ -49,12 +50,12 @@ export default function Header() {
 
   const serviceLinks = useMemo(
     () =>
-      services.map((s) => ({
+      services.filter((s) => !isBrecksville || s.slug !== "red-light-therapy").map((s) => ({
         label: s.name,
         href: `/services/${s.slug}`,
         description: s.hero.subheadline,
       })),
-    []
+    [isBrecksville]
   );
 
   const pathwayLinks = useMemo(
@@ -62,9 +63,11 @@ export default function Header() {
       pathways.map((p) => ({
         label: p.name,
         href: `/pathways/${p.slug}`,
-        description: p.seo.description,
+        description: isBrecksville && p.slug === "skin-health-regenerative-aesthetics"
+          ? "A wellness pathway supporting skin health, firmness, and appearance with non-invasive aesthetic services."
+          : p.seo.description,
       })),
-    []
+    [isBrecksville]
   );
 
   const isActive = (href: string) =>
@@ -213,9 +216,9 @@ export default function Header() {
             <Link href="/science" className={`${navLinkClass} ${isActive("/science") ? "text-[var(--zivel-gold)]" : ""}`}>
               Science
             </Link>
-            <Link href="/blog" className={`${navLinkClass} ${isActive("/blog") ? "text-[var(--zivel-gold)]" : ""}`}>
+            {!isBrecksville && <Link href="/blog" className={`${navLinkClass} ${isActive("/blog") ? "text-[var(--zivel-gold)]" : ""}`}>
               Blog
-            </Link>
+            </Link>}
             <Link href="/press" className={`${navLinkClass} ${isActive("/press") ? "text-[var(--zivel-gold)]" : ""}`}>
               Press
             </Link>
@@ -369,13 +372,13 @@ export default function Header() {
               >
                 Science
               </Link>
-              <Link
+              {!isBrecksville && <Link
                 href="/blog"
                 className="block px-3 py-3 text-sm font-medium tracking-wide uppercase text-white hover:text-[var(--zivel-gold)] transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 Blog
-              </Link>
+              </Link>}
               <Link
                 href="/press"
                 className="block px-3 py-3 text-sm font-medium tracking-wide uppercase text-white hover:text-[var(--zivel-gold)] transition-colors"

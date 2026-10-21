@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import HideForBrecksville from "@/components/location/HideForBrecksville";
 
 export default function Footer() {
   return (
@@ -57,11 +58,11 @@ export default function Footer() {
                   About
                 </Link>
               </li>
-              <li>
+              <HideForBrecksville><li>
                 <Link className="hover:text-[var(--zivel-gold)] transition-colors duration-300" href="/blog">
                   Blog
                 </Link>
-              </li>
+              </li></HideForBrecksville>
               <li>
                 <Link className="hover:text-[var(--zivel-gold)] transition-colors duration-300" href="/press">
                   Press
@@ -103,11 +104,11 @@ export default function Footer() {
                   Cryotherapy Studies
                 </Link>
               </li>
-              <li>
+              <HideForBrecksville><li>
                 <Link className="hover:text-[var(--zivel-gold)] transition-colors duration-300" href="/research/red-light-therapy">
                   Red Light Studies
                 </Link>
-              </li>
+              </li></HideForBrecksville>
             </ul>
           </div>
         </div>

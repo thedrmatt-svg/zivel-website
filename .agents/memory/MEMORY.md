@@ -5,4 +5,4 @@
 - [next-intl explicit locale to avoid Dynamic API](next-intl-dynamic-api.md) — getMessages()/getTranslations() without args call headers(), opting routes into streaming and pushing metadata after </head>; always pass { locale }.
 - [Form field error pattern](form-field-errors.md) — all four forms use fieldErrors on state type; server actions return fieldErrors map; components render aria-invalid + aria-describedby + inline red hint per field.
 - [Runtime version assumptions](runtime-version-assumptions.md) — verify the actual workspace Node version; package.json engines does not guarantee the installed runtime.
-- [Brecksville booking restrictions](brecksville-booking-restrictions.md) — Brecksville location pages must not offer online booking or Cherry financing; other studios are unchanged.
+- [Brecksville restrictions](brecksville-booking-restrictions.md) — no booking, Cherry, Red Light Therapy pages, or local blog for Brecksville; other studios are unchanged.

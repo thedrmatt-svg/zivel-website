@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
+import { isBrecksvilleLocation } from "@/lib/location-availability";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/lib/data/blog";
@@ -263,7 +264,9 @@ const LOCATION_BLOG_CONFIG: Record<
 };
 
 export async function generateStaticParams() {
-  return Object.values(LOCATION_BLOG_CONFIG).map((loc) => ({
+  return Object.values(LOCATION_BLOG_CONFIG)
+    .filter((loc) => !isBrecksvilleLocation(loc.stateSlug, loc.citySlug))
+    .map((loc) => ({
     state: loc.stateSlug,
     city: loc.citySlug,
   }));
@@ -276,7 +279,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { city, state, locale } = await params;
   const cfg = LOCATION_BLOG_CONFIG[city];
-  if (!cfg) return {};
+  if (!cfg || isBrecksvilleLocation(state, city)) return notFound();
 
   const canonicalPath = `/locations/${state}/${city}/blog`;
   const canonicalUrl = `${SITE_URL}${canonicalPath}`;
@@ -303,7 +306,7 @@ export default async function LocationBlogPage({
 }) {
   const { city, state } = await params;
   const cfg = LOCATION_BLOG_CONFIG[city];
-  if (!cfg) notFound();
+  if (!cfg || isBrecksvilleLocation(state, city)) notFound();
 
   const localPosts = getLocationBlogPosts(city);
   const allPosts = [...localPosts, ...blogPosts];

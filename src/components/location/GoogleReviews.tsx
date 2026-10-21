@@ -24,10 +24,12 @@ export default function GoogleReviews({
   placeId,
   locationName,
   variant = "dark",
+  excludeText,
 }: {
   placeId?: string;
   locationName: string;
   variant?: "light" | "dark";
+  excludeText?: RegExp;
 }) {
   const heading    = variant === "light" ? "text-black"     : "text-white";
   const subtext    = variant === "light" ? "text-black/70"  : "text-white/70";
@@ -50,6 +52,7 @@ export default function GoogleReviews({
 
   const fiveStarReviews = data.reviews
     .filter((r) => r.rating === 5)
+    .filter((r) => !excludeText?.test(r.text ?? ""))
     .slice(0, 4);
 
   if (!fiveStarReviews.length) {

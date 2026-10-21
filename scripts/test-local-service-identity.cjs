@@ -20,7 +20,7 @@ const wrappers = {
   "next/script": (props) => React.createElement("script", props),
   "next/navigation": {
     notFound() {
-      throw new Error("Unexpected notFound for a registered location service");
+      throw new Error("NEXT_NOT_FOUND");
     },
   },
   "@/components/ui/ScrollReveal": passthrough,
@@ -154,4 +154,47 @@ test("Brecksville restrictions match every nested locale route, not other studio
     "/locations/florida/coral-gables", "/es/locations/utah/riverton/pricing"]) {
     assert.equal(isBrecksvilleLocationPath(pathname), false);
   }
+});
+
+test("Brecksville red light and blog pages are unavailable and absent from the sitemap", async () => {
+  const brecksville = getLocationByPath("ohio", "brecksville");
+  assert.ok(brecksville);
+  assert.ok(!brecksville.services.some((service) => service.slug === "red-light-therapy"));
+  assert.equal(brecksville.localBlog, undefined);
+  assert.doesNotMatch(brecksville.seo.description, /red light/i);
+  const { default: GoogleReviews } = loadLocal(path.join(root, "src/components/location/GoogleReviews"));
+  const reviews = renderToStaticMarkup(React.createElement(GoogleReviews, {
+    placeId: brecksville.google?.placeId,
+    locationName: brecksville.name,
+    excludeText: /red[\s-]*light/i,
+  }));
+  assert.doesNotMatch(reviews, /red[\s-]*light/i);
+  assert.ok(!LOCAL_SERVICE_COMBOS.some((combo) =>
+    combo.state === "ohio" && combo.city === "brecksville" && combo.service === "red-light-therapy"
+  ));
+
+  const blogIndex = loadLocal(path.join(root, "src/app/[locale]/locations/[state]/[city]/blog/page"));
+  const blogPost = loadLocal(path.join(root, "src/app/[locale]/locations/[state]/[city]/blog/[slug]/page"));
+  for (const locale of ["en", "es"]) {
+    const serviceParams = Promise.resolve({
+      locale, state: "ohio", city: "brecksville", service: "red-light-therapy",
+    });
+    await assert.rejects(Page({ params: serviceParams }), /NEXT_NOT_FOUND/);
+    await assert.rejects(generateMetadata({ params: serviceParams }), /NEXT_NOT_FOUND/);
+    const blogParams = Promise.resolve({ locale, state: "ohio", city: "brecksville" });
+    await assert.rejects(blogIndex.default({ params: blogParams }), /NEXT_NOT_FOUND/);
+    await assert.rejects(blogIndex.generateMetadata({ params: blogParams }), /NEXT_NOT_FOUND/);
+    await assert.rejects(blogPost.default({
+      params: Promise.resolve({
+        locale, state: "ohio", city: "brecksville", slug: "brecksville-cryotherapy-vs-cold-plunge",
+      }),
+    }), /NEXT_NOT_FOUND/);
+  }
+  const paths = await blogIndex.generateStaticParams();
+  assert.ok(!paths.some((entry) => entry.city === "brecksville"));
+  const { default: sitemap } = loadLocal(path.join(root, "src/app/sitemap"));
+  const urls = (await sitemap()).map((entry) => entry.url);
+  assert.ok(!urls.some((url) => /\/locations\/ohio\/brecksville\/(?:red-light-therapy|blog)(?:\/|$)/.test(url)));
+  assert.ok(urls.includes("https://www.zivel.com/locations/florida/coral-gables/red-light-therapy"));
+  assert.ok(urls.includes("https://www.zivel.com/locations/florida/coral-gables/blog"));
 });

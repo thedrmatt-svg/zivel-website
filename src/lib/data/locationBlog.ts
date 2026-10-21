@@ -1,7 +1,6 @@
 import type { BlogPost } from "@/types/blog";
 import bentonvilleCryoVsColdPlunge from "@/content/blog/bentonville-cryotherapy-vs-cold-plunge";
 import rogersCryoVsColdPlunge from "@/content/blog/rogers-cryotherapy-vs-cold-plunge";
-import brecksvilleCryoVsColdPlunge from "@/content/blog/brecksville-cryotherapy-vs-cold-plunge";
 import briargateCryoVsColdPlunge from "@/content/blog/briargate-cryotherapy-vs-cold-plunge";
 import buckheadCryoVsColdPlunge from "@/content/blog/buckhead-cryotherapy-vs-cold-plunge";
 import coolSpringsCryoVsColdPlunge from "@/content/blog/cool-springs-cryotherapy-vs-cold-plunge";
@@ -20,7 +19,6 @@ import windermereCryoVsColdPlunge from "@/content/blog/windermere-cryotherapy-vs
 const LOCATION_BLOG_POSTS: Record<string, BlogPost[]> = {
   bentonville: [bentonvilleCryoVsColdPlunge],
   rogers: [rogersCryoVsColdPlunge],
-  brecksville: [brecksvilleCryoVsColdPlunge],
   briargate: [briargateCryoVsColdPlunge],
   buckhead: [buckheadCryoVsColdPlunge],
   "cool-springs": [coolSpringsCryoVsColdPlunge],

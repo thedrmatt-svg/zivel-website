@@ -9,7 +9,7 @@ import { getServiceBySlug } from "@/lib/data/services";
 import type { Location } from "@/types/location";
 import type { Service } from "@/types/service";
 import rawPlacesCache from "@/data/places-cache.json";
-import { LOCAL_SERVICE_COMBOS } from "@/lib/data/local-service-pages";
+import { LOCAL_SERVICE_COMBOS, hasLocalServicePage } from "@/lib/data/local-service-pages";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
 import { isBrecksvilleLocation } from "@/lib/location-availability";
 
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { state, city, service, locale } = await params;
   const location = getLocationByPath(state, city);
   const svc = getServiceBySlug(service);
-  if (!location || !svc) return {};
+  if (!location || !svc || !hasLocalServicePage(state, city, service)) return notFound();
   const key = `${state}/${city}/${service}`;
   const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const fallbackDesc = `${svc.name} in ${cityDisplay}, ${location.state} at ${location.name}. ${svc.hero.subheadline}`;
@@ -1343,7 +1343,7 @@ export default async function LocalServicePage({ params }: Props) {
   const { state, city, service } = await params;
   const location = getLocationByPath(state, city);
   const svc = getServiceBySlug(service);
-  if (!location || !svc) return notFound();
+  if (!location || !svc || !hasLocalServicePage(state, city, service)) return notFound();
 
   const key = `${state}/${city}/${service}`;
   const local = LOCAL_CONTENT[key] ?? generateLocalContent(location, svc, state, city);
