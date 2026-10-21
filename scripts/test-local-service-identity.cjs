@@ -156,6 +156,28 @@ test("Brecksville restrictions match every nested locale route, not other studio
   }
 });
 
+test("Windermere packages have the correct grouping, prices, and purchase links", () => {
+  const pricing = getLocationByPath("georgia", "windermere").pricing;
+  const packages = pricing.specialDealsBottom.slice(pricing.specialDealsBottomPremiumStart);
+  const expected = [
+    ["5 Cryo Facials", "$700", "627875"],
+    ["5 Cryo Slimmings/Tonings", "$1,600", "627871"],
+    ["10 Cryo Slimmings/Tonings", "$3,150", "627872"],
+  ];
+  assert.equal(packages.length, expected.length);
+  for (const [index, [name, price, purchaseId]] of expected.entries()) {
+    const item = packages[index];
+    assert.equal(item.name, name);
+    assert.equal(item.price, price);
+    assert.equal(item.bookingUrl, `https://app.clubready.com/JoinUs/14944/${purchaseId}`);
+    assert.ok(item.description?.length > 0);
+    if (name.includes("Slimmings")) {
+      assert.equal(item.regularPrice, undefined);
+      assert.equal(item.savings, undefined);
+    }
+  }
+});
+
 test("Brecksville red light and blog pages are unavailable and absent from the sitemap", async () => {
   const brecksville = getLocationByPath("ohio", "brecksville");
   assert.ok(brecksville);

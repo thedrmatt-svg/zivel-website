@@ -136,7 +136,7 @@ export const zivel_cumming_windermere_location: Location = {
       },
     ],
     specialDealsBottomInlinePricing: true,
-    specialDealsBottomPremiumStart: 2,
+    specialDealsBottomPremiumStart: 1,
     specialDealsBottom: [
       {
         name: "Day Pass — 3 Recovery Sessions",
@@ -147,24 +147,22 @@ export const zivel_cumming_windermere_location: Location = {
       },
       {
         name: "5 Cryo Facials",
-        price: "$500",
+        price: "$700",
         regularPrice: "$750",
-        description: "Rejuvenate and tighten skin with five targeted CryoLift Facial sessions.",
-        bookingUrl: "https://app.clubready.com/JoinUs/14944/648827",
+        description: "Five targeted CryoLift Facial sessions to support smoother-looking skin, firmness, and a refreshed appearance.",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/627875",
       },
       {
         name: "5 Cryo Slimmings/Tonings",
-        price: "$1,000",
-        regularPrice: "$1,750",
+        price: "$1,600",
         description: "Sculpt and contour your body with five precision Cryo Slimming or Toning treatments.",
-        bookingUrl: "https://app.clubready.com/JoinUs/14944/648827",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/627871",
       },
       {
         name: "10 Cryo Slimmings/Tonings",
-        price: "$1,500",
-        regularPrice: "$3,500",
+        price: "$3,150",
         description: "Our best value — ten Cryo Slimming or Toning sessions for maximum, lasting results.",
-        bookingUrl: "https://app.clubready.com/JoinUs/14944/648829",
+        bookingUrl: "https://app.clubready.com/JoinUs/14944/627872",
       },
     ],
     standardPrices: [
