@@ -1,7 +1,9 @@
 "use client";
 
 import Script from "next/script";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { isBrecksvilleLocationPath } from "@/lib/location-availability";
 
 const CHERRY_LOAD_DELAY_MS = 5000;
 const CHERRY_MOUNT_ID = "widget-floatingEstimator-mount";
@@ -41,6 +43,12 @@ const CHERRY_CONFIG = {
 };
 
 export default function CherryWidget() {
+  const pathname = usePathname();
+  if (isBrecksvilleLocationPath(pathname)) return null;
+  return <CherryEstimator />;
+}
+
+function CherryEstimator() {
   const [shouldLoad, setShouldLoad] = useState(false);
   const active = useRef(false);
 

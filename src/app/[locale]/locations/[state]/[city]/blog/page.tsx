@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LocationBookingLink from "@/components/location/LocationBookingLink";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/lib/data/blog";
@@ -415,7 +416,7 @@ export default async function LocationBlogPage({
                 </svg>
                 Back to Zivel {cfg.cityName}
               </Link>
-              <a
+              <LocationBookingLink state={state} city={city}
                 href={cfg.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -435,7 +436,7 @@ export default async function LocationBlogPage({
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </a>
+              </LocationBookingLink>
             </div>
           </ScrollReveal>
         </div>

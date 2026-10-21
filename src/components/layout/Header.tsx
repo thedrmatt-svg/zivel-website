@@ -7,12 +7,14 @@ import { useMemo, useState, useEffect, useRef, type MouseEvent } from "react";
 import { services } from "@/lib/data/services";
 import { pathways } from "@/lib/data/pathways";
 import { getLocationNav } from "@/lib/data/locationNav";
+import { isBrecksvilleLocationPath } from "@/lib/location-availability";
 
 
 const LOCATIONS_NAV = getLocationNav({ featuredCount: 4 });
 
 export default function Header() {
   const pathname = usePathname();
+  const bookingDisabled = isBrecksvilleLocationPath(pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
@@ -228,14 +230,14 @@ export default function Header() {
               >
                 Find a Location
               </Link>
-              <a
+              {!bookingDisabled && <a
                 href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-none bg-[var(--zivel-gold)] px-4 py-2.5 text-xs font-medium tracking-wider uppercase text-black hover:bg-[var(--zivel-gold-light)] transition-all duration-300"
               >
                 Book Now
-              </a>
+              </a>}
             </div>
           </nav>
 
@@ -399,7 +401,7 @@ export default function Header() {
                 >
                   Find a Location
                 </Link>
-                <a
+                {!bookingDisabled && <a
                   href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -407,7 +409,7 @@ export default function Header() {
                   onClick={() => setMobileOpen(false)}
                 >
                   Book Now
-                </a>
+                </a>}
               </div>
             </div>
           </div>

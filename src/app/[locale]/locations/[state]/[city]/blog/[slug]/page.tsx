@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LocationBookingLink from "@/components/location/LocationBookingLink";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { BlogContentBlock } from "@/types/blog";
@@ -382,14 +383,14 @@ export default async function LocationBlogPostPage({ params }: PageProps) {
                 Build a recovery routine that fits your schedule. Dry, fast, and stackable with red light, compression, and more.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <a
+                <LocationBookingLink state={state} city={city}
                   href={bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="zv-btn-luxury zv-btn-gold"
                 >
                   Book a Session
-                </a>
+                </LocationBookingLink>
                 <Link
                   href={`/locations/${state}/${city}`}
                   className="zv-btn-luxury zv-btn-outline"

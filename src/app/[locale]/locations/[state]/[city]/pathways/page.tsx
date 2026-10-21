@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LocationBookingLink from "@/components/location/LocationBookingLink";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -123,14 +124,14 @@ export default async function LocationPathwaysPage({
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={160}>
             <div className="mt-10 flex flex-wrap gap-4">
-              <a
+              <LocationBookingLink state={state} city={city}
                 href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-3.5 text-sm font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
               >
                 Book a Session →
-              </a>
+              </LocationBookingLink>
               <Link
                 href={`/locations/${location.stateSlug}/${location.citySlug}`}
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 px-8 py-3.5 text-sm font-semibold tracking-wide text-white transition-all duration-200 hover:border-[var(--zivel-gold)] hover:text-[var(--zivel-gold)]"
@@ -297,14 +298,14 @@ export default async function LocationPathwaysPage({
               a routine that fits your goals, schedule, and budget.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a
+              <LocationBookingLink state={state} city={city}
                 href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-3.5 text-sm font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
               >
                 Book a Session →
-              </a>
+              </LocationBookingLink>
               <Link
                 href="/pathways"
                 className="inline-flex items-center gap-2 rounded-full border border-black/20 px-8 py-3.5 text-sm font-semibold tracking-wide text-black/70 transition-all duration-200 hover:border-[var(--zivel-gold-dark)] hover:text-[var(--zivel-gold-dark)]"

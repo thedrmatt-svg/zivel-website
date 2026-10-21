@@ -60,6 +60,7 @@ function loadLocal(base) {
 const { LOCAL_SERVICE_COMBOS } = loadLocal(path.join(root, "src/lib/data/local-service-pages"));
 const { getLocationByPath } = loadLocal(path.join(root, "src/lib/data/locations"));
 const { getServiceBySlug } = loadLocal(path.join(root, "src/lib/data/services"));
+const { isBrecksvilleLocationPath } = loadLocal(path.join(root, "src/lib/location-availability"));
 const { default: Page, generateMetadata } = loadLocal(
   path.join(root, "src/app/[locale]/locations/[state]/[city]/[service]/page")
 );
@@ -105,10 +106,15 @@ test("every registered location-service page retains its own studio identity", a
     assert.equal(business.url, locationUrl, label);
     const breadcrumb = schemas.find((schema) => schema["@type"] === "BreadcrumbList");
     assert.equal(breadcrumb.itemListElement[3].item, locationUrl, label);
-    assert.ok(
-      html.includes(`set_location=${location.booking?.locationId ?? 11417}`),
-      `${label}: incorrect page-specific booking destination`
-    );
+    if (combo.state === "ohio" && combo.city === "brecksville") {
+      assert.doesNotMatch(html, /<a\b[^>]*href="[^"]*(?:book-appointment|#book)/i,
+        `${label}: disabled studio must not render booking links`);
+    } else {
+      assert.ok(
+        html.includes(`set_location=${location.booking?.locationId ?? 11417}`),
+        `${label}: incorrect page-specific booking destination`
+      );
+    }
 
     const metadata = await generateMetadata({ params });
     const serviceUrl = `${locationUrl}/${combo.service}`;
@@ -133,4 +139,19 @@ test("every registered location-service page retains its own studio identity", a
     `Verified ${LOCAL_SERVICE_COMBOS.length} pages across ${locations.size} locations, ` +
     `${services.size} services, and ${locales.size} locales.`
   );
+});
+
+test("Brecksville restrictions match every nested locale route, not other studios", () => {
+  for (const prefix of ["", "/en", "/es"]) {
+    for (const suffix of ["", "/", "/pricing", "/pathways", "/cryotherapy", "/blog/article"]) {
+      assert.equal(
+        isBrecksvilleLocationPath(`${prefix}/locations/ohio/brecksville${suffix}`),
+        true
+      );
+    }
+  }
+  for (const pathname of ["/", "/locations/ohio", "/locations/ohio/brecksville-other",
+    "/locations/florida/coral-gables", "/es/locations/utah/riverton/pricing"]) {
+    assert.equal(isBrecksvilleLocationPath(pathname), false);
+  }
 });

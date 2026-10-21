@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import LocationBookingLink from "@/components/location/LocationBookingLink";
+import { isBrecksvilleLocation } from "@/lib/location-availability";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -309,14 +311,14 @@ export default async function LocationPricingPage({
                             ))}
                           </ul>
                         )}
-                        <a
+                        <LocationBookingLink state={state} city={city}
                           href={tier.bookingUrl ?? LOCATION_MEMBERSHIP_LINKS[location.citySlug]?.[tier.name.toLowerCase()] ?? bookingUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="mt-6 block w-full rounded-full border border-[var(--zivel-gold)] py-3 text-center text-sm font-semibold text-[var(--zivel-gold)] transition-all duration-200 hover:bg-[var(--zivel-gold)] hover:text-black"
                         >
                           Join Now
-                        </a>
+                        </LocationBookingLink>
                       </div>
                     </ScrollReveal>
                   ))}
@@ -549,14 +551,14 @@ export default async function LocationPricingPage({
                             {phone}
                           </a>
                         )}
-                        <a
+                        <LocationBookingLink state={state} city={city}
                           href={bookingUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-6 py-2.5 text-sm font-semibold text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
                         >
                           Book a Session
-                        </a>
+                        </LocationBookingLink>
                       </div>
                     </div>
                   </div>
@@ -590,14 +592,14 @@ export default async function LocationPricingPage({
                             {phone}
                           </a>
                         )}
-                        <a
+                        <LocationBookingLink state={state} city={city}
                           href={bookingUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-6 py-2.5 text-sm font-semibold text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
                         >
                           Book a Session
-                        </a>
+                        </LocationBookingLink>
                       </div>
                     </div>
                   </div>
@@ -609,20 +611,20 @@ export default async function LocationPricingPage({
                 <ScrollReveal variant="fade-up">
                   <p className="zv-tagline mb-4">Ready to Start?</p>
                   <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-4">
-                    Book Your First Session
+                    {isBrecksvilleLocation(state, city) ? "Questions About Our Services?" : "Book Your First Session"}
                   </h2>
                   <p className="text-white/55 text-base mb-8 max-w-md mx-auto leading-relaxed">
                     Questions about which membership is right for you? Call or text the studio — our team is here to help.
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a
+                    <LocationBookingLink state={state} city={city}
                       href={bookingUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-8 py-3.5 text-sm font-semibold tracking-wide text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
                     >
                       Book Appointment
-                    </a>
+                    </LocationBookingLink>
                     {phone && (
                       <a
                         href={`tel:${phone.replace(/\D/g, "")}`}

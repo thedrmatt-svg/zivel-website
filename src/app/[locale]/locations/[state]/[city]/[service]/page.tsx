@@ -10,6 +10,8 @@ import type { Location } from "@/types/location";
 import type { Service } from "@/types/service";
 import rawPlacesCache from "@/data/places-cache.json";
 import { LOCAL_SERVICE_COMBOS } from "@/lib/data/local-service-pages";
+import LocationBookingLink from "@/components/location/LocationBookingLink";
+import { isBrecksvilleLocation } from "@/lib/location-availability";
 
 const SITE_URL = "https://www.zivel.com";
 
@@ -1478,14 +1480,14 @@ export default async function LocalServicePage({ params }: Props) {
               {local.subtitle}
             </p>
             <div className="flex flex-wrap gap-4 mt-8 zv-hero-animate-4">
-              <a
+              <LocationBookingLink state={state} city={city}
                 href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="zv-btn-luxury zv-btn-gold"
               >
                 {local.bookingCtaLabel}
-              </a>
+              </LocationBookingLink>
               <Link href={servicePageUrl} className="zv-btn-luxury zv-btn-outline">
                 View {svc.name} Overview
               </Link>
@@ -1672,7 +1674,7 @@ export default async function LocalServicePage({ params }: Props) {
                   <p className="text-black/65 leading-relaxed flex-1">{s.desc}</p>
                   <div className="mt-6 flex items-center justify-between flex-wrap gap-4">
                     <span className="text-[var(--zivel-gold-dark)] font-semibold text-lg">{s.price}</span>
-                    <a
+                    <LocationBookingLink state={state} city={city}
                       href={bookingUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -1680,7 +1682,7 @@ export default async function LocalServicePage({ params }: Props) {
                       aria-label={`Book your ${s.name} session`}
                     >
                       Book Now
-                    </a>
+                    </LocationBookingLink>
                   </div>
                 </div>
               </ScrollReveal>
@@ -1895,20 +1897,20 @@ export default async function LocalServicePage({ params }: Props) {
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline mb-6">Ready to Start</p>
             <h2 className="font-serif text-4xl md:text-6xl font-light tracking-tight mb-6">
-              {local.ctaHeadline}
+              {isBrecksvilleLocation(state, city) ? `Explore ${svc.name} at ${location.name}` : local.ctaHeadline}
             </h2>
             <p className="text-white/65 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
               {local.ctaBody}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a
+              <LocationBookingLink state={state} city={city}
                 href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="zv-btn-luxury zv-btn-gold"
               >
                 {local.bookingCtaLabel}
-              </a>
+              </LocationBookingLink>
               <Link href={locationPageUrl} scroll={true} className="zv-btn-luxury zv-btn-outline">
                 Back to {location.name}
               </Link>
