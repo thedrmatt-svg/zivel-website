@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import CookieConsent from "@/components/consent/CookieConsent";
+import { CampaignGoogleTagManagerHead } from "@/components/consent/CampaignGoogleTagManager";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
 export default function UtahRoyalsLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} scroll-smooth`}>
+      <head><CampaignGoogleTagManagerHead consentRequired /></head>
       <body className="min-h-screen bg-black text-white overflow-x-hidden font-[var(--font-inter)]">
         {children}
         <Analytics />

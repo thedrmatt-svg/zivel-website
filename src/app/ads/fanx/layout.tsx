@@ -3,6 +3,7 @@ import { Barlow_Condensed, DM_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import CookieConsent from "@/components/consent/CookieConsent";
+import { CampaignGoogleTagManagerHead } from "@/components/consent/CampaignGoogleTagManager";
 
 const display = Barlow_Condensed({ subsets: ["latin"], variable: "--font-fanx-display", weight: ["500", "600", "700", "800", "900"], display: "swap" });
 const body = DM_Sans({ subsets: ["latin"], variable: "--font-fanx-body", weight: ["400", "500", "600", "700"], display: "swap" });
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default function FanXLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} scroll-smooth`}>
+      <head><CampaignGoogleTagManagerHead consentRequired /></head>
       <body className="min-h-screen overflow-x-hidden" style={{ fontFamily: "var(--font-fanx-body)", background: "#131313", color: "#fff", ["--zivel-gold" as string]: "#ff3f87" }}>
         {children}
         <Analytics />

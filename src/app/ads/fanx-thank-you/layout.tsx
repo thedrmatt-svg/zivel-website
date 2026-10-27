@@ -3,6 +3,7 @@ import { Barlow_Condensed, DM_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import CookieConsent from "@/components/consent/CookieConsent";
+import { CampaignGoogleTagManagerHead } from "@/components/consent/CampaignGoogleTagManager";
 
 const display = Barlow_Condensed({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function FanXThankYouLayout({
 }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <head><CampaignGoogleTagManagerHead consentRequired /></head>
       <body
         className="min-h-screen overflow-x-hidden"
         style={{
