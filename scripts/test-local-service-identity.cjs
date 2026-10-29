@@ -109,6 +109,9 @@ test("every registered location-service page retains its own studio identity", a
     if (combo.state === "ohio" && combo.city === "brecksville") {
       assert.doesNotMatch(html, /<a\b[^>]*href="[^"]*(?:book-appointment|#book)/i,
         `${label}: disabled studio must not render booking links`);
+    } else if (location.services.find((entry) => entry.slug === combo.service)?.comingSoon) {
+      assert.doesNotMatch(html, /book-appointment|Book Now|Book Your Red Light Therapy Session/);
+      assert.ok(html.includes(`/locations/${combo.state}/${combo.city}#contact`));
     } else {
       assert.ok(
         html.includes(`set_location=${location.booking?.locationId ?? 11417}`),
@@ -174,6 +177,51 @@ test("Windermere packages have the correct grouping, prices, and purchase links"
     assert.equal(item.regularPrice, undefined);
     assert.equal(item.savings, undefined);
   }
+});
+
+test("Highlands Ranch replaces dry float with location-specific coming-soon red light pages", async () => {
+  const location = getLocationByPath("colorado", "highlands-ranch");
+  const redLight = location.services.find((entry) => entry.slug === "red-light-therapy");
+  assert.equal(redLight?.comingSoon, true);
+  assert.ok(!location.services.some((entry) => entry.slug === "dry-float"));
+  assert.ok(!location.pricing.standardPrices.some((entry) => /float/i.test(entry.name)));
+  assert.doesNotMatch(location.seo.description, /float/i);
+  assert.match(location.seo.description, /Red Light Therapy is coming soon/);
+  const { default: Card } = loadLocal(path.join(root, "src/components/location/ServiceImageCard"));
+  const card = renderToStaticMarkup(React.createElement(Card, {
+    ...redLight, citySlug: location.citySlug, cityName: "Highlands Ranch",
+    variant: "light", localHref: "/locations/colorado/highlands-ranch/red-light-therapy",
+  }));
+  assert.match(card, /Red Light Therapy<\/h3><p[^>]*>COMING SOON<\/p>/);
+  assert.match(card, /href="\/locations\/colorado\/highlands-ranch\/red-light-therapy"/);
+  for (const locale of ["en", "es"]) {
+    const disabledParams = Promise.resolve({
+      locale, state: "colorado", city: "highlands-ranch", service: "dry-float",
+    });
+    await assert.rejects(Page({ params: disabledParams }), /NEXT_NOT_FOUND/);
+    await assert.rejects(generateMetadata({ params: disabledParams }), /NEXT_NOT_FOUND/);
+    const params = Promise.resolve({
+      locale, state: "colorado", city: "highlands-ranch", service: "red-light-therapy",
+    });
+    const metadata = await generateMetadata({ params });
+    assert.match(metadata.title, /Red Light Therapy in Highlands Ranch, CO — Coming Soon/);
+    assert.match(metadata.description, /coming soon to Zivel Highlands Ranch in Highlands Ranch, CO/);
+    assert.equal(metadata.openGraph.description, metadata.description);
+    assert.equal(metadata.twitter.description, metadata.description);
+    const html = renderToStaticMarkup(await Page({ params }));
+    assert.match(html, /Red Light Therapy in Highlands Ranch, CO — Coming Soon<\/h1>/);
+    assert.equal(html.match(/.{0,80}(?:riverton|dry float|book-appointment).{0,80}/i)?.[0], undefined);
+    assert.ok(html.includes(location.contact.phone));
+    assert.ok(html.includes("9325 Dorchester St ste f121"));
+    assert.doesNotMatch(html, /"hasOfferCatalog"/);
+  }
+  const { default: sitemap } = loadLocal(path.join(root, "src/app/sitemap"));
+  const urls = (await sitemap()).map((entry) => entry.url);
+  assert.ok(urls.includes("https://www.zivel.com/locations/colorado/highlands-ranch/red-light-therapy"));
+  for (const prefix of ["", "/es"]) {
+    assert.ok(!urls.includes(`https://www.zivel.com${prefix}/locations/colorado/highlands-ranch/dry-float`));
+  }
+  assert.ok(getLocationByPath("utah", "riverton").services.some((entry) => entry.slug === "dry-float"));
 });
 
 test("Brecksville red light and blog pages are unavailable and absent from the sitemap", async () => {

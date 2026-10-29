@@ -24,6 +24,10 @@ type Props = {
 };
 
 const META_MAP: Record<string, { title: string; description: string }> = {
+  "colorado/highlands-ranch/red-light-therapy": {
+    title: "Red Light Therapy in Highlands Ranch, CO — Coming Soon | Zivel Highlands Ranch",
+    description: "Red Light Therapy is coming soon to Zivel Highlands Ranch in Highlands Ranch, CO. Explore potential benefits and contact our local team for availability updates.",
+  },
   "utah/riverton/cryotherapy": {
     title: "Cryotherapy in Riverton, UT | Zivel Riverton",
     description:
@@ -90,6 +94,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: meta.title,
     description: meta.description,
+    ...(location.services.find((entry) => entry.slug === service)?.comingSoon ? {
+      openGraph: {
+        title: meta.title,
+        description: meta.description,
+        url: canonicalUrl,
+        type: "website" as const,
+      },
+      twitter: {
+        card: "summary_large_image" as const,
+        title: meta.title,
+        description: meta.description,
+      },
+    } : {}),
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },
@@ -1347,6 +1364,32 @@ export default async function LocalServicePage({ params }: Props) {
 
   const key = `${state}/${city}/${service}`;
   const local = LOCAL_CONTENT[key] ?? generateLocalContent(location, svc, state, city);
+  const comingSoon = location.services.find((entry) => entry.slug === service)?.comingSoon ?? false;
+  if (comingSoon) {
+    const announcement = `${svc.name} is coming soon to ${location.name} in ${city.split("-").map((word) => word[0].toUpperCase() + word.slice(1)).join(" ")}, ${location.state}. Contact our local team for availability updates.`;
+    local.h1 += " — Coming Soon";
+    local.subtitle = announcement;
+    local.bookingCtaLabel = "Contact Us for Updates";
+    local.whatIsParagraphs = [...svc.intro.paragraphs, announcement];
+    local.localExpect = [
+      { title: "COMING SOON", body: announcement },
+      { title: "Plan Your Visit", body: `Contact ${location.name} at ${location.contact?.phone} to learn more about our upcoming ${svc.name.toLowerCase()} service.` },
+    ];
+    local.services = [{ name: svc.name, desc: announcement, price: "COMING SOON" }];
+    if (!location.services.some((entry) => entry.slug === "dry-float")) {
+      local.benefits = local.benefits.map((benefit) => /dry float/i.test(benefit.body)
+        ? { ...benefit, body: `Once available, ${svc.name} can complement the other recovery services offered at ${location.name}.` }
+        : benefit);
+    }
+    local.faqs = local.faqs
+      .filter((faq) => !faq.q.startsWith("Do I need to book"))
+      .map((faq) => /dry float/i.test(faq.a) && !location.services.some((entry) => entry.slug === "dry-float")
+        ? { ...faq, a: `Once ${svc.name} is available at ${location.name}, our local team can help you combine it with the studio's available recovery services.` }
+        : faq);
+    local.faqs.unshift({ q: `Is ${svc.name} available at ${location.name}?`, a: announcement });
+    local.ctaHeadline = `${svc.name} Is Coming Soon to ${location.name}`;
+    local.ctaBody = announcement;
+  }
   const whatIsOvr = WHAT_IS_IMAGE_OVERRIDES[key];
   if (whatIsOvr) {
     local.whatIsImage = whatIsOvr.src;
@@ -1358,7 +1401,9 @@ export default async function LocalServicePage({ params }: Props) {
   const pageDesc = META_MAP[key]?.description ?? location.seo.description;
   const postalCode = location.contact?.address?.match(/\b\d{5}\b/)?.[0] ?? "";
 
-  const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
+  const bookingUrl = comingSoon
+    ? `/locations/${state}/${city}#contact`
+    : `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
   const locationPageUrl = `/locations/${state}/${city}`;
   const servicePageUrl = `/services/${service}`;
   const canonicalUrl = `${SITE_URL}/locations/${state}/${city}/${service}`;
@@ -1378,7 +1423,7 @@ export default async function LocalServicePage({ params }: Props) {
       addressCountry: "US",
     },
     openingHoursSpecification: buildOpeningHoursSpec(location.hours),
-    hasOfferCatalog: {
+    hasOfferCatalog: comingSoon ? undefined : {
       "@type": "OfferCatalog",
       name: `${svc.name} Services`,
       itemListElement: local.services.map((s) => ({
@@ -1482,7 +1527,7 @@ export default async function LocalServicePage({ params }: Props) {
             <div className="flex flex-wrap gap-4 mt-8 zv-hero-animate-4">
               <LocationBookingLink state={state} city={city}
                 href={bookingUrl}
-                target="_blank"
+                target={comingSoon ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 className="zv-btn-luxury zv-btn-gold"
               >
@@ -1676,12 +1721,12 @@ export default async function LocalServicePage({ params }: Props) {
                     <span className="text-[var(--zivel-gold-dark)] font-semibold text-lg">{s.price}</span>
                     <LocationBookingLink state={state} city={city}
                       href={bookingUrl}
-                      target="_blank"
+                      target={comingSoon ? undefined : "_blank"}
                       rel="noopener noreferrer"
                       className="zv-btn-luxury zv-btn-gold text-sm px-5 py-2"
-                      aria-label={`Book your ${s.name} session`}
+                      aria-label={comingSoon ? `Contact ${location.name} for ${s.name} updates` : `Book your ${s.name} session`}
                     >
-                      Book Now
+                      {comingSoon ? "Contact for Updates" : "Book Now"}
                     </LocationBookingLink>
                   </div>
                 </div>
@@ -1905,7 +1950,7 @@ export default async function LocalServicePage({ params }: Props) {
             <div className="flex flex-wrap justify-center gap-4">
               <LocationBookingLink state={state} city={city}
                 href={bookingUrl}
-                target="_blank"
+                target={comingSoon ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 className="zv-btn-luxury zv-btn-gold"
               >

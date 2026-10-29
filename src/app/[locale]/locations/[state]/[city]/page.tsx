@@ -929,6 +929,7 @@ export default async function LocationPage({
                     variant="light"
                     localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
                     imageAlt={s.imageAlt}
+                    comingSoon={s.comingSoon}
                   />
                 </ScrollReveal>
               ))}
@@ -954,6 +955,7 @@ export default async function LocationPage({
                     variant="dark"
                     localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
                     imageAlt={s.imageAlt}
+                    comingSoon={s.comingSoon}
                   />
                 </ScrollReveal>
               ))}
@@ -1475,7 +1477,7 @@ export default async function LocationPage({
 
       {/* ========== CONTACT FORM (DARK) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
-      <section className="zv-bleed zv-immersive-section zv-section-elevated">
+      <section id="contact" className="zv-bleed zv-immersive-section zv-section-elevated">
         <div className="mx-auto max-w-3xl px-6">
           <ScrollReveal variant="fade-up">
             <p className="zv-tagline">Get In Touch</p>

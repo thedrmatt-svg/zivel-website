@@ -10,7 +10,7 @@ export const zivel_highlands_ranch_location: Location = {
 
   seo: {
     title: "Zivel Highlands Ranch",
-    description: "Zivel Highlands Ranch offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Highlands Ranch, CO. Book today.",
+    description: "Explore cryotherapy, infrared sauna, and recovery at Zivel Highlands Ranch in Highlands Ranch, CO. Dedicated Red Light Therapy is coming soon.",
     canonical: "https://www.zivel.com/locations/colorado/highlands-ranch",
   },
 
@@ -52,8 +52,10 @@ export const zivel_highlands_ranch_location: Location = {
     "imageAlt": "Woman relaxing in an infrared sauna with red light at Zivel Highlands Ranch"
   },
   {
-    "name": "Dry Float",
-    "slug": "dry-float"
+    "name": "Red Light Therapy",
+    "slug": "red-light-therapy",
+    "imageAlt": "Red Light Therapy coming soon to Zivel Highlands Ranch in Highlands Ranch, Colorado",
+    "comingSoon": true
   },
   {
     "name": "Cryo Slimming",
@@ -117,7 +119,6 @@ export const zivel_highlands_ranch_location: Location = {
     standardPrices: [
       { name: "Cryotherapy", price: "$45", note: "Single session" },
       { name: "Infrared Sauna w/ Red Light", price: "$50", note: "Single session" },
-      { name: "Dry Float", price: "$50", note: "Single session" },
       { name: "Compression Therapy", price: "$30", note: "Single session" },
       { name: "Oxygen Bar", price: "$20", note: "Single session" },
       { name: "Cryo Slimming", price: "$350", note: "Single session" },

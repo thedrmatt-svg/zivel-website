@@ -28,6 +28,7 @@ type ServiceImageCardProps = {
   variant: "light" | "dark";
   localHref?: string;
   imageAlt?: string;
+  comingSoon?: boolean;
 };
 
 export default function ServiceImageCard({
@@ -39,6 +40,7 @@ export default function ServiceImageCard({
   variant,
   localHref,
   imageAlt,
+  comingSoon,
 }: ServiceImageCardProps) {
   const customSrc = `/locations/${citySlug}/services/${slug}.jpg`;
   const nationalSrc = nationalImageMap[slug] || fallbackImage;
@@ -75,6 +77,11 @@ export default function ServiceImageCard({
         >
           {name}
         </h3>
+        {comingSoon && (
+          <p className={`mb-4 text-sm font-semibold tracking-widest ${isDark ? "text-[var(--zivel-gold)]" : "text-[var(--zivel-gold-dark)]"}`}>
+            COMING SOON
+          </p>
+        )}
         {description && (
           <p
             className={`text-sm line-clamp-3 mb-6 ${

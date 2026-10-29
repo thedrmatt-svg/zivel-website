@@ -67,6 +67,7 @@ export type Location = {
     name: string;
     description?: string;
     imageAlt?: string;
+    comingSoon?: boolean;
   }[];
 
   owners?: {
