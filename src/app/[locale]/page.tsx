@@ -270,7 +270,7 @@ export default async function HomePage({
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/home/quote-bg.jpg"
-            alt=""
+            alt="Person overlooking mountains at sunset"
             fill
             className="object-cover"
             sizes="100vw"
@@ -485,7 +485,7 @@ export default async function HomePage({
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/home/cta-bg.jpg"
-            alt=""
+            alt="Person practicing a one-legged wheel yoga pose on a beach"
             fill
             className="object-cover"
             sizes="100vw"

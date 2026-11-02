@@ -24,7 +24,12 @@ import { getLocalServiceHref } from "@/lib/data/local-service-pages";
 import { getLocationSocial } from "@/lib/data/socialLinks";
 import rawPlacesCache from "@/data/places-cache.json";
 
-type CacheEntry = { rating: number; userRatingCount: number };
+type CacheEntry = {
+  rating: number;
+  userRatingCount: number;
+  locationPath?: string;
+  googleMapsUri?: string | null;
+};
 
 function getCacheEntry(placeId: string | undefined): CacheEntry | null {
   if (!placeId) return null;
@@ -140,6 +145,13 @@ export default async function LocationPage({
   const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
   const trustBar = buildTrustBar(location, cityName);
   const social = getLocationSocial(location.slug);
+  const cachedPlace = getCacheEntry(location.google?.placeId);
+  const googleMapsUrl =
+    cachedPlace?.locationPath === `${location.stateSlug}/${location.citySlug}`
+      ? cachedPlace.googleMapsUri
+      : null;
+  // TODO: If this location has no cached googleMapsUri, supply its exact
+  // Google Business Profile / Maps listing URL in places-cache.json.
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -880,6 +892,13 @@ export default async function LocationPage({
                 placeId={location.google?.placeId}
                 query={location.contact?.address}
               />
+              {googleMapsUrl && (
+                <p className="mt-4">
+                  <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--zivel-gold-dark)] underline underline-offset-4">
+                    View on Google
+                  </a>
+                </p>
+              )}
             </ScrollReveal>
           </div>
         </section>
@@ -896,6 +915,13 @@ export default async function LocationPage({
                 placeId={location.google?.placeId}
                 query={location.contact?.address}
               />
+              {googleMapsUrl && (
+                <p className="mt-4">
+                  <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--zivel-gold)] underline underline-offset-4">
+                    View on Google
+                  </a>
+                </p>
+              )}
             </ScrollReveal>
           </div>
         </section>
