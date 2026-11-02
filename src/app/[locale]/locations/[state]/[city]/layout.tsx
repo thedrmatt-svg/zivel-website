@@ -1,6 +1,7 @@
 import MetaPixelCoralGables from "@/components/consent/MetaPixelCoralGables";
 import GoogleTagManagerRiverton from "@/components/consent/GoogleTagManagerRiverton";
 import GoogleTagManagerHollywood from "@/components/consent/GoogleTagManagerHollywood";
+import MetaPixelHollywood from "@/components/consent/MetaPixelHollywood";
 
 /**
  * Layout wrapping every Coral Gables nested route.
@@ -25,6 +26,7 @@ export default async function CityLayout({
       {city === "coral-gables" && <MetaPixelCoralGables />}
       {city === "riverton" && <GoogleTagManagerRiverton />}
       {state === "florida" && city === "hollywood" && <GoogleTagManagerHollywood />}
+      {state === "florida" && city === "hollywood" && <MetaPixelHollywood />}
       {children}
     </>
   );
