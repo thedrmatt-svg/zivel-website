@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { phoneHref } from "@/lib/contact-links";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
 import { isBrecksvilleLocation } from "@/lib/location-availability";
 import Image from "next/image";
@@ -545,7 +546,7 @@ export default async function LocationPricingPage({
                       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                         {phone && (
                           <a
-                            href={`tel:${phone.replace(/\D/g, "")}`}
+                            href={phoneHref(phone)}
                             className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-white/70 transition-all duration-200 hover:border-white/40 hover:text-white"
                           >
                             {phone}
@@ -586,7 +587,7 @@ export default async function LocationPricingPage({
                       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                         {phone && (
                           <a
-                            href={`tel:${phone.replace(/\D/g, "")}`}
+                            href={phoneHref(phone)}
                             className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-white/70 transition-all duration-200 hover:border-white/40 hover:text-white"
                           >
                             {phone}
@@ -627,7 +628,7 @@ export default async function LocationPricingPage({
                     </LocationBookingLink>
                     {phone && (
                       <a
-                        href={`tel:${phone.replace(/\D/g, "")}`}
+                        href={phoneHref(phone)}
                         className="inline-flex items-center gap-2 rounded-full border border-white/20 px-8 py-3.5 text-sm font-semibold tracking-wide text-white/80 transition-all duration-200 hover:border-white/40 hover:text-white"
                       >
                         {phone}

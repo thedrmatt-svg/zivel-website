@@ -84,6 +84,13 @@ test("every registered location-service page retains its own studio identity", a
     assert.ok(location && service, `${label}: missing data`);
     const params = Promise.resolve(combo);
     const html = renderToStaticMarkup(await Page({ params }));
+    for (const match of html.matchAll(/href="(tel:[^"]+)"/g)) {
+      assert.match(match[1], /^tel:\+1\d{10}$/, `${label}: phone link must include country code`);
+    }
+    if (location.contact?.phone) {
+      const expectedHref = `tel:+1${location.contact.phone.replace(/\D/g, "")}`;
+      assert.ok(html.includes(`href="${expectedHref}"`), `${label}: missing clickable studio phone`);
+    }
     assert.ok(
       html.includes(`At ${escapeHtml(location.name)}</p>`),
       `${label}: local-studio heading must name the current location`

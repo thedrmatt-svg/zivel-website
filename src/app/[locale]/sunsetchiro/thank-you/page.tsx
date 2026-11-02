@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { phoneHref } from "@/lib/contact-links";
 import Image from "next/image";
 import Link from "next/link";
 import { zivel_coral_gables_location as coralGables } from "@/content/locations/coral-gables-florida";
 
 const BOOKING_URL = `https://zivel.myperformanceiq.com/book-appointment?set_location=${coralGables.booking?.locationId}`;
 const PHONE = coralGables.contact?.phone ?? "";
-const TEL = `tel:${PHONE.replace(/\D/g, "")}`;
+const TEL = phoneHref(PHONE);
 
 export const metadata: Metadata = {
   title: "Request Received | Sunset Chiropractic × Zivel Coral Gables",

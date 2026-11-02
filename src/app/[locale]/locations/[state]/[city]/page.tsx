@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { phoneHref } from "@/lib/contact-links";
 import Image from "next/image";
 import Link from "next/link";
 import GoogleAdsScript from "@/components/consent/GoogleAdsScript";
@@ -737,7 +738,7 @@ export default async function LocationPage({
                   <div className="zv-luxury-card rounded-2xl p-8 space-y-3">
                     <p className="text-black/80 text-lg">{location.contact.address}</p>
                     {location.contact.phone && (
-                      <p><a href={`tel:${location.contact.phone}`} className="text-[var(--zivel-gold-dark)] underline">{location.contact.phone}</a></p>
+                      <p><a href={phoneHref(location.contact.phone)} className="text-[var(--zivel-gold-dark)] underline">{location.contact.phone}</a></p>
                     )}
                     {location.contact.email && (
                       <p><a href={`mailto:${location.contact.email}`} className="text-[var(--zivel-gold-dark)] underline">{location.contact.email}</a></p>
@@ -794,7 +795,7 @@ export default async function LocationPage({
                   <div className="zv-luxury-card rounded-2xl p-8 space-y-3">
                     <p className="text-white/85 text-lg">{location.contact.address}</p>
                     {location.contact.phone && (
-                      <p><a href={`tel:${location.contact.phone}`} className="text-[var(--zivel-gold)] underline">{location.contact.phone}</a></p>
+                      <p><a href={phoneHref(location.contact.phone)} className="text-[var(--zivel-gold)] underline">{location.contact.phone}</a></p>
                     )}
                     {location.contact.email && (
                       <p><a href={`mailto:${location.contact.email}`} className="text-[var(--zivel-gold)] underline">{location.contact.email}</a></p>
@@ -1434,7 +1435,7 @@ export default async function LocationPage({
               ) : location.contact?.phone ? (
                 <p className="text-black/60 text-lg">
                   Booking coming soon. Call{" "}
-                  <a href={`tel:${location.contact.phone}`} className="text-[var(--zivel-gold-dark)] underline">
+                  <a href={phoneHref(location.contact.phone)} className="text-[var(--zivel-gold-dark)] underline">
                     {location.contact.phone}
                   </a>{" "}
                   to schedule.
@@ -1488,7 +1489,7 @@ export default async function LocationPage({
               <p className="mt-4 mb-12 text-white/65 text-lg leading-relaxed">
                 Ready to start your recovery journey? Call or text us at{" "}
                 <a
-                  href={`tel:${location.contact.phone}`}
+                  href={phoneHref(location.contact.phone)}
                   className="text-[var(--zivel-gold)] underline hover:text-[var(--zivel-gold-light)] transition-colors"
                 >
                   {location.contact.phone}

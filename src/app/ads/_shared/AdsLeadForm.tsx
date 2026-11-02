@@ -1,4 +1,5 @@
 "use client";
+import ContactText from "@/components/ui/ContactText";
 
 import { useEffect, useId, useState, useTransition } from "react";
 import { submitAdsLead, type AdsLeadState } from "./actions";
@@ -215,7 +216,7 @@ export default function AdsLeadForm({
 
       {state?.status === "error" && (
         <p role="alert" aria-live="assertive" className="text-red-400 text-sm">
-          {state.message}
+          <ContactText>{state.message}</ContactText>
         </p>
       )}
 

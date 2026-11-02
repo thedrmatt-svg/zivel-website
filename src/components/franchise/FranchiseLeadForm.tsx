@@ -1,4 +1,5 @@
 "use client";
+import ContactText from "@/components/ui/ContactText";
 
 import { useActionState, useEffect, useRef } from "react";
 import { submitFranchiseForm, type FranchiseFormState } from "@/lib/actions/franchiseForm";
@@ -238,7 +239,7 @@ export default function FranchiseLeadForm() {
           aria-live="assertive"
           className="mb-5 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/25 text-red-300 text-sm"
         >
-          {state.message}
+          <ContactText>{state.message}</ContactText>
         </div>
       )}
 

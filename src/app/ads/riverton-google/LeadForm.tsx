@@ -1,4 +1,5 @@
 "use client";
+import ContactText from "@/components/ui/ContactText";
 
 import { useEffect, useState, useTransition } from "react";
 import { submitLead, type LeadFormState } from "./actions";
@@ -151,7 +152,7 @@ export default function LeadForm() {
 
       {state?.status === "error" && (
         <p role="alert" aria-live="assertive" className="text-red-400 text-sm">
-          {state.message}
+          <ContactText>{state.message}</ContactText>
         </p>
       )}
 

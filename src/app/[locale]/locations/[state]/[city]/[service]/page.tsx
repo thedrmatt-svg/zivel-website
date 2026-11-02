@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { phoneHref } from "@/lib/contact-links";
+import ContactText from "@/components/ui/ContactText";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
@@ -1625,7 +1627,7 @@ export default async function LocalServicePage({ params }: Props) {
                 <div className="zv-luxury-card rounded-2xl p-6 h-full">
                   <div className="w-8 h-0.5 bg-[var(--zivel-gold)] mb-4" />
                   <h3 className="font-serif text-lg font-light mb-3">{item.title}</h3>
-                  <p className="text-sm text-black/70 leading-relaxed">{item.body}</p>
+                  <p className="text-sm text-black/70 leading-relaxed"><ContactText>{item.body}</ContactText></p>
                 </div>
               </ScrollReveal>
             ))}
@@ -1800,7 +1802,7 @@ export default async function LocalServicePage({ params }: Props) {
                 {location.contact?.phone && (
                   <div>
                     <p className="text-xs uppercase tracking-widest text-[var(--zivel-gold-dark)] mb-2">Phone</p>
-                    <a href={`tel:${location.contact.phone.replace(/\D/g, "")}`} className="text-black/80 text-lg hover:text-[var(--zivel-gold-dark)] transition-colors">
+                    <a href={phoneHref(location.contact.phone)} className="text-black/80 text-lg hover:text-[var(--zivel-gold-dark)] transition-colors">
                       {location.contact.phone}
                     </a>
                   </div>

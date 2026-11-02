@@ -1,4 +1,5 @@
 "use client";
+import ContactText from "@/components/ui/ContactText";
 
 import { useState, useTransition } from "react";
 import { submitLead, type LeadFormState } from "./actions";
@@ -31,7 +32,7 @@ export default function LeadForm() {
         >
           Message received!
         </p>
-        <p className="text-white/70 max-w-sm mx-auto">{state.message}</p>
+        <p className="text-white/70 max-w-sm mx-auto"><ContactText>{state.message}</ContactText></p>
       </div>
     );
   }
@@ -164,7 +165,7 @@ export default function LeadForm() {
 
       {state?.status === "error" && (
         <p role="alert" aria-live="assertive" className="text-red-400 text-sm">
-          {state.message}
+          <ContactText>{state.message}</ContactText>
         </p>
       )}
 
