@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { phoneHref } from "@/lib/contact-links";
+import { getLocationBusinessDetails } from "@/lib/location-business-schema";
 import Image from "next/image";
 import Link from "next/link";
 import GoogleAdsScript from "@/components/consent/GoogleAdsScript";
@@ -143,21 +144,13 @@ export default async function LocationPage({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "HealthAndBeautyBusiness",
-    name: location.stateSlug === "florida" && location.citySlug === "hollywood"
-      ? "Zivel - Hollywood"
-      : location.name,
+    ...getLocationBusinessDetails(location),
     description: location.seo.description,
     url: canonicalUrl,
     ...(location.hero?.image && {
       image: location.hero.image.startsWith("http") ? location.hero.image : `${SITE_URL}${location.hero.image}`,
     }),
     ...(location.contact?.phone && { telephone: location.contact.phone }),
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: cityName,
-      addressRegion: location.state,
-      addressCountry: "US",
-    },
     ...(location.geo && {
       geo: {
         "@type": "GeoCoordinates",

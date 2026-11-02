@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { phoneHref } from "@/lib/contact-links";
+import { getLocationBusinessDetails } from "@/lib/location-business-schema";
 import ContactText from "@/components/ui/ContactText";
 import Image from "next/image";
 import Link from "next/link";
@@ -188,34 +189,6 @@ function formatHoursAsText(hours: Location["hours"]): string {
   ];
   const parts = map.filter(([k]) => hours[k]).map(([k, label]) => `${label}: ${hours[k]}`);
   return parts.join("  ·  ") + ". Book ahead to secure your preferred time slot.";
-}
-
-function parseSchemaTime(t: string): string {
-  const m = t.trim().match(/^(\d+)(am|pm)$/i);
-  if (!m) return "00:00";
-  let h = parseInt(m[1]);
-  if (m[2].toLowerCase() === "pm" && h !== 12) h += 12;
-  if (m[2].toLowerCase() === "am" && h === 12) h = 0;
-  return `${h.toString().padStart(2, "0")}:00`;
-}
-
-function buildOpeningHoursSpec(hours: Location["hours"]) {
-  if (!hours) return [];
-  const map: [keyof NonNullable<Location["hours"]>, string][] = [
-    ["monday", "Monday"], ["tuesday", "Tuesday"], ["wednesday", "Wednesday"],
-    ["thursday", "Thursday"], ["friday", "Friday"], ["saturday", "Saturday"], ["sunday", "Sunday"],
-  ];
-  return map
-    .filter(([k]) => hours[k])
-    .map(([k, dayName]) => {
-      const parts = (hours[k] as string).split(/\s*[–\-]\s*/);
-      return {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: dayName,
-        opens: parts[0] ? parseSchemaTime(parts[0]) : "00:00",
-        closes: parts[1] ? parseSchemaTime(parts[1]) : "00:00",
-      };
-    });
 }
 
 type LocalServiceContent = {
@@ -1401,7 +1374,6 @@ export default async function LocalServicePage({ params }: Props) {
   const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const stateDisplay = state.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const pageDesc = META_MAP[key]?.description ?? location.seo.description;
-  const postalCode = location.contact?.address?.match(/\b\d{5}\b/)?.[0] ?? "";
 
   const bookingUrl = comingSoon
     ? `/locations/${state}/${city}#contact`
@@ -1413,18 +1385,9 @@ export default async function LocalServicePage({ params }: Props) {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
-    name: location.name,
+    ...getLocationBusinessDetails(location),
     url: `${SITE_URL}${locationPageUrl}`,
     telephone: location.contact?.phone,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: location.contact?.address?.split(",")[0]?.trim(),
-      addressLocality: cityDisplay,
-      addressRegion: location.state,
-      postalCode,
-      addressCountry: "US",
-    },
-    openingHoursSpecification: buildOpeningHoursSpec(location.hours),
     hasOfferCatalog: comingSoon ? undefined : {
       "@type": "OfferCatalog",
       name: `${svc.name} Services`,

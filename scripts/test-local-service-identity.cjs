@@ -106,8 +106,14 @@ test("every registered location-service page retains its own studio identity", a
     )].map((match) => JSON.parse(match[1]));
     const business = schemas.find((schema) => [].concat(schema["@type"]).includes("LocalBusiness"));
     assert.ok(business, `${label}: missing business schema`);
-    assert.equal(business.name, location.name, label);
+    assert.equal(business.name,
+      combo.state === "florida" && combo.city === "hollywood" ? "Zivel - Hollywood" : location.name, label);
     assert.equal(business.address.addressRegion, location.state, label);
+    assert.equal(business.address.addressLocality,
+      location.city ?? location.contact.address.split(",").at(-2).trim(), label);
+    assert.equal(business.address.streetAddress, location.contact.address.split(",")[0].trim(), label);
+    assert.equal(business.address.postalCode, location.contact.address.match(/\b(\d{5}(?:-\d{4})?)\s*$/)[1], label);
+    assert.equal(business.openingHoursSpecification.length, 7, label);
     assert.equal(business.telephone, location.contact?.phone, label);
     const locationUrl = `https://www.zivel.com/locations/${combo.state}/${combo.city}`;
     assert.equal(business.url, locationUrl, label);
