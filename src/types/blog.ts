@@ -1,7 +1,7 @@
 export type BlogContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; level: 2 | 3; text: string }
-  | { type: "list"; items: string[] }
+  | { type: "list"; items: string[]; ordered?: boolean; boldLead?: boolean }
   | { type: "source"; label: string; url: string };
 
 export type BlogPost = {
@@ -9,6 +9,9 @@ export type BlogPost = {
   title: string;
   description: string;
   publishDate: string; // YYYY-MM-DD
+  status?: "draft" | "scheduled" | "published";
+  publishAt?: string; // ISO timestamp with explicit timezone
+  seoTitle?: string;
   updatedAt?: string; // YYYY-MM-DD, most recent meaningful content change
   author: string;
   category: string;

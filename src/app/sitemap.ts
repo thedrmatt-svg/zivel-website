@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { services, getServiceBySlug } from "@/lib/data/services";
-import { blogPosts } from "@/lib/data/blog";
+import { getPublishedBlogPosts } from "@/lib/data/blog";
 import { scienceArticles } from "@/lib/data/science";
 import { researchSources } from "@/lib/data/research";
 import { pathways } from "@/lib/data/pathways";
@@ -15,6 +15,7 @@ import type { BlogPost } from "@/types/blog";
 import { DEFAULT_CONTENT_DATE } from "@/lib/data/contentDates";
 
 const SITE_URL = "https://www.zivel.com";
+export const dynamic = "force-dynamic";
 
 /**
  * Static, hand-maintained dates for pages that have no per-item content
@@ -114,7 +115,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     images: serviceImgUrls(s),
   }));
 
-  const blogPages: MetadataRoute.Sitemap = blogPosts.map((p) => ({
+  const blogPages: MetadataRoute.Sitemap = getPublishedBlogPosts().map((p) => ({
     url: `${SITE_URL}/blog/${p.slug}`,
     lastModified: new Date(blogPostDate(p)),
     changeFrequency: "monthly",

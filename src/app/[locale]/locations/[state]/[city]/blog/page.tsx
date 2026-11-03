@@ -3,11 +3,12 @@ import LocationBookingLink from "@/components/location/LocationBookingLink";
 import { isBrecksvilleLocation } from "@/lib/location-availability";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts } from "@/lib/data/blog";
+import { getPublishedBlogPosts } from "@/lib/data/blog";
 import { getLocationBlogPosts } from "@/lib/data/locationBlog";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const SITE_URL = "https://www.zivel.com";
+export const dynamic = "force-dynamic";
 
 const LOCATION_BLOG_CONFIG: Record<
   string,
@@ -309,7 +310,7 @@ export default async function LocationBlogPage({
   if (!cfg || isBrecksvilleLocation(state, city)) notFound();
 
   const localPosts = getLocationBlogPosts(city);
-  const allPosts = [...localPosts, ...blogPosts];
+  const allPosts = [...localPosts, ...getPublishedBlogPosts()];
 
   const stateDisplay = state.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const breadcrumbSchema = {

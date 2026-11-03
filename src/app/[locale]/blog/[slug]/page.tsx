@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts, getBlogBySlug } from "@/lib/data/blog";
+import { getBlogBySlug } from "@/lib/data/blog";
 import type { BlogContentBlock } from "@/types/blog";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
@@ -10,10 +10,7 @@ type PageProps = {
 };
 
 const SITE_URL = "https://www.zivel.com";
-
-export function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -26,7 +23,18 @@ export async function generateMetadata({
   const esUrl = `${SITE_URL}/es${basePath}`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
   return {
-    title: post.title,
+    title: post.seoTitle ? { absolute: post.seoTitle } : post.title,
+    description: post.description,
+    ...(post.seoTitle && {
+      openGraph: {
+        title: post.seoTitle,
+        description: post.description,
+        type: "article",
+        publishedTime: post.publishAt ?? post.publishDate,
+        url: canonicalUrl,
+      },
+      twitter: { title: post.seoTitle, description: post.description },
+    }),
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },
@@ -60,6 +68,16 @@ function renderContentBlocks(blocks: BlogContentBlock[]) {
       }
 
       case "list":
+        if (block.ordered) {
+          return (
+            <ol key={i} className="list-decimal space-y-3 pl-6 text-black/60">
+              {block.items.map((item, idx) => {
+                const split = block.boldLead ? item.indexOf(". ") : -1;
+                return <li key={idx}>{split >= 0 ? <><strong>{item.slice(0, split + 1)}</strong>{item.slice(split + 1)}</> : item}</li>;
+              })}
+            </ol>
+          );
+        }
         return (
           <ul key={i} className="space-y-3 text-black/60">
             {block.items.map((item, idx) => (
@@ -118,7 +136,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       url: SITE_URL,
       logo: { "@type": "ImageObject", url: `${SITE_URL}/images/brand/zivel-logo.png` },
     },
-    datePublished: post.publishDate,
+    datePublished: post.publishAt ?? post.publishDate,
     url: `${SITE_URL}/blog/${post.slug}`,
     mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
     ...(headings.length > 0 && {
@@ -140,7 +158,6 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="space-y-0 -mt-20">
-      <meta name="description" content={post.description} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -183,13 +200,13 @@ export default async function BlogPostPage({ params }: PageProps) {
               <nav aria-label="Table of contents" className="mb-12 rounded-2xl border border-black/8 bg-black/[0.02] p-6 md:p-8">
                 <h2 className="text-xs uppercase tracking-[0.2em] text-[var(--zivel-gold-dark)] font-semibold mb-4">In This Article</h2>
                 <ol className="space-y-2">
-                  {headings.map((heading) => (
+                  {headings.map((heading, index) => (
                     <li key={heading.id} className={heading.level === 3 ? "pl-5" : ""}>
                       <a
                         href={`#${heading.id}`}
                         className="text-black/60 hover:text-[var(--zivel-gold-dark)] transition-colors duration-300 text-[15px] leading-relaxed flex items-start gap-2"
                       >
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--zivel-gold)]/40" />
+                        {post.seoTitle ? <span className="shrink-0 text-[var(--zivel-gold-dark)]">{index + 1}.</span> : <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--zivel-gold)]/40" />}
                         {heading.text}
                       </a>
                     </li>

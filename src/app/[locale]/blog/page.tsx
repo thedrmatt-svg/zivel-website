@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { blogPosts } from "@/lib/data/blog";
+import { getPublishedBlogPosts } from "@/lib/data/blog";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const SITE_URL = "https://www.zivel.com";
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -47,7 +48,7 @@ export default function BlogIndexPage() {
       <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-6 md:grid-cols-2">
-            {blogPosts.map((p, idx) => (
+            {getPublishedBlogPosts().map((p, idx) => (
               <ScrollReveal key={p.slug} variant="fade-up" delay={idx * 80}>
                 <Link
                   href={`/blog/${p.slug}`}
