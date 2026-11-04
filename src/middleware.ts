@@ -1,10 +1,17 @@
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, type NextFetchEvent } from "next/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
 const intlMiddleware = createMiddleware(routing);
+const editorMiddleware = clerkMiddleware();
 
-export default function middleware(request: NextRequest) {
+export default function middleware(request: NextRequest, event: NextFetchEvent) {
+  // Authentication is restricted to the private editor; public pages retain
+  // their existing locale, metadata, consent, and tracking behavior.
+  if (request.nextUrl.pathname.startsWith("/admin") || request.nextUrl.pathname.startsWith("/api/blog-editor")) {
+    return editorMiddleware(request, event);
+  }
   // These campaign routes intentionally bypass locale handling, but still need
   // the same indexing protection for unused legacy ?route= URLs.
   const bypassLocale = /^\/(?:ads|riverton-ads|riverton-google)/.test(request.nextUrl.pathname);
@@ -33,5 +40,5 @@ export const config = {
   // still bypass i18n above, while receiving legacy-query indexing protection.
   // - /ads/* — new convention (/ads/riverton, /ads/riverton-google, etc.)
   // - /riverton-ads, /riverton-google — legacy root paths that redirect to /ads/*
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)", "/api/blog-editor/:path*"],
 };

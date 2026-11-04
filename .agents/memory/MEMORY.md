@@ -8,3 +8,4 @@
 - [Brecksville restrictions](brecksville-booking-restrictions.md) — no booking, Cherry, Red Light Therapy pages, or local blog for Brecksville; other studios are unchanged.
 - [Campaign GTM consent](campaign-gtm-consent.md) — one container load per page; preserve consent gating and verify both document loads and client navigation.
 - [Highlands Ranch service scope](highlands-ranch-service-scope.md) — no local Float listing/page; dedicated Red Light Therapy is coming soon, with location-specific metadata.
+- [Local blog editorial rules](local-blog-editorial-rules.md) — local versions are individually written, not city-swapped; keep private editing separate from public pages.

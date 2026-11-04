@@ -57,6 +57,26 @@ function extractHeadings(blocks: BlogContentBlock[]) {
     .map((b) => ({ level: b.level, text: b.text, id: slugify(b.text) }));
 }
 
+function TableOfContents({ headings, numbered, dark = false }: {
+  headings: ReturnType<typeof extractHeadings>; numbered: boolean; dark?: boolean;
+}) {
+  return (
+    <nav aria-label="Table of contents" className={`rounded-2xl border p-6 md:p-8 ${dark ? "mt-6 max-w-3xl border-white/15 bg-white/5" : "mb-12 border-black/8 bg-black/[0.02]"}`}>
+      <h2 className={`text-xs uppercase tracking-[0.2em] font-semibold mb-4 ${dark ? "text-[var(--zivel-gold)]" : "text-[var(--zivel-gold-dark)]"}`}>In This Article</h2>
+      <ol className="space-y-2">
+        {headings.map((heading, index) => (
+          <li key={heading.id} className={heading.level === 3 ? "pl-5" : ""}>
+            <a href={`#${heading.id}`} className={`transition-colors duration-300 text-[15px] leading-relaxed flex items-start gap-2 ${dark ? "text-white/80 hover:text-[var(--zivel-gold)]" : "text-black/60 hover:text-[var(--zivel-gold-dark)]"}`}>
+              {numbered ? <span className="shrink-0">{index + 1}.</span> : <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--zivel-gold)]/40" />}
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
 function renderContentBlocks(blocks: BlogContentBlock[]) {
   return blocks.map((block, i) => {
     switch (block.type) {
@@ -185,6 +205,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
 
             <h1 className="font-serif text-4xl md:text-6xl font-light tracking-tight max-w-4xl zv-hero-animate-3">{post.title}</h1>
+            {post.tocBelowTitle && headings.length > 0 && <TableOfContents headings={headings} numbered={true} dark />}
             <p className="mt-6 text-lg text-white/70 leading-relaxed max-w-3xl zv-hero-animate-4">{post.description}</p>
           </ScrollReveal>
         </div>
@@ -196,24 +217,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
         <div className="mx-auto max-w-3xl px-6">
           <ScrollReveal variant="fade-up">
-            {headings.length > 0 && (
-              <nav aria-label="Table of contents" className="mb-12 rounded-2xl border border-black/8 bg-black/[0.02] p-6 md:p-8">
-                <h2 className="text-xs uppercase tracking-[0.2em] text-[var(--zivel-gold-dark)] font-semibold mb-4">In This Article</h2>
-                <ol className="space-y-2">
-                  {headings.map((heading, index) => (
-                    <li key={heading.id} className={heading.level === 3 ? "pl-5" : ""}>
-                      <a
-                        href={`#${heading.id}`}
-                        className="text-black/60 hover:text-[var(--zivel-gold-dark)] transition-colors duration-300 text-[15px] leading-relaxed flex items-start gap-2"
-                      >
-                        {post.seoTitle ? <span className="shrink-0 text-[var(--zivel-gold-dark)]">{index + 1}.</span> : <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--zivel-gold)]/40" />}
-                        {heading.text}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-            )}
+            {!post.tocBelowTitle && headings.length > 0 && <TableOfContents headings={headings} numbered={Boolean(post.seoTitle)} />}
 
             <article className="space-y-6">
               {renderContentBlocks(post.content)}

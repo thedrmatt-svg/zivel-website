@@ -5,14 +5,20 @@ import post2 from "@/content/blog/recovery-weekly-wellness-essential-not-luxury"
 import post3 from "@/content/blog/recovery-nervous-system-regulation";
 import post4 from "@/content/blog/body-remembers-inflammatory-memory";
 import holidayPost from "@/content/blog/holiday-stress-is-preventable";
+import newYearPost from "@/content/blog/new-year-new-norm-start-now";
 
 const allBlogPosts: BlogPost[] = [
+  newYearPost,
   holidayPost,
   post4,
   post1,
   post2,
   post3,
 ];
+
+export function getEditorSourcePosts(): BlogPost[] {
+  return allBlogPosts;
+}
 
 // Evaluate on each request, not once when the module is first loaded.
 // Older records without status remain published, preserving existing posts.

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublishedBlogPosts } from "@/lib/data/blog";
 import { getLocationBlogPosts } from "@/lib/data/locationBlog";
+import { getPublishedEditorPosts } from "@/lib/local-blog-store";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const SITE_URL = "https://www.zivel.com";
@@ -309,7 +310,10 @@ export default async function LocationBlogPage({
   const cfg = LOCATION_BLOG_CONFIG[city];
   if (!cfg || isBrecksvilleLocation(state, city)) notFound();
 
-  const localPosts = getLocationBlogPosts(city);
+  const localPosts = [
+    ...getLocationBlogPosts(city),
+    ...(await getPublishedEditorPosts()).filter((post) => post.localVersion.locationId === `${state}/${city}`),
+  ];
   const allPosts = [...localPosts, ...getPublishedBlogPosts()];
 
   const stateDisplay = state.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');

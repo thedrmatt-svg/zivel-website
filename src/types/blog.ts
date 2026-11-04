@@ -1,3 +1,5 @@
+import type { LocalBlogVersion } from "@/types/local-blog";
+
 export type BlogContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; level: 2 | 3; text: string }
@@ -12,6 +14,8 @@ export type BlogPost = {
   status?: "draft" | "scheduled" | "published";
   publishAt?: string; // ISO timestamp with explicit timezone
   seoTitle?: string;
+  tocBelowTitle?: boolean;
+  localVersion?: LocalBlogVersion;
   updatedAt?: string; // YYYY-MM-DD, most recent meaningful content change
   author: string;
   category: string;

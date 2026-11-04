@@ -1,0 +1,20 @@
+export type LocalBlogVersion = {
+  id: string;
+  parentPostId: string;
+  locationId: string;
+  slug: string;
+  title: string;
+  description: string;
+  body: string;
+  localIntro: string;
+  localClosing: string;
+  locationName: string;
+  address: string;
+  phone: string;
+  bookingUrl: string;
+  status: "draft" | "scheduled" | "published";
+  publishAt: string;
+  unique: boolean;
+  revision: number;
+  updatedAt: string;
+};

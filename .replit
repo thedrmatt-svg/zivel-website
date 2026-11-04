@@ -1,5 +1,5 @@
 entrypoint = "index.js"
-modules = ["nodejs-20", "python-3.11"]
+modules = ["nodejs-20", "python-3.11", "postgresql-16"]
 hidden = [".config", "package-lock.json"]
 
 [gitHubImport]
@@ -64,6 +64,7 @@ externalPort = 3000
 
 [userenv.shared]
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY = "AIzaSyASg9HX2N45wk-1Cw-Hl220QlNm3eOH02I"
+BLOG_EDITOR_EMAILS = "matto@zivel.com"
 
 [postMerge]
 path = "scripts/post-merge.sh"

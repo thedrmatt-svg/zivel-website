@@ -1,0 +1,46 @@
+import type { BlogPost } from "@/types/blog";
+
+const post: BlogPost = {
+  slug: "new-year-new-norm-start-now",
+  title: "Don't Wait for January: Start Your New Year, New Norm Now",
+  seoTitle: "New Year, New Norm: Why Your Resolution Should Start in November | Zivel",
+  tocBelowTitle: true,
+  description: "January 1 is the worst day of the year to start a habit. Here's why building your recovery, movement, and weight routine now gives you a 60-day head start on everyone else.",
+  publishDate: "2026-11-11",
+  status: "scheduled",
+  publishAt: "2026-11-11T08:00:00-06:00",
+  author: "Zivel Team",
+  category: "Recovery & Wellness",
+  readingTime: "5 min read",
+  featured: true,
+  content: [
+    { type: "heading", level: 2, text: "The January 1 Trap" },
+    { type: "paragraph", text: "Every year, millions of people wake up on January 1 and decide this is the year. New gym membership. New meal plan. New promise to finally take care of themselves." },
+    { type: "paragraph", text: "And every year, most of those plans are gone by Valentine's Day." },
+    { type: "paragraph", text: "The problem isn't willpower. The problem is timing. January 1 asks you to change everything at once, on the heels of the most exhausting six weeks of the year, while you're tired, over-sugared, and behind on sleep. It's the hardest possible starting line." },
+    { type: "heading", level: 2, text: "Why November Is the Best Time to Build a Habit" },
+    { type: "paragraph", text: "Habits form through repetition under real-world conditions, not ideal ones. If a routine can survive Thanksgiving week, office parties, travel, and a December calendar with no gaps, it can survive anything the rest of the year throws at it." },
+    { type: "paragraph", text: "That's the hidden advantage of starting now. By the time January arrives, your routine isn't a resolution. It's just what you do. You've already handled the hard part while everyone else was waiting for a clean slate that never comes." },
+    { type: "paragraph", text: "There's a second advantage. Starting in November means you walk into the new year ahead instead of behind. No January 1 panic. No \"undo December\" project. Just momentum." },
+    { type: "heading", level: 2, text: "New Norm, Not New Year's Resolution" },
+    { type: "paragraph", text: "A resolution is a wish with a date on it. A norm is something you'd feel strange skipping." },
+    { type: "paragraph", text: "The difference is scale. Resolutions are big, dramatic, and all-or-nothing. Norms are small, boring, and repeatable. \"I'm going to lose 25 pounds\" is a resolution. \"I walk after dinner and I'm at Zivel every Tuesday\" is a norm." },
+    { type: "paragraph", text: "Norms win because they don't depend on motivation. They depend on a calendar slot and a low enough bar that you can clear it on your worst day. Pick the version of the habit you can keep when you're tired, and build from there." },
+    { type: "heading", level: 2, text: "Three Habits Worth Starting This Week" },
+    { type: "paragraph", text: "You don't need all three. One, done consistently through the holidays, is worth more than three that fade by Christmas." },
+    { type: "list", ordered: true, boldLead: true, items: [
+      "A standing recovery appointment. Same day, same time, every week through January. This is the easiest habit on the list because the only thing you have to do is show up. Everything else happens while you're there.",
+      "A daily movement floor. Not a workout goal, a floor. Ten minutes of walking is the minimum you'll never go below, no matter what the day looks like. Most days you'll do more. On the hard days, you'll still do ten.",
+      "One meal you own. Pick breakfast, lunch, or dinner and make it the meal that's always protein-first and built the way you'd build it in a good week. The rest of the day can flex with the season. That one meal is the anchor that keeps you from drifting.",
+    ] },
+    { type: "heading", level: 2, text: "What a 60-Day Head Start Looks Like at Zivel" },
+    { type: "paragraph", text: "Many of our clients use the holidays as a reset window rather than a write-off. A typical rhythm: one or two recovery sessions a week, paired with the movement floor and the anchor meal above." },
+    { type: "paragraph", text: "Whole-body cryotherapy and compression are often used by people who want to keep training through the season without feeling run down. Red light therapy is a quiet session many people pair with a few minutes of stillness. For clients focused on body composition, cryo body contouring and cryo facial sessions are frequently started in November so that any changes have time to show before the New Year, rather than beginning after it." },
+    { type: "paragraph", text: "The point isn't any single service. The point is that a weekly appointment turns a vague intention into a norm with a time and a place attached to it." },
+    { type: "heading", level: 2, text: "Start Before the Countdown" },
+    { type: "paragraph", text: "The people who feel great in January didn't start in January. They started when it was inconvenient, which is exactly why it stuck." },
+    { type: "paragraph", text: "You have about sixty days until the ball drops. That's enough time to build something real. Book your standing appointment this week and let December be the proof that your new norm is here to stay." },
+  ],
+};
+
+export default post;

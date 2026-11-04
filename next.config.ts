@@ -6,6 +6,14 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const nextConfig: NextConfig = {
   async headers() {
     return [
+      {
+        source: "/admin/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/api/blog-editor/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
       // ── Ads landing pages: belt-and-suspenders noindex header ────────────
       // All ads pages live under /ads/:city — this single pattern covers every
       // current and future city landing page. Pages also set

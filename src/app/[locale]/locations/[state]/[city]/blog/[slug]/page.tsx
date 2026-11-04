@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getPublishedEditorPosts } from "@/lib/local-blog-store";
 import type { BlogContentBlock } from "@/types/blog";
 import {
   getLocationBlogPostBySlug,
@@ -133,20 +134,34 @@ export async function generateStaticParams() {
   return paths;
 }
 
+export const dynamic = "force-dynamic";
+
+async function findPost(state: string, city: string, slug: string) {
+  if (CITY_META[city]?.stateSlug !== state) return undefined;
+  return getLocationBlogPostBySlug(city, slug) ??
+    (await getPublishedEditorPosts()).find((post) =>
+      post.localVersion.locationId === `${state}/${city}` && post.slug === slug
+    );
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { city, state, slug, locale } = await params;
-  const post = getLocationBlogPostBySlug(city, slug);
+  const post = await findPost(state, city, slug);
   if (!post) return {};
 
   const canonicalPath = `/locations/${state}/${city}/blog/${slug}`;
   const canonicalUrl = `${SITE_URL}${canonicalPath}`;
   const esUrl = `${SITE_URL}/es${canonicalPath}`;
+  const localVersion = post.localVersion;
+  const localCanonical = localVersion && !localVersion.unique
+    ? `${SITE_URL}/blog/${localVersion.parentPostId}`
+    : locale === "es" ? esUrl : canonicalUrl;
 
   return {
     title: `${post.title} | ${CITY_META[city]?.cityName ?? city}`,
     description: post.description,
     alternates: {
-      canonical: locale === "es" ? esUrl : canonicalUrl,
+      canonical: localCanonical,
       languages: { en: canonicalUrl, es: esUrl, "x-default": canonicalUrl },
     },
   };
@@ -196,6 +211,14 @@ function renderContentBlocks(blocks: BlogContentBlock[]) {
         );
       }
       case "list":
+        if (block.ordered) return (
+          <ol key={i} className="list-decimal space-y-3 pl-6 text-black/60">
+            {block.items.map((item, idx) => {
+              const split = block.boldLead ? item.indexOf(". ") : -1;
+              return <li key={idx}>{split >= 0 ? <><strong>{item.slice(0, split + 1)}</strong>{item.slice(split + 1)}</> : item}</li>;
+            })}
+          </ol>
+        );
         return (
           <ul key={i} className="space-y-3 text-black/60">
             {block.items.map((item, idx) => (
@@ -237,13 +260,14 @@ function renderContentBlocks(blocks: BlogContentBlock[]) {
 
 export default async function LocationBlogPostPage({ params }: PageProps) {
   const { city, state, slug } = await params;
-  const post = getLocationBlogPostBySlug(city, slug);
+  const post = await findPost(state, city, slug);
   if (!post) notFound();
 
   const meta = CITY_META[city];
+  const localVersion = post.localVersion;
   const cityName = meta?.cityName ?? city;
   const bookingUrl =
-    meta?.bookingUrl ??
+    localVersion?.bookingUrl ?? meta?.bookingUrl ??
     "https://zivel.myperformanceiq.com/book-appointment";
 
   const headings = extractHeadings(post.content);
@@ -263,7 +287,7 @@ export default async function LocationBlogPostPage({ params }: PageProps) {
         url: `${SITE_URL}/images/brand/zivel-logo.png`,
       },
     },
-    datePublished: post.publishDate,
+    datePublished: post.publishAt ?? post.publishDate,
     url: `${SITE_URL}/locations/${state}/${city}/blog/${post.slug}`,
     mainEntityOfPage: `${SITE_URL}/locations/${state}/${city}/blog/${post.slug}`,
     ...(headings.length > 0 && {
@@ -286,11 +310,11 @@ export default async function LocationBlogPostPage({ params }: PageProps) {
     <div className="space-y-0 -mt-20">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c") }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c") }}
       />
 
       {/* HEADER (DARK) */}
@@ -377,10 +401,10 @@ export default async function LocationBlogPostPage({ params }: PageProps) {
           <ScrollReveal variant="scale">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="font-serif text-4xl md:text-5xl font-light tracking-tight">
-                Ready to Try Cryotherapy in {cityName}?
+                {localVersion ? `Build Your Recovery Routine in ${cityName}` : `Ready to Try Cryotherapy in ${cityName}?`}
               </h2>
               <p className="mt-6 text-white/65 text-lg leading-relaxed">
-                Build a recovery routine that fits your schedule. Dry, fast, and stackable with red light, compression, and more.
+                {localVersion ? "Find a recovery routine that fits your schedule at your local Zivel studio." : "Build a recovery routine that fits your schedule. Dry, fast, and stackable with red light, compression, and more."}
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <LocationBookingLink state={state} city={city}

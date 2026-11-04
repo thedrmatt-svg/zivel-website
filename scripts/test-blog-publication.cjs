@@ -42,6 +42,7 @@ function load(base) {
 }
 const data = load(path.join(root, "src/lib/data/blog"));
 const post = load(path.join(root, "src/content/blog/holiday-stress-is-preventable")).default;
+const newYearPost = load(path.join(root, "src/content/blog/new-year-new-norm-start-now")).default;
 const detail = load(path.join(root, "src/app/[locale]/blog/[slug]/page"));
 const index = load(path.join(root, "src/app/[locale]/blog/page"));
 const localIndex = load(path.join(root, "src/app/[locale]/locations/[state]/[city]/blog/page"));
@@ -98,7 +99,7 @@ test("direct route, indexes and sitemap hide the post before publication and rev
       const localHtml = renderToStaticMarkup(await localIndex.default({ params: Promise.resolve({ state: "utah", city: "riverton" }) }));
       assert.equal(mainHtml.includes(`/blog/${post.slug}`), visible);
       assert.equal(localHtml.includes(`/blog/${post.slug}`), visible);
-      assert.equal(sitemap.default().some((entry) => entry.url === `https://www.zivel.com/blog/${post.slug}`), visible);
+      assert.equal((await sitemap.default()).some((entry) => entry.url === `https://www.zivel.com/blog/${post.slug}`), visible);
     });
   }
   for (const entry of [detail, index, localIndex, sitemap]) assert.equal(entry.dynamic, "force-dynamic");
@@ -133,4 +134,68 @@ test("published rendering retains matching anchors, metadata, schema and existin
     // Optional test-only output used to visually inspect the future article.
     if (process.env.BLOG_TEST_HTML) fs.writeFileSync(process.env.BLOG_TEST_HTML, html);
   });
+});
+
+test("Blog #2 copy exactly matches the supplied brief", () => {
+  const brief = fs.readFileSync(path.join(root, "attached_assets/Pasted-TASK-Add-a-new-blog-post-to-the-main-Zivel-blog-schedul_1793814018526.txt"), "utf8");
+  const markdown = brief.split("BODY (markdown):")[1].split("\n2. LOCAL VERSIONS")[0].trim();
+  const expected = markdown.split(/\n\n+/).flatMap((chunk) =>
+    chunk.startsWith("## ") ? [chunk.slice(3)] : /^1\. /.test(chunk)
+      ? chunk.split("\n").map((line) => line.replace(/^\d+\. /, "").replace(/\*\*/g, "")) : [chunk]
+  );
+  assert.deepEqual(newYearPost.content.flatMap((block) => block.type === "list" ? block.items : [block.text]), expected);
+});
+
+test("Blog #2 appears at November 11 8 AM Central, never before", async () => {
+  const publish = Date.parse("2026-11-11T14:00:00Z");
+  assert.equal(Date.parse(newYearPost.publishAt), publish);
+  assert.equal(newYearPost.status, "scheduled");
+  for (const now of [publish - 1, publish, publish + 1]) {
+    await withClock(now, async () => {
+      const visible = now >= publish;
+      const pageParams = Promise.resolve({ slug: newYearPost.slug, locale: "en" });
+      assert.equal(Boolean(data.getBlogBySlug(newYearPost.slug)), visible);
+      assert.equal(renderToStaticMarkup(index.default()).includes(`/blog/${newYearPost.slug}`), visible);
+      const localHtml = renderToStaticMarkup(await localIndex.default({ params: Promise.resolve({ state: "utah", city: "riverton" }) }));
+      assert.equal(localHtml.includes(`/blog/${newYearPost.slug}`), visible);
+      assert.equal((await sitemap.default()).some((entry) => entry.url === `https://www.zivel.com/blog/${newYearPost.slug}`), visible);
+      if (!visible) {
+        await assert.rejects(detail.default({ params: pageParams }), /NEXT_NOT_FOUND/);
+        return;
+      }
+      const html = renderToStaticMarkup(await detail.default({ params: pageParams }));
+      for (const id of ["the-january-1-trap", "why-november-is-the-best-time-to-build-a-habit", "new-norm-not-new-years-resolution", "three-habits-worth-starting-this-week", "what-a-60-day-head-start-looks-like-at-zivel", "start-before-the-countdown"]) {
+        assert(html.includes(`href="#${id}"`), id);
+        assert(html.includes(`id="${id}"`), id);
+      }
+      const metadata = await detail.generateMetadata({ params: pageParams });
+      assert.deepEqual(metadata.title, { absolute: newYearPost.seoTitle });
+      assert.equal(metadata.description, newYearPost.description);
+      assert.equal(metadata.openGraph.title, newYearPost.seoTitle);
+      assert.equal(metadata.alternates.canonical, `https://www.zivel.com/blog/${newYearPost.slug}`);
+      if (process.env.BLOG2_TEST_HTML) fs.writeFileSync(process.env.BLOG2_TEST_HTML, html);
+    });
+  }
+});
+
+test("local draft creation is explicit, linked and unpublished, with verified location data", () => {
+  const model = load(path.join(root, "src/lib/local-blog-model"));
+  const draft = model.createLocalDraft(newYearPost.slug, "georgia/windermere", "test-draft");
+  assert.equal(draft.parentPostId, newYearPost.slug);
+  assert.equal(draft.locationId, "georgia/windermere");
+  assert.equal(draft.status, "draft");
+  assert.equal(draft.localIntro, "");
+  assert.equal(draft.localClosing, "");
+  assert.equal(draft.unique, false);
+  assert(draft.bookingUrl.includes("set_location="));
+  assert(draft.body.includes("## The January 1 Trap"));
+  assert.equal(model.isLocalVersionPublished(draft, Date.parse("2027-01-01")), false);
+  assert.throws(() => model.createLocalDraft(newYearPost.slug, "ohio/brecksville", "test"), /does not have/);
+  const earlier = { ...draft, publishAt: "2026-11-10T08:00:00-06:00" };
+  assert.throws(() => model.validateLocalVersion(earlier, draft), /cannot publish before/);
+  assert.throws(() => model.validateLocalVersion({ ...draft, bookingUrl: "javascript:alert(1)" }, draft), /HTTPS/);
+  const published = model.validateLocalVersion({ ...draft, status: "published", localIntro: "Individually authored introduction.", unique: true }, draft);
+  assert.equal(model.isLocalVersionPublished(published, Date.parse(newYearPost.publishAt) - 1), false);
+  assert.equal(model.isLocalVersionPublished(published, Date.parse(newYearPost.publishAt)), true);
+  assert.equal(model.localVersionToPost(published).content[0].text, "Individually authored introduction.");
 });

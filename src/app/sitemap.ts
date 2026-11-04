@@ -13,6 +13,7 @@ import {
 import type { Media } from "@/types/service";
 import type { BlogPost } from "@/types/blog";
 import { DEFAULT_CONTENT_DATE } from "@/lib/data/contentDates";
+import { getPublishedEditorPosts } from "@/lib/local-blog-store";
 
 const SITE_URL = "https://www.zivel.com";
 export const dynamic = "force-dynamic";
@@ -89,7 +90,8 @@ function isExcludedFromSitemap(url: string): boolean {
   return false;
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const editorPosts = await getPublishedEditorPosts();
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: new Date(STATIC_PAGE_DATES.home), changeFrequency: "weekly", priority: 1 },
     { url: `${SITE_URL}/services`, lastModified: new Date(STATIC_PAGE_DATES.services), changeFrequency: "weekly", priority: 0.9 },
@@ -189,9 +191,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const locationBlogIndexPages: MetadataRoute.Sitemap = locations
-    .filter((l) => getLocationBlogPosts(l.citySlug).length > 0)
+    .filter((l) => getLocationBlogPosts(l.citySlug).length > 0 || editorPosts.some((post) => post.localVersion.locationId === `${l.stateSlug}/${l.citySlug}`))
     .map((l) => {
-      const posts = getLocationBlogPosts(l.citySlug);
+      const posts = [...getLocationBlogPosts(l.citySlug), ...editorPosts.filter((post) => post.localVersion.locationId === `${l.stateSlug}/${l.citySlug}`)];
       const latest = maxDate(l.updatedAt, ...posts.map(blogPostDate));
       return {
         url: `${SITE_URL}/locations/${l.stateSlug}/${l.citySlug}/blog`,
@@ -201,7 +203,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
-  const locationBlogPostPages: MetadataRoute.Sitemap = locations.flatMap((l) =>
+  const locationBlogPostPages: MetadataRoute.Sitemap = [...editorPosts.map((post) => ({
+    url: `${SITE_URL}/locations/${post.localVersion.locationId}/blog/${post.slug}`,
+    lastModified: new Date(post.localVersion.updatedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  })), ...locations.flatMap((l) =>
     getLocationBlogSlugs(l.citySlug).flatMap((slug) => {
       const post = getLocationBlogPosts(l.citySlug).find((p) => p.slug === slug);
       if (!post) return [];
@@ -214,7 +221,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       ];
     })
-  );
+  )];
 
   const locationPathwayPages: MetadataRoute.Sitemap = locations.map((l) => {
     const latest = maxDate(l.updatedAt, ...pathways.map((p) => p.updatedAt));
