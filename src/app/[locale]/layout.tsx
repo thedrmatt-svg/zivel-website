@@ -2,27 +2,31 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Playfair_Display, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { routing } from "@/i18n/routing";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/consent/CookieConsent";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
+const playfair = localFont({
+  src: "../../assets/fonts/shared/playfair-display-latin-variable.woff2",
   variable: "--font-playfair",
   // "optional" prevents FOUT: the browser won't swap the font in after paint,
   // eliminating the layout shift caused by the large serif H1 changing metrics.
   // Next.js self-hosts and preloads this font, so it loads from the same origin
   // and will be available before first paint on most connections.
   display: "optional",
-  weight: ["400", "500", "600", "700"],
+  weight: "400 700",
+  style: "normal",
+  adjustFontFallback: "Times New Roman",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = localFont({
+  src: "../../assets/fonts/shared/inter-latin-variable.woff2",
   variable: "--font-inter",
+  weight: "100 900",
+  style: "normal",
   // "optional" prevents FOUT on body text: same reasoning as Playfair above.
   // Next.js self-hosts and preloads Inter from the same origin, so it arrives
   // before or at first paint on most connections. No swap = no CLS.

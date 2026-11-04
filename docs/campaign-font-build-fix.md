@@ -11,9 +11,12 @@ Layouts now load the same font families from bundled WOFF2 assets with
 `next/font/local`. Existing CSS variables, required weights, swap behavior,
 analytics, noindex metadata, consent, and tracking scope are preserved.
 
-Main-site Playfair Display/Inter loading is unchanged. Buckhead fighter
-layouts reuse the ATT layouts, so they inherit the fix without additional
-layout changes.
+After the ATT/FanX fix, Vercel failed again while compiling Playfair Display
+in the Utah Royals thank-you layout. The remaining Playfair Display and
+Inter layouts now also use bundled licensed fonts. No `next/font/google`
+imports remain in application source. Main-site `display: "optional"` and
+campaign `display: "swap"` are preserved; Playfair retains a serif fallback.
+Buckhead fighter layouts reuse the ATT layouts.
 
 ### Changed layouts
 
@@ -21,6 +24,16 @@ layout changes.
 - `src/app/ads/american-top-team-sandy-springs-thank-you/layout.tsx`
 - `src/app/ads/fanx/layout.tsx`
 - `src/app/ads/fanx-thank-you/layout.tsx`
+- `src/app/[locale]/layout.tsx`
+- `src/app/riverton-google-thank-you/layout.tsx`
+- `src/app/ads/riverton/layout.tsx`
+- `src/app/ads/riverton-google/layout.tsx`
+- `src/app/ads/utah-royals/layout.tsx`
+- `src/app/ads/utah-royals-thank-you/layout.tsx`
+- `src/app/ads/real-salt-lake/layout.tsx`
+- `src/app/ads/real-salt-lake-thank-you/layout.tsx`
+- `src/app/ads/salt-lake-bees/layout.tsx`
+- `src/app/ads/salt-lake-bees-thank-you/layout.tsx`
 
 ### Added assets, licenses, and documentation
 
@@ -36,6 +49,11 @@ layout changes.
 - `src/assets/fonts/fanx/barlow-condensed-latin-900.woff2`
 - `src/assets/fonts/fanx/Barlow-Condensed-OFL.txt`
 - `src/assets/fonts/fanx/README.md`
+- `src/assets/fonts/shared/playfair-display-latin-variable.woff2`
+- `src/assets/fonts/shared/inter-latin-variable.woff2`
+- `src/assets/fonts/shared/Playfair-Display-OFL.txt`
+- `src/assets/fonts/shared/Inter-OFL.txt`
+- `src/assets/fonts/shared/README.md`
 - `docs/campaign-font-build-fix.md`
 
 ### Added regression check and project guidance
@@ -46,8 +64,10 @@ layout changes.
 
 ## Verification
 
-- Clean Next.js optimized production build passed with Node 22 in an
-  isolated temporary copy; all 692 static pages generated successfully.
+- Fresh `pnpm install --frozen-lockfile` followed by `pnpm run build` passed
+  with Node 22 in an isolated temporary copy, without reusing workspace
+  node_modules or a .next cache; all 692 static pages generated successfully.
+- All 28 regression tests passed, including the new shared-font checks.
 - Real built-server checks passed for ATT/Buckhead, its thank-you page,
   FanX and its thank-you page, the homepage, Riverton and Hollywood main
   location pages, and the published main holiday blog.
@@ -59,6 +79,8 @@ layout changes.
   regression tests in `scripts/test-campaign-fonts.cjs`.
 - Existing production-build lint warnings were non-blocking; they were not
   suppressed or changed as part of this fix.
+- No blog entries, scheduled publication dates, or local-editor behavior
+  were removed or changed.
 
 ## Manual release
 

@@ -63,3 +63,47 @@ test("matching campaign and thank-you layouts retain tracking scope and share lo
     }
   }
 });
+
+test("shared fonts preserve required weights, licenses and English/Spanish glyphs", () => {
+  for (const [file, family, min, max, license] of [
+    ["playfair-display-latin-variable.woff2", "Playfair Display", 400, 700, "Playfair-Display-OFL.txt"],
+    ["inter-latin-variable.woff2", "Inter", 100, 900, "Inter-OFL.txt"],
+  ]) {
+    const dir = path.join(root, "src/assets/fonts/shared");
+    const data = fs.readFileSync(path.join(dir, file));
+    assert.equal(data.subarray(0, 4).toString(), "wOF2");
+    const font = fontFromBuffer(data);
+    assert.equal(font.familyName, family);
+    assert(font.variationAxes.wght.min <= min);
+    assert(font.variationAxes.wght.max >= max);
+    for (const character of "Zivel Riverton Hollywood ¡Recuperación! áéíóúñü ¿") {
+      assert(font.hasGlyphForCodePoint(character.codePointAt(0)), `${file}: ${character}`);
+    }
+    assert.match(fs.readFileSync(path.join(dir, license), "utf8"), /SIL OPEN FONT LICENSE Version 1\.1/);
+  }
+});
+
+test("no application font import depends on Google CSS during a build", () => {
+  const files = fs.readdirSync(path.join(root, "src"), { recursive: true })
+    .filter(file => /\.[cm]?[jt]sx?$/.test(file));
+  for (const file of files) {
+    assert(!fs.readFileSync(path.join(root, "src", file), "utf8").includes("next/font/google"), file);
+  }
+});
+
+test("all shared-font layouts retain their CSS variables and display behavior", () => {
+  for (const route of [
+    "[locale]", "riverton-google-thank-you",
+    ...["riverton", "riverton-google", "utah-royals", "utah-royals-thank-you",
+      "real-salt-lake", "real-salt-lake-thank-you", "salt-lake-bees",
+      "salt-lake-bees-thank-you"].map(route => `ads/${route}`),
+  ]) {
+    const layout = fs.readFileSync(path.join(root, `src/app/${route}/layout.tsx`), "utf8");
+    for (const value of ['from "next/font/local"', "--font-playfair", "--font-inter",
+      'weight: "400 700"', 'weight: "100 900"', 'adjustFontFallback: "Times New Roman"']) {
+      assert(layout.includes(value), `${route}: ${value}`);
+    }
+    const display = route === "[locale]" ? "optional" : "swap";
+    assert.equal([...layout.matchAll(new RegExp(`display: "${display}"`, "g"))].length, 2, route);
+  }
+});
