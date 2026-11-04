@@ -43,6 +43,8 @@ function load(base) {
 const data = load(path.join(root, "src/lib/data/blog"));
 const post = load(path.join(root, "src/content/blog/holiday-stress-is-preventable")).default;
 const newYearPost = load(path.join(root, "src/content/blog/new-year-new-norm-start-now")).default;
+const trimUpPost = load(path.join(root, "src/content/blog/trim-up-before-the-new-year")).default;
+const platePost = load(path.join(root, "src/content/blog/holiday-plate-strategy")).default;
 const detail = load(path.join(root, "src/app/[locale]/blog/[slug]/page"));
 const index = load(path.join(root, "src/app/[locale]/blog/page"));
 const localIndex = load(path.join(root, "src/app/[locale]/locations/[state]/[city]/blog/page"));
@@ -144,6 +146,124 @@ test("Blog #2 copy exactly matches the supplied brief", () => {
       ? chunk.split("\n").map((line) => line.replace(/^\d+\. /, "").replace(/\*\*/g, "")) : [chunk]
   );
   assert.deepEqual(newYearPost.content.flatMap((block) => block.type === "list" ? block.items : [block.text]), expected);
+});
+
+test("Blog #3 preserves every word and the countdown table from its brief", () => {
+  const brief = fs.readFileSync(path.join(root, "attached_assets/Pasted-TASK-Add-a-new-blog-post-to-the-main-Zivel-blog-schedul_1793821746777.txt"), "utf8");
+  const expected = brief.split("BODY (markdown):")[1].split("\n2. LOCAL VERSIONS")[0].trim();
+  const { blogBlocksToMarkdown } = load(path.join(root, "src/lib/blog-markdown"));
+  assert.equal(blogBlocksToMarkdown(trimUpPost.content), expected);
+  const table = trimUpPost.content.find((block) => block.type === "table");
+  assert.deepEqual(table.headers, ["Weeks", "Focus", "What it looks like"]);
+  assert.equal(table.rows.length, 4);
+  assert.equal(trimUpPost.content.filter((block) => block.type === "paragraph" && block.boldLead).length, 3);
+});
+
+test("Blog #4 preserves its supplied copy and formatting exactly", () => {
+  const brief = fs.readFileSync(path.join(root, "attached_assets/Pasted-TASK-Add-a-new-blog-post-to-the-main-Zivel-blog-schedul_1793822050018.txt"), "utf8");
+  const expected = brief.split("BODY (markdown):")[1].split("\n2. LOCAL VERSIONS")[0].trim();
+  const { blogBlocksToMarkdown } = load(path.join(root, "src/lib/blog-markdown"));
+  assert.equal(blogBlocksToMarkdown(platePost.content), expected);
+});
+
+test("Blog #4 publishes November 20 at 8 AM Central and location listings link only to the main post", async () => {
+  const publish = Date.parse("2026-11-20T14:00:00Z");
+  assert.equal(Date.parse(platePost.publishAt), publish);
+  assert.equal(platePost.publishDate, "2026-11-20");
+  assert.equal(platePost.status, "scheduled");
+  const localDetail = load(path.join(root, "src/app/[locale]/locations/[state]/[city]/blog/[slug]/page"));
+  for (const now of [publish - 1, publish, publish + 1]) {
+    await withClock(now, async () => {
+      const visible = now >= publish;
+      const params = Promise.resolve({ slug: platePost.slug, locale: "en" });
+      const href = `/blog/${platePost.slug}`;
+      assert.equal(Boolean(data.getBlogBySlug(platePost.slug)), visible);
+      assert.equal(renderToStaticMarkup(index.default()).includes(`href="${href}"`), visible);
+      const urls = (await sitemap.default()).map((entry) => entry.url);
+      assert.equal(urls.includes(`https://www.zivel.com${href}`), visible);
+      assert(!urls.some((url) => url.includes("/locations/") && url.endsWith(href)));
+      for (const [state, city] of [["utah", "riverton"], ["florida", "hollywood"], ["colorado", "briargate"], ["georgia", "windermere"], ["arkansas", "bentonville"]]) {
+        const html = renderToStaticMarkup(await localIndex.default({ params: Promise.resolve({ state, city, locale: "en" }) }));
+        assert.equal(html.includes(`href="${href}"`), visible, city);
+        assert(!html.includes(`/locations/${state}/${city}${href}`));
+        await assert.rejects(localDetail.default({ params: Promise.resolve({ state, city, slug: platePost.slug, locale: "en" }) }), /NEXT_NOT_FOUND/);
+      }
+      if (!visible) {
+        await assert.rejects(detail.default({ params }), /NEXT_NOT_FOUND/);
+        return;
+      }
+      const html = renderToStaticMarkup(await detail.default({ params }));
+      for (const id of ["its-not-the-meal-its-the-thirty-days-around-it", "the-plate-strategy", "seven-choices-that-add-up", "recover-between-the-big-days", "make-it-a-habit-not-a-hack"]) {
+        assert(html.includes(`href="#${id}"`), id);
+        assert(html.includes(`id="${id}"`), id);
+      }
+      assert.equal((html.match(/aria-label="Table of contents"/g) ?? []).length, 1);
+      assert(html.indexOf("</h1>") < html.indexOf('aria-label="Table of contents"'));
+      assert(html.includes("<strong>Half the plate:</strong>"));
+      assert(html.includes("<strong>Eat protein first.</strong>"));
+      assert(html.includes(`"datePublished":"${platePost.publishAt}"`));
+      assert(html.includes("View Services") && html.includes("Find a Location"));
+      assert(!html.includes("View Holiday Packages"));
+      const metadata = await detail.generateMetadata({ params });
+      assert.deepEqual(metadata.title, { absolute: platePost.seoTitle });
+      assert.equal(metadata.description, platePost.description);
+      assert.equal(metadata.openGraph.title, platePost.seoTitle);
+      assert.equal(metadata.openGraph.description, platePost.description);
+      assert.equal(metadata.alternates.canonical, `https://www.zivel.com${href}`);
+      if (process.env.BLOG4_TEST_HTML) fs.writeFileSync(process.env.BLOG4_TEST_HTML, html);
+    });
+  }
+});
+
+test("Blog #3 publishes November 13 at 8 AM Central, with main-post links and no local duplicate", async () => {
+  const publish = Date.parse("2026-11-13T14:00:00Z");
+  assert.equal(Date.parse(trimUpPost.publishAt), publish);
+  assert.equal(trimUpPost.publishDate, "2026-11-13");
+  assert.equal(trimUpPost.status, "scheduled");
+  const localDetail = load(path.join(root, "src/app/[locale]/locations/[state]/[city]/blog/[slug]/page"));
+  for (const now of [publish - 1, publish, publish + 1]) {
+    await withClock(now, async () => {
+      const visible = now >= publish;
+      const params = Promise.resolve({ slug: trimUpPost.slug, locale: "en" });
+      const href = `/blog/${trimUpPost.slug}`;
+      assert.equal(Boolean(data.getBlogBySlug(trimUpPost.slug)), visible);
+      assert.equal(renderToStaticMarkup(index.default()).includes(`href="${href}"`), visible);
+      const urls = (await sitemap.default()).map((entry) => entry.url);
+      assert.equal(urls.includes(`https://www.zivel.com${href}`), visible);
+      assert(!urls.some((url) => url.includes("/locations/") && url.endsWith(href)));
+      for (const [state, city] of [["utah", "riverton"], ["florida", "hollywood"], ["colorado", "briargate"], ["georgia", "windermere"], ["arkansas", "bentonville"]]) {
+        const html = renderToStaticMarkup(await localIndex.default({ params: Promise.resolve({ state, city, locale: "en" }) }));
+        assert.equal(html.includes(`href="${href}"`), visible, city);
+        assert(!html.includes(`/locations/${state}/${city}${href}`));
+        await assert.rejects(localDetail.default({ params: Promise.resolve({ state, city, slug: trimUpPost.slug, locale: "en" }) }), /NEXT_NOT_FOUND/);
+      }
+      if (!visible) {
+        await assert.rejects(detail.default({ params }), /NEXT_NOT_FOUND/);
+        return;
+      }
+      const html = renderToStaticMarkup(await detail.default({ params }));
+      for (const id of ["the-math-most-people-get-wrong-about-holiday-weight", "set-a-goal-you-can-actually-hit-by-december-31", "the-three-levers-protein-steps-sleep", "where-cryo-body-contouring-fits", "your-8-week-countdown", "walk-into-january-already-ahead"]) {
+        assert(html.includes(`href="#${id}"`), id);
+        assert(html.includes(`id="${id}"`), id);
+      }
+      assert.equal((html.match(/aria-label="Table of contents"/g) ?? []).length, 1);
+      assert(html.indexOf("</h1>") < html.indexOf('aria-label="Table of contents"'));
+      assert(html.includes("overflow-x-auto"));
+      assert(html.includes('tabindex="0"'));
+      assert(html.includes("<table"));
+      assert(html.includes('<strong>Protein first.</strong>'));
+      assert(html.includes(`"datePublished":"${trimUpPost.publishAt}"`));
+      assert(html.includes("View Services") && html.includes("Find a Location"));
+      assert(!html.includes("View Holiday Packages"));
+      const metadata = await detail.generateMetadata({ params });
+      assert.deepEqual(metadata.title, { absolute: trimUpPost.seoTitle });
+      assert.equal(metadata.description, trimUpPost.description);
+      assert.equal(metadata.openGraph.title, trimUpPost.seoTitle);
+      assert.equal(metadata.openGraph.description, trimUpPost.description);
+      assert.equal(metadata.alternates.canonical, `https://www.zivel.com${href}`);
+      if (process.env.BLOG3_TEST_HTML) fs.writeFileSync(process.env.BLOG3_TEST_HTML, html);
+    });
+  }
 });
 
 test("Blog #2 appears at November 11 8 AM Central, never before", async () => {

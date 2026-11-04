@@ -1,9 +1,10 @@
 import type { LocalBlogVersion } from "@/types/local-blog";
 
 export type BlogContentBlock =
-  | { type: "paragraph"; text: string }
+  | { type: "paragraph"; text: string; boldLead?: boolean }
   | { type: "heading"; level: 2 | 3; text: string }
   | { type: "list"; items: string[]; ordered?: boolean; boldLead?: boolean }
+  | { type: "table"; headers: string[]; rows: string[][] }
   | { type: "source"; label: string; url: string };
 
 export type BlogPost = {

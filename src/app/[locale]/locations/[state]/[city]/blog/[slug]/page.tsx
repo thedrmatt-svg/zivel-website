@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BlogListText, BlogParagraph, BlogTable } from "@/components/blog/BlogContent";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -224,17 +225,15 @@ function renderContentBlocks(blocks: BlogContentBlock[]) {
             {block.items.map((item, idx) => (
               <li key={idx} className="flex gap-3 items-start">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--zivel-gold)]" />
-                <span>{item}</span>
+                <span><BlogListText text={item} boldLead={block.boldLead} /></span>
               </li>
             ))}
           </ul>
         );
       case "paragraph":
-        return (
-          <p key={i} className="text-black/60 text-lg leading-relaxed">
-            {block.text}
-          </p>
-        );
+        return <BlogParagraph key={i} block={block} className="text-black/60 text-lg leading-relaxed" />;
+      case "table":
+        return <BlogTable key={i} block={block} />;
       case "source":
         return (
           <p

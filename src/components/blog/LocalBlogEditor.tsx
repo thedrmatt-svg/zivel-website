@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent, InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import type { LocalBlogVersion } from "@/types/local-blog";
 import { parseBlogMarkdown } from "@/lib/blog-markdown";
+import { BlogListText, BlogParagraph, BlogTable } from "@/components/blog/BlogContent";
 
 type ParentPost = { id: string; title: string; publishDate: string; publishAt?: string };
 type Studio = { id: string; name: string };
@@ -92,12 +93,13 @@ function Preview({ markdown, title }: { markdown: string; title: string }) {
               const Heading = block.level === 3 ? "h4" : "h3";
               return <Heading key={index} className="font-serif text-xl font-normal text-white">{block.text}</Heading>;
             }
-            if (block.type === "paragraph") return <p key={index} className="whitespace-pre-wrap">{block.text}</p>;
+            if (block.type === "paragraph") return <BlogParagraph key={index} block={block} className="whitespace-pre-wrap" />;
+            if (block.type === "table") return <BlogTable key={index} block={block} dark />;
             if (block.type === "list") {
               const List = block.ordered ? "ol" : "ul";
               return (
                 <List key={index} className="space-y-1 pl-5 marker:text-[#d4af37]">
-                  {block.items.map((item, itemIndex) => <li key={itemIndex}>{item}</li>)}
+                  {block.items.map((item, itemIndex) => <li key={itemIndex}><BlogListText text={item} boldLead={block.boldLead} /></li>)}
                 </List>
               );
             }

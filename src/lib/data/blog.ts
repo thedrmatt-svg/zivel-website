@@ -6,8 +6,12 @@ import post3 from "@/content/blog/recovery-nervous-system-regulation";
 import post4 from "@/content/blog/body-remembers-inflammatory-memory";
 import holidayPost from "@/content/blog/holiday-stress-is-preventable";
 import newYearPost from "@/content/blog/new-year-new-norm-start-now";
+import trimUpPost from "@/content/blog/trim-up-before-the-new-year";
+import platePost from "@/content/blog/holiday-plate-strategy";
 
 const allBlogPosts: BlogPost[] = [
+  platePost,
+  trimUpPost,
   newYearPost,
   holidayPost,
   post4,
