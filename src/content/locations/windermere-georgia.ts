@@ -170,6 +170,11 @@ export const zivel_cumming_windermere_location: Location = {
         bookingUrl: "https://app.clubready.com/JoinUs/14944/627872",
       },
     ],
+    giftCards: [
+      { amount: "$50", purchaseUrl: "https://app.clubready.com/JoinUs/14944/644563" },
+      { amount: "$100", purchaseUrl: "https://app.clubready.com/JoinUs/14944/644566" },
+      { amount: "$200", purchaseUrl: "https://app.clubready.com/JoinUs/14944/644567" },
+    ],
     standardPrices: [
       { name: "Cryotherapy", price: "$40", note: "Single session" },
       { name: "Red Light Therapy", price: "$30", note: "Single session" },

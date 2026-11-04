@@ -172,6 +172,17 @@ test("Brecksville restrictions match every nested locale route, not other studio
   }
 });
 
+test("Windermere gift cards have the supplied amounts and purchase links only at this studio", () => {
+  const windermere = getLocationByPath("georgia", "windermere");
+  assert.deepEqual(windermere.pricing.giftCards, [
+    { amount: "$50", purchaseUrl: "https://app.clubready.com/JoinUs/14944/644563" },
+    { amount: "$100", purchaseUrl: "https://app.clubready.com/JoinUs/14944/644566" },
+    { amount: "$200", purchaseUrl: "https://app.clubready.com/JoinUs/14944/644567" },
+  ]);
+  const { locations } = loadLocal(path.join(root, "src/lib/data/locations"));
+  assert.deepEqual(locations.filter((loc) => loc.pricing?.giftCards?.length).map((loc) => loc.citySlug), ["windermere"]);
+});
+
 test("Windermere packages have the correct grouping, prices, and purchase links", () => {
   const pricing = getLocationByPath("georgia", "windermere").pricing;
   const packages = pricing.specialDealsBottom.slice(pricing.specialDealsBottomPremiumStart);

@@ -135,6 +135,12 @@ export default async function LocationPricingPage({
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
   const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
   const phone = location.contact?.phone;
+  const giftCards = location.pricing?.giftCards ?? [];
+  const navItems = NAV_ITEMS.flatMap((item) =>
+    item.href === "#specials" && giftCards.length > 0
+      ? [{ label: "Gift Cards", href: "#gift-cards" }, item]
+      : [item]
+  );
 
   const allPrices = location.pricing?.standardPrices ?? [];
   const recoveryPrices = allPrices.filter((p) =>
@@ -242,7 +248,7 @@ export default async function LocationPricingPage({
       >
         <div className="mx-auto max-w-6xl px-6">
           <ol className="flex items-center gap-0 overflow-x-auto">
-            {NAV_ITEMS.map((item, i) => (
+            {navItems.map((item, i) => (
               <li key={item.href} className="flex items-center shrink-0">
                 {i > 0 && (
                   <span className="h-3.5 w-px bg-white/15 mx-1" aria-hidden="true" />
@@ -568,6 +574,33 @@ export default async function LocationPricingPage({
               </div>
 
               {/* ── SPECIALS ── */}
+              {giftCards.length > 0 && (
+                <section id="gift-cards" aria-labelledby="gift-cards-title" className="scroll-mt-36">
+                  <ScrollReveal variant="fade-up">
+                    <p className="zv-tagline mb-3">Gift Cards</p>
+                    <h2 id="gift-cards-title" className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-8">Give the Gift of Recovery</h2>
+                  </ScrollReveal>
+                  <div className="grid gap-6 md:grid-cols-3">
+                    {giftCards.map((card, idx) => (
+                      <ScrollReveal key={card.amount} variant="fade-up" delay={idx * 80}>
+                        <a
+                          href={card.purchaseUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10"
+                        >
+                          <h3 className="font-semibold text-white/90 mb-4">{card.amount} Gift Card</h3>
+                          <p className="font-serif text-4xl text-[var(--zivel-gold)] mb-8">{card.amount}</p>
+                          <span className="mt-auto block w-full rounded-full border border-white/20 py-2.5 text-center text-sm font-semibold tracking-wide text-white/80 transition-colors duration-200 group-hover:bg-[var(--zivel-gold)] group-hover:text-black group-hover:border-[var(--zivel-gold)]">
+                            Buy Gift Card
+                          </span>
+                        </a>
+                      </ScrollReveal>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               <div id="specials" className="scroll-mt-36">
                 <ScrollReveal variant="fade-up">
                   <p className="zv-tagline mb-3">Limited Time</p>

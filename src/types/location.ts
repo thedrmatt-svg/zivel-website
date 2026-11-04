@@ -129,6 +129,10 @@ export type Location = {
       image?: string;
       buttonLabel?: string;
     }[];
+    giftCards?: {
+      amount: string;
+      purchaseUrl: string;
+    }[];
     standardPrices?: {
       name: string;
       price: string;
