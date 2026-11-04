@@ -119,6 +119,7 @@ export type Location = {
       name: string;
       price: string;
       regularPrice?: string;
+      showLimitedTimeBadge?: boolean;
       description?: string;
       savings?: string;
       benefits?: string[];

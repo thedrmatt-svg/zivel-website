@@ -176,18 +176,22 @@ test("Windermere packages have the correct grouping, prices, and purchase links"
   const pricing = getLocationByPath("georgia", "windermere").pricing;
   const packages = pricing.specialDealsBottom.slice(pricing.specialDealsBottomPremiumStart);
   const expected = [
-    ["5 Cryo Facials", "$700", "627875"],
-    ["5 Cryo Slimmings/Tonings", "$1,600", "627871"],
-    ["10 Cryo Slimmings/Tonings", "$3,150", "627872"],
+    ["5 Cryo Facials", "$700", "627875", "$750", 5, "CryoLift Facial"],
+    ["5 Cryo Slimmings/Tonings", "$1,600", "627871", "$1,750", 5, "Cryo Slimming"],
+    ["10 Cryo Slimmings/Tonings", "$3,150", "627872", "$3,500", 10, "Cryo Toning"],
   ];
   assert.equal(packages.length, expected.length);
-  for (const [index, [name, price, purchaseId]] of expected.entries()) {
+  for (const [index, [name, price, purchaseId, regularPrice, count, service]] of expected.entries()) {
     const item = packages[index];
     assert.equal(item.name, name);
     assert.equal(item.price, price);
     assert.equal(item.bookingUrl, `https://app.clubready.com/JoinUs/14944/${purchaseId}`);
     assert.ok(item.description?.length > 0);
-    assert.equal(item.regularPrice, undefined);
+    assert.equal(item.regularPrice, regularPrice);
+    const single = pricing.standardPrices.find((entry) => entry.name === service);
+    const dollars = (value) => Number(value.replace(/[$,]/g, ""));
+    assert.equal(dollars(item.regularPrice), dollars(single.price) * count);
+    assert.equal(item.showLimitedTimeBadge, false);
     assert.equal(item.savings, undefined);
   }
 });

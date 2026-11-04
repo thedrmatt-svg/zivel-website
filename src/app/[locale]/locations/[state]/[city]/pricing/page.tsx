@@ -506,7 +506,7 @@ export default async function LocationPricingPage({
                                   rel="noopener noreferrer"
                                   className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full"
                                 >
-                                  {deal.regularPrice && (
+                                  {deal.regularPrice && deal.showLimitedTimeBadge !== false && (
                                     <div className="bg-[var(--zivel-gold)] px-6 py-1.5 text-center text-xs font-bold tracking-widest uppercase text-black">
                                       Limited Time
                                     </div>
