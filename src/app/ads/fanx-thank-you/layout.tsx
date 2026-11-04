@@ -1,22 +1,28 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import CookieConsent from "@/components/consent/CookieConsent";
 import { CampaignGoogleTagManagerHead } from "@/components/consent/CampaignGoogleTagManager";
 
-const display = Barlow_Condensed({
-  subsets: ["latin"],
+const display = localFont({
+  src: [
+    { path: "../../../assets/fonts/fanx/barlow-condensed-latin-500.woff2", weight: "500", style: "normal" },
+    { path: "../../../assets/fonts/fanx/barlow-condensed-latin-600.woff2", weight: "600", style: "normal" },
+    { path: "../../../assets/fonts/fanx/barlow-condensed-latin-700.woff2", weight: "700", style: "normal" },
+    { path: "../../../assets/fonts/fanx/barlow-condensed-latin-800.woff2", weight: "800", style: "normal" },
+    { path: "../../../assets/fonts/fanx/barlow-condensed-latin-900.woff2", weight: "900", style: "normal" },
+  ],
   variable: "--font-fanx-display",
-  weight: ["500", "600", "700", "800", "900"],
   display: "swap",
 });
 
-const body = DM_Sans({
-  subsets: ["latin"],
+const body = localFont({
+  src: "../../../assets/fonts/att/dm-sans-latin-variable.woff2",
   variable: "--font-fanx-body",
-  weight: ["400", "500", "600", "700"],
+  weight: "400 700",
   display: "swap",
+  style: "normal",
 });
 
 export const metadata: Metadata = {
