@@ -11,6 +11,7 @@
 - [Location section order](location-section-order.md) — approved main-page reorder across all locations; preserve content, backgrounds, conditional visibility, and subpages.
 - [Service image exceptions](service-image-exceptions.md) — missing-service-image repairs exclude Brecksville, Palm Coast, and Belmont at the user's request.
 - [Local FAQ approval](location-faq-editorial.md) — generate standard answers from existing data; keep custom local FAQs empty until the user supplies approved copy.
+- [Location editorial rules](location-template-editorial.md) — generic formulas are main-page-only; breadcrumbs use city names; upcoming services stay out of promotional metadata and offers.
 - [Campaign GTM consent](campaign-gtm-consent.md) — one container load per page; preserve consent gating and verify both document loads and client navigation.
 - [Highlands Ranch service scope](highlands-ranch-service-scope.md) — no local Float listing/page; dedicated Red Light Therapy is coming soon, with location-specific metadata.
 - [Local blog editorial rules](local-blog-editorial-rules.md) — local versions are individually written, not city-swapped; keep private editing separate from public pages.
