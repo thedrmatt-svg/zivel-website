@@ -116,7 +116,7 @@ const CITY_META: Record<
       "https://zivel.myperformanceiq.com/book-appointment?set_location=11445",
   },
   windermere: {
-    cityName: "Cumming-Windermere",
+    cityName: "Windermere",
     stateSlug: "georgia",
     bookingUrl:
       "https://zivel.myperformanceiq.com/book-appointment?set_location=11617",
@@ -422,7 +422,7 @@ export default async function LocationBlogPostPage({ params }: PageProps) {
                   href={`/locations/${state}/${city}`}
                   className="zv-btn-luxury zv-btn-outline"
                 >
-                  Zivel {cityName}
+                  {location?.name ?? `Zivel ${cityName}`}
                 </Link>
                 <Link
                   href={`/locations/${state}/${city}/blog`}

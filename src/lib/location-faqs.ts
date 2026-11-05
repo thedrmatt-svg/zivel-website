@@ -56,7 +56,7 @@ export function getSingleSessionRange(location: Location): { low: string; high: 
 
 export function buildLocationFaqs(location: Location, options: FaqOptions): LocationFaqItem[] {
   const city = options.cityName;
-  const label = getLocationBusinessLabel(location, city);
+  const label = getLocationBusinessLabel(location);
   const base = `/locations/${location.stateSlug}/${location.citySlug}`;
   const pricingHref = `${base}/pricing`;
   const phone = location.contact?.phone;

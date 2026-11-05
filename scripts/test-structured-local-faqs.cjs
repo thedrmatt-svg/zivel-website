@@ -66,7 +66,7 @@ test("strict required-field omissions and municipality filtering affect both vis
     assert(!doc.querySelector('script[type="application/ld+json"]').innerHTML.includes("Which areas"));
   }
   const windermere=local.buildStructuredLocationFaqs(bySlug("windermere")).find(i=>i.key==="structured-L1");
-  assert.equal(windermere.answer,"Zivel Cumming is in Forsyth County, GA, and welcomes clients from Alpharetta, Johns Creek, and Cumming, and surrounding communities.");
+  assert.equal(windermere.answer,"Zivel Windermere is in Forsyth County, GA, and welcomes clients from Alpharetta, Johns Creek, and Cumming, and surrounding communities.");
   assert(!local.buildStructuredLocationFaqs({...source,partnerApps:[""," "]},[]).some(i=>i.key==="structured-L3a"));
   const venue=bySlug("fieldhouse");
   for(const l of [{...venue,siteName:" "},{...venue,siteName:undefined}]) {
@@ -96,8 +96,8 @@ test("L2 derives singular/plural linked cities, excludes explicit not-open studi
 
 test("one/two app wording, venue text and no-online booking fallback exactly match the approved templates", () => {
   const apps=local.buildStructuredLocationFaqs(bySlug("briargate")).find(i=>i.key==="structured-L3a");
-  assert.equal(apps.question,"Can I use Wellhub or ClassPass at Zivel Colorado Springs?");
-  assert.equal(apps.answer,"Zivel Colorado Springs is listed on Wellhub and ClassPass. Eligible plans and availability are set by each app, so check the apps for current options.");
+  assert.equal(apps.question,"Can I use Wellhub or ClassPass at Zivel Briargate?");
+  assert.equal(apps.answer,"Zivel Briargate is listed on Wellhub and ClassPass. Eligible plans and availability are set by each app, so check the apps for current options.");
   const app=local.buildStructuredLocationFaqs(bySlug("riverton")).find(i=>i.key==="structured-L3a");
   assert.equal(app.answer,"Zivel Riverton is listed on Wellhub. Eligible plans and availability are set by Wellhub, so check the app for current options.");
   const venue=bySlug("fieldhouse");

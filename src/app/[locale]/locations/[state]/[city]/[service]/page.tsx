@@ -235,8 +235,6 @@ type LocalServiceContent = {
 
 function generateLocalContent(location: Location, svc: Service, state: string, city: string): LocalServiceContent {
   const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-  const municipality = getLocationCity(location);
-
   const trustBar = buildTrustBar(location, cityDisplay);
 
   const priceEntry = location.pricing?.standardPrices?.find(
@@ -260,7 +258,7 @@ function generateLocalContent(location: Location, svc: Service, state: string, c
         : `Visit us at ${location.name}. Check our location page for directions.`,
     },
     {
-      q: `What are the hours at ${getLocationBusinessLabel(location, municipality)}?`,
+      q: `What are the hours at ${getLocationBusinessLabel(location)}?`,
       a: formatHoursAsText(location.hours),
     },
     {

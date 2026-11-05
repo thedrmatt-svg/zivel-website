@@ -3,6 +3,11 @@
 ## Overview
 A Next.js 15 wellness brand website for Zivel featuring 8 services, TypeScript, Tailwind CSS, and App Router. Dark-only theme with black background, white text, and gold accents. Internationalized with next-intl (English + Spanish).
 
+## Location naming rule
+Keep all location names exactly as the owner supplies them. Business names must not be generated from, replaced with, or expanded using the address city, municipality, neighborhood, or nearby service areas. Use the owner-approved location name consistently in business headings, FAQs, metadata, image descriptions, and other business-name references.
+
+The names are **Zivel Buckhead** and **Zivel Windermere**, not Zivel Atlanta, Zivel Cumming, or Zivel Cumming-Windermere. Cities and surrounding areas may be the same as or different from the business name; keep them separate and geographically accurate. This naming rule supersedes earlier city-first business-name formulas.
+
 ## Project Structure
 ```
 ├── src/

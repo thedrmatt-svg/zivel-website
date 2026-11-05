@@ -1,7 +1,7 @@
 import type { Location } from "@/types/location";
 
 export const zivel_cumming_windermere_location: Location = {
-  name: "Zivel Cumming-Windermere",
+  name: "Zivel Windermere",
   county: "Forsyth County",
   nearbyCommunities: ["Alpharetta", "Johns Creek", "Cumming"],
   slug: "windermere",
@@ -12,8 +12,8 @@ export const zivel_cumming_windermere_location: Location = {
   updatedAt: "2026-07-08",
 
   seo: {
-    title: "Zivel Cumming-Windermere",
-    description: "Zivel Cumming-Windermere offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Cumming, GA. Book your session today.",
+    title: "Zivel Windermere",
+    description: "Zivel Windermere offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Cumming, GA. Book your session today.",
     canonical: "https://www.zivel.com/locations/georgia/windermere",
   },
 
@@ -225,10 +225,10 @@ export const zivel_cumming_windermere_location: Location = {
 
   localBlog: {
     href: "/locations/georgia/windermere/blog",
-    heading: "Cumming-Windermere Wellness Insights",
+    heading: "Windermere Wellness Insights",
     description:
-      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Cumming-Windermere team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Cumming, Forsyth County, and North Atlanta feel and perform their best.",
-    ctaLabel: "Read the Cumming-Windermere Blog",
+      "Stay up to date with the latest recovery tips, local wellness news, client stories, and expert advice from the Zivel Windermere team. Discover how cryotherapy, red light therapy, infrared sauna, and more are helping people in Cumming, Forsyth County, and North Atlanta feel and perform their best.",
+    ctaLabel: "Read the Windermere Blog",
   },
 };
 

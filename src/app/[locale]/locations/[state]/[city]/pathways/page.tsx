@@ -200,7 +200,7 @@ export default async function LocationPathwaysPage({
                       </h3>
                       <p className="text-sm text-black/60 leading-relaxed flex-1 mb-3">
                         {hasUnavailableServiceMention(location, pathway.seo.description)
-                          ? `A goal-based wellness routine tailored to the services currently available at Zivel ${breadcrumbCity}. Ask our team about the ${pathway.name} pathway.`
+                          ? `A goal-based wellness routine tailored to the services currently available at ${location.name}. Ask our team about the ${pathway.name} pathway.`
                           : pathway.seo.description}
                       </p>
                       <p className="text-xs text-black/40 italic mb-6">

@@ -1,21 +1,21 @@
 ---
 name: Location presentation and availability rules
-description: User-confirmed scope for city-first main-page templates, breadcrumbs and coming-soon services.
+description: Geographic presentation scope, owner-supplied business naming, breadcrumbs and coming-soon services.
 ---
 
 ## Main pages versus subpages
-Generic location title, description, H1 city-first naming and hero-subhead formulas apply to main location pages only. Services, pricing, pathways and blog subpages keep their own title/description structures. Service accuracy applies across all those subpages.
+Generic geographic title, description and hero-subhead formulas apply to main location pages only. Services, pricing, pathways and blog subpages keep their own title/description structures. Service accuracy applies across all those subpages. The owner-supplied business naming rule is in `replit.md` and supersedes earlier city-first business-label formulas.
 
 **Why:** The user explicitly clarified that subpage metadata patterns should be inventoried for a later pass, not replaced by the generic main-page formulas.
 
-**How to apply:** Derive main-page City from the address municipality, keep source data unchanged, and do not turn every service/blog title into the same location title.
+**How to apply:** Derive geographic City from the address municipality without changing the business name; do not turn every service/blog title into the same location title.
 
-### Fieldhouse naming exception
-The business must remain **Zivel Fieldhouse**, not Zivel Hernando. It is inside the **Gatorade Fieldhouse near Hernando, MS**; keep Hernando as its actual address locality.
+### Fieldhouse venue context
+Fieldhouse is inside the **Gatorade Fieldhouse near Hernando, MS**; keep Hernando as its actual address locality.
 
-**Why:** The user corrected the city-first template because Zivel Fieldhouse is its established Google and public business name.
+**Why:** The user corrected the template's false implication that Fieldhouse was a neighborhood within Hernando.
 
-**How to apply:** Preserve the Fieldhouse business label in headings, FAQs, metadata and image descriptions, and identify the venue separately. Do not relabel it as a Hernando business name or invent a Fieldhouse neighborhood of Hernando.
+**How to apply:** Identify the venue separately from the address municipality. Do not invent a Fieldhouse neighborhood of Hernando.
 
 ## Breadcrumb consistency
 Existing visible and BreadcrumbList location names must match the address city. Change the schema name values together with visible labels, preserving URLs and every other schema field.

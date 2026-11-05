@@ -55,7 +55,7 @@ export const locationExtrasByKey: Record<string, LocationExtras> = {
     mapQuery: "3775 Windermere Pkwy Suite L, Cumming, GA 30041",
 
     pricing: {
-      title: "Pricing at Zivel Cumming",
+      title: "Pricing at Zivel Windermere",
       note: "Placeholder — replace with location-specific pricing.",
       items: [
         {
@@ -75,7 +75,7 @@ export const locationExtrasByKey: Record<string, LocationExtras> = {
     },
 
     memberships: {
-      title: "Memberships at Zivel Cumming",
+      title: "Memberships at Zivel Windermere",
       note: "Placeholder — replace with location-specific tiers.",
       tiers: [
         {
@@ -110,7 +110,7 @@ export const locationExtrasByKey: Record<string, LocationExtras> = {
     },
 
     jobs: {
-      title: "Jobs at Zivel Cumming",
+      title: "Jobs at Zivel Windermere",
       intro: "We're always looking for great people. (Placeholder.)",
       items: [
         {

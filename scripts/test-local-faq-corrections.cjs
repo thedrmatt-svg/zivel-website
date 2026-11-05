@@ -76,7 +76,7 @@ test("corrections leave all other studios, pages, navigation, sitemap and non-ta
     if (current.params.city === "windermere") {
       const expected = structuredClone(old);
       const area = expected.faq.find(item => item.question.startsWith("Which areas"));
-      area.answer = "Zivel Cumming is in Forsyth County, GA, and welcomes clients from Alpharetta, Johns Creek, and Cumming, and surrounding communities.";
+      area.answer = "Zivel Windermere is in Forsyth County, GA, and welcomes clients from Alpharetta, Johns Creek, and Cumming, and surrounding communities.";
       assert.deepEqual(current, expected, current.params.locale);
     } else {
       assert.deepEqual(current, old, `${current.params.locale}/${current.params.city}`);

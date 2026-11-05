@@ -59,7 +59,7 @@ export function buildStructuredLocationFaqs(location: Location, registry: readon
   if (isBrecksvilleLocation(location.stateSlug, location.citySlug)) return [];
   const city = text(getLocationCity(location));
   if (!city) return [];
-  const label = getLocationBusinessLabel(location, city);
+  const label = getLocationBusinessLabel(location);
   const items: LocationFaqItem[] = [];
   const add = (id: string, question: string, parts: LocationFaqPart[]) =>
     items.push({ key: `structured-${id}`, question, parts, answer: parts.map(part => part.text).join("") });

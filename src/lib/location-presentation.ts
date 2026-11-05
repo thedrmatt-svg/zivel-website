@@ -20,11 +20,9 @@ export function getLocationCity(location: Location): string {
     ?? location.citySlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 }
 
-/** Fieldhouse is a venue-based business name, not a Hernando rebrand. */
-export function getLocationBusinessLabel(location: Location, city = getLocationCity(location)): string {
-  return location.stateSlug === "mississippi" && location.citySlug === "fieldhouse"
-    ? location.name
-    : `Zivel ${city}`;
+/** Business names are owner-supplied; geography must never rename a studio. */
+export function getLocationBusinessLabel(location: Location): string {
+  return location.name;
 }
 
 export function getLocationNeighborhood(location: Location): string | undefined {
@@ -54,16 +52,16 @@ export function joinNaturally(values: readonly string[], conjunction = "and"): s
 
 export function getLocationMainMetadata(location: Location) {
   const city = getLocationCity(location);
-  const label = getLocationBusinessLabel(location, city);
+  const label = getLocationBusinessLabel(location);
   const fieldhouse = location.stateSlug === "mississippi" && location.citySlug === "fieldhouse";
   const neighborhood = getLocationNeighborhood(location);
   const services = getPriorityLocationServices(location).map(service => service.name);
   if (!services.length) throw new Error(`No live services for ${location.slug}`);
   const titleOptions = [
-    ...(fieldhouse ? [`${services[0]} & ${services[1]} in ${city}, ${location.state} | ${label}`, `${services[0]} in ${city}, ${location.state} | ${label}`] : []),
-    ...(services[1] && neighborhood ? [`${services[0]} & ${services[1]} in ${city}, ${location.state} | Zivel ${neighborhood}`] : []),
-    ...(services[1] ? [`${services[0]} & ${services[1]} in ${city}, ${location.state} | Zivel`] : []),
-    `${services[0]} in ${city}, ${location.state} | Zivel`,
+    ...(services[1] ? [`${services[0]} & ${services[1]} in ${city}, ${location.state} | ${label}`] : []),
+    `${services[0]} in ${city}, ${location.state} | ${label}`,
+    `${services[0]}, ${location.state} | ${label}`,
+    `${label} | Wellness in ${city}, ${location.state}`,
   ];
   const title = titleOptions.find(value => value.length <= 65);
   if (!title) throw new Error(`No approved title fits ${location.slug}`);
@@ -126,10 +124,5 @@ export function getAccurateLocalStackCopy(location: Location, serviceSlug: strin
 
 export function getLocationAltText(location: Location, text: string): string {
   const city = getLocationCity(location);
-  if (location.stateSlug === "mississippi" && location.citySlug === "fieldhouse") {
-    return text.replaceAll(`Zivel ${city}`, getLocationBusinessLabel(location));
-  }
-  const neighborhood = getLocationNeighborhood(location);
-  if (!neighborhood) return text;
-  return text.replaceAll(location.name, `Zivel ${city}`).replaceAll(neighborhood, city);
+  return text.replaceAll(`Zivel ${city}`, getLocationBusinessLabel(location));
 }

@@ -252,17 +252,17 @@ const LOCATION_BLOG_CONFIG: Record<
     tagline: "Insights from the Wasatch Front",
   },
   windermere: {
-    cityName: "Cumming-Windermere",
+    cityName: "Windermere",
     stateSlug: "georgia",
     citySlug: "windermere",
     bookingUrl:
       "https://zivel.myperformanceiq.com/book-appointment?set_location=11617",
-    title: "Zivel Cumming-Windermere Blog | Local Wellness & Recovery Insights",
+    title: "Zivel Windermere Blog | Local Wellness & Recovery Insights",
     metaDescription:
-      "Wellness, recovery, and beauty insights from Zivel Cumming-Windermere. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Cumming and North Atlanta community.",
-    h1: "Cumming-Windermere Wellness Blog",
+      "Wellness, recovery, and beauty insights from Zivel Windermere. Local tips on cryotherapy, red light therapy, infrared sauna, and more for the Cumming and North Atlanta community.",
+    h1: "Windermere Wellness Blog",
     subtitle:
-      "Recovery tips, local wellness news, and expert insights from the Zivel Cumming-Windermere team",
+      "Recovery tips, local wellness news, and expert insights from the Zivel Windermere team",
     tagline: "Insights from North Atlanta",
   },
 };

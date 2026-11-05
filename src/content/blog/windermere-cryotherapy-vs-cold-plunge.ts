@@ -17,7 +17,7 @@ const blogPost: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Cold plunge tubs arrived in the Cumming and Windermere area fitness spaces over the past couple of years. The community was receptive — health-conscious, competitive, willing to invest in performance. At Zivel Cumming-Windermere, we've watched the cycle play out enough times to understand what actually drives the shift from cold plunge to cryotherapy. Here's what guests consistently describe.",
+      text: "Cold plunge tubs arrived in the Cumming and Windermere area fitness spaces over the past couple of years. The community was receptive — health-conscious, competitive, willing to invest in performance. At Zivel Windermere, we've watched the cycle play out enough times to understand what actually drives the shift from cold plunge to cryotherapy. Here's what guests consistently describe.",
     },
     {
       type: "heading",
@@ -74,11 +74,11 @@ const blogPost: BlogPost = {
     {
       type: "heading",
       level: 2,
-      text: "How Zivel Cumming-Windermere Fits In",
+      text: "How Zivel Windermere Fits In",
     },
     {
       type: "paragraph",
-      text: "At Zivel Cumming-Windermere, cryotherapy is paired with red light therapy, compression therapy, infrared sauna, and dry float — a complete recovery stack that fits the demands of North Georgia's active families and year-round outdoor community. All dry, all stackable, all designed to be efficient enough to fit into real lives that have a lot competing for their time.",
+      text: "At Zivel Windermere, cryotherapy is paired with red light therapy, compression therapy, infrared sauna, and dry float — a complete recovery stack that fits the demands of North Georgia's active families and year-round outdoor community. All dry, all stackable, all designed to be efficient enough to fit into real lives that have a lot competing for their time.",
     },
     {
       type: "paragraph",
