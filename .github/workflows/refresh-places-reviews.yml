@@ -7,28 +7,49 @@ on:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required only for committing the refreshed cache.
+    concurrency:
+      group: refresh-google-reviews-${{ github.ref }}
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.ref_name }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Refresh Places cache
+      - name: Validate refresh configuration
         env:
           GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
-        run: npm run fetch-places
+        run: node scripts/fetch-places-cache.mjs --check-config
+
+      - name: Refresh Places cache
+        id: refresh
+        continue-on-error: true # Commit good partial results, then report failure below.
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+        run: node scripts/fetch-places-cache.mjs
 
       - name: Commit updated cache
+        if: ${{ !cancelled() && (steps.refresh.outcome == 'success' || steps.refresh.outcome == 'failure') }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/data/places-cache.json
-          git commit -m "Auto-refresh Google reviews cache - $(date +'%Y-%m-%d')" || echo "No changes"
-          git push
+          if git diff --cached --quiet -- src/data/places-cache.json; then
+            echo "No cache changes to commit."
+          else
+            git commit -m "Auto-refresh Google reviews cache - $(date +'%Y-%m-%d')"
+            git push origin "HEAD:refs/heads/${GITHUB_REF_NAME}"
+          fi
+
+      - name: Report incomplete refresh
+        if: ${{ !cancelled() && steps.refresh.outcome == 'failure' }}
+        run: |
+          echo "::error::Google review refresh was incomplete. Good partial results were eligible for commit; failed studios kept their previous data. Inspect the refresh and commit steps."
+          exit 1
