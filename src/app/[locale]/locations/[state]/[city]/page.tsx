@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import { phoneHref } from "@/lib/contact-links";
 import { getLocationBusinessDetails } from "@/lib/location-business-schema";
 import Image from "next/image";
@@ -12,6 +13,7 @@ import { isBrecksvilleLocation } from "@/lib/location-availability";
 import ContactForm from "@/components/location/ContactForm";
 import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
 import GoogleReviews from "@/components/location/GoogleReviews";
+import BrecksvilleSectionOrder from "@/components/location/BrecksvilleSectionOrder";
 // import JobsSection from "@/components/location/JobsSection"; // hidden until ready
 // import PartnersSection from "@/components/location/PartnersSection"; // hidden until ready
 import PricingSection from "@/components/location/PricingSection";
@@ -730,6 +732,8 @@ export default async function LocationPage({
         </section>
       )}
 
+      <BrecksvilleSectionOrder enabled={isBrecksvilleLocation(state, city)}>
+      <Fragment key="details">
       {/* ========== CONTACT INFO (alternating) ========== */}
       {location.contact?.address && (
         <>
@@ -877,6 +881,8 @@ export default async function LocationPage({
         </>
       )}
 
+      </Fragment>
+      <Fragment key="map">
       {/* ========== GOOGLE MAP (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (
@@ -928,6 +934,8 @@ export default async function LocationPage({
       )}
       {(() => { sectionParity++; return null; })()}
 
+      </Fragment>
+      <Fragment key="services">
       {/* ========== SERVICES AVAILABLE (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (
@@ -985,6 +993,8 @@ export default async function LocationPage({
       )}
       {(() => { sectionParity++; return null; })()}
 
+      </Fragment>
+      <Fragment key="pathways">
       {/* ========== PATHWAYS (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (
@@ -1064,6 +1074,8 @@ export default async function LocationPage({
       )}
       {(() => { sectionParity++; return null; })()}
 
+      </Fragment>
+      <Fragment key="blog">
       {/* ========== LOCAL BLOG (only when configured) ========== */}
       {location.localBlog && (() => {
         const blog = location.localBlog!;
@@ -1113,6 +1125,8 @@ export default async function LocationPage({
       })()}
       {location.localBlog && (() => { sectionParity++; return null; })()}
 
+      </Fragment>
+      <Fragment key="pricing">
       {/* ========== PRICING (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (
@@ -1401,6 +1415,8 @@ export default async function LocationPage({
         </>
       )}
 
+      </Fragment>
+      <Fragment key="reviews">
       {/* ========== REVIEWS (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (
@@ -1438,6 +1454,8 @@ export default async function LocationPage({
       {/* ========== STORE — hidden until ready ========== */}
       {/* Shop section hidden */}
 
+      </Fragment>
+      <Fragment key="booking">
       {/* ========== BOOKING (LIGHT — always) ========== */}
       {!isBrecksvilleLocation(state, city) && <>
       <div className="zv-bleed zv-divider-dark-to-light" />
@@ -1467,6 +1485,9 @@ export default async function LocationPage({
         </div>
       </section>
       </>}
+
+      </Fragment>
+      </BrecksvilleSectionOrder>
 
       {/* ========== FAQ (DARK, optional) ========== */}
       {faqItems.length > 0 && (
