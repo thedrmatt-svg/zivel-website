@@ -14,6 +14,7 @@
 - [Location editorial rules](location-template-editorial.md) — generic formulas are main-page-only; breadcrumbs use city names; upcoming services stay out of promotional metadata and offers.
 - [Campaign GTM consent](campaign-gtm-consent.md) — one container load per page; preserve consent gating and verify both document loads and client navigation.
 - [Highlands Ranch service scope](highlands-ranch-service-scope.md) — no local Float listing/page; dedicated Red Light Therapy is coming soon, with location-specific metadata.
+- [Briargate service scope](briargate-service-scope.md) — exclude Oxygen Bar from Briargate's main page and individual service routes.
 - [Local blog editorial rules](local-blog-editorial-rules.md) — local versions are individually written, not city-swapped; keep private editing separate from public pages.
 - [Review refresh safety](review-refresh-safety.md) — save valid partial results but report failure; preserve last-known-good reviews and do not overstate freshness.
 - [GitHub CLI compatibility](github-cli-compatibility.md) — use REST for workflow version errors; filter job logs safely.
