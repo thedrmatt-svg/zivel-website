@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getLocationCity, getLocationAltText, getAccurateLocalStackCopy } from "@/lib/location-presentation";
+import { getLocationBookingHref } from "@/lib/location-booking";
 import { phoneHref } from "@/lib/contact-links";
 import { getLocationBusinessDetails } from "@/lib/location-business-schema";
 import ContactText from "@/components/ui/ContactText";
@@ -233,6 +235,7 @@ type LocalServiceContent = {
 
 function generateLocalContent(location: Location, svc: Service, state: string, city: string): LocalServiceContent {
   const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  const municipality = getLocationCity(location);
 
   const trustBar = buildTrustBar(location, cityDisplay);
 
@@ -257,7 +260,7 @@ function generateLocalContent(location: Location, svc: Service, state: string, c
         : `Visit us at ${location.name}. Check our location page for directions.`,
     },
     {
-      q: `What are ${location.name}'s hours?`,
+      q: `What are the hours at Zivel ${municipality}?`,
       a: formatHoursAsText(location.hours),
     },
     {
@@ -1339,18 +1342,30 @@ export default async function LocalServicePage({ params }: Props) {
 
   const key = `${state}/${city}/${service}`;
   const local = LOCAL_CONTENT[key] ?? generateLocalContent(location, svc, state, city);
+  if (!LOCAL_CONTENT[key]) {
+    const accurate = (text: string) => getAccurateLocalStackCopy(location, service, text);
+    local.whatIsParagraphs = local.whatIsParagraphs.map(accurate);
+    local.benefits = local.benefits.map(item => ({ ...item, body: accurate(item.body) }));
+    local.localExpect = local.localExpect.map(item => ({ ...item, body: accurate(item.body) }));
+    local.faqs = local.faqs.map(item => ({ ...item, a: accurate(item.a) }));
+    local.services = local.services.map(item => ({ ...item, desc: accurate(item.desc) }));
+  }
   const comingSoon = location.services.find((entry) => entry.slug === service)?.comingSoon ?? false;
   if (comingSoon) {
     const announcement = `${svc.name} is coming soon to ${location.name} in ${city.split("-").map((word) => word[0].toUpperCase() + word.slice(1)).join(" ")}, ${location.state}. Contact our local team for availability updates.`;
-    local.h1 += " — Coming Soon";
-    local.subtitle = announcement;
+    local.subtitle = `${svc.name} is not yet available at ${location.name}. Contact our local team for availability updates.`;
     local.bookingCtaLabel = "Contact Us for Updates";
-    local.whatIsParagraphs = [...svc.intro.paragraphs, announcement];
+    local.whatIsParagraphs = [...svc.intro.paragraphs, local.subtitle];
     local.localExpect = [
-      { title: "COMING SOON", body: announcement },
+      { title: "Availability", body: local.subtitle },
       { title: "Plan Your Visit", body: `Contact ${location.name} at ${location.contact?.phone} to learn more about our upcoming ${svc.name.toLowerCase()} service.` },
     ];
-    local.services = [{ name: svc.name, desc: announcement, price: "COMING SOON" }];
+    local.services = [{ name: svc.name, desc: local.subtitle, price: "Contact for availability" }];
+    local.servicesHeading = `About ${svc.name}`;
+    local.frequencyHeadline = `Planning Future ${svc.name} Sessions`;
+    local.frequency = local.frequency.map(item => ({
+      ...item, rec: `When this service becomes available, ${item.rec.charAt(0).toLowerCase()}${item.rec.slice(1)}`,
+    }));
     if (!location.services.some((entry) => entry.slug === "dry-float")) {
       local.benefits = local.benefits.map((benefit) => /dry float/i.test(benefit.body)
         ? { ...benefit, body: `Once available, ${svc.name} can complement the other recovery services offered at ${location.name}.` }
@@ -1362,8 +1377,8 @@ export default async function LocalServicePage({ params }: Props) {
         ? { ...faq, a: `Once ${svc.name} is available at ${location.name}, our local team can help you combine it with the studio's available recovery services.` }
         : faq);
     local.faqs.unshift({ q: `Is ${svc.name} available at ${location.name}?`, a: announcement });
-    local.ctaHeadline = `${svc.name} Is Coming Soon to ${location.name}`;
-    local.ctaBody = announcement;
+    local.ctaHeadline = `Ask About ${svc.name} at ${location.name}`;
+    local.ctaBody = local.subtitle;
   }
   const whatIsOvr = WHAT_IS_IMAGE_OVERRIDES[key];
   if (whatIsOvr) {
@@ -1373,12 +1388,13 @@ export default async function LocalServicePage({ params }: Props) {
 
   const cityDisplay = city.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const stateDisplay = state.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-  const pageDesc = META_MAP[key]?.description ?? location.seo.description;
+  const pageDesc = (await generateMetadata({ params })).description ?? "";
 
   const bookingUrl = comingSoon
     ? `/locations/${state}/${city}#contact`
-    : `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
+    : getLocationBookingHref(location);
   const locationPageUrl = `/locations/${state}/${city}`;
+  const breadcrumbCity = getLocationCity(location);
   const servicePageUrl = `/services/${service}`;
   const canonicalUrl = `${SITE_URL}/locations/${state}/${city}/${service}`;
 
@@ -1409,7 +1425,7 @@ export default async function LocalServicePage({ params }: Props) {
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Locations", item: `${SITE_URL}/locations` },
       { "@type": "ListItem", position: 3, name: stateDisplay, item: `${SITE_URL}/locations/${state}` },
-      { "@type": "ListItem", position: 4, name: cityDisplay, item: `${SITE_URL}${locationPageUrl}` },
+      { "@type": "ListItem", position: 4, name: breadcrumbCity, item: `${SITE_URL}${locationPageUrl}` },
       { "@type": "ListItem", position: 5, name: svc.name, item: canonicalUrl },
     ],
   };
@@ -1458,7 +1474,7 @@ export default async function LocalServicePage({ params }: Props) {
           <li aria-hidden="true" className="text-white/30">/</li>
           <li><Link href={`/locations/${state}`} className="hover:text-white transition-colors">{stateDisplay}</Link></li>
           <li aria-hidden="true" className="text-white/30">/</li>
-          <li><Link href={locationPageUrl} className="hover:text-white transition-colors">{cityDisplay}</Link></li>
+          <li><Link href={locationPageUrl} className="hover:text-white transition-colors">{breadcrumbCity}</Link></li>
           <li aria-hidden="true" className="text-white/30">/</li>
           <li className="text-white/80">{svc.name}</li>
         </ol>
@@ -1472,7 +1488,7 @@ export default async function LocalServicePage({ params }: Props) {
         <div className="relative overflow-hidden" style={{ minHeight: 480 }}>
           <Image
             src={local.heroImage}
-            alt={local.heroImageAlt}
+            alt={getLocationAltText(location, local.heroImageAlt)}
             fill
             priority
             fetchPriority="high"
@@ -1561,7 +1577,7 @@ export default async function LocalServicePage({ params }: Props) {
               <div className="rounded-2xl overflow-hidden">
                 <Image
                   src={local.whatIsImage}
-                  alt={local.whatIsImageAlt}
+                alt={getLocationAltText(location, local.whatIsImageAlt)}
                   width={700}
                   height={500}
                   quality={80}

@@ -3,6 +3,8 @@ import { phoneHref } from "@/lib/contact-links";
 import { isBrecksvilleLocation } from "@/lib/location-availability";
 import { getLocalServiceHref } from "@/lib/data/local-service-pages";
 import { pathways as sharedPathways } from "@/lib/data/pathways";
+import { getLocationDisplayPrices, getLocationNeighborhood, getLiveLocationServices, joinNaturally } from "@/lib/location-presentation";
+import { getLocationBookingAction } from "@/lib/location-booking";
 
 export type LocationFaqPart = { text: string; href?: string };
 export type LocationFaqItem = {
@@ -35,7 +37,7 @@ export function plainFaqText(value: string): string {
 }
 
 export function getSingleSessionRange(location: Location): { low: string; high: string } | null {
-  const values = (location.pricing?.standardPrices ?? []).flatMap(row => {
+  const values = getLocationDisplayPrices(location).flatMap(row => {
     if (/\b(packages?|packs?|series|memberships?)\b/i.test(`${row.name} ${row.note ?? ""}`)) return [];
     if (row.note && !/single[\s-]*session/i.test(row.note)) return [];
     const match = row.price.trim().match(/^\$\s*((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,2})?)$/);
@@ -50,7 +52,7 @@ export function getSingleSessionRange(location: Location): { low: string; high: 
 
 export function buildLocationFaqs(location: Location, options: FaqOptions): LocationFaqItem[] {
   const city = options.cityName;
-  const label = `${location.name} in ${city}`;
+  const label = `Zivel ${city}`;
   const base = `/locations/${location.stateSlug}/${location.citySlug}`;
   const pricingHref = `${base}/pricing`;
   const phone = location.contact?.phone;
@@ -61,67 +63,84 @@ export function buildLocationFaqs(location: Location, options: FaqOptions): Loca
   const add = (key: string, question: string, parts: LocationFaqPart[]) => {
     items.push({ key, question, parts, answer: parts.map(part => part.text).join("") });
   };
-  const hours = options.groupedHours.map(row => `${row.label}: ${row.time}`).join("; ");
-  add("hours", `What are Zivel ${city}'s hours?`, [
-    { text: `${label} follows these studio hours: ${hours}. For questions about the hours shown for this ${city} location, call ` },
-    phonePart,
-    { text: ". These are the same local hours listed in the Location Details section on this page." },
+  const open = options.groupedHours.filter(row => !/^closed$/i.test(row.time));
+  const closed = options.groupedHours.filter(row => /^closed$/i.test(row.time)).map(row => row.label);
+  const hours = joinNaturally(open.map(row => `${row.label} ${row.time}`));
+  const hoursText = open.length
+    ? `open ${hours}${closed.length ? `, and closed ${joinNaturally(closed)}` : ""}`
+    : `closed ${joinNaturally(closed)}`;
+  add("hours", `What are the hours at Zivel ${city}?`, [
+    { text: `${label} is ${hoursText}. Call or text ` }, phonePart,
+    { text: " with questions about hours." },
   ]);
+  const neighborhood = getLocationNeighborhood(location);
+  const parking = location.contact?.parking === "Free parking or street available"
+    ? "Free parking or street parking is available."
+    : location.contact?.parking
+      ? `${location.contact.parking.trim().replace(/[.!?]+$/, "").replace(/ parking available$/i, " parking is available")}.`
+      : "";
   add("directions", `Where is Zivel ${city} located, and is there parking?`, [
-    { text: `${label} is located at ${location.contact?.address ?? "the address shown in Location Details"}. ${location.contact?.parking ? `Parking information: ${location.contact.parking}. ` : "Parking details are not listed on this page. "}` },
-    { text: "Open the Find Us map", href: "#map" },
-    { text: ` for this ${city} location's address and directions, or call ` },
+    { text: `${label} is at ${location.contact?.address ?? "the address shown in Location Details"}${neighborhood ? `, in the ${neighborhood} area` : ""}. ${parking ? `${parking} ` : ""}Use ` },
+    { text: "the map and directions", href: "#map" },
+    { text: " or call " },
     phonePart,
-    { text: " with questions about parking or finding the studio." },
+    { text: " for help finding us." },
   ]);
   const serviceParts: LocationFaqPart[] = [];
-  location.services.forEach((service, index) => {
-    if (index) serviceParts.push({ text: index === location.services.length - 1 ? ", and " : ", " });
+  const liveServices = getLiveLocationServices(location);
+  liveServices.forEach((service, index) => {
+    if (index) serviceParts.push({ text: index === liveServices.length - 1 ? (index === 1 ? " and " : ", and ") : ", " });
     serviceParts.push({
       text: service.name,
       href: getLocalServiceHref(location.stateSlug, location.citySlug, service.slug),
     });
-    if (service.comingSoon) serviceParts.push({ text: " (coming soon)" });
   });
+  const upcoming = location.services.filter(service => service.comingSoon);
   add("services", `What services does Zivel ${city} offer?`, [
-    { text: `${label} lists these wellness services: ` },
+    { text: `${label} offers ` },
     ...serviceParts,
-    { text: `. Select a service name for its local service page, or contact ${location.name} about the services listed for ${city}. Services marked coming soon are not yet available.` },
+    { text: `. Select any service for details and to book.${upcoming.length ? ` Coming soon: ${joinNaturally(upcoming.map(service => service.name))}.` : ""}` },
   ]);
   const range = getSingleSessionRange(location);
+  const examplePrices = ["cryotherapy", "red-light-therapy", "infrared-sauna"].flatMap(slug => {
+    const service = liveServices.find(service => service.slug === slug);
+    const row = service && getLocationDisplayPrices(location).find(row =>
+      row.name === service.name && (!row.note || /single[\s-]*session/i.test(row.note))
+      && /^\$\s*[\d,]+(?:\.\d{1,2})?$/.test(row.price));
+    return row ? [`${service!.name} is ${row.price}`] : [];
+  }).slice(0, 2);
   if (range) add("pricing", `How much does a session cost at Zivel ${city}?`, [
-    { text: `${label} lists single-session prices from ${range.low} to ${range.high}. This range comes from the studio's published individual-session prices, not membership prices or multi-session packages. See ` },
+    { text: `Single sessions at ${label} start at ${range.low}. ${examplePrices.length ? `${joinNaturally(examplePrices)}. ` : ""}See ` },
     { text: "local pricing", href: pricingHref },
-    { text: ` for memberships, packages, and seasonal deals, and contact the ${city} studio for personalized pricing.` },
+    { text: " for memberships, packages, and seasonal deals." },
   ]);
-  if (isBrecksvilleLocation(location.stateSlug, location.citySlug) || !location.booking?.locationId) {
+  if (isBrecksvilleLocation(location.stateSlug, location.citySlug)) {
     add("booking", `How do I book a session at Zivel ${city}?`, [
-      { text: `Contact ${label} at ` }, phonePart,
+      { text: `Contact ${location.name} in ${city} at ` }, phonePart,
       { text: " about arranging a session. Call or text this studio directly with questions about the services listed on its location page. The " },
       { text: "local pricing page", href: pricingHref },
       { text: ` shows the published individual-session options, memberships, and packages for this ${city} location.` },
     ]);
   } else {
+    const action = getLocationBookingAction(location);
     add("booking", `How do I book a session at Zivel ${city}?`, [
-      { text: `${label} offers online session booking or booking by phone. Use ` },
-      { text: "Book Now", href: options.bookingUrl },
-      { text: " to open this location's existing booking page, or call or text " }, phonePart,
-      { text: `. For this ${city} studio's services and session options, refer to the local service pages and pricing page.` },
+      { text: action?.external ? "Book online with " : `Contact ${label} with ` },
+      { text: action?.label ?? "the location page", href: action?.href ?? base },
+      { text: ", or call or text " }, phonePart, { text: "." },
     ]);
   }
   add("memberships", `Does Zivel ${city} offer memberships or packages?`, [
-    { text: `Yes. Memberships and packages are available at ${label}, offering more value per visit than single sessions. Visit the ` },
-    { text: "location pricing page", href: pricingHref },
-    { text: ` for membership and package options, and ask the ${city} studio for personalized pricing. Published pricing information for ${location.name} is linked here so you can review its local options.` },
+    { text: `Yes. Memberships and packages at ${label} offer more value per visit than single sessions. See ` },
+    { text: "local pricing", href: pricingHref },
+    { text: " for current options, or call " }, phonePart, { text: " for personalized pricing." },
   ]);
   const pathways = options.pathways ?? sharedPathways;
   if (pathways.length) add("pathways", `Does Zivel ${city} offer goal-based wellness pathways?`, [
-    { text: `Yes. ${label} offers goal-based wellness pathways: ${pathways.map(pathway => pathway.name).join("; ")}. See the ` },
-    { text: "local pathways page", href: `${base}/pathways` },
-    { text: ` for these named plans at the ${city} studio.` },
+    { text: `Yes. ${label} offers ${["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"][pathways.length] ?? String(pathways.length)} goal-based pathways: ${pathways.map(pathway => pathway.name).join("; ")}. ` },
+    { text: "Explore local pathways", href: `${base}/pathways` }, { text: "." },
   ]);
   add("medical", "Are Zivel services medical treatments?", [
-    { text: `No. Zivel wellness services are not medical treatments and do not diagnose, treat, cure, or prevent disease. This applies to the wellness services listed by ${label}. People with health concerns or questions about whether a service is right for them should talk with their healthcare provider.` },
+    { text: "No. Zivel wellness services are not medical treatments and do not diagnose, treat, cure, or prevent disease. If you have health concerns or questions about whether a service is right for you, talk with your healthcare provider first." },
   ]);
   for (const [index, faq] of (location.localFaqs ?? []).entries()) {
     const question = plainFaqText(faq.question), answer = plainFaqText(faq.answer);

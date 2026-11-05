@@ -16,6 +16,8 @@ import GoogleReviews from "@/components/location/GoogleReviews";
 import LocationSectionOrder from "@/components/location/LocationSectionOrder";
 import LocationFaq from "@/components/location/LocationFaq";
 import { buildLocationFaqs } from "@/lib/location-faqs";
+import { getLocationBookingAction, getLocationBookingHref } from "@/lib/location-booking";
+import { getLocationCity, getLocationNeighborhood, getLocationMainMetadata, getLiveLocationServices, getPriorityLocationServices, getLocationDisplayPrices, getLocationAltText, getAccurateLocationDescription } from "@/lib/location-presentation";
 // import JobsSection from "@/components/location/JobsSection"; // hidden until ready
 // import PartnersSection from "@/components/location/PartnersSection"; // hidden until ready
 import PricingSection from "@/components/location/PricingSection";
@@ -79,6 +81,7 @@ export async function generateMetadata({
   const { state, city, locale } = await params;
   const location = getLocationByPath(state, city);
   if (!location) return {};
+  const presentation = getLocationMainMetadata(location);
 
   const SITE_URL = "https://www.zivel.com";
   const basePath = `/locations/${location.stateSlug}/${location.citySlug}`;
@@ -98,7 +101,8 @@ export async function generateMetadata({
   const ogImage = `${SITE_URL}${ogImagePath}`;
 
   return {
-    title: location.seo.title,
+    title: { absolute: presentation.title },
+    description: presentation.description,
     alternates: {
       canonical: canonicalUrl,
       languages: {
@@ -108,8 +112,8 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: location.seo.title,
-      description: location.seo.description,
+      title: presentation.title,
+      description: presentation.description,
       url: canonicalUrl,
       siteName: "Zivel",
       type: "website",
@@ -118,14 +122,14 @@ export async function generateMetadata({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: `Zivel ${location.name ?? "Studio"}`,
+          alt: `Zivel ${getLocationCity(location)}`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: location.seo.title,
-      description: location.seo.description,
+      title: presentation.title,
+      description: presentation.description,
       images: [ogImage],
     },
   };
@@ -145,8 +149,12 @@ export default async function LocationPage({
   const canonicalUrl = canonicalPath.startsWith("http") ? canonicalPath : `${SITE_URL}${canonicalPath}`;
 
   const heroImage = location.hero?.image ?? "/images/home/hero.jpg";
-  const cityName = location.city ?? location.citySlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-  const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
+  const cityName = getLocationCity(location);
+  const neighborhood = getLocationNeighborhood(location);
+  const presentation = getLocationMainMetadata(location);
+  const displayServices = getLiveLocationServices(location);
+  const bookingAction = getLocationBookingAction(location);
+  const bookingUrl = getLocationBookingHref(location);
   const trustBar = buildTrustBar(location, cityName);
   const social = getLocationSocial(location.slug);
   const cachedPlace = getCacheEntry(location.google?.placeId);
@@ -161,7 +169,7 @@ export default async function LocationPage({
     "@context": "https://schema.org",
     "@type": "HealthAndBeautyBusiness",
     ...getLocationBusinessDetails(location),
-    description: location.seo.description,
+    description: getAccurateLocationDescription(location),
     url: canonicalUrl,
     ...(location.hero?.image && {
       image: location.hero.image.startsWith("http") ? location.hero.image : `${SITE_URL}${location.hero.image}`,
@@ -280,7 +288,7 @@ export default async function LocationPage({
 
   return (
     <>
-      <meta name="description" content={location.seo.description} />
+      <meta name="description" content={presentation.description} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -307,7 +315,7 @@ export default async function LocationPage({
           <div style={{ overflow: 'hidden', aspectRatio: '1920/672' }}>
             <Image
               src={heroImage}
-              alt={`${location.name} — wellness studio interior`}
+              alt={`Zivel ${cityName} — wellness studio interior`}
               width={1920}
               height={800}
               priority
@@ -339,16 +347,15 @@ export default async function LocationPage({
               </div>
             )}
             <h1 id="location-hero-title" className="font-serif text-5xl md:text-7xl font-light tracking-tight max-w-4xl zv-hero-animate-2">
-              {location.hero?.headline ?? location.name}
+              Zivel {cityName}
             </h1>
-            {location.hero?.subheadline && (
-              <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-3xl zv-hero-animate-3">{location.hero.subheadline}</p>
-            )}
+            <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-3xl zv-hero-animate-3">{presentation.subhead}</p>
+            {presentation.neighborhoodLine && <p className="mt-4 text-base text-white/70 leading-relaxed max-w-2xl">{presentation.neighborhoodLine}</p>}
 
             <div className="flex flex-wrap gap-4 pt-6 zv-hero-animate-4">
-              <LocationBookingLink state={state} city={city} href={bookingUrl} target="_blank" rel="noopener noreferrer" className="zv-btn-luxury zv-btn-gold">
-                Book Now
-              </LocationBookingLink>
+              {bookingAction && <LocationBookingLink state={state} city={city} href={bookingUrl} target={bookingAction.external ? "_blank" : undefined} rel={bookingAction.external ? "noopener noreferrer" : undefined} className="zv-btn-luxury zv-btn-gold">
+                {bookingAction.label}
+              </LocationBookingLink>}
               <Link href="/services" className="zv-btn-luxury zv-btn-outline">
                 View Services
               </Link>
@@ -380,7 +387,7 @@ export default async function LocationPage({
               <div className="mx-auto overflow-hidden rounded-2xl" style={{ maxWidth: 480 }}>
                 <Image
                   src={location.award.image}
-                  alt={`${location.award.headline} — ${location.name}`}
+                  alt={`${location.award.headline} — Zivel ${cityName}`}
                   width={960}
                   height={720}
                   sizes="(max-width: 640px) 100vw, 480px"
@@ -660,7 +667,7 @@ export default async function LocationPage({
                 <ScrollReveal variant="fade-right">
                   <Image
                     src={location.about.image}
-                    alt={`${location.name} interior`}
+                    alt={`Zivel ${cityName} interior`}
                     width={600}
                     height={450}
                     className="rounded-2xl object-cover shadow-lg"
@@ -747,6 +754,7 @@ export default async function LocationPage({
                 <ScrollReveal variant="fade-up">
                   <p className="zv-tagline">Visit Us</p>
                   <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Location Details</h2>
+                  {neighborhood && <p className="text-lg text-black/70 leading-relaxed">{presentation.neighborhoodLine}</p>}
                   <div className="zv-luxury-card rounded-2xl p-8 space-y-3">
                     <p className="text-black/80 text-lg">{location.contact.address}</p>
                     {location.contact.phone && (
@@ -804,6 +812,7 @@ export default async function LocationPage({
                 <ScrollReveal variant="fade-up">
                   <p className="zv-tagline">Visit Us</p>
                   <h2 className="mt-3 mb-10 font-serif text-4xl md:text-5xl font-light tracking-tight">Location Details</h2>
+                  {neighborhood && <p className="text-lg text-white/65 leading-relaxed">{presentation.neighborhoodLine}</p>}
                   <div className="zv-luxury-card rounded-2xl p-8 space-y-3">
                     <p className="text-white/85 text-lg">{location.contact.address}</p>
                     {location.contact.phone && (
@@ -949,7 +958,7 @@ export default async function LocationPage({
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Services Available</h2>
             </ScrollReveal>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {location.services.map((s, idx) => (
+              {displayServices.map((s, idx) => (
                 <ScrollReveal key={s.slug} variant="fade-up" delay={idx * 80}>
                   <ServiceImageCard
                     slug={s.slug}
@@ -959,7 +968,7 @@ export default async function LocationPage({
                     cityName={cityName}
                     variant="light"
                     localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
-                    imageAlt={s.imageAlt}
+                    imageAlt={s.imageAlt ? getLocationAltText(location, s.imageAlt) : undefined}
                     comingSoon={s.comingSoon}
                   />
                 </ScrollReveal>
@@ -975,7 +984,7 @@ export default async function LocationPage({
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">Services Available</h2>
             </ScrollReveal>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {location.services.map((s, idx) => (
+              {displayServices.map((s, idx) => (
                 <ScrollReveal key={s.slug} variant="fade-up" delay={idx * 80}>
                   <ServiceImageCard
                     slug={s.slug}
@@ -985,7 +994,7 @@ export default async function LocationPage({
                     cityName={cityName}
                     variant="dark"
                     localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
-                    imageAlt={s.imageAlt}
+                    imageAlt={s.imageAlt ? getLocationAltText(location, s.imageAlt) : undefined}
                     comingSoon={s.comingSoon}
                   />
                 </ScrollReveal>
@@ -1103,17 +1112,20 @@ export default async function LocationPage({
                   <ScrollReveal variant="fade-up">
                     <p className="zv-tagline">From the Team</p>
                     <h2 className="mt-3 font-serif text-4xl md:text-5xl font-light tracking-tight">
-                      {blog.heading ?? "Local Wellness Insights"}
+                      Wellness Insights in {cityName}
                     </h2>
                     <p className={`mt-6 text-lg leading-relaxed ${isDark ? "text-white/65" : "text-black/60"}`}>
-                      {blog.description}
+                      {blog.description?.replace(
+                        "cryotherapy, red light therapy, infrared sauna, and more",
+                        `${getPriorityLocationServices(location).slice(0, 3).map(service => service.name.toLowerCase()).join(", ")}${displayServices.length > 3 ? ", and more" : ""}`,
+                      )}
                     </p>
                     <div className="mt-10">
                       <Link
                         href={blog.href}
                         className="zv-btn-luxury zv-btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium tracking-wider uppercase"
                       >
-                        {blog.ctaLabel ?? "Read the Blog"}
+                        Read the {cityName} Blog
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                         </svg>
@@ -1150,7 +1162,7 @@ export default async function LocationPage({
             <ScrollReveal variant="fade-up" delay={100}>
               <PricingSection
                 tiers={location.citySlug === "fayetteville" ? (location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS).filter(t => t.mostPopular) : undefined}
-                standardPrices={location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES}
+                standardPrices={getLocationDisplayPrices(location, location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES)}
                 variant="light"
               />
             </ScrollReveal>
@@ -1174,7 +1186,7 @@ export default async function LocationPage({
             <ScrollReveal variant="fade-up" delay={100}>
               <PricingSection
                 tiers={location.citySlug === "fayetteville" ? (location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS).filter(t => t.mostPopular) : undefined}
-                standardPrices={location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES}
+                standardPrices={getLocationDisplayPrices(location, location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES)}
                 variant="dark"
               />
             </ScrollReveal>
@@ -1471,7 +1483,7 @@ export default async function LocationPage({
           <ScrollReveal variant="fade-up" delay={100}>
             <div className="zv-luxury-card rounded-2xl p-10">
               {location.booking?.locationId ? (
-                <BookingWidget locationId={location.booking.locationId} />
+                <BookingWidget bookingUrl={bookingUrl} />
               ) : location.contact?.phone ? (
                 <p className="text-black/60 text-lg">
                   Booking coming soon. Call{" "}

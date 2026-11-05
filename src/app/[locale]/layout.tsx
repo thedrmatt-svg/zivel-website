@@ -6,6 +6,9 @@ import localFont from "next/font/local";
 import { routing } from "@/i18n/routing";
 
 import Header from "@/components/layout/Header";
+import { getLocationNav } from "@/lib/data/locationNav";
+import { locations } from "@/lib/data/locations";
+import { buildLocationBookingActions } from "@/lib/location-booking";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/consent/CookieConsent";
 
@@ -132,7 +135,7 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
         />
         <NextIntlClientProvider messages={messages}>
-          <Header />
+          <Header locationNav={getLocationNav({ featuredCount: 4 })} bookingActions={buildLocationBookingActions(locations)} />
           <div className="w-full pt-20">{children}</div>
           <Footer />
         </NextIntlClientProvider>

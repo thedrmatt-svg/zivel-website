@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "pB8cfPqDX-zb4jo-C7f_i"
+uri = "file://reports/location-template-audit.html"
+type = "html"
+title = "Location booking and content audit"
+description = "All 19 location audit rows, before/after H1s and titles, booking IDs, preserved subpage metadata patterns, changed files, and verification results. Brecksville is audit-only and excluded from studio pass/fail counts."
+logical_id = "17bf91b5-9b03-4af8-81c5-717aa74a1049"
+content_hash = "sha256:45a31030e70da5740c3eb659fdd6f79dfd539678e3612e686e16a8015171936f"
+size = 35641
+mtime_ms = 1793894176801
+storage_uri = "gcs://replit-rams-assets-kirk/rams/assets/repl:ba8ee83f-a41c-4dac-8dfd-4ad41b4d9c43/17bf91b5-9b03-4af8-81c5-717aa74a1049/58096fc3-7f3e-4038-add1-587c7f2d1568"
+storage_version_token = "1793894206267493"
+content_type = "text/html"

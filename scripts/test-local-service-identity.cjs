@@ -237,7 +237,8 @@ test("Highlands Ranch replaces dry float with location-specific coming-soon red 
     assert.equal(metadata.openGraph.description, metadata.description);
     assert.equal(metadata.twitter.description, metadata.description);
     const html = renderToStaticMarkup(await Page({ params }));
-    assert.match(html, /Red Light Therapy in Highlands Ranch, CO — Coming Soon<\/h1>/);
+    assert.match(html, /Red Light Therapy in Highlands Ranch, CO<\/h1>/);
+    assert.match(html, /not yet available at Zivel Highlands Ranch/);
     assert.equal(html.match(/.{0,80}(?:riverton|dry float|book-appointment).{0,80}/i)?.[0], undefined);
     assert.ok(html.includes(location.contact.phone));
     assert.ok(html.includes("9325 Dorchester St ste f121"));

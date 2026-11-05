@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getLocationCity, getLocationDisplayPrices, getPriorityLocationServices, hasUnavailableServiceMention } from "@/lib/location-presentation";
+import { getLocationBookingHref } from "@/lib/location-booking";
 import { phoneHref } from "@/lib/contact-links";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
 import { isBrecksvilleLocation } from "@/lib/location-availability";
@@ -112,10 +114,14 @@ export async function generateMetadata({
   const enUrl = `${SITE_URL}${basePath}`;
   const esUrl = `${SITE_URL}/es${basePath}`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  const originalServices = "Cryotherapy, red light therapy, infrared sauna, CryoLift facial, and more.";
+  const serviceDescription = hasUnavailableServiceMention(location, originalServices)
+    ? `${getPriorityLocationServices(location).slice(0, 4).map(service => service.name).join(", ")}${getPriorityLocationServices(location).length > 4 ? ", and more" : ""}.`
+    : originalServices;
 
   return {
     title: `Pricing & Memberships — ${location.name}`,
-    description: `View local pricing, membership tiers, and current offers at ${location.name}. Cryotherapy, red light therapy, infrared sauna, CryoLift facial, and more.`,
+    description: `View local pricing, membership tiers, and current offers at ${location.name}. ${serviceDescription}`,
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },
@@ -133,7 +139,8 @@ export default async function LocationPricingPage({
   if (!location) notFound();
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
-  const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
+  const breadcrumbCity = getLocationCity(location);
+  const bookingUrl = getLocationBookingHref(location);
   const phone = location.contact?.phone;
   const giftCards = location.pricing?.giftCards ?? [];
   const navItems = NAV_ITEMS.flatMap((item) =>
@@ -142,7 +149,7 @@ export default async function LocationPricingPage({
       : [item]
   );
 
-  const allPrices = location.pricing?.standardPrices ?? [];
+  const allPrices = getLocationDisplayPrices(location);
   const recoveryPrices = allPrices.filter((p) =>
     RECOVERY_SERVICES.some((name) =>
       p.name.toLowerCase().includes(name.toLowerCase())
@@ -193,7 +200,7 @@ export default async function LocationPricingPage({
       { "@type": "ListItem", position: 1, name: "Home",        item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Locations",   item: `${SITE_URL}/locations` },
       { "@type": "ListItem", position: 3, name: location.state, item: `${SITE_URL}/locations/${location.stateSlug}` },
-      { "@type": "ListItem", position: 4, name: cityDisplay,   item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}` },
+      { "@type": "ListItem", position: 4, name: breadcrumbCity,   item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}` },
       { "@type": "ListItem", position: 5, name: "Pricing",     item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}/pricing` },
     ],
   };
@@ -213,7 +220,7 @@ export default async function LocationPricingPage({
               <li aria-hidden="true" className="text-white/30">/</li>
               <li><Link href={`/locations/${location.stateSlug}`} className="hover:text-white transition-colors">{location.state}</Link></li>
               <li aria-hidden="true" className="text-white/30">/</li>
-              <li><Link href={`/locations/${location.stateSlug}/${location.citySlug}`} className="hover:text-white transition-colors">{cityDisplay}</Link></li>
+                <li><Link href={`/locations/${location.stateSlug}/${location.citySlug}`} className="hover:text-white transition-colors">{breadcrumbCity}</Link></li>
               <li aria-hidden="true" className="text-white/30">/</li>
               <li className="text-white/70">Pricing</li>
             </ol>

@@ -16,4 +16,4 @@ Check actual location URLs with redirects disabled before claiming that a shared
 
 **Why:** A successful server-rendering test can bypass routing rules. During the FAQ work, all location templates rendered correctly, but two main location URLs redirected visitors to separate franchise websites.
 
-**How to apply:** Report template coverage separately from HTTP-served coverage. Preserve existing external redirects unless the user explicitly authorizes a routing change; updating a template does not update the destination website.
+**How to apply:** Report template coverage separately from HTTP-served coverage. Treat locale-prefixed URLs as separate HTTP targets rather than inferring their redirect behavior from the English URL. Preserve existing external redirects unless the user explicitly authorizes a routing change; updating a template does not update the destination website.

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getLocationByPath } from "@/lib/data/locations";
+import { getLocationCity } from "@/lib/location-presentation";
 import { BlogListText, BlogParagraph, BlogTable } from "@/components/blog/BlogContent";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
 import Link from "next/link";
@@ -265,6 +267,8 @@ export default async function LocationBlogPostPage({ params }: PageProps) {
   const meta = CITY_META[city];
   const localVersion = post.localVersion;
   const cityName = meta?.cityName ?? city;
+  const location = getLocationByPath(state, city);
+  const breadcrumbCity = location ? getLocationCity(location) : cityName;
   const bookingUrl =
     localVersion?.bookingUrl ?? meta?.bookingUrl ??
     "https://zivel.myperformanceiq.com/book-appointment";
@@ -299,8 +303,8 @@ export default async function LocationBlogPostPage({ params }: PageProps) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home",             item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: `Zivel ${cityName}`, item: `${SITE_URL}/locations/${state}/${city}` },
-      { "@type": "ListItem", position: 3, name: `${cityName} Blog`, item: `${SITE_URL}/locations/${state}/${city}/blog` },
+      { "@type": "ListItem", position: 2, name: breadcrumbCity, item: `${SITE_URL}/locations/${state}/${city}` },
+      { "@type": "ListItem", position: 3, name: "Blog", item: `${SITE_URL}/locations/${state}/${city}/blog` },
       { "@type": "ListItem", position: 4, name: post.title,         item: `${SITE_URL}/locations/${state}/${city}/blog/${post.slug}` },
     ],
   };
@@ -325,7 +329,7 @@ export default async function LocationBlogPostPage({ params }: PageProps) {
               <ol className="flex flex-wrap items-center">
                 <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
                 <li aria-hidden="true"><span className="mx-2">/</span></li>
-                <li><Link href={`/locations/${state}/${city}`} className="hover:text-white transition-colors">Zivel {cityName}</Link></li>
+                <li><Link href={`/locations/${state}/${city}`} className="hover:text-white transition-colors">{breadcrumbCity}</Link></li>
                 <li aria-hidden="true"><span className="mx-2">/</span></li>
                 <li><Link href={`/locations/${state}/${city}/blog`} className="hover:text-white transition-colors">Blog</Link></li>
                 <li aria-hidden="true"><span className="mx-2">/</span></li>

@@ -6,14 +6,20 @@ import { usePathname } from "next/navigation";
 import { useMemo, useState, useEffect, useRef, type MouseEvent } from "react";
 import { services } from "@/lib/data/services";
 import { pathways } from "@/lib/data/pathways";
-import { getLocationNav } from "@/lib/data/locationNav";
+import type { getLocationNav } from "@/lib/data/locationNav";
 import { isBrecksvilleLocationPath } from "@/lib/location-availability";
+import { getHeaderBookingAction, type LocationBookingActions } from "@/lib/location-booking";
 
 
-const LOCATIONS_NAV = getLocationNav({ featuredCount: 4 });
-
-export default function Header() {
+export default function Header({
+  locationNav: LOCATIONS_NAV,
+  bookingActions,
+}: {
+  locationNav: ReturnType<typeof getLocationNav>;
+  bookingActions: LocationBookingActions;
+}) {
   const pathname = usePathname();
+  const bookingAction = getHeaderBookingAction(pathname, bookingActions);
   const isBrecksville = isBrecksvilleLocationPath(pathname);
   const bookingDisabled = isBrecksville;
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -234,12 +240,12 @@ export default function Header() {
                 Find a Location
               </Link>
               {!bookingDisabled && <a
-                href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={bookingAction.href}
+                target={bookingAction.external ? "_blank" : undefined}
+                rel={bookingAction.external ? "noopener noreferrer" : undefined}
                 className="rounded-none bg-[var(--zivel-gold)] px-4 py-2.5 text-xs font-medium tracking-wider uppercase text-black hover:bg-[var(--zivel-gold-light)] transition-all duration-300"
               >
-                Book Now
+                {bookingAction.label}
               </a>}
             </div>
           </nav>
@@ -405,13 +411,13 @@ export default function Header() {
                   Find a Location
                 </Link>
                 {!bookingDisabled && <a
-                  href="https://zivel.myperformanceiq.com/book-appointment?set_location=11417"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={bookingAction.href}
+                  target={bookingAction.external ? "_blank" : undefined}
+                  rel={bookingAction.external ? "noopener noreferrer" : undefined}
                   className="bg-[var(--zivel-gold)] px-4 py-3 text-xs font-medium tracking-wider uppercase text-black text-center hover:bg-[var(--zivel-gold-light)] transition-all duration-300"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Book Now
+                  {bookingAction.label}
                 </a>}
               </div>
             </div>

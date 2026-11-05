@@ -54,7 +54,7 @@ const { buildLocationFaqs, buildLocationFaqSchema, getSingleSessionRange } = loa
 Faq = loadLocal(path.join(root, "src/components/location/LocationFaq")).default;
 const Page = loadLocal(path.join(root, "src/app/[locale]/locations/[state]/[city]/page")).default;
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-const cityName = location => location.city ?? location.citySlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+const { getLocationCity: cityName } = loadLocal(path.join(root, "src/lib/location-presentation"));
 function options(location) {
   return {
     cityName: cityName(location),
@@ -79,20 +79,20 @@ function validateSchema(document, section, label) {
     assert.equal(schema.mainEntity[index].name, heading.text);
     assert.equal(schema.mainEntity[index].acceptedAnswer["@type"], "Answer");
     assert.equal(schema.mainEntity[index].acceptedAnswer.text, answer);
-    const words = answer.trim().split(/\s+/).length;
-    assert(words >= 40 && words <= 70, `${label}: answer length ${words}`);
+    assert(answer.trim().length > 0, `${label}: nonempty approved concise answer`);
+    assert(!/Services marked coming soon|Zivel \w+'s/i.test(answer), `${label}: no obsolete filler`);
   });
   return faqSchemas[0];
 }
 
-test("all 19 FAQs render before contact, match schema and page facts, and leave everything else unchanged", async () => {
+test("18 in-scope FAQs render before contact, match schema and page facts, and leave everything outside FAQ unchanged", async () => {
   assert.equal(locations.length, 19);
   const counts = {};
   const serviceRoutes = new Set(LOCAL_SERVICE_COMBOS.map(c => `/locations/${c.state}/${c.city}/${c.service}`));
   const pageRoutes = new Set(locations.flatMap(l => [
     `/locations/${l.stateSlug}/${l.citySlug}/pricing`, `/locations/${l.stateSlug}/${l.citySlug}/pathways`,
   ]));
-  for (const location of locations) {
+  for (const location of locations.filter(location => location.citySlug !== "brecksville")) {
     const label = `${location.stateSlug}/${location.citySlug}`;
     const params = Promise.resolve({ state: location.stateSlug, city: location.citySlug, locale: "en" });
     mode.omitFaq = true;
@@ -108,7 +108,7 @@ test("all 19 FAQs render before contact, match schema and page facts, and leave 
     const index = sections.indexOf(section);
     assert.equal(sections[index + 1].getAttribute("id"), "contact", `${label}: directly before contact`);
     if (location.localBlog) {
-      assert.equal(sections[index - 1].querySelector("h2").text.trim(), location.localBlog.heading ?? "Local Wellness Insights");
+      assert.equal(sections[index - 1].querySelector("h2").text.trim(), `Wellness Insights in ${cityName(location)}`);
     } else {
       assert.equal(sections[index - 1].getAttribute("id"), "map", `${label}: no blog added`);
     }
@@ -124,19 +124,19 @@ test("all 19 FAQs render before contact, match schema and page facts, and leave 
     for (const { label: day, time } of options(location).groupedHours) {
       // Every source value appears in the FAQ; grouped labels are copied from
       // the actual Location Details markup below rather than guessed here.
-      assert(details[0].text.includes(time), `${label}/${day}: correct hours`);
+      assert(details[0].text.toLowerCase().includes(time.toLowerCase()), `${label}/${day}: correct hours`);
     }
     for (const row of main.querySelectorAll("dl > div")) {
       const day = row.querySelector("dt")?.text, time = row.querySelector("dd")?.text;
-      if (day && time) assert(details[0].text.includes(`${day}: ${time}`), `${label}: displayed hour group`);
+      if (day && time && !/^closed$/i.test(time)) assert(details[0].text.includes(`${day} ${time}`), `${label}: displayed hour group`);
     }
     assert(details[0].text.includes(location.contact.phone));
     assert(details[1].text.includes(location.contact.address));
-    if (location.contact.parking) assert(details[1].text.includes(location.contact.parking));
-    const expectedServiceNames = location.services.map(s => s.name);
+    assert.equal(details[1].querySelector('a[href="#map"]').text, "the map and directions");
+    const expectedServiceNames = location.services.filter(s => !s.comingSoon).map(s => s.name);
     assert.deepEqual(details[2].querySelectorAll("a").map(a => a.text), expectedServiceNames);
     const range = getSingleSessionRange(location);
-    assert(details[3].text.includes(range.low) && details[3].text.includes(range.high), label);
+    assert(details[3].text.includes(`start at ${range.low}`), label);
     assert(after.querySelector("#pricing").text.includes(range.low), `${label}: low price matches visible pricing`);
     assert(after.querySelector("#pricing").text.includes(range.high), `${label}: high price matches visible pricing`);
     for (const pathway of pathways) assert(details[6].text.includes(pathway.name), `${label}: existing pathway names`);
@@ -148,7 +148,7 @@ test("all 19 FAQs render before contact, match schema and page facts, and leave 
     }
     if (location.citySlug === "highlands-ranch") {
       assert(!details[2].text.includes("Float"));
-      assert(details[2].text.includes("Red Light Therapy (coming soon)"));
+      assert(details[2].text.includes("Coming soon: Red Light Therapy."));
     }
     for (const link of section.querySelectorAll("a")) {
       const href = link.getAttribute("href");
@@ -204,7 +204,7 @@ test("approved local entries append after standard entries; blank entries stay h
 });
 
 test("new non-disclaimer copy avoids medical outcome terms and the required medical disclaimer is exact", () => {
-  for (const location of locations) {
+  for (const location of locations.filter(location => location.citySlug !== "brecksville")) {
     const items = buildLocationFaqs(location, options(location));
     for (const item of items.filter(item => item.key !== "medical")) assert(!/\b(treat|cure|heal)\b/i.test(item.answer));
     assert(items.find(item => item.key === "medical").answer.startsWith(

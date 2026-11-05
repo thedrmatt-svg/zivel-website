@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getLocationByPath } from "@/lib/data/locations";
+import { getLocationCity } from "@/lib/location-presentation";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
 import { isBrecksvilleLocation } from "@/lib/location-availability";
 import Link from "next/link";
@@ -317,6 +319,8 @@ export default async function LocationBlogPage({
   const allPosts = [...localPosts, ...getPublishedBlogPosts()];
 
   const stateDisplay = state.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const location = getLocationByPath(state, city);
+  const breadcrumbCity = location ? getLocationCity(location) : cfg.cityName;
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -324,7 +328,7 @@ export default async function LocationBlogPage({
       { "@type": "ListItem", position: 1, name: "Home",        item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Locations",   item: `${SITE_URL}/locations` },
       { "@type": "ListItem", position: 3, name: stateDisplay,  item: `${SITE_URL}/locations/${cfg.stateSlug}` },
-      { "@type": "ListItem", position: 4, name: cfg.cityName,  item: `${SITE_URL}/locations/${cfg.stateSlug}/${cfg.citySlug}` },
+      { "@type": "ListItem", position: 4, name: breadcrumbCity,  item: `${SITE_URL}/locations/${cfg.stateSlug}/${cfg.citySlug}` },
       { "@type": "ListItem", position: 5, name: "Blog",        item: `${SITE_URL}/locations/${cfg.stateSlug}/${cfg.citySlug}/blog` },
     ],
   };
@@ -345,7 +349,7 @@ export default async function LocationBlogPage({
                 <li aria-hidden="true" className="text-white/30">/</li>
                 <li><Link href={`/locations/${cfg.stateSlug}`} className="hover:text-white transition-colors">{stateDisplay}</Link></li>
                 <li aria-hidden="true" className="text-white/30">/</li>
-                <li><Link href={`/locations/${cfg.stateSlug}/${cfg.citySlug}`} className="hover:text-white transition-colors">{cfg.cityName}</Link></li>
+                <li><Link href={`/locations/${cfg.stateSlug}/${cfg.citySlug}`} className="hover:text-white transition-colors">{breadcrumbCity}</Link></li>
                 <li aria-hidden="true" className="text-white/30">/</li>
                 <li className="text-white/70">Blog</li>
               </ol>

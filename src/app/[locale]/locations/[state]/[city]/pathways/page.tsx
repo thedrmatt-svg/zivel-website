@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getLocationCity, getPriorityLocationServices, hasUnavailableServiceMention } from "@/lib/location-presentation";
+import { getLocationBookingHref } from "@/lib/location-booking";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,10 +54,14 @@ export async function generateMetadata({
   const enUrl = `${SITE_URL}${basePath}`;
   const esUrl = `${SITE_URL}/es${basePath}`;
   const canonicalUrl = locale === "es" ? esUrl : enUrl;
+  const originalServices = "cryotherapy, red light therapy, sauna, and more";
+  const services = hasUnavailableServiceMention(location, originalServices)
+    ? `${getPriorityLocationServices(location).slice(0, 3).map(service => service.name.toLowerCase()).join(", ")}${getPriorityLocationServices(location).length > 3 ? ", and more" : ""}`
+    : originalServices;
 
   return {
     title: `Wellness Pathways — ${location.name}`,
-    description: `Explore goal-based wellness pathways at Zivel ${cityDisplay}. Structured routines combining cryotherapy, red light therapy, sauna, and more — built for recovery, performance, aesthetics, and longevity.`,
+    description: `Explore goal-based wellness pathways at Zivel ${cityDisplay}. Structured routines combining ${services} — built for recovery, performance, aesthetics, and longevity.`,
     alternates: {
       canonical: canonicalUrl,
       languages: { en: enUrl, es: esUrl, "x-default": enUrl },
@@ -73,7 +79,8 @@ export default async function LocationPathwaysPage({
   if (!location) notFound();
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
-  const bookingUrl = `https://zivel.myperformanceiq.com/book-appointment?set_location=${location.booking?.locationId ?? 11417}`;
+  const breadcrumbCity = getLocationCity(location);
+  const bookingUrl = getLocationBookingHref(location);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -82,7 +89,7 @@ export default async function LocationPathwaysPage({
       { "@type": "ListItem", position: 1, name: "Home",        item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Locations",   item: `${SITE_URL}/locations` },
       { "@type": "ListItem", position: 3, name: location.state, item: `${SITE_URL}/locations/${location.stateSlug}` },
-      { "@type": "ListItem", position: 4, name: cityDisplay,   item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}` },
+      { "@type": "ListItem", position: 4, name: breadcrumbCity,   item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}` },
       { "@type": "ListItem", position: 5, name: "Pathways",    item: `${SITE_URL}/locations/${location.stateSlug}/${location.citySlug}/pathways` },
     ],
   };
@@ -103,7 +110,7 @@ export default async function LocationPathwaysPage({
               <li aria-hidden="true" className="text-white/30">/</li>
               <li><Link href={`/locations/${location.stateSlug}`} className="hover:text-white transition-colors">{location.state}</Link></li>
               <li aria-hidden="true" className="text-white/30">/</li>
-              <li><Link href={`/locations/${location.stateSlug}/${location.citySlug}`} className="hover:text-white transition-colors">{cityDisplay}</Link></li>
+              <li><Link href={`/locations/${location.stateSlug}/${location.citySlug}`} className="hover:text-white transition-colors">{breadcrumbCity}</Link></li>
               <li aria-hidden="true" className="text-white/30">/</li>
               <li className="text-white/70">Pathways</li>
             </ol>
@@ -187,7 +194,9 @@ export default async function LocationPathwaysPage({
                         {pathway.name}
                       </h3>
                       <p className="text-sm text-black/60 leading-relaxed flex-1 mb-3">
-                        {pathway.seo.description}
+                        {hasUnavailableServiceMention(location, pathway.seo.description)
+                          ? `A goal-based wellness routine tailored to the services currently available at Zivel ${breadcrumbCity}. Ask our team about the ${pathway.name} pathway.`
+                          : pathway.seo.description}
                       </p>
                       <p className="text-xs text-black/40 italic mb-6">
                         {pathway.hero.subheadline}
