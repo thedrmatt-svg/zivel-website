@@ -183,6 +183,9 @@ export type Location = {
     a: string;
   }[];
 
+  // Approved location-specific additions to the generated main-page FAQ.
+  localFaqs?: { question: string; answer: string }[];
+
   finalCTA?: {
     headline: string;
   };

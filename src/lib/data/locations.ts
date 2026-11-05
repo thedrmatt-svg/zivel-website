@@ -90,6 +90,7 @@ export const locations: Location[] = rawLocations.map((loc) => {
   const geo = GEO_BY_LOCATION_PATH[key];
   return withContentDateFallback({
     ...loc,
+    localFaqs: loc.localFaqs ?? [],
     ...(geo ? { geo } : {}),
     google: {
       ...(loc.google ?? {}),

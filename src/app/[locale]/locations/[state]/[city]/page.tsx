@@ -14,6 +14,8 @@ import ContactForm from "@/components/location/ContactForm";
 import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
 import GoogleReviews from "@/components/location/GoogleReviews";
 import LocationSectionOrder from "@/components/location/LocationSectionOrder";
+import LocationFaq from "@/components/location/LocationFaq";
+import { buildLocationFaqs } from "@/lib/location-faqs";
 // import JobsSection from "@/components/location/JobsSection"; // hidden until ready
 // import PartnersSection from "@/components/location/PartnersSection"; // hidden until ready
 import PricingSection from "@/components/location/PricingSection";
@@ -273,6 +275,7 @@ export default async function LocationPage({
     hi = hj;
   }
 
+  const locationFaqItems = buildLocationFaqs(location, { cityName, groupedHours, bookingUrl });
   let sectionParity = 0;
 
   return (
@@ -1515,6 +1518,8 @@ export default async function LocationPage({
           </section>
         </>
       )}
+
+      <LocationFaq cityName={cityName} items={locationFaqItems} />
 
       {/* ========== CONTACT FORM (DARK) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
