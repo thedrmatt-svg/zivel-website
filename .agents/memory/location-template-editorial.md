@@ -18,8 +18,22 @@ Existing visible and BreadcrumbList location names must match the address city. 
 **How to apply:** Keep business JSON-LD names, Google Business Profile names, legal/SMS/footer text and header navigation labels independent of city-first display naming.
 
 ## Coming-soon availability
-Exclude flagged upcoming services from search metadata, hero service selections and JSON-LD service/offer lists until live. A coming-soon label belongs only in the conditional visible FAQ sentence, mirrored exactly in FAQPage JSON-LD.
+Exclude flagged upcoming services from general location promotional metadata, hero service selections and JSON-LD service/offer lists until live. Keep the conditional visible FAQ sentence mirrored exactly in FAQPage JSON-LD.
 
 **Why:** The user said advertising something visitors cannot book creates a mismatch between search snippets and the page.
 
-**How to apply:** Respect actual availability flags without editing data, and make the rule dormant when no services are flagged. Review dedicated upcoming-service pages explicitly; do not resolve conflicts by silently changing URLs, canonicals, indexability or sitemap output.
+**How to apply:** Respect actual availability flags without editing data and make the rule dormant when none are flagged. Highlands Ranch Red Light Therapy's own page metadata may explicitly say "coming soon"; keep its route, indexability, canonicals and sitemap entry, with no unqualified availability claims, book-now implication or Offer/Service JSON-LD listing. If compliance needs more than narrow copy/metadata edits, stop and show the exact conflict.
+
+## Booking fallback
+The location header mirrors the hero's primary booking action. With no online destination, use the hero's existing action or link to that location's main page if the hero has none. Never fall back to 11417 on a location route.
+
+**Why:** The user explicitly rejected sending visitors to an unrelated studio when booking data is absent.
+
+**How to apply:** Preserve non-location header behavior and existing booking restrictions; report other restricted studios instead of overriding them. Brecksville follows its separate exiting-brand, untouched policy.
+
+## Metadata length and omissions
+Append ", and more" whenever eligible services outnumber the services actually shown, including after dropping services to meet 155 characters; omit it only when all eligible services are shown. The title's 65-character maximum includes every layout suffix, and "| Zivel" must never be doubled.
+
+**Why:** The user explicitly approved these counting and fallback rules; mixed neighborhood-suffixed and shorter titles are expected.
+
+**How to apply:** Measure final rendered output, including the conditional description suffix, rather than only metadata inputs. Keep service names whole and use the approved title fallback order.

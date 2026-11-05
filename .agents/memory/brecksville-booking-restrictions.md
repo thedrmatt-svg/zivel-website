@@ -1,7 +1,17 @@
 ---
 name: Brecksville booking restrictions
-description: User-requested scope for booking and financing on Brecksville location pages.
+description: Exiting-brand, untouched policy and existing booking, financing and content restrictions.
 ---
+
+## Exiting-brand policy
+
+Brecksville is leaving the brand and now uses a booking system we do not control. Leave ALL existing Brecksville behavior exactly as it is, including the phone-only FAQ booking answer. Make no new changes, additions, or fixes for Brecksville beyond what shared templates do automatically.
+
+**Why:** The user explicitly stated that Brecksville is exiting the brand and its booking system is outside their control.
+
+**How to apply:** List it in location audit tables as "exiting brand, untouched" and exclude it from pass/fail verification counts. Do not integrate its external booking system or perform targeted remediation. The existing restrictions below describe behavior to preserve, not new work to initiate.
+
+## Existing restrictions to preserve
 
 Remove all Book Now options from Brecksville Zivel location pages and turn off their Cherry financing modal.
 

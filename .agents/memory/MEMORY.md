@@ -7,7 +7,7 @@
 - [Form field error pattern](form-field-errors.md) — all four forms use fieldErrors on state type; server actions return fieldErrors map; components render aria-invalid + aria-describedby + inline red hint per field.
 - [Runtime version assumptions](runtime-version-assumptions.md) — verify the actual workspace Node version; package.json engines does not guarantee the installed runtime.
 - [Dependency lockfile consistency](dependency-lockfile-consistency.md) — Vercel uses pnpm; sync its lockfile after npm-based dependency changes before release.
-- [Brecksville restrictions](brecksville-booking-restrictions.md) — no booking, Cherry, Red Light Therapy pages, or local blog for Brecksville; other studios are unchanged.
+- [Brecksville restrictions](brecksville-booking-restrictions.md) — exiting brand; preserve existing behavior, make no targeted fixes, report as untouched and exclude from pass/fail counts.
 - [Location section order](location-section-order.md) — approved main-page reorder across all locations; preserve content, backgrounds, conditional visibility, and subpages.
 - [Service image exceptions](service-image-exceptions.md) — missing-service-image repairs exclude Brecksville, Palm Coast, and Belmont at the user's request.
 - [Local FAQ approval](location-faq-editorial.md) — generate standard answers from existing data; keep custom local FAQs empty until the user supplies approved copy.
