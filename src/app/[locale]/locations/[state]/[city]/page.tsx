@@ -1519,7 +1519,11 @@ export default async function LocationPage({
         </>
       )}
 
-      <LocationFaq cityName={cityName} items={locationFaqItems} />
+      <LocationFaq
+        cityName={cityName}
+        items={locationFaqItems}
+        exclusive={!["belmont", "palm-coast"].includes(location.citySlug)}
+      />
 
       {/* ========== CONTACT FORM (DARK) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />

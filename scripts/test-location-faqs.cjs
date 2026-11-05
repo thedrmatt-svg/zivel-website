@@ -116,6 +116,10 @@ test("all 19 FAQs render before contact, match schema and page facts, and leave 
     const details = section.querySelectorAll("details");
     counts[location.citySlug] = details.length;
     assert.equal(details.length, 8, label);
+    const expectedGroup = ["belmont", "palm-coast"].includes(location.citySlug) ? undefined : "location-faq";
+    for (const detail of details) {
+      assert.equal(detail.getAttribute("name"), expectedGroup, `${label}: exclusive accordion grouping`);
+    }
     assert.deepEqual(location.localFaqs, [], `${label}: no invented local content`);
     for (const { label: day, time } of options(location).groupedHours) {
       // Every source value appears in the FAQ; grouped labels are copied from

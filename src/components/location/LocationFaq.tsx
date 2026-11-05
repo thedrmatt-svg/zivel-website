@@ -4,9 +4,10 @@ import { buildLocationFaqSchema } from "@/lib/location-faqs";
 type LocationFaqProps = {
   cityName: string;
   items: readonly LocationFaqItem[];
+  exclusive?: boolean;
 };
 
-export default function LocationFaq({ cityName, items }: LocationFaqProps) {
+export default function LocationFaq({ cityName, items, exclusive = true }: LocationFaqProps) {
   if (items.length === 0) return null;
 
   const schemaJson = JSON.stringify(buildLocationFaqSchema(items)).replace(/</g, "\\u003c");
@@ -29,7 +30,11 @@ export default function LocationFaq({ cityName, items }: LocationFaqProps) {
           </h2>
           <div className="space-y-4">
             {items.map((item) => (
-              <details key={item.key} className="zv-luxury-card rounded-2xl p-8 group">
+              <details
+                key={item.key}
+                name={exclusive ? "location-faq" : undefined}
+                className="zv-luxury-card rounded-2xl p-8 group"
+              >
                 <summary className="font-serif text-lg cursor-pointer text-white group-open:text-[var(--zivel-gold)] transition-colors">
                   <h3 className="m-0 inline font-serif text-lg font-normal">
                     {item.question}
