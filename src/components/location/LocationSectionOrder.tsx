@@ -1,6 +1,6 @@
 import { Fragment, type ReactElement } from "react";
 
-const BRECKSVILLE_ORDER = [
+const SECTION_ORDER = [
   "services", "pricing", "reviews", "booking",
   "pathways", "details", "map", "blog",
 ] as const;
@@ -10,20 +10,16 @@ const BRECKSVILLE_ORDER = [
  * their contents. Constructing them first preserves the template's original
  * sectionParity evaluation and therefore every existing background choice.
  */
-export default function BrecksvilleSectionOrder({
-  enabled,
+export default function LocationSectionOrder({
   children,
 }: {
-  enabled: boolean;
   children: ReactElement[];
 }) {
-  if (!enabled) return <Fragment>{children}</Fragment>;
-
   const rank = (section: ReactElement) => {
-    const index = BRECKSVILLE_ORDER.indexOf(
-      String(section.key) as typeof BRECKSVILLE_ORDER[number],
+    const index = SECTION_ORDER.indexOf(
+      String(section.key) as typeof SECTION_ORDER[number],
     );
-    if (index < 0) throw new Error("Unexpected section in Brecksville section order.");
+    if (index < 0) throw new Error("Unexpected section in location section order.");
     return index;
   };
 

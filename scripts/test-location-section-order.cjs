@@ -10,7 +10,7 @@ const { parse } = require("next/dist/compiled/node-html-parser");
 
 const root = path.resolve(__dirname, "..");
 const cache = new Map();
-const mode = { originalOrder: false };
+const mode = { previousOrder: false, brecksville: false };
 const passthrough = ({ children }) => React.createElement(React.Fragment, null, children);
 let reorder;
 const wrappers = {
@@ -21,8 +21,8 @@ const wrappers = {
   "@/components/consent/GoogleAdsScript": () => null,
   "@/components/widgets/CherryWidget": () => null,
   "@/lib/actions/contactForm": { submitContactForm: async () => ({ status: "idle", message: "" }) },
-  "@/components/location/BrecksvilleSectionOrder": props =>
-    mode.originalOrder ? passthrough(props) : reorder(props),
+  "@/components/location/LocationSectionOrder": props =>
+    mode.previousOrder && !mode.brecksville ? passthrough(props) : reorder(props),
 };
 
 function loadLocal(base) {
@@ -52,12 +52,13 @@ function loadLocal(base) {
   return mod.exports;
 }
 
-reorder = loadLocal(path.join(root, "src/components/location/BrecksvilleSectionOrder")).default;
+reorder = loadLocal(path.join(root, "src/components/location/LocationSectionOrder")).default;
 const { locations } = loadLocal(path.join(root, "src/lib/data/locations"));
 const Page = loadLocal(path.join(root, "src/app/[locale]/locations/[state]/[city]/page")).default;
 
-async function render(location, originalOrder) {
-  mode.originalOrder = originalOrder;
+async function render(location, previousOrder) {
+  mode.previousOrder = previousOrder;
+  mode.brecksville = location.stateSlug === "ohio" && location.citySlug === "brecksville";
   return renderToStaticMarkup(await Page({
     params: Promise.resolve({ state: location.stateSlug, city: location.citySlug, locale: "en" }),
   }));
@@ -77,8 +78,23 @@ function signature(html) {
   };
 }
 
-test("all 19 location templates keep identical content, headings, links, schema and backgrounds; only Brecksville reorders", async () => {
+function matchingBackgrounds(main) {
+  const sections = main.childNodes.filter(node => node.tagName === "SECTION").map(node => ({
+    heading: node.querySelector("h2")?.text.trim() ?? node.querySelector("h1")?.text.trim() ?? "Statistics",
+    background: (node.getAttribute("class") ?? "").split(/\s+/)
+      .find(name => /^zv-section-(light|elevated|gradient|recessed)$/.test(name)) ??
+      (node.getAttribute("class") ?? "").split(/\s+/).find(name => name.startsWith("bg-")),
+  }));
+  return new Set(sections.flatMap((section, index) => {
+    const previous = sections[index - 1];
+    return previous && section.background && previous.background === section.background
+      ? [`${previous.heading} → ${section.heading} (${section.background})`] : [];
+  }));
+}
+
+test("all 19 locations use the approved order with identical content, headings, links, schema and backgrounds", async () => {
   assert.equal(locations.length, 19);
+  const newBackgroundPairs = new Map();
   for (const location of locations) {
     const label = `${location.stateSlug}/${location.citySlug}`;
     const beforeHtml = await render(location, true);
@@ -90,20 +106,33 @@ test("all 19 location templates keep identical content, headings, links, schema 
     assert.deepEqual(after.h1, before.h1, `${label}: H1 text`);
     assert.deepEqual(after.links, before.links, `${label}: all links and booking URLs`);
     assert.deepEqual(after.schemas, before.schemas, `${label}: JSON-LD`);
+    const previousPairs = matchingBackgrounds(before.main);
+    for (const pair of matchingBackgrounds(after.main)) {
+      if (!previousPairs.has(pair)) {
+        newBackgroundPairs.set(pair, [...(newBackgroundPairs.get(pair) ?? []), label]);
+      }
+    }
+    const headingsBefore = before.main.querySelectorAll("h2").map(node => node.text.trim());
+    const blogHeading = location.localBlog?.heading ?? "Local Wellness Insights";
+    const expected = [
+      "Services Available", "Pricing", "What Clients Are Saying", "Book Your Session", "Pathways",
+      "Location Details", "Find Us", blogHeading, "Questions or Request? Reach Out!",
+    ].filter(heading => headingsBefore.includes(heading));
+    const actual = after.main.querySelectorAll("h2").map(node => node.text.trim());
+    assert.deepEqual(actual.filter(heading => expected.includes(heading)), expected, `${label}: approved section order`);
     if (label !== "ohio/brecksville") {
-      assert.equal(afterHtml, beforeHtml, `${label}: all rendered markup and order unchanged`);
+      assert.notEqual(afterHtml, beforeHtml, `${label}: section order changed`);
       continue;
     }
-    const expected = [
+    const brecksvilleExpected = [
       "Services Available", "Pricing", "What Clients Are Saying", "Pathways",
       "Location Details", "Find Us", "Questions or Request? Reach Out!",
     ];
-    const actual = after.main.querySelectorAll("h2").map(node => node.text.trim());
-    assert.deepEqual(actual.filter(heading => expected.includes(heading)), expected);
+    assert.deepEqual(actual.filter(heading => brecksvilleExpected.includes(heading)), brecksvilleExpected);
     assert(!actual.includes("Book Your Session"), "Brecksville booking remains hidden");
     assert(!actual.some(heading => /Wellness Insights/i.test(heading)), "Brecksville blog remains hidden");
     assert(!after.links.some(href => /set_location=|\/services\/red-light|\/brecksville\/blog/.test(href ?? "")));
-    assert.notEqual(afterHtml, beforeHtml);
+    assert.equal(afterHtml, beforeHtml, "Brecksville approved pilot remains byte-for-byte unchanged");
     const sections = after.main.childNodes.filter(node => node.tagName === "SECTION");
     const backgrounds = sections.map(node => ({
       heading: node.querySelector("h2")?.text.trim() ?? node.querySelector("h1")?.text.trim() ?? "Statistics",
@@ -114,14 +143,13 @@ test("all 19 location templates keep identical content, headings, links, schema 
     console.log("Brecksville section order and original backgrounds:", JSON.stringify(backgrounds));
   }
   console.log("Compared all 19 rendered templates. All links compared at every location, exceeding the three-location sample.");
+  console.log("New adjacent matching backgrounds, preserved as requested:", JSON.stringify(Object.fromEntries(newBackgroundPairs)));
 });
 
-test("the Brecksville ordering helper adds no DOM and leaves disabled children in their original order", () => {
+test("the shared ordering helper adds no DOM and preserves every section", () => {
   const keys = ["details", "map", "services", "pathways", "blog", "pricing", "reviews", "booking"];
   const children = keys.map(key => React.createElement(React.Fragment, { key }, React.createElement("section", { id: key }, key)));
-  const before = renderToStaticMarkup(React.createElement(React.Fragment, null, children));
-  assert.equal(renderToStaticMarkup(reorder({ enabled: false, children })), before);
-  const after = parse(renderToStaticMarkup(reorder({ enabled: true, children })));
+  const after = parse(renderToStaticMarkup(reorder({ children })));
   assert.deepEqual(after.querySelectorAll("section").map(node => node.id), [
     "services", "pricing", "reviews", "booking", "pathways", "details", "map", "blog",
   ]);

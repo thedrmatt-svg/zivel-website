@@ -14,9 +14,3 @@ Remove Red Light Therapy from Brecksville's main location page and remove its lo
 **Why:** The user specifically requested these additional Brecksville content restrictions.
 
 **How to apply:** Apply the restrictions to Brecksville only, including direct URLs, navigation, and sitemap listings. Do not infer that Red Light Therapy or blogs should be removed for any other studio.
-
-The location-section reorder is a Brecksville main-page-only pilot. Do not expand it to other locations or subpages without a further user request.
-
-**Why:** The user wants to assess the reordered Brecksville page before expanding to all locations.
-
-**How to apply:** Preserve other locations' existing order while the user evaluates this pilot.

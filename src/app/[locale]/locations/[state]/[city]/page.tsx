@@ -13,7 +13,7 @@ import { isBrecksvilleLocation } from "@/lib/location-availability";
 import ContactForm from "@/components/location/ContactForm";
 import GoogleMapEmbed from "@/components/location/GoogleMapEmbed";
 import GoogleReviews from "@/components/location/GoogleReviews";
-import BrecksvilleSectionOrder from "@/components/location/BrecksvilleSectionOrder";
+import LocationSectionOrder from "@/components/location/LocationSectionOrder";
 // import JobsSection from "@/components/location/JobsSection"; // hidden until ready
 // import PartnersSection from "@/components/location/PartnersSection"; // hidden until ready
 import PricingSection from "@/components/location/PricingSection";
@@ -732,7 +732,7 @@ export default async function LocationPage({
         </section>
       )}
 
-      <BrecksvilleSectionOrder enabled={isBrecksvilleLocation(state, city)}>
+      <LocationSectionOrder>
       <Fragment key="details">
       {/* ========== CONTACT INFO (alternating) ========== */}
       {location.contact?.address && (
@@ -1487,7 +1487,7 @@ export default async function LocationPage({
       </>}
 
       </Fragment>
-      </BrecksvilleSectionOrder>
+      </LocationSectionOrder>
 
       {/* ========== FAQ (DARK, optional) ========== */}
       {faqItems.length > 0 && (
