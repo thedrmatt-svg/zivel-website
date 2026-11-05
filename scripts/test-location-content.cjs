@@ -159,10 +159,10 @@ test("36 pricing/pathways pages retain metadata patterns, accurately list servic
   }
 });
 
-test("177 service pages keep canonical/title/description patterns, accurate offers and municipality breadcrumbs", async () => {
+test("176 service pages keep canonical/title/description patterns, accurate offers and municipality breadcrumbs", async () => {
   const { LOCAL_SERVICE_COMBOS } = r.source("src/lib/data/local-service-pages");
   const combos = LOCAL_SERVICE_COMBOS.filter(combo => combo.locale === "en" && combo.city !== "brecksville");
-  assert.equal(combos.length, 177);
+  assert.equal(combos.length, 176);
   for (const params of combos) {
     const label = `${params.state}/${params.city}/${params.service}`;
     const location = active.find(location => location.stateSlug === params.state && location.citySlug === params.city);

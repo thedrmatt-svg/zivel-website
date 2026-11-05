@@ -172,6 +172,47 @@ test("Brecksville restrictions match every nested locale route, not other studio
   }
 });
 
+test("Briargate excludes Oxygen from listings, FAQs, metadata, sitemap and both locale routes only", async () => {
+  const { createLocationRenderer } = require("./lib/location-renderer.cjs");
+  const r = createLocationRenderer();
+  r.wrappers["@/lib/local-blog-store"] = { getPublishedEditorPosts: async () => [] };
+  const location = getLocationByPath("colorado", "briargate");
+  assert.ok(!location.services.some(service => service.slug === "oxygen-bar"));
+  assert.deepEqual(location.services.map(service => service.slug), [
+    "cryotherapy", "red-light-therapy", "infrared-sauna", "cryo-slimming",
+    "cryo-toning", "cryo-lift-facial", "compression-therapy", "cryo-soothe",
+  ]);
+  assert.ok(!LOCAL_SERVICE_COMBOS.some(combo => combo.city === "briargate" && combo.service === "oxygen-bar"));
+  for (const locale of ["en", "es"]) {
+    const params = Promise.resolve({ locale, state: "colorado", city: "briargate", service: "oxygen-bar" });
+    await assert.rejects(Page({ params }), /NEXT_NOT_FOUND/);
+    await assert.rejects(generateMetadata({ params }), /NEXT_NOT_FOUND/);
+    for (const suffix of ["page", "pricing/page", "pathways/page"]) {
+      const file = `src/app/[locale]/locations/[state]/[city]/${suffix}`;
+      const pageParams = { locale, state: "colorado", city: "briargate" };
+      const doc = await r.render(file, pageParams);
+      const metadata = await r.source(file).generateMetadata({ params: Promise.resolve(pageParams) });
+      assert.doesNotMatch(doc.toString(), /oxygen[\s-]*(?:bar|therapy)|briargate\/oxygen/i, `${locale}/${suffix}`);
+      assert.doesNotMatch(JSON.stringify(metadata), /oxygen/i, `${locale}/${suffix}: metadata`);
+    }
+    for (const service of location.services) {
+      const doc = await r.render("src/app/[locale]/locations/[state]/[city]/[service]/page", {
+        locale, state: "colorado", city: "briargate", service: service.slug,
+      });
+      assert.doesNotMatch(doc.toString(), /oxygen[\s-]*(?:bar|therapy)|briargate\/oxygen/i,
+        `${locale}/${service.slug}: no Oxygen promotion or link`);
+    }
+    const retainedParams = Promise.resolve({ locale, state: "utah", city: "riverton", service: "oxygen-bar" });
+    const retained = renderToStaticMarkup(await Page({ params: retainedParams }));
+    assert.match(retained, /Oxygen Bar/);
+    assert.match((await generateMetadata({ params: retainedParams })).alternates.canonical, /riverton\/oxygen-bar$/);
+  }
+  const urls = (await r.source("src/app/sitemap").default()).map(entry => entry.url);
+  assert.ok(!urls.some(url => /\/briargate\/oxygen-bar(?:\/|$)/.test(url)));
+  assert.ok(urls.includes("https://www.zivel.com/locations/utah/riverton/oxygen-bar"));
+  assert.ok(urls.includes("https://www.zivel.com/services/oxygen-bar"));
+});
+
 test("Windermere gift cards have the supplied amounts and purchase links only at this studio", () => {
   const windermere = getLocationByPath("georgia", "windermere");
   assert.deepEqual(windermere.pricing.giftCards, [

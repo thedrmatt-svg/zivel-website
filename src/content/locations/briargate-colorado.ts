@@ -67,10 +67,6 @@ export const zivel_briargate_location: Location = {
     "slug": "compression-therapy"
   },
   {
-    "name": "Oxygen Bar",
-    "slug": "oxygen-bar"
-  },
-  {
     "name": "Cryo Soothe",
     "slug": "cryo-soothe"
   }

@@ -171,6 +171,11 @@ export default async function LocationPathwaysPage({
             {pathways.map((pathway, idx) => {
               const img = PATHWAY_IMAGES[pathway.slug] ?? "/images/home/service-exercise.jpg";
               const icon = PATHWAY_ICONS[pathway.slug] ?? "⚕️";
+              // Briargate's shared pathway badges must respect its Oxygen exclusion.
+              const serviceSlugs = pathway.services.orderedServiceSlugs.filter(slug =>
+                !(location.stateSlug === "colorado" && location.citySlug === "briargate"
+                  && slug === "oxygen-bar" && !location.services.some(service => service.slug === slug))
+              );
               return (
                 <ScrollReveal key={pathway.slug} variant="fade-up" delay={idx * 70}>
                   <div className="flex flex-col rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
@@ -208,7 +213,7 @@ export default async function LocationPathwaysPage({
                           Services in this pathway
                         </p>
                         <div className="flex flex-wrap gap-1.5">
-                          {pathway.services.orderedServiceSlugs.slice(0, 4).map((slug) => (
+                          {serviceSlugs.slice(0, 4).map((slug) => (
                             <span
                               key={slug}
                               className="rounded-full bg-black/5 px-3 py-1 text-[11px] font-medium text-black/60 capitalize"
@@ -216,9 +221,9 @@ export default async function LocationPathwaysPage({
                               {slug.replace(/-/g, " ")}
                             </span>
                           ))}
-                          {pathway.services.orderedServiceSlugs.length > 4 && (
+                          {serviceSlugs.length > 4 && (
                             <span className="rounded-full bg-black/5 px-3 py-1 text-[11px] font-medium text-black/40">
-                              +{pathway.services.orderedServiceSlugs.length - 4} more
+                              +{serviceSlugs.length - 4} more
                             </span>
                           )}
                         </div>
