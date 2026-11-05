@@ -3,21 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-
-const nationalImageMap: Record<string, string> = {
-  "cryotherapy": "/images/home/service-cryo.jpg",
-  "red-light-therapy": "/images/home/service-redlight.jpg",
-  "infrared-sauna": "/images/home/service-sauna.jpg",
-  "dry-float": "/images/home/service-dryfloat.jpg",
-  "compression-therapy": "/images/home/service-compression.jpg",
-  "oxygen-bar": "/images/services/oxygen-bar/hero.jpg",
-  "cryo-soothe": "/images/services/cryo-soothe/hero.avif",
-  "cryo-slimming": "/images/home/service-slimming.jpg",
-  "cryo-toning": "/images/services/cryo-toning/hero.avif",
-  "cryo-lift-facial": "/images/services/cryo-lift-facial/hero.avif",
-};
-
-const fallbackImage = "/images/home/service-exercise.jpg";
+import { getLocationServiceImage, getNationalServiceImage } from "@/lib/data/location-service-images";
 
 type ServiceImageCardProps = {
   slug: string;
@@ -42,9 +28,8 @@ export default function ServiceImageCard({
   imageAlt,
   comingSoon,
 }: ServiceImageCardProps) {
-  const customSrc = `/locations/${citySlug}/services/${slug}.jpg`;
-  const nationalSrc = nationalImageMap[slug] || fallbackImage;
-  const [src, setSrc] = useState(customSrc);
+  const nationalSrc = getNationalServiceImage(slug);
+  const [src, setSrc] = useState(() => getLocationServiceImage(citySlug, slug));
 
   const isDark = variant === "dark";
   const href = localHref ?? `/services/${slug}`;

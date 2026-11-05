@@ -9,6 +9,7 @@
 - [Dependency lockfile consistency](dependency-lockfile-consistency.md) — Vercel uses pnpm; sync its lockfile after npm-based dependency changes before release.
 - [Brecksville restrictions](brecksville-booking-restrictions.md) — no booking, Cherry, Red Light Therapy pages, or local blog for Brecksville; other studios are unchanged.
 - [Location section order](location-section-order.md) — approved main-page reorder across all locations; preserve content, backgrounds, conditional visibility, and subpages.
+- [Service image exceptions](service-image-exceptions.md) — missing-service-image repairs exclude Brecksville, Palm Coast, and Belmont at the user's request.
 - [Campaign GTM consent](campaign-gtm-consent.md) — one container load per page; preserve consent gating and verify both document loads and client navigation.
 - [Highlands Ranch service scope](highlands-ranch-service-scope.md) — no local Float listing/page; dedicated Red Light Therapy is coming soon, with location-specific metadata.
 - [Local blog editorial rules](local-blog-editorial-rules.md) — local versions are individually written, not city-swapped; keep private editing separate from public pages.
