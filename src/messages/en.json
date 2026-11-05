@@ -1,4 +1,21 @@
 {
+  "locationEnhancements": {
+    "opensToday": "Opens today at {time}",
+    "openNow": "Open now · until {time}",
+    "closedNow": "Closed now · opens {day} at {time}",
+    "closedToday": "Closed today · opens {day} at {time}",
+    "tomorrow": "tomorrow",
+    "call": "Call",
+    "directions": "Directions",
+    "bookNow": "Book Now",
+    "actions": "Location actions",
+    "callOrText": "Call or text",
+    "getDirections": "Get directions",
+    "membershipTeaser": "Memberships from {price}{unit}. See all memberships, packages, and seasonal deals →",
+    "membershipFaq": " Memberships start at {price}{unit}.",
+    "readMore": "Read more",
+    "readLess": "Read less"
+  },
   "hero": {
     "title": "Recover Smarter. Look Better. Feel Stronger.",
     "subtitle": "Zivel leads nationwide with advanced, evidence-based wellness technology in serene private studios—empowering clients to relieve pain and stress, burn fat and contour the body, smooth and rejuvenate skin, and sustain balanced energy through tailored science-backed pathways for everyday performance and confidence."

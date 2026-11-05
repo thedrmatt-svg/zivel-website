@@ -82,6 +82,7 @@ export type Location = {
   };
 
   openedYear?: number;
+  newClientOffer?: string;
 
   google?: {
     placeId?: string;

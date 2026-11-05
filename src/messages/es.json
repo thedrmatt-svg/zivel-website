@@ -1,4 +1,21 @@
 {
+  "locationEnhancements": {
+    "opensToday": "Abre hoy a las {time}",
+    "openNow": "Abierto ahora · hasta las {time}",
+    "closedNow": "Cerrado ahora · abre {day} a las {time}",
+    "closedToday": "Cerrado hoy · abre el {day} a las {time}",
+    "tomorrow": "mañana",
+    "call": "Llamar",
+    "directions": "Cómo llegar",
+    "bookNow": "Reservar ahora",
+    "actions": "Acciones de la ubicación",
+    "callOrText": "Llama o envía un mensaje al",
+    "getDirections": "Cómo llegar",
+    "membershipTeaser": "Membresías desde {price}{unit}. Ver todas las membresías, paquetes y ofertas de temporada →",
+    "membershipFaq": " Las membresías comienzan en {price}{unit}.",
+    "readMore": "Leer más",
+    "readLess": "Leer menos"
+  },
   "hero": {
     "title": "Recupérate Más Inteligente. Lidera con Fuerza.",
     "subtitle": "Zivel lidera la tecnología de bienestar de vanguardia a nivel nacional, ofreciendo servicios de recuperación basados en evidencia en estudios serenos—empoderando a adultos activos para aliviar el dolor, reducir el estrés y mantener un bienestar equilibrado a través de vías personalizadas respaldadas por la ciencia para el rendimiento diario."

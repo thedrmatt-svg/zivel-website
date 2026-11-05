@@ -65,7 +65,8 @@ async function render(location, previousOrder) {
 }
 
 function signature(html) {
-  const document = parse(html);
+  // React useId intentionally depends on render-tree position, not content.
+  const document = parse(html.replace(/review-text-[^"]+/g, "review-text-stable"));
   const main = document.querySelector("main");
   assert(main, "location main element");
   return {

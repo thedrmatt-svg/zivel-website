@@ -5,6 +5,8 @@ import { getLocalServiceHref } from "@/lib/data/local-service-pages";
 import { pathways as sharedPathways } from "@/lib/data/pathways";
 import { getLocationDisplayPrices, getLocationNeighborhood, getLiveLocationServices, joinNaturally } from "@/lib/location-presentation";
 import { getLocationBookingAction } from "@/lib/location-booking";
+import { getLocationMembershipMinimum } from "@/lib/location-memberships";
+import { getLocationEnhancementCopy, membershipText } from "@/lib/location-enhancement-copy";
 
 export type LocationFaqPart = { text: string; href?: string };
 export type LocationFaqItem = {
@@ -19,6 +21,7 @@ type FaqOptions = {
   groupedHours: readonly FaqGroupedHour[];
   bookingUrl: string;
   pathways?: readonly { name: string }[];
+  locale?: string;
 };
 
 // Local additions are plain text. Strip markup for both visible text and schema.
@@ -129,10 +132,12 @@ export function buildLocationFaqs(location: Location, options: FaqOptions): Loca
       { text: ", or call or text " }, phonePart, { text: "." },
     ]);
   }
+  const minimum = !isBrecksvilleLocation(location.stateSlug, location.citySlug) ? getLocationMembershipMinimum(location) : null;
   add("memberships", `Does Zivel ${city} offer memberships or packages?`, [
     { text: `Yes. Memberships and packages at ${label} offer more value per visit than single sessions. See ` },
     { text: "local pricing", href: pricingHref },
     { text: " for current options, or call " }, phonePart, { text: " for personalized pricing." },
+    ...(minimum ? [{ text: membershipText(getLocationEnhancementCopy(options.locale).membershipFaq, minimum.price, minimum.unit) }] : []),
   ]);
   const pathways = options.pathways ?? sharedPathways;
   if (pathways.length) add("pathways", `Does Zivel ${city} offer goal-based wellness pathways?`, [

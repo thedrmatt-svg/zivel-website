@@ -31,3 +31,11 @@ cannot establish that a returned business is the intended studio.
 **How to apply:** Correct the location mapping and cache key together,
 preserving the cached review payload. Incorporate any newer automated cache
 commit first so correcting one studio cannot overwrite other fresh entries.
+
+## Review eligibility is intentional
+
+Keep the existing five-star filter and content-exclusion mechanism for every location; do not loosen either when expanding review presentation.
+
+**Why:** The user explicitly corrected the proposal to display all imported reviews and required both filters and existing rating labels to remain unchanged. Brecksville stays untouched under its exiting-brand policy.
+
+**How to apply:** Apply ordering, display caps and expansion controls only after the existing eligibility filters, without changing imported review text or the refresh process.

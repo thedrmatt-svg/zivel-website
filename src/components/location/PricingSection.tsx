@@ -19,11 +19,15 @@ export default function PricingSection({
   standardPrices,
   variant = "dark",
   hideStandardPrices = false,
+  membershipTeaser,
+  pricingHref,
 }: {
   tiers?: PricingTier[];
   standardPrices?: StandardPrice[];
   variant?: "dark" | "light";
   hideStandardPrices?: boolean;
+  membershipTeaser?: string;
+  pricingHref?: string;
 }) {
   const hasTiers = !!tiers?.length;
   const hasStandard = !hideStandardPrices && !!standardPrices?.length;
@@ -133,7 +137,9 @@ export default function PricingSection({
             </div>
           </div>
           <p className={`mt-4 text-sm ${footerNote}`}>
-            Save more with memberships or packages—contact this location for personalized pricing info.
+            {membershipTeaser && pricingHref
+              ? <a href={pricingHref} className="underline underline-offset-4" data-location-membership-teaser>{membershipTeaser}</a>
+              : "Save more with memberships or packages—contact this location for personalized pricing info."}
           </p>
         </div>
       ) : null}

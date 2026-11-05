@@ -17,6 +17,10 @@ import LocationSectionOrder from "@/components/location/LocationSectionOrder";
 import LocationFaq from "@/components/location/LocationFaq";
 import { buildLocationFaqs } from "@/lib/location-faqs";
 import { getLocationBookingAction, getLocationBookingHref } from "@/lib/location-booking";
+import LocationStatusLine from "@/components/location/LocationStatusLine";
+import { getLocationTimezone } from "@/lib/location-status";
+import { getLocationMembershipMinimum } from "@/lib/location-memberships";
+import { getLocationEnhancementCopy, membershipText } from "@/lib/location-enhancement-copy";
 import { getLocationCity, getLocationNeighborhood, getLocationMainMetadata, getLiveLocationServices, getPriorityLocationServices, getLocationDisplayPrices, getLocationAltText, getAccurateLocationDescription } from "@/lib/location-presentation";
 // import JobsSection from "@/components/location/JobsSection"; // hidden until ready
 // import PartnersSection from "@/components/location/PartnersSection"; // hidden until ready
@@ -138,9 +142,9 @@ export async function generateMetadata({
 export default async function LocationPage({
   params,
 }: {
-  params: Promise<{ state: string; city: string }>;
+  params: Promise<{ state: string; city: string; locale?: string }>;
 }) {
-  const { state, city } = await params;
+  const { state, city, locale = "en" } = await params;
   const location = getLocationByPath(state, city);
   if (!location) return notFound();
 
@@ -155,6 +159,10 @@ export default async function LocationPage({
   const displayServices = getLiveLocationServices(location);
   const bookingAction = getLocationBookingAction(location);
   const bookingUrl = getLocationBookingHref(location);
+  const enhancements = !isBrecksvilleLocation(state, city);
+  const copy = getLocationEnhancementCopy(locale);
+  const membership = enhancements ? getLocationMembershipMinimum(location) : null;
+  const membershipTeaser = membership ? membershipText(copy.membershipTeaser, membership.price, membership.unit) : undefined;
   const trustBar = buildTrustBar(location, cityName);
   const social = getLocationSocial(location.slug);
   const cachedPlace = getCacheEntry(location.google?.placeId);
@@ -283,7 +291,7 @@ export default async function LocationPage({
     hi = hj;
   }
 
-  const locationFaqItems = buildLocationFaqs(location, { cityName, groupedHours, bookingUrl });
+  const locationFaqItems = buildLocationFaqs(location, { cityName, groupedHours, bookingUrl, locale });
   let sectionParity = 0;
 
   return (
@@ -352,7 +360,7 @@ export default async function LocationPage({
             <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-3xl zv-hero-animate-3">{presentation.subhead}</p>
             {presentation.neighborhoodLine && <p className="mt-4 text-base text-white/70 leading-relaxed max-w-2xl">{presentation.neighborhoodLine}</p>}
 
-            <div className="flex flex-wrap gap-4 pt-6 zv-hero-animate-4">
+            <div className="flex flex-wrap gap-4 pt-6 zv-hero-animate-4" data-location-hero-actions={enhancements ? "" : undefined}>
               {bookingAction && <LocationBookingLink state={state} city={city} href={bookingUrl} target={bookingAction.external ? "_blank" : undefined} rel={bookingAction.external ? "noopener noreferrer" : undefined} className="zv-btn-luxury zv-btn-gold">
                 {bookingAction.label}
               </LocationBookingLink>}
@@ -360,6 +368,9 @@ export default async function LocationPage({
                 View Services
               </Link>
             </div>
+
+            {enhancements && <LocationStatusLine hours={location.hours} zone={getLocationTimezone(location).zone}
+              phone={location.contact?.phone} mapsUrl={googleMapsUrl} locale={locale} copy={copy} />}
 
             <div className="pt-6 zv-hero-animate-4">
                 <Link
@@ -1161,6 +1172,8 @@ export default async function LocationPage({
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
               <PricingSection
+                membershipTeaser={membershipTeaser}
+                pricingHref={`${locale === "es" ? "/es" : ""}/locations/${state}/${city}/pricing`}
                 tiers={location.citySlug === "fayetteville" ? (location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS).filter(t => t.mostPopular) : undefined}
                 standardPrices={getLocationDisplayPrices(location, location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES)}
                 variant="light"
@@ -1185,6 +1198,8 @@ export default async function LocationPage({
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={100}>
               <PricingSection
+                membershipTeaser={membershipTeaser}
+                pricingHref={`${locale === "es" ? "/es" : ""}/locations/${state}/${city}/pricing`}
                 tiers={location.citySlug === "fayetteville" ? (location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS).filter(t => t.mostPopular) : undefined}
                 standardPrices={getLocationDisplayPrices(location, location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES)}
                 variant="dark"
@@ -1441,7 +1456,7 @@ export default async function LocationPage({
               <p className="zv-tagline">Client Feedback</p>
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Clients Are Saying</h2>
             </ScrollReveal>
-            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} variant="light" excludeText={isBrecksvilleLocation(state, city) ? /red[\s-]*light/i : undefined} />
+            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} variant="light" excludeText={isBrecksvilleLocation(state, city) ? /red[\s-]*light/i : undefined} enhanced={enhancements} readMoreLabel={copy.readMore} readLessLabel={copy.readLess} />
           </div>
         </section>
       ) : (
@@ -1451,7 +1466,7 @@ export default async function LocationPage({
               <p className="zv-tagline">Client Feedback</p>
               <h2 className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight">What Clients Are Saying</h2>
             </ScrollReveal>
-            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} variant="dark" excludeText={isBrecksvilleLocation(state, city) ? /red[\s-]*light/i : undefined} />
+            <GoogleReviews placeId={location.google?.placeId} locationName={location.name} variant="dark" excludeText={isBrecksvilleLocation(state, city) ? /red[\s-]*light/i : undefined} enhanced={enhancements} readMoreLabel={copy.readMore} readLessLabel={copy.readLess} />
           </div>
         </section>
       )}
@@ -1495,6 +1510,15 @@ export default async function LocationPage({
               ) : (
                 <p className="text-black/60 text-lg">Booking coming soon.</p>
               )}
+              {enhancements && <div className="mt-6 space-y-4 text-black/70" data-location-booking-details>
+                {location.contact?.phone && <p><a className="underline underline-offset-4" href={phoneHref(location.contact.phone)}>{copy.callOrText} {location.contact.phone}</a></p>}
+                <dl className="space-y-1">{groupedHours.map(row => <div key={row.label} className="flex flex-wrap justify-between gap-x-4">
+                  <dt>{row.label}</dt><dd>{row.time}</dd>
+                </div>)}</dl>
+                {location.contact?.address && <p>{location.contact.address}</p>}
+                {googleMapsUrl && <p><a className="underline underline-offset-4" href={googleMapsUrl} target="_blank" rel="noopener noreferrer">{copy.getDirections}</a></p>}
+                {location.newClientOffer?.trim() && <p>{location.newClientOffer}</p>}
+              </div>}
             </div>
           </ScrollReveal>
         </div>

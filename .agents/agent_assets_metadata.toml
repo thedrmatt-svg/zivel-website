@@ -14,3 +14,17 @@ mtime_ms = 1793894176801
 storage_uri = "gcs://replit-rams-assets-kirk/rams/assets/repl:ba8ee83f-a41c-4dac-8dfd-4ad41b4d9c43/17bf91b5-9b03-4af8-81c5-717aa74a1049/58096fc3-7f3e-4038-add1-587c7f2d1568"
 storage_version_token = "1793894206267493"
 content_type = "text/html"
+
+[[outputs]]
+id = "wHqbpuN0qKyCmswrnYHhA"
+uri = "file://reports/location-actions-memberships-reviews-audit.html"
+type = "html"
+title = "Location actions, memberships and reviews audit"
+description = "All 19 membership and timezone rows, changed files, review-cap documentation, collision handling, route exceptions, and verification results."
+logical_id = "d202d19c-2df8-4cc4-aa90-3d945d047333"
+content_hash = "sha256:65ee48bfe6fae26c064bde0231407683330168135e3aeef02e938bc46c9a724f"
+size = 24837
+mtime_ms = 1793898098569
+storage_uri = "gcs://replit-rams-assets-kirk/rams/assets/repl:ba8ee83f-a41c-4dac-8dfd-4ad41b4d9c43/d202d19c-2df8-4cc4-aa90-3d945d047333/0ab53b96-b12d-4ce2-862e-83d240b03c37"
+storage_version_token = "1793898149009051"
+content_type = "text/html"

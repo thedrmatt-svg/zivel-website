@@ -2,6 +2,12 @@ import MetaPixelCoralGables from "@/components/consent/MetaPixelCoralGables";
 import GoogleTagManagerRiverton from "@/components/consent/GoogleTagManagerRiverton";
 import GoogleTagManagerHollywood from "@/components/consent/GoogleTagManagerHollywood";
 import MetaPixelHollywood from "@/components/consent/MetaPixelHollywood";
+import LocationMobileActions from "@/components/location/LocationMobileActions";
+import { getLocationByPath } from "@/lib/data/locations";
+import { getLocationBookingAction } from "@/lib/location-booking";
+import { isBrecksvilleLocation } from "@/lib/location-availability";
+import { getLocationEnhancementCopy } from "@/lib/location-enhancement-copy";
+import placesCache from "@/data/places-cache.json";
 
 /**
  * Layout wrapping every Coral Gables nested route.
@@ -19,7 +25,13 @@ export default async function CityLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string; state: string; city: string }>;
 }) {
-  const { state, city } = await params;
+  const { state, city, locale } = await params;
+  const location = getLocationByPath(state, city);
+  const entry = location?.google?.placeId
+    ? (placesCache as Record<string, { locationPath?: string; googleMapsUri?: string | null }>)[location.google.placeId]
+    : undefined;
+  const mapsUrl = entry?.locationPath === `${state}/${city}` ? entry.googleMapsUri : null;
+  const action = location ? getLocationBookingAction(location) : null;
 
   return (
     <>
@@ -28,6 +40,14 @@ export default async function CityLayout({
       {state === "florida" && city === "hollywood" && <GoogleTagManagerHollywood />}
       {state === "florida" && city === "hollywood" && <MetaPixelHollywood />}
       {children}
+      {location && !isBrecksvilleLocation(state, city) && <LocationMobileActions
+        key={`${locale}/${state}/${city}`}
+        basePath={`/locations/${state}/${city}`}
+        bookingUrl={action?.external ? action.href : undefined}
+        phone={location.contact?.phone}
+        mapsUrl={mapsUrl}
+        copy={getLocationEnhancementCopy(locale)}
+      />}
     </>
   );
 }

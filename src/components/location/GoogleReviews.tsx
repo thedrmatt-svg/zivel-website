@@ -1,4 +1,6 @@
 import placesCache from "@/data/places-cache.json";
+import ReviewText from "@/components/location/ReviewText";
+import { orderLocationReviews } from "@/lib/location-review-order";
 
 type CacheEntry = {
   locationPath: string;
@@ -25,11 +27,17 @@ export default function GoogleReviews({
   locationName,
   variant = "dark",
   excludeText,
+  enhanced = false,
+  readMoreLabel,
+  readLessLabel,
 }: {
   placeId?: string;
   locationName: string;
   variant?: "light" | "dark";
   excludeText?: RegExp;
+  enhanced?: boolean;
+  readMoreLabel?: string;
+  readLessLabel?: string;
 }) {
   const heading    = variant === "light" ? "text-black"     : "text-white";
   const subtext    = variant === "light" ? "text-black/70"  : "text-white/70";
@@ -50,10 +58,12 @@ export default function GoogleReviews({
     return <div className={fallback}>Reviews coming soon.</div>;
   }
 
-  const fiveStarReviews = data.reviews
+  const filteredReviews = data.reviews
     .filter((r) => r.rating === 5)
-    .filter((r) => !excludeText?.test(r.text ?? ""))
-    .slice(0, 4);
+    .filter((r) => !excludeText?.test(r.text ?? ""));
+  const fiveStarReviews = enhanced
+    ? orderLocationReviews(filteredReviews).slice(0, 6)
+    : filteredReviews.slice(0, 4);
 
   if (!fiveStarReviews.length) {
     return <div className={fallback}>Reviews coming soon.</div>;
@@ -97,7 +107,10 @@ export default function GoogleReviews({
                 {r.relativeTime ?? ""}
               </div>
             </div>
-            {r.text ? <p className={`mt-3 text-sm ${body}`}>{r.text}</p> : null}
+            {r.text ? enhanced
+              ? <ReviewText text={r.text} className={`mt-3 text-sm ${body}`} readMoreLabel={readMoreLabel} readLessLabel={readLessLabel} />
+              : <p className={`mt-3 text-sm ${body}`}>{r.text}</p>
+              : null}
           </div>
         ))}
       </div>

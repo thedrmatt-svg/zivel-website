@@ -1505,7 +1505,7 @@ export default async function LocalServicePage({ params }: Props) {
             <p className="mt-6 text-lg md:text-xl text-white/75 leading-relaxed max-w-3xl zv-hero-animate-3">
               {local.subtitle}
             </p>
-            <div className="flex flex-wrap gap-4 mt-8 zv-hero-animate-4">
+            <div className="flex flex-wrap gap-4 mt-8 zv-hero-animate-4" data-location-hero-actions={!isBrecksvilleLocation(state, city) ? "" : undefined}>
               <LocationBookingLink state={state} city={city}
                 href={bookingUrl}
                 target={comingSoon ? undefined : "_blank"}
