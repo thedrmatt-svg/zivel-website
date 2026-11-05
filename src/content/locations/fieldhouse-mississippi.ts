@@ -14,7 +14,7 @@ export const zivel_fieldhouse_location: Location = {
 
   seo: {
     title: "Zivel Fieldhouse",
-    description: "Zivel Fieldhouse offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services in Ridgeland, MS. Book your session today.",
+    description: "Zivel Fieldhouse offers cryotherapy, red light therapy, infrared sauna, dry float, and recovery services inside the Gatorade Fieldhouse near Hernando, MS.",
     canonical: "https://www.zivel.com/locations/mississippi/fieldhouse",
   },
 
@@ -22,7 +22,7 @@ export const zivel_fieldhouse_location: Location = {
     address: "1582 Green T Rd E, Hernando, MS 38632",
     phone: "(662) 879-9900",
     parking: "Free parking or street available",
-    notes: "Inside Fieldhouse near Hernando, MS",
+    notes: "Inside the Gatorade Fieldhouse near Hernando, MS",
   },
 
   hours: {

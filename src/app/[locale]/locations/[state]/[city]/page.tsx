@@ -21,7 +21,7 @@ import LocationStatusLine from "@/components/location/LocationStatusLine";
 import { getLocationTimezone } from "@/lib/location-status";
 import { getLocationMembershipMinimum } from "@/lib/location-memberships";
 import { getLocationEnhancementCopy, membershipText } from "@/lib/location-enhancement-copy";
-import { getLocationCity, getLocationNeighborhood, getLocationMainMetadata, getLiveLocationServices, getPriorityLocationServices, getLocationDisplayPrices, getLocationAltText, getAccurateLocationDescription } from "@/lib/location-presentation";
+import { getLocationBusinessLabel, getLocationCity, getLocationNeighborhood, getLocationMainMetadata, getLiveLocationServices, getPriorityLocationServices, getLocationDisplayPrices, getLocationAltText, getAccurateLocationDescription } from "@/lib/location-presentation";
 // import JobsSection from "@/components/location/JobsSection"; // hidden until ready
 // import PartnersSection from "@/components/location/PartnersSection"; // hidden until ready
 import PricingSection from "@/components/location/PricingSection";
@@ -126,7 +126,7 @@ export async function generateMetadata({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: `Zivel ${getLocationCity(location)}`,
+          alt: getLocationBusinessLabel(location),
         },
       ],
     },
@@ -154,6 +154,7 @@ export default async function LocationPage({
 
   const heroImage = location.hero?.image ?? "/images/home/hero.jpg";
   const cityName = getLocationCity(location);
+  const businessLabel = getLocationBusinessLabel(location);
   const neighborhood = getLocationNeighborhood(location);
   const presentation = getLocationMainMetadata(location);
   const displayServices = getLiveLocationServices(location);
@@ -323,7 +324,7 @@ export default async function LocationPage({
           <div style={{ overflow: 'hidden', aspectRatio: '1920/672' }}>
             <Image
               src={heroImage}
-              alt={`Zivel ${cityName} — wellness studio interior`}
+              alt={`${businessLabel} — wellness studio interior`}
               width={1920}
               height={800}
               priority
@@ -355,7 +356,7 @@ export default async function LocationPage({
               </div>
             )}
             <h1 id="location-hero-title" className="font-serif text-5xl md:text-7xl font-light tracking-tight max-w-4xl zv-hero-animate-2">
-              Zivel {cityName}
+              {businessLabel}
             </h1>
             <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-3xl zv-hero-animate-3">{presentation.subhead}</p>
             {presentation.neighborhoodLine && <p className="mt-4 text-base text-white/70 leading-relaxed max-w-2xl">{presentation.neighborhoodLine}</p>}
@@ -398,7 +399,7 @@ export default async function LocationPage({
               <div className="mx-auto overflow-hidden rounded-2xl" style={{ maxWidth: 480 }}>
                 <Image
                   src={location.award.image}
-                  alt={`${location.award.headline} — Zivel ${cityName}`}
+                  alt={`${location.award.headline} — ${businessLabel}`}
                   width={960}
                   height={720}
                   sizes="(max-width: 640px) 100vw, 480px"
@@ -678,7 +679,7 @@ export default async function LocationPage({
                 <ScrollReveal variant="fade-right">
                   <Image
                     src={location.about.image}
-                    alt={`Zivel ${cityName} interior`}
+                    alt={`${businessLabel} interior`}
                     width={600}
                     height={450}
                     className="rounded-2xl object-cover shadow-lg"
@@ -1557,6 +1558,7 @@ export default async function LocationPage({
 
       <LocationFaq
         cityName={cityName}
+        businessName={businessLabel}
         items={locationFaqItems}
         exclusive={!["belmont", "palm-coast"].includes(location.citySlug)}
       />

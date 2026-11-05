@@ -102,7 +102,8 @@ test("18 in-scope FAQs render before contact, match schema and page facts, and l
     const after = parse(renderToStaticMarkup(await Page({ params })));
     const section = after.querySelector("[data-location-faq]");
     assert(section, `${label}: FAQ in initial server HTML`);
-    assert.equal(section.querySelector("h2").text.trim(), `Frequently Asked Questions About Zivel ${cityName(location)}`);
+    const businessLabel = loadLocal(path.join(root, "src/lib/location-presentation")).getLocationBusinessLabel(location);
+    assert.equal(section.querySelector("h2").text.trim(), `Frequently Asked Questions About ${businessLabel}`);
     assert.equal(after.querySelectorAll("h1").length, 1);
     const main = after.querySelector("main");
     const sections = main.childNodes.filter(node => node.tagName === "SECTION");

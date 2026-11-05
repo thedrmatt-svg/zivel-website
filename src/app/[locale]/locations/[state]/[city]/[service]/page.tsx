@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getLocationCity, getLocationAltText, getAccurateLocalStackCopy } from "@/lib/location-presentation";
+import { getLocationBusinessLabel, getLocationCity, getLocationAltText, getAccurateLocalStackCopy } from "@/lib/location-presentation";
 import { getLocationBookingHref } from "@/lib/location-booking";
 import { phoneHref } from "@/lib/contact-links";
 import { getLocationBusinessDetails } from "@/lib/location-business-schema";
@@ -256,11 +256,11 @@ function generateLocalContent(location: Location, svc: Service, state: string, c
     {
       q: `Where is ${location.name} located?`,
       a: location.contact?.address
-        ? `We're located at ${location.contact.address}${location.contact.parking ? `. ${location.contact.parking}.` : "."}`
+        ? `We're located at ${location.contact.address}${location.stateSlug === "mississippi" && location.citySlug === "fieldhouse" ? ", inside the Gatorade Fieldhouse near Hernando, MS" : ""}${location.contact.parking ? `. ${location.contact.parking}.` : "."}`
         : `Visit us at ${location.name}. Check our location page for directions.`,
     },
     {
-      q: `What are the hours at Zivel ${municipality}?`,
+      q: `What are the hours at ${getLocationBusinessLabel(location, municipality)}?`,
       a: formatHoursAsText(location.hours),
     },
     {

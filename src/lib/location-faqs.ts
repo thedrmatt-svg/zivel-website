@@ -3,7 +3,7 @@ import { phoneHref } from "@/lib/contact-links";
 import { isBrecksvilleLocation } from "@/lib/location-availability";
 import { getLocalServiceHref } from "@/lib/data/local-service-pages";
 import { pathways as sharedPathways } from "@/lib/data/pathways";
-import { getLocationDisplayPrices, getLocationNeighborhood, getLiveLocationServices, joinNaturally } from "@/lib/location-presentation";
+import { getLocationBusinessLabel, getLocationDisplayPrices, getLocationNeighborhood, getLiveLocationServices, joinNaturally } from "@/lib/location-presentation";
 import { getLocationBookingAction } from "@/lib/location-booking";
 import { getLocationMembershipMinimum } from "@/lib/location-memberships";
 import { getLocationEnhancementCopy, membershipText } from "@/lib/location-enhancement-copy";
@@ -56,7 +56,7 @@ export function getSingleSessionRange(location: Location): { low: string; high: 
 
 export function buildLocationFaqs(location: Location, options: FaqOptions): LocationFaqItem[] {
   const city = options.cityName;
-  const label = `Zivel ${city}`;
+  const label = getLocationBusinessLabel(location, city);
   const base = `/locations/${location.stateSlug}/${location.citySlug}`;
   const pricingHref = `${base}/pricing`;
   const phone = location.contact?.phone;
@@ -73,7 +73,7 @@ export function buildLocationFaqs(location: Location, options: FaqOptions): Loca
   const hoursText = open.length
     ? `open ${hours}${closed.length ? `, and closed ${joinNaturally(closed)}` : ""}`
     : `closed ${joinNaturally(closed)}`;
-  add("hours", `What are the hours at Zivel ${city}?`, [
+  add("hours", `What are the hours at ${label}?`, [
     { text: `${label} is ${hoursText}. Call or text ` }, phonePart,
     { text: " with questions about hours." },
   ]);
@@ -83,8 +83,8 @@ export function buildLocationFaqs(location: Location, options: FaqOptions): Loca
     : location.contact?.parking
       ? `${location.contact.parking.trim().replace(/[.!?]+$/, "").replace(/ parking available$/i, " parking is available")}.`
       : "";
-  add("directions", `Where is Zivel ${city} located, and is there parking?`, [
-    { text: `${label} is at ${location.contact?.address ?? "the address shown in Location Details"}${neighborhood ? `, in the ${neighborhood} area` : ""}. ${parking ? `${parking} ` : ""}Use ` },
+  add("directions", `Where is ${label} located, and is there parking?`, [
+    { text: `${label} is at ${location.contact?.address ?? "the address shown in Location Details"}${location.citySlug === "fieldhouse" && location.stateSlug === "mississippi" ? ", inside the Gatorade Fieldhouse near Hernando, MS" : neighborhood ? `, in the ${neighborhood} area` : ""}. ${parking ? `${parking} ` : ""}Use ` },
     { text: "the map and directions", href: "#map" },
     { text: " or call " },
     phonePart,
@@ -100,7 +100,7 @@ export function buildLocationFaqs(location: Location, options: FaqOptions): Loca
     });
   });
   const upcoming = location.services.filter(service => service.comingSoon);
-  add("services", `What services does Zivel ${city} offer?`, [
+  add("services", `What services does ${label} offer?`, [
     { text: `${label} offers ` },
     ...serviceParts,
     { text: `. Select any service for details and to book.${upcoming.length ? ` Coming soon: ${joinNaturally(upcoming.map(service => service.name))}.` : ""}` },
@@ -113,13 +113,13 @@ export function buildLocationFaqs(location: Location, options: FaqOptions): Loca
       && /^\$\s*[\d,]+(?:\.\d{1,2})?$/.test(row.price));
     return row ? [`${service!.name} is ${row.price}`] : [];
   }).slice(0, 2);
-  if (range) add("pricing", `How much does a session cost at Zivel ${city}?`, [
+  if (range) add("pricing", `How much does a session cost at ${label}?`, [
     { text: `Single sessions at ${label} start at ${range.low}. ${examplePrices.length ? `${joinNaturally(examplePrices)}. ` : ""}See ` },
     { text: "local pricing", href: pricingHref },
     { text: " for memberships, packages, and seasonal deals." },
   ]);
   if (isBrecksvilleLocation(location.stateSlug, location.citySlug)) {
-    add("booking", `How do I book a session at Zivel ${city}?`, [
+    add("booking", `How do I book a session at ${label}?`, [
       { text: `Contact ${location.name} in ${city} at ` }, phonePart,
       { text: " about arranging a session. Call or text this studio directly with questions about the services listed on its location page. The " },
       { text: "local pricing page", href: pricingHref },
@@ -127,21 +127,21 @@ export function buildLocationFaqs(location: Location, options: FaqOptions): Loca
     ]);
   } else {
     const action = getLocationBookingAction(location);
-    add("booking", `How do I book a session at Zivel ${city}?`, [
+    add("booking", `How do I book a session at ${label}?`, [
       { text: action?.external ? "Book online with " : `Contact ${label} with ` },
       { text: action?.label ?? "the location page", href: action?.href ?? base },
       { text: ", or call or text " }, phonePart, { text: "." },
     ]);
   }
   const minimum = !isBrecksvilleLocation(location.stateSlug, location.citySlug) ? getLocationMembershipMinimum(location) : null;
-  add("memberships", `Does Zivel ${city} offer memberships or packages?`, [
+  add("memberships", `Does ${label} offer memberships or packages?`, [
     { text: `Yes. Memberships and packages at ${label} offer more value per visit than single sessions. See ` },
     { text: "local pricing", href: pricingHref },
     { text: " for current options, or call " }, phonePart, { text: " for personalized pricing." },
     ...(minimum ? [{ text: membershipText(getLocationEnhancementCopy(options.locale).membershipFaq, minimum.price, minimum.unit) }] : []),
   ]);
   const pathways = options.pathways ?? sharedPathways;
-  if (pathways.length) add("pathways", `Does Zivel ${city} offer goal-based wellness pathways?`, [
+  if (pathways.length) add("pathways", `Does ${label} offer goal-based wellness pathways?`, [
     { text: `Yes. ${label} offers ${["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"][pathways.length] ?? String(pathways.length)} goal-based pathways: ${pathways.map(pathway => pathway.name).join("; ")}. ` },
     { text: "Explore local pathways", href: `${base}/pathways` }, { text: "." },
   ]);

@@ -109,7 +109,7 @@ test("18 main pages: exact metadata, city H1, eligible services, concise matchin
     const doc = await r.render(mainFile, params);
     const meta = await r.source(mainFile).generateMetadata({ params: Promise.resolve(params) });
     const expected = p.getLocationMainMetadata(location);
-    assert.equal(doc.querySelector("h1").text.trim(), `Zivel ${p.getLocationCity(location)}`, label);
+    assert.equal(doc.querySelector("h1").text.trim(), p.getLocationBusinessLabel(location), label);
     assert.equal(meta.title.absolute, expected.title);
     assert.equal(meta.description, expected.description);
     assert.equal(meta.openGraph.description, expected.description);

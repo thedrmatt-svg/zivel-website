@@ -2,7 +2,7 @@ import type { Location } from "@/types/location";
 import type { LocationFaqItem, LocationFaqPart } from "@/lib/location-faqs";
 import { locations } from "@/lib/data/locations";
 import { getLocationHref } from "@/lib/data/locationNav";
-import { getLocationCity, joinNaturally } from "@/lib/location-presentation";
+import { getLocationCity, getLocationBusinessLabel, joinNaturally } from "@/lib/location-presentation";
 import { getLocationBookingAction } from "@/lib/location-booking";
 import { isBrecksvilleLocation } from "@/lib/location-availability";
 import { phoneHref } from "@/lib/contact-links";
@@ -59,13 +59,15 @@ export function buildStructuredLocationFaqs(location: Location, registry: readon
   if (isBrecksvilleLocation(location.stateSlug, location.citySlug)) return [];
   const city = text(getLocationCity(location));
   if (!city) return [];
-  const label = `Zivel ${city}`;
+  const label = getLocationBusinessLabel(location, city);
   const items: LocationFaqItem[] = [];
   const add = (id: string, question: string, parts: LocationFaqPart[]) =>
     items.push({ key: `structured-${id}`, question, parts, answer: parts.map(part => part.text).join("") });
 
   const county = text(location.county), state = text(location.state);
-  const communities = values(location.nearbyCommunities).filter(value => value.toLowerCase() !== city.toLowerCase());
+  // Owner-approved exception: Cumming belongs in Windermere's served-area list.
+  const includeMunicipality = location.stateSlug === "georgia" && location.citySlug === "windermere";
+  const communities = values(location.nearbyCommunities).filter(value => includeMunicipality || value.toLowerCase() !== city.toLowerCase());
   if (county && state && communities.length >= 2) {
     add("L1", `Which areas does ${label} serve?`, [{
       text: `${label} is in ${county}, ${state}, and welcomes clients from ${joinNaturally(communities)}, and surrounding communities.`,

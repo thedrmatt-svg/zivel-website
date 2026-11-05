@@ -15,7 +15,13 @@ The user has approved data-driven local questions using supplied county, nearby-
 
 **Why:** The user supplied exact local values and template wording, with a strict instruction to omit any question missing a required field rather than guess its content.
 
-**How to apply:** Use only owner-supplied local facts; omit incomplete entries from both visible text and FAQPage schema, remove the current municipality from nearby-community lists, and exclude Brecksville from structured local additions and other-studio calculations. Keep manual localFaqs separate and empty until specifically approved.
+**How to apply:** Use only owner-supplied local facts; omit incomplete entries from both visible text and FAQPage schema, remove the current municipality from nearby-community lists except Windermere's explicitly requested Cumming entry, and exclude Brecksville from structured local additions and other-studio calculations. Keep manual localFaqs separate and empty until specifically approved.
+
+Windermere's service-area FAQ must include Cumming, alongside Alpharetta and Johns Creek, even though Cumming is also its address municipality.
+
+**Why:** The user explicitly corrected the municipality-filtering result and requested Cumming's inclusion.
+
+**How to apply:** Retain this exception only for Windermere; do not loosen other studios' approved municipality filtering.
 
 Other-state-studio FAQ lists must also exclude studios explicitly marked not yet open or coming soon. Do not alter data to force expected counts; report each affected list even when its count remains unchanged.
 

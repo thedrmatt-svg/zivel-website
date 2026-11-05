@@ -3,11 +3,12 @@ import { buildLocationFaqSchema } from "@/lib/location-faqs";
 
 type LocationFaqProps = {
   cityName: string;
+  businessName?: string;
   items: readonly LocationFaqItem[];
   exclusive?: boolean;
 };
 
-export default function LocationFaq({ cityName, items, exclusive = true }: LocationFaqProps) {
+export default function LocationFaq({ cityName, businessName = `Zivel ${cityName}`, items, exclusive = true }: LocationFaqProps) {
   if (items.length === 0) return null;
 
   const schemaJson = JSON.stringify(buildLocationFaqSchema(items)).replace(/</g, "\\u003c");
@@ -26,7 +27,7 @@ export default function LocationFaq({ cityName, items, exclusive = true }: Locat
             id="location-faq-heading"
             className="mt-3 mb-14 font-serif text-4xl md:text-5xl font-light tracking-tight"
           >
-            Frequently Asked Questions About Zivel {cityName}
+            Frequently Asked Questions About {businessName}
           </h2>
           <div className="space-y-4">
             {items.map((item) => (

@@ -61,6 +61,31 @@ try {
     check(`${locale}: map anchor`,await evaluate(`!!document.querySelector('[data-location-faq] a[href="#map"]') && !!document.getElementById('map')`),true);
     if(locale==="es") check("es: existing membership sentence retained",await evaluate(`document.querySelectorAll('[data-location-faq] details')[5].textContent.includes('Las membresías comienzan en $99/mo.')`),true);
   }
+  for(const locale of ["en","es"]) for(const studio of [
+    {state:"mississippi",city:"fieldhouse",count:11,name:"Zivel Fieldhouse"},
+    {state:"georgia",city:"windermere",count:10,name:"Zivel Cumming"},
+  ]) {
+    const path=`${locale==="es"?"/es":""}/locations/${studio.state}/${studio.city}`;
+    const label=`${locale}/${studio.city}`;
+    await send("Page.navigate",{url:origin+path});
+    await wait(`location.pathname===${JSON.stringify(path)} && document.querySelectorAll('[data-location-faq] details').length===${studio.count}`);
+    check(`${label}: business heading`,await evaluate(`document.querySelector('h1').textContent.trim()`),studio.name);
+    check(`${label}: FAQ heading`,await evaluate(`document.querySelector('[data-location-faq] h2').textContent.trim()`),`Frequently Asked Questions About ${studio.name}`);
+    check(`${label}: initially collapsed`,await evaluate(`document.querySelectorAll('[data-location-faq] details[open]').length`),0);
+    check(`${label}: visible/schema parity`,await evaluate(`(()=>{const s=document.querySelector('[data-location-faq]');const j=JSON.parse(s.querySelector('script[type="application/ld+json"]').textContent);return JSON.stringify(j.mainEntity.map(i=>[i.name,i.acceptedAnswer.text]))===JSON.stringify([...s.querySelectorAll('details')].map(d=>[d.querySelector('summary').textContent,d.querySelector('p').textContent]))})()`),true);
+    if(studio.city==="fieldhouse") {
+      check(`${label}: no business rename`,await evaluate(`document.body.textContent.includes('Zivel Hernando')`),false);
+      check(`${label}: actual venue`,await evaluate(`document.body.textContent.includes('Located inside the Gatorade Fieldhouse near Hernando, MS')`),true);
+    } else {
+      check(`${label}: approved communities`,await evaluate(`document.querySelectorAll('[data-location-faq] details')[8].querySelector('p').textContent`),
+        "Zivel Cumming is in Forsyth County, GA, and welcomes clients from Alpharetta, Johns Creek, and Cumming, and surrounding communities.");
+    }
+    await evaluate(`document.querySelectorAll('[data-location-faq] summary')[8].click()`);
+    await wait(`document.querySelectorAll('[data-location-faq] details')[8].open`);
+    await evaluate(`document.querySelectorAll('[data-location-faq] summary')[9].click()`);
+    await wait(`!document.querySelectorAll('[data-location-faq] details')[8].open && document.querySelectorAll('[data-location-faq] details')[9].open`);
+    check(`${label}: exclusive interaction`,await evaluate(`document.querySelectorAll('[data-location-faq] details[open]').length`),1);
+  }
   check("runtime exceptions",errors,[]);
   fs.writeFileSync("/tmp/zivel-local-faq-browser-results.json",JSON.stringify({origin,results,errors},null,2));
   console.log(`PASS ${results.length} browser assertions, zero runtime exceptions.`);

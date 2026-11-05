@@ -66,7 +66,7 @@ test("strict required-field omissions and municipality filtering affect both vis
     assert(!doc.querySelector('script[type="application/ld+json"]').innerHTML.includes("Which areas"));
   }
   const windermere=local.buildStructuredLocationFaqs(bySlug("windermere")).find(i=>i.key==="structured-L1");
-  assert.equal(windermere.answer,"Zivel Cumming is in Forsyth County, GA, and welcomes clients from Alpharetta and Johns Creek, and surrounding communities.");
+  assert.equal(windermere.answer,"Zivel Cumming is in Forsyth County, GA, and welcomes clients from Alpharetta, Johns Creek, and Cumming, and surrounding communities.");
   assert(!local.buildStructuredLocationFaqs({...source,partnerApps:[""," "]},[]).some(i=>i.key==="structured-L3a"));
   const venue=bySlug("fieldhouse");
   for(const l of [{...venue,siteName:" "},{...venue,siteName:undefined}]) {
@@ -102,7 +102,7 @@ test("one/two app wording, venue text and no-online booking fallback exactly mat
   assert.equal(app.answer,"Zivel Riverton is listed on Wellhub. Eligible plans and availability are set by Wellhub, so check the app for current options.");
   const venue=bySlug("fieldhouse");
   const online=local.buildStructuredLocationFaqs(venue).find(i=>i.key==="structured-L4");
-  assert.equal(online.answer,"Yes. Zivel Hernando is located in Gatorade Fieldhouse, and anyone can book online or by phone, including athletes, families, and event visitors.");
+  assert.equal(online.answer,"Yes. Zivel Fieldhouse is located in Gatorade Fieldhouse, and anyone can book online or by phone, including athletes, families, and event visitors.");
   const phoneOnly={...venue,booking:undefined};
   const phone=local.buildStructuredLocationFaqs(phoneOnly).find(i=>i.key==="structured-L4");
   assert(phone.answer.includes(`call or text ${venue.contact.phone} to book`));

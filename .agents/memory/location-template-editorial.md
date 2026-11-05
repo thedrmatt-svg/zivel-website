@@ -10,6 +10,13 @@ Generic location title, description, H1 city-first naming and hero-subhead formu
 
 **How to apply:** Derive main-page City from the address municipality, keep source data unchanged, and do not turn every service/blog title into the same location title.
 
+### Fieldhouse naming exception
+The business must remain **Zivel Fieldhouse**, not Zivel Hernando. It is inside the **Gatorade Fieldhouse near Hernando, MS**; keep Hernando as its actual address locality.
+
+**Why:** The user corrected the city-first template because Zivel Fieldhouse is its established Google and public business name.
+
+**How to apply:** Preserve the Fieldhouse business label in headings, FAQs, metadata and image descriptions, and identify the venue separately. Do not relabel it as a Hernando business name or invent a Fieldhouse neighborhood of Hernando.
+
 ## Breadcrumb consistency
 Existing visible and BreadcrumbList location names must match the address city. Change the schema name values together with visible labels, preserving URLs and every other schema field.
 

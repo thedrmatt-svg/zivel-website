@@ -15,7 +15,7 @@ These optional fields live in each registered location's active content record:
 - `siteName`: the larger venue/shopping-center name; absent means empty.
 - `venueVisitors`: absent means false; true only for Fieldhouse in the approved data.
 
-Do not infer or enrich any field. The current address-first city helper provides the municipality, not the route/neighborhood name. A community equal to that municipality is removed before checking the minimum list length. Thus Windermere stores the approved Cumming entry but displays only Alpharetta and Johns Creek.
+Do not infer or enrich any field. The current address-first city helper provides the municipality, not the route/neighborhood name. A community equal to that municipality is removed before checking the minimum list length, except for the owner's explicit Windermere exception: its service-area FAQ includes Alpharetta, Johns Creek, and Cumming. Fieldhouse keeps the business name **Zivel Fieldhouse**; Hernando is the address municipality, not its business name. Identify the venue as the Gatorade Fieldhouse near Hernando, MS.
 
 Structured entries, in order:
 - **L1, service area:** needs county, state abbreviation and at least two other nearby communities.
