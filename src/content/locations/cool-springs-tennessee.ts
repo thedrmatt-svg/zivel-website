@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_franklin_cool_springs_location: Location = {
   name: "Zivel Franklin-Cool Springs",
+  county: "Williamson County",
+  nearbyCommunities: ["Brentwood", "Spring Hill", "Nolensville"],
   slug: "cool-springs",
   state: "TN",
   stateSlug: "tennessee",

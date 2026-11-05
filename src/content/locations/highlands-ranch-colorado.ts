@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_highlands_ranch_location: Location = {
   name: "Zivel Highlands Ranch",
+  county: "Douglas County",
+  nearbyCommunities: ["Lone Tree", "Littleton", "Centennial"],
   slug: "highlands-ranch",
   state: "CO",
   stateSlug: "colorado",

@@ -2,6 +2,10 @@ import type { Location } from "@/types/location";
 
 export const zivel_fieldhouse_location: Location = {
   name: "Zivel Fieldhouse",
+  county: "DeSoto County",
+  nearbyCommunities: ["Olive Branch", "Southaven", "Horn Lake"],
+  siteName: "Gatorade Fieldhouse",
+  venueVisitors: true,
   slug: "fieldhouse",
   state: "MS",
   stateSlug: "mississippi",

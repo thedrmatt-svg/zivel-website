@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_rogers_location: Location = {
   name: "Zivel Rogers",
+  county: "Benton County",
+  nearbyCommunities: ["Bentonville", "Lowell", "Springdale"],
   slug: "rogers",
   state: "AR",
   stateSlug: "arkansas",

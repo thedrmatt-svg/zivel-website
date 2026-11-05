@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_newport_location: Location = {
   name: "Zivel Newport",
+  county: "Campbell County",
+  nearbyCommunities: ["Covington", "Fort Thomas", "Cincinnati"],
   slug: "newport",
   state: "KY",
   stateSlug: "kentucky",

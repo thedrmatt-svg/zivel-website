@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_palm_coast_location: Location = {
   name: "Zivel Palm Coast",
+  county: "Flagler County",
+  nearbyCommunities: ["Flagler Beach", "Bunnell", "Ormond Beach"],
   slug: "palm-coast",
   state: "FL",
   stateSlug: "florida",

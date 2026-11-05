@@ -2,6 +2,9 @@ import type { Location } from "@/types/location";
 
 export const zivel_buckhead_location: Location = {
   name: "Zivel Buckhead",
+  county: "Fulton County",
+  nearbyCommunities: ["Sandy Springs", "Brookhaven", "Midtown Atlanta"],
+  partnerApps: ["ClassPass"],
   slug: "buckhead",
   state: "GA",
   stateSlug: "georgia",

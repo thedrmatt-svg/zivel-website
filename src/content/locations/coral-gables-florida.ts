@@ -2,6 +2,9 @@ import type { Location } from "@/types/location";
 
 export const zivel_coral_gables_location: Location = {
   name: "Zivel Coral Gables",
+  county: "Miami-Dade County",
+  nearbyCommunities: ["Miami", "South Miami", "Coconut Grove"],
+  partnerApps: ["ClassPass"],
   slug: "coral-gables",
   state: "FL",
   stateSlug: "florida",

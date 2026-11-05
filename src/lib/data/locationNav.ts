@@ -4,6 +4,10 @@ import type { Location } from "@/types/location";
 export type LocationNavCity = { label: string; href: string };
 export type LocationNavFeatured = { label: string; href: string; note?: string };
 
+export function getLocationHref(location: Pick<Location, "stateSlug" | "citySlug">): string {
+  return `/locations/${location.stateSlug.toLowerCase()}/${location.citySlug.toLowerCase()}`;
+}
+
 function titleCase(slug: string) {
   return slug
     .split("-")
@@ -21,7 +25,7 @@ export function getLocationNav(options?: { featuredCount?: number }) {
       const citySlug = loc.citySlug.toLowerCase();
       const cityName = loc.city ?? titleCase(citySlug);
       const stateShort = loc.state ?? stateSlug.toUpperCase();
-      return { label: `${cityName}, ${stateShort}`, href: `/locations/${stateSlug}/${citySlug}` };
+      return { label: `${cityName}, ${stateShort}`, href: getLocationHref(loc) };
     })
     .sort((a, b) => a.label.localeCompare(b.label));
 
@@ -36,7 +40,7 @@ export function getLocationNav(options?: { featuredCount?: number }) {
 
       return {
         label: `${cityName}${stateShort ? `, ${stateShort}` : ""}`,
-        href: `/locations/${stateSlug}/${citySlug}`,
+        href: getLocationHref(loc),
         note: loc.name ? String(loc.name) : undefined,
       } as LocationNavFeatured;
     });

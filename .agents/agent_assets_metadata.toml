@@ -28,3 +28,17 @@ mtime_ms = 1793898098569
 storage_uri = "gcs://replit-rams-assets-kirk/rams/assets/repl:ba8ee83f-a41c-4dac-8dfd-4ad41b4d9c43/d202d19c-2df8-4cc4-aa90-3d945d047333/0ab53b96-b12d-4ce2-862e-83d240b03c37"
 storage_version_token = "1793898149009051"
 content_type = "text/html"
+
+[[outputs]]
+id = "ItdAeSOQN0EcPl-yXvLZJ"
+uri = "file://reports/structured-local-faq-audit.html"
+type = "html"
+title = "Local FAQ implementation and audit"
+description = "All 19 studio rows, expected and rendered FAQ counts, L2 lists and opening-state exclusions, partner apps, changed-file list, and verification results."
+logical_id = "b71712d7-ca0e-4f1c-8dae-72064763f106"
+content_hash = "sha256:599980e68a885710e1847365521d5fcb6bde7bd4e0eb1742ddf7dd945aedc35e"
+size = 22998
+mtime_ms = 1793909315940
+storage_uri = "gcs://replit-rams-assets-kirk/rams/assets/repl:ba8ee83f-a41c-4dac-8dfd-4ad41b4d9c43/b71712d7-ca0e-4f1c-8dae-72064763f106/e569c09a-cd3f-4f2e-9e39-d1177c17a599"
+storage_version_token = "1793909341342645"
+content_type = "text/html"

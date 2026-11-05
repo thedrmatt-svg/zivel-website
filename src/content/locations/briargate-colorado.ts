@@ -2,6 +2,9 @@ import type { Location } from "@/types/location";
 
 export const zivel_briargate_location: Location = {
   name: "Zivel Briargate",
+  county: "El Paso County",
+  nearbyCommunities: ["Monument", "Black Forest", "the Air Force Academy area"],
+  partnerApps: ["Wellhub", "ClassPass"],
   slug: "briargate",
   city: "Colorado Springs",
   state: "CO",

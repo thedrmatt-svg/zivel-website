@@ -2,6 +2,9 @@ import type { Location } from "@/types/location";
 
 export const zivel_parker_location: Location = {
   name: "Zivel Parker",
+  county: "Douglas County",
+  nearbyCommunities: ["Lone Tree", "Aurora", "Castle Rock"],
+  siteName: "Crossing at Stonegate",
   slug: "parker",
   state: "CO",
   stateSlug: "colorado",

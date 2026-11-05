@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_cumming_windermere_location: Location = {
   name: "Zivel Cumming-Windermere",
+  county: "Forsyth County",
+  nearbyCommunities: ["Alpharetta", "Johns Creek", "Cumming"],
   slug: "windermere",
   state: "GA",
   stateSlug: "georgia",

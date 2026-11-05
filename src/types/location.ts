@@ -6,6 +6,13 @@ export type Location = {
   city?: string;
   citySlug: string;
 
+  // Owner-approved structured local FAQ facts; absent values remain empty.
+  county?: string;
+  nearbyCommunities?: string[];
+  partnerApps?: string[];
+  siteName?: string;
+  venueVisitors?: boolean;
+
   // Content freshness (used for sitemap <lastmod>; bump updatedAt whenever
   // meaningful location data changes — pricing, hours, services, images, etc.)
   createdAt?: string; // ISO date, first published

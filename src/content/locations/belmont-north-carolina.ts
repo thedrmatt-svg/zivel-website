@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_belmont_location: Location = {
   name: "Zivel Belmont",
+  county: "Gaston County",
+  nearbyCommunities: ["Mount Holly", "Gastonia", "Charlotte"],
   slug: "belmont",
   state: "NC",
   stateSlug: "north-carolina",

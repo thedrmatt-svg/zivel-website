@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_metairie_location: Location = {
   name: "Zivel Metairie",
+  county: "Jefferson Parish",
+  nearbyCommunities: ["New Orleans", "Kenner", "Harahan"],
   slug: "metairie",
   state: "LA",
   stateSlug: "louisiana",

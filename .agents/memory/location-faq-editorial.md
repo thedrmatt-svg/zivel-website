@@ -16,3 +16,9 @@ The user has approved data-driven local questions using supplied county, nearby-
 **Why:** The user supplied exact local values and template wording, with a strict instruction to omit any question missing a required field rather than guess its content.
 
 **How to apply:** Use only owner-supplied local facts; omit incomplete entries from both visible text and FAQPage schema, remove the current municipality from nearby-community lists, and exclude Brecksville from structured local additions and other-studio calculations. Keep manual localFaqs separate and empty until specifically approved.
+
+Other-state-studio FAQ lists must also exclude studios explicitly marked not yet open or coming soon. Do not alter data to force expected counts; report each affected list even when its count remains unchanged.
+
+**Why:** The user added this condition when approving the structured local FAQ plan.
+
+**How to apply:** Inspect studio-level opening flags, not service-level coming-soon flags. A coming-soon service alone does not mean the studio is closed.

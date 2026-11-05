@@ -2,6 +2,9 @@ import type { Location } from "@/types/location";
 
 export const zivel_riverton_location: Location = {
   name: "Zivel Riverton",
+  county: "Salt Lake County",
+  nearbyCommunities: ["South Jordan", "Herriman", "Bluffdale"],
+  partnerApps: ["Wellhub"],
   slug: "riverton",
   state: "UT",
   stateSlug: "utah",

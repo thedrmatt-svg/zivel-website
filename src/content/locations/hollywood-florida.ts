@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_hollywood_location: Location = {
   name: "Zivel Hollywood",
+  county: "Broward County",
+  nearbyCommunities: ["Hallandale Beach", "Dania Beach", "Pembroke Pines", "Miramar"],
   slug: "hollywood",
   state: "FL",
   stateSlug: "florida",

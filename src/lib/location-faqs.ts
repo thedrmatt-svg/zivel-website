@@ -7,6 +7,7 @@ import { getLocationDisplayPrices, getLocationNeighborhood, getLiveLocationServi
 import { getLocationBookingAction } from "@/lib/location-booking";
 import { getLocationMembershipMinimum } from "@/lib/location-memberships";
 import { getLocationEnhancementCopy, membershipText } from "@/lib/location-enhancement-copy";
+import { buildStructuredLocationFaqs } from "@/lib/location-local-faqs";
 
 export type LocationFaqPart = { text: string; href?: string };
 export type LocationFaqItem = {
@@ -147,6 +148,7 @@ export function buildLocationFaqs(location: Location, options: FaqOptions): Loca
   add("medical", "Are Zivel services medical treatments?", [
     { text: "No. Zivel wellness services are not medical treatments and do not diagnose, treat, cure, or prevent disease. If you have health concerns or questions about whether a service is right for you, talk with your healthcare provider first." },
   ]);
+  items.push(...buildStructuredLocationFaqs(location));
   for (const [index, faq] of (location.localFaqs ?? []).entries()) {
     const question = plainFaqText(faq.question), answer = plainFaqText(faq.answer);
     if (question && answer) add(`local-${index}`, question, [{ text: answer }]);

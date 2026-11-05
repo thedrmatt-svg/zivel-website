@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_murfreesboro_location: Location = {
   name: "Zivel Murfreesboro",
+  county: "Rutherford County",
+  nearbyCommunities: ["Smyrna", "La Vergne", "Christiana"],
   slug: "murfreesboro",
   state: "TN",
   stateSlug: "tennessee",

@@ -2,6 +2,8 @@ import type { Location } from "@/types/location";
 
 export const zivel_fayetteville_location: Location = {
   name: "Zivel Fayetteville",
+  county: "Washington County",
+  nearbyCommunities: ["Springdale", "Johnson", "Farmington"],
   slug: "fayetteville",
   state: "AR",
   stateSlug: "arkansas",

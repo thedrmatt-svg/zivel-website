@@ -90,6 +90,7 @@ test("18 in-scope FAQs render before contact, match schema and page facts, and l
   const counts = {};
   const serviceRoutes = new Set(LOCAL_SERVICE_COMBOS.map(c => `/locations/${c.state}/${c.city}/${c.service}`));
   const pageRoutes = new Set(locations.flatMap(l => [
+    `/locations/${l.stateSlug}/${l.citySlug}`,
     `/locations/${l.stateSlug}/${l.citySlug}/pricing`, `/locations/${l.stateSlug}/${l.citySlug}/pathways`,
   ]));
   for (const location of locations.filter(location => location.citySlug !== "brecksville")) {
@@ -115,7 +116,8 @@ test("18 in-scope FAQs render before contact, match schema and page facts, and l
     const script = validateSchema(after, section, label);
     const details = section.querySelectorAll("details");
     counts[location.citySlug] = details.length;
-    assert.equal(details.length, 8, label);
+    const structured = loadLocal(path.join(root, "src/lib/location-local-faqs")).buildStructuredLocationFaqs(location);
+    assert.equal(details.length, 8 + structured.length, label);
     const expectedGroup = ["belmont", "palm-coast"].includes(location.citySlug) ? undefined : "location-faq";
     for (const detail of details) {
       assert.equal(detail.getAttribute("name"), expectedGroup, `${label}: exclusive accordion grouping`);
@@ -167,13 +169,14 @@ test("18 in-scope FAQs render before contact, match schema and page facts, and l
 test("missing pricing and pathways omit exactly those questions in both visible HTML and schema", () => {
   const location = { ...locations[0], pricing: undefined };
   const items = buildLocationFaqs(location, { ...options(location), pathways: [] });
-  assert.equal(items.length, 6);
+  const localCount = loadLocal(path.join(root, "src/lib/location-local-faqs")).buildStructuredLocationFaqs(location).length;
+  assert.equal(items.length, 6 + localCount);
   assert(!items.some(item => item.key === "pricing" || item.key === "pathways"));
   const document = parse(renderToStaticMarkup(React.createElement(Faq, { cityName: cityName(location), items })));
-  assert.equal(document.querySelectorAll("details").length, 6);
+  assert.equal(document.querySelectorAll("details").length, 6 + localCount);
   validateSchema(document, document.querySelector("[data-location-faq]"), "missing data");
-  assert.equal(buildLocationFaqs(locations[0], { ...options(locations[0]), pathways: [] }).length, 7);
-  assert.equal(buildLocationFaqs(location, options(location)).length, 7);
+  assert.equal(buildLocationFaqs(locations[0], { ...options(locations[0]), pathways: [] }).length, 7 + localCount);
+  assert.equal(buildLocationFaqs(location, options(location)).length, 7 + localCount);
 });
 
 test("pricing range uses only individual-session numeric prices, not series, packages or membership equivalents", () => {
@@ -195,7 +198,8 @@ test("approved local entries append after standard entries; blank entries stay h
     { question: "", answer: "" },
   ] };
   const items = buildLocationFaqs(location, options(location));
-  assert.equal(items.length, 9);
+  const localCount = loadLocal(path.join(root, "src/lib/location-local-faqs")).buildStructuredLocationFaqs(location).length;
+  assert.equal(items.length, 9 + localCount);
   assert.equal(items.at(-1).question, "Approved local question?");
   assert.equal(items.at(-1).answer, "Approved & verified local answer.");
   assert.equal(buildLocationFaqSchema(items).mainEntity.at(-1).acceptedAnswer.text, items.at(-1).answer);
