@@ -30,6 +30,15 @@ const successfulData = id => ({
   }],
 });
 
+test("Hollywood uses its verified Google Place ID in both location data and the review cache", () => {
+  const placeId = "ChIJi939hZKr2YgRfV5beSrIpBg";
+  const locations = readFileSync("src/lib/data/locations.ts", "utf8");
+  const cache = JSON.parse(readFileSync("src/data/places-cache.json", "utf8"));
+  assert(locations.includes(`"florida/hollywood": "${placeId}"`));
+  assert.equal(cache[placeId]?.locationPath, "florida/hollywood");
+  assert.equal(Object.values(cache).filter(entry => entry?.locationPath === "florida/hollywood").length, 1);
+});
+
 function fixture(t, cache = original) {
   const dir = mkdtempSync(join(tmpdir(), "zivel-places-test-"));
   const cachePath = join(dir, "places-cache.json");

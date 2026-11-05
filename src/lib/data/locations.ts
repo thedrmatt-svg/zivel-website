@@ -52,7 +52,7 @@ const PLACE_ID_BY_LOCATION_PATH: Record<string, string> = {
   "mississippi/fieldhouse": "ChIJH-Rny771f4gR6Xo-0TmD4fY",
   "tennessee/cool-springs": "ChIJ2wrmYux_ZIgRBiaOZ9F4OJU",
   "colorado/highlands-ranch": "ChIJWfZHnFKDbIcRkP0dRbgJ9cA",
-  "florida/hollywood": "ChIJi939hJKr2YgRfV5beSrIpBg",
+  "florida/hollywood": "ChIJi939hZKr2YgRfV5beSrIpBg",
   "louisiana/metairie": "ChIJcRW5v4CvIIYRV9XzIn-1rjQ",
   "tennessee/murfreesboro": "ChIJYTKz_hoJZIgR1CouEEaQMCY",
   "kentucky/newport": "ChIJXQjPuRuxQYgRdVqMxDTFhb4",
