@@ -32,35 +32,6 @@ const offers = [
   },
 ];
 
-function PineLights() {
-  const bulbs = [
-    [29, 119],
-    [65, 104],
-    [102, 87],
-    [140, 70],
-    [179, 54],
-    [218, 39],
-    [253, 27],
-  ] as const;
-
-  return (
-    <svg className={styles.pineLights} viewBox="0 0 278 159" aria-hidden="true" focusable="false">
-      <path className={styles.lightWire} d="M18 113C67 95 113 72 159 53S228 26 263 12" />
-      {bulbs.map(([cx, cy]) => (
-        <g key={`${cx}-${cy}`} transform={`translate(${cx} ${cy})`}>
-          <ellipse className={styles.bulbHalo} cx="0" cy="0" rx="13" ry="13" />
-          <path
-            className={styles.bulb}
-            d="M-5.5-4C-5.5-10-3-12 0-12S5.5-10 5.5-4L4.1 3Q0 5-4.1 3Z"
-          />
-          <path className={styles.bulbSocket} d="M-3.4-10.5H3.4M-2.6-12.5H2.6" />
-          <path className={styles.bulbHighlight} d="M-1.8-7.5C-1.5-9-1-9.5-.2-9.8" />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
 export default function HollywoodHolidayHero() {
   return (
     <section className={styles.hero} aria-labelledby="location-hero-title">
@@ -74,18 +45,6 @@ export default function HollywoodHolidayHero() {
       </div>
 
       <div className={styles.inner}>
-        <div className={styles.pineHeaderBand} aria-hidden="true">
-          <div className={styles.pineHeader}>
-            <Image
-              src="/images/mock/holiday-pine-branch.png"
-              alt=""
-              width={278}
-              height={159}
-              className={styles.pineImage}
-            />
-            <PineLights />
-          </div>
-        </div>
         <header className={styles.heading}>
           <p className={styles.location}><span />ZIVEL HOLLYWOOD, FL<span /></p>
           <h1 id="location-hero-title">Holiday Offers</h1>
@@ -127,18 +86,6 @@ export default function HollywoodHolidayHero() {
           All services must be started and completed before 2/28/27. All sales are final and all
           services must be used at the location where they were purchased.
         </p>
-        <div className={styles.pineFooterBand} aria-hidden="true">
-          <div className={styles.pineFooter}>
-            <Image
-              src="/images/mock/holiday-pine-branch.png"
-              alt=""
-              width={278}
-              height={159}
-              className={styles.pineImage}
-            />
-            <PineLights />
-          </div>
-        </div>
       </div>
     </section>
   );

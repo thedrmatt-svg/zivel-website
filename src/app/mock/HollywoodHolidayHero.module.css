@@ -92,88 +92,6 @@
 .snowflake:nth-child(17) { --snow-x: 27%; --snow-size: 2px; --snow-duration: 15s; --snow-delay: -2s; --snow-drift: -16px; --snow-start-y: 92%; }
 .snowflake:nth-child(18) { --snow-x: 77%; --snow-size: 3px; --snow-duration: 13s; --snow-delay: -8s; --snow-drift: 17px; --snow-start-y: 30%; }
 
-.pineHeaderBand,
-.pineFooterBand {
-  position: relative;
-  width: 100%;
-  height: 110px;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.pineFooterBand {
-  height: 110px;
-  margin-top: 4rem;
-}
-
-.pineHeader,
-.pineFooter {
-  position: absolute;
-  width: clamp(160px, 14vw, 190px);
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .28));
-}
-
-.pineHeader {
-  top: 0;
-  right: 0;
-}
-
-.pineFooter {
-  bottom: 0;
-  left: 0;
-  transform: rotate(180deg);
-  opacity: .82;
-}
-
-.pineImage {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.pineLights {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
-  filter: drop-shadow(0 0 2px rgba(255, 219, 142, .4));
-}
-
-.lightWire {
-  fill: none;
-  stroke: rgba(180, 136, 65, .82);
-  stroke-width: 1.2;
-  stroke-linecap: round;
-}
-
-.bulbHalo {
-  fill: #f4c766;
-  opacity: .24;
-}
-
-.bulb {
-  fill: #fff0c9;
-  stroke: #c99a49;
-  stroke-width: 1.1;
-  stroke-linejoin: round;
-}
-
-.bulbSocket {
-  fill: none;
-  stroke: #d4aa5e;
-  stroke-width: 1.15;
-  stroke-linecap: round;
-}
-
-.bulbHighlight {
-  fill: none;
-  stroke: rgba(255, 255, 247, .96);
-  stroke-width: 1.1;
-  stroke-linecap: round;
-}
-
 .heading {
   position: relative;
   text-align: center;
@@ -433,8 +351,7 @@
   text-align: center;
 }
 
-.bow,
-.evergreen {
+.bow {
   position: absolute;
   z-index: 0;
   pointer-events: none;
@@ -472,20 +389,6 @@
 @media (max-width: 720px) {
   .hero {
     padding: calc(5rem + 1.2rem) 1rem 1.8rem;
-  }
-
-  .pineHeaderBand {
-    height: 80px;
-  }
-
-  .pineFooterBand {
-    height: 80px;
-    margin-top: 3.25rem;
-  }
-
-  .pineHeader,
-  .pineFooter {
-    width: 130px;
   }
 
   .heading {

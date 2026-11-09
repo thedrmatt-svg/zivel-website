@@ -18,4 +18,4 @@
 - [Local blog editorial rules](local-blog-editorial-rules.md) — local versions are individually written, not city-swapped; keep private editing separate from public pages.
 - [Review refresh safety](review-refresh-safety.md) — save valid partial results but report failure; preserve last-known-good reviews and do not overstate freshness.
 - [GitHub CLI compatibility](github-cli-compatibility.md) — use REST for workflow version errors; filter job logs safely.
-- [Holiday mock decorations](holiday-mock-decorations.md) — photographic pine with clearly visible Christmas lights; foliage must stay entirely outside offer cards.
+- [Holiday mock decorations](holiday-mock-decorations.md) — keep branches removed and retain the compact holiday hero layout.
