@@ -128,6 +128,8 @@
 
 .location {
   display: flex;
+  width: 100%;
+  max-width: none;
   align-items: center;
   justify-content: center;
   gap: clamp(.7rem, 2.3vw, 1.65rem);
