@@ -18,6 +18,29 @@
     linear-gradient(135deg, #061629, var(--midnight) 55%, #081b31);
 }
 
+.siteInfo {
+  --gold: #e7bd69;
+  --gold-pale: #f6dda0;
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  border-top: 1px solid rgba(225, 184, 101, .3);
+  color: #f8f1df;
+  background:
+    radial-gradient(ellipse at 48% 0%, rgba(29, 58, 87, .3), transparent 55%),
+    linear-gradient(135deg, #061629, #041426 55%, #081b31);
+}
+
+.siteInfo h2 {
+  color: var(--gold-pale);
+  text-shadow: 0 2px 18px rgba(223, 177, 89, .12);
+}
+
+.siteInfo :global(.zv-tagline) {
+  color: var(--gold);
+}
+
 .hero::before,
 .hero::after {
   position: absolute;

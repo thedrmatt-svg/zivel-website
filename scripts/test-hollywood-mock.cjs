@@ -24,6 +24,20 @@ test("holiday mock replaces only the hero, preserving the rest of Hollywood and 
   for (const link of hero.querySelectorAll("a")) {
     assert.equal(link.getAttribute("href"), "/locations/florida/hollywood/pricing");
   }
+  const info = mock.querySelector('[aria-labelledby="location-site-info-title"]');
+  assert(info, "Hollywood's original studio information follows the holiday hero");
+  assert.equal(mock.querySelectorAll("h1").length, 1);
+  const liveHero = live.querySelector('[aria-labelledby="location-hero-title"]');
+  assert.equal(info.querySelector("h2").text, liveHero.querySelector("h1").text);
+  assert.deepEqual(
+    info.querySelectorAll("a").map(link => [link.text, link.getAttribute("href")]),
+    liveHero.querySelectorAll("a").map(link => [link.text, link.getAttribute("href")]),
+  );
+  assert(info.querySelector('a[href="https://zivel.myperformanceiq.com/book-appointment?set_location=11433"]'));
+  assert(info.querySelector('a[href="tel:+17542178177"]'));
+  assert(info.querySelector("[data-location-hero-actions]"));
+  assert(!info.classNames.includes("bg-black"));
+  info.remove();
   hero.remove();
   live.querySelector('[aria-labelledby="location-hero-title"]').remove();
   assert.equal(mock.querySelector("main").outerHTML, (() => {
