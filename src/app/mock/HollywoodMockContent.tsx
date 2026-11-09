@@ -1,7 +1,11 @@
 import { cloneElement, isValidElement, type ComponentProps, type ReactNode } from "react";
 import LocationPage from "../[locale]/locations/[state]/[city]/page";
 import LocationFaq from "@/components/location/LocationFaq";
+import LocationStatusLine from "@/components/location/LocationStatusLine";
+import { getLocationByPath } from "@/lib/data/locations";
+import type { Location } from "@/types/location";
 import HollywoodHolidayHero from "./HollywoodHolidayHero";
+import HollywoodLocationInfo from "./HollywoodLocationInfo";
 import styles from "./HollywoodHolidayHero.module.css";
 
 type MockNodeProps = {
@@ -20,18 +24,19 @@ function containsLocationTitle(node: ReactNode): boolean {
   return "children" in node.props && containsLocationTitle(node.props.children);
 }
 
-function mockSiteInfo(node: ReactNode): ReactNode {
-  if (!isValidElement<MockNodeProps>(node)) return mockContent(node);
-  const className = node.props.className
-    ?.replace(/\bbg-black\b/g, "")
-    .trim();
-
-  return cloneElement(node, {
-    className: `${className ?? ""} ${styles.siteInfo}`.trim(),
-    role: "region",
-    "aria-labelledby": "location-site-info-title",
-    children: mockContent(node.props.children),
-  });
+function getStatusProps(node: ReactNode): ComponentProps<typeof LocationStatusLine> | undefined {
+  if (Array.isArray(node)) {
+    for (const child of node) {
+      const props = getStatusProps(child);
+      if (props) return props;
+    }
+    return undefined;
+  }
+  if (!isValidElement<MockNodeProps>(node)) return undefined;
+  if (node.type === LocationStatusLine) {
+    return node.props as ComponentProps<typeof LocationStatusLine>;
+  }
+  return "children" in node.props ? getStatusProps(node.props.children) : undefined;
 }
 
 /**
@@ -39,10 +44,10 @@ function mockSiteInfo(node: ReactNode): ReactNode {
  * location template. Only the mock's React tree is changed; the source page and
  * its metadata exports are untouched. No schema ever reaches the mock's HTML.
  */
-function mockContent(node: ReactNode): ReactNode {
+function mockContent(node: ReactNode, location: Location): ReactNode {
   // Keep section keys intact: LocationSectionOrder uses them to rank sections.
   if (Array.isArray(node)) return node.map((child, index) => {
-    const filtered = mockContent(child);
+    const filtered = mockContent(child, location);
     return isValidElement(filtered) && filtered.key === null
       ? cloneElement(filtered, { key: `mock-${index}` })
       : filtered;
@@ -53,7 +58,7 @@ function mockContent(node: ReactNode): ReactNode {
   if (node.type === "section" && node.props.className === "zv-bleed bg-[#0a0a0a] border-y border-white/10") {
     return cloneElement(node, {
       className: `zv-bleed border-y border-white/10 ${styles.trustBar}`,
-      children: mockContent(node.props.children),
+      children: mockContent(node.props.children, location),
     });
   }
   if (node.type === "section" && node.props["aria-labelledby"] === "location-hero-title") {
@@ -64,29 +69,29 @@ function mockContent(node: ReactNode): ReactNode {
     return (
       <>
         <HollywoodHolidayHero />
-        {siteInfo ? mockSiteInfo(siteInfo) : null}
+        {siteInfo ? (
+          <HollywoodLocationInfo
+            location={location}
+            statusProps={getStatusProps(siteInfo)}
+          />
+        ) : null}
       </>
     );
   }
   // FAQ is the only nested server component that emits its own JSON-LD.
   // Expand it here so its visible accordion is preserved, but not its schema.
   if (node.type === LocationFaq) {
-    return mockContent(LocationFaq(node.props as ComponentProps<typeof LocationFaq>));
-  }
-  if (node.type === "h1" && node.props.id === "location-hero-title") {
-    return (
-      <h2 id="location-site-info-title" className={node.props.className}>
-        {mockContent(node.props.children)}
-      </h2>
-    );
+    return mockContent(LocationFaq(node.props as ComponentProps<typeof LocationFaq>), location);
   }
   if (!("children" in node.props)) return node;
-  return cloneElement(node, { children: mockContent(node.props.children) });
+  return cloneElement(node, { children: mockContent(node.props.children, location) });
 }
 
 export default async function HollywoodMockContent() {
+  const location = getLocationByPath("florida", "hollywood");
+  if (!location) throw new Error("Hollywood mock requires the existing Hollywood location.");
   const content = await LocationPage({
     params: Promise.resolve({ state: "florida", city: "hollywood", locale: "en" }),
   });
-  return <>{mockContent(content)}</>;
+  return <>{mockContent(content, location)}</>;
 }

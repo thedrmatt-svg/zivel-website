@@ -26,15 +26,20 @@ test("holiday mock replaces only the hero, preserving the rest of Hollywood and 
   for (const link of hero.querySelectorAll("a")) {
     assert.equal(link.getAttribute("href"), "/locations/florida/hollywood/pricing");
   }
-  const info = mock.querySelector('[aria-labelledby="location-site-info-title"]');
+  const info = mock.querySelector('[aria-labelledby="location-info-title"]');
   assert(info, "Hollywood's original studio information follows the holiday hero");
   assert.equal(mock.querySelectorAll("h1").length, 1);
   const liveHero = live.querySelector('[aria-labelledby="location-hero-title"]');
   assert.equal(info.querySelector("h2").text, liveHero.querySelector("h1").text);
-  assert.deepEqual(
-    info.querySelectorAll("a").map(link => [link.text, link.getAttribute("href")]),
-    liveHero.querySelectorAll("a").map(link => [link.text, link.getAttribute("href")]),
-  );
+  assert(info.text.includes("3361 Sheridan St, Hollywood, FL 33021"));
+  assert(!info.text.includes("Consistency is where results compound"));
+  assert(!info.querySelector('[aria-label="Breadcrumb"]'));
+  assert.equal(info.querySelectorAll("a").length, 4);
+  assert.equal(info.querySelectorAll(".bookButton").length, 1);
+  assert.equal(info.querySelector('a[href="/locations/florida/hollywood/pricing"]').text, "Pricing");
+  const liveDirections = liveHero.querySelectorAll("a").find(link => link.text === "Directions");
+  assert(info.querySelectorAll("a").some(link => link.text === "Directions" &&
+    link.getAttribute("href") === liveDirections.getAttribute("href")));
   assert(info.querySelector('a[href="https://zivel.myperformanceiq.com/book-appointment?set_location=11433"]'));
   assert(info.querySelector('a[href="tel:+17542178177"]'));
   assert(info.querySelector("[data-location-hero-actions]"));
