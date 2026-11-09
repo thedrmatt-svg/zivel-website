@@ -14,7 +14,8 @@ export default function middleware(request: NextRequest, event: NextFetchEvent) 
   }
   // These campaign routes intentionally bypass locale handling, but still need
   // the same indexing protection for unused legacy ?route= URLs.
-  const bypassLocale = /^\/(?:ads|riverton-ads|riverton-google)/.test(request.nextUrl.pathname);
+  const isMock = /^\/mock\/?$/.test(request.nextUrl.pathname);
+  const bypassLocale = isMock || /^\/(?:ads|riverton-ads|riverton-google)/.test(request.nextUrl.pathname);
   // Pass the request directly to next-intl's middleware.
   // Previously we injected an x-pathname header here so server components
   // could read the current pathname via headers(). That call to headers()
@@ -24,6 +25,7 @@ export default function middleware(request: NextRequest, event: NextFetchEvent) 
   // x-pathname is no longer read anywhere; removing it keeps the middleware
   // header surface minimal.
   const response = bypassLocale ? NextResponse.next() : intlMiddleware(request);
+  if (isMock) response.headers.set("X-Robots-Tag", "noindex, nofollow");
 
   // The site does not use the old ?route= router. Keep every nonempty legacy
   // route value out of search results without altering normal-page canonicals

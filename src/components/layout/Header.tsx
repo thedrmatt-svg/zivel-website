@@ -14,11 +14,15 @@ import { getHeaderBookingAction, type LocationBookingActions } from "@/lib/locat
 export default function Header({
   locationNav: LOCATIONS_NAV,
   bookingActions,
+  pathnameOverride,
 }: {
   locationNav: ReturnType<typeof getLocationNav>;
   bookingActions: LocationBookingActions;
+  /** Let an isolated preview display the source page's navigation and booking action. */
+  pathnameOverride?: string;
 }) {
-  const pathname = usePathname();
+  const currentPathname = usePathname();
+  const pathname = pathnameOverride ?? currentPathname;
   const bookingAction = getHeaderBookingAction(pathname, bookingActions);
   const isBrecksville = isBrecksvilleLocationPath(pathname);
   const bookingDisabled = isBrecksville;
