@@ -37,6 +37,12 @@
   text-shadow: 0 2px 18px rgba(223, 177, 89, .12);
 }
 
+.trustBar {
+  background:
+    radial-gradient(ellipse at 48% 0%, rgba(29, 58, 87, .3), transparent 55%),
+    linear-gradient(135deg, #061629, #041426 55%, #081b31);
+}
+
 .siteInfo :global(.zv-tagline) {
   color: var(--gold);
 }

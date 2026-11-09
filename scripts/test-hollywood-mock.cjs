@@ -6,7 +6,9 @@ const { createLocationRenderer } = require("./lib/location-renderer.cjs");
 
 test("holiday mock replaces only the hero, preserving the rest of Hollywood and omitting schema", async () => {
   const r = createLocationRenderer();
-  r.wrappers["./HollywoodHolidayHero.module.css"] = new Proxy({}, { get: (_, key) => String(key) });
+  r.wrappers["./HollywoodHolidayHero.module.css"] = new Proxy({}, {
+    get: (_, key) => key === "__esModule" ? false : String(key),
+  });
   const live = await r.render("src/app/[locale]/locations/[state]/[city]/page", {
     locale: "en", state: "florida", city: "hollywood",
   });
@@ -38,6 +40,14 @@ test("holiday mock replaces only the hero, preserving the rest of Hollywood and 
   assert(info.querySelector("[data-location-hero-actions]"));
   assert(!info.classNames.includes("bg-black"));
   info.remove();
+  const trustBar = mock.querySelector("section.trustBar");
+  const liveTrustBar = live.querySelectorAll("section").find(section =>
+    section.getAttribute("class") === "zv-bleed bg-[#0a0a0a] border-y border-white/10"
+  );
+  assert(trustBar, "The trust bar uses the mock holiday navy background");
+  assert.equal(trustBar.innerHTML, liveTrustBar.innerHTML);
+  trustBar.remove();
+  liveTrustBar.remove();
   hero.remove();
   live.querySelector('[aria-labelledby="location-hero-title"]').remove();
   assert.equal(mock.querySelector("main").outerHTML, (() => {

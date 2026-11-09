@@ -50,6 +50,12 @@ function mockContent(node: ReactNode): ReactNode {
   if (!isValidElement<MockNodeProps>(node)) return node;
   if (node.type === "meta") return null;
   if (node.type === "script" && node.props.type === "application/ld+json") return null;
+  if (node.type === "section" && node.props.className === "zv-bleed bg-[#0a0a0a] border-y border-white/10") {
+    return cloneElement(node, {
+      className: `zv-bleed border-y border-white/10 ${styles.trustBar}`,
+      children: mockContent(node.props.children),
+    });
+  }
   if (node.type === "section" && node.props["aria-labelledby"] === "location-hero-title") {
     const sourceChildren = Array.isArray(node.props.children)
       ? node.props.children
