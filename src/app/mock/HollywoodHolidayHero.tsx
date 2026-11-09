@@ -59,10 +59,10 @@ export default function HollywoodHolidayHero() {
         />
       </div>
       <div className={styles.bow} aria-hidden="true">
-        <Image src="/images/mock/holiday-bow.jpg" alt="" width={370} height={285} priority />
+        <Image src="/images/mock/holiday-bow-transparent.png" alt="" width={370} height={285} priority />
       </div>
       <div className={styles.evergreen} aria-hidden="true">
-        <Image src="/images/mock/holiday-evergreen.jpg" alt="" width={245} height={350} />
+        <Image src="/images/mock/holiday-pine-branch.png" alt="" width={278} height={159} />
       </div>
 
       <div className={styles.inner}>

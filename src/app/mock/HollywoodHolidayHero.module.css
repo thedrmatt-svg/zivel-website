@@ -194,7 +194,7 @@
   overflow: hidden;
   border: 1px solid rgba(231, 189, 105, .9);
   border-radius: 17px;
-  background: linear-gradient(180deg, #10243a 0%, #06172a 62%, #041325 100%);
+  background: transparent;
   box-shadow: 0 14px 38px rgba(0, 0, 0, .24), inset 0 0 0 1px rgba(255, 240, 205, .09);
   animation: card-arrive .65s both;
   transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
@@ -392,7 +392,6 @@
   left: 0;
   width: clamp(115px, 19vw, 270px);
   aspect-ratio: 370 / 285;
-  mix-blend-mode: screen;
   /* Keep the ribbon crop, but exclude the offer-card corner in the reference. */
   clip-path: polygon(0 0, 100% 0, 100% 75%, 30% 75%, 30% 100%, 0 100%);
   -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
@@ -409,11 +408,9 @@
   right: 0;
   bottom: 0;
   width: clamp(76px, 13vw, 170px);
-  aspect-ratio: 245 / 350;
-  opacity: .48;
-  mix-blend-mode: screen;
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 32%);
-  mask-image: linear-gradient(180deg, transparent, #000 32%);
+  aspect-ratio: 278 / 159;
+  opacity: .8;
+  transform: rotate(-25deg);
 }
 
 .evergreen img {
