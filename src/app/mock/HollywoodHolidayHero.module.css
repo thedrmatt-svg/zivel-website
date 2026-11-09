@@ -1,0 +1,450 @@
+.hero {
+  --midnight: #041426;
+  --deep-navy: #071a31;
+  --gold: #e7bd69;
+  --gold-pale: #f6dda0;
+  position: relative;
+  isolation: isolate;
+  width: 100vw;
+  margin-top: -5rem;
+  margin-left: 50%;
+  padding: calc(5rem + 1.6rem) 1.25rem 2rem;
+  transform: translateX(-50%);
+  overflow: hidden;
+  color: #f8f1df;
+  background:
+    radial-gradient(ellipse at 49% 18%, rgba(29, 58, 87, .42), transparent 48%),
+    radial-gradient(ellipse at 50% 100%, rgba(20, 44, 69, .24), transparent 52%),
+    linear-gradient(135deg, #061629, var(--midnight) 55%, #081b31);
+}
+
+.hero::before,
+.hero::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+}
+
+.hero::before {
+  inset: 0;
+  opacity: .28;
+  background-image:
+    radial-gradient(1px 1px at 18% 23%, rgba(255, 224, 160, .85) 0, transparent 2px),
+    radial-gradient(1px 1px at 76% 18%, rgba(255, 224, 160, .72) 0, transparent 2px),
+    radial-gradient(1.5px 1.5px at 89% 69%, rgba(255, 224, 160, .7) 0, transparent 2.5px),
+    radial-gradient(1px 1px at 11% 77%, rgba(255, 224, 160, .65) 0, transparent 2px);
+}
+
+.hero::after {
+  inset: 12px;
+  border: 1px solid rgba(225, 184, 101, .12);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1190px);
+  margin-inline: auto;
+}
+
+.heading {
+  position: relative;
+  text-align: center;
+  margin: 0 auto 1.45rem;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(.7rem, 2.3vw, 1.65rem);
+  margin: 0 0 .3rem;
+  color: var(--gold);
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(.65rem, 1.2vw, .9rem);
+  font-weight: 500;
+  letter-spacing: .35em;
+  line-height: 1.5;
+}
+
+.location span {
+  width: clamp(22px, 6vw, 70px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(231, 189, 105, .86));
+}
+
+.location span:last-child {
+  transform: scaleX(-1);
+}
+
+.heading h1 {
+  margin: 0;
+  color: var(--gold-pale);
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2.55rem, 7.5vw, 5.9rem);
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: 1.04;
+  text-transform: uppercase;
+  text-shadow: 0 2px 18px rgba(223, 177, 89, .14);
+}
+
+.rule {
+  display: flex;
+  justify-content: center;
+  width: min(75%, 620px);
+  height: 1px;
+  margin: 1.05rem auto 0;
+  background: linear-gradient(90deg, transparent, rgba(219, 176, 96, .55), transparent);
+}
+
+.rule span {
+  width: 32px;
+  transform: translateY(-1px);
+  background: #f0cc7e;
+}
+
+.offers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(.8rem, 1.8vw, 1.45rem);
+  align-items: stretch;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(231, 189, 105, .9);
+  border-radius: 17px;
+  background: linear-gradient(180deg, #10243a 0%, #06172a 62%, #041325 100%);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, .24), inset 0 0 0 1px rgba(255, 240, 205, .09);
+  animation: card-arrive .65s both;
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #f5d894;
+  box-shadow: 0 20px 42px rgba(0, 0, 0, .35), inset 0 0 0 1px rgba(255, 240, 205, .15);
+}
+
+.photo {
+  position: relative;
+  height: clamp(145px, 19vw, 222px);
+  overflow: hidden;
+  background: #172234;
+}
+
+.photoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transition: transform .5s ease;
+}
+
+.card:hover .photoImage {
+  transform: scale(1.035);
+}
+
+.photoShade {
+  position: absolute;
+  inset: 25% 0 0;
+  background: linear-gradient(180deg, transparent, rgba(4, 17, 32, .86));
+}
+
+.memberFlag {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding: .5rem 1.35rem .56rem;
+  transform: translateX(-50%);
+  border-radius: 0 0 9px 9px;
+  color: #162033;
+  background: linear-gradient(105deg, #d9aa52, #f5d88f 48%, #d5a34b);
+  font-family: var(--font-inter), sans-serif;
+  font-size: .7rem;
+  font-weight: 750;
+  letter-spacing: .13em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cardContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: .9rem 1rem 1.1rem;
+  text-align: center;
+}
+
+.offerTitle {
+  display: flex;
+  min-height: 2.7em;
+  align-items: center;
+  justify-content: center;
+  max-width: 19ch;
+  margin: 0;
+  color: #fff8eb;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(.95rem, 1.7vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: .075em;
+  line-height: 1.18;
+  text-transform: uppercase;
+}
+
+.offerTitle::after {
+  position: absolute;
+  content: "";
+}
+
+.price {
+  width: 100%;
+  margin-top: .2rem;
+  border-top: 1px solid rgba(230, 190, 108, .38);
+  color: var(--gold-pale);
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(3.35rem, 6.2vw, 4.9rem);
+  font-weight: 500;
+  letter-spacing: -.045em;
+  line-height: 1.16;
+  text-shadow: 0 2px 20px rgba(225, 174, 82, .16);
+}
+
+.detail {
+  margin: .02rem 0 1rem;
+  color: rgba(255, 247, 231, .96);
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(.95rem, 1.5vw, 1.08rem);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.action {
+  display: inline-flex;
+  min-height: 43px;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  margin-top: auto;
+  padding: .65rem 1.3rem;
+  border: 1px solid rgba(255, 232, 181, .58);
+  border-radius: 9px;
+  color: #171a20;
+  background: linear-gradient(110deg, #dba94f, #f5d88e 48%, #d9a64c);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .38), 0 3px 12px rgba(0, 0, 0, .2);
+  font-family: var(--font-inter), sans-serif;
+  font-size: .87rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.action span {
+  font-size: 1.35em;
+  font-weight: 400;
+  line-height: .7;
+  transition: transform .2s ease;
+}
+
+.action:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(110deg, #efc46b, #fff0b8 48%, #ecc167);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .54), 0 6px 18px rgba(0, 0, 0, .28);
+}
+
+.action:hover span {
+  transform: translateX(3px);
+}
+
+.action:focus-visible {
+  outline: 3px solid #fff2c6;
+  outline-offset: 4px;
+}
+
+.disclaimer {
+  max-width: 1040px;
+  margin: 1.1rem auto 0;
+  color: rgba(255, 247, 231, .9);
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(.69rem, 1.15vw, .82rem);
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.bow,
+.evergreen {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .85;
+}
+
+.bow {
+  top: 4.8rem;
+  left: 0;
+  width: clamp(115px, 19vw, 270px);
+  aspect-ratio: 370 / 285;
+  mix-blend-mode: screen;
+  /* Keep the ribbon crop, but exclude the offer-card corner in the reference. */
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 30% 75%, 30% 100%, 0 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
+}
+
+.bow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.evergreen {
+  right: 0;
+  bottom: 0;
+  width: clamp(76px, 13vw, 170px);
+  aspect-ratio: 245 / 350;
+  opacity: .48;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 32%);
+  mask-image: linear-gradient(180deg, transparent, #000 32%);
+}
+
+.evergreen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes card-arrive {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding: calc(5rem + 1.2rem) 1rem 1.8rem;
+  }
+
+  .heading {
+    margin-bottom: 1.1rem;
+  }
+
+  .offers {
+    grid-template-columns: 1fr;
+    max-width: 470px;
+    margin-inline: auto;
+    gap: 1rem;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: minmax(115px, 39%) 1fr;
+    min-height: 184px;
+    border-radius: 13px;
+  }
+
+  .photo {
+    height: 100%;
+    min-height: 184px;
+  }
+
+  .photoShade {
+    inset: 40% 0 0;
+  }
+
+  .cardContent {
+    min-width: 0;
+    padding: .85rem .8rem .9rem;
+  }
+
+  .offerTitle {
+    min-height: auto;
+    font-size: clamp(.85rem, 3.6vw, 1.05rem);
+    letter-spacing: .045em;
+  }
+
+  .price {
+    margin-top: .4rem;
+    font-size: clamp(3rem, 14vw, 4rem);
+  }
+
+  .detail {
+    margin-bottom: .7rem;
+    font-size: .92rem;
+  }
+
+  .action {
+    width: 100%;
+    min-height: 40px;
+    gap: .35rem;
+    padding: .55rem .5rem;
+    font-size: clamp(.73rem, 3vw, .85rem);
+  }
+
+  .memberFlag {
+    left: 0;
+    transform: none;
+    padding: .42rem .48rem;
+    border-radius: 0 0 7px 0;
+    font-size: .52rem;
+    letter-spacing: .07em;
+  }
+
+  .bow {
+    top: 4.9rem;
+    width: 105px;
+    opacity: .56;
+  }
+
+  .evergreen {
+    width: 76px;
+  }
+
+  .disclaimer {
+    max-width: 470px;
+    margin-top: 1rem;
+    font-size: .7rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero {
+    padding-inline: .7rem;
+  }
+
+  .location {
+    letter-spacing: .24em;
+  }
+
+  .card {
+    grid-template-columns: 34% 1fr;
+  }
+
+  .cardContent {
+    padding-inline: .6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+    transition: none;
+  }
+
+  .photoImage,
+  .action,
+  .action span {
+    transition: none;
+  }
+}

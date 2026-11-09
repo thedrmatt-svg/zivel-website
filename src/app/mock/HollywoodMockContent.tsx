@@ -1,6 +1,7 @@
 import { cloneElement, isValidElement, type ComponentProps, type ReactNode } from "react";
 import LocationPage from "../[locale]/locations/[state]/[city]/page";
 import LocationFaq from "@/components/location/LocationFaq";
+import HollywoodHolidayHero from "./HollywoodHolidayHero";
 
 /**
  * Reuse the real server-rendered page instead of maintaining a second, drifting
@@ -15,9 +16,12 @@ function mockContent(node: ReactNode): ReactNode {
       ? cloneElement(filtered, { key: `mock-${index}` })
       : filtered;
   });
-  if (!isValidElement<{ children?: ReactNode; type?: string }>(node)) return node;
+  if (!isValidElement<{ children?: ReactNode; type?: string; "aria-labelledby"?: string }>(node)) return node;
   if (node.type === "meta") return null;
   if (node.type === "script" && node.props.type === "application/ld+json") return null;
+  if (node.type === "section" && node.props["aria-labelledby"] === "location-hero-title") {
+    return <HollywoodHolidayHero />;
+  }
   // FAQ is the only nested server component that emits its own JSON-LD.
   // Expand it here so its visible accordion is preserved, but not its schema.
   if (node.type === LocationFaq) {
