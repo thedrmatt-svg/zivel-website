@@ -48,6 +48,112 @@
   margin-inline: auto;
 }
 
+.snowfall {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 22px 31px, rgba(255, 250, 239, .48) 1px, transparent 2px),
+    radial-gradient(circle at 94px 102px, rgba(255, 250, 239, .28) 1.5px, transparent 2.5px);
+  background-size: 153px 177px, 229px 213px;
+}
+
+.snowflake {
+  position: absolute;
+  top: -14px;
+  left: var(--snow-x);
+  width: var(--snow-size, 3px);
+  height: var(--snow-size, 3px);
+  border-radius: 50%;
+  background: rgba(255, 249, 230, .76);
+  box-shadow: 0 0 5px rgba(240, 224, 185, .22);
+  opacity: .62;
+  animation: snowfall var(--snow-duration, 11s) linear var(--snow-delay, 0s) infinite;
+}
+
+.snowflake:nth-child(1) { --snow-x: 5%; --snow-size: 3px; --snow-duration: 12s; --snow-delay: -8s; --snow-drift: 18px; --snow-start-y: 12%; }
+.snowflake:nth-child(2) { --snow-x: 12%; --snow-size: 2px; --snow-duration: 10s; --snow-delay: -3s; --snow-drift: -13px; --snow-start-y: 43%; }
+.snowflake:nth-child(3) { --snow-x: 18%; --snow-size: 4px; --snow-duration: 14s; --snow-delay: -11s; --snow-drift: 22px; --snow-start-y: 76%; }
+.snowflake:nth-child(4) { --snow-x: 24%; --snow-size: 2px; --snow-duration: 11s; --snow-delay: -5s; --snow-drift: -17px; --snow-start-y: 28%; }
+.snowflake:nth-child(5) { --snow-x: 31%; --snow-size: 3px; --snow-duration: 13s; --snow-delay: -9s; --snow-drift: 14px; --snow-start-y: 63%; }
+.snowflake:nth-child(6) { --snow-x: 37%; --snow-size: 2px; --snow-duration: 9s; --snow-delay: -2s; --snow-drift: 20px; --snow-start-y: 18%; }
+.snowflake:nth-child(7) { --snow-x: 43%; --snow-size: 4px; --snow-duration: 15s; --snow-delay: -12s; --snow-drift: -18px; --snow-start-y: 52%; }
+.snowflake:nth-child(8) { --snow-x: 49%; --snow-size: 2px; --snow-duration: 12s; --snow-delay: -6s; --snow-drift: 16px; --snow-start-y: 88%; }
+.snowflake:nth-child(9) { --snow-x: 55%; --snow-size: 3px; --snow-duration: 10s; --snow-delay: -4s; --snow-drift: -14px; --snow-start-y: 34%; }
+.snowflake:nth-child(10) { --snow-x: 61%; --snow-size: 2px; --snow-duration: 14s; --snow-delay: -10s; --snow-drift: 19px; --snow-start-y: 70%; }
+.snowflake:nth-child(11) { --snow-x: 67%; --snow-size: 4px; --snow-duration: 11s; --snow-delay: -7s; --snow-drift: -20px; --snow-start-y: 22%; }
+.snowflake:nth-child(12) { --snow-x: 73%; --snow-size: 2px; --snow-duration: 13s; --snow-delay: -1s; --snow-drift: 15px; --snow-start-y: 58%; }
+.snowflake:nth-child(13) { --snow-x: 79%; --snow-size: 3px; --snow-duration: 9s; --snow-delay: -6s; --snow-drift: -15px; --snow-start-y: 82%; }
+.snowflake:nth-child(14) { --snow-x: 85%; --snow-size: 2px; --snow-duration: 15s; --snow-delay: -13s; --snow-drift: 21px; --snow-start-y: 39%; }
+.snowflake:nth-child(15) { --snow-x: 91%; --snow-size: 4px; --snow-duration: 12s; --snow-delay: -9s; --snow-drift: -18px; --snow-start-y: 6%; }
+.snowflake:nth-child(16) { --snow-x: 97%; --snow-size: 2px; --snow-duration: 10s; --snow-delay: -5s; --snow-drift: 13px; --snow-start-y: 48%; }
+.snowflake:nth-child(17) { --snow-x: 27%; --snow-size: 2px; --snow-duration: 15s; --snow-delay: -2s; --snow-drift: -16px; --snow-start-y: 92%; }
+.snowflake:nth-child(18) { --snow-x: 77%; --snow-size: 3px; --snow-duration: 13s; --snow-delay: -8s; --snow-drift: 17px; --snow-start-y: 30%; }
+
+.holly {
+  position: absolute;
+  z-index: 0;
+  width: clamp(145px, 19vw, 230px);
+  pointer-events: none;
+  opacity: .87;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, .3));
+}
+
+.holly svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.hollyUpper {
+  top: 29%;
+  right: -35px;
+  transform: rotate(-7deg);
+}
+
+.hollyLower {
+  bottom: 8%;
+  left: -72px;
+  transform: rotate(173deg);
+  opacity: .72;
+}
+
+.stem {
+  fill: none;
+  stroke: #3a754c;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.leaf {
+  fill: #24563d;
+  stroke: #4e855b;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.leafVein {
+  fill: none;
+  stroke: #8ca76d;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: .76;
+}
+
+.berry {
+  fill: #a9343c;
+  stroke: #d47668;
+  stroke-width: 1;
+}
+
+.berryShine {
+  fill: #f0b49a;
+  opacity: .76;
+}
+
 .heading {
   position: relative;
   text-align: center;
@@ -330,9 +436,30 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes snowfall {
+  from { transform: translate3d(0, -35px, 0); opacity: .15; }
+  15% { opacity: .72; }
+  to { transform: translate3d(var(--snow-drift, 18px), 108vh, 0); opacity: .12; }
+}
+
 @media (max-width: 720px) {
   .hero {
     padding: calc(5rem + 1.2rem) 1rem 1.8rem;
+  }
+
+  .holly {
+    width: 120px;
+    opacity: .57;
+  }
+
+  .hollyUpper {
+    top: 5.7rem;
+    right: -35px;
+  }
+
+  .hollyLower {
+    bottom: 8%;
+    left: -73px;
   }
 
   .heading {
@@ -437,6 +564,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .snowflake {
+    top: var(--snow-start-y);
+    animation: none;
+    opacity: .36;
+  }
+
   .card {
     animation: none;
     transition: none;
