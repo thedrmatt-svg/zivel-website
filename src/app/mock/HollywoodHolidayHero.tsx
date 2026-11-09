@@ -40,43 +40,23 @@ export default function HollywoodHolidayHero() {
           <span className={styles.snowflake} key={index} />
         ))}
       </div>
-      <div className={`${styles.holly} ${styles.hollyUpper}`} aria-hidden="true">
-        <svg viewBox="0 0 240 180" focusable="false">
-          <path className={styles.stem} d="M18 160C76 123 133 75 218 14" />
-          <path className={styles.leaf} d="M86 112C68 109 62 121 46 113C48 102 42 98 29 94C43 87 42 78 38 66C53 69 60 61 67 49C74 64 86 65 98 62C91 77 97 86 107 96C95 99 91 104 86 112Z" />
-          <path className={styles.leafVein} d="M47 101C65 99 78 95 97 76" />
-          <path className={styles.leaf} d="M126 84C111 77 99 84 88 74C95 62 91 54 83 44C98 45 105 37 110 23C119 37 131 36 143 33C137 47 144 56 155 63C142 68 136 74 126 84Z" />
-          <path className={styles.leafVein} d="M101 72C118 64 130 56 143 43" />
-          <path className={styles.leaf} d="M165 53C151 45 139 50 129 39C136 28 133 19 126 9C140 11 147 3 152 -9C161 5 173 4 185 1C179 15 186 24 197 31C184 36 176 43 165 53Z" />
-          <path className={styles.leafVein} d="M143 38C158 30 171 22 184 11" />
-          <path className={styles.leaf} d="M77 135C67 119 53 118 51 103C63 98 66 89 64 76C76 84 85 79 98 73C96 89 104 96 115 104C102 109 96 118 90 132L77 135Z" />
-          <path className={styles.leafVein} d="M66 108C78 111 88 111 104 101" />
-          <circle className={styles.berry} cx="166" cy="78" r="10" />
-          <circle className={styles.berry} cx="185" cy="67" r="9" />
-          <circle className={styles.berry} cx="185" cy="89" r="9" />
-          <circle className={styles.berryShine} cx="163" cy="75" r="2.2" />
-          <circle className={styles.berryShine} cx="182" cy="64" r="2" />
-          <circle className={styles.berryShine} cx="182" cy="86" r="2" />
-        </svg>
+      <div className={`${styles.pine} ${styles.pineUpper}`} aria-hidden="true">
+        <Image
+          src="/images/mock/holiday-pine-branch.png"
+          alt=""
+          width={278}
+          height={159}
+          className={styles.pineImage}
+        />
       </div>
-      <div className={`${styles.holly} ${styles.hollyLower}`} aria-hidden="true">
-        <svg viewBox="0 0 240 180" focusable="false">
-          <path className={styles.stem} d="M18 160C76 123 133 75 218 14" />
-          <path className={styles.leaf} d="M86 112C68 109 62 121 46 113C48 102 42 98 29 94C43 87 42 78 38 66C53 69 60 61 67 49C74 64 86 65 98 62C91 77 97 86 107 96C95 99 91 104 86 112Z" />
-          <path className={styles.leafVein} d="M47 101C65 99 78 95 97 76" />
-          <path className={styles.leaf} d="M126 84C111 77 99 84 88 74C95 62 91 54 83 44C98 45 105 37 110 23C119 37 131 36 143 33C137 47 144 56 155 63C142 68 136 74 126 84Z" />
-          <path className={styles.leafVein} d="M101 72C118 64 130 56 143 43" />
-          <path className={styles.leaf} d="M165 53C151 45 139 50 129 39C136 28 133 19 126 9C140 11 147 3 152 -9C161 5 173 4 185 1C179 15 186 24 197 31C184 36 176 43 165 53Z" />
-          <path className={styles.leafVein} d="M143 38C158 30 171 22 184 11" />
-          <path className={styles.leaf} d="M77 135C67 119 53 118 51 103C63 98 66 89 64 76C76 84 85 79 98 73C96 89 104 96 115 104C102 109 96 118 90 132L77 135Z" />
-          <path className={styles.leafVein} d="M66 108C78 111 88 111 104 101" />
-          <circle className={styles.berry} cx="166" cy="78" r="10" />
-          <circle className={styles.berry} cx="185" cy="67" r="9" />
-          <circle className={styles.berry} cx="185" cy="89" r="9" />
-          <circle className={styles.berryShine} cx="163" cy="75" r="2.2" />
-          <circle className={styles.berryShine} cx="182" cy="64" r="2" />
-          <circle className={styles.berryShine} cx="182" cy="86" r="2" />
-        </svg>
+      <div className={`${styles.pine} ${styles.pineLower}`} aria-hidden="true">
+        <Image
+          src="/images/mock/holiday-pine-branch.png"
+          alt=""
+          width={278}
+          height={159}
+          className={styles.pineImage}
+        />
       </div>
       <div className={styles.bow} aria-hidden="true">
         <Image src="/images/mock/holiday-bow.jpg" alt="" width={370} height={285} priority />
