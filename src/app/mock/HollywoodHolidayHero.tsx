@@ -32,6 +32,31 @@ const offers = [
   },
 ];
 
+function PineLights() {
+  const bulbs = [
+    [29, 119],
+    [65, 104],
+    [102, 87],
+    [140, 70],
+    [179, 54],
+    [218, 39],
+    [253, 27],
+  ] as const;
+
+  return (
+    <svg className={styles.pineLights} viewBox="0 0 278 159" aria-hidden="true" focusable="false">
+      <path className={styles.lightWire} d="M18 123C67 105 113 82 159 63S228 36 263 22" />
+      {bulbs.map(([cx, cy]) => (
+        <g key={`${cx}-${cy}`}>
+          <circle className={styles.bulbHalo} cx={cx} cy={cy} r="6.5" />
+          <circle className={styles.bulb} cx={cx} cy={cy} r="3" />
+          <circle className={styles.bulbCore} cx={cx - 0.8} cy={cy - 1} r=".9" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 export default function HollywoodHolidayHero() {
   return (
     <section className={styles.hero} aria-labelledby="location-hero-title">
@@ -40,32 +65,23 @@ export default function HollywoodHolidayHero() {
           <span className={styles.snowflake} key={index} />
         ))}
       </div>
-      <div className={`${styles.pine} ${styles.pineUpper}`} aria-hidden="true">
-        <Image
-          src="/images/mock/holiday-pine-branch.png"
-          alt=""
-          width={278}
-          height={159}
-          className={styles.pineImage}
-        />
-      </div>
-      <div className={`${styles.pine} ${styles.pineLower}`} aria-hidden="true">
-        <Image
-          src="/images/mock/holiday-pine-branch.png"
-          alt=""
-          width={278}
-          height={159}
-          className={styles.pineImage}
-        />
-      </div>
       <div className={styles.bow} aria-hidden="true">
         <Image src="/images/mock/holiday-bow-transparent.png" alt="" width={370} height={285} priority />
       </div>
-      <div className={styles.evergreen} aria-hidden="true">
-        <Image src="/images/mock/holiday-pine-branch.png" alt="" width={278} height={159} />
-      </div>
 
       <div className={styles.inner}>
+        <div className={styles.pineHeaderBand} aria-hidden="true">
+          <div className={styles.pineHeader}>
+            <Image
+              src="/images/mock/holiday-pine-branch.png"
+              alt=""
+              width={278}
+              height={159}
+              className={styles.pineImage}
+            />
+            <PineLights />
+          </div>
+        </div>
         <header className={styles.heading}>
           <p className={styles.location}><span />ZIVEL HOLLYWOOD, FL<span /></p>
           <h1 id="location-hero-title">Holiday Offers</h1>
@@ -107,6 +123,18 @@ export default function HollywoodHolidayHero() {
           All services must be started and completed before 2/28/27. All sales are final and all
           services must be used at the location where they were purchased.
         </p>
+        <div className={styles.pineFooterBand} aria-hidden="true">
+          <div className={styles.pineFooter}>
+            <Image
+              src="/images/mock/holiday-pine-branch.png"
+              alt=""
+              width={278}
+              height={159}
+              className={styles.pineImage}
+            />
+            <PineLights />
+          </div>
+        </div>
       </div>
     </section>
   );
