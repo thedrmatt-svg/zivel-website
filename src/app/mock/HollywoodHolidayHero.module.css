@@ -96,19 +96,20 @@
 .pineFooterBand {
   position: relative;
   width: 100%;
-  height: 76px;
+  height: 110px;
   overflow: hidden;
   pointer-events: none;
 }
 
 .pineFooterBand {
-  height: 76px;
+  height: 110px;
+  margin-top: 4rem;
 }
 
 .pineHeader,
 .pineFooter {
   position: absolute;
-  width: clamp(96px, 9vw, 128px);
+  width: clamp(160px, 14vw, 190px);
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .28));
 }
 
@@ -149,18 +150,28 @@
 
 .bulbHalo {
   fill: #f4c766;
-  opacity: .27;
+  opacity: .24;
 }
 
 .bulb {
-  fill: #ffedbd;
-  stroke: #d9ad5d;
-  stroke-width: .65;
+  fill: #fff0c9;
+  stroke: #c99a49;
+  stroke-width: 1.1;
+  stroke-linejoin: round;
 }
 
-.bulbCore {
-  fill: #fffdf3;
-  opacity: .94;
+.bulbSocket {
+  fill: none;
+  stroke: #d4aa5e;
+  stroke-width: 1.15;
+  stroke-linecap: round;
+}
+
+.bulbHighlight {
+  fill: none;
+  stroke: rgba(255, 255, 247, .96);
+  stroke-width: 1.1;
+  stroke-linecap: round;
 }
 
 .heading {
@@ -464,16 +475,17 @@
   }
 
   .pineHeaderBand {
-    height: 56px;
+    height: 80px;
   }
 
   .pineFooterBand {
-    height: 56px;
+    height: 80px;
+    margin-top: 3.25rem;
   }
 
   .pineHeader,
   .pineFooter {
-    width: 94px;
+    width: 130px;
   }
 
   .heading {

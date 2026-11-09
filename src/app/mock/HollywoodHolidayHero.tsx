@@ -45,12 +45,16 @@ function PineLights() {
 
   return (
     <svg className={styles.pineLights} viewBox="0 0 278 159" aria-hidden="true" focusable="false">
-      <path className={styles.lightWire} d="M18 123C67 105 113 82 159 63S228 36 263 22" />
+      <path className={styles.lightWire} d="M18 113C67 95 113 72 159 53S228 26 263 12" />
       {bulbs.map(([cx, cy]) => (
-        <g key={`${cx}-${cy}`}>
-          <circle className={styles.bulbHalo} cx={cx} cy={cy} r="6.5" />
-          <circle className={styles.bulb} cx={cx} cy={cy} r="3" />
-          <circle className={styles.bulbCore} cx={cx - 0.8} cy={cy - 1} r=".9" />
+        <g key={`${cx}-${cy}`} transform={`translate(${cx} ${cy})`}>
+          <ellipse className={styles.bulbHalo} cx="0" cy="0" rx="13" ry="13" />
+          <path
+            className={styles.bulb}
+            d="M-5.5-4C-5.5-10-3-12 0-12S5.5-10 5.5-4L4.1 3Q0 5-4.1 3Z"
+          />
+          <path className={styles.bulbSocket} d="M-3.4-10.5H3.4M-2.6-12.5H2.6" />
+          <path className={styles.bulbHighlight} d="M-1.8-7.5C-1.5-9-1-9.5-.2-9.8" />
         </g>
       ))}
     </svg>
