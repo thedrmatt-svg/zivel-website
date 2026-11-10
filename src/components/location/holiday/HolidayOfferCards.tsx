@@ -14,7 +14,8 @@ export default function HolidayOfferCards({
   variant = "hero",
   offers,
 }: HolidayOfferCardsProps) {
-  const gridClass = offers.length === 1 ? styles.offersSingle : styles.offers;
+  const gridClass = offers.length === 1 ? styles.offersSingle
+    : offers.length === 2 ? `${styles.offers} ${styles.offersPair}` : styles.offers;
 
   return (
     <section className={styles.offerSection} data-variant={variant} aria-label="Holiday offers">

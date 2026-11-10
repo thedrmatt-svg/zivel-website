@@ -22,6 +22,16 @@ export const BUCKHEAD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     purchaseUrl: "https://app.clubready.com/JoinUs/14900/656882",
     action: "Buy Now",
   },
+  {
+    id: "buckhead-bogo-facials",
+    title: "BOGO Facials",
+    price: "$150",
+    description: "Buy One Get/Give One",
+    image: getLocationServiceImage("buckhead", "cryo-lift-facial"),
+    imageAlt: "Cryo lift facial treatment at Zivel Buckhead",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14900/656883",
+    action: "Buy Now",
+  },
 ];
 
 export const HOLIDAY_OFFER_DISCLAIMER =

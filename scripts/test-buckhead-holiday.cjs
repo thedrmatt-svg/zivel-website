@@ -56,7 +56,7 @@ test("Buckhead main retains schema, services, and booking identity with the supp
   assert.equal(page.querySelector("#location-hero-title").text, "Holiday Offers");
   assert(page.text.includes("Zivel Buckhead"));
   const offer = page.querySelector('section[aria-label="Holiday offers"]');
-  assert.equal(offer.querySelectorAll("article").length, 1);
+  assert.equal(offer.querySelectorAll("article").length, 2);
   assert.equal(offer.querySelector("h2").text, "6 Pack Recovery");
   assert.equal(offer.querySelector(".price").text, "$99");
   assert.equal(offer.querySelector(".description").text, "6 Recovery Services in 1 Month");
@@ -64,6 +64,13 @@ test("Buckhead main retains schema, services, and booking identity with the supp
     "https://app.clubready.com/JoinUs/14900/656882");
   assert.equal(offer.querySelector("img").getAttribute("src"),
     r.source("src/lib/data/location-service-images").getLocationServiceImage("buckhead", "red-light-therapy"));
+  const facial = offer.querySelectorAll("article")[1];
+  assert.equal(facial.querySelector("h2").text, "BOGO Facials");
+  assert.equal(facial.querySelector(".price").text, "$150");
+  assert.equal(facial.querySelector(".description").text, "Buy One Get/Give One");
+  assert.equal(facial.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656883");
+  assert.equal(facial.querySelector("img").getAttribute("src"),
+    r.source("src/lib/data/location-service-images").getLocationServiceImage("buckhead", "cryo-lift-facial"));
   assert.equal(offer.querySelector(".disclaimer").text,
     r.source("src/components/location/holiday/holiday-offers").HOLIDAY_OFFER_DISCLAIMER);
   assert(links(page).includes("/locations/georgia/buckhead/pricing"));
@@ -97,7 +104,12 @@ test("Buckhead pricing opens the gate temporarily and keeps regular prices and p
     assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
   }
   const offer = page.querySelector("#specials");
-  assert.equal(offer.querySelectorAll("article").length, 1);
+  assert.equal(offer.querySelectorAll("article").length, 2);
+  const facial = offer.querySelectorAll("article")[1];
+  assert.equal(facial.querySelector("h2").text, "BOGO Facials");
+  assert.equal(facial.querySelector(".price").text, "$150");
+  assert.equal(facial.querySelector(".description").text, "Buy One Get/Give One");
+  assert.equal(facial.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656883");
   assert.equal(offer.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656882");
   assert.equal(offer.querySelector(".description").text, "6 Recovery Services in 1 Month");
   assert.equal(offer.querySelector(".disclaimer").text,
