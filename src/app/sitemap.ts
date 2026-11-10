@@ -82,7 +82,7 @@ function blogPostDate(post: BlogPost): string {
 function isExcludedFromSitemap(url: string): boolean {
   const path = url.replace(SITE_URL, "");
   // Unlisted design workspace, never a public location or content entry.
-  if (/^\/(?:en\/|es\/)?mock(?:\/|$)/.test(path)) return true;
+  if (/^\/(?:en\/|es\/)?mock(?:-pricing)?(?:\/|$)/.test(path)) return true;
   // Primary convention: /ads/:city (e.g. /ads/riverton, /ads/riverton-google)
   if (/^\/ads(\/|$)/.test(path)) return true;
   // Belt-and-suspenders: also exclude legacy root paths that redirect to /ads/*

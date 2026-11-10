@@ -111,6 +111,6 @@ test("mock is isolated from indexed layouts and advertising installations", () =
   const middleware = read("src/middleware.ts");
   assert.match(middleware, /if \(isMock\) response\.headers\.set\("X-Robots-Tag", "noindex, nofollow"\)/);
   const sitemap = read("src/app/sitemap.ts");
-  assert.match(sitemap, /mock\(\?:\\\/\|\$\)/);
+  assert(sitemap.includes("mock(?:-pricing)?(?:\\/|$)"));
   assert(!sitemap.includes('url: `${SITE_URL}/mock`'));
 });
