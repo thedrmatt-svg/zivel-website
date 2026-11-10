@@ -45,7 +45,7 @@ export default function HolidayLocationHero({
         <div className={styles.heroContent}>
           <header className={styles.heading}>
             <p className={styles.studioLabel}>{location.name}, {location.state}</p>
-            <h1 id="location-hero-title">Holiday Offers</h1>
+            <h1 id="location-hero-title">HOLIDAY SPECIALS</h1>
             <div className={styles.rule} aria-hidden="true"><span /></div>
           </header>
           <HolidayOfferCards variant="hero" offers={getHolidayOffers(location.stateSlug, location.citySlug)} />

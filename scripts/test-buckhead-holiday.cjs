@@ -53,7 +53,7 @@ test("Buckhead main retains schema, services, and booking identity with the supp
   const r = renderer(), standard = renderer(true);
   const page = await r.render(mainFile, params);
   const before = await standard.render(mainFile, params);
-  assert.equal(page.querySelector("#location-hero-title").text, "Holiday Offers");
+  assert.equal(page.querySelector("#location-hero-title").text, "HOLIDAY SPECIALS");
   assert(page.text.includes("Zivel Buckhead"));
   const offer = page.querySelector('section[aria-label="Holiday offers"]');
   assert.equal(offer.querySelectorAll("article").length, 3);
