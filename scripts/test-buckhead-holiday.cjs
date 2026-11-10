@@ -115,17 +115,15 @@ test("Buckhead pricing opens the gate temporarily and keeps regular prices and p
   assert.equal(cards.length, 6);
   assert.deepEqual(cards.map(card => card.querySelector("h2").text),
     ["Gift Card", "Gift Card", "Gift Card", "6 Pack Recovery", "BOGO Cryo Facial/Double Chin", "BOGO Recovery"]);
-  assert.deepEqual(cards.map(card => card.querySelector(".price").text), ["$50", "$100", "$200", "$99", "$150", "$40"]);
+  assert.deepEqual(cards.map(card => card.querySelector(".price").text), ["$50", "$100", "$200", "$99", "$150", "$50"]);
   const giftCard = cards[0];
   assert.equal(giftCard.querySelector(".description").text, "Give the Gift of Feeling Better");
   assert.equal(giftCard.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656879");
   assert.equal(new Set(cards.slice(0, 3).map(card => card.querySelector("img").getAttribute("src"))).size, 3);
   assert.equal(cards[1].querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656885");
   assert.equal(cards[2].querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656886");
-  for (const index of [5]) {
-    assert.equal(cards[index].querySelector("a"), null);
-    assert(cards[index].querySelector("button").hasAttribute("disabled"));
-  }
+  assert.equal(cards[5].querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656887");
+  assert.equal(offer.querySelectorAll("button[disabled]").length, 0);
   const facial = cards[4];
   assert.equal(facial.querySelector("h2").text, "BOGO Cryo Facial/Double Chin");
   assert.equal(facial.querySelector(".price").text, "$150");

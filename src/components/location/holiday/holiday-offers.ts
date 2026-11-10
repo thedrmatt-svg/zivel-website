@@ -77,9 +77,10 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     {
       id: "buckhead-bogo-recovery",
       title: "BOGO Recovery",
-      price: "$40",
+      price: "$50",
       image: getLocationServiceImage("buckhead", "cryotherapy"),
       imageAlt: "Cryotherapy recovery service",
+      purchaseUrl: "https://app.clubready.com/JoinUs/14900/656887",
       action: "Buy Now",
     },
   ];
