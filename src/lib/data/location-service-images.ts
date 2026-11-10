@@ -14,6 +14,7 @@ const NATIONAL_SERVICE_IMAGES: Record<string, string> = {
 // Register only custom photos that exist in public/locations/<city>/services/.
 // The asset regression test also detects new uploads that need registration.
 const CUSTOM_SERVICE_IMAGES: Record<string, readonly string[]> = {
+  "coral-gables": ["red-light-therapy"],
   "highlands-ranch": ["cryo-lift-facial", "infrared-sauna", "cryotherapy"],
 };
 

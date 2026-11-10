@@ -3,6 +3,7 @@ import { getLocationBusinessLabel, getLocationCity, getLocationAltText, getAccur
 import { getLocationBookingHref } from "@/lib/location-booking";
 import { phoneHref } from "@/lib/contact-links";
 import { getLocationBusinessDetails } from "@/lib/location-business-schema";
+import { getLocationServiceImage } from "@/lib/data/location-service-images";
 import ContactText from "@/components/ui/ContactText";
 import Image from "next/image";
 import Link from "next/link";
@@ -1340,6 +1341,13 @@ export default async function LocalServicePage({ params }: Props) {
 
   const key = `${state}/${city}/${service}`;
   const local = LOCAL_CONTENT[key] ?? generateLocalContent(location, svc, state, city);
+  if (state === "florida" && city === "coral-gables" && service === "red-light-therapy") {
+    const image = getLocationServiceImage(city, service);
+    local.heroImage = image;
+    local.whatIsImage = image;
+    local.heroImageAlt = "Guest using red light therapy panels at Zivel Coral Gables";
+    local.whatIsImageAlt = "Red light therapy session at Zivel Coral Gables";
+  }
   if (!LOCAL_CONTENT[key]) {
     const accurate = (text: string) => getAccurateLocalStackCopy(location, service, text);
     local.whatIsParagraphs = local.whatIsParagraphs.map(accurate);

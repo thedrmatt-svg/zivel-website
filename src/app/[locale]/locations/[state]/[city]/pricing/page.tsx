@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getLocationByPath, locations } from "@/lib/data/locations";
+import { getLocationServiceImage } from "@/lib/data/location-service-images";
 import PricingGateModal from "@/components/location/PricingGateModal";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import CherryWidget from "@/components/widgets/CherryWidget";
@@ -72,7 +73,10 @@ const SERVICE_DESCRIPTIONS: Record<string, string> = {
 function nameToSlug(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
-function getServiceImage(name: string) {
+function getServiceImage(name: string, citySlug: string) {
+  if (citySlug === "coral-gables" && nameToSlug(name) === "red-light-therapy") {
+    return getLocationServiceImage(citySlug, "red-light-therapy");
+  }
   return SERVICE_IMAGES[nameToSlug(name)] ?? FALLBACK_SERVICE_IMAGE;
 }
 function getServiceDesc(name: string) {
@@ -362,7 +366,7 @@ export default async function LocationPricingPage({
                           >
                             <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
                               <Image
-                                src={getServiceImage(s.name)}
+                                src={getServiceImage(s.name, location.citySlug)}
                                 alt={s.name}
                                 fill
                                 className="object-cover"
@@ -398,7 +402,7 @@ export default async function LocationPricingPage({
                           >
                             <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
                               <Image
-                                src={getServiceImage(s.name)}
+                                src={getServiceImage(s.name, location.citySlug)}
                                 alt={s.name}
                                 fill
                                 className="object-cover"
@@ -436,7 +440,7 @@ export default async function LocationPricingPage({
                           >
                             <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
                               <Image
-                                src={getServiceImage(s.name)}
+                                src={getServiceImage(s.name, location.citySlug)}
                                 alt={s.name}
                                 fill
                                 className="object-cover"
