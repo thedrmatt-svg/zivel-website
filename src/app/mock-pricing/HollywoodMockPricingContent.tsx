@@ -95,7 +95,7 @@ function mockPricingContent(node: ReactNode): ReactNode {
     return (
       <>
         <p className="mt-4 text-lg font-semibold text-white/90 max-w-xl leading-relaxed">
-          Give the gift of feeling better. And don't forget yourself.
+          Give the gift of feeling better. And don&apos;t forget yourself.
         </p>
         {cloneElement(node, {
           children: "This holiday season, give something that truly matters—time to relax, recharge, and recover. Whether you're treating yourself or surprising someone you love, Zivel makes it easy to give the gift of recovery, relaxation, and self-care. Because feeling your best isn't just a gift for others. It's one you deserve, too.",
