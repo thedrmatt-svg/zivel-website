@@ -154,7 +154,9 @@ export default async function LocationPricingPage({
   const holidayOffers = getHolidayPricingOffers(location.stateSlug, location.citySlug);
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
-  const breadcrumbCity = getLocationCity(location);
+  const breadcrumbCity = location.stateSlug === "georgia" && location.citySlug === "buckhead"
+    ? "Buckhead"
+    : getLocationCity(location);
   const bookingUrl = getLocationBookingHref(location);
   const phone = location.contact?.phone;
   const giftCards = location.pricing?.giftCards ?? [];

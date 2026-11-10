@@ -101,6 +101,8 @@ test("Buckhead pricing opens the gate temporarily and keeps regular prices and p
   const page = await r.render(pricingFile, params);
   const before = await standard.render(pricingFile, params);
   assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
+  assert(page.querySelector('nav[aria-label="Breadcrumb"]').text.includes("Buckhead"));
+  assert(!page.querySelector('nav[aria-label="Breadcrumb"]').text.includes("Atlanta"));
   assert.deepEqual(schema(page), schema(before));
   const regularLinks = doc => {
     const specialLinks = new Set(doc.querySelectorAll("#specials a"));
