@@ -25,6 +25,8 @@ test("Hollywood pricing preview keeps real pricing and moves renamed specials fi
   assert(mock.querySelector(".contentSurface"));
   assert(mock.querySelector('img[src="/images/mock/holiday-bow-transparent.png"]'));
   assert.equal(mock.querySelectorAll(".snowflake").length, 16);
+  assert.equal(mock.querySelector(".snowfall").getAttribute("aria-hidden"), "true");
+  assert.equal(mock.querySelector("main .snowfall"), null, "Snow is outside hero and main clipping");
   const specials = mock.querySelector("#specials");
   assert(specials.text.includes("Holiday Specials"));
   assert.equal(specials.parentNode.querySelectorAll("[id]")[0].getAttribute("id"), "specials");
@@ -57,6 +59,10 @@ test("pricing preview is separately isolated from advertising and search", () =>
   const css = fs.readFileSync("src/app/mock-pricing/HollywoodMockPricing.module.css", "utf8");
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(css, /animation: none/);
+  assert.match(css, /\.snowfall\s*\{[^}]*position: fixed;[^}]*pointer-events: none;/s);
+  assert.match(css, /width: clamp\(151\.8px, 25\.08vw, 356\.4px\)/);
+  assert.match(css, /right: 0;/);
+  assert.match(css, /width: 138\.6px/);
   const middleware = fs.readFileSync("src/middleware.ts", "utf8");
   assert(middleware.includes("/^\\/mock(?:-pricing)?\\/?$/"));
   const sitemap = fs.readFileSync("src/app/sitemap.ts", "utf8");

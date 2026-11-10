@@ -131,11 +131,6 @@ function mockPricingContent(node: ReactNode): ReactNode {
       className: `${heroClasses} ${styles.hero}`.trim(),
       children: (
         <>
-          <div className={styles.snowfall} aria-hidden="true">
-            {Array.from({ length: 16 }, (_, index) => (
-              <span className={styles.snowflake} key={index} />
-            ))}
-          </div>
           <div className={styles.bow} aria-hidden="true">
             <Image
               src="/images/mock/holiday-bow-transparent.png"
@@ -180,5 +175,14 @@ export default async function HollywoodMockPricingContent() {
   const content = await LocationPricingPage({
     params: Promise.resolve({ state: "florida", city: "hollywood", locale: "en" }),
   });
-  return <>{mockPricingContent(content)}</>;
+  return (
+    <>
+      <div className={styles.snowfall} aria-hidden="true">
+        {Array.from({ length: 16 }, (_, index) => (
+          <span className={styles.snowflake} key={index} />
+        ))}
+      </div>
+      {mockPricingContent(content)}
+    </>
+  );
 }
