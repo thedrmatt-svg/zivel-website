@@ -19,7 +19,7 @@ import {
 } from "@/components/location/holiday/HolidayPricingPresentation";
 import { isHolidayLocation, HOLIDAY_PRICING_SIGNUP_PAUSED } from "@/components/location/holiday/holiday-location-config";
 import HolidayOfferCards from "@/components/location/holiday/HolidayOfferCards";
-import { getHolidayOffers } from "@/components/location/holiday/holiday-offers";
+import { getHolidayPricingOffers } from "@/components/location/holiday/holiday-offers";
 import holidayPricingStyles from "@/components/location/holiday/HolidayPricingPresentation.module.css";
 
 const SITE_URL = "https://www.zivel.com";
@@ -151,7 +151,7 @@ export default async function LocationPricingPage({
   const location = getLocationByPath(state, city);
   if (!location) notFound();
   const holidayEnabled = isHolidayLocation(location.stateSlug, location.citySlug);
-  const holidayOffers = getHolidayOffers(location.stateSlug, location.citySlug);
+  const holidayOffers = getHolidayPricingOffers(location.stateSlug, location.citySlug);
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
   const breadcrumbCity = getLocationCity(location);

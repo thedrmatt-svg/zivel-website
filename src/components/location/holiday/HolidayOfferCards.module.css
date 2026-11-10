@@ -174,6 +174,11 @@
   transition: transform .2s ease;
 }
 
+.action:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
 .action:hover {
   transform: translateY(-1px);
   background: linear-gradient(110deg, #efc46b, #fff0b8 48%, #ecc167);

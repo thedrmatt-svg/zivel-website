@@ -9,7 +9,7 @@ export type HolidayOffer = {
   imageAlt: string;
   imagePosition?: string;
   imageZoom?: number;
-  purchaseUrl: string;
+  purchaseUrl?: string;
   action: string;
 };
 
@@ -53,4 +53,32 @@ export const HOLIDAY_OFFER_DISCLAIMER =
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
   return stateSlug === "georgia" && citySlug === "buckhead" ? BUCKHEAD_HOLIDAY_OFFERS : [];
+}
+
+export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug !== "georgia" || citySlug !== "buckhead") return [];
+  const giftCardServices = ["infrared-sauna", "dry-float", "compression-therapy"];
+  const giftCardAlts = ["Infrared sauna", "Dry float recovery", "Compression therapy"];
+  return [
+    ...[50, 100, 200].map((amount, index): HolidayOffer => ({
+      id: `buckhead-gift-card-${amount}`,
+      title: "Gift Card",
+      price: `$${amount}`,
+      description: "Give the Gift of Feeling Better",
+      image: getLocationServiceImage("buckhead", giftCardServices[index]),
+      imageAlt: giftCardAlts[index],
+      purchaseUrl: amount === 50 ? "https://app.clubready.com/JoinUs/14900/656879" : undefined,
+      action: "Buy Now",
+    })),
+    BUCKHEAD_HOLIDAY_OFFERS[0],
+    BUCKHEAD_HOLIDAY_OFFERS[1],
+    {
+      id: "buckhead-bogo-recovery",
+      title: "BOGO Recovery",
+      price: "$40",
+      image: getLocationServiceImage("buckhead", "cryotherapy"),
+      imageAlt: "Cryotherapy recovery service",
+      action: "Buy Now",
+    },
+  ];
 }

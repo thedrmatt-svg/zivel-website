@@ -52,14 +52,14 @@ export default function HolidayOfferCards({
                 </div>
               )}
               {offer.description && <p className={styles.description}>{offer.description}</p>}
-              <a
+              {offer.purchaseUrl ? <a
                 href={offer.purchaseUrl}
                 target={offer.purchaseUrl.startsWith("/") ? undefined : "_blank"}
                 rel={offer.purchaseUrl.startsWith("/") ? undefined : "noopener noreferrer"}
                 className={styles.action}
               >
                 {offer.action}<span aria-hidden="true">›</span>
-              </a>
+              </a> : <button className={styles.action} disabled>Link pending</button>}
             </div>
           </article>
         ))}
