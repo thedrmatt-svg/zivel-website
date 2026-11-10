@@ -75,6 +75,7 @@ function mockPricingContent(node: ReactNode): ReactNode {
 
   if (typeof node === "string") {
     const trimmed = node.trim();
+    if (trimmed === "Pricing & Memberships") return "Holiday Specials, Pricing & Memberships";
     if (trimmed === "Unlock full details below.") return null;
     if (trimmed === "Current Specials") return node.replace("Current Specials", "Holiday Specials");
     if (trimmed === "Specials") return node.replace("Specials", "Holiday Specials");
@@ -91,19 +92,16 @@ function mockPricingContent(node: ReactNode): ReactNode {
       typeof child === "string" && child.includes("Local pricing and membership options for Zivel ")
     )
   ) {
-    return cloneElement(node, {
-      children: (
-        <>
-          <strong className="font-semibold text-white/90">
-            Treat yourself to self-care. Treat someone you love to gift-care.
-          </strong>{" "}
-          This holiday season, purchase time to rest, recharge, and recover—for
-          yourself or as a thoughtful gift for others. Don’t leave yourself off
-          the list: caring for the people around you starts with making room for
-          your own well-being, too.
-        </>
-      ),
-    });
+    return (
+      <>
+        <p className="mt-4 text-lg font-semibold text-white/90 max-w-xl leading-relaxed">
+          Give the gift of feeling better. And don't forget yourself.
+        </p>
+        {cloneElement(node, {
+          children: "This holiday season, give something that truly matters—time to relax, recharge, and recover. Whether you're treating yourself or surprising someone you love, Zivel makes it easy to give the gift of recovery, relaxation, and self-care. Because feeling your best isn't just a gift for others. It's one you deserve, too.",
+        })}
+      </>
+    );
   }
 
   // Unwrap the lead-capture gate only in this owner preview; its form is never rendered or submitted.

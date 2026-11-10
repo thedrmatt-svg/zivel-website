@@ -17,9 +17,13 @@ test("Hollywood pricing preview keeps real pricing and moves renamed specials fi
   assert.equal(mock.querySelectorAll('script[type="application/ld+json"],meta,form').length, 0);
   assert(!mock.text.includes("Unlock full details below."));
   assert(mock.querySelector(".hero"));
-  assert.equal(mock.querySelector(".hero strong").text,
-    "Treat yourself to self-care. Treat someone you love to gift-care.");
-  assert(mock.querySelector(".hero").text.includes("purchase time to rest, recharge, and recover"));
+  assert.equal(mock.querySelector(".hero h1").text.trim(),
+    "Holiday Specials, Pricing & Memberships");
+  const heroParagraphs = mock.querySelectorAll(".hero p");
+  assert(heroParagraphs.some(p => p.text.trim() ===
+    "Give the gift of feeling better. And don't forget yourself."));
+  assert(heroParagraphs.some(p => p.text ===
+    "This holiday season, give something that truly matters—time to relax, recharge, and recover. Whether you're treating yourself or surprising someone you love, Zivel makes it easy to give the gift of recovery, relaxation, and self-care. Because feeling your best isn't just a gift for others. It's one you deserve, too."));
   assert(!mock.querySelector(".hero").text.includes("Local pricing and membership options"));
   assert(live.text.includes("Local pricing and membership options for Zivel Hollywood"));
   assert(mock.querySelector(".contentSurface"));
