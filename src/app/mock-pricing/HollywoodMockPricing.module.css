@@ -30,10 +30,8 @@
   aspect-ratio: 370 / 285;
   overflow: hidden;
   pointer-events: none;
-  opacity: .58;
+  opacity: 1;
   clip-path: polygon(0 0, 100% 0, 100% 75%, 30% 75%, 30% 100%, 0 100%);
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .68) 36%, transparent 82%);
-  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .68) 36%, transparent 82%);
 }
 
 .bow img {
@@ -95,7 +93,6 @@
   .bow {
     top: .7rem;
     width: 138.6px;
-    opacity: .42;
   }
 }
 
