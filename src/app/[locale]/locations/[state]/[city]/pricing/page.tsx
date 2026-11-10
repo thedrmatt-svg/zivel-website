@@ -17,7 +17,9 @@ import {
   HolidayPricingIntro,
   HolidayPricingSnowfall,
 } from "@/components/location/holiday/HolidayPricingPresentation";
-import { isHolidayLocation } from "@/components/location/holiday/holiday-location-config";
+import { isHolidayLocation, HOLIDAY_PRICING_SIGNUP_PAUSED } from "@/components/location/holiday/holiday-location-config";
+import HolidayOfferCards from "@/components/location/holiday/HolidayOfferCards";
+import { getHolidayOffers } from "@/components/location/holiday/holiday-offers";
 import holidayPricingStyles from "@/components/location/holiday/HolidayPricingPresentation.module.css";
 
 const SITE_URL = "https://www.zivel.com";
@@ -149,6 +151,7 @@ export default async function LocationPricingPage({
   const location = getLocationByPath(state, city);
   if (!location) notFound();
   const holidayEnabled = isHolidayLocation(location.stateSlug, location.citySlug);
+  const holidayOffers = getHolidayOffers(location.stateSlug, location.citySlug);
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
   const breadcrumbCity = getLocationCity(location);
@@ -218,6 +221,9 @@ export default async function LocationPricingPage({
           {holidayEnabled ? "Holiday Specials" : "Current Specials"}
         </h2>
       </ScrollReveal>
+      {holidayEnabled && holidayOffers.length > 0 ? (
+        <HolidayOfferCards variant="pricing" offers={holidayOffers} />
+      ) : (
       <ScrollReveal variant="fade-up" delay={80}>
         <div className="rounded-2xl border border-[var(--zivel-gold)]/15 bg-[var(--zivel-gold)]/5 p-8 md:p-12 text-center">
           <div className="mx-auto max-w-md">
@@ -248,6 +254,7 @@ export default async function LocationPricingPage({
           </div>
         </div>
       </ScrollReveal>
+      )}
     </div>
   );
 
@@ -346,7 +353,7 @@ export default async function LocationPricingPage({
         className={`zv-bleed py-16 md:py-24 ${holidayEnabled ? holidayPricingStyles.contentSurface : "zv-section-elevated"}`}
       >
         <div className="mx-auto max-w-6xl px-6">
-          <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay} locationEmail={location.contact?.email} bypass={location.citySlug === "windermere"}>
+          <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay} locationEmail={location.contact?.email} bypass={location.citySlug === "windermere" || (holidayEnabled && HOLIDAY_PRICING_SIGNUP_PAUSED)}>
             <div className="space-y-20">
               {holidayEnabled && specialsSection}
 

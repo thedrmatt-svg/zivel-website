@@ -6,7 +6,7 @@
   width: 100vw;
   margin-top: -5rem;
   margin-left: 50%;
-  padding: calc(5rem + 2rem) 1.25rem 3rem;
+  padding: calc(5rem + 1.6rem) 1.25rem 2rem;
   transform: translateX(-50%);
   overflow: hidden;
   color: #f8f1df;
@@ -90,7 +90,7 @@
 }
 
 .heading {
-  margin: 0 auto 1.7rem;
+  margin: 0 auto 1.45rem;
   text-align: center;
 }
 
@@ -124,7 +124,7 @@
   justify-content: center;
   width: min(75%, 620px);
   height: 1px;
-  margin: 1.1rem auto 0;
+  margin: 1.05rem auto 0;
   background: linear-gradient(90deg, transparent, rgba(219, 176, 96, .55), transparent);
 }
 
@@ -134,39 +134,8 @@
   background: #f0cc7e;
 }
 
-.pendingOffer {
-  width: min(100%, 680px);
-  margin-inline: auto;
-  padding: clamp(1.4rem, 4vw, 2.4rem);
-  border: 1px solid rgba(231, 189, 105, .62);
-  border-radius: 16px;
-  background: linear-gradient(160deg, rgba(14, 34, 55, .9), rgba(4, 19, 35, .86));
-  box-shadow: inset 0 0 0 1px rgba(255, 240, 205, .05), 0 18px 44px rgba(0, 0, 0, .2);
-  text-align: center;
-}
-
-.pendingLabel {
-  margin: 0 0 .6rem;
-  color: var(--gold);
-  font-family: var(--font-inter), sans-serif;
-  font-size: .67rem;
-  font-weight: 600;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-
-.pendingCopy {
-  max-width: 42ch;
-  margin: 0 auto 1.2rem;
-  color: rgba(248, 241, 223, .83);
-  font-family: var(--font-playfair), Georgia, serif;
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  line-height: 1.5;
-}
-
 .bookButton {
   display: inline-flex;
-  min-height: 44px;
   align-items: center;
   justify-content: center;
   padding: .7rem 1.35rem;
@@ -379,6 +348,14 @@
 }
 
 @media (max-width: 720px) {
+  .hero {
+    padding: calc(5rem + 1.2rem) 1rem 1.8rem;
+  }
+
+  .heading {
+    margin-bottom: 1.1rem;
+  }
+
   .bow {
     top: 4.9rem;
     width: 115.5px;
@@ -403,6 +380,12 @@
   .secondaryLinks {
     justify-content: center;
     margin-top: .85rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero {
+    padding-inline: .7rem;
   }
 }
 

@@ -1,0 +1,269 @@
+.offerSection {
+  width: 100%;
+}
+
+.offers,
+.offersSingle {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(.8rem, 1.8vw, 1.45rem);
+  align-items: stretch;
+}
+
+.offersSingle {
+  grid-template-columns: 1fr;
+  max-width: 390px;
+  margin-inline: auto;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(231, 189, 105, .9);
+  border-radius: 17px;
+  background: transparent;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, .24), inset 0 0 0 1px rgba(255, 240, 205, .09);
+  animation: holiday-card-arrive .65s both;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-4px);
+  border-color: #f5d894;
+  box-shadow: 0 20px 42px rgba(0, 0, 0, .35), inset 0 0 0 1px rgba(255, 240, 205, .15);
+}
+
+.card::before {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(212, 175, 55, .15) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .5s ease;
+}
+
+.card:hover::before,
+.card:focus-within::before {
+  opacity: 1;
+}
+
+.photo {
+  position: relative;
+  height: clamp(145px, 19vw, 222px);
+  overflow: hidden;
+  background: #172234;
+}
+
+.photoImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transition: transform .5s ease;
+}
+
+.card:hover .photoImage,
+.card:focus-within .photoImage {
+  transform: scale(1.035);
+}
+
+.photoShade {
+  position: absolute;
+  inset: 25% 0 0;
+  background: linear-gradient(180deg, transparent, rgba(4, 17, 32, .86));
+  pointer-events: none;
+}
+
+.cardContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: .9rem 1rem 1.1rem;
+  text-align: center;
+}
+
+.offerTitle {
+  display: flex;
+  min-height: 2.7em;
+  align-items: center;
+  justify-content: center;
+  max-width: 19ch;
+  margin: 0;
+  color: #fff8eb;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(.95rem, 1.7vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: .075em;
+  line-height: 1.18;
+  text-transform: uppercase;
+}
+
+.price {
+  width: 100%;
+  margin-top: .2rem;
+  border-top: 1px solid rgba(230, 190, 108, .38);
+  color: #f6dda0;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(3.35rem, 6.2vw, 4.9rem);
+  font-weight: 500;
+  letter-spacing: -.045em;
+  line-height: 1.16;
+  text-shadow: 0 2px 20px rgba(225, 174, 82, .16);
+}
+
+.action {
+  display: inline-flex;
+  min-height: 43px;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  margin-top: auto;
+  padding: .65rem 1.3rem;
+  border: 1px solid rgba(255, 232, 181, .58);
+  border-radius: 9px;
+  color: #171a20;
+  background: linear-gradient(110deg, #dba94f, #f5d88e 48%, #d9a64c);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .38), 0 3px 12px rgba(0, 0, 0, .2);
+  font-family: var(--font-inter), sans-serif;
+  font-size: .87rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.action span {
+  font-size: 1.35em;
+  font-weight: 400;
+  line-height: .7;
+  transition: transform .2s ease;
+}
+
+.action:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(110deg, #efc46b, #fff0b8 48%, #ecc167);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .54), 0 6px 18px rgba(0, 0, 0, .28);
+}
+
+.action:hover span {
+  transform: translateX(3px);
+}
+
+.action:focus-visible {
+  outline: 3px solid #fff2c6;
+  outline-offset: 4px;
+}
+
+.disclaimer {
+  max-width: 1040px;
+  margin: 1.1rem auto 0;
+  color: rgba(255, 247, 231, .9);
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(.69rem, 1.15vw, .82rem);
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@keyframes holiday-card-arrive {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 720px) {
+  .offers,
+  .offersSingle {
+    grid-template-columns: 1fr;
+    max-width: 470px;
+    margin-inline: auto;
+    gap: 1rem;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: minmax(115px, 39%) 1fr;
+    min-height: 184px;
+    border-radius: 13px;
+  }
+
+  .photo {
+    height: 100%;
+    min-height: 184px;
+  }
+
+  .photoShade {
+    inset: 40% 0 0;
+  }
+
+  .cardContent {
+    min-width: 0;
+    padding: .85rem .8rem .9rem;
+  }
+
+  .offerTitle {
+    min-height: auto;
+    font-size: clamp(.85rem, 3.6vw, 1.05rem);
+    letter-spacing: .045em;
+  }
+
+  .price {
+    margin-top: .4rem;
+    font-size: clamp(3rem, 14vw, 4rem);
+  }
+
+  .action {
+    width: 100%;
+    min-height: 40px;
+    gap: .35rem;
+    padding: .55rem .5rem;
+    font-size: clamp(.73rem, 3vw, .85rem);
+  }
+
+  .disclaimer {
+    max-width: 470px;
+    margin-top: 1rem;
+    font-size: .7rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 380px) {
+  .card {
+    grid-template-columns: 34% 1fr;
+  }
+
+  .cardContent {
+    padding-inline: .6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+    transition: none;
+  }
+
+  .photoImage,
+  .action,
+  .action span,
+  .card::before {
+    transition: none;
+  }
+}

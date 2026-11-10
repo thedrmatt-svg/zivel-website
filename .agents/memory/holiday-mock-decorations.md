@@ -41,3 +41,14 @@ the special details and links would follow.
 **How to apply:** Treat this as a staged rollout for Buckhead only. Preserve
 current prices and links and do not use Hollywood's sample offers as Buckhead
 offers. Wait for owner-supplied offer details before advertising specific deals.
+
+Temporarily remove the pricing signup card on holiday-enabled location pricing
+pages, including the regular pricing sections. Keep non-holiday pages' existing
+signup behavior.
+
+**Why:** The owner selected “Remove the signup card temporarily” and wants it
+turned back on after the holidays.
+
+**How to apply:** This is an explicit holiday-only exception to preserving the
+pricing gate. Restore normal signup behavior when holiday presentation ends;
+do not delete the signup form or its supporting behavior.

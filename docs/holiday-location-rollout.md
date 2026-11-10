@@ -123,7 +123,10 @@ the owner supplies that location's real holiday offers.
 5. Preserve live headers, footers, working navigation, consent behavior, tracking
    scope, booking rules, and existing lead-capture behavior. The pricing mock
    bypasses its lead form for previewing; that bypass must not migrate to live
-   pricing without explicit approval.
+   pricing without explicit approval. The owner has now explicitly approved
+   temporarily removing the signup card for holiday-enabled location pricing
+   pages. Keep the form implementation intact, preserve non-holiday behavior,
+   and restore the usual gate after the holiday period.
 6. Keep normal live canonicals, indexability, sitemap entries, metadata, and
    existing valid structured data. The mock pages intentionally omit schema
    and use noindex; those preview protections must **not** be copied onto live

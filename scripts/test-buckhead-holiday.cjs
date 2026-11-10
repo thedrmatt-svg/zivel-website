@@ -49,18 +49,30 @@ test("only Buckhead main and pricing are holiday-enabled; every other studio sta
   }
 });
 
-test("Buckhead main retains schema, service imagery, booking identity, and honest pending offers", async () => {
+test("Buckhead main retains schema, services, and booking identity with the supplied offer", async () => {
   const r = renderer(), standard = renderer(true);
   const page = await r.render(mainFile, params);
   const before = await standard.render(mainFile, params);
   assert.equal(page.querySelector("#location-hero-title").text, "Holiday Offers");
   assert(page.text.includes("Zivel Buckhead"));
-  assert(page.querySelector(".pendingOffer").text.includes("confirmed"));
+  const offer = page.querySelector('section[aria-label="Holiday offers"]');
+  assert.equal(offer.querySelectorAll("article").length, 1);
+  assert.equal(offer.querySelector("h2").text, "6 Pack Recovery");
+  assert.equal(offer.querySelector(".price").text, "$99");
+  assert.equal(offer.querySelector("a").getAttribute("href"),
+    "https://app.clubready.com/JoinUs/14900/656881");
+  assert.equal(offer.querySelector("img").getAttribute("src"),
+    r.source("src/lib/data/location-service-images").getLocationServiceImage("buckhead", "red-light-therapy"));
+  assert.equal(offer.querySelector(".disclaimer").text,
+    r.source("src/components/location/holiday/holiday-offers").HOLIDAY_OFFER_DISCLAIMER);
   assert(links(page).includes("/locations/georgia/buckhead/pricing"));
   assert.deepEqual(schema(page), schema(before), "Live structured data is unchanged");
-  const serviceImages = doc => doc.querySelectorAll("img").filter(img =>
-    img.getAttribute("src").includes("/services/") || img.getAttribute("src").includes("/service-"))
-    .map(img => [img.getAttribute("src"), img.getAttribute("alt")]);
+  const serviceImages = doc => {
+    const offerImages = new Set(doc.querySelectorAll('section[aria-label="Holiday offers"] img'));
+    return doc.querySelectorAll("img").filter(img => !offerImages.has(img) &&
+      (img.getAttribute("src").includes("/services/") || img.getAttribute("src").includes("/service-")))
+      .map(img => [img.getAttribute("src"), img.getAttribute("alt")]);
+  };
   assert.deepEqual(serviceImages(page), serviceImages(before));
   assert(links(page).some(link => link.includes("set_location=11537")));
   assert(!links(page).some(link => link.includes("11433")));
@@ -69,24 +81,48 @@ test("Buckhead main retains schema, service imagery, booking identity, and hones
   assert(!links(page).some(link => link.includes("/locations/florida/hollywood")));
 });
 
-test("Buckhead pricing keeps actual prices and gate while moving Holiday Specials first", async () => {
+test("Buckhead pricing opens the gate temporarily and keeps regular prices and purchase links", async () => {
   const r = renderer(), standard = renderer(true);
   const page = await r.render(pricingFile, params);
   const before = await standard.render(pricingFile, params);
   assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
   assert.deepEqual(schema(page), schema(before));
-  assert.deepEqual(links(page), links(before), "No checkout destinations invented or replaced");
+  const regularLinks = doc => {
+    const specialLinks = new Set(doc.querySelectorAll("#specials a"));
+    return doc.querySelectorAll("a").filter(a => !specialLinks.has(a)).map(a => a.getAttribute("href")).sort();
+  };
+  assert.deepEqual(regularLinks(page), regularLinks(before), "Regular pricing destinations remain unchanged");
   for (const id of ["memberships", "services", "packages"]) {
     assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
   }
-  assert.equal(page.querySelector("#specials").innerHTML.replace("Holiday Specials", "Current Specials"),
-    before.querySelector("#specials").innerHTML);
+  const offer = page.querySelector("#specials");
+  assert.equal(offer.querySelectorAll("article").length, 1);
+  assert.equal(offer.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656881");
+  assert.equal(offer.querySelector(".disclaimer").text,
+    r.source("src/components/location/holiday/holiday-offers").HOLIDAY_OFFER_DISCLAIMER);
   assert.deepEqual(page.querySelector('nav[aria-label="Pricing sections"]').querySelectorAll("a")
     .map(a => a.getAttribute("href")), ["#specials", "#memberships", "#services", "#packages"]);
   assert(page.querySelectorAll("[id]").indexOf(page.querySelector("#specials")) <
     page.querySelectorAll("[id]").indexOf(page.querySelector("#memberships")));
-  assert.deepEqual(r.gates, [{ citySlug: "buckhead", bypass: false }]);
+  assert.deepEqual(r.gates, [{ citySlug: "buckhead", bypass: true }]);
   assert(page.querySelector(".snowfall"));
+});
+
+test("holiday pricing is visibly ungated without stored signup state and the gate can be restored", async () => {
+  const r = renderer();
+  delete r.wrappers["@/components/location/PricingGateModal"];
+  const page = await r.render(pricingFile, params);
+  assert.equal(page.querySelector(".blur-xl"), null);
+  assert.equal(page.querySelector("#pg-firstName"), null);
+  assert(page.querySelector('#specials a[href="https://app.clubready.com/JoinUs/14900/656881"]'));
+  assert(page.querySelector("#memberships"));
+  const restored = renderer();
+  const { isHolidayLocation } = restored.source("src/components/location/holiday/holiday-location-config");
+  restored.wrappers["@/components/location/holiday/holiday-location-config"] = {
+    isHolidayLocation, HOLIDAY_PRICING_SIGNUP_PAUSED: false,
+  };
+  await restored.render(pricingFile, params);
+  assert.deepEqual(restored.gates, [{ citySlug: "buckhead", bypass: false }]);
 });
 
 test("seasonal decoration remains non-interactive and respects reduced motion", () => {

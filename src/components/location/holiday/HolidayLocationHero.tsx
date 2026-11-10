@@ -3,6 +3,8 @@ import Link from "next/link";
 import { phoneHref } from "@/lib/contact-links";
 import LocationBookingLink from "@/components/location/LocationBookingLink";
 import LocationStatusLine from "@/components/location/LocationStatusLine";
+import HolidayOfferCards from "./HolidayOfferCards";
+import { getHolidayOffers } from "./holiday-offers";
 import type { LocationBookingAction } from "@/lib/location-booking";
 import type { LocationEnhancementCopy } from "@/lib/location-enhancement-copy";
 import type { Location } from "@/types/location";
@@ -46,12 +48,7 @@ export default function HolidayLocationHero({
             <h1 id="location-hero-title">Holiday Offers</h1>
             <div className={styles.rule} aria-hidden="true"><span /></div>
           </header>
-          <div className={styles.pendingOffer}>
-            <p className={styles.pendingLabel}>A seasonal note</p>
-            <p className={styles.pendingCopy}>
-              Holiday offer details will appear here once they are confirmed.
-            </p>
-          </div>
+          <HolidayOfferCards variant="hero" offers={getHolidayOffers(location.stateSlug, location.citySlug)} />
         </div>
       </section>
 
