@@ -14,6 +14,7 @@ type MockNodeProps = {
   id?: string;
   className?: string;
   role?: string;
+  "data-location-faq"?: boolean;
   "aria-labelledby"?: string;
 };
 
@@ -58,6 +59,24 @@ function mockContent(node: ReactNode, location: Location): ReactNode {
   if (node.type === "section" && node.props.className === "zv-bleed bg-[#0a0a0a] border-y border-white/10") {
     return cloneElement(node, {
       className: `zv-bleed border-y border-white/10 ${styles.trustBar}`,
+      children: mockContent(node.props.children, location),
+    });
+  }
+  if (node.type === "section" && node.props.id === "pricing") {
+    const className = node.props.className
+      ?.replace(/\bzv-section-(?:light|gradient)\b|\bzv-light\b/g, "")
+      .trim();
+    return cloneElement(node, {
+      className: `${className ?? ""} ${styles.holidayNavySection}`.trim(),
+      children: mockContent(node.props.children, location),
+    });
+  }
+  if (node.type === "section" && node.props["data-location-faq"]) {
+    const className = node.props.className
+      ?.replace(/\bzv-section-gradient\b/g, "")
+      .trim();
+    return cloneElement(node, {
+      className: `${className ?? ""} ${styles.holidayNavySection}`.trim(),
       children: mockContent(node.props.children, location),
     });
   }

@@ -26,10 +26,18 @@
   width: 100vw;
   transform: translateX(-50%);
   border-top: 1px solid rgba(225, 184, 101, .3);
+}
+
+.locationInfo,
+.holidayNavySection {
   color: #f8f1df;
   background:
     radial-gradient(ellipse at 48% 0%, rgba(29, 58, 87, .3), transparent 55%),
     linear-gradient(135deg, #061629, #041426 55%, #081b31);
+}
+
+.holidayNavySection:global(#pricing) :global(.space-y-10) > div > p {
+  color: rgba(248, 241, 223, .72);
 }
 
 .locationInfoInner {

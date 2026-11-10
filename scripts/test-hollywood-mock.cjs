@@ -55,6 +55,15 @@ test("holiday mock replaces only the hero, preserving the rest of Hollywood and 
   liveTrustBar.remove();
   hero.remove();
   live.querySelector('[aria-labelledby="location-hero-title"]').remove();
+  for (const selector of ["#pricing", "[data-location-faq]"]) {
+    const section = mock.querySelector(selector);
+    const liveSection = live.querySelector(selector);
+    assert(section.classNames.includes("holidayNavySection"), `${selector} uses holiday navy`);
+    assert(!section.classNames.includes("zv-section-gradient"));
+    assert(!section.classNames.includes("zv-section-light"));
+    // Only the mock's section background/theme changes; all children remain intact.
+    section.setAttribute("class", liveSection.getAttribute("class"));
+  }
   assert.equal(mock.querySelector("main").outerHTML, (() => {
     live.querySelectorAll('script[type="application/ld+json"]').forEach(node => node.remove());
     return live.querySelector("main").outerHTML;
