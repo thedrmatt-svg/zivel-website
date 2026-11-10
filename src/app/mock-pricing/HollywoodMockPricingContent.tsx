@@ -84,6 +84,27 @@ function mockPricingContent(node: ReactNode): ReactNode {
   if (!isValidElement<PricingNodeProps>(node)) return node;
   if (node.type === "meta") return null;
   if (node.type === "script" && node.props.type === "application/ld+json") return null;
+  if (
+    node.type === "p" &&
+    Array.isArray(node.props.children) &&
+    node.props.children.some((child) =>
+      typeof child === "string" && child.includes("Local pricing and membership options for Zivel ")
+    )
+  ) {
+    return cloneElement(node, {
+      children: (
+        <>
+          <strong className="font-semibold text-white/90">
+            Treat yourself to self-care. Treat someone you love to gift-care.
+          </strong>{" "}
+          This holiday season, purchase time to rest, recharge, and recover—for
+          yourself or as a thoughtful gift for others. Don’t leave yourself off
+          the list: caring for the people around you starts with making room for
+          your own well-being, too.
+        </>
+      ),
+    });
+  }
 
   // Unwrap the lead-capture gate only in this owner preview; its form is never rendered or submitted.
   if (node.type === PricingGateModal) return mockPricingContent(node.props.children);

@@ -17,6 +17,11 @@ test("Hollywood pricing preview keeps real pricing and moves renamed specials fi
   assert.equal(mock.querySelectorAll('script[type="application/ld+json"],meta,form').length, 0);
   assert(!mock.text.includes("Unlock full details below."));
   assert(mock.querySelector(".hero"));
+  assert.equal(mock.querySelector(".hero strong").text,
+    "Treat yourself to self-care. Treat someone you love to gift-care.");
+  assert(mock.querySelector(".hero").text.includes("purchase time to rest, recharge, and recover"));
+  assert(!mock.querySelector(".hero").text.includes("Local pricing and membership options"));
+  assert(live.text.includes("Local pricing and membership options for Zivel Hollywood"));
   assert(mock.querySelector(".contentSurface"));
   assert(mock.querySelector('img[src="/images/mock/holiday-bow-transparent.png"]'));
   assert.equal(mock.querySelectorAll(".snowflake").length, 16);
