@@ -59,7 +59,8 @@ test("Buckhead main retains schema, services, and booking identity with the supp
   assert.equal(offer.querySelectorAll("article").length, 3);
   const giftCard = offer.querySelectorAll("article")[2];
   assert.equal(giftCard.querySelector("h2").text, "Gift Cards");
-  assert.equal(giftCard.querySelector(".price"), null);
+  assert.equal(giftCard.querySelector(".price").text, "$50+");
+  assert(giftCard.querySelector("a").text.includes("Gift Cards & More"));
   assert.equal(giftCard.querySelector(".description").text, "Give the Gift of Feeling Better");
   assert.equal(giftCard.querySelector("img").getAttribute("src"), "/locations/highlands-ranch/services/infrared-sauna.jpg");
   assert.equal(giftCard.querySelector("a").getAttribute("href"), "/locations/georgia/buckhead/pricing");
@@ -114,6 +115,8 @@ test("Buckhead pricing opens the gate temporarily and keeps regular prices and p
   const giftCard = offer.querySelectorAll("article")[2];
   assert.equal(giftCard.querySelector("h2").text, "Gift Cards");
   assert.equal(giftCard.querySelector(".description").text, "Give the Gift of Feeling Better");
+  assert.equal(giftCard.querySelector(".price").text, "$50+");
+  assert(giftCard.querySelector("a").text.includes("Gift Cards & More"));
   assert.equal(giftCard.querySelector("img").getAttribute("src"), "/locations/highlands-ranch/services/infrared-sauna.jpg");
   assert.equal(giftCard.querySelector("a").getAttribute("href"), "/locations/georgia/buckhead/pricing");
   const facial = offer.querySelectorAll("article")[1];

@@ -37,13 +37,14 @@ export const BUCKHEAD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "buckhead-gift-cards",
     title: "Gift Cards",
+    price: "$50+",
     description: "Give the Gift of Feeling Better",
     image: getLocationServiceImage("highlands-ranch", "infrared-sauna"),
     imageAlt: "Two people relaxing together in an infrared sauna",
     imagePosition: "right 40%",
     imageZoom: 1.3,
     purchaseUrl: "/locations/georgia/buckhead/pricing",
-    action: "View Pricing",
+    action: "Gift Cards & More",
   },
 ];
 
