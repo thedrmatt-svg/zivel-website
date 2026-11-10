@@ -57,8 +57,8 @@ export function getHolidayOffers(stateSlug: string, citySlug: string): readonly 
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
   if (stateSlug !== "georgia" || citySlug !== "buckhead") return [];
-  const giftCardServices = ["infrared-sauna", "dry-float", "compression-therapy"];
-  const giftCardAlts = ["Infrared sauna", "Dry float recovery", "Compression therapy"];
+  const giftCardServices = ["infrared-sauna", "dry-float", "cryo-slimming"];
+  const giftCardAlts = ["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"];
   return [
     ...[50, 100, 200].map((amount, index): HolidayOffer => ({
       id: `buckhead-gift-card-${amount}`,

@@ -122,6 +122,7 @@ test("Buckhead pricing opens the gate temporarily and keeps regular prices and p
   assert.equal(new Set(cards.slice(0, 3).map(card => card.querySelector("img").getAttribute("src"))).size, 3);
   assert.equal(cards[1].querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656885");
   assert.equal(cards[2].querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656886");
+  assert.equal(cards[2].querySelector("img").getAttribute("src"), "/images/home/service-slimming.jpg");
   assert.equal(cards[5].querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656887");
   assert.equal(offer.querySelectorAll("button[disabled]").length, 0);
   const facial = cards[4];
