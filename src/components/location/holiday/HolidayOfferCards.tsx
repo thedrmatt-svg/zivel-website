@@ -44,7 +44,13 @@ export default function HolidayOfferCards({
             </div>
             <div className={styles.cardContent}>
               <h2 className={styles.offerTitle}>{offer.title}</h2>
-              {offer.price && <div className={styles.price}>{offer.price}</div>}
+              {offer.price && (
+                <div className={styles.price}>
+                  {offer.price.endsWith("+")
+                    ? <>{offer.price.slice(0, -1)}<span className={styles.priceSuffix}>+</span></>
+                    : offer.price}
+                </div>
+              )}
               {offer.description && <p className={styles.description}>{offer.description}</p>}
               <a
                 href={offer.purchaseUrl}

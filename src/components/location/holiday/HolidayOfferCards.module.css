@@ -133,6 +133,11 @@
   text-shadow: 0 2px 20px rgba(225, 174, 82, .16);
 }
 
+.priceSuffix {
+  font-size: .6em;
+  vertical-align: .12em;
+}
+
 .description {
   margin: .4rem 0 .9rem;
   color: #fff8eb;
