@@ -65,7 +65,7 @@ test("Buckhead main retains schema, services, and booking identity with the supp
   assert.equal(offer.querySelector("img").getAttribute("src"),
     r.source("src/lib/data/location-service-images").getLocationServiceImage("buckhead", "red-light-therapy"));
   const facial = offer.querySelectorAll("article")[1];
-  assert.equal(facial.querySelector("h2").text, "BOGO Facials");
+  assert.equal(facial.querySelector("h2").text, "BOGO Cryo Facial/Double Chin");
   assert.equal(facial.querySelector(".price").text, "$150");
   assert.equal(facial.querySelector(".description").text, "Buy One Get/Give One");
   assert.equal(facial.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656883");
@@ -106,7 +106,7 @@ test("Buckhead pricing opens the gate temporarily and keeps regular prices and p
   const offer = page.querySelector("#specials");
   assert.equal(offer.querySelectorAll("article").length, 2);
   const facial = offer.querySelectorAll("article")[1];
-  assert.equal(facial.querySelector("h2").text, "BOGO Facials");
+  assert.equal(facial.querySelector("h2").text, "BOGO Cryo Facial/Double Chin");
   assert.equal(facial.querySelector(".price").text, "$150");
   assert.equal(facial.querySelector(".description").text, "Buy One Get/Give One");
   assert.equal(facial.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656883");

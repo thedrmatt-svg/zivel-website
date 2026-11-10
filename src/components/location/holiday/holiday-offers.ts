@@ -24,7 +24,7 @@ export const BUCKHEAD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   },
   {
     id: "buckhead-bogo-facials",
-    title: "BOGO Facials",
+    title: "BOGO Cryo Facial/Double Chin",
     price: "$150",
     description: "Buy One Get/Give One",
     image: getLocationServiceImage("buckhead", "cryo-lift-facial"),
