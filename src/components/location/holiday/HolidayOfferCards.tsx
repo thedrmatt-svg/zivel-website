@@ -34,6 +34,11 @@ export default function HolidayOfferCards({
                 height={410}
                 sizes="(max-width: 700px) 100vw, (max-width: 1080px) 33vw, 390px"
                 className={styles.photoImage}
+                style={{
+                  objectPosition: offer.imagePosition,
+                  scale: offer.imageZoom,
+                  transformOrigin: offer.imagePosition,
+                }}
               />
               <div className={styles.photoShade} aria-hidden="true" />
             </div>
