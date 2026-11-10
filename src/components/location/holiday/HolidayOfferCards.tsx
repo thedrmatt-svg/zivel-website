@@ -39,12 +39,12 @@ export default function HolidayOfferCards({
             </div>
             <div className={styles.cardContent}>
               <h2 className={styles.offerTitle}>{offer.title}</h2>
-              <div className={styles.price}>{offer.price}</div>
+              {offer.price && <div className={styles.price}>{offer.price}</div>}
               {offer.description && <p className={styles.description}>{offer.description}</p>}
               <a
                 href={offer.purchaseUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={offer.purchaseUrl.startsWith("/") ? undefined : "_blank"}
+                rel={offer.purchaseUrl.startsWith("/") ? undefined : "noopener noreferrer"}
                 className={styles.action}
               >
                 {offer.action}<span aria-hidden="true">›</span>

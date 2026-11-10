@@ -3,7 +3,7 @@ import { getLocationServiceImage } from "@/lib/data/location-service-images";
 export type HolidayOffer = {
   id: string;
   title: string;
-  price: string;
+  price?: string;
   description?: string;
   image: string;
   imageAlt: string;
@@ -31,6 +31,14 @@ export const BUCKHEAD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     imageAlt: "Cryo lift facial treatment at Zivel Buckhead",
     purchaseUrl: "https://app.clubready.com/JoinUs/14900/656883",
     action: "Buy Now",
+  },
+  {
+    id: "buckhead-gift-cards",
+    title: "Gift Cards",
+    image: getLocationServiceImage("highlands-ranch", "infrared-sauna"),
+    imageAlt: "Two people relaxing together in an infrared sauna",
+    purchaseUrl: "/locations/georgia/buckhead/pricing",
+    action: "View Pricing",
   },
 ];
 

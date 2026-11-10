@@ -56,7 +56,12 @@ test("Buckhead main retains schema, services, and booking identity with the supp
   assert.equal(page.querySelector("#location-hero-title").text, "Holiday Offers");
   assert(page.text.includes("Zivel Buckhead"));
   const offer = page.querySelector('section[aria-label="Holiday offers"]');
-  assert.equal(offer.querySelectorAll("article").length, 2);
+  assert.equal(offer.querySelectorAll("article").length, 3);
+  const giftCard = offer.querySelectorAll("article")[2];
+  assert.equal(giftCard.querySelector("h2").text, "Gift Cards");
+  assert.equal(giftCard.querySelector(".price"), null);
+  assert.equal(giftCard.querySelector("img").getAttribute("src"), "/locations/highlands-ranch/services/infrared-sauna.jpg");
+  assert.equal(giftCard.querySelector("a").getAttribute("href"), "/locations/georgia/buckhead/pricing");
   assert.equal(offer.querySelector("h2").text, "6 Pack Recovery");
   assert.equal(offer.querySelector(".price").text, "$99");
   assert.equal(offer.querySelector(".description").text, "6 Recovery Services in 1 Month");
@@ -104,7 +109,11 @@ test("Buckhead pricing opens the gate temporarily and keeps regular prices and p
     assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
   }
   const offer = page.querySelector("#specials");
-  assert.equal(offer.querySelectorAll("article").length, 2);
+  assert.equal(offer.querySelectorAll("article").length, 3);
+  const giftCard = offer.querySelectorAll("article")[2];
+  assert.equal(giftCard.querySelector("h2").text, "Gift Cards");
+  assert.equal(giftCard.querySelector("img").getAttribute("src"), "/locations/highlands-ranch/services/infrared-sauna.jpg");
+  assert.equal(giftCard.querySelector("a").getAttribute("href"), "/locations/georgia/buckhead/pricing");
   const facial = offer.querySelectorAll("article")[1];
   assert.equal(facial.querySelector("h2").text, "BOGO Cryo Facial/Double Chin");
   assert.equal(facial.querySelector(".price").text, "$150");
