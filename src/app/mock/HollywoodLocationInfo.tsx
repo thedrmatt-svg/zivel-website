@@ -24,6 +24,11 @@ export default function HollywoodLocationInfo({ location, statusProps }: Props) 
         <div className={styles.locationDetails}>
           <p className={styles.locationEyebrow}>Hollywood, Florida</p>
           <h2 id="location-info-title">{location.name}</h2>
+          <p className={styles.seasonalMessage}>
+            Make room for recovery this holiday season. Taking time to rest and
+            recharge is part of caring for yourself—and showing up for the people
+            you love.
+          </p>
           {location.contact?.address && (
             <p className={styles.locationAddress}>{location.contact.address}</p>
           )}

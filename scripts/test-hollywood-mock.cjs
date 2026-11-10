@@ -32,6 +32,7 @@ test("holiday mock replaces only the hero, preserving the rest of Hollywood and 
   const liveHero = live.querySelector('[aria-labelledby="location-hero-title"]');
   assert.equal(info.querySelector("h2").text, liveHero.querySelector("h1").text);
   assert(info.text.includes("3361 Sheridan St, Hollywood, FL 33021"));
+  assert(info.querySelector(".seasonalMessage").text.includes("Make room for recovery this holiday season."));
   assert(!info.text.includes("Consistency is where results compound"));
   assert(!info.querySelector('[aria-label="Breadcrumb"]'));
   assert.equal(info.querySelectorAll("a").length, 4);
