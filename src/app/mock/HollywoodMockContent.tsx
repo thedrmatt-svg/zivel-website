@@ -1,6 +1,7 @@
 import { cloneElement, isValidElement, type ComponentProps, type ReactNode } from "react";
 import LocationPage from "../[locale]/locations/[state]/[city]/page";
 import LocationFaq from "@/components/location/LocationFaq";
+import ServiceImageCard from "@/components/location/ServiceImageCard";
 import LocationStatusLine from "@/components/location/LocationStatusLine";
 import { getLocationByPath } from "@/lib/data/locations";
 import type { Location } from "@/types/location";
@@ -23,6 +24,13 @@ function containsLocationTitle(node: ReactNode): boolean {
   if (!isValidElement<MockNodeProps>(node)) return false;
   if (node.type === "h1" && node.props.id === "location-hero-title") return true;
   return "children" in node.props && containsLocationTitle(node.props.children);
+}
+
+function containsServiceCard(node: ReactNode): boolean {
+  if (Array.isArray(node)) return node.some(containsServiceCard);
+  if (!isValidElement<MockNodeProps>(node)) return false;
+  if (node.type === ServiceImageCard) return true;
+  return "children" in node.props && containsServiceCard(node.props.children);
 }
 
 function getStatusProps(node: ReactNode): ComponentProps<typeof LocationStatusLine> | undefined {
@@ -59,6 +67,15 @@ function mockContent(node: ReactNode, location: Location): ReactNode {
   if (node.type === "section" && node.props.className === "zv-bleed bg-[#0a0a0a] border-y border-white/10") {
     return cloneElement(node, {
       className: `zv-bleed border-y border-white/10 ${styles.trustBar}`,
+      children: mockContent(node.props.children, location),
+    });
+  }
+  if (node.type === "section" && containsServiceCard(node.props.children)) {
+    const className = node.props.className
+      ?.replace(/\bzv-section-(?:light|elevated)\b/g, "")
+      .trim();
+    return cloneElement(node, {
+      className: `${className ?? ""} ${styles.holidayServicesSurface}`.trim(),
       children: mockContent(node.props.children, location),
     });
   }

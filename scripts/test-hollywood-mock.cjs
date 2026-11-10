@@ -56,6 +56,14 @@ test("holiday mock replaces only the hero, preserving the rest of Hollywood and 
   liveTrustBar.remove();
   hero.remove();
   live.querySelector('[aria-labelledby="location-hero-title"]').remove();
+  const services = mock.querySelector("section.holidayServicesSurface");
+  const liveServices = live.querySelectorAll("section").find(section =>
+    section.querySelector("h2")?.text === "Services Available"
+  );
+  assert(services, "Services uses a mock-only winter ivory background");
+  assert(services.classNames.includes("zv-light"), "Light-theme text contrast is preserved");
+  assert.equal(services.innerHTML, liveServices.innerHTML, "Service cards and links are unchanged");
+  services.setAttribute("class", liveServices.getAttribute("class"));
   for (const selector of ["#pricing", "[data-location-faq]"]) {
     const section = mock.querySelector(selector);
     const liveSection = live.querySelector(selector);
