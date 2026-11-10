@@ -1,0 +1,583 @@
+{
+  "savedOn": "2026-11-10",
+  "purpose": "Immutable pre-holiday source reference; restore presentation only, not newer business data.",
+  "archive": {
+    "path": "docs/standard-location-baseline/standard-source.tar.gz",
+    "bytes": 79674,
+    "sha256": "a451a8be7693f690192373e21c6418b1c2b96a6838e4eb4037b85b74508490ee"
+  },
+  "sources": [
+    {
+      "path": "src/app/[locale]/layout.tsx",
+      "bytes": 5137,
+      "sha256": "ed5117972408dd5664d44881c9d15cc373c0a755ff8dc975739459f548b05c2a"
+    },
+    {
+      "path": "src/app/[locale]/locations/[state]/[city]/layout.tsx",
+      "bytes": 2421,
+      "sha256": "df7aac38f40b3cd055ea23371ee8a606378abade5810570b8c691562080a304c"
+    },
+    {
+      "path": "src/app/[locale]/locations/[state]/[city]/page.tsx",
+      "bytes": 85764,
+      "sha256": "01d0b56efd1acff76915a40b18523e0f44bc1fd6699c152654232fa9af4e3b60"
+    },
+    {
+      "path": "src/app/[locale]/locations/[state]/[city]/pricing/page.tsx",
+      "bytes": 37270,
+      "sha256": "01590f2e62a0f94a22e4daf9f503ccceda99470fea227142e06e918cb2f1105d"
+    },
+    {
+      "path": "src/components/booking/BookingWidget.tsx",
+      "bytes": 1054,
+      "sha256": "9b3df21e61297b9b17f84df74e071f414f90a7f504ddda4a6fabacc371ae45cb"
+    },
+    {
+      "path": "src/components/layout/Footer.tsx",
+      "bytes": 5097,
+      "sha256": "34eae49810585c07470db664c4326e14396c816b7e5d82254f93ecfa035e5bf5"
+    },
+    {
+      "path": "src/components/layout/Header.tsx",
+      "bytes": 19912,
+      "sha256": "369a2040e838aa4e2e140a2b7880deefa26ab6f4ffc6ec2f1dd115a76259c2ef"
+    },
+    {
+      "path": "src/components/location/ContactForm.tsx",
+      "bytes": 9452,
+      "sha256": "6ffb15887cf8bdafab93f0840888a884cf84b3044daf8385946196a7d928889a"
+    },
+    {
+      "path": "src/components/location/GoogleMapEmbed.tsx",
+      "bytes": 1555,
+      "sha256": "8dcb7fd60b96dfd01796d40e983dc1ea5f1321879e54950c0f15dcd30002121a"
+    },
+    {
+      "path": "src/components/location/GoogleReviews.tsx",
+      "bytes": 4139,
+      "sha256": "991cf135368ff7662bd6d367f78710274f72517e6bde9708a91d7542c3eaaaa2"
+    },
+    {
+      "path": "src/components/location/HideForBrecksville.tsx",
+      "bytes": 338,
+      "sha256": "368eb9e9615b7615a1bdec87ec1153c7cf011e04f3812b7f9a2d60e8c5e8cb5a"
+    },
+    {
+      "path": "src/components/location/JobsSection.tsx",
+      "bytes": 1250,
+      "sha256": "1c2f19c9ffe7e7f0b73f9d920d66560ebe43ebc2eaa0584c43215f59a99be7c8"
+    },
+    {
+      "path": "src/components/location/LocationBookingLink.tsx",
+      "bytes": 333,
+      "sha256": "4ef30653ff822f6f734c4fc285da83bc956f5be8c7941ca81fe7cbaf4240d789"
+    },
+    {
+      "path": "src/components/location/LocationFaq.tsx",
+      "bytes": 2640,
+      "sha256": "0006e2a7da71c4449b8501584a6ce9c8bcd6f2a519374344d898764d5c85cdd2"
+    },
+    {
+      "path": "src/components/location/LocationMobileActions.tsx",
+      "bytes": 6328,
+      "sha256": "83292ab76db4c5639a8c04c151e7bcc04067ce756a51a8b182fbee8b5da7637c"
+    },
+    {
+      "path": "src/components/location/LocationSectionOrder.tsx",
+      "bytes": 855,
+      "sha256": "f13558f2f9b51ccbef3116c7dcc8adcf1ad7aea1f64119627e8b0b6633c60b3e"
+    },
+    {
+      "path": "src/components/location/LocationStatusLine.tsx",
+      "bytes": 1697,
+      "sha256": "a6474bf9415b1c74f220609b22f9a15d685878b5a9856b10c779354659aaaa7d"
+    },
+    {
+      "path": "src/components/location/PartnersSection.tsx",
+      "bytes": 1618,
+      "sha256": "92229ff44f4ce8679167e7593d3674337b2185af865f7329bc9c8952605cbfbb"
+    },
+    {
+      "path": "src/components/location/PricingGateModal.tsx",
+      "bytes": 10334,
+      "sha256": "fae01900c7a67744bb479fdcfb4e37e7f94db640cfe9c59dc92bc7c7dcbae512"
+    },
+    {
+      "path": "src/components/location/PricingSection.tsx",
+      "bytes": 5299,
+      "sha256": "a9c110b459106176862052d44faab97047392b97474248d5e395bfd1f8f67430"
+    },
+    {
+      "path": "src/components/location/ReviewText.tsx",
+      "bytes": 2644,
+      "sha256": "bc35891a939222d41daae36afa3ab4674ca8757222e58692146969e32d6a37fa"
+    },
+    {
+      "path": "src/components/location/ServiceImageCard.tsx",
+      "bytes": 3216,
+      "sha256": "4f24e9089fa050911e62b3bbef1e1f29a1188dbcfd8a27dd0241a51b34beef3f"
+    },
+    {
+      "path": "src/components/location/StoreSection.tsx",
+      "bytes": 1823,
+      "sha256": "cde27fbb89dacc7dbb5caaeac81bbf3e8e49e024368e24c20d86030d2c9ee55a"
+    },
+    {
+      "path": "src/components/ui/ScrollReveal.tsx",
+      "bytes": 1467,
+      "sha256": "477b4bf071a4e137781be7974a663d3107ad160f1be6b9629bba2a969374f292"
+    },
+    {
+      "path": "src/components/widgets/CherryWidget.tsx",
+      "bytes": 4028,
+      "sha256": "23dd7d9fc9731707a1fd101cfda45729d5e1d352321c29031d6b80600c36b0e8"
+    },
+    {
+      "path": "src/content/locations/belmont-north-carolina.ts",
+      "bytes": 5502,
+      "sha256": "bfab36042809106081305568c8ca0987714f4b56868fe4b39db5462f53142dcf"
+    },
+    {
+      "path": "src/content/locations/bentonville-ar.ts",
+      "bytes": 3016,
+      "sha256": "4b7ac718d527890bcef893eb4cd1d85c5333f9a68e6038c90abb3432dfbf01ab"
+    },
+    {
+      "path": "src/content/locations/bentonville-arkansas.ts",
+      "bytes": 4547,
+      "sha256": "b03dd766ae7143bb02e4d4d88aaa6d6577f3ee7e81ccdbc626af99a487653079"
+    },
+    {
+      "path": "src/content/locations/brecksville-oh.ts",
+      "bytes": 3008,
+      "sha256": "f1eaf9772b8a76415bbd5834ea17aa9422b5d1470d2056eca251170211fff4f4"
+    },
+    {
+      "path": "src/content/locations/brecksville-ohio.ts",
+      "bytes": 3775,
+      "sha256": "d253f4768934820b0e6e408803ffb76998c76e60201c2ec958688c388adff219"
+    },
+    {
+      "path": "src/content/locations/briargate-co.ts",
+      "bytes": 2986,
+      "sha256": "9cea72caffd1a9a64d70f891c0169e3a677fdaf47e9baee18b51b394a4751e5a"
+    },
+    {
+      "path": "src/content/locations/briargate-colorado.ts",
+      "bytes": 4448,
+      "sha256": "39f989fe10848d64977eec82e90a54d5aa25f48622acceb340965f4aa35a21bf"
+    },
+    {
+      "path": "src/content/locations/buckhead-ga.ts",
+      "bytes": 2969,
+      "sha256": "eaf7f47380b521121190d65032e087d1b0ad42bdd59792363e304ff7e4903e81"
+    },
+    {
+      "path": "src/content/locations/buckhead-georgia.ts",
+      "bytes": 4641,
+      "sha256": "9a4cc9023e612876370baac7241f99dd0d861508672d1960bc08159a243a8518"
+    },
+    {
+      "path": "src/content/locations/cool-springs-tennessee.ts",
+      "bytes": 4412,
+      "sha256": "1ab7878d5ae1ec6f9838f3946f570228035c12e218e1fdbc1a7afdde22672563"
+    },
+    {
+      "path": "src/content/locations/cool-springs-tn.ts",
+      "bytes": 3033,
+      "sha256": "8195472b75fa5586aea1ebf92b64a811fe0fdc40f25880eaa6c3cf729bb5bff5"
+    },
+    {
+      "path": "src/content/locations/coral-gables-fl.ts",
+      "bytes": 3029,
+      "sha256": "bff0558cddbd7e4edb0be87f3dc43c0eaa70dd3e661c5c67ffdc1daa3f003f48"
+    },
+    {
+      "path": "src/content/locations/coral-gables-florida.ts",
+      "bytes": 4594,
+      "sha256": "e7e66297eef4dcafb3529f7c84e0e27ccf051dd5ec0cd079869901068e631b0a"
+    },
+    {
+      "path": "src/content/locations/fayetteville-ar.ts",
+      "bytes": 3031,
+      "sha256": "7ec931958e064a7e42403562f208c54f7cfb22f67fdbc08c8568ff0238fefc80"
+    },
+    {
+      "path": "src/content/locations/fayetteville-arkansas.ts",
+      "bytes": 4498,
+      "sha256": "c7aa8a2a0106fb7f74e91e56449bfedadafc841fc0514960493b7599d194714e"
+    },
+    {
+      "path": "src/content/locations/fieldhouse-mississippi.ts",
+      "bytes": 4640,
+      "sha256": "3a78f4d042421a4b9e1e0218e1fa7b9842f35768dc8c12d3d9b65f38292fbdc5"
+    },
+    {
+      "path": "src/content/locations/fieldhouse-ms.ts",
+      "bytes": 3007,
+      "sha256": "60823d2996074339bd134ade7d0eee35e57dc3a482e7151296ba3b3bb1f90c62"
+    },
+    {
+      "path": "src/content/locations/highlands-ranch-co.ts",
+      "bytes": 3076,
+      "sha256": "4090ba55dd2b2316833d57791befe78fa0fbbca4b022551fe9a349562ec7c41b"
+    },
+    {
+      "path": "src/content/locations/highlands-ranch-colorado.ts",
+      "bytes": 5046,
+      "sha256": "8ab3d443eb6670da356447afe2f1ba7a63d54151ed909fc57d788f73fac862c5"
+    },
+    {
+      "path": "src/content/locations/hollywood-fl.ts",
+      "bytes": 3068,
+      "sha256": "9c4cb26a095215c6741139a77ebef0e12ab898a16aa55505c5b7770c739bc538"
+    },
+    {
+      "path": "src/content/locations/hollywood-florida.ts",
+      "bytes": 5771,
+      "sha256": "ef0bbb00eb2007a9518687f97a3fae20ab615ca4166a30ddf4cfa9bf8d2b7107"
+    },
+    {
+      "path": "src/content/locations/locationExtras.ts",
+      "bytes": 3385,
+      "sha256": "12b91dbc25451f33cfa4c9bc51903222d30f37b433732e5c2cfd829055e11860"
+    },
+    {
+      "path": "src/content/locations/metairie-la.ts",
+      "bytes": 2973,
+      "sha256": "0b1d8cb206f6dbe0d6d1a1e8a468f7777038b4911a3ea11150dae349c62613f2"
+    },
+    {
+      "path": "src/content/locations/metairie-louisiana.ts",
+      "bytes": 4685,
+      "sha256": "43ccf3a900fecfff48ce27651522e97501de73f169573280b3b9ef6a152e9ab4"
+    },
+    {
+      "path": "src/content/locations/murfreesboro-tennessee.ts",
+      "bytes": 4467,
+      "sha256": "4ff5fe2f23e5f2b99370ac1fbb7926acbb9ed550b0f771bac2c89e3ee1a64759"
+    },
+    {
+      "path": "src/content/locations/murfreesboro-tn.ts",
+      "bytes": 3033,
+      "sha256": "ba857311eca514d1b8bcf46e80cff87e4dc6de019c4f930bb421daae68cc9903"
+    },
+    {
+      "path": "src/content/locations/newport-kentucky.ts",
+      "bytes": 4672,
+      "sha256": "d17363acc3b911cd8742a8a5d9dad10d07fa9e0ea2344de7926244f3ef929ed0"
+    },
+    {
+      "path": "src/content/locations/newport-ky.ts",
+      "bytes": 2977,
+      "sha256": "7efcc6766f92675b918995d44486c7c7e31b4a5a773773f30a446c44c587c086"
+    },
+    {
+      "path": "src/content/locations/palm-coast-fl.ts",
+      "bytes": 2999,
+      "sha256": "cca397a8356f1cff8b151f73c650bce3bed3e95c69a9e2365cd627a2550721fd"
+    },
+    {
+      "path": "src/content/locations/palm-coast-florida.ts",
+      "bytes": 4083,
+      "sha256": "b1622554f4b85afd2b11c035a2cc6cb89aa3fc554c4b2c399dd951966883aa69"
+    },
+    {
+      "path": "src/content/locations/parker-co.ts",
+      "bytes": 2941,
+      "sha256": "5820684133c7ce774742546bef9def7b99e15c77ee1a6998283f7faf34cb9b61"
+    },
+    {
+      "path": "src/content/locations/parker-colorado.ts",
+      "bytes": 4543,
+      "sha256": "34410cdd685c12eac35d5d17b80fa381cacc5f99604dc03df3831931f7dabff3"
+    },
+    {
+      "path": "src/content/locations/riverton-ut.ts",
+      "bytes": 3039,
+      "sha256": "0953375b7b24b1ce60cc4f926c02bfececd575fca08ce05dc231fb106a00ef75"
+    },
+    {
+      "path": "src/content/locations/riverton-utah.ts",
+      "bytes": 4817,
+      "sha256": "81a8680f6a33a7dd9118ed07a77bc324c1b6a530f3e4673885d5739d5601876d"
+    },
+    {
+      "path": "src/content/locations/rogers-ar.ts",
+      "bytes": 2941,
+      "sha256": "56fa617ed3ac1c560ebc85a9604c802dbf1439b52b412740444297f9202afe00"
+    },
+    {
+      "path": "src/content/locations/rogers-arkansas.ts",
+      "bytes": 4479,
+      "sha256": "c73ec2c17d3499d61a4ffd046e9affb2bb8584e27d44e03107dbb06a61ccd164"
+    },
+    {
+      "path": "src/content/locations/windermere-ga.ts",
+      "bytes": 2999,
+      "sha256": "0a2bdec93643a36e5604fc65b1dd405992dbb57610214bf0b3f5a48af70a454b"
+    },
+    {
+      "path": "src/content/locations/windermere-georgia.ts",
+      "bytes": 7264,
+      "sha256": "43e4092e7359a0d9c09daaeaddf190cda1720670b4e8515ea35ab9a09f617f33"
+    },
+    {
+      "path": "src/lib/contact-links.ts",
+      "bytes": 755,
+      "sha256": "1319fb6bf3b81c082cc19267b5392f890b3734dd7caee42ac418799872d62e26"
+    },
+    {
+      "path": "src/lib/data/local-service-pages.ts",
+      "bytes": 1217,
+      "sha256": "9dd7f6588f06643a272795cb5317167b112cc6fee273a31745f50b24a3b29476"
+    },
+    {
+      "path": "src/lib/data/location-service-images.ts",
+      "bytes": 1759,
+      "sha256": "9ce6aa02e91e45939fda65d3ec3ce16e1f00c85f7a72da49e2154dfbe536b8de"
+    },
+    {
+      "path": "src/lib/data/locationNav.ts",
+      "bytes": 1821,
+      "sha256": "a1d8f1242a063b9c75f8e808b611fa0a5783a02149bebfcf57a4bc40ad18115e"
+    },
+    {
+      "path": "src/lib/data/locations.ts",
+      "bytes": 5145,
+      "sha256": "f02bc6e7cf2490e64bd88ac313ee3035c38c6cbd0392e8ca49c6ce510631a194"
+    },
+    {
+      "path": "src/lib/data/services.ts",
+      "bytes": 1140,
+      "sha256": "b3d03a8b279e4ef7ca3b22e049684354b0f69236ea64f4ddd31c932f72829f7c"
+    },
+    {
+      "path": "src/lib/data/socialLinks.ts",
+      "bytes": 3092,
+      "sha256": "24a66e7fe59b8bf7f32b2fc332986f4447f7ba7eaf9dc5f72f21e910a095e048"
+    },
+    {
+      "path": "src/lib/location-availability.ts",
+      "bytes": 359,
+      "sha256": "972d4652df7fcb934dcde5597824a6d9d564bb3805d7f7fae5b7d3cc9a72155c"
+    },
+    {
+      "path": "src/lib/location-booking.ts",
+      "bytes": 1831,
+      "sha256": "e9f0daaf6dfaf578bb3a0dfbc86c2855806a3e8065589b3d54b14c8487e67927"
+    },
+    {
+      "path": "src/lib/location-business-schema.ts",
+      "bytes": 2817,
+      "sha256": "067d8a3de23fb09f8b8c9217b59e20e073dc6bcadc9f2000749df5d3d572917b"
+    },
+    {
+      "path": "src/lib/location-enhancement-copy.ts",
+      "bytes": 583,
+      "sha256": "f55e6b91c4974850514081c7622331c052a5b1a9b11c91653b17503680b74e8e"
+    },
+    {
+      "path": "src/lib/location-faqs.ts",
+      "bytes": 9275,
+      "sha256": "eb9b0089250a54350bb923258c46ede538987cbc3d6428a28b28109c87df0ed5"
+    },
+    {
+      "path": "src/lib/location-local-faqs.ts",
+      "bytes": 5617,
+      "sha256": "df9d82a544b2fb99d14391f0aba0e0a7df076fec5635192049dd346969806b09"
+    },
+    {
+      "path": "src/lib/location-memberships.ts",
+      "bytes": 864,
+      "sha256": "f6612f6e7931d67cd31144a72cbbdbf306b93f11a30ecd48454cc4af59df7152"
+    },
+    {
+      "path": "src/lib/location-presentation.ts",
+      "bytes": 6711,
+      "sha256": "5c28b3961ed1b2c2b39b5dbc24cacf279a103147eaa49f8a1d2795b40bb45e22"
+    },
+    {
+      "path": "src/lib/location-review-order.ts",
+      "bytes": 704,
+      "sha256": "dee30ec5a78dfabf4428a2c1df872fd0ecb67b4d7582028f64980a14d27db82b"
+    },
+    {
+      "path": "src/lib/location-status.ts",
+      "bytes": 3909,
+      "sha256": "808f89a44e7681105f8110090d1d7d08302577f9a73c310585724d7e07b19432"
+    },
+    {
+      "path": "src/styles/globals.css",
+      "bytes": 32305,
+      "sha256": "6419463b12596247d621d728cb444d74ebaea4cbe0237c0ec8b047160ce7bac5"
+    },
+    {
+      "path": "src/types/location.ts",
+      "bytes": 7719,
+      "sha256": "0f8c9746a11fb60207e20f43848d736124b781cc3733b2196dffd48e69dae0f7"
+    }
+  ],
+  "referencedLocalImages": [
+    {
+      "path": "public/images/ads/bees-logo.png",
+      "bytes": 416774,
+      "sha256": "c53be18592ac083efef9f3d4dc3967864d71dc1697e401767c3c798efad34ae1"
+    },
+    {
+      "path": "public/images/ads/royals-logo.png",
+      "bytes": 71793,
+      "sha256": "398495231fcc6c19e77873372ee6a7696e590708c33cc685a14773e82240ce7a"
+    },
+    {
+      "path": "public/images/ads/rsl-logo-2026.png",
+      "bytes": 437684,
+      "sha256": "03109b7fef5ca8f492092f2d70508236e2011d98761ad2034799ae2bc297a401"
+    },
+    {
+      "path": "public/images/blog/local-wellness-insights.avif",
+      "bytes": 17617,
+      "sha256": "d4fc8f31a5d6ef240ee264f0677e8ad02a59443edfb9068c9f419f7af8d1527f"
+    },
+    {
+      "path": "public/images/brand/zivel-logo.png",
+      "bytes": 11702,
+      "sha256": "7dcec2169f6b1b19b04bcdfe6db0e43a66a76128424a93e6eb940878888e4e34"
+    },
+    {
+      "path": "public/images/home/about-studio.jpg",
+      "bytes": 86968,
+      "sha256": "256b0c063c45d437a92a9941918ba116fed6b4269086d03d157f93c998f6f1fb"
+    },
+    {
+      "path": "public/images/home/hero.jpg",
+      "bytes": 347227,
+      "sha256": "c4686642f147e5561aedf49bf634b1473a2cd257a752399061ab6696a055312d"
+    },
+    {
+      "path": "public/images/home/service-compression.jpg",
+      "bytes": 114958,
+      "sha256": "5782b2201986ed49f2934da9aa6de038c481ae93b0e07ce57e476ea27a8859f2"
+    },
+    {
+      "path": "public/images/home/service-cryo.jpg",
+      "bytes": 92320,
+      "sha256": "44798598c22d645fcbe6d282f023ab3db45657ce06da7f4cf881f9183239de44"
+    },
+    {
+      "path": "public/images/home/service-cryosoothe.avif",
+      "bytes": 450779,
+      "sha256": "4ec5c8236273f9db86b93a705f2fc13a8e14f8e4d9129d38a9b9d58e7506a376"
+    },
+    {
+      "path": "public/images/home/service-dryfloat.jpg",
+      "bytes": 3464164,
+      "sha256": "91115251a37c56408f41a6951eab417139efb5bbe6b971a7ca9c7db99994d143"
+    },
+    {
+      "path": "public/images/home/service-exercise.jpg",
+      "bytes": 148337,
+      "sha256": "c2b0edcf8aa39b92554e8819636751e23cae0f6bfb8f157a57ebea28bb33173e"
+    },
+    {
+      "path": "public/images/home/service-redlight.jpg",
+      "bytes": 57590,
+      "sha256": "fd845a75aa6a2392d7890a9148a7207ba0dde199607c810a3bcad70b71c6b50c"
+    },
+    {
+      "path": "public/images/home/service-sauna.jpg",
+      "bytes": 423433,
+      "sha256": "8f7e10c1a25e200ccc1f7a6c31040b786a8fde7291a67bce5df4504e6c74e309"
+    },
+    {
+      "path": "public/images/home/service-slimming.jpg",
+      "bytes": 96064,
+      "sha256": "d1032e97c0a9be1cecfd3086fb982c3e3f6f9d2923147ac2589b25d54c0e2b3f"
+    },
+    {
+      "path": "public/images/locations/hollywood-fl/hero.jpg",
+      "missingAtCapture": true
+    },
+    {
+      "path": "public/images/locations/hollywood-fl/interior.jpg",
+      "missingAtCapture": true
+    },
+    {
+      "path": "public/images/locations/riverton-ut/hero.jpg",
+      "missingAtCapture": true
+    },
+    {
+      "path": "public/images/locations/riverton-ut/interior.jpg",
+      "missingAtCapture": true
+    },
+    {
+      "path": "public/images/locations/riverton/award.avif",
+      "bytes": 94045,
+      "sha256": "a952687467173bc095040b119f1fcfa2a03ee87bf991c2863432decf56beaacf"
+    },
+    {
+      "path": "public/images/locations/riverton/storefront.avif",
+      "bytes": 2201675,
+      "sha256": "e359dcbff184367367102ba5eaf1e8b047401b2600f977a7c174cf2bd7e13ef5"
+    },
+    {
+      "path": "public/images/locations/studio-about.jpg",
+      "bytes": 190331,
+      "sha256": "a4dc03bf94034a40cabb425f3b83bf3d50a79066bf46e43298f2e1db35fa45ff"
+    },
+    {
+      "path": "public/images/locations/studio-hero.jpg",
+      "bytes": 218591,
+      "sha256": "f3eff34b003f5601ca0197d41ac7d8683af5c2d6c3bd5b030b71fc986571617b"
+    },
+    {
+      "path": "public/images/og-image.jpg",
+      "bytes": 105014,
+      "sha256": "d5150c984cb400893a66ea61cb3a8835aaf069f6883ef16c35d13f13d28d6256"
+    },
+    {
+      "path": "public/images/partners/example.png",
+      "missingAtCapture": true
+    },
+    {
+      "path": "public/images/services/cryo-lift-facial/hero.avif",
+      "bytes": 191361,
+      "sha256": "44241080271250576ece871a5e1de4393da179b83d01689c254f3b065b6fa3cf"
+    },
+    {
+      "path": "public/images/services/cryo-lift-facial/intro.avif",
+      "bytes": 191361,
+      "sha256": "44241080271250576ece871a5e1de4393da179b83d01689c254f3b065b6fa3cf"
+    },
+    {
+      "path": "public/images/services/cryo-slimming/hero.avif",
+      "bytes": 183051,
+      "sha256": "bf6bc52f60b75029c79f870bdbdb1f4dd91263dca6c1bb6c80580f546a7d33ce"
+    },
+    {
+      "path": "public/images/services/cryo-slimming/intro.avif",
+      "bytes": 183051,
+      "sha256": "bf6bc52f60b75029c79f870bdbdb1f4dd91263dca6c1bb6c80580f546a7d33ce"
+    },
+    {
+      "path": "public/images/services/cryo-soothe/hero.avif",
+      "bytes": 450779,
+      "sha256": "4ec5c8236273f9db86b93a705f2fc13a8e14f8e4d9129d38a9b9d58e7506a376"
+    },
+    {
+      "path": "public/images/services/cryo-toning/hero.avif",
+      "bytes": 12963,
+      "sha256": "2fd93954aae0579cdecfcd93980ef2270fd779e146d7d99dfa1bb8469b52f050"
+    },
+    {
+      "path": "public/images/services/oxygen-bar/hero.jpg",
+      "bytes": 239859,
+      "sha256": "18c3552b5f3d3c2aca8a4c1dd5a923227984da8772a3df375ba302b06c45194a"
+    },
+    {
+      "path": "public/images/store/placeholder.png",
+      "missingAtCapture": true
+    }
+  ],
+  "imageNote": "Image binaries are not archived. Entries cover static image literals discovered in selected sources; retain all current public assets, including dynamic location service-image paths."
+}

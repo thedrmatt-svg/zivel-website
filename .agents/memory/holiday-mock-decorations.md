@@ -21,3 +21,13 @@ guidelines to â€œperfectly and exactly replicate this on each individual page.â€
 inputs arrive. Keep the two different approved treatments distinct; do not
 redesign them, invent missing offer information, or migrate mock-only SEO/lead
 gate exceptions onto live pages.
+
+Preserve a pre-holiday standard-page reference so the original presentation can
+be restored quickly when the season ends.
+
+**Why:** The owner explicitly asked to save all standard location hero settings
+and related settings here for quick future reference after the holidays.
+
+**How to apply:** Start with `docs/standard-location-baseline/README.md` and its
+source archive. Keep the baseline unchanged during rollout; restore appearance
+without reverting newer approved business data, services, photos, or fixes.

@@ -1,3 +1,11 @@
+# Standard-page restoration reference
+
+Before applying holiday designs, consult
+[`standard-location-baseline/README.md`](standard-location-baseline/README.md).
+Its saved source archive records the pre-holiday standard appearance. Keep it
+unchanged and preserve original assets; after the season, restore presentation
+without reverting newer business information or unrelated fixes.
+
 # Approved holiday location rollout guidelines
 
 ## Approval and scope
