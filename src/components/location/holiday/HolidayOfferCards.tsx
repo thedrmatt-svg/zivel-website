@@ -39,6 +39,7 @@ export default function HolidayOfferCards({
             <div className={styles.cardContent}>
               <h2 className={styles.offerTitle}>{offer.title}</h2>
               <div className={styles.price}>{offer.price}</div>
+              {offer.description && <p className={styles.description}>{offer.description}</p>}
               <a
                 href={offer.purchaseUrl}
                 target="_blank"

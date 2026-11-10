@@ -59,8 +59,9 @@ test("Buckhead main retains schema, services, and booking identity with the supp
   assert.equal(offer.querySelectorAll("article").length, 1);
   assert.equal(offer.querySelector("h2").text, "6 Pack Recovery");
   assert.equal(offer.querySelector(".price").text, "$99");
+  assert.equal(offer.querySelector(".description").text, "6 Recovery Services in 1 Month");
   assert.equal(offer.querySelector("a").getAttribute("href"),
-    "https://app.clubready.com/JoinUs/14900/656881");
+    "https://app.clubready.com/JoinUs/14900/656882");
   assert.equal(offer.querySelector("img").getAttribute("src"),
     r.source("src/lib/data/location-service-images").getLocationServiceImage("buckhead", "red-light-therapy"));
   assert.equal(offer.querySelector(".disclaimer").text,
@@ -97,7 +98,8 @@ test("Buckhead pricing opens the gate temporarily and keeps regular prices and p
   }
   const offer = page.querySelector("#specials");
   assert.equal(offer.querySelectorAll("article").length, 1);
-  assert.equal(offer.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656881");
+  assert.equal(offer.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656882");
+  assert.equal(offer.querySelector(".description").text, "6 Recovery Services in 1 Month");
   assert.equal(offer.querySelector(".disclaimer").text,
     r.source("src/components/location/holiday/holiday-offers").HOLIDAY_OFFER_DISCLAIMER);
   assert.deepEqual(page.querySelector('nav[aria-label="Pricing sections"]').querySelectorAll("a")
@@ -114,7 +116,7 @@ test("holiday pricing is visibly ungated without stored signup state and the gat
   const page = await r.render(pricingFile, params);
   assert.equal(page.querySelector(".blur-xl"), null);
   assert.equal(page.querySelector("#pg-firstName"), null);
-  assert(page.querySelector('#specials a[href="https://app.clubready.com/JoinUs/14900/656881"]'));
+  assert(page.querySelector('#specials a[href="https://app.clubready.com/JoinUs/14900/656882"]'));
   assert(page.querySelector("#memberships"));
   const restored = renderer();
   const { isHolidayLocation } = restored.source("src/components/location/holiday/holiday-location-config");

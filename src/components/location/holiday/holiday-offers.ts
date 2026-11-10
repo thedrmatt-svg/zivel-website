@@ -4,6 +4,7 @@ export type HolidayOffer = {
   id: string;
   title: string;
   price: string;
+  description?: string;
   image: string;
   imageAlt: string;
   purchaseUrl: string;
@@ -15,9 +16,10 @@ export const BUCKHEAD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     id: "buckhead-6-pack-recovery",
     title: "6 Pack Recovery",
     price: "$99",
+    description: "6 Recovery Services in 1 Month",
     image: getLocationServiceImage("buckhead", "red-light-therapy"),
     imageAlt: "Red light therapy at Zivel Buckhead",
-    purchaseUrl: "https://app.clubready.com/JoinUs/14900/656881",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14900/656882",
     action: "Buy Now",
   },
 ];

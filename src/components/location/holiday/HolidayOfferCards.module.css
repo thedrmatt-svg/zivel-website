@@ -127,6 +127,13 @@
   text-shadow: 0 2px 20px rgba(225, 174, 82, .16);
 }
 
+.description {
+  margin: .4rem 0 .9rem;
+  color: #fff8eb;
+  font-size: .9rem;
+  line-height: 1.4;
+}
+
 .action {
   display: inline-flex;
   min-height: 43px;
