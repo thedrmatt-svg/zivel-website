@@ -68,7 +68,8 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       image: getLocationServiceImage("buckhead", giftCardServices[index]),
       imageAlt: giftCardAlts[index],
       purchaseUrl: amount === 50 ? "https://app.clubready.com/JoinUs/14900/656879"
-        : amount === 100 ? "https://app.clubready.com/JoinUs/14900/656885" : undefined,
+        : amount === 100 ? "https://app.clubready.com/JoinUs/14900/656885"
+        : amount === 200 ? "https://app.clubready.com/JoinUs/14900/656886" : undefined,
       action: "Buy Now",
     })),
     BUCKHEAD_HOLIDAY_OFFERS[0],
