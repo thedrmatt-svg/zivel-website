@@ -279,7 +279,9 @@ export default async function LocationPricingPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* HERO */}
       <section
-        className={`zv-bleed py-20 md:py-28 ${holidayEnabled ? holidayPricingStyles.pricingHero : "zv-hero-bg zv-noise"}`}
+        className={holidayEnabled
+          ? `zv-bleed pt-20 pb-8 md:pt-28 md:pb-10 ${holidayPricingStyles.pricingHero}`
+          : "zv-bleed py-20 md:py-28 zv-hero-bg zv-noise"}
       >
         {holidayEnabled && <HolidayPricingBow />}
         <div className="mx-auto max-w-6xl px-6">
@@ -313,7 +315,7 @@ export default async function LocationPricingPage({
             )}
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={150}>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className={`${holidayEnabled ? "mt-4" : "mt-8"} flex flex-wrap items-center gap-4`}>
               <Link
                 href={`/locations/${location.stateSlug}/${location.citySlug}`}
                 className="text-sm text-white/50 hover:text-white/80 transition-colors"
