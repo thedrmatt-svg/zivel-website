@@ -1345,8 +1345,8 @@ export default async function LocalServicePage({ params }: Props) {
     const image = getLocationServiceImage(city, service);
     local.heroImage = image;
     local.whatIsImage = image;
-    local.heroImageAlt = "Guest using red light therapy panels at Zivel Coral Gables";
-    local.whatIsImageAlt = "Red light therapy session at Zivel Coral Gables";
+    local.heroImageAlt = "Red light therapy room with light panels and Zivel signage at Zivel Coral Gables";
+    local.whatIsImageAlt = "Red light therapy panels inside the Zivel Coral Gables treatment room";
   }
   if (!LOCAL_CONTENT[key]) {
     const accurate = (text: string) => getAccurateLocalStackCopy(location, service, text);

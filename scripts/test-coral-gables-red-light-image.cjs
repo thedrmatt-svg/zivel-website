@@ -20,7 +20,7 @@ test("Coral Gables uses its supplied red-light photo on main, service, and prici
     for (const image of images) {
       assert(image.getAttribute("alt").trim());
       assert(image.getAttribute("style").includes("object-position:center top"),
-        `${file} keeps the person's head in the crop`);
+        `${file} keeps the top of the treatment room photo in the crop`);
     }
   }
   const { getLocationServiceImage, getNationalServiceImage } =
