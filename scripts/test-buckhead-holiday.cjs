@@ -120,7 +120,8 @@ test("Buckhead pricing opens the gate temporarily and keeps regular prices and p
   assert.equal(giftCard.querySelector(".description").text, "Give the Gift of Feeling Better");
   assert.equal(giftCard.querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656879");
   assert.equal(new Set(cards.slice(0, 3).map(card => card.querySelector("img").getAttribute("src"))).size, 3);
-  for (const index of [1, 2, 5]) {
+  assert.equal(cards[1].querySelector("a").getAttribute("href"), "https://app.clubready.com/JoinUs/14900/656885");
+  for (const index of [2, 5]) {
     assert.equal(cards[index].querySelector("a"), null);
     assert(cards[index].querySelector("button").hasAttribute("disabled"));
   }
