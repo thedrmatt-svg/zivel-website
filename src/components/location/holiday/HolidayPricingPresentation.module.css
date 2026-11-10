@@ -1,0 +1,105 @@
+.pricingHero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 49% 18%, rgba(29, 58, 87, .42), transparent 48%),
+    radial-gradient(ellipse at 50% 100%, rgba(20, 44, 69, .24), transparent 52%),
+    linear-gradient(135deg, #061629, #041426 55%, #081b31);
+}
+
+.pricingHero > :global(.mx-auto) {
+  position: relative;
+  z-index: 1;
+}
+
+.contentSurface {
+  background:
+    radial-gradient(ellipse at 12% 6%, rgba(231, 189, 105, .035), transparent 38%),
+    radial-gradient(ellipse at 88% 82%, rgba(29, 58, 87, .34), transparent 45%),
+    linear-gradient(135deg, #061629, #041426 55%, #081b31);
+}
+
+.sectionNav {
+  background-color: rgba(4, 20, 38, .94);
+}
+
+.bow {
+  position: absolute;
+  z-index: 0;
+  top: 1.1rem;
+  right: 0;
+  width: clamp(151.8px, 25.08vw, 356.4px);
+  aspect-ratio: 370 / 285;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 30% 75%, 30% 100%, 0 100%);
+  transform: scaleX(-1);
+}
+
+.bow img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.snowfall {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.snowflake {
+  position: absolute;
+  top: -12px;
+  left: var(--snow-x);
+  width: var(--snow-size, 3px);
+  height: var(--snow-size, 3px);
+  border-radius: 50%;
+  background: rgba(255, 249, 230, .8);
+  box-shadow: 0 0 5px rgba(240, 224, 185, .25);
+  opacity: .62;
+  animation: buckhead-pricing-snow var(--snow-duration, 12s) linear var(--snow-delay, 0s) infinite;
+}
+
+.snowflake:nth-child(1) { --snow-x: 6%; --snow-size: 3px; --snow-duration: 12s; --snow-delay: -7s; --snow-drift: 18px; --snow-start-y: 12%; }
+.snowflake:nth-child(2) { --snow-x: 13%; --snow-size: 2px; --snow-duration: 10s; --snow-delay: -3s; --snow-drift: -14px; --snow-start-y: 43%; }
+.snowflake:nth-child(3) { --snow-x: 21%; --snow-size: 4px; --snow-duration: 14s; --snow-delay: -11s; --snow-drift: 22px; --snow-start-y: 75%; }
+.snowflake:nth-child(4) { --snow-x: 29%; --snow-size: 2px; --snow-duration: 11s; --snow-delay: -5s; --snow-drift: -16px; --snow-start-y: 28%; }
+.snowflake:nth-child(5) { --snow-x: 37%; --snow-size: 3px; --snow-duration: 13s; --snow-delay: -9s; --snow-drift: 15px; --snow-start-y: 62%; }
+.snowflake:nth-child(6) { --snow-x: 45%; --snow-size: 2px; --snow-duration: 9s; --snow-delay: -2s; --snow-drift: 20px; --snow-start-y: 18%; }
+.snowflake:nth-child(7) { --snow-x: 53%; --snow-size: 4px; --snow-duration: 15s; --snow-delay: -12s; --snow-drift: -18px; --snow-start-y: 52%; }
+.snowflake:nth-child(8) { --snow-x: 61%; --snow-size: 2px; --snow-duration: 12s; --snow-delay: -6s; --snow-drift: 16px; --snow-start-y: 88%; }
+.snowflake:nth-child(9) { --snow-x: 69%; --snow-size: 3px; --snow-duration: 10s; --snow-delay: -4s; --snow-drift: -14px; --snow-start-y: 34%; }
+.snowflake:nth-child(10) { --snow-x: 77%; --snow-size: 2px; --snow-duration: 14s; --snow-delay: -10s; --snow-drift: 19px; --snow-start-y: 70%; }
+.snowflake:nth-child(11) { --snow-x: 85%; --snow-size: 4px; --snow-duration: 11s; --snow-delay: -7s; --snow-drift: -20px; --snow-start-y: 22%; }
+.snowflake:nth-child(12) { --snow-x: 93%; --snow-size: 2px; --snow-duration: 13s; --snow-delay: -1s; --snow-drift: 15px; --snow-start-y: 58%; }
+.snowflake:nth-child(13) { --snow-x: 17%; --snow-size: 2px; --snow-duration: 15s; --snow-delay: -2s; --snow-drift: -16px; --snow-start-y: 92%; }
+.snowflake:nth-child(14) { --snow-x: 33%; --snow-size: 3px; --snow-duration: 13s; --snow-delay: -8s; --snow-drift: 17px; --snow-start-y: 30%; }
+.snowflake:nth-child(15) { --snow-x: 72%; --snow-size: 2px; --snow-duration: 12s; --snow-delay: -5s; --snow-drift: -12px; --snow-start-y: 48%; }
+.snowflake:nth-child(16) { --snow-x: 96%; --snow-size: 3px; --snow-duration: 14s; --snow-delay: -9s; --snow-drift: 14px; --snow-start-y: 8%; }
+
+@keyframes buckhead-pricing-snow {
+  from { transform: translate3d(0, -25px, 0); opacity: .15; }
+  15% { opacity: .72; }
+  to { transform: translate3d(var(--snow-drift, 16px), 108vh, 0); opacity: .12; }
+}
+
+@media (max-width: 720px) {
+  .bow {
+    top: .7rem;
+    width: 138.6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snowflake {
+    top: var(--snow-start-y);
+    animation: none;
+    opacity: .32;
+  }
+}

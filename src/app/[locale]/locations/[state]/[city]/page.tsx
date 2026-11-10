@@ -33,6 +33,9 @@ import { getLocationByPath, locations } from "@/lib/data/locations";
 import { getLocalServiceHref } from "@/lib/data/local-service-pages";
 import { getLocationSocial } from "@/lib/data/socialLinks";
 import rawPlacesCache from "@/data/places-cache.json";
+import HolidayLocationHero from "@/components/location/holiday/HolidayLocationHero";
+import { isHolidayLocation } from "@/components/location/holiday/holiday-location-config";
+import holidayStyles from "@/components/location/holiday/HolidayLocation.module.css";
 
 type CacheEntry = {
   rating: number;
@@ -147,6 +150,7 @@ export default async function LocationPage({
   const { state, city, locale = "en" } = await params;
   const location = getLocationByPath(state, city);
   if (!location) return notFound();
+  const holidayEnabled = isHolidayLocation(location.stateSlug, location.citySlug);
 
   const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zivel.com";
   const canonicalPath = location.seo?.canonical ?? `/locations/${location.stateSlug}/${location.citySlug}`;
@@ -316,9 +320,23 @@ export default async function LocationPage({
       {location.slug === "riverton" && (
         <GoogleAdsScript id="AW-11334656695" />
       )}
-      <main id="main-content" tabIndex={-1} className="space-y-0 -mt-20">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className={holidayEnabled ? `space-y-0 -mt-20 ${holidayStyles.holidayMain}` : "space-y-0 -mt-20"}
+      >
 
       {/* ========== HERO (DARK) ========== */}
+      {holidayEnabled ? (
+        <HolidayLocationHero
+          location={location}
+          bookingAction={bookingAction}
+          mapsUrl={googleMapsUrl ?? null}
+          locale={locale}
+          zone={getLocationTimezone(location).zone}
+          copy={copy}
+        />
+      ) : (
       <section className="bg-black" style={{ position: 'relative', width: '100vw', left: '50%', transform: 'translateX(-50%)', marginTop: '-5rem' }} aria-labelledby="location-hero-title">
         <div className="pt-20">
           <div style={{ overflow: 'hidden', aspectRatio: '1920/672' }}>
@@ -387,6 +405,7 @@ export default async function LocationPage({
           </div>
         </div>
       </section>
+      )}
 
       {/* ========== AWARD SECTION ========== */}
       {location.award && (
@@ -694,7 +713,7 @@ export default async function LocationPage({
 
       {/* ========== TRUST BAR ========== */}
       <section
-        className="zv-bleed bg-[#0a0a0a] border-y border-white/10"
+        className={holidayEnabled ? `zv-bleed border-y border-white/10 ${holidayStyles.trustBar}` : "zv-bleed bg-[#0a0a0a] border-y border-white/10"}
         style={{ position: "relative", width: "100vw", left: "50%", transform: "translateX(-50%)" }}
       >
         <div className="mx-auto max-w-6xl px-6 py-8">
@@ -963,7 +982,7 @@ export default async function LocationPage({
       {/* ========== SERVICES AVAILABLE (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (
-        <section className="zv-bleed zv-section-light zv-light zv-immersive-section">
+        <section className={holidayEnabled ? `zv-bleed zv-section-light zv-light zv-immersive-section ${holidayStyles.servicesSurface}` : "zv-bleed zv-section-light zv-light zv-immersive-section"}>
           <div className="mx-auto max-w-6xl px-6">
             <ScrollReveal variant="fade-up">
               <p className="zv-tagline">What We Offer</p>
@@ -989,7 +1008,7 @@ export default async function LocationPage({
           </div>
         </section>
       ) : (
-        <section className="zv-bleed zv-immersive-section zv-section-elevated">
+        <section className={holidayEnabled ? `zv-bleed zv-immersive-section zv-section-elevated ${holidayStyles.servicesSurface}` : "zv-bleed zv-immersive-section zv-section-elevated"}>
           <div className="mx-auto max-w-6xl px-6">
             <ScrollReveal variant="fade-up">
               <p className="zv-tagline">What We Offer</p>
@@ -1157,7 +1176,10 @@ export default async function LocationPage({
       {/* ========== PRICING (alternating) ========== */}
       <div className="zv-bleed zv-divider-dark-to-light" />
       {sectionParity % 2 === 0 ? (
-        <section id="pricing" className="zv-bleed zv-section-light zv-light zv-immersive-section">
+        <section
+          id="pricing"
+          className={holidayEnabled ? "zv-bleed zv-immersive-section" : "zv-bleed zv-section-light zv-light zv-immersive-section"}
+        >
           <div className="mx-auto max-w-6xl px-6">
             <ScrollReveal variant="fade-up">
               <p className="zv-tagline">Investment</p>
@@ -1177,13 +1199,16 @@ export default async function LocationPage({
                 pricingHref={`${locale === "es" ? "/es" : ""}/locations/${state}/${city}/pricing`}
                 tiers={location.citySlug === "fayetteville" ? (location.pricing?.membershipTiers ?? DEFAULT_MEMBERSHIP_TIERS).filter(t => t.mostPopular) : undefined}
                 standardPrices={getLocationDisplayPrices(location, location.pricing?.standardPrices ?? DEFAULT_STANDARD_PRICES)}
-                variant="light"
+                variant={holidayEnabled ? "dark" : "light"}
               />
             </ScrollReveal>
           </div>
         </section>
       ) : (
-        <section id="pricing" className="zv-bleed zv-immersive-section zv-section-gradient">
+        <section
+          id="pricing"
+          className={holidayEnabled ? "zv-bleed zv-immersive-section" : "zv-bleed zv-immersive-section zv-section-gradient"}
+        >
           <div className="mx-auto max-w-6xl px-6">
             <ScrollReveal variant="fade-up">
               <p className="zv-tagline">Investment</p>

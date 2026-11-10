@@ -12,6 +12,13 @@ import { getLocationServiceImage, getLocationServiceImagePosition } from "@/lib/
 import PricingGateModal from "@/components/location/PricingGateModal";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import CherryWidget from "@/components/widgets/CherryWidget";
+import {
+  HolidayPricingBow,
+  HolidayPricingIntro,
+  HolidayPricingSnowfall,
+} from "@/components/location/holiday/HolidayPricingPresentation";
+import { isHolidayLocation } from "@/components/location/holiday/holiday-location-config";
+import holidayPricingStyles from "@/components/location/holiday/HolidayPricingPresentation.module.css";
 
 const SITE_URL = "https://www.zivel.com";
 
@@ -141,6 +148,7 @@ export default async function LocationPricingPage({
   const { state, city } = await params;
   const location = getLocationByPath(state, city);
   if (!location) notFound();
+  const holidayEnabled = isHolidayLocation(location.stateSlug, location.citySlug);
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
   const breadcrumbCity = getLocationCity(location);
@@ -152,6 +160,12 @@ export default async function LocationPricingPage({
       ? [{ label: "Gift Cards", href: "#gift-cards" }, item]
       : [item]
   );
+  const sectionNavItems = holidayEnabled
+    ? [
+        ...navItems.filter((item) => item.href === "#specials").map((item) => ({ ...item, label: "Holiday Specials" })),
+        ...navItems.filter((item) => item.href !== "#specials"),
+      ]
+    : navItems;
 
   const allPrices = getLocationDisplayPrices(location);
   const recoveryPrices = allPrices.filter((p) =>
@@ -196,6 +210,46 @@ export default async function LocationPricingPage({
   ];
 
   const metaDescription = `View local pricing, membership tiers, and current offers at ${location.name}. Cryotherapy, red light therapy, infrared sauna, CryoLift facial, and more.`;
+  const specialsSection = (
+    <div id="specials" className="scroll-mt-36">
+      <ScrollReveal variant="fade-up">
+        <p className="zv-tagline mb-3">Limited Time</p>
+        <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
+          {holidayEnabled ? "Holiday Specials" : "Current Specials"}
+        </h2>
+      </ScrollReveal>
+      <ScrollReveal variant="fade-up" delay={80}>
+        <div className="rounded-2xl border border-[var(--zivel-gold)]/15 bg-[var(--zivel-gold)]/5 p-8 md:p-12 text-center">
+          <div className="mx-auto max-w-md">
+            <p className="text-[var(--zivel-gold)] text-sm uppercase tracking-widest font-semibold mb-3">
+              Check Back Soon
+            </p>
+            <p className="font-serif text-xl text-white/70 font-light leading-relaxed mb-6">
+              Promotions and seasonal specials rotate regularly. Reach out to the studio or follow us on social media for the latest offers.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              {phone && (
+                <a
+                  href={phoneHref(phone)}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-white/70 transition-all duration-200 hover:border-white/40 hover:text-white"
+                >
+                  {phone}
+                </a>
+              )}
+              <LocationBookingLink state={state} city={city}
+                href={bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-6 py-2.5 text-sm font-semibold text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
+              >
+                Book a Session
+              </LocationBookingLink>
+            </div>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  );
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -211,10 +265,14 @@ export default async function LocationPricingPage({
 
   return (
     <main id="main-content" tabIndex={-1} className="space-y-0">
+      {holidayEnabled && <HolidayPricingSnowfall />}
       <meta name="description" content={metaDescription} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* HERO */}
-      <section className="zv-bleed zv-hero-bg zv-noise py-20 md:py-28">
+      <section
+        className={`zv-bleed py-20 md:py-28 ${holidayEnabled ? holidayPricingStyles.pricingHero : "zv-hero-bg zv-noise"}`}
+      >
+        {holidayEnabled && <HolidayPricingBow />}
         <div className="mx-auto max-w-6xl px-6">
           <nav aria-label="Breadcrumb" className="mb-6">
             <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/50">
@@ -230,14 +288,20 @@ export default async function LocationPricingPage({
             </ol>
           </nav>
           <ScrollReveal variant="fade-up">
-            <p className="zv-tagline mb-4">Investment</p>
-            <h1 className="font-serif text-4xl md:text-6xl font-light tracking-tight text-white">
-              Pricing & Memberships
-            </h1>
-            <p className="mt-4 text-lg text-white/60 max-w-xl leading-relaxed">
-              Local pricing and membership options for Zivel {cityDisplay}.
-              {location.citySlug !== "windermere" && " Unlock full details below."}
-            </p>
+            {holidayEnabled ? (
+              <HolidayPricingIntro cityDisplay={cityDisplay} />
+            ) : (
+              <>
+                <p className="zv-tagline mb-4">Investment</p>
+                <h1 className="font-serif text-4xl md:text-6xl font-light tracking-tight text-white">
+                  Pricing & Memberships
+                </h1>
+                <p className="mt-4 text-lg text-white/60 max-w-xl leading-relaxed">
+                  Local pricing and membership options for Zivel {cityDisplay}.
+                  {location.citySlug !== "windermere" && " Unlock full details below."}
+                </p>
+              </>
+            )}
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={150}>
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -255,11 +319,11 @@ export default async function LocationPricingPage({
       {/* SECTION NAV */}
       <nav
         aria-label="Pricing sections"
-        className="zv-bleed sticky top-[64px] z-10 border-b border-white/8 bg-black/90 backdrop-blur-md"
+        className={`zv-bleed sticky top-[64px] z-10 border-b border-white/8 backdrop-blur-md ${holidayEnabled ? holidayPricingStyles.sectionNav : "bg-black/90"}`}
       >
         <div className="mx-auto max-w-6xl px-6">
           <ol className="flex items-center gap-0 overflow-x-auto">
-            {navItems.map((item, i) => (
+            {sectionNavItems.map((item, i) => (
               <li key={item.href} className="flex items-center shrink-0">
                 {i > 0 && (
                   <span className="h-3.5 w-px bg-white/15 mx-1" aria-hidden="true" />
@@ -278,10 +342,13 @@ export default async function LocationPricingPage({
       </nav>
 
       {/* GATED CONTENT */}
-      <section className="zv-bleed zv-section-elevated py-16 md:py-24">
+      <section
+        className={`zv-bleed py-16 md:py-24 ${holidayEnabled ? holidayPricingStyles.contentSurface : "zv-section-elevated"}`}
+      >
         <div className="mx-auto max-w-6xl px-6">
           <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay} locationEmail={location.contact?.email} bypass={location.citySlug === "windermere"}>
             <div className="space-y-20">
+              {holidayEnabled && specialsSection}
 
               {/* ── MEMBERSHIPS ── */}
               <div id="memberships" className="scroll-mt-36">
@@ -618,44 +685,7 @@ export default async function LocationPricingPage({
                 </section>
               )}
 
-              <div id="specials" className="scroll-mt-36">
-                <ScrollReveal variant="fade-up">
-                  <p className="zv-tagline mb-3">Limited Time</p>
-                  <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
-                    Current Specials
-                  </h2>
-                </ScrollReveal>
-                <ScrollReveal variant="fade-up" delay={80}>
-                  <div className="rounded-2xl border border-[var(--zivel-gold)]/15 bg-[var(--zivel-gold)]/5 p-8 md:p-12 text-center">
-                    <div className="mx-auto max-w-md">
-                      <p className="text-[var(--zivel-gold)] text-sm uppercase tracking-widest font-semibold mb-3">
-                        Check Back Soon
-                      </p>
-                      <p className="font-serif text-xl text-white/70 font-light leading-relaxed mb-6">
-                        Promotions and seasonal specials rotate regularly. Reach out to the studio or follow us on social media for the latest offers.
-                      </p>
-                      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                        {phone && (
-                          <a
-                            href={phoneHref(phone)}
-                            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-white/70 transition-all duration-200 hover:border-white/40 hover:text-white"
-                          >
-                            {phone}
-                          </a>
-                        )}
-                        <LocationBookingLink state={state} city={city}
-                          href={bookingUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full bg-[var(--zivel-gold)] px-6 py-2.5 text-sm font-semibold text-black transition-all duration-200 hover:bg-[var(--zivel-gold-light)]"
-                        >
-                          Book a Session
-                        </LocationBookingLink>
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              </div>
+              {!holidayEnabled && specialsSection}
 
               {/* ── BOOK CTA ── */}
               <div className="rounded-2xl border border-white/10 bg-white/5 p-8 md:p-12 text-center">

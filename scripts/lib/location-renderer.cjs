@@ -30,6 +30,9 @@ function createLocationRenderer(root = path.resolve(__dirname, "../..")) {
       .find(file => fs.existsSync(file) && fs.statSync(file).isFile());
     if (!filename) throw new Error(`Cannot resolve ${base}`);
     if (cache.has(filename)) return cache.get(filename).exports;
+    if (filename.endsWith(".module.css")) return new Proxy({}, {
+      get: (_, key) => key === "__esModule" ? false : String(key),
+    });
     if (filename.endsWith(".json")) return JSON.parse(fs.readFileSync(filename, "utf8"));
     const mod = new Module(filename, module);
     mod.filename = filename;

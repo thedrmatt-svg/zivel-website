@@ -31,3 +31,13 @@ and related settings here for quick future reference after the holidays.
 **How to apply:** Start with `docs/standard-location-baseline/README.md` and its
 source archive. Keep the baseline unchanged during rollout; restore appearance
 without reverting newer approved business data, services, photos, or fixes.
+
+The owner authorized Buckhead's main and pricing pages to receive the approved
+holiday appearance before supplying the actual holiday specials.
+
+**Why:** The owner explicitly requested the visual transformation first and said
+the special details and links would follow.
+
+**How to apply:** Treat this as a staged rollout for Buckhead only. Preserve
+current prices and links and do not use Hollywood's sample offers as Buckhead
+offers. Wait for owner-supplied offer details before advertising specific deals.
