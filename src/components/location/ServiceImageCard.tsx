@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { getLocationServiceImage, getNationalServiceImage } from "@/lib/data/location-service-images";
+import { getLocationServiceImage, getLocationServiceImagePosition, getNationalServiceImage } from "@/lib/data/location-service-images";
 
 type ServiceImageCardProps = {
   slug: string;
@@ -45,6 +45,8 @@ export default function ServiceImageCard({
           alt={imageAlt ?? `Zivel ${name} at ${cityName} Location`}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-110"
+          style={getLocationServiceImagePosition(citySlug, slug) === "center top"
+            ? { objectPosition: "center top", transformOrigin: "center top" } : undefined}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           onError={() => {
             if (src !== nationalSrc) setSrc(nationalSrc);

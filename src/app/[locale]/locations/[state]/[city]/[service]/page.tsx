@@ -3,7 +3,7 @@ import { getLocationBusinessLabel, getLocationCity, getLocationAltText, getAccur
 import { getLocationBookingHref } from "@/lib/location-booking";
 import { phoneHref } from "@/lib/contact-links";
 import { getLocationBusinessDetails } from "@/lib/location-business-schema";
-import { getLocationServiceImage } from "@/lib/data/location-service-images";
+import { getLocationServiceImage, getLocationServiceImagePosition } from "@/lib/data/location-service-images";
 import ContactText from "@/components/ui/ContactText";
 import Image from "next/image";
 import Link from "next/link";
@@ -1500,7 +1500,7 @@ export default async function LocalServicePage({ params }: Props) {
             fetchPriority="high"
             quality={80}
             sizes="100vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
+            style={{ objectFit: "cover", objectPosition: getLocationServiceImagePosition(city, service) }}
           />
           <div className="absolute inset-0 bg-black/65" />
           <div className="relative z-10 mx-auto max-w-6xl px-6 py-28 md:py-36">
@@ -1588,7 +1588,9 @@ export default async function LocalServicePage({ params }: Props) {
                   height={500}
                   quality={80}
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ width: "100%", height: "auto", display: "block" }}
+                  style={{ width: "100%", height: "auto", display: "block",
+                    ...(city === "coral-gables" && service === "red-light-therapy"
+                      ? { objectPosition: "center top" } : {}) }}
                 />
               </div>
             </ScrollReveal>

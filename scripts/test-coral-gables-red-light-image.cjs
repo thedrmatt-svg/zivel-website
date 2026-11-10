@@ -17,7 +17,11 @@ test("Coral Gables uses its supplied red-light photo on main, service, and prici
     const page = await r.render(file, routeParams);
     const images = page.querySelectorAll(`img[src="${src}"]`);
     assert(images.length > 0, `${file} displays the Coral Gables photo`);
-    for (const image of images) assert(image.getAttribute("alt").trim());
+    for (const image of images) {
+      assert(image.getAttribute("alt").trim());
+      assert(image.getAttribute("style").includes("object-position:center top"),
+        `${file} keeps the person's head in the crop`);
+    }
   }
   const { getLocationServiceImage, getNationalServiceImage } =
     r.source("src/lib/data/location-service-images");

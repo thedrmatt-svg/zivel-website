@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getLocationByPath, locations } from "@/lib/data/locations";
-import { getLocationServiceImage } from "@/lib/data/location-service-images";
+import { getLocationServiceImage, getLocationServiceImagePosition } from "@/lib/data/location-service-images";
 import PricingGateModal from "@/components/location/PricingGateModal";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import CherryWidget from "@/components/widgets/CherryWidget";
@@ -367,6 +367,8 @@ export default async function LocationPricingPage({
                             <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
                               <Image
                                 src={getServiceImage(s.name, location.citySlug)}
+                                style={getLocationServiceImagePosition(location.citySlug, nameToSlug(s.name)) === "center top"
+                                  ? { objectPosition: "center top" } : undefined}
                                 alt={s.name}
                                 fill
                                 className="object-cover"
@@ -403,6 +405,8 @@ export default async function LocationPricingPage({
                             <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
                               <Image
                                 src={getServiceImage(s.name, location.citySlug)}
+                                style={getLocationServiceImagePosition(location.citySlug, nameToSlug(s.name)) === "center top"
+                                  ? { objectPosition: "center top" } : undefined}
                                 alt={s.name}
                                 fill
                                 className="object-cover"
@@ -441,6 +445,8 @@ export default async function LocationPricingPage({
                             <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
                               <Image
                                 src={getServiceImage(s.name, location.citySlug)}
+                                style={getLocationServiceImagePosition(location.citySlug, nameToSlug(s.name)) === "center top"
+                                  ? { objectPosition: "center top" } : undefined}
                                 alt={s.name}
                                 fill
                                 className="object-cover"

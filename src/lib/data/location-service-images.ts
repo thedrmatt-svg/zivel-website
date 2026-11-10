@@ -25,6 +25,10 @@ export function getNationalServiceImage(slug: string): string {
   return NATIONAL_SERVICE_IMAGES[slug] ?? "/images/home/service-exercise.jpg";
 }
 
+export function getLocationServiceImagePosition(citySlug: string, slug: string): string {
+  return citySlug === "coral-gables" && slug === "red-light-therapy" ? "center top" : "center";
+}
+
 export function getLocationServiceImage(citySlug: string, slug: string): string {
   if (LEGACY_IMAGE_LOCATIONS.has(citySlug) || CUSTOM_SERVICE_IMAGES[citySlug]?.includes(slug)) {
     return `/locations/${citySlug}/services/${slug}.jpg`;
