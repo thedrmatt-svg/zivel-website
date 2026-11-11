@@ -135,7 +135,10 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       id: offer.id.replace("rogers", "bentonville"),
       image: getLocationServiceImage("bentonville", services[index]),
       imageAlt: offer.imageAlt.replace("Zivel Rogers", "Zivel Bentonville"),
-      purchaseUrl: index === 3 ? BENTONVILLE_HOLIDAY_OFFERS[0].purchaseUrl
+      purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/14839/656950"
+        : index === 1 ? "https://app.clubready.com/JoinUs/14839/656951"
+        : index === 2 ? "https://app.clubready.com/JoinUs/14839/656952"
+        : index === 3 ? BENTONVILLE_HOLIDAY_OFFERS[0].purchaseUrl
         : index === 4 ? BENTONVILLE_HOLIDAY_OFFERS[1].purchaseUrl
         : index === 5 ? "https://app.clubready.com/JoinUs/14839/656927" : undefined,
     }));

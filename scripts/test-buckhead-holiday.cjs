@@ -68,11 +68,16 @@ test("Bentonville matches Rogers offers without borrowing checkout links or chan
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 3);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")), [
       "https://app.clubready.com/JoinUs/14839/656925",
       ...(file === pricingFile ? ["https://app.clubready.com/JoinUs/14839/656927"] : []),
       "https://app.clubready.com/JoinUs/14839/656931",
+      ...(file === pricingFile ? [
+        "https://app.clubready.com/JoinUs/14839/656950",
+        "https://app.clubready.com/JoinUs/14839/656951",
+        "https://app.clubready.com/JoinUs/14839/656952",
+      ] : []),
     ], "Only Bentonville’s supplied checkout links");
     const recovery = cards[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("a").getAttribute("href"),
@@ -92,6 +97,12 @@ test("Bentonville matches Rogers offers without borrowing checkout links or chan
         assert(links(page).includes(link), `Preserve Bentonville booking/contact destination: ${link}`);
       }
     } else {
+      for (const [index, amount, checkout] of [[0, 50, "656950"], [1, 100, "656951"], [2, 200, "656952"]]) {
+        assert.equal(cards[index].querySelector(".price").text, `$${amount}`);
+        assert.equal(cards[index].querySelector("a").getAttribute("href"),
+          `https://app.clubready.com/JoinUs/14839/${checkout}`);
+        assert(cards[index].querySelector("a").text.includes("Buy Now"));
+      }
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
       assert.equal(cards[5].querySelector("h2").text, "BOGO BODY CONTOURING");
       assert.equal(cards[5].querySelector(".price").text, "$350");
