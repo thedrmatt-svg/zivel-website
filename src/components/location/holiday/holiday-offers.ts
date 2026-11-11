@@ -84,7 +84,7 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
       title: "BOGO DAY PASS",
       description: "3 Recovery Services/Day Pass",
       price: "$59",
-    } : {}),
+    } : index === 1 ? { price: "$179" } : {}),
     image: index === 0 ? getLocationServiceImage("parker", "red-light-therapy")
       : index === 1 ? getLocationServiceImage("parker", "cryo-lift-facial")
       : offer.image,

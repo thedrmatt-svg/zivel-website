@@ -62,6 +62,7 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
     expected[getter === "getHolidayOffers" ? 0 : 3] = {
       title: "BOGO DAY PASS", price: "$59", description: "3 Recovery Services/Day Pass", action: "Buy Now",
     };
+    expected[getter === "getHolidayOffers" ? 1 : 4].price = "$179";
     assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
   }
   for (const file of [mainFile, pricingFile]) {
@@ -76,6 +77,7 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
     assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     const facial = cards[file === mainFile ? 1 : 4];
+    assert.equal(facial.querySelector(".price").text, "$179");
     assert.equal(facial.querySelector("a").getAttribute("href"),
       "https://app.clubready.com/JoinUs/15044/656922");
     assert(facial.querySelector("a").text.includes("Buy Now"));
