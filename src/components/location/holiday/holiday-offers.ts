@@ -113,6 +113,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       : index === 4 ? CORAL_GABLES_HOLIDAY_OFFERS[1].image
       : getLocationServiceImage("coral-gables", "cryotherapy"),
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Coral Gables"),
-    purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/14828/644802" : undefined,
+    purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/14828/644802"
+      : index === 1 ? "https://app.clubready.com/JoinUs/14828/644803" : undefined,
   }));
 }
