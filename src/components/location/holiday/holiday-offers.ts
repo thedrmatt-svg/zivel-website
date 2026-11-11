@@ -163,6 +163,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     description: "Unlimited Recovery Membership",
     image: getLocationServiceImage("parker", "cryotherapy"),
     imageAlt: "Cryotherapy recovery service at Zivel Parker",
+    purchaseUrl: "https://app.clubready.com/JoinUs/15044/656932",
     action: "Buy Now",
   }];
   if (!isCoralGables) return buckheadOffers;
