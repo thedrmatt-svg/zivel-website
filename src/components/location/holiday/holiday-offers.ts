@@ -70,10 +70,24 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "arkansas" && citySlug === "rogers") return ROGERS_HOLIDAY_OFFERS;
   if (stateSlug === "colorado" && citySlug === "parker") return PARKER_HOLIDAY_OFFERS;
   if (stateSlug === "florida" && citySlug === "coral-gables") return CORAL_GABLES_HOLIDAY_OFFERS;
   return stateSlug === "georgia" && citySlug === "buckhead" ? BUCKHEAD_HOLIDAY_OFFERS : [];
 }
+
+// Owner approved Buckhead / Coral Gables offers for Rogers, not Parker's custom
+// offers. Rogers checkout links remain pending until supplied by the owner.
+export const ROGERS_HOLIDAY_OFFERS: readonly HolidayOffer[] =
+  BUCKHEAD_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
+    ...offer,
+    id: offer.id.replace("buckhead", "rogers"),
+    image: index === 0 ? getLocationServiceImage("rogers", "red-light-therapy")
+      : index === 1 ? getLocationServiceImage("rogers", "cryo-lift-facial")
+      : offer.image,
+    imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Rogers"),
+    purchaseUrl: index === 2 ? "/locations/arkansas/rogers/pricing" : undefined,
+  }));
 
 // Parker-specific offer details and owner-supplied checkout destinations.
 export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
@@ -95,9 +109,10 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  const isRogers = stateSlug === "arkansas" && citySlug === "rogers";
   const isCoralGables = stateSlug === "florida" && citySlug === "coral-gables";
   const isParker = stateSlug === "colorado" && citySlug === "parker";
-  if (!isCoralGables && !isParker && (stateSlug !== "georgia" || citySlug !== "buckhead")) return [];
+  if (!isRogers && !isCoralGables && !isParker && (stateSlug !== "georgia" || citySlug !== "buckhead")) return [];
   const giftCardServices = ["infrared-sauna", "dry-float", "cryo-slimming"];
   const giftCardAlts = ["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"];
   const buckheadOffers: readonly HolidayOffer[] = [
@@ -125,6 +140,18 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       action: "Buy Now",
     },
   ];
+  if (isRogers) return buckheadOffers.map((offer, index): HolidayOffer => ({
+    ...offer,
+    ...(index === 3 ? ROGERS_HOLIDAY_OFFERS[0] : {}),
+    ...(index === 4 ? ROGERS_HOLIDAY_OFFERS[1] : {}),
+    id: offer.id.replace("buckhead", "rogers"),
+    image: index < 3 ? getLocationServiceImage("rogers", giftCardServices[index])
+      : index === 3 ? ROGERS_HOLIDAY_OFFERS[0].image
+      : index === 4 ? ROGERS_HOLIDAY_OFFERS[1].image
+      : getLocationServiceImage("rogers", "cryotherapy"),
+    imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Rogers"),
+    purchaseUrl: undefined,
+  }));
   if (isParker) return [...buckheadOffers.map((offer, index): HolidayOffer => ({
     ...offer,
     ...(index === 3 ? PARKER_HOLIDAY_OFFERS[0] : {}),
