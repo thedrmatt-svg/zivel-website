@@ -69,7 +69,7 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 4);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     const recovery = cards[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("img").getAttribute("src"),
@@ -83,6 +83,9 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
       assert.equal(cards[0].querySelector("a").getAttribute("href"),
         "https://app.clubready.com/JoinUs/15044/656874");
       assert(cards[0].querySelector("a").text.includes("Buy Now"));
+      assert.equal(cards[1].querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/15044/656917");
+      assert(cards[1].querySelector("a").text.includes("Buy Now"));
       for (const id of ["memberships", "services", "packages"]) {
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
       }

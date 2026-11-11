@@ -128,7 +128,8 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       : index === 4 ? PARKER_HOLIDAY_OFFERS[1].image
       : getLocationServiceImage("parker", "cryotherapy"),
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Parker"),
-    purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/15044/656874" : undefined,
+    purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/15044/656874"
+      : index === 1 ? "https://app.clubready.com/JoinUs/15044/656917" : undefined,
   }));
   if (!isCoralGables) return buckheadOffers;
   return buckheadOffers.map((offer, index): HolidayOffer => ({
