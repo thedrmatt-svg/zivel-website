@@ -156,6 +156,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       : offer.imageAlt.replace("Zivel Buckhead", "Zivel Rogers"),
     purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/14838/656945"
       : index === 1 ? "https://app.clubready.com/JoinUs/14838/656947"
+      : index === 2 ? "https://app.clubready.com/JoinUs/14838/656948"
       : index === 3 ? ROGERS_HOLIDAY_OFFERS[0].purchaseUrl
       : index === 4 ? ROGERS_HOLIDAY_OFFERS[1].purchaseUrl
       : index === 5 ? "https://app.clubready.com/JoinUs/14838/656935" : undefined,
