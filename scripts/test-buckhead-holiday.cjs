@@ -222,7 +222,7 @@ test("Parker shows approved custom holiday offers and checkout links while prese
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
     const expected = fields(data[getter]("georgia", "buckhead"));
     expected[getter === "getHolidayOffers" ? 0 : 3] = {
-      title: "BOGO DAY PASS", price: "$59", description: "3 Recovery Services/Day Pass", action: "Buy Now",
+      title: "BOGO DAY PASS", price: "$69", description: "3 Recovery Services/Day Pass", action: "Buy Now",
     };
     expected[getter === "getHolidayOffers" ? 1 : 4].price = "$179";
     expected[getter === "getHolidayOffers" ? 1 : 4].title = "BOGO Cryo Facial";
@@ -259,7 +259,7 @@ test("Parker shows approved custom holiday offers and checkout links while prese
     assert(facial.querySelector("a").text.includes("Buy Now"));
     const recovery = cards[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("h2").text, "BOGO DAY PASS");
-    assert.equal(recovery.querySelector(".price").text, "$59");
+    assert.equal(recovery.querySelector(".price").text, "$69");
     assert.equal(recovery.querySelector(".description").text, "3 Recovery Services/Day Pass");
     assert.equal(recovery.querySelector("a").getAttribute("href"),
       "https://app.clubready.com/JoinUs/15044/656923");
