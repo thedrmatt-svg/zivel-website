@@ -107,6 +107,7 @@ export const zivel_parker_location: Location = {
       },
       {
         name: "Elite",
+        bookingUrl: "https://app.clubready.com/JoinUs/15044/648250",
         price: "$159",
         cadence: "/mo",
         description: "More sessions, more value.",
