@@ -84,12 +84,17 @@ export function getHolidayOffers(stateSlug: string, citySlug: string): readonly 
 export const RIVERTON_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   BUCKHEAD_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
     ...offer,
+    ...(index === 0 ? {
+      title: "Black Friday Great Eight",
+      description: "8 Recovery Services",
+    } : {}),
     id: offer.id.replace("buckhead", "riverton"),
     image: index === 0 ? getLocationServiceImage("riverton", "red-light-therapy")
       : index === 1 ? getLocationServiceImage("riverton", "cryo-lift-facial")
       : offer.image,
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Riverton"),
-    purchaseUrl: index === 2 ? "/locations/utah/riverton/pricing" : undefined,
+    purchaseUrl: index === 2 ? "/locations/utah/riverton/pricing"
+      : index === 0 ? "https://app.clubready.com/JoinUs/14841/656905" : undefined,
   }));
 
 // Owner approved Buckhead / Coral Gables offers for Rogers, not Parker's custom
@@ -155,6 +160,8 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     ];
     return getHolidayPricingOffers("georgia", "buckhead").map((offer, index): HolidayOffer => ({
       ...offer,
+      ...(index === 3 ? RIVERTON_HOLIDAY_OFFERS[0] : {}),
+      ...(index === 4 ? RIVERTON_HOLIDAY_OFFERS[1] : {}),
       id: offer.id.replace("buckhead", "riverton"),
       image: getLocationServiceImage("riverton", services[index]),
       imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Riverton"),

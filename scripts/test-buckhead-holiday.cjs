@@ -61,6 +61,8 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
     ({ title, price, description, action }));
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
     const expected = fields(data[getter]("georgia", "buckhead"));
+    expected[getter === "getHolidayOffers" ? 0 : 3].title = "Black Friday Great Eight";
+    expected[getter === "getHolidayOffers" ? 0 : 3].description = "8 Recovery Services";
     if (getter === "getHolidayPricingOffers") {
       expected[0].description = "A Little Recharge";
       expected[1].description = "Self-Care Escape";
@@ -76,13 +78,23 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 3);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 2);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? [] : [
+      [
+        "https://app.clubready.com/JoinUs/14841/656905",
+        ...(file === mainFile ? [] : [
         "https://app.clubready.com/JoinUs/14841/656908",
         "https://app.clubready.com/JoinUs/14841/656909",
         "https://app.clubready.com/JoinUs/14841/656910",
+        ]),
       ], "Only Riverton’s supplied checkout links");
+    const recovery = cards[file === mainFile ? 0 : 3];
+    assert.equal(recovery.querySelector("h2").text, "Black Friday Great Eight");
+    assert.equal(recovery.querySelector(".description").text, "8 Recovery Services");
+    assert.equal(recovery.querySelector(".price").text, "$99");
+    assert.equal(recovery.querySelector("a").getAttribute("href"),
+      "https://app.clubready.com/JoinUs/14841/656905");
+    assert(recovery.querySelector("a").text.includes("Buy Now"));
     assert(!offers.text.includes("Zivel Buckhead"));
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     if (file === mainFile) {
