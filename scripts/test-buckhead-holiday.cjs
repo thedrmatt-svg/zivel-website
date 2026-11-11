@@ -33,12 +33,13 @@ const schema = page => page.querySelectorAll('script[type="application/ld+json"]
 const links = element => element.querySelectorAll("a")
   .map(a => a.getAttribute("href")).sort();
 
-test("only Buckhead main and pricing are holiday-enabled; every other studio stays standard", async () => {
+test("only Buckhead and Coral Gables are holiday-enabled; every other studio stays standard", async () => {
   const r = renderer(), standard = renderer(true);
   const { locations } = r.source("src/lib/data/locations");
   const config = r.source("src/components/location/holiday/holiday-location-config");
   for (const location of locations) {
-    const enabled = location.stateSlug === "georgia" && location.citySlug === "buckhead";
+    const enabled = (location.stateSlug === "georgia" && location.citySlug === "buckhead") ||
+      (location.stateSlug === "florida" && location.citySlug === "coral-gables");
     assert.equal(config.isHolidayLocation(location.stateSlug, location.citySlug), enabled);
     if (enabled) continue;
     for (const file of [mainFile, pricingFile]) {
@@ -47,6 +48,49 @@ test("only Buckhead main and pricing are holiday-enabled; every other studio sta
         `${location.name}: holiday switch cannot alter this route`);
     }
   }
+});
+
+test("Coral Gables uses identical offers without Buckhead checkout links and preserves its studio data", async () => {
+  const r = renderer(), standard = renderer(true);
+  const p = { state: "florida", city: "coral-gables", locale: "en" };
+  const offersData = r.source("src/components/location/holiday/holiday-offers");
+  const fields = offers => offers.map(({ title, price, description, action }) =>
+    ({ title, price, description, action }));
+  assert.deepEqual(fields(offersData.getHolidayOffers(p.state, p.city)),
+    fields(offersData.getHolidayOffers("georgia", "buckhead")));
+  assert.deepEqual(fields(offersData.getHolidayPricingOffers(p.state, p.city)),
+    fields(offersData.getHolidayPricingOffers("georgia", "buckhead")));
+  for (const file of [mainFile, pricingFile]) {
+    const page = await r.render(file, p), before = await standard.render(file, p);
+    assert.deepEqual(schema(page), schema(before));
+    assert(page.text.includes("Zivel Coral Gables"));
+    assert(!page.text.includes("Zivel Buckhead"));
+    assert(!links(page).some(link => link.includes("/14900/") || link.includes("/georgia/buckhead")));
+    const offers = page.querySelector('section[aria-label="Holiday offers"]');
+    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
+    const cards = offers.querySelectorAll("article");
+    const recovery = cards[file === mainFile ? 0 : 3];
+    assert.equal(recovery.querySelector("img").getAttribute("src"),
+      "/locations/coral-gables/services/red-light-therapy.jpg");
+    assert(recovery.querySelector("img").getAttribute("style").includes("center top"));
+    assert.equal(offers.querySelector(".disclaimer").text, offersData.HOLIDAY_OFFER_DISCLAIMER);
+    if (file === mainFile) {
+      assert.equal(cards[2].querySelector("a").getAttribute("href"), "/locations/florida/coral-gables/pricing");
+      const beforeLinks = links(before).filter(link => link.includes("clubready") || link.startsWith("tel:"));
+      assert(beforeLinks.length > 0);
+      for (const link of beforeLinks) assert(links(page).includes(link));
+    } else {
+      for (const id of ["memberships", "services", "packages"]) {
+        assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
+      }
+      assert.equal(page.querySelector(".blur-xl"), null);
+      assert(page.querySelector(".snowfall"));
+      assert.deepEqual(page.querySelector('nav[aria-label="Pricing sections"]').querySelectorAll("a")
+        .map(a => a.getAttribute("href")), ["#specials", "#memberships", "#services", "#packages"]);
+    }
+  }
+  assert.deepEqual(r.gates, [{ citySlug: "coral-gables", bypass: true }]);
 });
 
 test("Buckhead main retains schema, services, and booking identity with the supplied offer", async () => {

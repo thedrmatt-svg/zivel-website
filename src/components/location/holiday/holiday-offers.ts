@@ -51,15 +51,33 @@ export const BUCKHEAD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
 export const HOLIDAY_OFFER_DISCLAIMER =
   "All services must be started and completed before 2/28/27. All sales are final and all services must be used at the location where they were purchased.";
 
+// Same approved offers, but never reuse another studio's checkout destinations.
+// Coral Gables purchase links will be supplied separately by the owner.
+export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
+  BUCKHEAD_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
+    ...offer,
+    id: offer.id.replace("buckhead", "coral-gables"),
+    image: index === 0
+      ? getLocationServiceImage("coral-gables", "red-light-therapy")
+      : index === 1
+        ? getLocationServiceImage("coral-gables", "cryo-lift-facial")
+        : offer.image,
+    imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Coral Gables"),
+    imagePosition: index === 0 ? "center top" : offer.imagePosition,
+    purchaseUrl: index === 2 ? "/locations/florida/coral-gables/pricing" : undefined,
+  }));
+
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "florida" && citySlug === "coral-gables") return CORAL_GABLES_HOLIDAY_OFFERS;
   return stateSlug === "georgia" && citySlug === "buckhead" ? BUCKHEAD_HOLIDAY_OFFERS : [];
 }
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
-  if (stateSlug !== "georgia" || citySlug !== "buckhead") return [];
+  const isCoralGables = stateSlug === "florida" && citySlug === "coral-gables";
+  if (!isCoralGables && (stateSlug !== "georgia" || citySlug !== "buckhead")) return [];
   const giftCardServices = ["infrared-sauna", "dry-float", "cryo-slimming"];
   const giftCardAlts = ["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"];
-  return [
+  const buckheadOffers: readonly HolidayOffer[] = [
     ...[50, 100, 200].map((amount, index): HolidayOffer => ({
       id: `buckhead-gift-card-${amount}`,
       title: "Gift Card",
@@ -84,4 +102,17 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       action: "Buy Now",
     },
   ];
+  if (!isCoralGables) return buckheadOffers;
+  return buckheadOffers.map((offer, index): HolidayOffer => ({
+    ...offer,
+    ...(index === 3 ? CORAL_GABLES_HOLIDAY_OFFERS[0] : {}),
+    ...(index === 4 ? CORAL_GABLES_HOLIDAY_OFFERS[1] : {}),
+    id: offer.id.replace("buckhead", "coral-gables"),
+    image: index < 3 ? getLocationServiceImage("coral-gables", giftCardServices[index])
+      : index === 3 ? CORAL_GABLES_HOLIDAY_OFFERS[0].image
+      : index === 4 ? CORAL_GABLES_HOLIDAY_OFFERS[1].image
+      : getLocationServiceImage("coral-gables", "cryotherapy"),
+    imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Coral Gables"),
+    purchaseUrl: undefined,
+  }));
 }
