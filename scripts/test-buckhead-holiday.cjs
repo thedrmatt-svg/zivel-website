@@ -63,6 +63,7 @@ test("Parker shows approved custom holiday offers and checkout links while prese
       title: "BOGO DAY PASS", price: "$59", description: "3 Recovery Services/Day Pass", action: "Buy Now",
     };
     expected[getter === "getHolidayOffers" ? 1 : 4].price = "$179";
+    expected[getter === "getHolidayOffers" ? 1 : 4].title = "BOGO Cryo Facial";
     if (getter === "getHolidayPricingOffers") {
       expected[5].title = "BOGO Cryo Slimming/Toning";
       expected[5].price = "$350";
@@ -88,6 +89,8 @@ test("Parker shows approved custom holiday offers and checkout links while prese
     assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     const facial = cards[file === mainFile ? 1 : 4];
+    assert.equal(facial.querySelector("h2").text, "BOGO Cryo Facial");
+    assert(!offers.text.includes("Double Chin"));
     assert.equal(facial.querySelector(".price").text, "$179");
     assert.equal(facial.querySelector("a").getAttribute("href"),
       "https://app.clubready.com/JoinUs/15044/656922");
