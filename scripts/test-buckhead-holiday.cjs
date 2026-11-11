@@ -69,8 +69,12 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 3);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 2);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
+    const facial = cards[file === mainFile ? 1 : 4];
+    assert.equal(facial.querySelector("a").getAttribute("href"),
+      "https://app.clubready.com/JoinUs/15044/656922");
+    assert(facial.querySelector("a").text.includes("Buy Now"));
     const recovery = cards[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("img").getAttribute("src"),
       r.source("src/lib/data/location-service-images").getLocationServiceImage("parker", "red-light-therapy"));

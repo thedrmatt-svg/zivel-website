@@ -84,7 +84,8 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
       : index === 1 ? getLocationServiceImage("parker", "cryo-lift-facial")
       : offer.image,
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Parker"),
-    purchaseUrl: index === 2 ? "/locations/colorado/parker/pricing" : undefined,
+    purchaseUrl: index === 2 ? "/locations/colorado/parker/pricing"
+      : index === 1 ? "https://app.clubready.com/JoinUs/15044/656922" : undefined,
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
@@ -130,7 +131,8 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Parker"),
     purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/15044/656874"
       : index === 1 ? "https://app.clubready.com/JoinUs/15044/656917"
-      : index === 2 ? "https://app.clubready.com/JoinUs/15044/656918" : undefined,
+      : index === 2 ? "https://app.clubready.com/JoinUs/15044/656918"
+      : index === 4 ? PARKER_HOLIDAY_OFFERS[1].purchaseUrl : undefined,
   }));
   if (!isCoralGables) return buckheadOffers;
   return buckheadOffers.map((offer, index): HolidayOffer => ({
