@@ -68,8 +68,20 @@ test("Bentonville matches Rogers offers without borrowing checkout links or chan
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
-    assert(!links(offers).some(link => link.includes("clubready")), "No other studio's checkout links");
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 3);
+    assert.deepEqual(links(offers).filter(link => link.includes("clubready")), [
+      "https://app.clubready.com/JoinUs/14839/656925",
+      ...(file === pricingFile ? ["https://app.clubready.com/JoinUs/14839/656927"] : []),
+      "https://app.clubready.com/JoinUs/14839/656931",
+    ], "Only Bentonville’s supplied checkout links");
+    const recovery = cards[file === mainFile ? 0 : 3];
+    assert.equal(recovery.querySelector("a").getAttribute("href"),
+      "https://app.clubready.com/JoinUs/14839/656931");
+    assert(recovery.querySelector("a").text.includes("Buy Now"));
+    const facial = cards[file === mainFile ? 1 : 4];
+    assert.equal(facial.querySelector("a").getAttribute("href"),
+      "https://app.clubready.com/JoinUs/14839/656925");
+    assert(facial.querySelector("a").text.includes("Buy Now"));
     assert(!offers.text.includes("Zivel Rogers"));
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     if (file === mainFile) {
@@ -83,6 +95,9 @@ test("Bentonville matches Rogers offers without borrowing checkout links or chan
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
       assert.equal(cards[5].querySelector("h2").text, "BOGO BODY CONTOURING");
       assert.equal(cards[5].querySelector(".price").text, "$350");
+      assert.equal(cards[5].querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/14839/656927");
+      assert(cards[5].querySelector("a").text.includes("Buy Now"));
       assert.equal(cards[5].querySelector("img").getAttribute("src"),
         r.source("src/lib/data/location-service-images").getLocationServiceImage("bentonville", "cryo-slimming"));
       for (const id of ["memberships", "services", "packages"]) {

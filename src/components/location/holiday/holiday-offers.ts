@@ -102,7 +102,9 @@ export const BENTONVILLE_HOLIDAY_OFFERS: readonly HolidayOffer[] =
       : index === 1 ? getLocationServiceImage("bentonville", "cryo-lift-facial")
       : offer.image,
     imageAlt: offer.imageAlt.replace("Zivel Rogers", "Zivel Bentonville"),
-    purchaseUrl: index === 2 ? "/locations/arkansas/bentonville/pricing" : undefined,
+    purchaseUrl: index === 2 ? "/locations/arkansas/bentonville/pricing"
+      : index === 0 ? "https://app.clubready.com/JoinUs/14839/656931"
+      : "https://app.clubready.com/JoinUs/14839/656925",
   }));
 
 // Parker-specific offer details and owner-supplied checkout destinations.
@@ -133,7 +135,9 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       id: offer.id.replace("rogers", "bentonville"),
       image: getLocationServiceImage("bentonville", services[index]),
       imageAlt: offer.imageAlt.replace("Zivel Rogers", "Zivel Bentonville"),
-      purchaseUrl: undefined,
+      purchaseUrl: index === 3 ? BENTONVILLE_HOLIDAY_OFFERS[0].purchaseUrl
+        : index === 4 ? BENTONVILLE_HOLIDAY_OFFERS[1].purchaseUrl
+        : index === 5 ? "https://app.clubready.com/JoinUs/14839/656927" : undefined,
     }));
   }
   const isRogers = stateSlug === "arkansas" && citySlug === "rogers";
