@@ -51,7 +51,7 @@ test("only Buckhead, Coral Gables, and Parker are holiday-enabled; other studios
   }
 });
 
-test("Parker matches approved holiday offers with pending checkouts and preserves its regular data", async () => {
+test("Parker shows approved custom holiday offers and checkout links while preserving regular data", async () => {
   const r = renderer(), standard = renderer(true);
   const p = { state: "colorado", city: "parker", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
@@ -63,6 +63,10 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
       title: "BOGO DAY PASS", price: "$59", description: "3 Recovery Services/Day Pass", action: "Buy Now",
     };
     expected[getter === "getHolidayOffers" ? 1 : 4].price = "$179";
+    if (getter === "getHolidayPricingOffers") {
+      expected[5].title = "BOGO Cryo Slimming/Toning";
+      expected[5].price = "$299";
+    }
     assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
   }
   for (const file of [mainFile, pricingFile]) {
@@ -74,7 +78,7 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     const facial = cards[file === mainFile ? 1 : 4];
     assert.equal(facial.querySelector(".price").text, "$179");
@@ -106,6 +110,13 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
       assert.equal(cards[2].querySelector("a").getAttribute("href"),
         "https://app.clubready.com/JoinUs/15044/656918");
       assert(cards[2].querySelector("a").text.includes("Buy Now"));
+      assert.equal(cards[5].querySelector("h2").text, "BOGO Cryo Slimming/Toning");
+      assert.equal(cards[5].querySelector(".price").text, "$299");
+      assert.equal(cards[5].querySelector("img").getAttribute("src"),
+        r.source("src/lib/data/location-service-images").getLocationServiceImage("parker", "cryo-slimming"));
+      assert.equal(cards[5].querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/15044/656924");
+      assert(!offers.text.includes("BOGO Recovery"));
       for (const id of ["memberships", "services", "packages"]) {
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
       }

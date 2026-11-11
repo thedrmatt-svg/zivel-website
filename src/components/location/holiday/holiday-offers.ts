@@ -129,17 +129,20 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     ...offer,
     ...(index === 3 ? PARKER_HOLIDAY_OFFERS[0] : {}),
     ...(index === 4 ? PARKER_HOLIDAY_OFFERS[1] : {}),
+    ...(index === 5 ? { title: "BOGO Cryo Slimming/Toning", price: "$299" } : {}),
     id: offer.id.replace("buckhead", "parker"),
     image: index < 3 ? getLocationServiceImage("parker", giftCardServices[index])
       : index === 3 ? PARKER_HOLIDAY_OFFERS[0].image
       : index === 4 ? PARKER_HOLIDAY_OFFERS[1].image
-      : getLocationServiceImage("parker", "cryotherapy"),
-    imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Parker"),
+      : getLocationServiceImage("parker", "cryo-slimming"),
+    imageAlt: index === 5 ? "Cryo slimming treatment at Zivel Parker"
+      : offer.imageAlt.replace("Zivel Buckhead", "Zivel Parker"),
     purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/15044/656874"
       : index === 1 ? "https://app.clubready.com/JoinUs/15044/656917"
       : index === 2 ? "https://app.clubready.com/JoinUs/15044/656918"
       : index === 3 ? PARKER_HOLIDAY_OFFERS[0].purchaseUrl
-      : index === 4 ? PARKER_HOLIDAY_OFFERS[1].purchaseUrl : undefined,
+      : index === 4 ? PARKER_HOLIDAY_OFFERS[1].purchaseUrl
+      : "https://app.clubready.com/JoinUs/15044/656924",
   }));
   if (!isCoralGables) return buckheadOffers;
   return buckheadOffers.map((offer, index): HolidayOffer => ({
