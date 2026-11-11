@@ -65,7 +65,7 @@ test("Parker shows approved custom holiday offers and checkout links while prese
     expected[getter === "getHolidayOffers" ? 1 : 4].price = "$179";
     if (getter === "getHolidayPricingOffers") {
       expected[5].title = "BOGO Cryo Slimming/Toning";
-      expected[5].price = "$299";
+      expected[5].price = "$350";
       expected[5].description = "Buy One Get/Give One";
       expected.push({
         title: "BOGO SOOTHE", price: "$50", description: "Buy One Get/Give One", action: "Buy Now",
@@ -115,7 +115,7 @@ test("Parker shows approved custom holiday offers and checkout links while prese
         "https://app.clubready.com/JoinUs/15044/656918");
       assert(cards[2].querySelector("a").text.includes("Buy Now"));
       assert.equal(cards[5].querySelector("h2").text, "BOGO Cryo Slimming/Toning");
-      assert.equal(cards[5].querySelector(".price").text, "$299");
+      assert.equal(cards[5].querySelector(".price").text, "$350");
       assert.equal(cards[5].querySelector(".description").text, "Buy One Get/Give One");
       assert.equal(cards[5].querySelector("img").getAttribute("src"),
         r.source("src/lib/data/location-service-images").getLocationServiceImage("parker", "cryo-slimming"));

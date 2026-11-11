@@ -131,7 +131,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     ...(index === 4 ? PARKER_HOLIDAY_OFFERS[1] : {}),
     ...(index === 5 ? {
       title: "BOGO Cryo Slimming/Toning",
-      price: "$299",
+      price: "$350",
       description: "Buy One Get/Give One",
     } : {}),
     id: offer.id.replace("buckhead", "parker"),
