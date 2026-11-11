@@ -145,6 +145,14 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
   if (stateSlug === "utah" && citySlug === "riverton") {
     const services = ["infrared-sauna", "dry-float", "cryo-slimming",
       "red-light-therapy", "cryo-lift-facial", "cryotherapy"];
+    const giftCards = [
+      { price: "$50", description: "A Little Recharge", additionalDescription: "2 Recovery Services",
+        purchaseUrl: "https://app.clubready.com/JoinUs/14841/656908" },
+      { price: "$100", description: "Self-Care Escape", additionalDescription: "4 Recovery Serices",
+        purchaseUrl: "https://app.clubready.com/JoinUs/14841/656909" },
+      { price: "$300", description: "Premium Retreat", additionalDescription: "2 Premium Serices",
+        purchaseUrl: "https://app.clubready.com/JoinUs/14841/656910" },
+    ];
     return getHolidayPricingOffers("georgia", "buckhead").map((offer, index): HolidayOffer => ({
       ...offer,
       id: offer.id.replace("buckhead", "riverton"),
@@ -152,6 +160,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Riverton"),
       purchaseUrl: index === 3 ? RIVERTON_HOLIDAY_OFFERS[0].purchaseUrl
         : index === 4 ? RIVERTON_HOLIDAY_OFFERS[1].purchaseUrl : undefined,
+      ...(index < 3 ? giftCards[index] : {}),
     }));
   }
   if (stateSlug === "arkansas" && citySlug === "bentonville") {

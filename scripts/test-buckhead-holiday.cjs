@@ -60,7 +60,14 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
   const fields = offers => offers.map(({ title, price, description, action }) =>
     ({ title, price, description, action }));
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
-    assert.deepEqual(fields(data[getter](p.state, p.city)), fields(data[getter]("georgia", "buckhead")));
+    const expected = fields(data[getter]("georgia", "buckhead"));
+    if (getter === "getHolidayPricingOffers") {
+      expected[0].description = "A Little Recharge";
+      expected[1].description = "Self-Care Escape";
+      expected[2].description = "Premium Retreat";
+      expected[2].price = "$300";
+    }
+    assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
   }
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
@@ -69,8 +76,13 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
-    assert(!links(offers).some(link => link.includes("clubready")), "No borrowed checkout links");
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 3);
+    assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
+      file === mainFile ? [] : [
+        "https://app.clubready.com/JoinUs/14841/656908",
+        "https://app.clubready.com/JoinUs/14841/656909",
+        "https://app.clubready.com/JoinUs/14841/656910",
+      ], "Only Riverton’s supplied checkout links");
     assert(!offers.text.includes("Zivel Buckhead"));
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     if (file === mainFile) {
@@ -84,6 +96,20 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
       assert(links(page).some(link => link.includes("set_location=11445")));
       assert(page.text.includes("2026 Best of SLC Winner"));
     } else {
+      const giftCards = [
+        ["$50", "A Little Recharge", "2 Recovery Services", "656908"],
+        ["$100", "Self-Care Escape", "4 Recovery Serices", "656909"],
+        ["$300", "Premium Retreat", "2 Premium Serices", "656910"],
+      ];
+      giftCards.forEach(([price, description, additionalDescription, checkout], index) => {
+        assert.equal(cards[index].querySelector(".price").text, price);
+        assert.deepEqual(cards[index].querySelector(".descriptionCompact").querySelectorAll("span").map(span => span.text),
+          [description, additionalDescription]);
+        assert.equal(cards[index].querySelector("a").getAttribute("href"),
+          `https://app.clubready.com/JoinUs/14841/${checkout}`);
+        assert(cards[index].querySelector("a").text.includes("Buy Now"));
+      });
+      assert.equal(offers.querySelectorAll(".descriptionCompact").length, 3);
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
       assert.equal(cards[5].querySelector("h2").text, "BOGO Recovery");
       assert.equal(cards[5].querySelector(".price").text, "$50");
