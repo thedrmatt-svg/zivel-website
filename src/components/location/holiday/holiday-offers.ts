@@ -87,7 +87,8 @@ export const ROGERS_HOLIDAY_OFFERS: readonly HolidayOffer[] =
       : offer.image,
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Rogers"),
     purchaseUrl: index === 2 ? "/locations/arkansas/rogers/pricing"
-      : index === 0 ? "https://app.clubready.com/JoinUs/14838/656933" : undefined,
+      : index === 0 ? "https://app.clubready.com/JoinUs/14838/656933"
+      : "https://app.clubready.com/JoinUs/14838/656934",
   }));
 
 // Parker-specific offer details and owner-supplied checkout destinations.
