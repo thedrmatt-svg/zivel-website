@@ -78,9 +78,10 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 2);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       [
+        "https://app.clubready.com/JoinUs/14841/636149",
         "https://app.clubready.com/JoinUs/14841/656905",
         ...(file === mainFile ? [] : [
         "https://app.clubready.com/JoinUs/14841/656908",
@@ -95,6 +96,10 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
     assert.equal(recovery.querySelector("a").getAttribute("href"),
       "https://app.clubready.com/JoinUs/14841/656905");
     assert(recovery.querySelector("a").text.includes("Buy Now"));
+    const facial = cards[file === mainFile ? 1 : 4];
+    assert.equal(facial.querySelector("a").getAttribute("href"),
+      "https://app.clubready.com/JoinUs/14841/636149");
+    assert(facial.querySelector("a").text.includes("Buy Now"));
     assert(!offers.text.includes("Zivel Buckhead"));
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     if (file === mainFile) {

@@ -94,7 +94,8 @@ export const RIVERTON_HOLIDAY_OFFERS: readonly HolidayOffer[] =
       : offer.image,
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Riverton"),
     purchaseUrl: index === 2 ? "/locations/utah/riverton/pricing"
-      : index === 0 ? "https://app.clubready.com/JoinUs/14841/656905" : undefined,
+      : index === 0 ? "https://app.clubready.com/JoinUs/14841/656905"
+      : "https://app.clubready.com/JoinUs/14841/636149",
   }));
 
 // Owner approved Buckhead / Coral Gables offers for Rogers, not Parker's custom
