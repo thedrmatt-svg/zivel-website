@@ -98,6 +98,7 @@ export const zivel_parker_location: Location = {
     membershipTiers: [
       {
         name: "Essential",
+        bookingUrl: "https://app.clubready.com/JoinUs/15044/648247",
         price: "$119",
         cadence: "/mo",
         description: "A great entry point for regular recovery.",

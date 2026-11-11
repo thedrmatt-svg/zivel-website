@@ -133,6 +133,7 @@ test("Parker shows approved custom holiday offers and checkout links while prese
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
       }
       assert(page.querySelector('nav[aria-label="Breadcrumb"]').text.includes("Parker"));
+      assert(page.querySelector('#memberships a[href="https://app.clubready.com/JoinUs/15044/648247"]'));
       assert(page.querySelector(".snowfall"));
       assert.deepEqual(page.querySelector('nav[aria-label="Pricing sections"]').querySelectorAll("a")
         .map(a => a.getAttribute("href")), ["#specials", "#memberships", "#services", "#packages"]);
