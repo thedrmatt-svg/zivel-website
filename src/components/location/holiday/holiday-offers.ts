@@ -70,13 +70,27 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "colorado" && citySlug === "parker") return PARKER_HOLIDAY_OFFERS;
   if (stateSlug === "florida" && citySlug === "coral-gables") return CORAL_GABLES_HOLIDAY_OFFERS;
   return stateSlug === "georgia" && citySlug === "buckhead" ? BUCKHEAD_HOLIDAY_OFFERS : [];
 }
 
+// Parker's checkout links are intentionally pending owner-supplied destinations.
+export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
+  BUCKHEAD_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
+    ...offer,
+    id: offer.id.replace("buckhead", "parker"),
+    image: index === 0 ? getLocationServiceImage("parker", "red-light-therapy")
+      : index === 1 ? getLocationServiceImage("parker", "cryo-lift-facial")
+      : offer.image,
+    imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Parker"),
+    purchaseUrl: index === 2 ? "/locations/colorado/parker/pricing" : undefined,
+  }));
+
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
   const isCoralGables = stateSlug === "florida" && citySlug === "coral-gables";
-  if (!isCoralGables && (stateSlug !== "georgia" || citySlug !== "buckhead")) return [];
+  const isParker = stateSlug === "colorado" && citySlug === "parker";
+  if (!isCoralGables && !isParker && (stateSlug !== "georgia" || citySlug !== "buckhead")) return [];
   const giftCardServices = ["infrared-sauna", "dry-float", "cryo-slimming"];
   const giftCardAlts = ["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"];
   const buckheadOffers: readonly HolidayOffer[] = [
@@ -104,6 +118,18 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       action: "Buy Now",
     },
   ];
+  if (isParker) return buckheadOffers.map((offer, index): HolidayOffer => ({
+    ...offer,
+    ...(index === 3 ? PARKER_HOLIDAY_OFFERS[0] : {}),
+    ...(index === 4 ? PARKER_HOLIDAY_OFFERS[1] : {}),
+    id: offer.id.replace("buckhead", "parker"),
+    image: index < 3 ? getLocationServiceImage("parker", giftCardServices[index])
+      : index === 3 ? PARKER_HOLIDAY_OFFERS[0].image
+      : index === 4 ? PARKER_HOLIDAY_OFFERS[1].image
+      : getLocationServiceImage("parker", "cryotherapy"),
+    imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Parker"),
+    purchaseUrl: undefined,
+  }));
   if (!isCoralGables) return buckheadOffers;
   return buckheadOffers.map((offer, index): HolidayOffer => ({
     ...offer,

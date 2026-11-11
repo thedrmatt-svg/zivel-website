@@ -33,13 +33,14 @@ const schema = page => page.querySelectorAll('script[type="application/ld+json"]
 const links = element => element.querySelectorAll("a")
   .map(a => a.getAttribute("href")).sort();
 
-test("only Buckhead and Coral Gables are holiday-enabled; every other studio stays standard", async () => {
+test("only Buckhead, Coral Gables, and Parker are holiday-enabled; other studios stay standard", async () => {
   const r = renderer(), standard = renderer(true);
   const { locations } = r.source("src/lib/data/locations");
   const config = r.source("src/components/location/holiday/holiday-location-config");
   for (const location of locations) {
     const enabled = (location.stateSlug === "georgia" && location.citySlug === "buckhead") ||
-      (location.stateSlug === "florida" && location.citySlug === "coral-gables");
+      (location.stateSlug === "florida" && location.citySlug === "coral-gables") ||
+      (location.stateSlug === "colorado" && location.citySlug === "parker");
     assert.equal(config.isHolidayLocation(location.stateSlug, location.citySlug), enabled);
     if (enabled) continue;
     for (const file of [mainFile, pricingFile]) {
@@ -48,6 +49,52 @@ test("only Buckhead and Coral Gables are holiday-enabled; every other studio sta
         `${location.name}: holiday switch cannot alter this route`);
     }
   }
+});
+
+test("Parker matches approved holiday offers with pending checkouts and preserves its regular data", async () => {
+  const r = renderer(), standard = renderer(true);
+  const p = { state: "colorado", city: "parker", locale: "en" };
+  const data = r.source("src/components/location/holiday/holiday-offers");
+  const fields = offers => offers.map(({ title, price, description, action }) =>
+    ({ title, price, description, action }));
+  for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
+    assert.deepEqual(fields(data[getter](p.state, p.city)), fields(data[getter]("georgia", "buckhead")));
+  }
+  for (const file of [mainFile, pricingFile]) {
+    const page = await r.render(file, p), before = await standard.render(file, p);
+    assert.deepEqual(schema(page), schema(before));
+    assert(page.text.includes("Zivel Parker"));
+    assert(!page.text.includes("Zivel Buckhead") && !page.text.includes("Zivel Coral Gables"));
+    assert(!links(page).some(link => /\/(14900|14828)\//.test(link)));
+    const offers = page.querySelector('section[aria-label="Holiday offers"]');
+    const cards = offers.querySelectorAll("article");
+    assert.equal(cards.length, file === mainFile ? 3 : 6);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
+    assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
+    const recovery = cards[file === mainFile ? 0 : 3];
+    assert.equal(recovery.querySelector("img").getAttribute("src"),
+      r.source("src/lib/data/location-service-images").getLocationServiceImage("parker", "red-light-therapy"));
+    if (file === mainFile) {
+      assert.equal(page.querySelector("#location-hero-title").text, "HOLIDAY SPECIALS");
+      assert.equal(cards[2].querySelector("a").getAttribute("href"), "/locations/colorado/parker/pricing");
+      assert(links(page).some(link => link.includes("set_location=11680")));
+      assert(page.text.includes("(720) 366-3622"));
+    } else {
+      for (const id of ["memberships", "services", "packages"]) {
+        assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
+      }
+      assert(page.querySelector('nav[aria-label="Breadcrumb"]').text.includes("Parker"));
+      assert(page.querySelector(".snowfall"));
+      assert.deepEqual(page.querySelector('nav[aria-label="Pricing sections"]').querySelectorAll("a")
+        .map(a => a.getAttribute("href")), ["#specials", "#memberships", "#services", "#packages"]);
+    }
+  }
+  assert.deepEqual(r.gates, [{ citySlug: "parker", bypass: true }]);
+  const ungated = renderer();
+  delete ungated.wrappers["@/components/location/PricingGateModal"];
+  const pricing = await ungated.render(pricingFile, p);
+  assert.equal(pricing.querySelector(".blur-xl"), null);
+  assert.equal(pricing.querySelector("#pg-firstName"), null);
 });
 
 test("Coral Gables uses identical offers without Buckhead checkout links and preserves its studio data", async () => {

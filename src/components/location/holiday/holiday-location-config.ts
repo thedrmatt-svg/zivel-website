@@ -1,4 +1,8 @@
-const HOLIDAY_ENABLED_LOCATIONS = new Set(["georgia/buckhead", "florida/coral-gables"]);
+const HOLIDAY_ENABLED_LOCATIONS = new Set([
+  "georgia/buckhead",
+  "florida/coral-gables",
+  "colorado/parker",
+]);
 
 // Seasonal exception: set false to restore the normal signup gate even while
 // holiday presentation remains enabled. Disabling holiday mode also restores it.
