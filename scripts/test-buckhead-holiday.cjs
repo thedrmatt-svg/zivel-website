@@ -70,6 +70,9 @@ test("Parker shows approved custom holiday offers and checkout links while prese
       expected.push({
         title: "BOGO SOOTHE", price: "$50", description: "Buy One Get/Give One", action: "Buy Now",
       });
+      expected.push({
+        title: "All Access", price: "$179", description: "Unlimited Recovery Membership", action: "Buy Now",
+      });
     }
     assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
   }
@@ -81,8 +84,8 @@ test("Parker shows approved custom holiday offers and checkout links while prese
     assert(!links(page).some(link => /\/(14900|14828)\//.test(link)));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
-    assert.equal(cards.length, file === mainFile ? 3 : 7);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
+    assert.equal(cards.length, file === mainFile ? 3 : 8);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     const facial = cards[file === mainFile ? 1 : 4];
     assert.equal(facial.querySelector(".price").text, "$179");
@@ -129,6 +132,13 @@ test("Parker shows approved custom holiday offers and checkout links while prese
         r.source("src/lib/data/location-service-images").getLocationServiceImage("parker", "cryo-soothe"));
       assert.equal(cards[6].querySelector("a").getAttribute("href"),
         "https://app.clubready.com/JoinUs/15044/656928");
+      assert.equal(cards[7].querySelector("h2").text, "All Access");
+      assert.equal(cards[7].querySelector(".price").text, "$179");
+      assert.equal(cards[7].querySelector(".description").text, "Unlimited Recovery Membership");
+      assert.equal(cards[7].querySelector("img").getAttribute("src"),
+        r.source("src/lib/data/location-service-images").getLocationServiceImage("parker", "cryotherapy"));
+      assert.equal(cards[7].querySelector("a"), null);
+      assert.equal(cards[7].querySelector("button[disabled]").text, "Link pending");
       for (const id of ["memberships", "services", "packages"]) {
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
       }
