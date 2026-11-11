@@ -65,7 +65,8 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Coral Gables"),
     imagePosition: index === 0 ? "center top" : offer.imagePosition,
     purchaseUrl: index === 2 ? "/locations/florida/coral-gables/pricing"
-      : index === 1 ? "https://app.clubready.com/JoinUs/14828/656920" : undefined,
+      : index === 1 ? "https://app.clubready.com/JoinUs/14828/656920"
+      : "https://app.clubready.com/JoinUs/14828/656921",
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
@@ -117,6 +118,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/14828/644802"
       : index === 1 ? "https://app.clubready.com/JoinUs/14828/644803"
       : index === 2 ? "https://app.clubready.com/JoinUs/14828/644804"
+      : index === 3 ? CORAL_GABLES_HOLIDAY_OFFERS[0].purchaseUrl
       : index === 4 ? CORAL_GABLES_HOLIDAY_OFFERS[1].purchaseUrl
       : index === 5 ? "https://app.clubready.com/JoinUs/14828/656919" : undefined,
   }));
