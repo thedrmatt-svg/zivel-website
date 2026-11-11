@@ -299,7 +299,11 @@ test("Parker shows approved custom holiday offers and checkout links while prese
         "https://app.clubready.com/JoinUs/15044/656928");
       assert.equal(cards[7].querySelector("h2").text, "All Access");
       assert.equal(cards[7].querySelector(".price").text, "$179");
-      assert.equal(cards[7].querySelector(".description").text, "Unlimited Recovery Membership");
+      assert.deepEqual(cards[7].querySelector(".description").querySelectorAll("span").map(span => span.text),
+        ["Unlimited Recovery Membership", "FREE Day Pass"]);
+      assert(cards[7].querySelector(".descriptionCompact"));
+      assert.equal(offers.querySelectorAll(".descriptionCompact").length, 1,
+        "Only All Access gets smaller description text");
       assert.equal(cards[7].querySelector("img").getAttribute("src"),
         r.source("src/lib/data/location-service-images").getLocationServiceImage("parker", "cryotherapy"));
       assert.equal(cards[7].querySelector("a").getAttribute("href"),

@@ -5,6 +5,7 @@ export type HolidayOffer = {
   title: string;
   price?: string;
   description?: string;
+  additionalDescription?: string;
   image: string;
   imageAlt: string;
   imagePosition?: string;
@@ -229,6 +230,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     title: "All Access",
     price: "$179",
     description: "Unlimited Recovery Membership",
+    additionalDescription: "FREE Day Pass",
     image: getLocationServiceImage("parker", "cryotherapy"),
     imageAlt: "Cryotherapy recovery service at Zivel Parker",
     purchaseUrl: "https://app.clubready.com/JoinUs/15044/656932",

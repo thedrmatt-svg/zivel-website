@@ -51,7 +51,14 @@ export default function HolidayOfferCards({
                     : offer.price}
                 </div>
               )}
-              {offer.description && <p className={styles.description}>{offer.description}</p>}
+              {offer.description && (
+                <p className={offer.additionalDescription
+                  ? `${styles.description} ${styles.descriptionCompact}` : styles.description}>
+                  {offer.additionalDescription
+                    ? <><span>{offer.description}</span><span>{offer.additionalDescription}</span></>
+                    : offer.description}
+                </p>
+              )}
               {offer.purchaseUrl ? <a
                 href={offer.purchaseUrl}
                 target={offer.purchaseUrl.startsWith("/") ? undefined : "_blank"}

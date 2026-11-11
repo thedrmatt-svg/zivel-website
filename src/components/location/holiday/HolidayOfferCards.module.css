@@ -145,6 +145,16 @@
   line-height: 1.4;
 }
 
+.descriptionCompact {
+  margin: .2rem 0 .5rem;
+  font-size: .75rem;
+  line-height: 1.2;
+}
+
+.descriptionCompact span {
+  display: block;
+}
+
 .action {
   display: inline-flex;
   min-height: 43px;
