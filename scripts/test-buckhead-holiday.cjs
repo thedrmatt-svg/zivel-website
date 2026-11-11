@@ -58,7 +58,11 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
   const fields = offers => offers.map(({ title, price, description, action }) =>
     ({ title, price, description, action }));
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
-    assert.deepEqual(fields(data[getter](p.state, p.city)), fields(data[getter]("georgia", "buckhead")));
+    const expected = fields(data[getter]("georgia", "buckhead"));
+    expected[getter === "getHolidayOffers" ? 0 : 3] = {
+      title: "BOGO DAY PASS", price: "$59", description: "3 Recovery Services/Day Pass", action: "Buy Now",
+    };
+    assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
   }
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
@@ -69,13 +73,19 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 2);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     const facial = cards[file === mainFile ? 1 : 4];
     assert.equal(facial.querySelector("a").getAttribute("href"),
       "https://app.clubready.com/JoinUs/15044/656922");
     assert(facial.querySelector("a").text.includes("Buy Now"));
     const recovery = cards[file === mainFile ? 0 : 3];
+    assert.equal(recovery.querySelector("h2").text, "BOGO DAY PASS");
+    assert.equal(recovery.querySelector(".price").text, "$59");
+    assert.equal(recovery.querySelector(".description").text, "3 Recovery Services/Day Pass");
+    assert.equal(recovery.querySelector("a").getAttribute("href"),
+      "https://app.clubready.com/JoinUs/15044/656923");
+    assert(!offers.text.includes("6 Pack Recovery"));
     assert.equal(recovery.querySelector("img").getAttribute("src"),
       r.source("src/lib/data/location-service-images").getLocationServiceImage("parker", "red-light-therapy"));
     if (file === mainFile) {

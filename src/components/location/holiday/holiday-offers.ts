@@ -75,17 +75,23 @@ export function getHolidayOffers(stateSlug: string, citySlug: string): readonly 
   return stateSlug === "georgia" && citySlug === "buckhead" ? BUCKHEAD_HOLIDAY_OFFERS : [];
 }
 
-// Parker's checkout links are intentionally pending owner-supplied destinations.
+// Parker-specific offer details and owner-supplied checkout destinations.
 export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   BUCKHEAD_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
     ...offer,
     id: offer.id.replace("buckhead", "parker"),
+    ...(index === 0 ? {
+      title: "BOGO DAY PASS",
+      description: "3 Recovery Services/Day Pass",
+      price: "$59",
+    } : {}),
     image: index === 0 ? getLocationServiceImage("parker", "red-light-therapy")
       : index === 1 ? getLocationServiceImage("parker", "cryo-lift-facial")
       : offer.image,
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Parker"),
     purchaseUrl: index === 2 ? "/locations/colorado/parker/pricing"
-      : index === 1 ? "https://app.clubready.com/JoinUs/15044/656922" : undefined,
+      : index === 1 ? "https://app.clubready.com/JoinUs/15044/656922"
+      : "https://app.clubready.com/JoinUs/15044/656923",
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
@@ -132,6 +138,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     purchaseUrl: index === 0 ? "https://app.clubready.com/JoinUs/15044/656874"
       : index === 1 ? "https://app.clubready.com/JoinUs/15044/656917"
       : index === 2 ? "https://app.clubready.com/JoinUs/15044/656918"
+      : index === 3 ? PARKER_HOLIDAY_OFFERS[0].purchaseUrl
       : index === 4 ? PARKER_HOLIDAY_OFFERS[1].purchaseUrl : undefined,
   }));
   if (!isCoralGables) return buckheadOffers;
