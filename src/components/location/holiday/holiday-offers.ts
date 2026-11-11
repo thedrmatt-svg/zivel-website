@@ -146,14 +146,17 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     ...offer,
     ...(index === 3 ? ROGERS_HOLIDAY_OFFERS[0] : {}),
     ...(index === 4 ? ROGERS_HOLIDAY_OFFERS[1] : {}),
+    ...(index === 5 ? { title: "BOGO BODY CONTOURING", price: "$350" } : {}),
     id: offer.id.replace("buckhead", "rogers"),
     image: index < 3 ? getLocationServiceImage("rogers", giftCardServices[index])
       : index === 3 ? ROGERS_HOLIDAY_OFFERS[0].image
       : index === 4 ? ROGERS_HOLIDAY_OFFERS[1].image
-      : getLocationServiceImage("rogers", "cryotherapy"),
-    imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Rogers"),
+      : getLocationServiceImage("rogers", "cryo-slimming"),
+    imageAlt: index === 5 ? "Cryo slimming body contouring treatment at Zivel Rogers"
+      : offer.imageAlt.replace("Zivel Buckhead", "Zivel Rogers"),
     purchaseUrl: index === 3 ? ROGERS_HOLIDAY_OFFERS[0].purchaseUrl
-      : index === 4 ? ROGERS_HOLIDAY_OFFERS[1].purchaseUrl : undefined,
+      : index === 4 ? ROGERS_HOLIDAY_OFFERS[1].purchaseUrl
+      : index === 5 ? "https://app.clubready.com/JoinUs/14838/656935" : undefined,
   }));
   if (isParker) return [...buckheadOffers.map((offer, index): HolidayOffer => ({
     ...offer,

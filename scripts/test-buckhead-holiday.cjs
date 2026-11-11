@@ -59,7 +59,12 @@ test("Rogers uses Buckhead offers with pending checkout links and preserves stud
   const fields = offers => offers.map(({ title, price, description, action }) =>
     ({ title, price, description, action }));
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
-    assert.deepEqual(fields(data[getter](p.state, p.city)), fields(data[getter]("georgia", "buckhead")));
+    const expected = fields(data[getter]("georgia", "buckhead"));
+    if (getter === "getHolidayPricingOffers") {
+      expected[5].title = "BOGO BODY CONTOURING";
+      expected[5].price = "$350";
+    }
+    assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
   }
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
@@ -70,7 +75,9 @@ test("Rogers uses Buckhead offers with pending checkout links and preserves stud
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       ["https://app.clubready.com/JoinUs/14838/656933",
-        "https://app.clubready.com/JoinUs/14838/656934"], "Only Rogers’ supplied checkout URLs");
+        "https://app.clubready.com/JoinUs/14838/656934",
+        ...(file === pricingFile ? ["https://app.clubready.com/JoinUs/14838/656935"] : [])],
+      "Only Rogers’ supplied checkout URLs");
     const recovery = offers.querySelectorAll("article")[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("a").getAttribute("href"),
       "https://app.clubready.com/JoinUs/14838/656933");
@@ -88,7 +95,14 @@ test("Rogers uses Buckhead offers with pending checkout links and preserves stud
         assert(links(page).includes(link), `Preserve Rogers contact / booking destination: ${link}`);
       }
     } else {
-      assert.equal(offers.querySelectorAll("button[disabled]").length, 4);
+      assert.equal(offers.querySelectorAll("button[disabled]").length, 3);
+      const contouring = offers.querySelectorAll("article")[5];
+      assert.equal(contouring.querySelector("h2").text, "BOGO BODY CONTOURING");
+      assert.equal(contouring.querySelector(".price").text, "$350");
+      assert.equal(contouring.querySelector("img").getAttribute("src"),
+        r.source("src/lib/data/location-service-images").getLocationServiceImage("rogers", "cryo-slimming"));
+      assert.equal(contouring.querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/14838/656935");
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
       assert(page.querySelector(".snowfall"));
       for (const id of ["memberships", "services", "packages"]) {
