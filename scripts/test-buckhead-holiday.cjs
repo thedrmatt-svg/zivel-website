@@ -77,7 +77,8 @@ test("Rogers uses Buckhead offers with pending checkout links and preserves stud
       ["https://app.clubready.com/JoinUs/14838/656933",
         "https://app.clubready.com/JoinUs/14838/656934",
         ...(file === pricingFile ? ["https://app.clubready.com/JoinUs/14838/656935",
-          "https://app.clubready.com/JoinUs/14838/656945"] : [])],
+          "https://app.clubready.com/JoinUs/14838/656945",
+          "https://app.clubready.com/JoinUs/14838/656947"] : [])],
       "Only Rogers’ supplied checkout URLs");
     const recovery = offers.querySelectorAll("article")[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("a").getAttribute("href"),
@@ -96,12 +97,17 @@ test("Rogers uses Buckhead offers with pending checkout links and preserves stud
         assert(links(page).includes(link), `Preserve Rogers contact / booking destination: ${link}`);
       }
     } else {
-      assert.equal(offers.querySelectorAll("button[disabled]").length, 2);
+      assert.equal(offers.querySelectorAll("button[disabled]").length, 1);
       const gift50 = offers.querySelectorAll("article")[0];
       assert.equal(gift50.querySelector(".price").text, "$50");
       assert.equal(gift50.querySelector("a").getAttribute("href"),
         "https://app.clubready.com/JoinUs/14838/656945");
       assert(gift50.querySelector("a").text.includes("Buy Now"));
+      const gift100 = offers.querySelectorAll("article")[1];
+      assert.equal(gift100.querySelector(".price").text, "$100");
+      assert.equal(gift100.querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/14838/656947");
+      assert(gift100.querySelector("a").text.includes("Buy Now"));
       const contouring = offers.querySelectorAll("article")[5];
       assert.equal(contouring.querySelector("h2").text, "BOGO BODY CONTOURING");
       assert.equal(contouring.querySelector(".price").text, "$350");
