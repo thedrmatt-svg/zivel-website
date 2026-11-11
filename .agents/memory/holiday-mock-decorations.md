@@ -18,9 +18,21 @@ for both main and pricing pages. Approval is not a bulk rollout instruction.
 guidelines to “perfectly and exactly replicate this on each individual page.”
 
 **How to apply:** Follow `docs/holiday-location-rollout.md` when a location's
-inputs arrive. Keep the two different approved treatments distinct; do not
-redesign them, invent missing offer information, or migrate mock-only SEO/lead
-gate exceptions onto live pages.
+inputs arrive. Use the mocks for overall appearance and the guide's approved
+Buckhead refinements for subsequent live rollouts. Keep the two treatments
+distinct; do not redesign them, invent missing offer information, or migrate
+mock-only SEO exceptions onto live pages. The holiday pricing-gate exception
+is explicitly authorized below.
+
+Treat the approved Buckhead refinements as part of the holiday rollout standard,
+without rewriting the two mock reference pages or copying Buckhead's offers to
+other studios.
+
+**Why:** The owner asked to update the holiday website plan to reflect the
+adjustments approved on Buckhead's live pages.
+
+**How to apply:** Consult the guide's Buckhead refinements alongside the mocks;
+continue requiring studio-specific wording, photos, prices, and links.
 
 Preserve a pre-holiday standard-page reference so the original presentation can
 be restored quickly when the season ends.

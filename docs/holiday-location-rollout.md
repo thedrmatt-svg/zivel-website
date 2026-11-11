@@ -13,6 +13,11 @@ without reverting newer business information or unrelated fixes.
 The owner approved `/mock` and `/mock-pricing` as the visual references for
 location-specific holiday main pages and pricing pages.
 
+The approved Buckhead implementation refines those references. For future
+rollouts, use the mocks for the overall holiday appearance and the Buckhead
+adjustments below for the final live-page presentation and behavior. Keep the
+mocks themselves unchanged; their sample copy and offers are not rollout data.
+
 Replicate these designs, not a new interpretation. The owner will supply the
 exact wording, image guidelines/assets, prices, and purchase links for each
 location and for both pages. Approval of the design is not authorization to
@@ -54,7 +59,7 @@ Use the actual reference implementation and its responsive rules:
 
 Approved appearance:
 
-- Navy holiday hero, centered studio label above the Holiday Offers title,
+- Navy holiday hero, centered studio label above the **HOLIDAY SPECIALS** title,
   gold accents, serif headings, and the current transparent gold bow at top left.
 - Match the current bow size, opacity, cropping, and placement; do not copy the
   pricing page's different bow settings onto the main page.
@@ -104,6 +109,95 @@ Approved appearance and behavior:
   the owner explicitly supplies changes. Holiday design is not permission to
   alter standard pricing.
 
+## Approved Buckhead refinements for future rollouts
+
+These are additions to the two mock references, not authorization to enable
+another studio. Use the shared live holiday components as the implementation
+reference:
+
+- `src/components/location/holiday/HolidayLocationHero.tsx`
+- `src/components/location/holiday/HolidayOfferCards.tsx`
+- `src/components/location/holiday/HolidayOfferCards.module.css`
+- `src/components/location/holiday/HolidayPricingPresentation.tsx`
+- `src/components/location/holiday/HolidayPricingPresentation.module.css`
+- `src/components/location/holiday/holiday-offers.ts`
+- `src/components/location/holiday/holiday-location-config.ts`
+- `src/app/[locale]/locations/[state]/[city]/pricing/page.tsx`
+
+### Main-page offer presentation
+
+- Heading: **HOLIDAY SPECIALS**, replacing the mock's “Holiday Offers.”
+- Keep the three-card main-page hero separate from the pricing-page offer grid.
+  The two pages may show different numbers and selections of offers.
+- Keep the gold divider above the price, including on a gift-card card.
+- When an approved price ends in `+`, keep the amount at full size and make
+  only the plus sign smaller (60% of the price font size).
+- Support an explicit image focal point and zoom per card. Center the intended
+  people/subject in the rendered card, rather than assuming a centered crop
+  will work. Verify the crop at desktop and mobile sizes.
+- A gift-card overview may link internally to that studio's pricing page with
+  **Gift Cards & More**, rather than directly to checkout. Individual purchase
+  cards use the supplied checkout URL. Internal links stay in the same tab;
+  external checkout links open in a new tab.
+
+### Pricing-page layout and visibility
+
+- Keep **Holiday Specials** before memberships, followed by the normal Services
+  and Packages sections; keep the section navigation in the same order.
+- Use a three-column desktop grid that can continue into a second row. Buckhead's
+  approved layout is gift cards in row one and recovery/BOGO offers in row two.
+  Preserve the existing compact single-column mobile card treatment.
+- Keep main-page offers and pricing-page offers independently configurable.
+  Share matching offer data where appropriate so prices and links cannot drift.
+- Temporarily remove the signup card for holiday-enabled pricing pages,
+  including regular memberships, services, and packages—not just the specials.
+  Retain the form and its supporting behavior so the normal gate can be restored
+  after the holidays. Do not change non-holiday pricing pages.
+- Keep the tightened spacing between the hero paragraph and the section links.
+  The live holiday hero uses `pt-20 pb-8 md:pt-28 md:pb-10`, with `mt-4` before
+  the back-to-location link, instead of the standard larger bottom spacing.
+  Do not restore the mock's larger gap during rollout.
+- Use the owner-approved studio name in the pricing breadcrumb and matching
+  BreadcrumbList name. Buckhead reads **Home / Locations / GA / Buckhead /
+  Pricing**, not Atlanta. Preserve all breadcrumb URLs and do not expand this
+  targeted change to unrelated pages.
+- Place the approved disclaimer below the complete offer grid on each page.
+  Do not repeat it under each row.
+
+### Buckhead offer reference — not defaults for other studios
+
+This records the owner's final approved offer mapping for replication checks.
+Do not copy Buckhead's amounts, eligibility, expiration, photos, or checkout links
+to another studio without that studio's supplied instructions.
+
+Main page, in order:
+
+| Offer | Price | Description | Image / crop | Button and destination |
+| --- | --- | --- | --- | --- |
+| 6 Pack Recovery | $99 | 6 Recovery Services in 1 Month | Buckhead Services red light image | Buy Now — https://app.clubready.com/JoinUs/14900/656882 |
+| BOGO Cryo Facial/Double Chin | $150 | Buy One Get/Give One | Existing cryo facial image | Buy Now — https://app.clubready.com/JoinUs/14900/656883 |
+| Gift Cards | $50+ | Give the Gift of Feeling Better | Highlands Ranch two-person sauna image; focal point `right 40%`, zoom `1.3` | Gift Cards & More — `/locations/georgia/buckhead/pricing` |
+
+Pricing page, left to right within each desktop row:
+
+| Row | Offer | Price | Description | Image | Purchase URL |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Gift Card | $50 | Give the Gift of Feeling Better | Infrared sauna | https://app.clubready.com/JoinUs/14900/656879 |
+| 1 | Gift Card | $100 | Give the Gift of Feeling Better | Dry float | https://app.clubready.com/JoinUs/14900/656885 |
+| 1 | Gift Card | $200 | Give the Gift of Feeling Better | Slimming | https://app.clubready.com/JoinUs/14900/656886 |
+| 2 | 6 Pack Recovery | $99 | 6 Recovery Services in 1 Month | Same as main page | https://app.clubready.com/JoinUs/14900/656882 |
+| 2 | BOGO Cryo Facial/Double Chin | $150 | Buy One Get/Give One | Same as main page | https://app.clubready.com/JoinUs/14900/656883 |
+| 2 | BOGO Recovery | $50 | No description supplied | Cryotherapy | https://app.clubready.com/JoinUs/14900/656887 |
+
+All six pricing cards use **Buy Now**. The final BOGO Recovery price is **$50**,
+not the earlier $40. The main-page gift-card overview keeps the two-person sauna
+image; the pricing-page $200 gift card uses slimming. Do not replace one with the
+other when updating shared presentation.
+
+Approved disclaimer on both Buckhead grids:
+
+> All services must be started and completed before 2/28/27. All sales are final and all services must be used at the location where they were purchased.
+
 Hollywood's source pricing currently renders a “Check Back Soon” fallback in
 Specials. It is not an approved holiday offer. Replace the fallback only when
 the owner supplies that location's real holiday offers.
@@ -149,14 +243,18 @@ the owner supplies that location's real holiday offers.
    Never apply blanket global CSS or enable holiday offers for all locations.
 4. Compare desktop and mobile screenshots to the matching approved reference.
    Match spacing, colors, typography, cards, bow, snow, shimmer, and section
-   ordering; allow only the necessary wrapping for the supplied copy.
+   ordering, including the approved Buckhead refinements above; allow only the
+   necessary wrapping for the supplied copy. Check image focal points, the
+   smaller price plus sign, and the compact pricing hero-to-navigation spacing.
 5. Verify each purchase button against the supplied URL and correct studio/offer.
    Do not place an order or submit a payment to test a destination.
 6. Verify Book Now, phone, Directions, pricing navigation, FAQ accordion,
    responsive layout, keyboard focus, and reduced-motion behavior. Keep text
    readable and decorations non-interactive.
 7. Check main/pricing offer consistency and confirm unrelated standard prices,
-   services, metadata, schema, tracking, consent, and lead forms remain intact.
+   services, metadata, schema, tracking, and consent remain intact. Confirm the
+   holiday signup pause applies only to participating pricing pages, without
+   deleting lead forms or altering non-holiday behavior.
 8. Check a non-participating location and both approved mocks for regressions.
    Run applicable tests/type checks and verify scoped schema/indexing behavior.
 9. Report the exact location and routes changed, offer/link mapping, missing
