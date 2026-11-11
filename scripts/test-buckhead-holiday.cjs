@@ -68,8 +68,12 @@ test("Coral Gables uses identical offers without Buckhead checkout links and pre
     assert(!links(page).some(link => link.includes("/14900/") || link.includes("/georgia/buckhead")));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, 2);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 1);
     const cards = offers.querySelectorAll("article");
+    const facial = cards[file === mainFile ? 1 : 4];
+    assert.equal(facial.querySelector("a").getAttribute("href"),
+      "https://app.clubready.com/JoinUs/14828/656920");
+    assert(facial.querySelector("a").text.includes("Buy Now"));
     const recovery = cards[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("img").getAttribute("src"),
       "/locations/coral-gables/services/red-light-therapy.jpg");
