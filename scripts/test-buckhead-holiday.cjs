@@ -68,17 +68,22 @@ test("Rogers uses Buckhead offers with pending checkout links and preserves stud
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
-    assert(!links(offers).some(link => link.includes("clubready")), "No borrowed checkout URLs");
+    assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
+      ["https://app.clubready.com/JoinUs/14838/656933"], "Only Rogers’ supplied checkout URL");
+    const recovery = offers.querySelectorAll("article")[file === mainFile ? 0 : 3];
+    assert.equal(recovery.querySelector("a").getAttribute("href"),
+      "https://app.clubready.com/JoinUs/14838/656933");
+    assert(recovery.querySelector("a").text.includes("Buy Now"));
     assert(!offers.text.includes("Buckhead") && !offers.text.includes("Parker"));
     if (file === mainFile) {
       assert.equal(page.querySelector("#location-hero-title").text, "HOLIDAY SPECIALS");
-      assert.equal(offers.querySelectorAll("button[disabled]").length, 2);
+      assert.equal(offers.querySelectorAll("button[disabled]").length, 1);
       assert(offers.querySelector('a[href="/locations/arkansas/rogers/pricing"]'));
       for (const link of links(before).filter(link => link.includes("clubready") || link.startsWith("tel:"))) {
         assert(links(page).includes(link), `Preserve Rogers contact / booking destination: ${link}`);
       }
     } else {
-      assert.equal(offers.querySelectorAll("button[disabled]").length, 6);
+      assert.equal(offers.querySelectorAll("button[disabled]").length, 5);
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
       assert(page.querySelector(".snowfall"));
       for (const id of ["memberships", "services", "packages"]) {

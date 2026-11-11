@@ -86,7 +86,8 @@ export const ROGERS_HOLIDAY_OFFERS: readonly HolidayOffer[] =
       : index === 1 ? getLocationServiceImage("rogers", "cryo-lift-facial")
       : offer.image,
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Rogers"),
-    purchaseUrl: index === 2 ? "/locations/arkansas/rogers/pricing" : undefined,
+    purchaseUrl: index === 2 ? "/locations/arkansas/rogers/pricing"
+      : index === 0 ? "https://app.clubready.com/JoinUs/14838/656933" : undefined,
   }));
 
 // Parker-specific offer details and owner-supplied checkout destinations.
@@ -150,7 +151,8 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       : index === 4 ? ROGERS_HOLIDAY_OFFERS[1].image
       : getLocationServiceImage("rogers", "cryotherapy"),
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Rogers"),
-    purchaseUrl: undefined,
+    purchaseUrl: index === 3 ? ROGERS_HOLIDAY_OFFERS[0].purchaseUrl
+      : index === 4 ? ROGERS_HOLIDAY_OFFERS[1].purchaseUrl : undefined,
   }));
   if (isParker) return [...buckheadOffers.map((offer, index): HolidayOffer => ({
     ...offer,
