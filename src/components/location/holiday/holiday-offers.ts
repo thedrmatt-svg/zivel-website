@@ -129,7 +129,11 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     ...offer,
     ...(index === 3 ? PARKER_HOLIDAY_OFFERS[0] : {}),
     ...(index === 4 ? PARKER_HOLIDAY_OFFERS[1] : {}),
-    ...(index === 5 ? { title: "BOGO Cryo Slimming/Toning", price: "$299" } : {}),
+    ...(index === 5 ? {
+      title: "BOGO Cryo Slimming/Toning",
+      price: "$299",
+      description: "Buy One Get/Give One",
+    } : {}),
     id: offer.id.replace("buckhead", "parker"),
     image: index < 3 ? getLocationServiceImage("parker", giftCardServices[index])
       : index === 3 ? PARKER_HOLIDAY_OFFERS[0].image
