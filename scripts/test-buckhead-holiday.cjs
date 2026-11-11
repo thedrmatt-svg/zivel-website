@@ -68,7 +68,7 @@ test("Coral Gables uses identical offers without Buckhead checkout links and pre
     assert(!links(page).some(link => link.includes("/14900/") || link.includes("/georgia/buckhead")));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 3);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 2);
     const cards = offers.querySelectorAll("article");
     const recovery = cards[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("img").getAttribute("src"),
@@ -90,6 +90,9 @@ test("Coral Gables uses identical offers without Buckhead checkout links and pre
       assert.equal(cards[2].querySelector("a").getAttribute("href"),
         "https://app.clubready.com/JoinUs/14828/644804");
       assert(cards[2].querySelector("a").text.includes("Buy Now"));
+      assert.equal(cards[5].querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/14828/656919");
+      assert(cards[5].querySelector("a").text.includes("Buy Now"));
       for (const id of ["memberships", "services", "packages"]) {
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
       }
