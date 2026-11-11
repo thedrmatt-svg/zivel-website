@@ -67,6 +67,9 @@ test("Parker shows approved custom holiday offers and checkout links while prese
       expected[5].title = "BOGO Cryo Slimming/Toning";
       expected[5].price = "$299";
       expected[5].description = "Buy One Get/Give One";
+      expected.push({
+        title: "BOGO SOOTHE", price: "$50", description: "Buy One Get/Give One", action: "Buy Now",
+      });
     }
     assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
   }
@@ -78,7 +81,7 @@ test("Parker shows approved custom holiday offers and checkout links while prese
     assert(!links(page).some(link => /\/(14900|14828)\//.test(link)));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
-    assert.equal(cards.length, file === mainFile ? 3 : 6);
+    assert.equal(cards.length, file === mainFile ? 3 : 7);
     assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     const facial = cards[file === mainFile ? 1 : 4];
@@ -119,6 +122,13 @@ test("Parker shows approved custom holiday offers and checkout links while prese
       assert.equal(cards[5].querySelector("a").getAttribute("href"),
         "https://app.clubready.com/JoinUs/15044/656924");
       assert(!offers.text.includes("BOGO Recovery"));
+      assert.equal(cards[6].querySelector("h2").text, "BOGO SOOTHE");
+      assert.equal(cards[6].querySelector(".price").text, "$50");
+      assert.equal(cards[6].querySelector(".description").text, "Buy One Get/Give One");
+      assert.equal(cards[6].querySelector("img").getAttribute("src"),
+        r.source("src/lib/data/location-service-images").getLocationServiceImage("parker", "cryo-soothe"));
+      assert.equal(cards[6].querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/15044/656928");
       for (const id of ["memberships", "services", "packages"]) {
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
       }

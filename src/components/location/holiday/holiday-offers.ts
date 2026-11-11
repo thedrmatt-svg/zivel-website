@@ -125,7 +125,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       action: "Buy Now",
     },
   ];
-  if (isParker) return buckheadOffers.map((offer, index): HolidayOffer => ({
+  if (isParker) return [...buckheadOffers.map((offer, index): HolidayOffer => ({
     ...offer,
     ...(index === 3 ? PARKER_HOLIDAY_OFFERS[0] : {}),
     ...(index === 4 ? PARKER_HOLIDAY_OFFERS[1] : {}),
@@ -147,7 +147,16 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       : index === 3 ? PARKER_HOLIDAY_OFFERS[0].purchaseUrl
       : index === 4 ? PARKER_HOLIDAY_OFFERS[1].purchaseUrl
       : "https://app.clubready.com/JoinUs/15044/656924",
-  }));
+  })), {
+    id: "parker-bogo-soothe",
+    title: "BOGO SOOTHE",
+    price: "$50",
+    description: "Buy One Get/Give One",
+    image: getLocationServiceImage("parker", "cryo-soothe"),
+    imageAlt: "Cryo Soothe treatment at Zivel Parker",
+    purchaseUrl: "https://app.clubready.com/JoinUs/15044/656928",
+    action: "Buy Now",
+  }];
   if (!isCoralGables) return buckheadOffers;
   return buckheadOffers.map((offer, index): HolidayOffer => ({
     ...offer,
