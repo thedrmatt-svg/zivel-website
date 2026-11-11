@@ -70,6 +70,7 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "arkansas" && citySlug === "bentonville") return BENTONVILLE_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "rogers") return ROGERS_HOLIDAY_OFFERS;
   if (stateSlug === "colorado" && citySlug === "parker") return PARKER_HOLIDAY_OFFERS;
   if (stateSlug === "florida" && citySlug === "coral-gables") return CORAL_GABLES_HOLIDAY_OFFERS;
@@ -77,7 +78,7 @@ export function getHolidayOffers(stateSlug: string, citySlug: string): readonly 
 }
 
 // Owner approved Buckhead / Coral Gables offers for Rogers, not Parker's custom
-// offers. Rogers checkout links remain pending until supplied by the owner.
+// offers. Checkout destinations are Rogers-specific.
 export const ROGERS_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   BUCKHEAD_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
     ...offer,
@@ -89,6 +90,19 @@ export const ROGERS_HOLIDAY_OFFERS: readonly HolidayOffer[] =
     purchaseUrl: index === 2 ? "/locations/arkansas/rogers/pricing"
       : index === 0 ? "https://app.clubready.com/JoinUs/14838/656933"
       : "https://app.clubready.com/JoinUs/14838/656934",
+  }));
+
+// Same current offers as Rogers; Bentonville's checkout links are supplied
+// separately. Never carry Rogers' purchase destinations into this studio.
+export const BENTONVILLE_HOLIDAY_OFFERS: readonly HolidayOffer[] =
+  ROGERS_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
+    ...offer,
+    id: offer.id.replace("rogers", "bentonville"),
+    image: index === 0 ? getLocationServiceImage("bentonville", "red-light-therapy")
+      : index === 1 ? getLocationServiceImage("bentonville", "cryo-lift-facial")
+      : offer.image,
+    imageAlt: offer.imageAlt.replace("Zivel Rogers", "Zivel Bentonville"),
+    purchaseUrl: index === 2 ? "/locations/arkansas/bentonville/pricing" : undefined,
   }));
 
 // Parker-specific offer details and owner-supplied checkout destinations.
@@ -111,6 +125,17 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "arkansas" && citySlug === "bentonville") {
+    const services = ["infrared-sauna", "dry-float", "cryo-slimming",
+      "red-light-therapy", "cryo-lift-facial", "cryo-slimming"];
+    return getHolidayPricingOffers("arkansas", "rogers").map((offer, index): HolidayOffer => ({
+      ...offer,
+      id: offer.id.replace("rogers", "bentonville"),
+      image: getLocationServiceImage("bentonville", services[index]),
+      imageAlt: offer.imageAlt.replace("Zivel Rogers", "Zivel Bentonville"),
+      purchaseUrl: undefined,
+    }));
+  }
   const isRogers = stateSlug === "arkansas" && citySlug === "rogers";
   const isCoralGables = stateSlug === "florida" && citySlug === "coral-gables";
   const isParker = stateSlug === "colorado" && citySlug === "parker";

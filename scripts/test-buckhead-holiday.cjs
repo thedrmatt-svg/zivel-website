@@ -33,7 +33,7 @@ const schema = page => page.querySelectorAll('script[type="application/ld+json"]
 const links = element => element.querySelectorAll("a")
   .map(a => a.getAttribute("href")).sort();
 
-test("only Buckhead, Coral Gables, Parker, and Rogers are holiday-enabled; other studios stay standard", async () => {
+test("only the five approved studios are holiday-enabled; other studios stay standard", async () => {
   const r = renderer(), standard = renderer(true);
   const { locations } = r.source("src/lib/data/locations");
   const config = r.source("src/components/location/holiday/holiday-location-config");
@@ -41,7 +41,7 @@ test("only Buckhead, Coral Gables, Parker, and Rogers are holiday-enabled; other
     const enabled = (location.stateSlug === "georgia" && location.citySlug === "buckhead") ||
       (location.stateSlug === "florida" && location.citySlug === "coral-gables") ||
       (location.stateSlug === "colorado" && location.citySlug === "parker") ||
-      (location.stateSlug === "arkansas" && location.citySlug === "rogers");
+      (location.stateSlug === "arkansas" && ["rogers", "bentonville"].includes(location.citySlug));
     assert.equal(config.isHolidayLocation(location.stateSlug, location.citySlug), enabled);
     if (enabled) continue;
     for (const file of [mainFile, pricingFile]) {
@@ -50,6 +50,55 @@ test("only Buckhead, Coral Gables, Parker, and Rogers are holiday-enabled; other
         `${location.name}: holiday switch cannot alter this route`);
     }
   }
+});
+
+test("Bentonville matches Rogers offers without borrowing checkout links or changing regular data", async () => {
+  const r = renderer(), standard = renderer(true);
+  const p = { state: "arkansas", city: "bentonville", locale: "en" };
+  const data = r.source("src/components/location/holiday/holiday-offers");
+  const fields = offers => offers.map(({ title, price, description, action }) =>
+    ({ title, price, description, action }));
+  for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
+    assert.deepEqual(fields(data[getter](p.state, p.city)), fields(data[getter]("arkansas", "rogers")));
+  }
+  for (const file of [mainFile, pricingFile]) {
+    const page = await r.render(file, p), before = await standard.render(file, p);
+    assert.deepEqual(schema(page), schema(before));
+    assert(page.text.includes("Zivel Bentonville"));
+    const offers = page.querySelector('section[aria-label="Holiday offers"]');
+    const cards = offers.querySelectorAll("article");
+    assert.equal(cards.length, file === mainFile ? 3 : 6);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
+    assert(!links(offers).some(link => link.includes("clubready")), "No other studio's checkout links");
+    assert(!offers.text.includes("Zivel Rogers"));
+    assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
+    if (file === mainFile) {
+      assert.equal(page.querySelector("#location-hero-title").text, "HOLIDAY SPECIALS");
+      assert.equal(cards[2].querySelector("a").getAttribute("href"),
+        "/locations/arkansas/bentonville/pricing");
+      for (const link of links(before).filter(link => link.includes("clubready") || link.startsWith("tel:"))) {
+        assert(links(page).includes(link), `Preserve Bentonville booking/contact destination: ${link}`);
+      }
+    } else {
+      assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
+      assert.equal(cards[5].querySelector("h2").text, "BOGO BODY CONTOURING");
+      assert.equal(cards[5].querySelector(".price").text, "$350");
+      assert.equal(cards[5].querySelector("img").getAttribute("src"),
+        r.source("src/lib/data/location-service-images").getLocationServiceImage("bentonville", "cryo-slimming"));
+      for (const id of ["memberships", "services", "packages"]) {
+        assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
+      }
+      assert.deepEqual(page.querySelector('nav[aria-label="Pricing sections"]').querySelectorAll("a")
+        .map(a => a.getAttribute("href")), ["#specials", "#memberships", "#services", "#packages"]);
+      assert(page.querySelector(".snowfall"));
+    }
+  }
+  assert.deepEqual(r.gates, [{ citySlug: "bentonville", bypass: true }]);
+  const ungated = renderer();
+  delete ungated.wrappers["@/components/location/PricingGateModal"];
+  const pricing = await ungated.render(pricingFile, p);
+  assert.equal(pricing.querySelector(".blur-xl"), null);
+  assert.equal(pricing.querySelector("#pg-firstName"), null);
 });
 
 test("Rogers uses Buckhead offers with pending checkout links and preserves studio data", async () => {
