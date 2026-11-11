@@ -93,6 +93,7 @@ test("Parker matches approved holiday offers with pending checkouts and preserve
     if (file === mainFile) {
       assert.equal(page.querySelector("#location-hero-title").text, "HOLIDAY SPECIALS");
       assert.equal(cards[2].querySelector("a").getAttribute("href"), "/locations/colorado/parker/pricing");
+      assert.equal(cards[2].querySelector("h2").text, "Gift Cards & More");
       assert(links(page).some(link => link.includes("set_location=11680")));
       assert(page.text.includes("(720) 366-3622"));
     } else {
@@ -156,6 +157,7 @@ test("Coral Gables uses identical offers without Buckhead checkout links and pre
     assert.equal(offers.querySelector(".disclaimer").text, offersData.HOLIDAY_OFFER_DISCLAIMER);
     if (file === mainFile) {
       assert.equal(cards[2].querySelector("a").getAttribute("href"), "/locations/florida/coral-gables/pricing");
+      assert.equal(cards[2].querySelector("h2").text, "Gift Cards & More");
       const beforeLinks = links(before).filter(link => link.includes("clubready") || link.startsWith("tel:"));
       assert(beforeLinks.length > 0);
       for (const link of beforeLinks) assert(links(page).includes(link));
@@ -193,7 +195,7 @@ test("Buckhead main retains schema, services, and booking identity with the supp
   const offer = page.querySelector('section[aria-label="Holiday offers"]');
   assert.equal(offer.querySelectorAll("article").length, 3);
   const giftCard = offer.querySelectorAll("article")[2];
-  assert.equal(giftCard.querySelector("h2").text, "Gift Cards");
+  assert.equal(giftCard.querySelector("h2").text, "Gift Cards & More");
   assert.equal(giftCard.querySelector(".price").text, "$50+");
   assert(giftCard.querySelector("a").text.includes("Gift Cards & More"));
   assert.equal(giftCard.querySelector(".description").text, "Give the Gift of Feeling Better");

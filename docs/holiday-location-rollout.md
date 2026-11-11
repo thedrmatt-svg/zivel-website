@@ -135,8 +135,12 @@ reference:
 - Support an explicit image focal point and zoom per card. Center the intended
   people/subject in the rendered card, rather than assuming a centered crop
   will work. Verify the crop at desktop and mobile sizes.
-- A gift-card overview may link internally to that studio's pricing page with
-  **Gift Cards & More**, rather than directly to checkout. Individual purchase
+- The main-page gift-card overview uses **Gift Cards & More** for both its card
+  heading and button label. This applies to Buckhead, Coral Gables, Parker, and
+  future holiday locations. Keep the pricing-page denomination cards titled
+  **Gift Card**; this naming rule does not rename those individual purchase cards.
+  Link the overview internally to that studio's pricing page,
+  rather than directly to checkout. Individual purchase
   cards use the supplied checkout URL. Internal links stay in the same tab;
   external checkout links open in a new tab.
 
@@ -176,7 +180,7 @@ Main page, in order:
 | --- | --- | --- | --- | --- |
 | 6 Pack Recovery | $99 | 6 Recovery Services in 1 Month | Buckhead Services red light image | Buy Now — https://app.clubready.com/JoinUs/14900/656882 |
 | BOGO Cryo Facial/Double Chin | $150 | Buy One Get/Give One | Existing cryo facial image | Buy Now — https://app.clubready.com/JoinUs/14900/656883 |
-| Gift Cards | $50+ | Give the Gift of Feeling Better | Highlands Ranch two-person sauna image; focal point `right 40%`, zoom `1.3` | Gift Cards & More — `/locations/georgia/buckhead/pricing` |
+| Gift Cards & More | $50+ | Give the Gift of Feeling Better | Highlands Ranch two-person sauna image; focal point `right 40%`, zoom `1.3` | Gift Cards & More — `/locations/georgia/buckhead/pricing` |
 
 Pricing page, left to right within each desktop row:
 

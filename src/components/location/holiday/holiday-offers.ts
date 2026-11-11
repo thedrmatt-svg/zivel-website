@@ -36,7 +36,7 @@ export const BUCKHEAD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   },
   {
     id: "buckhead-gift-cards",
-    title: "Gift Cards",
+    title: "Gift Cards & More",
     price: "$50+",
     description: "Give the Gift of Feeling Better",
     image: getLocationServiceImage("highlands-ranch", "infrared-sauna"),

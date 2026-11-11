@@ -34,6 +34,16 @@ adjustments approved on Buckhead's live pages.
 **How to apply:** Consult the guide's Buckhead refinements alongside the mocks;
 continue requiring studio-specific wording, photos, prices, and links.
 
+Use “Gift Cards & More” as the main location holiday card heading and button
+label, including future locations. Individual pricing-page cards remain
+“Gift Card.”
+
+**Why:** The owner explicitly requested this heading for Parker, Coral Gables,
+Buckhead, and the future rollout plan.
+
+**How to apply:** Follow this naming rule for the main-page overview only;
+preserve each studio's own pricing destination and denomination-card titles.
+
 Preserve a pre-holiday standard-page reference so the original presentation can
 be restored quickly when the season ends.
 
