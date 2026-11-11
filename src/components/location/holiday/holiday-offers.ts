@@ -71,12 +71,26 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "utah" && citySlug === "riverton") return RIVERTON_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "bentonville") return BENTONVILLE_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "rogers") return ROGERS_HOLIDAY_OFFERS;
   if (stateSlug === "colorado" && citySlug === "parker") return PARKER_HOLIDAY_OFFERS;
   if (stateSlug === "florida" && citySlug === "coral-gables") return CORAL_GABLES_HOLIDAY_OFFERS;
   return stateSlug === "georgia" && citySlug === "buckhead" ? BUCKHEAD_HOLIDAY_OFFERS : [];
 }
+
+// Buckhead's approved offer wording and prices, with Riverton images and no
+// borrowed checkout destinations. Riverton purchase links await owner input.
+export const RIVERTON_HOLIDAY_OFFERS: readonly HolidayOffer[] =
+  BUCKHEAD_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
+    ...offer,
+    id: offer.id.replace("buckhead", "riverton"),
+    image: index === 0 ? getLocationServiceImage("riverton", "red-light-therapy")
+      : index === 1 ? getLocationServiceImage("riverton", "cryo-lift-facial")
+      : offer.image,
+    imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Riverton"),
+    purchaseUrl: index === 2 ? "/locations/utah/riverton/pricing" : undefined,
+  }));
 
 // Owner approved Buckhead / Coral Gables offers for Rogers, not Parker's custom
 // offers. Checkout destinations are Rogers-specific.
@@ -128,6 +142,18 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "utah" && citySlug === "riverton") {
+    const services = ["infrared-sauna", "dry-float", "cryo-slimming",
+      "red-light-therapy", "cryo-lift-facial", "cryotherapy"];
+    return getHolidayPricingOffers("georgia", "buckhead").map((offer, index): HolidayOffer => ({
+      ...offer,
+      id: offer.id.replace("buckhead", "riverton"),
+      image: getLocationServiceImage("riverton", services[index]),
+      imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Riverton"),
+      purchaseUrl: index === 3 ? RIVERTON_HOLIDAY_OFFERS[0].purchaseUrl
+        : index === 4 ? RIVERTON_HOLIDAY_OFFERS[1].purchaseUrl : undefined,
+    }));
+  }
   if (stateSlug === "arkansas" && citySlug === "bentonville") {
     const services = ["infrared-sauna", "dry-float", "cryo-slimming",
       "red-light-therapy", "cryo-lift-facial", "cryo-slimming"];
