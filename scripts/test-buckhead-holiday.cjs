@@ -70,7 +70,7 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
       expected[2].price = "$300";
       expected[5].title = "5 Pack Body Contouring 50% OFF";
       expected[5].price = undefined;
-      expected[5].description = "use code blackfriday at checkout";
+      expected[5].description = "50% OFF";
     }
     assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
   }
@@ -130,11 +130,12 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
           `https://app.clubready.com/JoinUs/14841/${checkout}`);
         assert(cards[index].querySelector("a").text.includes("Buy Now"));
       });
-      assert.equal(offers.querySelectorAll(".descriptionCompact").length, 3);
+      assert.equal(offers.querySelectorAll(".descriptionCompact").length, 4);
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
       assert.equal(cards[5].querySelector("h2").text, "5 Pack Body Contouring 50% OFF");
       assert.equal(cards[5].querySelector(".price"), null);
-      assert.equal(cards[5].querySelector(".description").text, "use code blackfriday at checkout");
+      assert.deepEqual(cards[5].querySelector(".descriptionCompact").querySelectorAll("span").map(span => span.text),
+        ["50% OFF", "use code blackfriday at checkout"]);
       assert.equal(cards[5].querySelector("a").getAttribute("href"),
         "https://app.clubready.com/JoinUs/14841/644442");
       assert.equal(cards[5].querySelector("img").getAttribute("src"),
