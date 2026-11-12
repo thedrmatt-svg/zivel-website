@@ -82,19 +82,19 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       [
         "https://app.clubready.com/JoinUs/14841/636149",
-        "https://app.clubready.com/JoinUs/14841/656905",
+        "https://app.clubready.com/JoinUs/14841/656959",
         ...(file === mainFile ? [] : [
         "https://app.clubready.com/JoinUs/14841/656908",
         "https://app.clubready.com/JoinUs/14841/656909",
         "https://app.clubready.com/JoinUs/14841/656910",
         ]),
-      ], "Only Riverton’s supplied checkout links");
+      ].sort(), "Only Riverton’s supplied checkout links");
     const recovery = cards[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("h2").text, "Black Friday Great Eight");
     assert.equal(recovery.querySelector(".description").text, "8 Recovery Services");
     assert.equal(recovery.querySelector(".price").text, "$99");
     assert.equal(recovery.querySelector("a").getAttribute("href"),
-      "https://app.clubready.com/JoinUs/14841/656905");
+      "https://app.clubready.com/JoinUs/14841/656959");
     assert(recovery.querySelector("a").text.includes("Buy Now"));
     const facial = cards[file === mainFile ? 1 : 4];
     assert.equal(facial.querySelector("a").getAttribute("href"),

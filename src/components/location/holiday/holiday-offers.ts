@@ -94,7 +94,7 @@ export const RIVERTON_HOLIDAY_OFFERS: readonly HolidayOffer[] =
       : offer.image,
     imageAlt: offer.imageAlt.replace("Zivel Buckhead", "Zivel Riverton"),
     purchaseUrl: index === 2 ? "/locations/utah/riverton/pricing"
-      : index === 0 ? "https://app.clubready.com/JoinUs/14841/656905"
+      : index === 0 ? "https://app.clubready.com/JoinUs/14841/656959"
       : "https://app.clubready.com/JoinUs/14841/636149",
   }));
 
