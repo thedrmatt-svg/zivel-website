@@ -53,7 +53,7 @@ test("only the six approved studios are holiday-enabled; other studios stay stan
   }
 });
 
-test("Riverton uses Buckhead holiday offers with pending links and preserves local data", async () => {
+test("Riverton uses approved holiday offers and preserves local data", async () => {
   const r = renderer(), standard = renderer(true);
   const p = { state: "utah", city: "riverton", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
@@ -68,6 +68,9 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
       expected[1].description = "Self-Care Escape";
       expected[2].description = "Premium Retreat";
       expected[2].price = "$300";
+      expected[5].title = "5 Pack Body Contouring 50% OFF";
+      expected[5].price = undefined;
+      expected[5].description = "use code blackfriday at checkout";
     }
     assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
   }
@@ -78,12 +81,13 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       [
         "https://app.clubready.com/JoinUs/14841/636149",
         "https://app.clubready.com/JoinUs/14841/656959",
         ...(file === mainFile ? [] : [
+        "https://app.clubready.com/JoinUs/14841/644442",
         "https://app.clubready.com/JoinUs/14841/656908",
         "https://app.clubready.com/JoinUs/14841/656909",
         "https://app.clubready.com/JoinUs/14841/656910",
@@ -128,10 +132,13 @@ test("Riverton uses Buckhead holiday offers with pending links and preserves loc
       });
       assert.equal(offers.querySelectorAll(".descriptionCompact").length, 3);
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
-      assert.equal(cards[5].querySelector("h2").text, "BOGO Recovery");
-      assert.equal(cards[5].querySelector(".price").text, "$50");
+      assert.equal(cards[5].querySelector("h2").text, "5 Pack Body Contouring 50% OFF");
+      assert.equal(cards[5].querySelector(".price"), null);
+      assert.equal(cards[5].querySelector(".description").text, "use code blackfriday at checkout");
+      assert.equal(cards[5].querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/14841/644442");
       assert.equal(cards[5].querySelector("img").getAttribute("src"),
-        r.source("src/lib/data/location-service-images").getLocationServiceImage("riverton", "cryotherapy"));
+        r.source("src/lib/data/location-service-images").getLocationServiceImage("riverton", "cryo-slimming"));
       for (const id of ["memberships", "services", "packages"]) {
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
       }

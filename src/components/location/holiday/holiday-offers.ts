@@ -150,7 +150,7 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
   if (stateSlug === "utah" && citySlug === "riverton") {
     const services = ["infrared-sauna", "dry-float", "cryo-slimming",
-      "red-light-therapy", "cryo-lift-facial", "cryotherapy"];
+      "red-light-therapy", "cryo-lift-facial", "cryo-slimming"];
     const giftCards = [
       { price: "$50", description: "A Little Recharge", additionalDescription: "2 Recovery Services",
         purchaseUrl: "https://app.clubready.com/JoinUs/14841/656908" },
@@ -169,6 +169,14 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       purchaseUrl: index === 3 ? RIVERTON_HOLIDAY_OFFERS[0].purchaseUrl
         : index === 4 ? RIVERTON_HOLIDAY_OFFERS[1].purchaseUrl : undefined,
       ...(index < 3 ? giftCards[index] : {}),
+      ...(index === 5 ? {
+        id: "riverton-body-contouring-five-pack",
+        title: "5 Pack Body Contouring 50% OFF",
+        price: undefined,
+        description: "use code blackfriday at checkout",
+        imageAlt: "Cryo slimming treatment at Zivel Riverton",
+        purchaseUrl: "https://app.clubready.com/JoinUs/14841/644442",
+      } : {}),
     }));
   }
   if (stateSlug === "arkansas" && citySlug === "bentonville") {
