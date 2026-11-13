@@ -270,6 +270,11 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
   const ungated = renderer();
   delete ungated.wrappers["@/components/location/PricingGateModal"];
   const pricing = await ungated.render(pricingFile, p);
+  const memberships = pricing.querySelector("#memberships");
+  assert(memberships.text.includes("$59"));
+  assert(memberships.text.includes("4 Recovery Sessions/Month"));
+  assert(!memberships.text.includes("6 Recovery Sessions/Month"));
+  assert(memberships.querySelector('a[href="https://app.clubready.com/JoinUs/14841/647045"]'));
   assert.equal(pricing.querySelector(".blur-xl"), null);
   assert.equal(pricing.querySelector("#pg-firstName"), null);
 });

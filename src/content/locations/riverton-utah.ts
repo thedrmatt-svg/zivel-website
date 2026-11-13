@@ -105,10 +105,11 @@ export const zivel_riverton_location: Location = {
     membershipTiers: [
       {
         name: "Essential",
-        price: "$99",
+        price: "$59",
+        bookingUrl: "https://app.clubready.com/JoinUs/14841/647045",
         cadence: "/mo",
         description: "A great entry point for regular recovery.",
-        features: ["6 Recovery Sessions/Month", "Good for Beginners"],
+        features: ["4 Recovery Sessions/Month", "Good for Beginners"],
         mostPopular: false,
       },
       {
