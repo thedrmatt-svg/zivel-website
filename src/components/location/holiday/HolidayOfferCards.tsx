@@ -10,12 +10,14 @@ export type HolidayOfferCardsProps = {
   variant?: "hero" | "pricing";
   offers: readonly HolidayOffer[];
   groupHeadings?: Readonly<Record<number, string>>;
+  groupDescriptions?: Readonly<Record<number, string>>;
 };
 
 export default function HolidayOfferCards({
   variant = "hero",
   offers,
   groupHeadings,
+  groupDescriptions,
 }: HolidayOfferCardsProps) {
   const gridClass = offers.length === 1 ? styles.offersSingle
     : offers.length === 2 ? `${styles.offers} ${styles.offersPair}` : styles.offers;
@@ -27,6 +29,9 @@ export default function HolidayOfferCards({
           <Fragment key={offer.id}>
           {groupHeadings?.[index] && (
             <h2 className={styles.groupHeading}>{groupHeadings[index]}</h2>
+          )}
+          {groupDescriptions?.[index] && (
+            <p className={styles.groupDescription}>{groupDescriptions[index]}</p>
           )}
           <article
             className={styles.card}

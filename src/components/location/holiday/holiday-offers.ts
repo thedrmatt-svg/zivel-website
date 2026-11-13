@@ -159,6 +159,35 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       { price: "$300", description: "Premium Retreat", additionalDescription: "2 Premium Serices",
         purchaseUrl: "https://app.clubready.com/JoinUs/14841/656910" },
     ];
+    const membershipOffers: HolidayOffer[] = [
+      {
+        id: "riverton-membership-core",
+        title: "Core",
+        description: "8 Recovery Services",
+        image: getLocationServiceImage("riverton", "cryotherapy"),
+        imageAlt: "Cryotherapy recovery at Zivel Riverton",
+        purchaseUrl: "https://app.clubready.com/JoinUs/14841/649002",
+        action: "Buy Now",
+      },
+      {
+        id: "riverton-membership-premier",
+        title: "Premier",
+        description: "20 Recovery Services",
+        image: getLocationServiceImage("riverton", "red-light-therapy"),
+        imageAlt: "Red light therapy recovery at Zivel Riverton",
+        purchaseUrl: "https://app.clubready.com/JoinUs/14841/649001",
+        action: "Buy Now",
+      },
+      {
+        id: "riverton-membership-platinum",
+        title: "Platinum",
+        description: "30 Recovery Services, 1 CryoFacial, 1 Cryo Soothe",
+        image: getLocationServiceImage("riverton", "cryo-soothe"),
+        imageAlt: "Cryo Soothe treatment at Zivel Riverton",
+        purchaseUrl: "https://app.clubready.com/JoinUs/14841/649000",
+        action: "Buy Now",
+      },
+    ];
     return getHolidayPricingOffers("georgia", "buckhead").map((offer, index): HolidayOffer => ({
       ...offer,
       ...(index === 3 ? RIVERTON_HOLIDAY_OFFERS[0] : {}),
@@ -178,7 +207,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
         imageAlt: "Cryo slimming treatment at Zivel Riverton",
         purchaseUrl: "https://app.clubready.com/JoinUs/14841/644442",
       } : {}),
-    }));
+    })).concat(membershipOffers);
   }
   if (stateSlug === "arkansas" && citySlug === "bentonville") {
     const services = ["infrared-sauna", "dry-float", "cryo-slimming",

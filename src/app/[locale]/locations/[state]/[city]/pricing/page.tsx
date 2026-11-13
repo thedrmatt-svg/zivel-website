@@ -228,7 +228,9 @@ export default async function LocationPricingPage({
           variant="pricing"
           offers={holidayOffers}
           groupHeadings={state === "utah" && city === "riverton"
-            ? { 0: "Gift Cards", 3: "Service Specials" } : undefined}
+            ? { 0: "Gift Cards", 3: "Service Specials", 6: "Membership Specials" } : undefined}
+          groupDescriptions={state === "utah" && city === "riverton"
+            ? { 6: '50% Off Membership 1st Month: Code "blackfriday" at checkout' } : undefined}
         />
       ) : (
       <ScrollReveal variant="fade-up" delay={80}>

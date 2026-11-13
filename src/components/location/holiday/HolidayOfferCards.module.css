@@ -34,6 +34,14 @@
   text-transform: uppercase;
 }
 
+.groupDescription {
+  grid-column: 1 / -1;
+  margin: -.5rem 0 0;
+  color: #fff8eb;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
 .card {
   position: relative;
   display: flex;
