@@ -64,6 +64,8 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
     const expected = fields(data[getter]("utah", "riverton"));
     if (getter === "getHolidayPricingOffers") {
       expected[2].price = "$200";
+      expected[5].title = "5 Pack Body Contouring 50% OFF";
+      expected.slice(6).forEach(offer => { offer.price = undefined; });
       expected.slice(0, 3).forEach(offer => {
         offer.description = undefined;
         offer.additionalDescription = undefined;
@@ -152,13 +154,13 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
       expected[1].description = "Self-Care Escape";
       expected[2].description = "Premium Retreat";
       expected[2].price = "$300";
-      expected[5].title = "5 Pack Body Contouring 50% OFF";
+      expected[5].title = "5 Pack Body Contouring";
       expected[5].price = undefined;
       expected[5].description = "50% OFF";
       expected.push(
-        { title: "Core", price: undefined, description: "8 Recovery Services", action: "Buy Now" },
-        { title: "Premier", price: undefined, description: "20 Recovery Services", action: "Buy Now" },
-        { title: "Platinum", price: undefined, description: "30 Recovery Services, 1 CryoFacial, 1 Cryo Soothe", action: "Buy Now" },
+        { title: "Core", price: "$99", description: "8 Recovery Services", action: "Buy Now" },
+        { title: "Premier", price: "$150", description: "20 Recovery Services", action: "Buy Now" },
+        { title: "Platinum", price: "$250", description: "30 Recovery Services, 1 CryoFacial, 1 Cryo Soothe", action: "Buy Now" },
       );
     }
     assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
@@ -234,7 +236,7 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
       });
       assert.equal(offers.querySelectorAll(".descriptionCompact").length, 4);
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
-      assert.equal(cards[5].querySelector("h2").text, "5 Pack Body Contouring 50% OFF");
+      assert.equal(cards[5].querySelector("h2").text, "5 Pack Body Contouring");
       assert.equal(cards[5].querySelector(".price"), null);
       assert.deepEqual(cards[5].querySelector(".descriptionCompact").querySelectorAll("span").map(span => span.text),
         ["50% OFF", "use code blackfriday at checkout"]);
@@ -243,14 +245,14 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
       assert.equal(cards[5].querySelector("img").getAttribute("src"),
         r.source("src/lib/data/location-service-images").getLocationServiceImage("riverton", "cryo-slimming"));
       [
-        ["Core", "8 Recovery Services", "649002", "cryotherapy"],
-        ["Premier", "20 Recovery Services", "649001", "red-light-therapy"],
-        ["Platinum", "30 Recovery Services, 1 CryoFacial, 1 Cryo Soothe", "649000", "cryo-soothe"],
-      ].forEach(([title, description, checkout, service], index) => {
+        ["Core", "8 Recovery Services", "649002", "cryotherapy", "$99"],
+        ["Premier", "20 Recovery Services", "649001", "red-light-therapy", "$150"],
+        ["Platinum", "30 Recovery Services, 1 CryoFacial, 1 Cryo Soothe", "649000", "cryo-soothe", "$250"],
+      ].forEach(([title, description, checkout, service, price], index) => {
         const card = cards[index + 6];
         assert.equal(card.querySelector("h2").text, title);
         assert.equal(card.querySelector(".description").text, description);
-        assert.equal(card.querySelector(".price"), null);
+        assert.equal(card.querySelector(".price").text, price);
         assert.equal(card.querySelector("a").getAttribute("href"),
           `https://app.clubready.com/JoinUs/14841/${checkout}`);
         assert.equal(card.querySelector("img").getAttribute("src"),

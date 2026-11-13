@@ -177,6 +177,9 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       image: getLocationServiceImage("newport", services[index]),
       imageAlt: offer.imageAlt.replace("Zivel Riverton", "Zivel Newport"),
       purchaseUrl: undefined,
+      // Riverton's later edits must not change Newport's staged specials.
+      ...(index === 5 ? { title: "5 Pack Body Contouring 50% OFF" } : {}),
+      ...(index >= 6 ? { price: undefined } : {}),
       ...(index < 3 ? {
         ...giftCards[index],
         description: undefined,
@@ -199,6 +202,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       {
         id: "riverton-membership-core",
         title: "Core",
+        price: "$99",
         description: "8 Recovery Services",
         image: getLocationServiceImage("riverton", "cryotherapy"),
         imageAlt: "Cryotherapy recovery at Zivel Riverton",
@@ -208,6 +212,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       {
         id: "riverton-membership-premier",
         title: "Premier",
+        price: "$150",
         description: "20 Recovery Services",
         image: getLocationServiceImage("riverton", "red-light-therapy"),
         imageAlt: "Red light therapy recovery at Zivel Riverton",
@@ -217,6 +222,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       {
         id: "riverton-membership-platinum",
         title: "Platinum",
+        price: "$250",
         description: "30 Recovery Services, 1 CryoFacial, 1 Cryo Soothe",
         image: getLocationServiceImage("riverton", "cryo-soothe"),
         imageAlt: "Cryo Soothe treatment at Zivel Riverton",
@@ -236,7 +242,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       ...(index < 3 ? giftCards[index] : {}),
       ...(index === 5 ? {
         id: "riverton-body-contouring-five-pack",
-        title: "5 Pack Body Contouring 50% OFF",
+        title: "5 Pack Body Contouring",
         price: undefined,
         description: "50% OFF",
         additionalDescription: "use code blackfriday at checkout",
