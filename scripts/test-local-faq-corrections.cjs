@@ -11,6 +11,29 @@ const { buildStructuredLocationFaqs } = r.source("src/lib/location-local-faqs");
 const fieldhouse = locations.find(l => l.citySlug === "fieldhouse");
 const main = "src/app/[locale]/locations/[state]/[city]/page";
 
+test("Fieldhouse's displayed and structured hours match the approved weekly schedule", async () => {
+  assert.deepEqual(fieldhouse.hours, {
+    monday: "10am – 7pm",
+    tuesday: "10am – 7pm",
+    wednesday: "10am – 2pm",
+    thursday: "10am – 7pm",
+    friday: "10am – 2pm",
+    saturday: "10am – 2pm",
+    sunday: "Closed",
+  });
+  const expected = r.source("src/lib/location-business-schema").buildOpeningHoursSpec(fieldhouse.hours);
+  for (const service of [null, ...fieldhouse.services]) {
+    const doc = await r.render(service ? `${main.replace("/page", "")}/[service]/page` : main, {
+      locale: "en", state: "mississippi", city: "fieldhouse", ...(service ? { service: service.slug } : {}),
+    });
+    const business = doc.querySelectorAll('script[type="application/ld+json"]')
+      .map(n => JSON.parse(n.innerHTML)).find(s => [].concat(s["@type"]).includes("HealthAndBeautyBusiness"));
+    assert.deepEqual(business.openingHoursSpecification, expected);
+  }
+  assert.equal(expected.find(day => day.dayOfWeek === "Wednesday").closes, "14:00");
+  assert.equal(expected.find(day => day.dayOfWeek === "Friday").closes, "14:00");
+});
+
 test("Fieldhouse keeps its business name, venue and real address locality on both main locale pages", async () => {
   assert.equal(fieldhouse.name, "Zivel Fieldhouse");
   assert.equal(presentation.getLocationCity(fieldhouse), "Hernando");

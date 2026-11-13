@@ -28,9 +28,9 @@ export const zivel_fieldhouse_location: Location = {
   hours: {
     monday: "10am – 7pm",
     tuesday: "10am – 7pm",
-    wednesday: "10am – 7pm",
+    wednesday: "10am – 2pm",
     thursday: "10am – 7pm",
-    friday: "10am – 7pm",
+    friday: "10am – 2pm",
     saturday: "10am – 2pm",
     sunday: "Closed",
   },
