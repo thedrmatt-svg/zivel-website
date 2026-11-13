@@ -107,6 +107,7 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
     } else {
       [["$50", "657057"], ["$100", "656490"], ["$200", "657058"]].forEach(([price, checkout], index) => {
         const card = offers.querySelectorAll("article")[index];
+        assert(card.getAttribute("data-offer-id").startsWith("newport-gift-card-"));
         assert.equal(card.querySelector(".description"), null);
         assert.equal(card.querySelector(".price").text, price);
         assert.equal(card.querySelector("a").getAttribute("href"),

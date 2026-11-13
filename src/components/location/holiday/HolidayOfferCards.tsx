@@ -35,6 +35,7 @@ export default function HolidayOfferCards({
           )}
           <article
             className={styles.card}
+            data-offer-id={offer.id}
             style={{ animationDelay: `${index * 100}ms` }}
           >
             <div className={styles.photo}>
