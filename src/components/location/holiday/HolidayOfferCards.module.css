@@ -179,6 +179,12 @@
   display: block;
 }
 
+.card[data-offer-id="riverton-body-contouring-five-pack"] .description {
+  width: 100%;
+  border-top: 1px solid rgba(230, 190, 108, .38);
+  padding-top: .5rem;
+}
+
 .action {
   display: inline-flex;
   min-height: 43px;
