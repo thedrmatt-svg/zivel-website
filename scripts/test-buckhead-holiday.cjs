@@ -61,7 +61,15 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
     const fields = offers => offers.map(({ title, price, description, additionalDescription, action }) =>
       ({ title, price, description, additionalDescription, action }));
-    assert.deepEqual(fields(data[getter](p.state, p.city)), fields(data[getter]("utah", "riverton")));
+    const expected = fields(data[getter]("utah", "riverton"));
+    if (getter === "getHolidayPricingOffers") {
+      expected[2].price = "$200";
+      expected.slice(0, 3).forEach(offer => {
+        offer.description = undefined;
+        offer.additionalDescription = undefined;
+      });
+    }
+    assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
     for (const offer of data[getter](p.state, p.city)) {
       assert(offer.id.startsWith("newport-"));
       assert(!offer.imageAlt.includes("Riverton"));
@@ -73,9 +81,13 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.deepEqual(schema(page), schema(before), "Preserve Newport's existing schema");
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 9);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 9);
-    assert.equal(links(offers).filter(link => link.includes("clubready")).length, 0,
-      "Never borrow another studio's holiday purchase URLs");
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
+    assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
+      file === mainFile ? [] : [
+        "https://app.clubready.com/JoinUs/14833/656490",
+        "https://app.clubready.com/JoinUs/14833/657057",
+        "https://app.clubready.com/JoinUs/14833/657058",
+      ], "Only Newport’s supplied holiday purchase URLs");
     assert(!offers.text.includes("Riverton"));
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     const meta = await r.source(file).generateMetadata({ params: Promise.resolve(p) });
@@ -93,6 +105,14 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
         assert(links(page).includes(link), `Preserve Newport booking/contact: ${link}`);
       }
     } else {
+      [["$50", "657057"], ["$100", "656490"], ["$200", "657058"]].forEach(([price, checkout], index) => {
+        const card = offers.querySelectorAll("article")[index];
+        assert.equal(card.querySelector(".description"), null);
+        assert.equal(card.querySelector(".price").text, price);
+        assert.equal(card.querySelector("a").getAttribute("href"),
+          `https://app.clubready.com/JoinUs/14833/${checkout}`);
+        assert(card.querySelector("a").text.includes("Buy Now"));
+      });
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
       assert.deepEqual(offers.querySelectorAll(".groupHeading").map(heading => heading.text),
         ["Gift Cards", "Service Specials", "Membership Specials"]);

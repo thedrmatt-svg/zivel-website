@@ -166,12 +166,22 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     const services = ["infrared-sauna", "dry-float", "cryo-slimming",
       "red-light-therapy", "cryo-lift-facial", "cryo-slimming",
       "cryotherapy", "red-light-therapy", "cryo-soothe"];
+    const giftCards = [
+      { price: "$50", purchaseUrl: "https://app.clubready.com/JoinUs/14833/657057" },
+      { price: "$100", purchaseUrl: "https://app.clubready.com/JoinUs/14833/656490" },
+      { price: "$200", purchaseUrl: "https://app.clubready.com/JoinUs/14833/657058" },
+    ];
     return getHolidayPricingOffers("utah", "riverton").map((offer, index): HolidayOffer => ({
       ...offer,
       id: offer.id.replace("riverton", "newport"),
       image: getLocationServiceImage("newport", services[index]),
       imageAlt: offer.imageAlt.replace("Zivel Riverton", "Zivel Newport"),
       purchaseUrl: undefined,
+      ...(index < 3 ? {
+        ...giftCards[index],
+        description: undefined,
+        additionalDescription: undefined,
+      } : {}),
     }));
   }
   if (stateSlug === "utah" && citySlug === "riverton") {
