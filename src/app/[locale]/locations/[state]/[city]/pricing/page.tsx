@@ -219,7 +219,7 @@ export default async function LocationPricingPage({
     <div id="specials" className="scroll-mt-36">
       <ScrollReveal variant="fade-up">
         <p className="zv-tagline mb-3">Limited Time</p>
-        <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">
+        <h2 className={`font-serif text-3xl md:text-4xl font-light tracking-tight text-white ${state === "utah" && city === "riverton" ? "mb-1" : "mb-10"}`}>
           {holidayEnabled ? "Holiday Specials" : "Current Specials"}
         </h2>
       </ScrollReveal>
