@@ -64,7 +64,10 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
     const expected = fields(data[getter]("utah", "riverton"));
     if (getter === "getHolidayPricingOffers") {
       expected[2].price = "$200";
-      expected[5].title = "5 Pack Body Contouring 50% OFF";
+      expected[5].title = "Single Slimming and Facial";
+      expected[5].price = "$199";
+      expected[5].description = undefined;
+      expected[5].additionalDescription = undefined;
       expected.slice(6).forEach(offer => { offer.price = undefined; });
       expected.splice(6, 0, ...[3, 6, 10].map(sessions => ({
         title: `CryoFacial — ${sessions} Sessions`,
@@ -90,9 +93,10 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.deepEqual(schema(page), schema(before), "Preserve Newport's existing schema");
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? [] : [
+        "https://app.clubready.com/JoinUs/14833/652095",
         "https://app.clubready.com/JoinUs/14833/656490",
         "https://app.clubready.com/JoinUs/14833/657029",
         "https://app.clubready.com/JoinUs/14833/657030",

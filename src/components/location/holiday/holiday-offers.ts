@@ -178,7 +178,13 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       imageAlt: offer.imageAlt.replace("Zivel Riverton", "Zivel Newport"),
       purchaseUrl: undefined,
       // Riverton's later edits must not change Newport's staged specials.
-      ...(index === 5 ? { title: "5 Pack Body Contouring 50% OFF" } : {}),
+      ...(index === 5 ? {
+        title: "Single Slimming and Facial",
+        price: "$199",
+        description: undefined,
+        additionalDescription: undefined,
+        purchaseUrl: "https://app.clubready.com/JoinUs/14833/652095",
+      } : {}),
       ...(index >= 6 ? { price: undefined } : {}),
       ...(index < 3 ? {
         ...giftCards[index],
