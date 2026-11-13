@@ -66,6 +66,13 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
       expected[2].price = "$200";
       expected[5].title = "5 Pack Body Contouring 50% OFF";
       expected.slice(6).forEach(offer => { offer.price = undefined; });
+      expected.splice(6, 0, ...[3, 6, 10].map(sessions => ({
+        title: `CryoFacial — ${sessions} Sessions`,
+        price: undefined,
+        description: undefined,
+        additionalDescription: undefined,
+        action: "Buy Now",
+      })));
       expected.slice(0, 3).forEach(offer => {
         offer.description = undefined;
         offer.additionalDescription = undefined;
@@ -82,11 +89,14 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
     const page = await r.render(file, p), before = await standard.render(file, p);
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.deepEqual(schema(page), schema(before), "Preserve Newport's existing schema");
-    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 9);
+    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
     assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? [] : [
         "https://app.clubready.com/JoinUs/14833/656490",
+        "https://app.clubready.com/JoinUs/14833/657029",
+        "https://app.clubready.com/JoinUs/14833/657030",
+        "https://app.clubready.com/JoinUs/14833/657031",
         "https://app.clubready.com/JoinUs/14833/657057",
         "https://app.clubready.com/JoinUs/14833/657058",
       ], "Only Newport’s supplied holiday purchase URLs");
@@ -121,7 +131,16 @@ test("Newport mirrors Riverton's grouped holiday layout with pending links and p
         ["Gift Cards", "Service Specials", "Membership Specials"]);
       assert.equal(offers.querySelector(".groupDescription").text,
         '50% Off Membership 1st Month: Code "blackfriday" at checkout');
-      assert.deepEqual(offers.querySelectorAll("article").slice(6).map(card => card.querySelector("h2").text),
+      [3, 6, 10].forEach((sessions, index) => {
+        const card = offers.querySelectorAll("article")[6 + index];
+        assert.equal(card.querySelector("h2").text, `CryoFacial — ${sessions} Sessions`);
+        assert.equal(card.querySelector(".price"), null);
+        assert.equal(card.querySelector("img").getAttribute("src"),
+          r.source("src/lib/data/location-service-images").getLocationServiceImage("newport", "cryo-lift-facial"));
+        assert.equal(card.querySelector("a").getAttribute("href"),
+          `https://app.clubready.com/JoinUs/14833/${["657029", "657030", "657031"][index]}`);
+      });
+      assert.deepEqual(offers.querySelectorAll("article").slice(9).map(card => card.querySelector("h2").text),
         ["Core", "Premier", "Platinum"]);
       assert(page.querySelector(".snowfall"));
       for (const id of ["memberships", "services", "packages"]) {
