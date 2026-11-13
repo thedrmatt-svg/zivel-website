@@ -151,6 +151,10 @@ export default async function LocationPricingPage({
   const location = getLocationByPath(state, city);
   if (!location) notFound();
   const holidayEnabled = isHolidayLocation(location.stateSlug, location.citySlug);
+  const groupedHolidayPricing = holidayEnabled && (
+    (state === "utah" && city === "riverton") ||
+    (state === "kentucky" && city === "newport")
+  );
   const holidayOffers = getHolidayPricingOffers(location.stateSlug, location.citySlug);
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
@@ -219,7 +223,7 @@ export default async function LocationPricingPage({
     <div id="specials" className="scroll-mt-36">
       <ScrollReveal variant="fade-up">
         <p className="zv-tagline mb-3">Limited Time</p>
-        <h2 className={`font-serif text-3xl md:text-4xl font-light tracking-tight text-white ${state === "utah" && city === "riverton" ? "mb-1" : "mb-10"}`}>
+        <h2 className={`font-serif text-3xl md:text-4xl font-light tracking-tight text-white ${groupedHolidayPricing ? "mb-1" : "mb-10"}`}>
           {holidayEnabled ? "Holiday Specials" : "Current Specials"}
         </h2>
       </ScrollReveal>
@@ -227,9 +231,9 @@ export default async function LocationPricingPage({
         <HolidayOfferCards
           variant="pricing"
           offers={holidayOffers}
-          groupHeadings={state === "utah" && city === "riverton"
+          groupHeadings={groupedHolidayPricing
             ? { 0: "Gift Cards", 3: "Service Specials", 6: "Membership Specials" } : undefined}
-          groupDescriptions={state === "utah" && city === "riverton"
+          groupDescriptions={groupedHolidayPricing
             ? { 6: '50% Off Membership 1st Month: Code "blackfriday" at checkout' } : undefined}
         />
       ) : (
@@ -361,7 +365,7 @@ export default async function LocationPricingPage({
 
       {/* GATED CONTENT */}
       <section
-        className={`zv-bleed ${state === "utah" && city === "riverton" ? "pt-6 md:pt-8 pb-16 md:pb-24" : "py-16 md:py-24"} ${holidayEnabled ? holidayPricingStyles.contentSurface : "zv-section-elevated"}`}
+        className={`zv-bleed ${groupedHolidayPricing ? "pt-6 md:pt-8 pb-16 md:pb-24" : "py-16 md:py-24"} ${holidayEnabled ? holidayPricingStyles.contentSurface : "zv-section-elevated"}`}
       >
         <div className="mx-auto max-w-6xl px-6">
           <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay} locationEmail={location.contact?.email} bypass={location.citySlug === "windermere" || (holidayEnabled && HOLIDAY_PRICING_SIGNUP_PAUSED)}>

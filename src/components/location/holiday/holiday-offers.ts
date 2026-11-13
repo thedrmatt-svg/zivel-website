@@ -71,6 +71,7 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "kentucky" && citySlug === "newport") return NEWPORT_HOLIDAY_OFFERS;
   if (stateSlug === "utah" && citySlug === "riverton") return RIVERTON_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "bentonville") return BENTONVILLE_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "rogers") return ROGERS_HOLIDAY_OFFERS;
@@ -96,6 +97,19 @@ export const RIVERTON_HOLIDAY_OFFERS: readonly HolidayOffer[] =
     purchaseUrl: index === 2 ? "/locations/utah/riverton/pricing"
       : index === 0 ? "https://app.clubready.com/JoinUs/14841/656959"
       : "https://app.clubready.com/JoinUs/14841/636149",
+  }));
+
+// Staged Newport rollout: mirror the approved Riverton presentation, but never
+// send Newport visitors to Riverton checkout links. Owner-specific details follow.
+export const NEWPORT_HOLIDAY_OFFERS: readonly HolidayOffer[] =
+  RIVERTON_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
+    ...offer,
+    id: offer.id.replace("riverton", "newport"),
+    image: index === 0 ? getLocationServiceImage("newport", "red-light-therapy")
+      : index === 1 ? getLocationServiceImage("newport", "cryo-lift-facial")
+      : offer.image,
+    imageAlt: offer.imageAlt.replace("Zivel Riverton", "Zivel Newport"),
+    purchaseUrl: index === 2 ? "/locations/kentucky/newport/pricing" : undefined,
   }));
 
 // Owner approved Buckhead / Coral Gables offers for Rogers, not Parker's custom
@@ -148,6 +162,18 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "kentucky" && citySlug === "newport") {
+    const services = ["infrared-sauna", "dry-float", "cryo-slimming",
+      "red-light-therapy", "cryo-lift-facial", "cryo-slimming",
+      "cryotherapy", "red-light-therapy", "cryo-soothe"];
+    return getHolidayPricingOffers("utah", "riverton").map((offer, index): HolidayOffer => ({
+      ...offer,
+      id: offer.id.replace("riverton", "newport"),
+      image: getLocationServiceImage("newport", services[index]),
+      imageAlt: offer.imageAlt.replace("Zivel Riverton", "Zivel Newport"),
+      purchaseUrl: undefined,
+    }));
+  }
   if (stateSlug === "utah" && citySlug === "riverton") {
     const services = ["infrared-sauna", "dry-float", "cryo-slimming",
       "red-light-therapy", "cryo-lift-facial", "cryo-slimming"];
