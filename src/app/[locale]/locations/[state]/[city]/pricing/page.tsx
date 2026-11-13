@@ -164,7 +164,9 @@ export default async function LocationPricingPage({
   const bookingUrl = getLocationBookingHref(location);
   const phone = location.contact?.phone;
   const giftCards = location.pricing?.giftCards ?? [];
-  const navItems = NAV_ITEMS.flatMap((item) =>
+  // Temporary Riverton-only visibility switch; preserve package data for restoration.
+  const hideSessionPackages = location.stateSlug === "utah" && location.citySlug === "riverton";
+  const navItems = NAV_ITEMS.filter((item) => !hideSessionPackages || item.href !== "#packages").flatMap((item) =>
     item.href === "#specials" && giftCards.length > 0
       ? [{ label: "Gift Cards", href: "#gift-cards" }, item]
       : [item]
@@ -556,7 +558,7 @@ export default async function LocationPricingPage({
               </div>
 
               {/* ── PACKAGES ── */}
-              <div id="packages" className="scroll-mt-36">
+              <div id="packages" className="scroll-mt-36" hidden={hideSessionPackages}>
                 <ScrollReveal variant="fade-up">
                   <p className="zv-tagline mb-3">Packages</p>
                   <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-white mb-10">

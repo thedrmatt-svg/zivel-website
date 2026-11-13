@@ -262,7 +262,8 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
       }
       assert.deepEqual(page.querySelector('nav[aria-label="Pricing sections"]').querySelectorAll("a")
-        .map(a => a.getAttribute("href")), ["#specials", "#memberships", "#services", "#packages"]);
+        .map(a => a.getAttribute("href")), ["#specials", "#memberships", "#services"]);
+      assert(page.querySelector("#packages").hasAttribute("hidden"));
       assert(page.querySelector(".snowfall"));
     }
   }
