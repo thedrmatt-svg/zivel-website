@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Fragment } from "react";
 import {
   HOLIDAY_OFFER_DISCLAIMER,
   type HolidayOffer,
@@ -8,11 +9,13 @@ import styles from "./HolidayOfferCards.module.css";
 export type HolidayOfferCardsProps = {
   variant?: "hero" | "pricing";
   offers: readonly HolidayOffer[];
+  groupHeadings?: Readonly<Record<number, string>>;
 };
 
 export default function HolidayOfferCards({
   variant = "hero",
   offers,
+  groupHeadings,
 }: HolidayOfferCardsProps) {
   const gridClass = offers.length === 1 ? styles.offersSingle
     : offers.length === 2 ? `${styles.offers} ${styles.offersPair}` : styles.offers;
@@ -21,9 +24,12 @@ export default function HolidayOfferCards({
     <section className={styles.offerSection} data-variant={variant} aria-label="Holiday offers">
       <div className={gridClass}>
         {offers.map((offer, index) => (
+          <Fragment key={offer.id}>
+          {groupHeadings?.[index] && (
+            <h2 className={styles.groupHeading}>{groupHeadings[index]}</h2>
+          )}
           <article
             className={styles.card}
-            key={offer.id}
             style={{ animationDelay: `${index * 100}ms` }}
           >
             <div className={styles.photo}>
@@ -69,6 +75,7 @@ export default function HolidayOfferCards({
               </a> : <button className={styles.action} disabled>Link pending</button>}
             </div>
           </article>
+          </Fragment>
         ))}
       </div>
       <p className={styles.disclaimer}>{HOLIDAY_OFFER_DISCLAIMER}</p>

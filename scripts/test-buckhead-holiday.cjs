@@ -81,6 +81,13 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
     assert.equal(cards.length, file === mainFile ? 3 : 6);
+    assert.deepEqual(offers.querySelectorAll(".groupHeading").map(heading => heading.text),
+      file === mainFile ? [] : ["Gift Cards", "Service Specials"]);
+    if (file === pricingFile) {
+      assert.deepEqual(offers.querySelector(".offers").childNodes
+        .filter(node => node.tagName).map(node => node.tagName),
+        ["H2", "ARTICLE", "ARTICLE", "ARTICLE", "H2", "ARTICLE", "ARTICLE", "ARTICLE"]);
+    }
     assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       [

@@ -22,6 +22,18 @@
   margin-inline: auto;
 }
 
+.groupHeading {
+  grid-column: 1 / -1;
+  margin: .8rem 0 0;
+  color: #f6dda0;
+  font-family: var(--font-inter), sans-serif;
+  font-size: .95rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
 .card {
   position: relative;
   display: flex;

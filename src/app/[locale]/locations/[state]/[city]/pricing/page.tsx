@@ -224,7 +224,12 @@ export default async function LocationPricingPage({
         </h2>
       </ScrollReveal>
       {holidayEnabled && holidayOffers.length > 0 ? (
-        <HolidayOfferCards variant="pricing" offers={holidayOffers} />
+        <HolidayOfferCards
+          variant="pricing"
+          offers={holidayOffers}
+          groupHeadings={state === "utah" && city === "riverton"
+            ? { 0: "Gift Cards", 3: "Service Specials" } : undefined}
+        />
       ) : (
       <ScrollReveal variant="fade-up" delay={80}>
         <div className="rounded-2xl border border-[var(--zivel-gold)]/15 bg-[var(--zivel-gold)]/5 p-8 md:p-12 text-center">
