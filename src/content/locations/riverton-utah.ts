@@ -112,14 +112,6 @@ export const zivel_riverton_location: Location = {
         features: ["4 Recovery Sessions/Month", "Good for Beginners"],
         mostPopular: false,
       },
-      {
-        name: "Elite",
-        price: "$175",
-        cadence: "/mo",
-        description: "More sessions, more value.",
-        features: ["8 Recovery Sessions/Month", "Premium Service Discounts"],
-        mostPopular: true,
-      },
     ],
     standardPrices: [
       { name: "Cryotherapy", price: "$45", note: "Single session" },

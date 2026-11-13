@@ -271,6 +271,8 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
   delete ungated.wrappers["@/components/location/PricingGateModal"];
   const pricing = await ungated.render(pricingFile, p);
   const memberships = pricing.querySelector("#memberships");
+  assert(!memberships.text.includes("Elite"));
+  assert(!memberships.text.includes("$175"));
   assert(memberships.text.includes("$59"));
   assert(memberships.text.includes("4 Recovery Sessions/Month"));
   assert(!memberships.text.includes("6 Recovery Sessions/Month"));
