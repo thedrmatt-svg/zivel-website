@@ -481,6 +481,8 @@ test("Parker shows approved custom holiday offers and checkout links while prese
       expected[5].description = "Buy One Get/Give One";
       expected.push({
         title: "BOGO SOOTHE", price: "$50", description: "Buy One Get/Give One", action: "Buy Now",
+      }, {
+        title: "Recovery Pack", price: "$179", description: "10 Recovery Sessions", action: "Buy Now",
       });
     }
     assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
@@ -493,7 +495,7 @@ test("Parker shows approved custom holiday offers and checkout links while prese
     assert(!links(page).some(link => /\/(14900|14828)\//.test(link)));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     const cards = offers.querySelectorAll("article");
-    assert.equal(cards.length, file === mainFile ? 3 : 7);
+    assert.equal(cards.length, file === mainFile ? 3 : 8);
     assert(!offers.text.includes("All Access"));
     assert(!offers.text.includes("Unlimited Recovery Membership"));
     assert(!links(page).includes("https://app.clubready.com/JoinUs/15044/656932"));
@@ -540,6 +542,11 @@ test("Parker shows approved custom holiday offers and checkout links while prese
         "https://app.clubready.com/JoinUs/15044/656924");
       assert(!offers.text.includes("BOGO Recovery"));
       assert.equal(cards[6].querySelector("h2").text, "BOGO SOOTHE");
+      assert.equal(cards[7].querySelector("h2").text, "Recovery Pack");
+      assert.equal(cards[7].querySelector(".price").text, "$179");
+      assert.equal(cards[7].querySelector(".description").text, "10 Recovery Sessions");
+      assert.equal(cards[7].querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/15044/657188");
       assert.equal(cards[6].querySelector(".price").text, "$50");
       assert.equal(cards[6].querySelector(".description").text, "Buy One Get/Give One");
       assert.equal(cards[6].querySelector("img").getAttribute("src"),
