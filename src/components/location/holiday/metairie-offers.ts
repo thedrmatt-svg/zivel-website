@@ -35,6 +35,10 @@ export const METAIRIE_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   ...["infrared-sauna", "dry-float", "cryo-slimming"].map((service, index): HolidayOffer => ({
     id: `metairie-gift-card-${index + 1}`,
     title: "Gift Card",
+    ...(index === 0 ? {
+      price: "$50",
+      purchaseUrl: "https://app.clubready.com/JoinUs/14831/657205",
+    } : {}),
     image: getLocationServiceImage("metairie", service),
     imageAlt: `${["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"][index]} at Zivel Metairie`,
     action: "Buy Now",
