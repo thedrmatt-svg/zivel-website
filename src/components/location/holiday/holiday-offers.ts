@@ -71,6 +71,7 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "arkansas" && citySlug === "fayetteville") return FAYETTEVILLE_HOLIDAY_OFFERS;
   if (stateSlug === "utah" && citySlug === "riverton") return RIVERTON_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "bentonville") return BENTONVILLE_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "rogers") return ROGERS_HOLIDAY_OFFERS;
@@ -78,6 +79,31 @@ export function getHolidayOffers(stateSlug: string, citySlug: string): readonly 
   if (stateSlug === "florida" && citySlug === "coral-gables") return CORAL_GABLES_HOLIDAY_OFFERS;
   return stateSlug === "georgia" && citySlug === "buckhead" ? BUCKHEAD_HOLIDAY_OFFERS : [];
 }
+
+// Presentation-only staging: the owner will supply Fayetteville's actual
+// quantities, prices, descriptions, and checkout destinations.
+export const FAYETTEVILLE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
+  {
+    id: "fayetteville-recovery-special",
+    title: "Recovery Special",
+    image: getLocationServiceImage("fayetteville", "red-light-therapy"),
+    imageAlt: "Red light therapy at Zivel Fayetteville",
+    action: "Buy Now",
+  },
+  {
+    id: "fayetteville-facial-special",
+    title: "CryoFacial Special",
+    image: getLocationServiceImage("fayetteville", "cryo-lift-facial"),
+    imageAlt: "Cryo facial treatment at Zivel Fayetteville",
+    action: "Buy Now",
+  },
+  {
+    ...BUCKHEAD_HOLIDAY_OFFERS[2],
+    id: "fayetteville-gift-cards",
+    price: undefined,
+    purchaseUrl: "/locations/arkansas/fayetteville/pricing",
+  },
+];
 
 // Buckhead's approved offer wording and prices, with Riverton images and no
 // borrowed checkout destinations. Riverton purchase links await owner input.
@@ -148,6 +174,27 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "arkansas" && citySlug === "fayetteville") {
+    const services = ["infrared-sauna", "compression-therapy", "cryo-slimming"];
+    return [
+      ...services.map((service, index): HolidayOffer => ({
+        id: `fayetteville-gift-card-${index + 1}`,
+        title: "Gift Card",
+        image: getLocationServiceImage("fayetteville", service),
+        imageAlt: `${["Infrared sauna", "Compression therapy", "Cryo slimming treatment"][index]} at Zivel Fayetteville`,
+        action: "Buy Now",
+      })),
+      FAYETTEVILLE_HOLIDAY_OFFERS[0],
+      FAYETTEVILLE_HOLIDAY_OFFERS[1],
+      {
+        id: "fayetteville-additional-special",
+        title: "Recovery Special",
+        image: getLocationServiceImage("fayetteville", "cryotherapy"),
+        imageAlt: "Cryotherapy at Zivel Fayetteville",
+        action: "Buy Now",
+      },
+    ];
+  }
   if (stateSlug === "utah" && citySlug === "riverton") {
     const services = ["infrared-sauna", "dry-float", "cryo-slimming",
       "red-light-therapy", "cryo-lift-facial", "cryo-slimming"];
