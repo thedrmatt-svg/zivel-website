@@ -86,7 +86,10 @@ export function getHolidayOffers(stateSlug: string, citySlug: string): readonly 
 export const HOLLYWOOD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "hollywood-recovery-special",
-    title: "Recovery Special",
+    title: "8 Is Great",
+    description: "8 Recovery Services",
+    price: "$99",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14829/656726",
     image: getLocationServiceImage("hollywood", "red-light-therapy"),
     imageAlt: "Red light therapy at Zivel Hollywood",
     action: "Buy Now",
