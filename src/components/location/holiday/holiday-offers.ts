@@ -369,16 +369,6 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
     imageAlt: "Cryo Soothe treatment at Zivel Parker",
     purchaseUrl: "https://app.clubready.com/JoinUs/15044/656928",
     action: "Buy Now",
-  }, {
-    id: "parker-all-access",
-    title: "All Access",
-    price: "$179",
-    description: "Unlimited Recovery Membership",
-    additionalDescription: "FREE Day Pass",
-    image: getLocationServiceImage("parker", "cryotherapy"),
-    imageAlt: "Cryotherapy recovery service at Zivel Parker",
-    purchaseUrl: "https://app.clubready.com/JoinUs/15044/656932",
-    action: "Buy Now",
   }];
   if (!isCoralGables) return buckheadOffers;
   return buckheadOffers.map((offer, index): HolidayOffer => ({
