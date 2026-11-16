@@ -216,6 +216,10 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       ...services.map((service, index): HolidayOffer => ({
         id: `hollywood-gift-card-${index + 1}`,
         title: "Gift Card",
+        ...(index === 0 ? {
+          price: "$50",
+          purchaseUrl: "https://app.clubready.com/JoinUs/14829/657202",
+        } : {}),
         image: getLocationServiceImage("hollywood", service),
         imageAlt: `${["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"][index]} at Zivel Hollywood`,
         action: "Buy Now",
