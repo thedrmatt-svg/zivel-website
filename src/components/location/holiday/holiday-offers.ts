@@ -186,6 +186,9 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
         } : index === 1 ? {
           price: "$100",
           purchaseUrl: "https://app.clubready.com/JoinUs/14943/657180",
+        } : index === 2 ? {
+          price: "$200",
+          purchaseUrl: "https://app.clubready.com/JoinUs/14943/657181",
         } : {}),
         image: getLocationServiceImage("fayetteville", service),
         imageAlt: `${["Red light therapy", "Compression therapy", "Cryo slimming treatment"][index]} at Zivel Fayetteville`,

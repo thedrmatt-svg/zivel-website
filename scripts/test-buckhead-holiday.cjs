@@ -65,6 +65,7 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
       const suppliedGiftCards = {
         "fayetteville-gift-card-1": ["$50", "https://app.clubready.com/JoinUs/14943/657179"],
         "fayetteville-gift-card-2": ["$100", "https://app.clubready.com/JoinUs/14943/657180"],
+        "fayetteville-gift-card-3": ["$200", "https://app.clubready.com/JoinUs/14943/657181"],
       };
       const supplied = suppliedGiftCards[offer.id];
       assert.equal(offer.price, supplied?.[0]);
@@ -88,14 +89,15 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 4);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 3);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? [] : ["https://app.clubready.com/JoinUs/14943/657179",
-        "https://app.clubready.com/JoinUs/14943/657180"]);
+        "https://app.clubready.com/JoinUs/14943/657180",
+        "https://app.clubready.com/JoinUs/14943/657181"]);
     if (file === mainFile) assert.equal(offers.querySelector(".price"), null);
     else {
       assert.equal(offers.querySelector(".price").text, "$50");
-      assert.deepEqual(offers.querySelectorAll(".price").map(price => price.text), ["$50", "$100"]);
+      assert.deepEqual(offers.querySelectorAll(".price").map(price => price.text), ["$50", "$100", "$200"]);
     }
     assert.equal(offers.querySelectorAll(".disclaimer").length, 1);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
