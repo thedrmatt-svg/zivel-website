@@ -67,17 +67,19 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
       const isTwoHundredGiftCard = offer.id === "hollywood-gift-card-3";
       const isRecovery = offer.id === "hollywood-recovery-special";
       const isFacial = offer.id === "hollywood-facial-special";
+      const isFacialPackage = offer.id === "hollywood-cryofacial-package";
       if (isRecovery) assert.equal(offer.title, "8 Is Great");
       if (isFacial) assert.equal(offer.title, "CryoFacial Deal");
-      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : isRecovery ? "$99" : isFacial ? "$159" : undefined);
+      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : isRecovery ? "$99" : isFacial ? "$159" : isFacialPackage ? "$625" : undefined);
       assert.equal(offer.description, getter === "getHolidayOffers" && offer.id === "hollywood-gift-cards"
-        ? "Give the Gift of Feeling Better" : isRecovery ? "8 Recovery Services" : isFacial ? "CryoFacial session and 1 Day Pass" : undefined);
+        ? "Give the Gift of Feeling Better" : isRecovery ? "8 Recovery Services" : isFacial ? "CryoFacial session and 1 Day Pass" : isFacialPackage ? "Buy 5 Get 1 Free" : undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/florida/hollywood/pricing" ||
         (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657202") ||
         (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657203") ||
         (isTwoHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657204") ||
         (isRecovery && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/656726") ||
-        (isFacial && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/656834"));
+        (isFacial && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/656834") ||
+        (isFacialPackage && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/656833"));
       assert(fs.existsSync(`public${offer.image}`));
     }
   }
@@ -89,11 +91,12 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? ["https://app.clubready.com/JoinUs/14829/656726",
         "https://app.clubready.com/JoinUs/14829/656834"] : [
         "https://app.clubready.com/JoinUs/14829/656726",
+        "https://app.clubready.com/JoinUs/14829/656833",
         "https://app.clubready.com/JoinUs/14829/656834",
         "https://app.clubready.com/JoinUs/14829/657202",
         "https://app.clubready.com/JoinUs/14829/657203",
@@ -120,6 +123,14 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
       assert(links(offers).includes("/locations/florida/hollywood/pricing"));
     } else {
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
+      const facialPackage = offers.querySelector('[data-offer-id="hollywood-cryofacial-package"]');
+      assert.equal(facialPackage.querySelector("h2").text, "CryoFacial Special");
+      assert.equal(facialPackage.querySelector(".price").text, "$625");
+      assert.equal(facialPackage.querySelector(".description").text, "Buy 5 Get 1 Free");
+      assert.equal(facialPackage.querySelector("a").getAttribute("href"),
+        "https://app.clubready.com/JoinUs/14829/656833");
+      assert.equal(facialPackage.querySelector("img").getAttribute("src"),
+        data.HOLLYWOOD_HOLIDAY_OFFERS[1].image);
       assert.equal(offers.querySelector(".price").text, "$50");
       assert.equal(offers.querySelectorAll(".price")[1].text, "$100");
       assert.equal(offers.querySelectorAll(".price")[2].text, "$200");

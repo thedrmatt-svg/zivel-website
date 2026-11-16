@@ -239,10 +239,13 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       HOLLYWOOD_HOLIDAY_OFFERS[0],
       HOLLYWOOD_HOLIDAY_OFFERS[1],
       {
-        id: "hollywood-additional-special",
-        title: "Recovery Special",
-        image: getLocationServiceImage("hollywood", "cryotherapy"),
-        imageAlt: "Cryotherapy at Zivel Hollywood",
+        id: "hollywood-cryofacial-package",
+        title: "CryoFacial Special",
+        description: "Buy 5 Get 1 Free",
+        price: "$625",
+        purchaseUrl: "https://app.clubready.com/JoinUs/14829/656833",
+        image: getLocationServiceImage("hollywood", "cryo-lift-facial"),
+        imageAlt: "CryoFacial treatment at Zivel Hollywood",
         action: "Buy Now",
       },
     ];
