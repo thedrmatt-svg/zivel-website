@@ -59,7 +59,7 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
   const data = r.source("src/components/location/holiday/holiday-offers");
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
     const offers = data[getter](p.state, p.city);
-    assert.equal(offers.length, getter === "getHolidayOffers" ? 3 : 5);
+    assert.equal(offers.length, getter === "getHolidayOffers" ? 3 : 6);
     assert(!offers.some(offer => offer.id === "fayetteville-additional-special"));
     for (const offer of offers) {
       assert(offer.id.startsWith("fayetteville-"));
@@ -69,10 +69,17 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
         "fayetteville-gift-card-3": ["$200", "https://app.clubready.com/JoinUs/14943/657181"],
         "fayetteville-recovery-special": ["$99", "https://app.clubready.com/JoinUs/14943/657182"],
         "fayetteville-soothe-special": ["$99", "https://app.clubready.com/JoinUs/14943/657183"],
+        "fayetteville-bogo-cryofacial": ["$150", "https://app.clubready.com/JoinUs/14943/657201"],
       };
       const supplied = suppliedGiftCards[offer.id];
       assert.equal(offer.price, supplied?.[0]);
       if (offer.id === "fayetteville-recovery-special") assert.equal(offer.description, "6 Recovery Services");
+      if (offer.id === "fayetteville-bogo-cryofacial") {
+        assert.equal(offer.title, "BOGO CryoFacial");
+        assert.equal(offer.description, "Buy One/Give One");
+        assert.equal(offer.image, r.source("src/lib/data/location-service-images")
+          .getLocationServiceImage("fayetteville", "cryo-lift-facial"));
+      }
       if (offer.id === "fayetteville-soothe-special") {
         assert.equal(offer.title, "Cryo Soothe Special");
         assert.equal(offer.description, "3 Cryo Soothe Sessions");
@@ -99,7 +106,7 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
       await r.source(file).generateMetadata({ params: Promise.resolve(p) }),
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
-    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 5);
+    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
     assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? ["https://app.clubready.com/JoinUs/14943/657182",
@@ -107,11 +114,12 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
         "https://app.clubready.com/JoinUs/14943/657180",
         "https://app.clubready.com/JoinUs/14943/657181",
         "https://app.clubready.com/JoinUs/14943/657182",
-        "https://app.clubready.com/JoinUs/14943/657183"]);
+        "https://app.clubready.com/JoinUs/14943/657183",
+        "https://app.clubready.com/JoinUs/14943/657201"]);
     if (file === mainFile) assert.equal(offers.querySelector(".price").text, "$99");
     else {
       assert.equal(offers.querySelector(".price").text, "$50");
-      assert.deepEqual(offers.querySelectorAll(".price").map(price => price.text), ["$50", "$100", "$200", "$99", "$99"]);
+      assert.deepEqual(offers.querySelectorAll(".price").map(price => price.text), ["$50", "$100", "$200", "$99", "$99", "$150"]);
     }
     assert.equal(offers.querySelectorAll(".disclaimer").length, 1);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);

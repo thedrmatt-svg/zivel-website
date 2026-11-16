@@ -206,6 +206,16 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       })),
       FAYETTEVILLE_HOLIDAY_OFFERS[0],
       FAYETTEVILLE_HOLIDAY_OFFERS[1],
+      {
+        id: "fayetteville-bogo-cryofacial",
+        title: "BOGO CryoFacial",
+        price: "$150",
+        description: "Buy One/Give One",
+        image: getLocationServiceImage("fayetteville", "cryo-lift-facial"),
+        imageAlt: "CryoFacial treatment at Zivel Fayetteville",
+        purchaseUrl: "https://app.clubready.com/JoinUs/14943/657201",
+        action: "Buy Now",
+      },
     ];
   }
   if (stateSlug === "utah" && citySlug === "riverton") {
