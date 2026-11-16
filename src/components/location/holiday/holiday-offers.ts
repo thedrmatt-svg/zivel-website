@@ -1,4 +1,5 @@
 import { getLocationServiceImage } from "@/lib/data/location-service-images";
+import { METAIRIE_HOLIDAY_OFFERS, METAIRIE_HOLIDAY_PRICING_OFFERS } from "./metairie-offers";
 
 export type HolidayOffer = {
   id: string;
@@ -71,6 +72,7 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "louisiana" && citySlug === "metairie") return METAIRIE_HOLIDAY_OFFERS;
   if (stateSlug === "florida" && citySlug === "hollywood") return HOLLYWOOD_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "fayetteville") return FAYETTEVILLE_HOLIDAY_OFFERS;
   if (stateSlug === "utah" && citySlug === "riverton") return RIVERTON_HOLIDAY_OFFERS;
@@ -216,6 +218,7 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "louisiana" && citySlug === "metairie") return METAIRIE_HOLIDAY_PRICING_OFFERS;
   if (stateSlug === "florida" && citySlug === "hollywood") {
     const services = ["infrared-sauna", "dry-float", "cryo-slimming"];
     return [
