@@ -71,6 +71,7 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "florida" && citySlug === "hollywood") return HOLLYWOOD_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "fayetteville") return FAYETTEVILLE_HOLIDAY_OFFERS;
   if (stateSlug === "utah" && citySlug === "riverton") return RIVERTON_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "bentonville") return BENTONVILLE_HOLIDAY_OFFERS;
@@ -79,6 +80,31 @@ export function getHolidayOffers(stateSlug: string, citySlug: string): readonly 
   if (stateSlug === "florida" && citySlug === "coral-gables") return CORAL_GABLES_HOLIDAY_OFFERS;
   return stateSlug === "georgia" && citySlug === "buckhead" ? BUCKHEAD_HOLIDAY_OFFERS : [];
 }
+
+// Stage Hollywood's approved presentation without inventing offer amounts or
+// borrowing another studio's purchase destinations. Details await owner input.
+export const HOLLYWOOD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
+  {
+    id: "hollywood-recovery-special",
+    title: "Recovery Special",
+    image: getLocationServiceImage("hollywood", "red-light-therapy"),
+    imageAlt: "Red light therapy at Zivel Hollywood",
+    action: "Buy Now",
+  },
+  {
+    id: "hollywood-facial-special",
+    title: "CryoFacial Special",
+    image: getLocationServiceImage("hollywood", "cryo-lift-facial"),
+    imageAlt: "CryoFacial treatment at Zivel Hollywood",
+    action: "Buy Now",
+  },
+  {
+    ...BUCKHEAD_HOLIDAY_OFFERS[2],
+    id: "hollywood-gift-cards",
+    price: undefined,
+    purchaseUrl: "/locations/florida/hollywood/pricing",
+  },
+];
 
 // Presentation-only staging: the owner will supply Fayetteville's actual
 // quantities, prices, descriptions, and checkout destinations.
@@ -184,6 +210,27 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "florida" && citySlug === "hollywood") {
+    const services = ["infrared-sauna", "dry-float", "cryo-slimming"];
+    return [
+      ...services.map((service, index): HolidayOffer => ({
+        id: `hollywood-gift-card-${index + 1}`,
+        title: "Gift Card",
+        image: getLocationServiceImage("hollywood", service),
+        imageAlt: `${["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"][index]} at Zivel Hollywood`,
+        action: "Buy Now",
+      })),
+      HOLLYWOOD_HOLIDAY_OFFERS[0],
+      HOLLYWOOD_HOLIDAY_OFFERS[1],
+      {
+        id: "hollywood-additional-special",
+        title: "Recovery Special",
+        image: getLocationServiceImage("hollywood", "cryotherapy"),
+        imageAlt: "Cryotherapy at Zivel Hollywood",
+        action: "Buy Now",
+      },
+    ];
+  }
   if (stateSlug === "arkansas" && citySlug === "fayetteville") {
     const services = ["red-light-therapy", "compression-therapy", "cryo-slimming"];
     return [

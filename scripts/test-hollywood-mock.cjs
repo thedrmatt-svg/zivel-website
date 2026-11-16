@@ -10,7 +10,7 @@ test("holiday mock replaces only the hero, preserving the rest of Hollywood and 
     get: (_, key) => key === "__esModule" ? false : String(key),
   });
   const live = await r.render("src/app/[locale]/locations/[state]/[city]/page", {
-    locale: "en", state: "florida", city: "hollywood",
+    locale: "en", state: "florida", city: "hollywood", standardPresentation: true,
   });
   const mock = await r.render("src/app/mock/HollywoodMockContent", {});
   assert(live.querySelectorAll('script[type="application/ld+json"]').length >= 3);

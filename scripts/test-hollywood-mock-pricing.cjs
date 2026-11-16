@@ -11,7 +11,7 @@ test("Hollywood pricing preview keeps real pricing and moves renamed specials fi
   });
   r.wrappers["@/components/location/PricingGateModal"] = ({ children }) => children;
   const live = await r.render("src/app/[locale]/locations/[state]/[city]/pricing/page", {
-    state: "florida", city: "hollywood", locale: "en",
+    state: "florida", city: "hollywood", locale: "en", standardPresentation: true,
   });
   const mock = await r.render("src/app/mock-pricing/HollywoodMockPricingContent", {});
   assert.equal(mock.querySelectorAll('script[type="application/ld+json"],meta,form').length, 0);

@@ -171,7 +171,7 @@ function mockPricingContent(node: ReactNode): ReactNode {
 
 export default async function HollywoodMockPricingContent() {
   const content = await LocationPricingPage({
-    params: Promise.resolve({ state: "florida", city: "hollywood", locale: "en" }),
+    params: Promise.resolve({ state: "florida", city: "hollywood", locale: "en", standardPresentation: true }),
   });
   return (
     <>

@@ -145,12 +145,14 @@ export async function generateMetadata({
 export default async function LocationPage({
   params,
 }: {
-  params: Promise<{ state: string; city: string; locale?: string }>;
+  params: Promise<{ state: string; city: string; locale?: string; standardPresentation?: boolean }>;
 }) {
-  const { state, city, locale = "en" } = await params;
+  const { state, city, locale = "en", standardPresentation = false } = await params;
   const location = getLocationByPath(state, city);
   if (!location) return notFound();
-  const holidayEnabled = isHolidayLocation(location.stateSlug, location.citySlug);
+  // Internal mock callers retain their approved reference presentation.
+  // This flag is not read from query strings or exposed as a route segment.
+  const holidayEnabled = !standardPresentation && isHolidayLocation(location.stateSlug, location.citySlug);
 
   const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zivel.com";
   const canonicalPath = location.seo?.canonical ?? `/locations/${location.stateSlug}/${location.citySlug}`;

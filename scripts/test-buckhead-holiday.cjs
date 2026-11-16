@@ -33,13 +33,13 @@ const schema = page => page.querySelectorAll('script[type="application/ld+json"]
 const links = element => element.querySelectorAll("a")
   .map(a => a.getAttribute("href")).sort();
 
-test("only the seven approved studios are holiday-enabled; other studios stay standard", async () => {
+test("only the eight approved studios are holiday-enabled; other studios stay standard", async () => {
   const r = renderer(), standard = renderer(true);
   const { locations } = r.source("src/lib/data/locations");
   const config = r.source("src/components/location/holiday/holiday-location-config");
   for (const location of locations) {
     const enabled = (location.stateSlug === "georgia" && location.citySlug === "buckhead") ||
-      (location.stateSlug === "florida" && location.citySlug === "coral-gables") ||
+      (location.stateSlug === "florida" && ["coral-gables", "hollywood"].includes(location.citySlug)) ||
       (location.stateSlug === "colorado" && location.citySlug === "parker") ||
       (location.stateSlug === "utah" && location.citySlug === "riverton") ||
       (location.stateSlug === "arkansas" && ["rogers", "bentonville", "fayetteville"].includes(location.citySlug));
@@ -51,6 +51,58 @@ test("only the seven approved studios are holiday-enabled; other studios stay st
         `${location.name}: holiday switch cannot alter this route`);
     }
   }
+});
+
+test("Hollywood stages holiday pages without borrowed offers or changes to regular business data", async () => {
+  const r = renderer(), standard = renderer(true);
+  const p = { state: "florida", city: "hollywood", locale: "en" };
+  const data = r.source("src/components/location/holiday/holiday-offers");
+  for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
+    const offers = data[getter](p.state, p.city);
+    assert.equal(offers.length, getter === "getHolidayOffers" ? 3 : 6);
+    for (const offer of offers) {
+      assert(offer.id.startsWith("hollywood-"));
+      assert.equal(offer.price, undefined);
+      assert.equal(offer.description, getter === "getHolidayOffers" && offer.id === "hollywood-gift-cards"
+        ? "Give the Gift of Feeling Better" : undefined);
+      assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/florida/hollywood/pricing");
+      assert(fs.existsSync(`public${offer.image}`));
+    }
+  }
+  for (const file of [mainFile, pricingFile]) {
+    const page = await r.render(file, p), before = await standard.render(file, p);
+    assert.deepEqual(schema(page), schema(before));
+    assert.deepEqual(
+      await r.source(file).generateMetadata({ params: Promise.resolve(p) }),
+      await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
+    const offers = page.querySelector('section[aria-label="Holiday offers"]');
+    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
+    assert(!links(offers).some(link => link.includes("clubready")));
+    assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
+    assert(!page.text.includes("Zivel Buckhead"));
+    if (file === mainFile) {
+      assert.equal(page.querySelector("h1").text, "HOLIDAY SPECIALS");
+      assert(page.text.includes("3361 Sheridan St, Hollywood, FL 33021"));
+      assert(links(page).includes("tel:+17542178177"));
+      assert(links(page).some(link => link.includes("set_location=11433")));
+      assert(links(offers).includes("/locations/florida/hollywood/pricing"));
+    } else {
+      assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
+      assert(page.querySelector(".snowfall"));
+      for (const id of ["memberships", "services", "packages"]) {
+        assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
+      }
+      assert.deepEqual(page.querySelector('nav[aria-label="Pricing sections"]').querySelectorAll("a")
+        .map(a => a.getAttribute("href")), ["#specials", "#memberships", "#services", "#packages"]);
+    }
+  }
+  assert.deepEqual(r.gates, [{ citySlug: "hollywood", bypass: true }]);
+  const ungated = renderer();
+  delete ungated.wrappers["@/components/location/PricingGateModal"];
+  const pricing = await ungated.render(pricingFile, p);
+  assert.equal(pricing.querySelector(".blur-xl"), null);
+  assert.equal(pricing.querySelector("#pg-firstName"), null);
 });
 
 test("Fayetteville stages the standard holiday layout without unapproved prices or purchase links", async () => {

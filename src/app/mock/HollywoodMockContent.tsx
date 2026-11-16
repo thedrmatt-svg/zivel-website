@@ -127,7 +127,7 @@ export default async function HollywoodMockContent() {
   const location = getLocationByPath("florida", "hollywood");
   if (!location) throw new Error("Hollywood mock requires the existing Hollywood location.");
   const content = await LocationPage({
-    params: Promise.resolve({ state: "florida", city: "hollywood", locale: "en" }),
+    params: Promise.resolve({ state: "florida", city: "hollywood", locale: "en", standardPresentation: true }),
   });
   return <>{mockContent(content, location)}</>;
 }

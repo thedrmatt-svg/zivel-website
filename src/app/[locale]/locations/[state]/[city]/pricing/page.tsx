@@ -145,12 +145,13 @@ export async function generateMetadata({
 export default async function LocationPricingPage({
   params,
 }: {
-  params: Promise<{ state: string; city: string; locale: string }>;
+  params: Promise<{ state: string; city: string; locale: string; standardPresentation?: boolean }>;
 }) {
-  const { state, city } = await params;
+  const { state, city, standardPresentation = false } = await params;
   const location = getLocationByPath(state, city);
   if (!location) notFound();
-  const holidayEnabled = isHolidayLocation(location.stateSlug, location.citySlug);
+  // Keep the independent mock reference stable when its source studio rolls out.
+  const holidayEnabled = !standardPresentation && isHolidayLocation(location.stateSlug, location.citySlug);
   const groupedHolidayPricing = holidayEnabled && state === "utah" && city === "riverton";
   const holidayOffers = getHolidayPricingOffers(location.stateSlug, location.citySlug);
 

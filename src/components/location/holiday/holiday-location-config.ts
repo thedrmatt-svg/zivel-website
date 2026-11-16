@@ -1,6 +1,7 @@
 const HOLIDAY_ENABLED_LOCATIONS = new Set([
   "georgia/buckhead",
   "florida/coral-gables",
+  "florida/hollywood",
   "colorado/parker",
   "arkansas/rogers",
   "arkansas/bentonville",
