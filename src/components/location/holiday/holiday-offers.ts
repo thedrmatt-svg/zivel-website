@@ -86,6 +86,9 @@ export const FAYETTEVILLE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "fayetteville-recovery-special",
     title: "Recovery Special",
+    description: "6 Recovery Services",
+    price: "$99",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14943/657182",
     image: getLocationServiceImage("fayetteville", "infrared-sauna"),
     imageAlt: "Infrared sauna at Zivel Fayetteville",
     action: "Buy Now",
