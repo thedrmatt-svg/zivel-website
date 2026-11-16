@@ -33,7 +33,7 @@ const schema = page => page.querySelectorAll('script[type="application/ld+json"]
 const links = element => element.querySelectorAll("a")
   .map(a => a.getAttribute("href")).sort();
 
-test("only the seven approved studios are holiday-enabled; other studios stay standard", async () => {
+test("only the six release-ready studios are holiday-enabled; other studios stay standard", async () => {
   const r = renderer(), standard = renderer(true);
   const { locations } = r.source("src/lib/data/locations");
   const config = r.source("src/components/location/holiday/holiday-location-config");
@@ -42,7 +42,6 @@ test("only the seven approved studios are holiday-enabled; other studios stay st
       (location.stateSlug === "florida" && location.citySlug === "coral-gables") ||
       (location.stateSlug === "colorado" && location.citySlug === "parker") ||
       (location.stateSlug === "utah" && location.citySlug === "riverton") ||
-      (location.stateSlug === "kentucky" && location.citySlug === "newport") ||
       (location.stateSlug === "arkansas" && ["rogers", "bentonville"].includes(location.citySlug));
     assert.equal(config.isHolidayLocation(location.stateSlug, location.citySlug), enabled);
     if (enabled) continue;
@@ -54,112 +53,22 @@ test("only the seven approved studios are holiday-enabled; other studios stay st
   }
 });
 
-test("Newport mirrors Riverton's grouped holiday layout with pending links and preserves its studio data", async () => {
+test("Newport stays on its existing standard pages while its holiday rollout is held", async () => {
   const r = renderer(), standard = renderer(true);
   const p = { state: "kentucky", city: "newport", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
-  for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
-    const fields = offers => offers.map(({ title, price, description, additionalDescription, action }) =>
-      ({ title, price, description, additionalDescription, action }));
-    const expected = fields(data[getter]("utah", "riverton"));
-    if (getter === "getHolidayPricingOffers") {
-      expected[2].price = "$200";
-      expected[5].title = "Single Slimming and Facial";
-      expected[5].price = "$199";
-      expected[5].description = undefined;
-      expected[5].additionalDescription = undefined;
-      expected.slice(6).forEach(offer => { offer.price = undefined; });
-      expected.splice(6, 0, ...[3, 6, 10].map(sessions => ({
-        title: `CryoFacial — ${sessions} Sessions`,
-        price: undefined,
-        description: undefined,
-        additionalDescription: undefined,
-        action: "Buy Now",
-      })));
-      expected.slice(0, 3).forEach(offer => {
-        offer.description = undefined;
-        offer.additionalDescription = undefined;
-      });
-    }
-    assert.deepEqual(fields(data[getter](p.state, p.city)), expected);
-    for (const offer of data[getter](p.state, p.city)) {
-      assert(offer.id.startsWith("newport-"));
-      assert(!offer.imageAlt.includes("Riverton"));
-      assert(fs.existsSync(`public${offer.image}`), `Existing offer image: ${offer.image}`);
-    }
-  }
+  assert.deepEqual(data.getHolidayOffers(p.state, p.city), []);
+  assert.deepEqual(data.getHolidayPricingOffers(p.state, p.city), []);
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
-    const offers = page.querySelector('section[aria-label="Holiday offers"]');
+    assert.equal(page.toString(), before.toString());
+    assert.equal(page.querySelector('section[aria-label="Holiday offers"]'), null);
     assert.deepEqual(schema(page), schema(before), "Preserve Newport's existing schema");
-    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
-    assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? [] : [
-        "https://app.clubready.com/JoinUs/14833/652095",
-        "https://app.clubready.com/JoinUs/14833/656490",
-        "https://app.clubready.com/JoinUs/14833/657029",
-        "https://app.clubready.com/JoinUs/14833/657030",
-        "https://app.clubready.com/JoinUs/14833/657031",
-        "https://app.clubready.com/JoinUs/14833/657057",
-        "https://app.clubready.com/JoinUs/14833/657058",
-      ], "Only Newport’s supplied holiday purchase URLs");
-    assert(!offers.text.includes("Riverton"));
-    assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     const meta = await r.source(file).generateMetadata({ params: Promise.resolve(p) });
     const standardMeta = await standard.source(file).generateMetadata({ params: Promise.resolve(p) });
-    assert.deepEqual(meta, standardMeta, "Holiday presentation must not alter Newport metadata");
-    if (file === mainFile) {
-      assert.equal(page.querySelector("#location-hero-title").text, "HOLIDAY SPECIALS");
-      assert(page.text.includes("Zivel Newport"));
-      assert(page.text.includes("91A Carothers Rd, Newport, KY 41071"));
-      assert(links(page).some(link => link.includes("set_location=11437")));
-      assert(links(page).includes("tel:+18592500852"));
-      assert.equal(offers.querySelectorAll("article")[2].querySelector("a").getAttribute("href"),
-        "/locations/kentucky/newport/pricing");
-      for (const link of links(before).filter(link => link.includes("clubready") || link.startsWith("tel:"))) {
-        assert(links(page).includes(link), `Preserve Newport booking/contact: ${link}`);
-      }
-    } else {
-      [["$50", "657057"], ["$100", "656490"], ["$200", "657058"]].forEach(([price, checkout], index) => {
-        const card = offers.querySelectorAll("article")[index];
-        assert(card.getAttribute("data-offer-id").startsWith("newport-gift-card-"));
-        assert.equal(card.querySelector(".description"), null);
-        assert.equal(card.querySelector(".price").text, price);
-        assert.equal(card.querySelector("a").getAttribute("href"),
-          `https://app.clubready.com/JoinUs/14833/${checkout}`);
-        assert(card.querySelector("a").text.includes("Buy Now"));
-      });
-      assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
-      assert.deepEqual(offers.querySelectorAll(".groupHeading").map(heading => heading.text),
-        ["Gift Cards", "Service Specials", "Membership Specials"]);
-      assert.equal(offers.querySelector(".groupDescription").text,
-        '50% Off Membership 1st Month: Code "blackfriday" at checkout');
-      [3, 6, 10].forEach((sessions, index) => {
-        const card = offers.querySelectorAll("article")[6 + index];
-        assert.equal(card.querySelector("h2").text, `CryoFacial — ${sessions} Sessions`);
-        assert.equal(card.querySelector(".price"), null);
-        assert.equal(card.querySelector("img").getAttribute("src"),
-          r.source("src/lib/data/location-service-images").getLocationServiceImage("newport", "cryo-lift-facial"));
-        assert.equal(card.querySelector("a").getAttribute("href"),
-          `https://app.clubready.com/JoinUs/14833/${["657029", "657030", "657031"][index]}`);
-      });
-      assert.deepEqual(offers.querySelectorAll("article").slice(9).map(card => card.querySelector("h2").text),
-        ["Core", "Premier", "Platinum"]);
-      assert(page.querySelector(".snowfall"));
-      for (const id of ["memberships", "services", "packages"]) {
-        assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
-      }
-      assert.deepEqual(page.querySelector('nav[aria-label="Pricing sections"]').querySelectorAll("a")
-        .map(a => a.getAttribute("href")), ["#specials", "#memberships", "#services", "#packages"]);
-    }
+    assert.deepEqual(meta, standardMeta, "Preserve Newport metadata");
   }
-  assert.deepEqual(r.gates, [{ citySlug: "newport", bypass: true }]);
-  const ungated = renderer();
-  delete ungated.wrappers["@/components/location/PricingGateModal"];
-  const pricing = await ungated.render(pricingFile, p);
-  assert.equal(pricing.querySelector(".blur-xl"), null);
-  assert.equal(pricing.querySelector("#pg-firstName"), null);
+  assert.deepEqual(r.gates, [{ citySlug: "newport", bypass: false }]);
 });
 
 test("Riverton uses approved holiday offers and preserves local data", async () => {

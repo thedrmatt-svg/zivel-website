@@ -71,7 +71,6 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
-  if (stateSlug === "kentucky" && citySlug === "newport") return NEWPORT_HOLIDAY_OFFERS;
   if (stateSlug === "utah" && citySlug === "riverton") return RIVERTON_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "bentonville") return BENTONVILLE_HOLIDAY_OFFERS;
   if (stateSlug === "arkansas" && citySlug === "rogers") return ROGERS_HOLIDAY_OFFERS;
@@ -97,19 +96,6 @@ export const RIVERTON_HOLIDAY_OFFERS: readonly HolidayOffer[] =
     purchaseUrl: index === 2 ? "/locations/utah/riverton/pricing"
       : index === 0 ? "https://app.clubready.com/JoinUs/14841/656959"
       : "https://app.clubready.com/JoinUs/14841/636149",
-  }));
-
-// Staged Newport rollout: mirror the approved Riverton presentation, but never
-// send Newport visitors to Riverton checkout links. Owner-specific details follow.
-export const NEWPORT_HOLIDAY_OFFERS: readonly HolidayOffer[] =
-  RIVERTON_HOLIDAY_OFFERS.map((offer, index): HolidayOffer => ({
-    ...offer,
-    id: offer.id.replace("riverton", "newport"),
-    image: index === 0 ? getLocationServiceImage("newport", "red-light-therapy")
-      : index === 1 ? getLocationServiceImage("newport", "cryo-lift-facial")
-      : offer.image,
-    imageAlt: offer.imageAlt.replace("Zivel Riverton", "Zivel Newport"),
-    purchaseUrl: index === 2 ? "/locations/kentucky/newport/pricing" : undefined,
   }));
 
 // Owner approved Buckhead / Coral Gables offers for Rogers, not Parker's custom
@@ -162,50 +148,6 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
-  if (stateSlug === "kentucky" && citySlug === "newport") {
-    const services = ["infrared-sauna", "dry-float", "cryo-slimming",
-      "red-light-therapy", "cryo-lift-facial", "cryo-slimming",
-      "cryotherapy", "red-light-therapy", "cryo-soothe"];
-    const giftCards = [
-      { price: "$50", purchaseUrl: "https://app.clubready.com/JoinUs/14833/657057" },
-      { price: "$100", purchaseUrl: "https://app.clubready.com/JoinUs/14833/656490" },
-      { price: "$200", purchaseUrl: "https://app.clubready.com/JoinUs/14833/657058" },
-    ];
-    const baseOffers = getHolidayPricingOffers("utah", "riverton").map((offer, index): HolidayOffer => ({
-      ...offer,
-      id: offer.id.replace("riverton", "newport"),
-      image: getLocationServiceImage("newport", services[index]),
-      imageAlt: offer.imageAlt.replace("Zivel Riverton", "Zivel Newport"),
-      purchaseUrl: undefined,
-      // Riverton's later edits must not change Newport's staged specials.
-      ...(index === 5 ? {
-        title: "Single Slimming and Facial",
-        price: "$199",
-        description: undefined,
-        additionalDescription: undefined,
-        purchaseUrl: "https://app.clubready.com/JoinUs/14833/652095",
-      } : {}),
-      ...(index >= 6 ? { price: undefined } : {}),
-      ...(index < 3 ? {
-        ...giftCards[index],
-        description: undefined,
-        additionalDescription: undefined,
-      } : {}),
-    }));
-    const cryofacialOffers: HolidayOffer[] = [
-      { sessions: 3, checkout: "657029" },
-      { sessions: 6, checkout: "657030" },
-      { sessions: 10, checkout: "657031" },
-    ].map(({ sessions, checkout }) => ({
-      id: `newport-cryofacial-${sessions}-sessions`,
-      title: `CryoFacial — ${sessions} Sessions`,
-      image: getLocationServiceImage("newport", "cryo-lift-facial"),
-      imageAlt: "CryoFacial treatment at Zivel Newport",
-      purchaseUrl: `https://app.clubready.com/JoinUs/14833/${checkout}`,
-      action: "Buy Now",
-    }));
-    return [...baseOffers.slice(0, 6), ...cryofacialOffers, ...baseOffers.slice(6)];
-  }
   if (stateSlug === "utah" && citySlug === "riverton") {
     const services = ["infrared-sauna", "dry-float", "cryo-slimming",
       "red-light-therapy", "cryo-lift-facial", "cryo-slimming"];

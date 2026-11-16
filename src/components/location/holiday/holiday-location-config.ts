@@ -5,7 +5,6 @@ const HOLIDAY_ENABLED_LOCATIONS = new Set([
   "arkansas/rogers",
   "arkansas/bentonville",
   "utah/riverton",
-  "kentucky/newport",
 ]);
 
 // Seasonal exception: set false to restore the normal signup gate even while

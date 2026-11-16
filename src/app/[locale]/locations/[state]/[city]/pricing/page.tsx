@@ -151,12 +151,8 @@ export default async function LocationPricingPage({
   const location = getLocationByPath(state, city);
   if (!location) notFound();
   const holidayEnabled = isHolidayLocation(location.stateSlug, location.citySlug);
-  const groupedHolidayPricing = holidayEnabled && (
-    (state === "utah" && city === "riverton") ||
-    (state === "kentucky" && city === "newport")
-  );
+  const groupedHolidayPricing = holidayEnabled && state === "utah" && city === "riverton";
   const holidayOffers = getHolidayPricingOffers(location.stateSlug, location.citySlug);
-  const holidayMembershipStart = state === "kentucky" && city === "newport" ? 9 : 6;
 
   const cityDisplay = location.name.replace(/^Zivel\s+/i, "");
   const breadcrumbCity = location.stateSlug === "georgia" && location.citySlug === "buckhead"
@@ -235,9 +231,9 @@ export default async function LocationPricingPage({
           variant="pricing"
           offers={holidayOffers}
           groupHeadings={groupedHolidayPricing
-            ? { 0: "Gift Cards", 3: "Service Specials", [holidayMembershipStart]: "Membership Specials" } : undefined}
+            ? { 0: "Gift Cards", 3: "Service Specials", 6: "Membership Specials" } : undefined}
           groupDescriptions={groupedHolidayPricing
-            ? { [holidayMembershipStart]: '50% Off Membership 1st Month: Code "blackfriday" at checkout' } : undefined}
+            ? { 6: '50% Off Membership 1st Month: Code "blackfriday" at checkout' } : undefined}
         />
       ) : (
       <ScrollReveal variant="fade-up" delay={80}>
