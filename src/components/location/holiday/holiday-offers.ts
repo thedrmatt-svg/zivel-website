@@ -206,13 +206,6 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       })),
       FAYETTEVILLE_HOLIDAY_OFFERS[0],
       FAYETTEVILLE_HOLIDAY_OFFERS[1],
-      {
-        id: "fayetteville-additional-special",
-        title: "Recovery Special",
-        image: getLocationServiceImage("fayetteville", "cryotherapy"),
-        imageAlt: "Cryotherapy at Zivel Fayetteville",
-        action: "Buy Now",
-      },
     ];
   }
   if (stateSlug === "utah" && citySlug === "riverton") {

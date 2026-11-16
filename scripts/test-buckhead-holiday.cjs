@@ -59,7 +59,8 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
   const data = r.source("src/components/location/holiday/holiday-offers");
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
     const offers = data[getter](p.state, p.city);
-    assert.equal(offers.length, getter === "getHolidayOffers" ? 3 : 6);
+    assert.equal(offers.length, getter === "getHolidayOffers" ? 3 : 5);
+    assert(!offers.some(offer => offer.id === "fayetteville-additional-special"));
     for (const offer of offers) {
       assert(offer.id.startsWith("fayetteville-"));
       const suppliedGiftCards = {
@@ -98,8 +99,8 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
       await r.source(file).generateMetadata({ params: Promise.resolve(p) }),
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
-    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
+    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 5);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? ["https://app.clubready.com/JoinUs/14943/657182",
         "https://app.clubready.com/JoinUs/14943/657183"] : ["https://app.clubready.com/JoinUs/14943/657179",
