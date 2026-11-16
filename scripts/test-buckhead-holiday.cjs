@@ -64,12 +64,14 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
       assert(offer.id.startsWith("hollywood-"));
       const isFiftyGiftCard = offer.id === "hollywood-gift-card-1";
       const isHundredGiftCard = offer.id === "hollywood-gift-card-2";
-      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : undefined);
+      const isTwoHundredGiftCard = offer.id === "hollywood-gift-card-3";
+      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : undefined);
       assert.equal(offer.description, getter === "getHolidayOffers" && offer.id === "hollywood-gift-cards"
         ? "Give the Gift of Feeling Better" : undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/florida/hollywood/pricing" ||
         (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657202") ||
-        (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657203"));
+        (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657203") ||
+        (isTwoHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657204"));
       assert(fs.existsSync(`public${offer.image}`));
     }
   }
@@ -81,10 +83,11 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 4);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 3);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? [] : ["https://app.clubready.com/JoinUs/14829/657202",
-        "https://app.clubready.com/JoinUs/14829/657203"]);
+        "https://app.clubready.com/JoinUs/14829/657203",
+        "https://app.clubready.com/JoinUs/14829/657204"]);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     assert(!page.text.includes("Zivel Buckhead"));
     if (file === mainFile) {
@@ -97,6 +100,7 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
       assert.equal(offers.querySelector(".price").text, "$50");
       assert.equal(offers.querySelectorAll(".price")[1].text, "$100");
+      assert.equal(offers.querySelectorAll(".price")[2].text, "$200");
       assert(page.querySelector(".snowfall"));
       for (const id of ["memberships", "services", "packages"]) {
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
