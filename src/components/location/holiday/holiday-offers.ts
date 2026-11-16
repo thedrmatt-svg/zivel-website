@@ -94,10 +94,13 @@ export const FAYETTEVILLE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     action: "Buy Now",
   },
   {
-    id: "fayetteville-facial-special",
-    title: "CryoFacial Special",
-    image: getLocationServiceImage("fayetteville", "cryo-lift-facial"),
-    imageAlt: "Cryo facial treatment at Zivel Fayetteville",
+    id: "fayetteville-soothe-special",
+    title: "Cryo Soothe Special",
+    description: "3 Cryo Soothe Sessions",
+    price: "$99",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14943/657183",
+    image: getLocationServiceImage("fayetteville", "cryo-soothe"),
+    imageAlt: "Cryo Soothe treatment at Zivel Fayetteville",
     action: "Buy Now",
   },
   {
