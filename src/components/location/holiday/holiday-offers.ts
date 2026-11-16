@@ -96,7 +96,10 @@ export const HOLLYWOOD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   },
   {
     id: "hollywood-facial-special",
-    title: "CryoFacial Special",
+    title: "CryoFacial Deal",
+    description: "CryoFacial session and 1 Day Pass",
+    price: "$159",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14829/656834",
     image: getLocationServiceImage("hollywood", "cryo-lift-facial"),
     imageAlt: "CryoFacial treatment at Zivel Hollywood",
     action: "Buy Now",

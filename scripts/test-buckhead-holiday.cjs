@@ -66,15 +66,18 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
       const isHundredGiftCard = offer.id === "hollywood-gift-card-2";
       const isTwoHundredGiftCard = offer.id === "hollywood-gift-card-3";
       const isRecovery = offer.id === "hollywood-recovery-special";
+      const isFacial = offer.id === "hollywood-facial-special";
       if (isRecovery) assert.equal(offer.title, "8 Is Great");
-      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : isRecovery ? "$99" : undefined);
+      if (isFacial) assert.equal(offer.title, "CryoFacial Deal");
+      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : isRecovery ? "$99" : isFacial ? "$159" : undefined);
       assert.equal(offer.description, getter === "getHolidayOffers" && offer.id === "hollywood-gift-cards"
-        ? "Give the Gift of Feeling Better" : isRecovery ? "8 Recovery Services" : undefined);
+        ? "Give the Gift of Feeling Better" : isRecovery ? "8 Recovery Services" : isFacial ? "CryoFacial session and 1 Day Pass" : undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/florida/hollywood/pricing" ||
         (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657202") ||
         (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657203") ||
         (isTwoHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657204") ||
-        (isRecovery && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/656726"));
+        (isRecovery && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/656726") ||
+        (isFacial && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/656834"));
       assert(fs.existsSync(`public${offer.image}`));
     }
   }
@@ -86,10 +89,12 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 2);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? ["https://app.clubready.com/JoinUs/14829/656726"] : [
+      file === mainFile ? ["https://app.clubready.com/JoinUs/14829/656726",
+        "https://app.clubready.com/JoinUs/14829/656834"] : [
         "https://app.clubready.com/JoinUs/14829/656726",
+        "https://app.clubready.com/JoinUs/14829/656834",
         "https://app.clubready.com/JoinUs/14829/657202",
         "https://app.clubready.com/JoinUs/14829/657203",
         "https://app.clubready.com/JoinUs/14829/657204"]);
@@ -101,6 +106,12 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
     assert.equal(recovery.querySelector(".description").text, "8 Recovery Services");
     assert.equal(recovery.querySelector("a").getAttribute("href"),
       "https://app.clubready.com/JoinUs/14829/656726");
+    const facial = offers.querySelector('[data-offer-id="hollywood-facial-special"]');
+    assert.equal(facial.querySelector("h2").text, "CryoFacial Deal");
+    assert.equal(facial.querySelector(".price").text, "$159");
+    assert.equal(facial.querySelector(".description").text, "CryoFacial session and 1 Day Pass");
+    assert.equal(facial.querySelector("a").getAttribute("href"),
+      "https://app.clubready.com/JoinUs/14829/656834");
     if (file === mainFile) {
       assert.equal(page.querySelector("h1").text, "HOLIDAY SPECIALS");
       assert(page.text.includes("3361 Sheridan St, Hollywood, FL 33021"));
