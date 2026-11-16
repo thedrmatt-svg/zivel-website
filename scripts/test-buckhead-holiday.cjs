@@ -83,8 +83,8 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
         offer.purchaseUrl === supplied?.[1]);
       assert(fs.existsSync(`public${offer.image}`));
       assert(!offer.image.includes("dryfloat"));
-      if (offer.id === "fayetteville-gift-card-1" || offer.id === "fayetteville-recovery-special") {
-        const isGiftCard = offer.id === "fayetteville-gift-card-1";
+      if (["fayetteville-gift-card-1", "fayetteville-gift-cards", "fayetteville-recovery-special"].includes(offer.id)) {
+        const isGiftCard = offer.id !== "fayetteville-recovery-special";
         assert.equal(offer.image, r.source("src/lib/data/location-service-images")
           .getLocationServiceImage("fayetteville", isGiftCard ? "red-light-therapy" : "infrared-sauna"));
         assert.equal(offer.imageAlt, `${isGiftCard ? "Red light therapy" : "Infrared sauna"} at Zivel Fayetteville`);

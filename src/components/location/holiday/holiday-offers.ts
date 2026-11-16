@@ -107,6 +107,10 @@ export const FAYETTEVILLE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     ...BUCKHEAD_HOLIDAY_OFFERS[2],
     id: "fayetteville-gift-cards",
     price: undefined,
+    image: getLocationServiceImage("fayetteville", "red-light-therapy"),
+    imageAlt: "Red light therapy at Zivel Fayetteville",
+    imagePosition: "center",
+    imageZoom: 1,
     purchaseUrl: "/locations/arkansas/fayetteville/pricing",
   },
 ];
