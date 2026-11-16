@@ -62,10 +62,18 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
     assert.equal(offers.length, getter === "getHolidayOffers" ? 3 : 6);
     for (const offer of offers) {
       assert(offer.id.startsWith("fayetteville-"));
-      assert.equal(offer.price, undefined);
-      assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/arkansas/fayetteville/pricing");
+      const isSuppliedGiftCard = offer.id === "fayetteville-gift-card-1";
+      assert.equal(offer.price, isSuppliedGiftCard ? "$50" : undefined);
+      assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/arkansas/fayetteville/pricing" ||
+        (isSuppliedGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14943/657179"));
       assert(fs.existsSync(`public${offer.image}`));
       assert(!offer.image.includes("dryfloat"));
+      if (offer.id === "fayetteville-gift-card-1" || offer.id === "fayetteville-recovery-special") {
+        const isGiftCard = offer.id === "fayetteville-gift-card-1";
+        assert.equal(offer.image, r.source("src/lib/data/location-service-images")
+          .getLocationServiceImage("fayetteville", isGiftCard ? "red-light-therapy" : "infrared-sauna"));
+        assert.equal(offer.imageAlt, `${isGiftCard ? "Red light therapy" : "Infrared sauna"} at Zivel Fayetteville`);
+      }
     }
   }
   for (const file of [mainFile, pricingFile]) {
@@ -76,9 +84,14 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
-    assert.deepEqual(links(offers).filter(link => link.includes("clubready")), []);
-    assert.equal(offers.querySelector(".price"), null);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
+    assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
+      file === mainFile ? [] : ["https://app.clubready.com/JoinUs/14943/657179"]);
+    if (file === mainFile) assert.equal(offers.querySelector(".price"), null);
+    else {
+      assert.equal(offers.querySelector(".price").text, "$50");
+      assert.equal(offers.querySelectorAll(".price").length, 1);
+    }
     assert.equal(offers.querySelectorAll(".disclaimer").length, 1);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     if (file === mainFile) {

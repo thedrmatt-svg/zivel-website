@@ -86,8 +86,8 @@ export const FAYETTEVILLE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "fayetteville-recovery-special",
     title: "Recovery Special",
-    image: getLocationServiceImage("fayetteville", "red-light-therapy"),
-    imageAlt: "Red light therapy at Zivel Fayetteville",
+    image: getLocationServiceImage("fayetteville", "infrared-sauna"),
+    imageAlt: "Infrared sauna at Zivel Fayetteville",
     action: "Buy Now",
   },
   {
@@ -175,13 +175,17 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
   if (stateSlug === "arkansas" && citySlug === "fayetteville") {
-    const services = ["infrared-sauna", "compression-therapy", "cryo-slimming"];
+    const services = ["red-light-therapy", "compression-therapy", "cryo-slimming"];
     return [
       ...services.map((service, index): HolidayOffer => ({
         id: `fayetteville-gift-card-${index + 1}`,
         title: "Gift Card",
+        ...(index === 0 ? {
+          price: "$50",
+          purchaseUrl: "https://app.clubready.com/JoinUs/14943/657179",
+        } : {}),
         image: getLocationServiceImage("fayetteville", service),
-        imageAlt: `${["Infrared sauna", "Compression therapy", "Cryo slimming treatment"][index]} at Zivel Fayetteville`,
+        imageAlt: `${["Red light therapy", "Compression therapy", "Cryo slimming treatment"][index]} at Zivel Fayetteville`,
         action: "Buy Now",
       })),
       FAYETTEVILLE_HOLIDAY_OFFERS[0],
