@@ -219,6 +219,9 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
         ...(index === 0 ? {
           price: "$50",
           purchaseUrl: "https://app.clubready.com/JoinUs/14829/657202",
+        } : index === 1 ? {
+          price: "$100",
+          purchaseUrl: "https://app.clubready.com/JoinUs/14829/657203",
         } : {}),
         image: getLocationServiceImage("hollywood", service),
         imageAlt: `${["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"][index]} at Zivel Hollywood`,
