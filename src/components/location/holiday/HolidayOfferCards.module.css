@@ -158,6 +158,10 @@
   vertical-align: .12em;
 }
 
+.card[data-offer-id^="fayetteville-gift-card-"] .price {
+  margin-bottom: .75rem;
+}
+
 .description {
   margin: .4rem 0 .9rem;
   color: #fff8eb;

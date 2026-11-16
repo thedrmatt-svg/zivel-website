@@ -62,10 +62,14 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
     assert.equal(offers.length, getter === "getHolidayOffers" ? 3 : 6);
     for (const offer of offers) {
       assert(offer.id.startsWith("fayetteville-"));
-      const isSuppliedGiftCard = offer.id === "fayetteville-gift-card-1";
-      assert.equal(offer.price, isSuppliedGiftCard ? "$50" : undefined);
+      const suppliedGiftCards = {
+        "fayetteville-gift-card-1": ["$50", "https://app.clubready.com/JoinUs/14943/657179"],
+        "fayetteville-gift-card-2": ["$100", "https://app.clubready.com/JoinUs/14943/657180"],
+      };
+      const supplied = suppliedGiftCards[offer.id];
+      assert.equal(offer.price, supplied?.[0]);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/arkansas/fayetteville/pricing" ||
-        (isSuppliedGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14943/657179"));
+        offer.purchaseUrl === supplied?.[1]);
       assert(fs.existsSync(`public${offer.image}`));
       assert(!offer.image.includes("dryfloat"));
       if (offer.id === "fayetteville-gift-card-1" || offer.id === "fayetteville-recovery-special") {
@@ -84,13 +88,14 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 4);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? [] : ["https://app.clubready.com/JoinUs/14943/657179"]);
+      file === mainFile ? [] : ["https://app.clubready.com/JoinUs/14943/657179",
+        "https://app.clubready.com/JoinUs/14943/657180"]);
     if (file === mainFile) assert.equal(offers.querySelector(".price"), null);
     else {
       assert.equal(offers.querySelector(".price").text, "$50");
-      assert.equal(offers.querySelectorAll(".price").length, 1);
+      assert.deepEqual(offers.querySelectorAll(".price").map(price => price.text), ["$50", "$100"]);
     }
     assert.equal(offers.querySelectorAll(".disclaimer").length, 1);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
