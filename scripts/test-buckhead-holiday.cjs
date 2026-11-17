@@ -33,12 +33,12 @@ const schema = page => page.querySelectorAll('script[type="application/ld+json"]
 const links = element => element.querySelectorAll("a")
   .map(a => a.getAttribute("href")).sort();
 
-test("only the nine approved studios are holiday-enabled; other studios stay standard", async () => {
+test("only the ten approved studios are holiday-enabled; other studios stay standard", async () => {
   const r = renderer(), standard = renderer(true);
   const { locations } = r.source("src/lib/data/locations");
   const config = r.source("src/components/location/holiday/holiday-location-config");
   for (const location of locations) {
-    const enabled = (location.stateSlug === "georgia" && location.citySlug === "buckhead") ||
+    const enabled = (location.stateSlug === "georgia" && ["buckhead", "windermere"].includes(location.citySlug)) ||
       (location.stateSlug === "florida" && ["coral-gables", "hollywood"].includes(location.citySlug)) ||
       (location.stateSlug === "colorado" && location.citySlug === "parker") ||
       (location.stateSlug === "utah" && location.citySlug === "riverton") ||
@@ -50,6 +50,46 @@ test("only the nine approved studios are holiday-enabled; other studios stay sta
       const p = { state: location.stateSlug, city: location.citySlug, locale: "en" };
       assert.equal((await r.render(file, p)).toString(), (await standard.render(file, p)).toString(),
         `${location.name}: holiday switch cannot alter this route`);
+    }
+  }
+});
+
+test("Windermere uses the Buckhead layout with only its approved offers and pending checkout links", async () => {
+  const r = renderer(), standard = renderer(true);
+  const p = { state: "georgia", city: "windermere", locale: "en" };
+  const data = r.source("src/components/location/holiday/holiday-offers");
+  const mainOffers = data.getHolidayOffers(p.state, p.city);
+  const pricingOffers = data.getHolidayPricingOffers(p.state, p.city);
+  assert.equal(mainOffers.length, 3);
+  assert.equal(pricingOffers.length, 5);
+  assert.deepEqual(pricingOffers.slice(0, 3).map(o => o.price), ["$50", "$100", "$200"]);
+  assert.equal(mainOffers[0].title, "6 Recovery Services");
+  assert.equal(mainOffers[0].price, "$99");
+  assert.equal(mainOffers[1].title, "BOGO Cryo Ultra-Lift & Firming Facials & Chin");
+  assert.equal(mainOffers[1].price, undefined);
+  for (const offer of [...mainOffers, ...pricingOffers]) {
+    assert(fs.existsSync(`public${offer.image}`));
+    assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/georgia/windermere/pricing");
+  }
+  for (const file of [mainFile, pricingFile]) {
+    const page = await r.render(file, p), before = await standard.render(file, p);
+    assert.deepEqual(schema(page), schema(before));
+    assert.deepEqual(
+      await r.source(file).generateMetadata({ params: Promise.resolve(p) }),
+      await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
+    const offers = page.querySelector('section[aria-label="Holiday offers"]');
+    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 5);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
+    assert(!offers.text.includes("$150"));
+    assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
+    assert(page.text.includes("Zivel Windermere"));
+    if (file === pricingFile) {
+      assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
+      for (const id of ["memberships", "services", "packages"]) {
+        assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
+      }
+    } else {
+      assert.equal(page.querySelector("h1").text, "HOLIDAY SPECIALS");
     }
   }
 });
