@@ -1,7 +1,7 @@
 import { getLocationServiceImage } from "@/lib/data/location-service-images";
 import type { HolidayOffer } from "./holiday-offers";
 
-// Checkout destinations and the facial price await owner input.
+// Service checkout destinations and the facial price await owner input.
 export const WINDERMERE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "windermere-recovery-special",
@@ -37,6 +37,7 @@ export const WINDERMERE_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     id: `windermere-gift-card-${index + 1}`,
     title: "Gift Card",
     price: `$${[50, 100, 200][index]}`,
+    purchaseUrl: `https://app.clubready.com/JoinUs/14944/${[644563, 644566, 644567][index]}`,
     image: getLocationServiceImage("windermere", service),
     imageAlt: `${["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"][index]} at Zivel Windermere`,
     action: "Buy Now",

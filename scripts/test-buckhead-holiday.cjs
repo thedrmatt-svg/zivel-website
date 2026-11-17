@@ -63,13 +63,16 @@ test("Windermere uses the Buckhead layout with only its approved offers and pend
   assert.equal(mainOffers.length, 3);
   assert.equal(pricingOffers.length, 5);
   assert.deepEqual(pricingOffers.slice(0, 3).map(o => o.price), ["$50", "$100", "$200"]);
+  const giftLinks = [644563, 644566, 644567].map(id => `https://app.clubready.com/JoinUs/14944/${id}`);
+  assert.deepEqual(pricingOffers.slice(0, 3).map(o => o.purchaseUrl), giftLinks);
   assert.equal(mainOffers[0].title, "6 Recovery Services");
   assert.equal(mainOffers[0].price, "$99");
   assert.equal(mainOffers[1].title, "BOGO Cryo Ultra-Lift & Firming Facials & Chin");
   assert.equal(mainOffers[1].price, undefined);
   for (const offer of [...mainOffers, ...pricingOffers]) {
     assert(fs.existsSync(`public${offer.image}`));
-    assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/georgia/windermere/pricing");
+    assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/georgia/windermere/pricing" ||
+      giftLinks.includes(offer.purchaseUrl));
   }
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
@@ -79,7 +82,9 @@ test("Windermere uses the Buckhead layout with only its approved offers and pend
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 5);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 2);
+    assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
+      file === mainFile ? [] : [...giftLinks].sort());
     assert(!offers.text.includes("$150"));
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     assert(page.text.includes("Zivel Windermere"));
