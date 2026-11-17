@@ -34,6 +34,8 @@ export const BRIARGATE_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   ...["infrared-sauna", "compression-therapy", "cryo-slimming"].map((service, index): HolidayOffer => ({
     id: `briargate-gift-card-${index + 1}`,
     title: "Gift Card",
+    price: `$${[50, 100, 200][index]}`,
+    purchaseUrl: `https://app.clubready.com/JoinUs/15196/${[657241, 657242, 657243][index]}`,
     image: getLocationServiceImage("briargate", service),
     imageAlt: `${["Infrared sauna", "Compression therapy", "Cryo slimming treatment"][index]} at Zivel Briargate`,
     action: "Buy Now",

@@ -58,13 +58,18 @@ test("Briargate stages holiday pages without inventing offers or changing busine
   const r = renderer(), standard = renderer(true);
   const p = { state: "colorado", city: "briargate", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
+  const giftLinks = [657241, 657242, 657243].map(id => `https://app.clubready.com/JoinUs/15196/${id}`);
+  const giftCards = data.getHolidayPricingOffers(p.state, p.city).slice(0, 3);
+  assert.deepEqual(giftCards.map(offer => offer.price), ["$50", "$100", "$200"]);
+  assert.deepEqual(giftCards.map(offer => offer.purchaseUrl), giftLinks);
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
     const offers = data[getter](p.state, p.city);
     assert.equal(offers.length, getter === "getHolidayOffers" ? 3 : 6);
     for (const offer of offers) {
       assert(offer.id.startsWith("briargate-"));
-      assert.equal(offer.price, undefined);
-      assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/colorado/briargate/pricing");
+      if (!offer.id.startsWith("briargate-gift-card-")) assert.equal(offer.price, undefined);
+      assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/colorado/briargate/pricing" ||
+        giftLinks.includes(offer.purchaseUrl));
       assert(fs.existsSync(`public${offer.image}`));
       assert(!/oxygen|dry.float/i.test(JSON.stringify(offer)));
     }
@@ -77,8 +82,9 @@ test("Briargate stages holiday pages without inventing offers or changing busine
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
-    assert.deepEqual(links(offers).filter(link => link.includes("clubready")), []);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 3);
+    assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
+      file === mainFile ? [] : giftLinks);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     assert(!/oxygen bar/i.test(page.text));
     assert(page.text.includes("Zivel Briargate"));
