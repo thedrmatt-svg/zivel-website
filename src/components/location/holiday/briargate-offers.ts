@@ -6,6 +6,9 @@ export const BRIARGATE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "briargate-recovery-special",
     title: "Recovery Special",
+    description: "Day Pass - 3 Services",
+    price: "$59",
+    purchaseUrl: "https://app.clubready.com/JoinUs/15196/647159",
     image: getLocationServiceImage("briargate", "red-light-therapy"),
     imageAlt: "Red light therapy at Zivel Briargate",
     action: "Buy Now",
