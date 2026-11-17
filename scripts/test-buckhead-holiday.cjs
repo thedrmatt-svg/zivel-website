@@ -33,14 +33,14 @@ const schema = page => page.querySelectorAll('script[type="application/ld+json"]
 const links = element => element.querySelectorAll("a")
   .map(a => a.getAttribute("href")).sort();
 
-test("only the ten approved studios are holiday-enabled; other studios stay standard", async () => {
+test("only the eleven approved studios are holiday-enabled; other studios stay standard", async () => {
   const r = renderer(), standard = renderer(true);
   const { locations } = r.source("src/lib/data/locations");
   const config = r.source("src/components/location/holiday/holiday-location-config");
   for (const location of locations) {
     const enabled = (location.stateSlug === "georgia" && ["buckhead", "windermere"].includes(location.citySlug)) ||
       (location.stateSlug === "florida" && ["coral-gables", "hollywood"].includes(location.citySlug)) ||
-      (location.stateSlug === "colorado" && location.citySlug === "parker") ||
+      (location.stateSlug === "colorado" && ["parker", "briargate"].includes(location.citySlug)) ||
       (location.stateSlug === "utah" && location.citySlug === "riverton") ||
       (location.stateSlug === "louisiana" && location.citySlug === "metairie") ||
       (location.stateSlug === "arkansas" && ["rogers", "bentonville", "fayetteville"].includes(location.citySlug));
@@ -52,6 +52,53 @@ test("only the ten approved studios are holiday-enabled; other studios stay stan
         `${location.name}: holiday switch cannot alter this route`);
     }
   }
+});
+
+test("Briargate stages holiday pages without inventing offers or changing business data", async () => {
+  const r = renderer(), standard = renderer(true);
+  const p = { state: "colorado", city: "briargate", locale: "en" };
+  const data = r.source("src/components/location/holiday/holiday-offers");
+  for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
+    const offers = data[getter](p.state, p.city);
+    assert.equal(offers.length, getter === "getHolidayOffers" ? 3 : 6);
+    for (const offer of offers) {
+      assert(offer.id.startsWith("briargate-"));
+      assert.equal(offer.price, undefined);
+      assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/colorado/briargate/pricing");
+      assert(fs.existsSync(`public${offer.image}`));
+      assert(!/oxygen|dry.float/i.test(JSON.stringify(offer)));
+    }
+  }
+  for (const file of [mainFile, pricingFile]) {
+    const page = await r.render(file, p), before = await standard.render(file, p);
+    assert.deepEqual(schema(page), schema(before));
+    assert.deepEqual(
+      await r.source(file).generateMetadata({ params: Promise.resolve(p) }),
+      await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
+    const offers = page.querySelector('section[aria-label="Holiday offers"]');
+    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 6);
+    assert.deepEqual(links(offers).filter(link => link.includes("clubready")), []);
+    assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
+    assert(!/oxygen bar/i.test(page.text));
+    assert(page.text.includes("Zivel Briargate"));
+    assert(!page.text.includes("Zivel Buckhead") && !page.text.includes("Zivel Hollywood"));
+    if (file === pricingFile) {
+      assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
+      for (const id of ["memberships", "services", "packages"]) {
+        assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
+      }
+    } else {
+      assert.equal(page.querySelector("h1").text, "HOLIDAY SPECIALS");
+      assert(page.text.includes("460 Chapel Hills Dr Ste 120"));
+      assert(links(page).includes("tel:+17195001638"));
+      assert(links(page).some(link => link.includes("set_location=11779")));
+    }
+  }
+  assert.deepEqual(r.gates, [{ citySlug: "briargate", bypass: true }]);
+  const ungated = renderer();
+  delete ungated.wrappers["@/components/location/PricingGateModal"];
+  assert.equal((await ungated.render(pricingFile, p)).querySelector("#pg-firstName"), null);
 });
 
 test("Windermere uses the Buckhead layout with only its approved offers and pending checkout links", async () => {
