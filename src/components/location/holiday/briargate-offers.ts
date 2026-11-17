@@ -16,6 +16,8 @@ export const BRIARGATE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "briargate-facial-special",
     title: "CryoFacial Special",
+    price: "$99",
+    purchaseUrl: "https://app.clubready.com/JoinUs/15196/657325",
     image: getLocationServiceImage("briargate", "cryo-lift-facial"),
     imageAlt: "CryoFacial treatment at Zivel Briargate",
     action: "Buy Now",
