@@ -111,6 +111,9 @@ test("Briargate stages holiday pages without inventing offers or changing busine
     assert(page.text.includes("Zivel Briargate"));
     assert(!page.text.includes("Zivel Buckhead") && !page.text.includes("Zivel Hollywood"));
     if (file === pricingFile) {
+      const membershipLinks = links(page.querySelector("#memberships"));
+      assert(membershipLinks.includes("https://app.clubready.com/JoinUs/15196/647719"));
+      assert(membershipLinks.includes("https://app.clubready.com/JoinUs/15196/647718"));
       assert.equal(page.querySelector("h1").text, "Holiday Specials, Pricing & Memberships");
       for (const id of ["memberships", "services", "packages"]) {
         assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);

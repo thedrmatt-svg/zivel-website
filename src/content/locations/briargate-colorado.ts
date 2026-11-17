@@ -92,6 +92,7 @@ export const zivel_briargate_location: Location = {
     membershipTiers: [
       {
         name: "Essential",
+        bookingUrl: "https://app.clubready.com/JoinUs/15196/647719",
         price: "$99",
         cadence: "/mo",
         description: "A great entry point for regular recovery.",
@@ -100,6 +101,7 @@ export const zivel_briargate_location: Location = {
       },
       {
         name: "Elite",
+        bookingUrl: "https://app.clubready.com/JoinUs/15196/647718",
         price: "$150",
         cadence: "/mo",
         description: "More sessions, more value.",
