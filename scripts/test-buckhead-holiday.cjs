@@ -69,10 +69,12 @@ test("Windermere uses the Buckhead layout with only its approved offers and pend
   assert.equal(mainOffers[0].price, "$99");
   assert.equal(mainOffers[1].title, "BOGO Cryo Ultra-Lift & Firming Facials & Chin");
   assert.equal(mainOffers[1].price, undefined);
+  const facialLink = "https://app.clubready.com/JoinUs/14944/657222";
+  assert.equal(mainOffers[1].purchaseUrl, facialLink);
   for (const offer of [...mainOffers, ...pricingOffers]) {
     assert(fs.existsSync(`public${offer.image}`));
     assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/georgia/windermere/pricing" ||
-      giftLinks.includes(offer.purchaseUrl));
+      giftLinks.includes(offer.purchaseUrl) || offer.purchaseUrl === facialLink);
   }
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
@@ -82,9 +84,9 @@ test("Windermere uses the Buckhead layout with only its approved offers and pend
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 5);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, 2);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 1);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? [] : [...giftLinks].sort());
+      file === mainFile ? [facialLink] : [...giftLinks, facialLink].sort());
     assert(!offers.text.includes("$150"));
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     assert(page.text.includes("Zivel Windermere"));

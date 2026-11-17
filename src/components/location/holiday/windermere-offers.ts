@@ -1,7 +1,7 @@
 import { getLocationServiceImage } from "@/lib/data/location-service-images";
 import type { HolidayOffer } from "./holiday-offers";
 
-// Service checkout destinations and the facial price await owner input.
+// The recovery checkout destination and facial price await owner input.
 export const WINDERMERE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "windermere-recovery-special",
@@ -14,6 +14,7 @@ export const WINDERMERE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "windermere-facial-special",
     title: "BOGO Cryo Ultra-Lift & Firming Facials & Chin",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14944/657222",
     image: getLocationServiceImage("windermere", "cryo-lift-facial"),
     imageAlt: "Cryo facial treatment at Zivel Windermere",
     action: "Buy Now",
