@@ -62,6 +62,12 @@ test("Briargate stages holiday pages without inventing offers or changing busine
   const giftCards = data.getHolidayPricingOffers(p.state, p.city).slice(0, 3);
   const recoveryLink = "https://app.clubready.com/JoinUs/15196/647159";
   const facialLink = "https://app.clubready.com/JoinUs/15196/657325";
+  const slimmingLink = "https://app.clubready.com/JoinUs/15196/657339";
+  const slimming = data.getHolidayPricingOffers(p.state, p.city).at(-1);
+  assert.equal(slimming.title, "Cryo Slimming");
+  assert.equal(slimming.price, "$159");
+  assert.equal(slimming.purchaseUrl, slimmingLink);
+  assert.equal(slimming.image, r.source("src/lib/data/location-service-images").getLocationServiceImage("briargate", "cryo-slimming"));
   assert.deepEqual(giftCards.map(offer => offer.price), ["$50", "$100", "$200"]);
   assert.deepEqual(giftCards.map(offer => offer.purchaseUrl), giftLinks);
   for (const getter of ["getHolidayOffers", "getHolidayPricingOffers"]) {
@@ -76,9 +82,11 @@ test("Briargate stages holiday pages without inventing offers or changing busine
       } else if (offer.id === "briargate-facial-special") {
         assert.equal(offer.price, "$99");
         assert.equal(offer.purchaseUrl, facialLink);
+      } else if (offer.id === "briargate-additional-special") {
+        assert.equal(offer.price, "$159");
       } else if (!offer.id.startsWith("briargate-gift-card-")) assert.equal(offer.price, undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/colorado/briargate/pricing" ||
-        giftLinks.includes(offer.purchaseUrl) || [recoveryLink, facialLink].includes(offer.purchaseUrl));
+        giftLinks.includes(offer.purchaseUrl) || [recoveryLink, facialLink, slimmingLink].includes(offer.purchaseUrl));
       assert(fs.existsSync(`public${offer.image}`));
       assert(!/oxygen|dry.float/i.test(JSON.stringify(offer)));
     }
@@ -91,9 +99,9 @@ test("Briargate stages holiday pages without inventing offers or changing busine
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      (file === mainFile ? [recoveryLink, facialLink] : [...giftLinks, recoveryLink, facialLink]).sort());
+      (file === mainFile ? [recoveryLink, facialLink] : [...giftLinks, recoveryLink, facialLink, slimmingLink]).sort());
     assert.equal(offers.querySelector('[data-offer-id="briargate-facial-special"] .price').text, "$99");
     const recovery = offers.querySelector('[data-offer-id="briargate-recovery-special"]');
     assert.equal(recovery.querySelector(".price").text, "$59");

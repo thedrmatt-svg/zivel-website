@@ -49,9 +49,11 @@ export const BRIARGATE_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   BRIARGATE_HOLIDAY_OFFERS[1],
   {
     id: "briargate-additional-special",
-    title: "Recovery Special",
-    image: getLocationServiceImage("briargate", "cryotherapy"),
-    imageAlt: "Cryotherapy at Zivel Briargate",
+    title: "Cryo Slimming",
+    price: "$159",
+    purchaseUrl: "https://app.clubready.com/JoinUs/15196/657339",
+    image: getLocationServiceImage("briargate", "cryo-slimming"),
+    imageAlt: "Cryo slimming treatment at Zivel Briargate",
     action: "Buy Now",
   },
 ];
