@@ -68,13 +68,15 @@ test("Windermere uses the Buckhead layout with only its approved offers and pend
   assert.equal(mainOffers[0].title, "6 Recovery Services");
   assert.equal(mainOffers[0].price, "$99");
   assert.equal(mainOffers[1].title, "BOGO Cryo Ultra-Lift & Firming Facials & Chin");
-  assert.equal(mainOffers[1].price, undefined);
+  assert.equal(mainOffers[1].price, "$150");
   const facialLink = "https://app.clubready.com/JoinUs/14944/657222";
+  const recoveryLink = "https://app.clubready.com/JoinUs/14944/657223";
+  assert.equal(mainOffers[0].purchaseUrl, recoveryLink);
   assert.equal(mainOffers[1].purchaseUrl, facialLink);
   for (const offer of [...mainOffers, ...pricingOffers]) {
     assert(fs.existsSync(`public${offer.image}`));
     assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/georgia/windermere/pricing" ||
-      giftLinks.includes(offer.purchaseUrl) || offer.purchaseUrl === facialLink);
+      giftLinks.includes(offer.purchaseUrl) || [facialLink, recoveryLink].includes(offer.purchaseUrl));
   }
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
@@ -84,10 +86,10 @@ test("Windermere uses the Buckhead layout with only its approved offers and pend
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 5);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, 1);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? [facialLink] : [...giftLinks, facialLink].sort());
-    assert(!offers.text.includes("$150"));
+      (file === mainFile ? [facialLink, recoveryLink] : [...giftLinks, facialLink, recoveryLink]).sort());
+    assert.equal(offers.querySelector('[data-offer-id="windermere-facial-special"] .price').text, "$150");
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     assert(page.text.includes("Zivel Windermere"));
     if (file === pricingFile) {

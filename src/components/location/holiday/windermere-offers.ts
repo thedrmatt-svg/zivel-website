@@ -1,12 +1,12 @@
 import { getLocationServiceImage } from "@/lib/data/location-service-images";
 import type { HolidayOffer } from "./holiday-offers";
 
-// The recovery checkout destination and facial price await owner input.
 export const WINDERMERE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "windermere-recovery-special",
     title: "6 Recovery Services",
     price: "$99",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14944/657223",
     image: getLocationServiceImage("windermere", "red-light-therapy"),
     imageAlt: "Red light therapy at Zivel Windermere",
     action: "Buy Now",
@@ -14,6 +14,7 @@ export const WINDERMERE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "windermere-facial-special",
     title: "BOGO Cryo Ultra-Lift & Firming Facials & Chin",
+    price: "$150",
     purchaseUrl: "https://app.clubready.com/JoinUs/14944/657222",
     image: getLocationServiceImage("windermere", "cryo-lift-facial"),
     imageAlt: "Cryo facial treatment at Zivel Windermere",
