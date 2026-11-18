@@ -190,9 +190,11 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
     for (const offer of offers) {
       assert(offer.id.startsWith("metairie-"));
       const isFiftyGiftCard = offer.id === "metairie-gift-card-1";
-      assert.equal(offer.price, isFiftyGiftCard ? "$50" : undefined);
+      const isHundredGiftCard = offer.id === "metairie-gift-card-2";
+      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/louisiana/metairie/pricing" ||
-        (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657205"));
+        (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657205") ||
+        (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657526"));
       assert(fs.existsSync(`public${offer.image}`));
     }
   }
@@ -204,9 +206,10 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 4);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? [] : ["https://app.clubready.com/JoinUs/14831/657205"]);
+      file === mainFile ? [] : ["https://app.clubready.com/JoinUs/14831/657205",
+        "https://app.clubready.com/JoinUs/14831/657526"]);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     assert(!page.text.includes("Zivel Hollywood") && !page.text.includes("Zivel Buckhead"));
     if (file === mainFile) {
