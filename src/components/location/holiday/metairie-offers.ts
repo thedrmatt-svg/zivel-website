@@ -41,7 +41,10 @@ export const METAIRIE_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     } : index === 1 ? {
       price: "$100",
       purchaseUrl: "https://app.clubready.com/JoinUs/14831/657526",
-    } : {}),
+    } : {
+      price: "$200",
+      purchaseUrl: "https://app.clubready.com/JoinUs/14831/657527",
+    }),
     image: getLocationServiceImage("metairie", service),
     imageAlt: `${["Infrared sauna", "Dry float recovery", "Cryo slimming treatment"][index]} at Zivel Metairie`,
     action: "Buy Now",

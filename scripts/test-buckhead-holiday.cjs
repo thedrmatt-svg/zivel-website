@@ -191,10 +191,12 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       assert(offer.id.startsWith("metairie-"));
       const isFiftyGiftCard = offer.id === "metairie-gift-card-1";
       const isHundredGiftCard = offer.id === "metairie-gift-card-2";
-      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : undefined);
+      const isTwoHundredGiftCard = offer.id === "metairie-gift-card-3";
+      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/louisiana/metairie/pricing" ||
         (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657205") ||
-        (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657526"));
+        (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657526") ||
+        (isTwoHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657527"));
       assert(fs.existsSync(`public${offer.image}`));
     }
   }
@@ -206,10 +208,11 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 4);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 3);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? [] : ["https://app.clubready.com/JoinUs/14831/657205",
-        "https://app.clubready.com/JoinUs/14831/657526"]);
+        "https://app.clubready.com/JoinUs/14831/657526",
+        "https://app.clubready.com/JoinUs/14831/657527"]);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     assert(!page.text.includes("Zivel Hollywood") && !page.text.includes("Zivel Buckhead"));
     if (file === mainFile) {
