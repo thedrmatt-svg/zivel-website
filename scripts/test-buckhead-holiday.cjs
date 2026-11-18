@@ -33,7 +33,7 @@ const schema = page => page.querySelectorAll('script[type="application/ld+json"]
 const links = element => element.querySelectorAll("a")
   .map(a => a.getAttribute("href")).sort();
 
-test("only the eleven approved studios are holiday-enabled; other studios stay standard", async () => {
+test("only the twelve approved studios are holiday-enabled; other studios stay standard", async () => {
   const r = renderer(), standard = renderer(true);
   const { locations } = r.source("src/lib/data/locations");
   const config = r.source("src/components/location/holiday/holiday-location-config");
@@ -43,6 +43,7 @@ test("only the eleven approved studios are holiday-enabled; other studios stay s
       (location.stateSlug === "colorado" && ["parker", "briargate"].includes(location.citySlug)) ||
       (location.stateSlug === "utah" && location.citySlug === "riverton") ||
       (location.stateSlug === "louisiana" && location.citySlug === "metairie") ||
+      (location.stateSlug === "kentucky" && location.citySlug === "newport") ||
       (location.stateSlug === "arkansas" && ["rogers", "bentonville", "fayetteville"].includes(location.citySlug));
     assert.equal(config.isHolidayLocation(location.stateSlug, location.citySlug), enabled);
     if (enabled) continue;
@@ -478,22 +479,50 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
   assert.equal(pricing.querySelector("#pg-firstName"), null);
 });
 
-test("Newport stays on its existing standard pages while its holiday rollout is held", async () => {
+test("Newport restores its saved grouped holiday pages without changing regular pricing", async () => {
   const r = renderer(), standard = renderer(true);
   const p = { state: "kentucky", city: "newport", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
-  assert.deepEqual(data.getHolidayOffers(p.state, p.city), []);
-  assert.deepEqual(data.getHolidayPricingOffers(p.state, p.city), []);
+  const savedLinks = ["652095", "656490", "657029", "657030", "657031", "657057", "657058"]
+    .map(id => `https://app.clubready.com/JoinUs/14833/${id}`);
+  const pricingOffers = data.getHolidayPricingOffers(p.state, p.city);
+  assert.equal(pricingOffers.length, 12);
+  assert.deepEqual(pricingOffers.slice(0, 3).map(o => o.price), ["$50", "$100", "$200"]);
+  assert(pricingOffers.slice(0, 3).every(o => !o.description));
+  assert.equal(pricingOffers[5].title, "Single Slimming and Facial");
+  assert.equal(pricingOffers[5].price, "$199");
+  assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.title),
+    ["CryoFacial — 3 Sessions", "CryoFacial — 6 Sessions", "CryoFacial — 10 Sessions"]);
+  assert(pricingOffers.slice(6).every(o => !o.price));
+  assert(pricingOffers.every(o => fs.existsSync(`public${o.image}`)));
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
-    assert.equal(page.toString(), before.toString());
-    assert.equal(page.querySelector('section[aria-label="Holiday offers"]'), null);
+    const offers = page.querySelector('section[aria-label="Holiday offers"]');
+    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
+    assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
+      file === mainFile ? [] : savedLinks);
+    assert(!offers.text.includes("Riverton"));
+    if (file === pricingFile) {
+      assert.deepEqual(offers.querySelectorAll(".groupHeading").map(h => h.text),
+        ["Gift Cards", "Service Specials", "Membership Specials"]);
+      assert.deepEqual(offers.querySelectorAll("article").slice(9).map(c => c.querySelector("h2").text),
+        ["Core", "Premier", "Platinum"]);
+      assert.equal(offers.querySelector(".groupDescription").text,
+        '50% Off Membership 1st Month: Code "blackfriday" at checkout');
+      for (const id of ["memberships", "services", "packages"]) {
+        assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
+      }
+    } else {
+      assert(page.text.includes("Zivel Newport"));
+      assert(links(offers).includes("/locations/kentucky/newport/pricing"));
+    }
     assert.deepEqual(schema(page), schema(before), "Preserve Newport's existing schema");
     const meta = await r.source(file).generateMetadata({ params: Promise.resolve(p) });
     const standardMeta = await standard.source(file).generateMetadata({ params: Promise.resolve(p) });
     assert.deepEqual(meta, standardMeta, "Preserve Newport metadata");
   }
-  assert.deepEqual(r.gates, [{ citySlug: "newport", bypass: false }]);
+  assert.deepEqual(r.gates, [{ citySlug: "newport", bypass: true }]);
 });
 
 test("Riverton uses approved holiday offers and preserves local data", async () => {

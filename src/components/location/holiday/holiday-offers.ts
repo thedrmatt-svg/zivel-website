@@ -2,6 +2,7 @@ import { getLocationServiceImage } from "@/lib/data/location-service-images";
 import { METAIRIE_HOLIDAY_OFFERS, METAIRIE_HOLIDAY_PRICING_OFFERS } from "./metairie-offers";
 import { WINDERMERE_HOLIDAY_OFFERS, WINDERMERE_HOLIDAY_PRICING_OFFERS } from "./windermere-offers";
 import { BRIARGATE_HOLIDAY_OFFERS, BRIARGATE_HOLIDAY_PRICING_OFFERS } from "./briargate-offers";
+import { NEWPORT_HOLIDAY_OFFERS, NEWPORT_HOLIDAY_PRICING_OFFERS } from "./newport-offers";
 
 export type HolidayOffer = {
   id: string;
@@ -74,6 +75,7 @@ export const CORAL_GABLES_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "kentucky" && citySlug === "newport") return NEWPORT_HOLIDAY_OFFERS;
   if (stateSlug === "colorado" && citySlug === "briargate") return BRIARGATE_HOLIDAY_OFFERS;
   if (stateSlug === "georgia" && citySlug === "windermere") return WINDERMERE_HOLIDAY_OFFERS;
   if (stateSlug === "louisiana" && citySlug === "metairie") return METAIRIE_HOLIDAY_OFFERS;
@@ -222,6 +224,7 @@ export const PARKER_HOLIDAY_OFFERS: readonly HolidayOffer[] =
   }));
 
 export function getHolidayPricingOffers(stateSlug: string, citySlug: string): readonly HolidayOffer[] {
+  if (stateSlug === "kentucky" && citySlug === "newport") return NEWPORT_HOLIDAY_PRICING_OFFERS;
   if (stateSlug === "colorado" && citySlug === "briargate") return BRIARGATE_HOLIDAY_PRICING_OFFERS;
   if (stateSlug === "georgia" && citySlug === "windermere") return WINDERMERE_HOLIDAY_PRICING_OFFERS;
   if (stateSlug === "louisiana" && citySlug === "metairie") return METAIRIE_HOLIDAY_PRICING_OFFERS;

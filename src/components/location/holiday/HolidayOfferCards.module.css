@@ -161,6 +161,7 @@
 .card[data-offer-id^="fayetteville-gift-card-"] .price,
 .card[data-offer-id^="hollywood-gift-card-"] .price,
 .card[data-offer-id^="metairie-gift-card-"] .price,
+.card[data-offer-id^="newport-gift-card-"] .price,
 .card[data-offer-id^="briargate-"] .price,
 .card[data-offer-id^="windermere-"] .price {
   margin-bottom: .75rem;

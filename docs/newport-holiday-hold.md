@@ -1,38 +1,29 @@
-# Newport holiday work held for later
+# Newport holiday work resumed
 
-## Current release
+Newport's saved holiday main and pricing pages have been restored on the current
+codebase without resetting history or replacing other studios' newer changes.
+The original `hold/newport-holiday-work` branch remains preserved as a reference.
 
-`main` excludes the unfinished Newport holiday rollout. Newport's main and
-pricing pages retain their standard presentation and pricing signup behavior.
-The other six approved holiday locations remain enabled, including Riverton's
-latest membership prices, Essential membership, and hidden Session Packages.
+## Restored details
 
-All Newport work completed before this hold is preserved locally on
-`hold/newport-holiday-work`. This includes the holiday presentation, gift-card
-links, three CryoFacial package links, and the $199 Single Slimming and Facial
-special. Do not delete that branch.
+- Main page: Black Friday Great Eight ($99), BOGO Cryo Facial/Double Chin ($150),
+  and Gift Cards & More linked to Newport's own pricing page.
+- Pricing page: Gift Cards, two rows of Service Specials, then Membership Specials.
+- Gift cards: $50, $100, $200 with the previously supplied Newport links.
+- Single Slimming and Facial: $199 with its saved purchase link.
+- CryoFacial packages: 3, 6, and 10 sessions with their saved purchase links.
+- Core, Premier, and Platinum cards with the previously staged session benefits.
+- Membership section promotion: 50% off the first month with code `blackfriday`.
 
-## Push the non-Newport release
+## Still awaiting owner details
 
-In the **Replit workspace Shell**, while on `main`:
+- Checkout links for Great Eight and BOGO Cryo Facial/Double Chin.
+- Prices for the three CryoFacial packages.
+- Prices and checkout links for Core, Premier, and Platinum.
 
-```sh
-git push origin main
-```
+Missing checkout links remain disabled; no other studio's links are reused.
+Regular Newport pricing, metadata, schema, and business data remain unchanged.
+Newport's holiday configuration is now independent of Riverton's offer data.
+The holiday pricing signup pause follows the same setting as other enabled studios.
 
-Do not use `--all`, `--mirror`, or a force push. The saved branch is local; it
-will not be pushed by the command above. Existing historical commits may contain
-Newport work, but the final release tree excludes it. No history was rewritten.
-
-## Resume Newport later
-
-Stay on the latest `main`. The commit titled
-`Hold Newport holiday rollout while releasing other location updates` contains
-only the Newport holdback and its release guard test. Reverse that holdback
-in a new change to recover Newport's saved work, resolving any shared-file
-conflicts against newer changes carefully. Do not reset `main` to the saved
-branch or merge the old branch expecting it to undo the holdback.
-
-Recheck all studio offers and the position of Newport's Membership Specials
-after restoring its second Service Specials row. Complete Newport's missing
-details and links before its next release.
+Restoration does not itself commit, push, publish, or deploy these changes.
