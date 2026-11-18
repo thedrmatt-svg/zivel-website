@@ -192,6 +192,10 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       const isFiftyGiftCard = offer.id === "metairie-gift-card-1";
       const isHundredGiftCard = offer.id === "metairie-gift-card-2";
       const isTwoHundredGiftCard = offer.id === "metairie-gift-card-3";
+      if (isFiftyGiftCard || isHundredGiftCard || isTwoHundredGiftCard) {
+        const spend = isFiftyGiftCard ? 50 : isHundredGiftCard ? 100 : 200;
+        assert.equal(offer.description, `Spend $${spend} & get $${spend / 2} Promotional Holiday In-Store Credit`);
+      }
       assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/louisiana/metairie/pricing" ||
         (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657205") ||
@@ -209,6 +213,11 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
     assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 3);
+    if (file === pricingFile) {
+      for (const spend of [50, 100, 200]) {
+        assert(offers.text.includes(`Spend $${spend} & get $${spend / 2} Promotional Holiday In-Store Credit`));
+      }
+    }
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? [] : ["https://app.clubready.com/JoinUs/14831/657205",
         "https://app.clubready.com/JoinUs/14831/657526",

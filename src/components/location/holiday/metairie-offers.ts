@@ -35,6 +35,7 @@ export const METAIRIE_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   ...["infrared-sauna", "dry-float", "cryo-slimming"].map((service, index): HolidayOffer => ({
     id: `metairie-gift-card-${index + 1}`,
     title: "Gift Card",
+    description: `Spend $${[50, 100, 200][index]} & get $${[25, 50, 100][index]} Promotional Holiday In-Store Credit`,
     ...(index === 0 ? {
       price: "$50",
       purchaseUrl: "https://app.clubready.com/JoinUs/14831/657205",
