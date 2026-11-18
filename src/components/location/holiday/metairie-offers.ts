@@ -6,7 +6,10 @@ import type { HolidayOffer } from "./holiday-offers";
 export const METAIRIE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "metairie-recovery-special",
-    title: "Recovery Special",
+    title: "Day Pass",
+    description: "3 Recovery Sessions",
+    price: "$59",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14831/640981",
     image: getLocationServiceImage("metairie", "red-light-therapy"),
     imageAlt: "Red light therapy at Zivel Metairie",
     action: "Buy Now",
