@@ -19,8 +19,8 @@ export const METAIRIE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     title: "Cryo Slimming & mini-Facial",
     price: "$199",
     purchaseUrl: "https://app.clubready.com/JoinUs/14831/641166",
-    image: getLocationServiceImage("metairie", "cryo-lift-facial"),
-    imageAlt: "CryoFacial treatment at Zivel Metairie",
+    image: getLocationServiceImage("metairie", "cryo-slimming"),
+    imageAlt: "Cryo slimming treatment at Zivel Metairie",
     action: "Buy Now",
   },
   {
@@ -59,7 +59,8 @@ export const METAIRIE_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   METAIRIE_HOLIDAY_OFFERS[1],
   {
     id: "metairie-additional-special",
-    title: "Recovery Special",
+    title: "Holiday Membership Special",
+    price: "$99",
     image: getLocationServiceImage("metairie", "cryotherapy"),
     imageAlt: "Cryotherapy at Zivel Metairie",
     action: "Buy Now",

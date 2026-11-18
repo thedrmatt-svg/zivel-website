@@ -194,8 +194,17 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       const isTwoHundredGiftCard = offer.id === "metairie-gift-card-3";
       const isDayPass = offer.id === "metairie-recovery-special";
       const isSlimmingFacial = offer.id === "metairie-facial-special";
+      const isHolidayMembership = offer.id === "metairie-additional-special";
+      if (isHolidayMembership) {
+        assert.equal(offer.title, "Holiday Membership Special");
+        assert.equal(offer.description, undefined);
+        assert.equal(offer.purchaseUrl, undefined);
+      }
       if (isSlimmingFacial) {
         assert.equal(offer.title, "Cryo Slimming & mini-Facial");
+        assert.equal(offer.image,
+          r.source("src/lib/data/location-service-images").getLocationServiceImage("metairie", "cryo-slimming"));
+        assert.equal(offer.imageAlt, "Cryo slimming treatment at Zivel Metairie");
       }
       if (isDayPass) {
         assert.equal(offer.title, "Day Pass");
@@ -205,7 +214,7 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
         const spend = isFiftyGiftCard ? 50 : isHundredGiftCard ? 100 : 200;
         assert.equal(offer.description, `Spend $${spend} & get $${spend / 2} Promotional Holiday In-Store Credit`);
       }
-      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : isDayPass ? "$59" : isSlimmingFacial ? "$199" : undefined);
+      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : isDayPass ? "$59" : isSlimmingFacial ? "$199" : isHolidayMembership ? "$99" : undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/louisiana/metairie/pricing" ||
         (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657205") ||
         (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657526") ||
