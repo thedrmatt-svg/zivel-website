@@ -197,8 +197,9 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       const isHolidayMembership = offer.id === "metairie-additional-special";
       if (isHolidayMembership) {
         assert.equal(offer.title, "Holiday Membership Special");
-        assert.equal(offer.description, undefined);
-        assert.equal(offer.purchaseUrl, undefined);
+        assert.equal(offer.description, "$99 first month, $150 after.");
+        assert.equal(offer.additionalDescription, "Unlimited Recovery Services per Month.");
+        assert.equal(offer.purchaseUrl, "https://app.clubready.com/JoinUs/14831/657535");
       }
       if (isSlimmingFacial) {
         assert.equal(offer.title, "Cryo Slimming & mini-Facial");
@@ -220,7 +221,8 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
         (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657526") ||
         (isTwoHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657527") ||
         (isDayPass && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/640981") ||
-        (isSlimmingFacial && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/641166"));
+        (isSlimmingFacial && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/641166") ||
+        (isHolidayMembership && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657535"));
       assert(fs.existsSync(`public${offer.image}`));
     }
   }
@@ -232,7 +234,7 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
     const slimmingFacial = offers.querySelector('[data-offer-id="metairie-facial-special"]');
     assert(slimmingFacial.text.includes("Cryo Slimming & mini-Facial"));
     assert.equal(slimmingFacial.querySelector(".price").text, "$199");
@@ -241,6 +243,9 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
     assert(dayPass.text.includes("3 Recovery Sessions"));
     assert.equal(dayPass.querySelector(".price").text, "$59");
     if (file === pricingFile) {
+      const membership = offers.querySelector('[data-offer-id="metairie-additional-special"]');
+      assert(membership.text.includes("$99 first month, $150 after."));
+      assert(membership.text.includes("Unlimited Recovery Services per Month."));
       for (const spend of [50, 100, 200]) {
         assert(offers.text.includes(`Spend $${spend} & get $${spend / 2} Promotional Holiday In-Store Credit`));
       }
@@ -251,7 +256,8 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
         "https://app.clubready.com/JoinUs/14831/641166",
         "https://app.clubready.com/JoinUs/14831/657205",
         "https://app.clubready.com/JoinUs/14831/657526",
-        "https://app.clubready.com/JoinUs/14831/657527"]);
+        "https://app.clubready.com/JoinUs/14831/657527",
+        "https://app.clubready.com/JoinUs/14831/657535"]);
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     assert(!page.text.includes("Zivel Hollywood") && !page.text.includes("Zivel Buckhead"));
     if (file === mainFile) {
