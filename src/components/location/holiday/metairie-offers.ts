@@ -16,7 +16,9 @@ export const METAIRIE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   },
   {
     id: "metairie-facial-special",
-    title: "CryoFacial Special",
+    title: "Cryo Slimming & mini-Facial",
+    price: "$199",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14831/641166",
     image: getLocationServiceImage("metairie", "cryo-lift-facial"),
     imageAlt: "CryoFacial treatment at Zivel Metairie",
     action: "Buy Now",

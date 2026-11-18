@@ -193,6 +193,10 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       const isHundredGiftCard = offer.id === "metairie-gift-card-2";
       const isTwoHundredGiftCard = offer.id === "metairie-gift-card-3";
       const isDayPass = offer.id === "metairie-recovery-special";
+      const isSlimmingFacial = offer.id === "metairie-facial-special";
+      if (isSlimmingFacial) {
+        assert.equal(offer.title, "Cryo Slimming & mini-Facial");
+      }
       if (isDayPass) {
         assert.equal(offer.title, "Day Pass");
         assert.equal(offer.description, "3 Recovery Sessions");
@@ -201,12 +205,13 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
         const spend = isFiftyGiftCard ? 50 : isHundredGiftCard ? 100 : 200;
         assert.equal(offer.description, `Spend $${spend} & get $${spend / 2} Promotional Holiday In-Store Credit`);
       }
-      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : isDayPass ? "$59" : undefined);
+      assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : isDayPass ? "$59" : isSlimmingFacial ? "$199" : undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/louisiana/metairie/pricing" ||
         (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657205") ||
         (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657526") ||
         (isTwoHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/657527") ||
-        (isDayPass && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/640981"));
+        (isDayPass && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/640981") ||
+        (isSlimmingFacial && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14831/641166"));
       assert(fs.existsSync(`public${offer.image}`));
     }
   }
@@ -218,7 +223,10 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 2);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
+    const slimmingFacial = offers.querySelector('[data-offer-id="metairie-facial-special"]');
+    assert(slimmingFacial.text.includes("Cryo Slimming & mini-Facial"));
+    assert.equal(slimmingFacial.querySelector(".price").text, "$199");
     const dayPass = offers.querySelector('[data-offer-id="metairie-recovery-special"]');
     assert(dayPass.text.includes("Day Pass"));
     assert(dayPass.text.includes("3 Recovery Sessions"));
@@ -229,7 +237,9 @@ test("Metairie stages the approved holiday layout while retaining its own pricin
       }
     }
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? ["https://app.clubready.com/JoinUs/14831/640981"] : ["https://app.clubready.com/JoinUs/14831/640981",
+      file === mainFile ? ["https://app.clubready.com/JoinUs/14831/640981",
+        "https://app.clubready.com/JoinUs/14831/641166"] : ["https://app.clubready.com/JoinUs/14831/640981",
+        "https://app.clubready.com/JoinUs/14831/641166",
         "https://app.clubready.com/JoinUs/14831/657205",
         "https://app.clubready.com/JoinUs/14831/657526",
         "https://app.clubready.com/JoinUs/14831/657527"]);
