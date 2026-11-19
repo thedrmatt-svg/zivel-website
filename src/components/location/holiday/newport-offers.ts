@@ -63,13 +63,4 @@ export const NEWPORT_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     serviceOffer(`cryofacial-${sessions}-sessions`, `CryoFacial — ${sessions} Sessions`, "cryo-lift-facial", "CryoFacial treatment", {
       purchaseUrl: `https://app.clubready.com/JoinUs/14833/${checkout}`,
     })),
-  serviceOffer("membership-core", "Core", "cryotherapy", "Cryotherapy", {
-    description: "8 Recovery Services",
-  }),
-  serviceOffer("membership-premier", "Premier", "red-light-therapy", "Red light therapy", {
-    description: "20 Recovery Services",
-  }),
-  serviceOffer("membership-platinum", "Platinum", "cryo-soothe", "Cryo Soothe treatment", {
-    description: "30 Recovery Services, 1 CryoFacial, 1 Cryo Soothe",
-  }),
 ];
