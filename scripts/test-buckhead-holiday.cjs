@@ -483,12 +483,16 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   const r = renderer(), standard = renderer(true);
   const p = { state: "kentucky", city: "newport", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
-  const savedLinks = ["652095", "656490", "657029", "657030", "657031", "657057", "657058", "657705"]
+  const savedLinks = ["652095", "656490", "657029", "657030", "657031", "657057", "657058", "657705", "657707"]
     .map(id => `https://app.clubready.com/JoinUs/14833/${id}`);
   const pricingOffers = data.getHolidayPricingOffers(p.state, p.city);
   assert.equal(pricingOffers.length, 12);
   assert.deepEqual(pricingOffers.slice(0, 3).map(o => o.price), ["$50", "$100", "$200"]);
   assert(pricingOffers.slice(0, 3).every(o => !o.description));
+  assert.equal(pricingOffers[4].title, "Recovery Special");
+  assert.equal(pricingOffers[4].description, "5 Services");
+  assert.equal(pricingOffers[4].price, "$149");
+  assert.equal(pricingOffers[4].image, pricingOffers[0].image, "Use Newport's sauna image");
   assert.equal(pricingOffers[5].title, "Single Slimming and Facial");
   assert.equal(pricingOffers[5].price, "$199");
   assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.title),
@@ -499,9 +503,14 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     const page = await r.render(file, p), before = await standard.render(file, p);
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 4);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 3);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? ["https://app.clubready.com/JoinUs/14833/657705"] : savedLinks);
+      file === mainFile ? ["https://app.clubready.com/JoinUs/14833/657705", "https://app.clubready.com/JoinUs/14833/657707"] : savedLinks);
+    const fiveServiceRecovery = offers.querySelectorAll("article")[file === mainFile ? 1 : 4];
+    assert.equal(fiveServiceRecovery.querySelector("h2").text, "Recovery Special");
+    assert(fiveServiceRecovery.text.includes("5 Services"));
+    assert(fiveServiceRecovery.text.includes("$149"));
+    assert(!offers.text.includes("BOGO Cryo Facial/Double Chin"));
     const recovery = offers.querySelectorAll("article")[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("h2").text, "Recovery Special");
     assert(recovery.text.includes("3 Recovery Sessions"));

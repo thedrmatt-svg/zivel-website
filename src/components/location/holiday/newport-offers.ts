@@ -20,9 +20,10 @@ export const NEWPORT_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     description: "3 Recovery Sessions",
     purchaseUrl: "https://app.clubready.com/JoinUs/14833/657705",
   }),
-  serviceOffer("bogo-facial", "BOGO Cryo Facial/Double Chin", "cryo-lift-facial", "Cryo facial treatment", {
-    price: "$150",
-    description: "Buy One Get/Give One",
+  serviceOffer("five-service-recovery", "Recovery Special", "infrared-sauna", "Infrared sauna", {
+    price: "$149",
+    description: "5 Services",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14833/657707",
   }),
   {
     id: "newport-gift-cards",
