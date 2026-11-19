@@ -15,9 +15,10 @@ const serviceOffer = (
 });
 
 export const NEWPORT_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
-  serviceOffer("6-pack-recovery", "Black Friday Great Eight", "red-light-therapy", "Red light therapy", {
+  serviceOffer("6-pack-recovery", "Recovery Special", "red-light-therapy", "Red light therapy", {
     price: "$99",
-    description: "8 Recovery Services",
+    description: "3 Recovery Sessions",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14833/657705",
   }),
   serviceOffer("bogo-facial", "BOGO Cryo Facial/Double Chin", "cryo-lift-facial", "Cryo facial treatment", {
     price: "$150",

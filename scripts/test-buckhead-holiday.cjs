@@ -483,7 +483,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   const r = renderer(), standard = renderer(true);
   const p = { state: "kentucky", city: "newport", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
-  const savedLinks = ["652095", "656490", "657029", "657030", "657031", "657057", "657058"]
+  const savedLinks = ["652095", "656490", "657029", "657030", "657031", "657057", "657058", "657705"]
     .map(id => `https://app.clubready.com/JoinUs/14833/${id}`);
   const pricingOffers = data.getHolidayPricingOffers(p.state, p.city);
   assert.equal(pricingOffers.length, 12);
@@ -499,9 +499,13 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     const page = await r.render(file, p), before = await standard.render(file, p);
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 2 : 5);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 4);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? [] : savedLinks);
+      file === mainFile ? ["https://app.clubready.com/JoinUs/14833/657705"] : savedLinks);
+    const recovery = offers.querySelectorAll("article")[file === mainFile ? 0 : 3];
+    assert.equal(recovery.querySelector("h2").text, "Recovery Special");
+    assert(recovery.text.includes("3 Recovery Sessions"));
+    assert(recovery.text.includes("$99"));
     assert(!offers.text.includes("Riverton"));
     if (file === pricingFile) {
       assert.deepEqual(offers.querySelectorAll(".groupHeading").map(h => h.text),
