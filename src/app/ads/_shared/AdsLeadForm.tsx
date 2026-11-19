@@ -25,6 +25,7 @@ interface Props {
   referralOptions?: string[];
   offerOptions?: string[];
   formNote?: string;
+  phonePlaceholder?: string;
 }
 
 export default function AdsLeadForm({
@@ -34,6 +35,7 @@ export default function AdsLeadForm({
   referralOptions,
   offerOptions,
   formNote = "New clients only · No spam, ever.",
+  phonePlaceholder = "(385) 555-0123",
 }: Props) {
   const uid = useId();
   const requiresCampaignSelections = Boolean(referralOptions || offerOptions);
@@ -103,7 +105,7 @@ export default function AdsLeadForm({
             type="tel"
             required
             autoComplete="tel"
-            placeholder="(385) 555-0123"
+            placeholder={phonePlaceholder}
             maxLength={30}
             className={inputClass}
           />

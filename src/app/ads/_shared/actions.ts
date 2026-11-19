@@ -24,6 +24,7 @@ const ALLOWED_SOURCES: ReadonlySet<string> = new Set([
   "Utah Royals Google Ads",
   "FanX Google Ads",
   "Buckhead Fighter Ad",
+  "Coral Gables Rilion Gracie Ad",
 ]);
 
 /** Allowlist — must match the <option> values in AdsLeadForm. */
@@ -120,8 +121,8 @@ function buildLeadHtml({
   const safeReferrer = escapeHtml(referrer);
   const safeOffer    = escapeHtml(offer);
   const safeSource  = escapeHtml(source);
-  const sourceDescription = source === "Buckhead Fighter Ad"
-    ? "Buckhead Fighter Ad"
+  const sourceDescription = source === "Buckhead Fighter Ad" || source === "Coral Gables Rilion Gracie Ad"
+    ? safeSource
     : "Google Ads Landing Page";
   const telHref     = toTelHref(phone);        // digits + '+' only
   const mailtoHref  = email ? `mailto:${encodeURIComponent(email)}` : "";
@@ -223,8 +224,11 @@ export type AdsLeadState = {
 
 const TO_ADDRESSES = ["vtzk5gc2@robot.zapier.com", "jackson@zivel.com"];
 const BUCKHEAD_FIGHTER_TO_ADDRESSES = ["buckhead@zivel.com", "flanagan@zivel.com"];
+const CORAL_GABLES_FIGHTER_TO_ADDRESSES = ["coralgables@zivel.com", "mikeaguirre@zivel.com"];
 
 export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
+  const fallbackPhone = formData.get("source") === "Coral Gables Rilion Gracie Ad"
+    ? "(786) 527-0842" : "(385) 443-8778";
   // ── Honeypot — bots fill this; real users leave it empty ──────────────────
   const honeypot = (formData.get("website") as string ?? "").trim();
   if (honeypot) {
@@ -242,7 +246,7 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
   if (isRateLimited(ip)) {
     return {
       status: "error",
-      message: "Too many requests. Please wait a minute and try again, or call us at (385) 443-8778.",
+      message: `Too many requests. Please wait a minute and try again, or call us at ${fallbackPhone}.`,
     };
   }
 
@@ -273,10 +277,13 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
   // ── Service allowlist ─────────────────────────────────────────────────────
   const safeService = ALLOWED_SERVICES.has(service) ? service : "General information";
   const isBuckheadFighterLead = source === "Buckhead Fighter Ad";
-  const safeReferrer = ALLOWED_REFERRERS.has(referrer) ? referrer : "";
+  const isCoralGablesFighterLead = source === "Coral Gables Rilion Gracie Ad";
+  const safeReferrer = isCoralGablesFighterLead
+    ? (referrer === "Rilion Gracie" ? referrer : "")
+    : (ALLOWED_REFERRERS.has(referrer) ? referrer : "");
   const safeOffer = ALLOWED_OFFERS.has(offer) ? offer : "";
 
-  if (isBuckheadFighterLead && (!safeReferrer || !safeOffer || !ALLOWED_SERVICES.has(service))) {
+  if ((isBuckheadFighterLead || isCoralGablesFighterLead) && (!safeReferrer || !safeOffer || !ALLOWED_SERVICES.has(service))) {
     return { status: "error", message: "Please select a referral source, training offer, and service." };
   }
 
@@ -290,7 +297,7 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error("[AdsLead] RESEND_API_KEY not configured");
-    return { status: "error", message: "Something went wrong. Please call us at (385) 443-8778." };
+    return { status: "error", message: `Something went wrong. Please call us at ${fallbackPhone}.` };
   }
 
   const html = buildLeadHtml({
@@ -308,6 +315,8 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
     const recipients =
       safeSource === "Buckhead Fighter Ad"
         ? BUCKHEAD_FIGHTER_TO_ADDRESSES
+        : safeSource === "Coral Gables Rilion Gracie Ad"
+          ? CORAL_GABLES_FIGHTER_TO_ADDRESSES
         : TO_ADDRESSES;
     const { error } = await resend.emails.send({
       from: "Zivel Website <no-reply@zivel.com>",
@@ -319,12 +328,12 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
 
     if (error) {
       console.error("[AdsLead] Resend error:", error);
-      return { status: "error", message: "Something went wrong. Please call us at (385) 443-8778." };
+      return { status: "error", message: `Something went wrong. Please call us at ${fallbackPhone}.` };
     }
 
     return { status: "success", message: "Thanks! Our team will be in touch shortly." };
   } catch (err) {
     console.error("[AdsLead] Unexpected error:", err);
-    return { status: "error", message: "Something went wrong. Please call us at (385) 443-8778." };
+    return { status: "error", message: `Something went wrong. Please call us at ${fallbackPhone}.` };
   }
 }
