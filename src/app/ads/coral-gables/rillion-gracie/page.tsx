@@ -212,17 +212,41 @@ export default function RilionGraciePage() {
 
         <section className={styles.locationSection}>
           <div className={`${styles.wrap} ${styles.locationGrid}`}>
-            <div>
+            <div className={styles.locationIntro}>
               <p className={styles.kicker}>Right here in Coral Gables</p>
               <h2 className={styles.sectionTitle}>A local stop<br /><span>between sessions.</span></h2>
+              <p className={styles.gymDistance}>About 12 minutes from the gym.</p>
             </div>
-            <div className={styles.locationCard}>
-              <span className={styles.locationPin} aria-hidden="true" />
-              <p className={styles.locationName}>Zivel Coral Gables</p>
-              <address>348 Minorca Ave<br />Coral Gables, FL 33134</address>
-              <div className={styles.locationLinks}>
-                <Link href={LOCATION_URL}>Studio details</Link>
-                <a href={TEL}>{PHONE}</a>
+            <div className={styles.locationContent}>
+              <div className={styles.mapPanel}>
+                <iframe
+                  className={styles.locationMap}
+                  src="https://maps.google.com/maps?q=Zivel%20Coral%20Gables%20348%20Minorca%20Ave%20Coral%20Gables%20FL%2033134&output=embed"
+                  title="Map showing Zivel Coral Gables at 348 Minorca Ave, Coral Gables, Florida"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className={styles.mapActions}>
+                  <p className={styles.driveQualifier}>Drive time varies with traffic.</p>
+                  <a
+                    className={styles.directionsButton}
+                    href="https://www.google.com/maps/dir/?api=1&origin=Rilion+Gracie+Miami&destination=Zivel+Coral+Gables%2C+348+Minorca+Ave%2C+Coral+Gables%2C+FL+33134&travelmode=driving"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Get directions on Google Maps
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+              <div className={styles.locationCard}>
+                <span className={styles.locationPin} aria-hidden="true" />
+                <p className={styles.locationName}>Zivel Coral Gables</p>
+                <address>348 Minorca Ave<br />Coral Gables, FL 33134</address>
+                <div className={styles.locationLinks}>
+                  <Link href={LOCATION_URL}>Studio details</Link>
+                  <a href={TEL}>{PHONE}</a>
+                </div>
               </div>
             </div>
           </div>

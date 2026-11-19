@@ -25,7 +25,7 @@
   text-transform: uppercase; letter-spacing: .15em; transition: transform .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
 }
 .button:hover, .button:focus-visible { transform: translateY(-2px); background: var(--orange-bright); border-color: var(--orange-bright); }
-.button:focus-visible, .outlineButton:focus-visible, .phone:focus-visible, .offerButton:focus-visible, .locationTextLink:focus-visible, .thankLink:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.button:focus-visible, .outlineButton:focus-visible, .phone:focus-visible, .offerButton:focus-visible, .locationTextLink:focus-visible, .directionsButton:focus-visible, .thankLink:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
 .topbar { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid rgba(255,255,255,.12); background: rgba(17,16,15,.91); backdrop-filter: blur(16px); }
 .nav { height: 78px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .brandLockup { display: flex; align-items: center; gap: 15px; }
@@ -121,7 +121,17 @@
 .faqPanel p { max-width: 800px; margin: 0; padding: 0 50px 23px 0; color: rgba(255,255,255,.65); font-size: 15px; line-height: 1.75; }
 
 .locationSection { padding: 86px 0; background: #24201c; }
-.locationGrid { display: grid; grid-template-columns: 1fr 390px; align-items: center; gap: 70px; }
+.locationGrid { display: grid; gap: 34px; }
+.locationIntro { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; column-gap: 32px; }
+.locationIntro .kicker, .locationIntro .sectionTitle { grid-column: 1; }
+.gymDistance { grid-column: 2; grid-row: 2; margin: 0 0 4px; color: var(--orange-bright); font: 800 14px/1.45 var(--font-rilion-display), sans-serif; letter-spacing: .025em; }
+.locationContent { display: grid; grid-template-columns: minmax(0,1.55fr) minmax(250px,.75fr); align-items: stretch; gap: 22px; }
+.mapPanel { min-width: 0; padding: 10px; border: 1px solid rgba(255,255,255,.12); background: rgba(12,11,10,.48); }
+.locationMap { display: block; width: 100%; height: 350px; border: 0; background: #d8d2c8; }
+.mapActions { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 13px 5px 3px; }
+.driveQualifier { margin: 0; color: rgba(255,255,255,.53); font-size: 11px; line-height: 1.5; }
+.directionsButton { display: inline-flex; min-height: 48px; flex: none; align-items: center; justify-content: center; gap: 16px; padding: 0 18px; background: var(--orange); color: #17110d; text-decoration: none; font: 850 10px/1.3 var(--font-rilion-display), sans-serif; letter-spacing: .11em; text-transform: uppercase; transition: transform .2s ease, background-color .2s ease; }
+.directionsButton:hover { transform: translateY(-2px); background: var(--orange-bright); }
 .locationCard { position: relative; padding: 28px 30px; border-left: 3px solid var(--orange); background: rgba(255,255,255,.045); }
 .locationPin { display: block; width: 10px; height: 10px; margin-bottom: 18px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 6px rgba(244,112,32,.15); }
 .locationName { margin: 0 0 9px; font: 850 18px var(--font-rilion-display), sans-serif; text-transform: uppercase; }
@@ -175,7 +185,9 @@
   .offerGrid { gap: 13px; }
   .offerCard { padding: 25px 21px; }
   .requestGrid { grid-template-columns: minmax(0,1fr) 370px; gap: 38px; }
-  .locationGrid { grid-template-columns: 1fr 340px; gap: 38px; }
+  .locationContent { grid-template-columns: minmax(0,1.25fr) minmax(230px,.75fr); gap: 16px; }
+  .locationMap { height: 310px; }
+  .mapActions { align-items: flex-start; flex-direction: column; gap: 10px; }
   .thankGrid { gap: 45px; }
 }
 
@@ -213,7 +225,13 @@
   .offerGrid { grid-template-columns: 1fr; gap: 14px; }
   .offerCard.featured { order: -1; }
   .locationSection { padding: 70px 0; }
-  .locationGrid { grid-template-columns: 1fr; gap: 30px; }
+  .locationGrid { gap: 25px; }
+  .locationIntro { display: block; }
+  .gymDistance { margin-top: 17px; }
+  .locationContent { grid-template-columns: 1fr; gap: 15px; }
+  .locationMap { height: clamp(250px, 72vw, 360px); }
+  .mapActions { align-items: stretch; }
+  .directionsButton { width: 100%; justify-content: space-between; }
   .locationCard { max-width: 430px; }
   .requestGrid { grid-template-columns: 1fr; gap: 38px; }
   .formCard { padding: 24px 20px; }

@@ -125,6 +125,23 @@ test("Landing page has scoped branding, working form configuration and local lin
   assert(page.querySelector('input[name="name"][required]'));
   assert(page.querySelector('input[name="phone"][required]'));
   assert(page.querySelector('a[href="tel:+17865270842"]'));
+  assert(page.text.includes("About 12 minutes from the gym"));
+  assert(page.text.includes("Drive time varies with traffic"));
+  const map = page.querySelector('iframe');
+  assert(map, "Google map is embedded");
+  assert(map.getAttribute("title"), "Map has an accessible title");
+  const mapUrl = new URL(map.getAttribute("src"));
+  assert.equal(mapUrl.hostname, "maps.google.com");
+  assert(mapUrl.searchParams.get("q").includes("348 Minorca Ave"));
+  assert.equal(mapUrl.searchParams.get("output"), "embed");
+  const directions = page.querySelector('a[href^="https://www.google.com/maps/dir/"]');
+  assert(directions, "Google driving directions are available");
+  const directionsUrl = new URL(directions.getAttribute("href"));
+  assert.equal(directionsUrl.searchParams.get("origin"), "Rilion Gracie Miami");
+  assert(directionsUrl.searchParams.get("destination").includes("348 Minorca Ave"));
+  assert.equal(directionsUrl.searchParams.get("travelmode"), "driving");
+  assert.equal(directions.getAttribute("target"), "_blank");
+  assert(directions.getAttribute("rel").includes("noopener"));
   for (const link of page.querySelectorAll('a[href^="#"]')) {
     assert(page.querySelector(link.getAttribute("href")), `Anchor ${link.getAttribute("href")} exists`);
   }
