@@ -82,9 +82,10 @@
 .trainingNote { padding: 70px 0; background: var(--paper); color: #1a1714; }
 .trainingGrid { display: grid; grid-template-columns: 75px 1.1fr .9fr; align-items: center; gap: 38px; }
 .trainingMark { align-self: start; color: var(--orange); font: 900 29px var(--font-rilion-display), sans-serif; letter-spacing: -.08em; }
-.trainingTitle { margin: 14px 0 0; font: 900 clamp(2rem, 4vw, 3.85rem)/.97 var(--font-rilion-display), sans-serif; letter-spacing: -.07em; text-transform: uppercase; }
-.trainingTitle span { color: #c75516; }
-.trainingCopy { margin: 0; max-width: 420px; color: rgba(26,23,20,.69); font-size: 16px; line-height: 1.75; }
+.trainingTitle { margin: 14px 0 0; color: #000; font: 900 clamp(2rem, 4vw, 3.85rem)/.97 var(--font-rilion-display), sans-serif; letter-spacing: -.07em; text-transform: uppercase; }
+.trainingTitle span { color: #000; }
+.trainingNote .kicker, .trainingMark { color: #9a3b0a; }
+.trainingCopy { margin: 0; max-width: 420px; color: #000; font-size: 16px; line-height: 1.75; }
 
 .offers { padding: 112px 0 106px; background: radial-gradient(ellipse at 50% 0, rgba(244,112,32,.12), transparent 40%), #11100f; border-top: 1px solid rgba(244,112,32,.2); }
 .offersHead { max-width: 720px; margin: 0 auto 52px; text-align: center; }
