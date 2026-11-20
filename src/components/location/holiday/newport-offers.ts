@@ -84,5 +84,7 @@ export const NEWPORT_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   }),
   serviceOffer("slimming-special-3", "Cryo Slimming Special", "cryo-slimming", "Cryo slimming treatment", {
     description: "10 Cryo Slimming Sessions",
+    price: "$1,592",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14833/657028",
   }),
 ];
