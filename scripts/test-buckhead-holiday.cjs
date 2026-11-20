@@ -483,7 +483,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   const r = renderer(), standard = renderer(true);
   const p = { state: "kentucky", city: "newport", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
-  const savedLinks = ["656490", "657029", "657030", "657031", "657057", "657058", "657705", "657707"]
+  const savedLinks = ["656490", "657029", "657030", "657031", "657057", "657058", "657705", "657707", "657759"]
     .map(id => `https://app.clubready.com/JoinUs/14833/${id}`);
   const pricingOffers = data.getHolidayPricingOffers(p.state, p.city);
   assert.equal(pricingOffers.length, 12);
@@ -497,7 +497,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   assert.equal(pricingOffers[5].description, "8 Services");
   assert.equal(pricingOffers[5].image, pricingOffers[1].image, "Use Newport's float image");
   assert.equal(pricingOffers[5].imageAlt, "Dry float recovery at Zivel Newport");
-  assert.equal(pricingOffers[5].purchaseUrl, undefined);
+  assert.equal(pricingOffers[5].purchaseUrl, "https://app.clubready.com/JoinUs/14833/657759");
   assert.equal(pricingOffers[5].price, "$199");
   assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.title),
     ["CryoFacial — 3 Sessions", "CryoFacial — 6 Sessions", "CryoFacial — 10 Sessions"]);
@@ -509,13 +509,13 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     const page = await r.render(file, p), before = await standard.render(file, p);
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 4);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 3);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? ["https://app.clubready.com/JoinUs/14833/657705"] : savedLinks);
+      file === mainFile ? ["https://app.clubready.com/JoinUs/14833/657705", "https://app.clubready.com/JoinUs/14833/657759"] : savedLinks);
     const slimming = offers.querySelectorAll("article")[file === mainFile ? 1 : 5];
     assert.equal(slimming.querySelector("h2").text, "Recovery Special");
     assert(slimming.text.includes("8 Services"));
-    assert(slimming.querySelector("button[disabled]"));
+    assert(slimming.querySelector('a[href="https://app.clubready.com/JoinUs/14833/657759"]'));
     assert(slimming.text.includes("$199"));
     assert.equal(slimming.querySelector("img").getAttribute("src"), pricingOffers[5].image);
     assert(!slimming.text.toLowerCase().includes("facial"));

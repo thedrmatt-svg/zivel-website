@@ -17,6 +17,7 @@ const serviceOffer = (
 const eightServiceRecoveryOffer = serviceOffer("eight-service-recovery", "Recovery Special", "dry-float", "Dry float recovery", {
   price: "$199",
   description: "8 Services",
+  purchaseUrl: "https://app.clubready.com/JoinUs/14833/657759",
 });
 
 const fiveServiceRecoveryOffer = serviceOffer("five-service-recovery", "Recovery Special", "infrared-sauna", "Infrared sauna", {
