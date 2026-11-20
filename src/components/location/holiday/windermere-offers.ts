@@ -22,15 +22,15 @@ export const WINDERMERE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   },
   {
     id: "windermere-gift-cards",
-    title: "Gift Cards & More",
+    title: "GIFTS & EXCLUSIVE DEALS",
     price: "$50+",
-    description: "Give the Gift of Feeling Better",
+    description: "Gift Cards • Premium Packages • Holiday Offers",
     image: getLocationServiceImage("highlands-ranch", "infrared-sauna"),
     imageAlt: "Two people relaxing together in an infrared sauna",
     imagePosition: "right 40%",
     imageZoom: 1.3,
     purchaseUrl: "/locations/georgia/windermere/pricing",
-    action: "Gift Cards & More",
+    action: "Explore Holiday Gifts",
   },
 ];
 

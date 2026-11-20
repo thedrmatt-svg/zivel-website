@@ -306,7 +306,7 @@ test("Hollywood stages holiday pages without borrowed offers or changes to regul
       if (isFacial) assert.equal(offer.title, "CryoFacial Deal");
       assert.equal(offer.price, isFiftyGiftCard ? "$50" : isHundredGiftCard ? "$100" : isTwoHundredGiftCard ? "$200" : isRecovery ? "$99" : isFacial ? "$159" : isFacialPackage ? "$625" : undefined);
       assert.equal(offer.description, getter === "getHolidayOffers" && offer.id === "hollywood-gift-cards"
-        ? "Give the Gift of Feeling Better" : isRecovery ? "8 Recovery Services" : isFacial ? "CryoFacial session and 1 Day Pass" : isFacialPackage ? "Buy 5 Get 1 Free" : undefined);
+        ? "Gift Cards • Premium Packages • Holiday Offers" : isRecovery ? "8 Recovery Services" : isFacial ? "CryoFacial session and 1 Day Pass" : isFacialPackage ? "Buy 5 Get 1 Free" : undefined);
       assert(!offer.purchaseUrl || offer.purchaseUrl === "/locations/florida/hollywood/pricing" ||
         (isFiftyGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657202") ||
         (isHundredGiftCard && offer.purchaseUrl === "https://app.clubready.com/JoinUs/14829/657203") ||
@@ -479,6 +479,24 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
   assert.equal(pricing.querySelector("#pg-firstName"), null);
 });
 
+test("All holiday location overview cards use the approved gifts copy and their own pricing links", async () => {
+  const r = renderer();
+  const { locations } = r.source("src/lib/data/locations");
+  const { isHolidayLocation } = r.source("src/components/location/holiday/holiday-location-config");
+  let count = 0;
+  for (const location of locations) {
+    if (!isHolidayLocation(location.stateSlug, location.citySlug)) continue;
+    const page = await r.render(mainFile, { state: location.stateSlug, city: location.citySlug, locale: "en" });
+    const card = page.querySelector('section[aria-label="Holiday offers"]').querySelectorAll("article")[2];
+    assert.equal(card.querySelector("h2").text, "GIFTS & EXCLUSIVE DEALS", location.citySlug);
+    assert.equal(card.querySelector(".description").text, "Gift Cards • Premium Packages • Holiday Offers", location.citySlug);
+    assert(card.querySelector("a").text.includes("Explore Holiday Gifts"), location.citySlug);
+    assert.equal(card.querySelector("a").getAttribute("href"), `/locations/${location.stateSlug}/${location.citySlug}/pricing`);
+    count++;
+  }
+  assert.equal(count, 12);
+});
+
 test("Newport restores its saved grouped holiday pages without changing regular pricing", async () => {
   const r = renderer(), standard = renderer(true);
   const p = { state: "kentucky", city: "newport", locale: "en" };
@@ -620,7 +638,7 @@ test("Riverton uses approved holiday offers and preserves local data", async () 
     assert.equal(offers.querySelector(".disclaimer").text, data.HOLIDAY_OFFER_DISCLAIMER);
     if (file === mainFile) {
       assert.equal(page.querySelector("#location-hero-title").text, "HOLIDAY SPECIALS");
-      assert.equal(cards[2].querySelector("h2").text, "Gift Cards & More");
+      assert.equal(cards[2].querySelector("h2").text, "GIFTS & EXCLUSIVE DEALS");
       assert.equal(cards[2].querySelector("a").getAttribute("href"), "/locations/utah/riverton/pricing");
       assert(page.text.includes("2722 W 12600 S #1, Riverton, UT 84065"));
       for (const link of links(before).filter(link => link.includes("clubready") || link.startsWith("tel:"))) {
@@ -909,7 +927,7 @@ test("Parker shows approved custom holiday offers and checkout links while prese
     if (file === mainFile) {
       assert.equal(page.querySelector("#location-hero-title").text, "HOLIDAY SPECIALS");
       assert.equal(cards[2].querySelector("a").getAttribute("href"), "/locations/colorado/parker/pricing");
-      assert.equal(cards[2].querySelector("h2").text, "Gift Cards & More");
+      assert.equal(cards[2].querySelector("h2").text, "GIFTS & EXCLUSIVE DEALS");
       assert(links(page).some(link => link.includes("set_location=11680")));
       assert(page.text.includes("(720) 366-3622"));
     } else {
@@ -995,7 +1013,7 @@ test("Coral Gables uses identical offers without Buckhead checkout links and pre
     assert.equal(offers.querySelector(".disclaimer").text, offersData.HOLIDAY_OFFER_DISCLAIMER);
     if (file === mainFile) {
       assert.equal(cards[2].querySelector("a").getAttribute("href"), "/locations/florida/coral-gables/pricing");
-      assert.equal(cards[2].querySelector("h2").text, "Gift Cards & More");
+      assert.equal(cards[2].querySelector("h2").text, "GIFTS & EXCLUSIVE DEALS");
       const beforeLinks = links(before).filter(link => link.includes("clubready") || link.startsWith("tel:"));
       assert(beforeLinks.length > 0);
       for (const link of beforeLinks) assert(links(page).includes(link));
@@ -1033,10 +1051,10 @@ test("Buckhead main retains schema, services, and booking identity with the supp
   const offer = page.querySelector('section[aria-label="Holiday offers"]');
   assert.equal(offer.querySelectorAll("article").length, 3);
   const giftCard = offer.querySelectorAll("article")[2];
-  assert.equal(giftCard.querySelector("h2").text, "Gift Cards & More");
+  assert.equal(giftCard.querySelector("h2").text, "GIFTS & EXCLUSIVE DEALS");
   assert.equal(giftCard.querySelector(".price").text, "$50+");
-  assert(giftCard.querySelector("a").text.includes("Gift Cards & More"));
-  assert.equal(giftCard.querySelector(".description").text, "Give the Gift of Feeling Better");
+  assert(giftCard.querySelector("a").text.includes("Explore Holiday Gifts"));
+  assert.equal(giftCard.querySelector(".description").text, "Gift Cards • Premium Packages • Holiday Offers");
   assert.equal(giftCard.querySelector("img").getAttribute("src"), "/locations/highlands-ranch/services/infrared-sauna.jpg");
   assert.equal(giftCard.querySelector("a").getAttribute("href"), "/locations/georgia/buckhead/pricing");
   assert.equal(offer.querySelector("h2").text, "6 Pack Recovery");

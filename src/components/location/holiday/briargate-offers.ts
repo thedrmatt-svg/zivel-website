@@ -24,14 +24,14 @@ export const BRIARGATE_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   },
   {
     id: "briargate-gift-cards",
-    title: "Gift Cards & More",
-    description: "Give the Gift of Feeling Better",
+    title: "GIFTS & EXCLUSIVE DEALS",
+    description: "Gift Cards • Premium Packages • Holiday Offers",
     image: getLocationServiceImage("highlands-ranch", "infrared-sauna"),
     imageAlt: "Two people relaxing together in an infrared sauna",
     imagePosition: "right 40%",
     imageZoom: 1.3,
     purchaseUrl: "/locations/colorado/briargate/pricing",
-    action: "Gift Cards & More",
+    action: "Explore Holiday Gifts",
   },
 ];
 
