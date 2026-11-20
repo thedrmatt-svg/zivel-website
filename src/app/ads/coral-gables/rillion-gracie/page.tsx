@@ -63,8 +63,8 @@ const OFFERS_SECTION = [
     name: "Fighter Membership",
     price: "$69",
     priceDetail: "first month · then $139/month",
-    description: "Make recovery part of your training schedule with unlimited recovery services every month.",
-    benefits: ["Unlimited recovery services per month", "Over 20% savings", "30-day cancellation notice"],
+    description: "Make recovery part of your training schedule with 14 recovery services every month.",
+    benefits: ["14 recovery services per month", "Over 20% savings", "30-day cancellation notice"],
     featured: true,
   },
 ];
@@ -198,7 +198,7 @@ export default function RilionGraciePage() {
                   <p className={styles.offerPrice}>{offer.price}</p>
                   <p className={styles.offerPriceDetail}>{offer.priceDetail ?? "\u00a0"}</p>
                   <p className={styles.offerDescription}>{offer.description}</p>
-                  {offer.featured && <strong className={styles.savings}>Save over 20% with unlimited recovery</strong>}
+                  {offer.featured && <strong className={styles.savings}>Save over 20% with 14 recovery services per month</strong>}
                   <ul className={styles.offerBenefits}>{offer.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}</ul>
                   <a className={styles.offerButton} href="#request">Ask about this offer</a>
                 </article>
