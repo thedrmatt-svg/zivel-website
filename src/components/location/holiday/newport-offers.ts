@@ -77,8 +77,12 @@ export const NEWPORT_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     price: "$674",
     purchaseUrl: "https://app.clubready.com/JoinUs/14833/657026",
   }),
-  ...[2, 3].map(number =>
-    serviceOffer(`slimming-special-${number}`, "Slimming Special", "cryo-slimming", "Cryo slimming treatment", {
-      description: "Details coming soon",
-    })),
+  serviceOffer("slimming-special-2", "Cryo Slimming Special", "cryo-slimming", "Cryo slimming treatment", {
+    description: "6 Cryo Slimming Sessions",
+    price: "$1,128",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14833/657027",
+  }),
+  serviceOffer("slimming-special-3", "Cryo Slimming Special", "cryo-slimming", "Cryo slimming treatment", {
+    description: "10 Cryo Slimming Sessions",
+  }),
 ];

@@ -501,7 +501,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   const r = renderer(), standard = renderer(true);
   const p = { state: "kentucky", city: "newport", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
-  const savedLinks = ["656490", "657026", "657029", "657030", "657031", "657057", "657058", "657705", "657707", "657759"]
+  const savedLinks = ["656490", "657026", "657027", "657029", "657030", "657031", "657057", "657058", "657705", "657707", "657759"]
     .map(id => `https://app.clubready.com/JoinUs/14833/${id}`);
   const pricingOffers = data.getHolidayPricingOffers(p.state, p.city);
   assert.equal(pricingOffers.length, 12);
@@ -524,14 +524,21 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   assert.equal(pricingOffers[9].description, "3 Cryo Slimming Sessions");
   assert.equal(pricingOffers[9].price, "$674");
   assert.equal(pricingOffers[9].purchaseUrl, "https://app.clubready.com/JoinUs/14833/657026");
-  assert(pricingOffers.slice(10).every(o => o.title === "Slimming Special" && !o.price && !o.purchaseUrl));
+  assert.equal(pricingOffers[10].title, "Cryo Slimming Special");
+  assert.equal(pricingOffers[10].description, "6 Cryo Slimming Sessions");
+  assert.equal(pricingOffers[10].price, "$1,128");
+  assert.equal(pricingOffers[10].purchaseUrl, "https://app.clubready.com/JoinUs/14833/657027");
+  assert.equal(pricingOffers[11].title, "Cryo Slimming Special");
+  assert.equal(pricingOffers[11].description, "10 Cryo Slimming Sessions");
+  assert.equal(pricingOffers[11].price, undefined);
+  assert.equal(pricingOffers[11].purchaseUrl, undefined);
   assert(pricingOffers.slice(9).every(o => o.image === pricingOffers[2].image));
   assert(pricingOffers.every(o => fs.existsSync(`public${o.image}`)));
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 2);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 1);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? ["https://app.clubready.com/JoinUs/14833/652095", "https://app.clubready.com/JoinUs/14833/657705"] : savedLinks);
     const slimming = offers.querySelectorAll("article")[file === mainFile ? 1 : 5];
