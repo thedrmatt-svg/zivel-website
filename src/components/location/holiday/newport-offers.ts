@@ -14,17 +14,24 @@ const serviceOffer = (
   ...details,
 });
 
+const slimmingOffer = serviceOffer("body-contouring-five-pack", "Single Slimming", "cryo-slimming", "Cryo slimming treatment", {
+  price: "$199",
+  purchaseUrl: "https://app.clubready.com/JoinUs/14833/652095",
+});
+
+const fiveServiceRecoveryOffer = serviceOffer("five-service-recovery", "Recovery Special", "infrared-sauna", "Infrared sauna", {
+  price: "$149",
+  description: "5 Services",
+  purchaseUrl: "https://app.clubready.com/JoinUs/14833/657707",
+});
+
 export const NEWPORT_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   serviceOffer("6-pack-recovery", "Recovery Special", "red-light-therapy", "Red light therapy", {
     price: "$99",
     description: "3 Recovery Sessions",
     purchaseUrl: "https://app.clubready.com/JoinUs/14833/657705",
   }),
-  serviceOffer("five-service-recovery", "Recovery Special", "infrared-sauna", "Infrared sauna", {
-    price: "$149",
-    description: "5 Services",
-    purchaseUrl: "https://app.clubready.com/JoinUs/14833/657707",
-  }),
+  slimmingOffer,
   {
     id: "newport-gift-cards",
     title: "Gift Cards & More",
@@ -50,11 +57,8 @@ export const NEWPORT_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
       purchaseUrl: `https://app.clubready.com/JoinUs/14833/${checkout}`,
     })),
   NEWPORT_HOLIDAY_OFFERS[0],
-  NEWPORT_HOLIDAY_OFFERS[1],
-  serviceOffer("body-contouring-five-pack", "Single Slimming and Facial", "cryo-slimming", "Cryo slimming treatment", {
-    price: "$199",
-    purchaseUrl: "https://app.clubready.com/JoinUs/14833/652095",
-  }),
+  fiveServiceRecoveryOffer,
+  slimmingOffer,
   ...[
     { sessions: 3, checkout: "657029" },
     { sessions: 6, checkout: "657030" },
