@@ -1,6 +1,13 @@
 import { getLocationServiceImage } from "@/lib/data/location-service-images";
 import type { HolidayOffer } from "./holiday-offers";
 
+const cherryAction = {
+  secondaryAction: {
+    label: "Buy Now Pay Later",
+    url: "https://pay.withcherry.com/zivel?utm_source=merchant&utm_medium=website_floating_estimator",
+  },
+};
+
 // Restore Newport's approved staging independently of later Riverton edits.
 const serviceOffer = (
   id: string, title: string, service: string, imageLabel: string,
@@ -68,21 +75,26 @@ export const NEWPORT_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     { sessions: 6, price: "$576", checkout: "657030" },
     { sessions: 10, price: "$792", checkout: "657031" },
   ].map(({ sessions, price, checkout }) =>
-    serviceOffer(`cryofacial-${sessions}-sessions`, `CryoFacial — ${sessions} Sessions`, "cryo-lift-facial", "CryoFacial treatment", {
+    serviceOffer(`cryofacial-${sessions}-sessions`, "CRYOFACIAL", "cryo-lift-facial", "CryoFacial treatment", {
+      ...cherryAction,
+      description: `${sessions} Sessions`,
       price,
       purchaseUrl: `https://app.clubready.com/JoinUs/14833/${checkout}`,
     })),
   serviceOffer("slimming-special-1", "Cryo Slimming Special", "cryo-slimming", "Cryo slimming treatment", {
+    ...cherryAction,
     description: "3 Cryo Slimming Sessions",
     price: "$674",
     purchaseUrl: "https://app.clubready.com/JoinUs/14833/657026",
   }),
   serviceOffer("slimming-special-2", "Cryo Slimming Special", "cryo-slimming", "Cryo slimming treatment", {
+    ...cherryAction,
     description: "6 Cryo Slimming Sessions",
     price: "$1,128",
     purchaseUrl: "https://app.clubready.com/JoinUs/14833/657027",
   }),
   serviceOffer("slimming-special-3", "Cryo Slimming Special", "cryo-slimming", "Cryo slimming treatment", {
+    ...cherryAction,
     description: "10 Cryo Slimming Sessions",
     price: "$1,592",
     purchaseUrl: "https://app.clubready.com/JoinUs/14833/657028",

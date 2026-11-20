@@ -16,6 +16,7 @@ export type HolidayOffer = {
   imageZoom?: number;
   purchaseUrl?: string;
   action: string;
+  secondaryAction?: { label: string; url: string };
 };
 
 export const BUCKHEAD_HOLIDAY_OFFERS: readonly HolidayOffer[] = [

@@ -518,7 +518,9 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   assert.equal(pricingOffers[5].purchaseUrl, "https://app.clubready.com/JoinUs/14833/657759");
   assert.equal(pricingOffers[5].price, "$199");
   assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.title),
-    ["CryoFacial — 3 Sessions", "CryoFacial — 6 Sessions", "CryoFacial — 10 Sessions"]);
+    ["CRYOFACIAL", "CRYOFACIAL", "CRYOFACIAL"]);
+  assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.description),
+    ["3 Sessions", "6 Sessions", "10 Sessions"]);
   assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.price), ["$324", "$576", "$792"]);
   assert.equal(pricingOffers[9].title, "Cryo Slimming Special");
   assert.equal(pricingOffers[9].description, "3 Cryo Slimming Sessions");
@@ -539,6 +541,21 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
     assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
+    const cherryUrl = "https://pay.withcherry.com/zivel?utm_source=merchant&utm_medium=website_floating_estimator";
+    const cherryButtons = offers.querySelectorAll("a").filter(a => a.getAttribute("href") === cherryUrl);
+    assert.equal(cherryButtons.length, file === pricingFile ? 6 : 0);
+    if (file === pricingFile) {
+      for (const [index, card] of offers.querySelectorAll("article").entries()) {
+        const cherry = card.querySelectorAll("a").find(a => a.getAttribute("href") === cherryUrl);
+        assert.equal(Boolean(cherry), index >= 6);
+        if (cherry) {
+          assert(cherry.text.includes("Buy Now Pay Later"));
+          assert.equal(cherry.getAttribute("target"), "_blank");
+          assert(cherry.getAttribute("rel").includes("noopener"));
+          assert(card.querySelectorAll("a").some(a => a.getAttribute("href").includes("clubready")));
+        }
+      }
+    }
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? ["https://app.clubready.com/JoinUs/14833/652095", "https://app.clubready.com/JoinUs/14833/657705"] : savedLinks);
     const slimming = offers.querySelectorAll("article")[file === mainFile ? 1 : 5];

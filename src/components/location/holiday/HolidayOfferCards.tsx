@@ -79,6 +79,16 @@ export default function HolidayOfferCards({
               >
                 {offer.action}<span aria-hidden="true">›</span>
               </a> : <button className={styles.action} disabled>Link pending</button>}
+              {offer.secondaryAction && (
+                <a
+                  href={offer.secondaryAction.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.action} ${styles.secondaryAction}`}
+                >
+                  {offer.secondaryAction.label}<span aria-hidden="true">›</span>
+                </a>
+              )}
             </div>
           </article>
           </Fragment>
