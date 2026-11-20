@@ -486,7 +486,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   const savedLinks = ["656490", "657029", "657030", "657031", "657057", "657058", "657705", "657707"]
     .map(id => `https://app.clubready.com/JoinUs/14833/${id}`);
   const pricingOffers = data.getHolidayPricingOffers(p.state, p.city);
-  assert.equal(pricingOffers.length, 9);
+  assert.equal(pricingOffers.length, 12);
   assert.deepEqual(pricingOffers.slice(0, 3).map(o => o.price), ["$50", "$100", "$200"]);
   assert(pricingOffers.slice(0, 3).every(o => !o.description));
   assert.equal(pricingOffers[4].title, "Recovery Special");
@@ -501,13 +501,15 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   assert.equal(pricingOffers[5].price, "$199");
   assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.title),
     ["CryoFacial — 3 Sessions", "CryoFacial — 6 Sessions", "CryoFacial — 10 Sessions"]);
-  assert.deepEqual(pricingOffers.slice(6).map(o => o.price), ["$324", "$576", "$792"]);
+  assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.price), ["$324", "$576", "$792"]);
+  assert(pricingOffers.slice(9).every(o => o.title === "Slimming Special" && !o.price && !o.purchaseUrl));
+  assert(pricingOffers.slice(9).every(o => o.image === pricingOffers[2].image));
   assert(pricingOffers.every(o => fs.existsSync(`public${o.image}`)));
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
-    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 9);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, 1);
+    assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 1 : 4);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
       file === mainFile ? ["https://app.clubready.com/JoinUs/14833/657705"] : savedLinks);
     const slimming = offers.querySelectorAll("article")[file === mainFile ? 1 : 5];
