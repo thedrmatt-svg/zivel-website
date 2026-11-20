@@ -14,9 +14,9 @@ const serviceOffer = (
   ...details,
 });
 
-const slimmingOffer = serviceOffer("body-contouring-five-pack", "Single Slimming", "cryo-slimming", "Cryo slimming treatment", {
+const eightServiceRecoveryOffer = serviceOffer("eight-service-recovery", "Recovery Special", "cryo-slimming", "Cryo slimming treatment", {
   price: "$199",
-  purchaseUrl: "https://app.clubready.com/JoinUs/14833/652095",
+  description: "8 Services",
 });
 
 const fiveServiceRecoveryOffer = serviceOffer("five-service-recovery", "Recovery Special", "infrared-sauna", "Infrared sauna", {
@@ -28,10 +28,10 @@ const fiveServiceRecoveryOffer = serviceOffer("five-service-recovery", "Recovery
 export const NEWPORT_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   serviceOffer("6-pack-recovery", "Recovery Special", "red-light-therapy", "Red light therapy", {
     price: "$99",
-    description: "3 Recovery Sessions",
+    description: "3 Recovery Services",
     purchaseUrl: "https://app.clubready.com/JoinUs/14833/657705",
   }),
-  slimmingOffer,
+  eightServiceRecoveryOffer,
   {
     id: "newport-gift-cards",
     title: "Gift Cards & More",
@@ -58,7 +58,7 @@ export const NEWPORT_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     })),
   NEWPORT_HOLIDAY_OFFERS[0],
   fiveServiceRecoveryOffer,
-  slimmingOffer,
+  eightServiceRecoveryOffer,
   ...[
     { sessions: 3, checkout: "657029" },
     { sessions: 6, checkout: "657030" },

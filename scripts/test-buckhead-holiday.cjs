@@ -483,7 +483,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   const r = renderer(), standard = renderer(true);
   const p = { state: "kentucky", city: "newport", locale: "en" };
   const data = r.source("src/components/location/holiday/holiday-offers");
-  const savedLinks = ["652095", "656490", "657029", "657030", "657031", "657057", "657058", "657705", "657707"]
+  const savedLinks = ["656490", "657029", "657030", "657031", "657057", "657058", "657705", "657707"]
     .map(id => `https://app.clubready.com/JoinUs/14833/${id}`);
   const pricingOffers = data.getHolidayPricingOffers(p.state, p.city);
   assert.equal(pricingOffers.length, 9);
@@ -493,7 +493,9 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   assert.equal(pricingOffers[4].description, "5 Services");
   assert.equal(pricingOffers[4].price, "$149");
   assert.equal(pricingOffers[4].image, pricingOffers[0].image, "Use Newport's sauna image");
-  assert.equal(pricingOffers[5].title, "Single Slimming");
+  assert.equal(pricingOffers[5].title, "Recovery Special");
+  assert.equal(pricingOffers[5].description, "8 Services");
+  assert.equal(pricingOffers[5].purchaseUrl, undefined);
   assert.equal(pricingOffers[5].price, "$199");
   assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.title),
     ["CryoFacial — 3 Sessions", "CryoFacial — 6 Sessions", "CryoFacial — 10 Sessions"]);
@@ -503,11 +505,13 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     const page = await r.render(file, p), before = await standard.render(file, p);
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 9);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, 0);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, 1);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? ["https://app.clubready.com/JoinUs/14833/652095", "https://app.clubready.com/JoinUs/14833/657705"] : savedLinks);
+      file === mainFile ? ["https://app.clubready.com/JoinUs/14833/657705"] : savedLinks);
     const slimming = offers.querySelectorAll("article")[file === mainFile ? 1 : 5];
-    assert.equal(slimming.querySelector("h2").text, "Single Slimming");
+    assert.equal(slimming.querySelector("h2").text, "Recovery Special");
+    assert(slimming.text.includes("8 Services"));
+    assert(slimming.querySelector("button[disabled]"));
     assert(slimming.text.includes("$199"));
     assert.equal(slimming.querySelector("img").getAttribute("src"), pricingOffers[5].image);
     assert(!slimming.text.toLowerCase().includes("facial"));
@@ -515,7 +519,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     assert(!offers.text.includes("BOGO Cryo Facial/Double Chin"));
     const recovery = offers.querySelectorAll("article")[file === mainFile ? 0 : 3];
     assert.equal(recovery.querySelector("h2").text, "Recovery Special");
-    assert(recovery.text.includes("3 Recovery Sessions"));
+    assert(recovery.text.includes("3 Recovery Services"));
     assert(recovery.text.includes("$99"));
     assert(!offers.text.includes("Riverton"));
     if (file === pricingFile) {
