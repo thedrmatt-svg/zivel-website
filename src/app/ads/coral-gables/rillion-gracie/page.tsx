@@ -35,7 +35,7 @@ const OFFERS = [
 ];
 const RECOVERY_SERVICES = [
   ["Cryotherapy", "/images/home/service-cryo.jpg", "A focused cold experience to complement a considered recovery routine."],
-  ["Red Light Therapy", "/images/home/service-redlight.jpg", "A restorative pause between demanding rounds and the next session."],
+  ["Red Light Therapy", "/locations/coral-gables/services/red-light-therapy.jpg", "A restorative pause between demanding rounds and the next session."],
   ["Infrared Sauna", "/images/home/service-sauna.jpg", "Warm up, slow down, and make room for a quieter reset."],
   ["Compression Therapy", "/images/home/service-compression.jpg", "A comfortable session focused on tired legs after hard mat time."],
   ["Float Therapy", "/images/services/dry-float/hero.jpg", "Settle into a weightless, quiet break without getting wet."],
@@ -154,6 +154,7 @@ export default function RilionGraciePage() {
                       src={image}
                       alt={`${name} service at Zivel Coral Gables`}
                       fill
+                      style={name === "Red Light Therapy" ? { objectPosition: "center top" } : undefined}
                       sizes="(max-width: 460px) 100vw, (max-width: 800px) 50vw, 25vw"
                     />
                     <span className={styles.serviceNumber}>0{index + 1}</span>
