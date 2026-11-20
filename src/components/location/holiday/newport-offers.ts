@@ -32,7 +32,10 @@ export const NEWPORT_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     description: "3 Recovery Services",
     purchaseUrl: "https://app.clubready.com/JoinUs/14833/657705",
   }),
-  eightServiceRecoveryOffer,
+  serviceOffer("cryo-slimming", "Cryo Slimming", "cryo-slimming", "Cryo slimming treatment", {
+    price: "$199",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14833/652095",
+  }),
   {
     id: "newport-gift-cards",
     title: "Gift Cards & More",

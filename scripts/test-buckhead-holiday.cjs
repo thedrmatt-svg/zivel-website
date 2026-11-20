@@ -511,13 +511,13 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     assert.equal(offers.querySelectorAll("article").length, file === mainFile ? 3 : 12);
     assert.equal(offers.querySelectorAll("button[disabled]").length, file === mainFile ? 0 : 3);
     assert.deepEqual(links(offers).filter(link => link.includes("clubready")),
-      file === mainFile ? ["https://app.clubready.com/JoinUs/14833/657705", "https://app.clubready.com/JoinUs/14833/657759"] : savedLinks);
+      file === mainFile ? ["https://app.clubready.com/JoinUs/14833/652095", "https://app.clubready.com/JoinUs/14833/657705"] : savedLinks);
     const slimming = offers.querySelectorAll("article")[file === mainFile ? 1 : 5];
-    assert.equal(slimming.querySelector("h2").text, "Recovery Special");
-    assert(slimming.text.includes("8 Services"));
-    assert(slimming.querySelector('a[href="https://app.clubready.com/JoinUs/14833/657759"]'));
+    assert.equal(slimming.querySelector("h2").text, file === mainFile ? "Cryo Slimming" : "Recovery Special");
+    assert.equal(slimming.text.includes("8 Services"), file === pricingFile);
+    assert(slimming.querySelector(`a[href="https://app.clubready.com/JoinUs/14833/${file === mainFile ? "652095" : "657759"}"]`));
     assert(slimming.text.includes("$199"));
-    assert.equal(slimming.querySelector("img").getAttribute("src"), pricingOffers[5].image);
+    assert.equal(slimming.querySelector("img").getAttribute("src"), pricingOffers[file === mainFile ? 2 : 5].image);
     assert(!slimming.text.toLowerCase().includes("facial"));
     assert(!offers.text.includes("Single Slimming and Facial"));
     assert(!offers.text.includes("BOGO Cryo Facial/Double Chin"));
