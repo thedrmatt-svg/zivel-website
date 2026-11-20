@@ -237,7 +237,7 @@ export default async function LocationPricingPage({
           offers={holidayOffers}
           groupHeadings={groupedHolidayPricing
             ? state === "kentucky" && city === "newport"
-              ? { 0: "Gift Cards", 3: "Service Specials", 6: "EARLY BLACK FRIDAY SPECIALS: 20% OFF OFFER ends on 11/30" }
+              ? { 0: "Gift Cards", 3: "Service Specials", 6: "EARLY BLACK FRIDAY SPECIALS: 20% OFF ends on 11/30" }
               : { 0: "Gift Cards", 3: "Service Specials", [holidayMembershipStart]: "Membership Specials" }
             : undefined}
           groupDescriptions={groupedHolidayPricing && !(state === "kentucky" && city === "newport")

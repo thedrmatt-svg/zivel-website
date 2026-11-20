@@ -526,7 +526,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     assert(!offers.text.includes("Riverton"));
     if (file === pricingFile) {
       assert.deepEqual(offers.querySelectorAll(".groupHeading").map(h => h.text),
-        ["Gift Cards", "Service Specials", "EARLY BLACK FRIDAY SPECIALS: 20% OFF OFFER ends on 11/30"]);
+        ["Gift Cards", "Service Specials", "EARLY BLACK FRIDAY SPECIALS: 20% OFF ends on 11/30"]);
       assert(!offers.text.includes("Membership Specials"));
       assert.equal(offers.querySelector(".groupDescription"), null);
       for (const id of ["memberships", "services", "packages"]) {
