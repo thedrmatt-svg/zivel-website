@@ -64,7 +64,7 @@ const OFFERS_SECTION = [
     price: "$69",
     priceDetail: "first month · then $139/month",
     description: "Make recovery part of your training schedule with 14 recovery services every month.",
-    benefits: ["14 recovery services per month", "Over 20% savings", "30-day cancellation notice"],
+    benefits: ["14 recovery services per month", "Over 50% discount", "30-day cancellation notice"],
     featured: true,
   },
 ];
@@ -199,9 +199,13 @@ export default function RilionGraciePage() {
                   <p className={styles.offerPrice}>{offer.price}</p>
                   <p className={styles.offerPriceDetail}>{offer.priceDetail ?? "\u00a0"}</p>
                   <p className={styles.offerDescription}>{offer.description}</p>
-                  {offer.featured && <strong className={styles.savings}>Save over 20% with 14 recovery services per month</strong>}
+                  {offer.featured && <strong className={styles.savings}>Use code: &quot;rillion&quot; for first month discount</strong>}
                   <ul className={styles.offerBenefits}>{offer.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}</ul>
-                  <a className={styles.offerButton} href="#request">Ask about this offer</a>
+                  {offer.featured ? (
+                    <a className={styles.offerButton} href="https://app.clubready.com/JoinUs/14828/657768" target="_blank" rel="noopener noreferrer">Buy Now</a>
+                  ) : (
+                    <a className={styles.offerButton} href="#request">Ask about this offer</a>
+                  )}
                 </article>
               ))}
             </div>

@@ -117,6 +117,15 @@ test("Landing page has scoped branding, working form configuration and local lin
   assert(page.text.includes("Rilion Gracie"));
   assert(page.text.includes("Zivel Coral Gables"));
   assert(page.text.includes("348 Minorca Ave"));
+  assert(page.text.includes("14 recovery services per month"));
+  assert(page.text.includes('Use code: "rillion" for first month discount'));
+  assert(page.text.includes("Over 50% discount"));
+  assert(!page.text.includes("Over 20%"));
+  const membershipCheckout = page.querySelector('a[href="https://app.clubready.com/JoinUs/14828/657768"]');
+  assert(membershipCheckout, "Membership has the approved checkout link");
+  assert.equal(membershipCheckout.text, "Buy Now");
+  assert.equal(membershipCheckout.getAttribute("target"), "_blank");
+  assert(membershipCheckout.getAttribute("rel").includes("noopener"));
   assert(page.querySelector('img[src="/images/ads/coral-gables-jiu-jitsu-athlete.jpg"]'));
   assert.equal(page.querySelector('input[name="source"]').getAttribute("value"), "Coral Gables Rilion Gracie Ad");
   assert.deepEqual(page.querySelectorAll('select[name="referrer"] option').slice(1).map(o => o.text), ["Rilion Gracie"]);
