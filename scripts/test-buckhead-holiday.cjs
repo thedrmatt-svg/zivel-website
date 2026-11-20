@@ -479,6 +479,42 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
   assert.equal(pricing.querySelector("#pg-firstName"), null);
 });
 
+test("Holiday financing appears only on eligible facial and slimming packages", async () => {
+  const r = renderer();
+  const { locations } = r.source("src/lib/data/locations");
+  const { isHolidayLocation } = r.source("src/components/location/holiday/holiday-location-config");
+  const data = r.source("src/components/location/holiday/holiday-offers");
+  const expectedIds = [
+    "hollywood-cryofacial-package", "riverton-body-contouring-five-pack",
+    "newport-cryofacial-3-sessions", "newport-cryofacial-6-sessions", "newport-cryofacial-10-sessions",
+    "newport-slimming-special-1", "newport-slimming-special-2", "newport-slimming-special-3",
+  ];
+  const seen = [];
+  for (const location of locations) {
+    const { stateSlug: state, citySlug: city } = location;
+    if (!isHolidayLocation(state, city)) continue;
+    assert(data.getHolidayOffers(state, city).every(o => !o.secondaryAction), `${city} main page unchanged`);
+    const configured = data.getHolidayPricingOffers(state, city);
+    for (const offer of configured) {
+      assert.equal(Boolean(offer.secondaryAction), expectedIds.includes(offer.id), offer.id);
+    }
+    const page = await r.render(pricingFile, { state, city, locale: "en" });
+    for (const card of page.querySelector('section[aria-label="Holiday offers"]').querySelectorAll("article")) {
+      const id = card.getAttribute("data-offer-id");
+      const cherry = card.querySelectorAll("a").find(a => a.getAttribute("href").startsWith("https://pay.withcherry.com/"));
+      assert.equal(Boolean(cherry), expectedIds.includes(id), id);
+      if (!cherry) continue;
+      assert(cherry.text.includes("Buy Now Pay Later"));
+      assert.equal(cherry.getAttribute("href"), "https://pay.withcherry.com/zivel?utm_source=merchant&utm_medium=website_floating_estimator");
+      assert.equal(cherry.getAttribute("target"), "_blank");
+      assert(cherry.getAttribute("rel").includes("noopener"));
+      assert(card.querySelectorAll("a").some(a => a.getAttribute("href").includes("clubready")));
+      seen.push(id);
+    }
+  }
+  assert.deepEqual(seen.sort(), expectedIds.sort());
+});
+
 test("All holiday location overview cards use the approved gifts copy and their own pricing links", async () => {
   const r = renderer();
   const { locations } = r.source("src/lib/data/locations");

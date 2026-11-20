@@ -1,4 +1,5 @@
 import { getLocationServiceImage } from "@/lib/data/location-service-images";
+import { HOLIDAY_CHERRY_ACTION } from "./holiday-financing";
 import { METAIRIE_HOLIDAY_OFFERS, METAIRIE_HOLIDAY_PRICING_OFFERS } from "./metairie-offers";
 import { WINDERMERE_HOLIDAY_OFFERS, WINDERMERE_HOLIDAY_PRICING_OFFERS } from "./windermere-offers";
 import { BRIARGATE_HOLIDAY_OFFERS, BRIARGATE_HOLIDAY_PRICING_OFFERS } from "./briargate-offers";
@@ -253,6 +254,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       HOLLYWOOD_HOLIDAY_OFFERS[1],
       {
         id: "hollywood-cryofacial-package",
+        secondaryAction: HOLIDAY_CHERRY_ACTION,
         title: "CryoFacial Special",
         description: "Buy 5 Get 1 Free",
         price: "$625",
@@ -352,6 +354,7 @@ export function getHolidayPricingOffers(stateSlug: string, citySlug: string): re
       ...(index < 3 ? giftCards[index] : {}),
       ...(index === 5 ? {
         id: "riverton-body-contouring-five-pack",
+        secondaryAction: HOLIDAY_CHERRY_ACTION,
         title: "5 Pack Body Contouring",
         price: undefined,
         description: "50% OFF",

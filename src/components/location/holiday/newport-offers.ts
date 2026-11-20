@@ -1,11 +1,9 @@
 import { getLocationServiceImage } from "@/lib/data/location-service-images";
 import type { HolidayOffer } from "./holiday-offers";
+import { HOLIDAY_CHERRY_ACTION } from "./holiday-financing";
 
 const cherryAction = {
-  secondaryAction: {
-    label: "Buy Now Pay Later",
-    url: "https://pay.withcherry.com/zivel?utm_source=merchant&utm_medium=website_floating_estimator",
-  },
+  secondaryAction: HOLIDAY_CHERRY_ACTION,
 };
 
 // Restore Newport's approved staging independently of later Riverton edits.
