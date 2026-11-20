@@ -60,11 +60,12 @@ export const NEWPORT_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   fiveServiceRecoveryOffer,
   eightServiceRecoveryOffer,
   ...[
-    { sessions: 3, checkout: "657029" },
-    { sessions: 6, checkout: "657030" },
-    { sessions: 10, checkout: "657031" },
-  ].map(({ sessions, checkout }) =>
+    { sessions: 3, price: "$324", checkout: "657029" },
+    { sessions: 6, price: "$576", checkout: "657030" },
+    { sessions: 10, price: "$792", checkout: "657031" },
+  ].map(({ sessions, price, checkout }) =>
     serviceOffer(`cryofacial-${sessions}-sessions`, `CryoFacial — ${sessions} Sessions`, "cryo-lift-facial", "CryoFacial treatment", {
+      price,
       purchaseUrl: `https://app.clubready.com/JoinUs/14833/${checkout}`,
     })),
 ];

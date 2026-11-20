@@ -501,7 +501,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   assert.equal(pricingOffers[5].price, "$199");
   assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.title),
     ["CryoFacial — 3 Sessions", "CryoFacial — 6 Sessions", "CryoFacial — 10 Sessions"]);
-  assert(pricingOffers.slice(6).every(o => !o.price));
+  assert.deepEqual(pricingOffers.slice(6).map(o => o.price), ["$324", "$576", "$792"]);
   assert(pricingOffers.every(o => fs.existsSync(`public${o.image}`)));
   for (const file of [mainFile, pricingFile]) {
     const page = await r.render(file, p), before = await standard.render(file, p);
@@ -526,7 +526,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     assert(!offers.text.includes("Riverton"));
     if (file === pricingFile) {
       assert.deepEqual(offers.querySelectorAll(".groupHeading").map(h => h.text),
-        ["Gift Cards", "Service Specials", "EARLY BLACK FRIDAY SPECIALS: Offer ends on 11/30"]);
+        ["Gift Cards", "Service Specials", "EARLY BLACK FRIDAY SPECIALS: 20% OFF OFFER ends on 11/30"]);
       assert(!offers.text.includes("Membership Specials"));
       assert.equal(offers.querySelector(".groupDescription"), null);
       for (const id of ["memberships", "services", "packages"]) {
