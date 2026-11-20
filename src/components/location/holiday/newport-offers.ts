@@ -14,7 +14,7 @@ const serviceOffer = (
   ...details,
 });
 
-const eightServiceRecoveryOffer = serviceOffer("eight-service-recovery", "Recovery Special", "cryo-slimming", "Cryo slimming treatment", {
+const eightServiceRecoveryOffer = serviceOffer("eight-service-recovery", "Recovery Special", "dry-float", "Dry float recovery", {
   price: "$199",
   description: "8 Services",
 });

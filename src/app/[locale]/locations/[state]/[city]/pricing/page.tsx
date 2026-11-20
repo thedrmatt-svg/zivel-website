@@ -236,8 +236,11 @@ export default async function LocationPricingPage({
           variant="pricing"
           offers={holidayOffers}
           groupHeadings={groupedHolidayPricing
-            ? { 0: "Gift Cards", 3: "Service Specials", [holidayMembershipStart]: "Membership Specials" } : undefined}
-          groupDescriptions={groupedHolidayPricing
+            ? state === "kentucky" && city === "newport"
+              ? { 0: "Gift Cards", 3: "Service Specials", 6: "EARLY BLACK FRIDAY SPECIALS: Offer ends on 11/30" }
+              : { 0: "Gift Cards", 3: "Service Specials", [holidayMembershipStart]: "Membership Specials" }
+            : undefined}
+          groupDescriptions={groupedHolidayPricing && !(state === "kentucky" && city === "newport")
             ? { [holidayMembershipStart]: '50% Off Membership 1st Month: Code "blackfriday" at checkout' } : undefined}
         />
       ) : (

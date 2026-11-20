@@ -495,6 +495,8 @@ test("Newport restores its saved grouped holiday pages without changing regular 
   assert.equal(pricingOffers[4].image, pricingOffers[0].image, "Use Newport's sauna image");
   assert.equal(pricingOffers[5].title, "Recovery Special");
   assert.equal(pricingOffers[5].description, "8 Services");
+  assert.equal(pricingOffers[5].image, pricingOffers[1].image, "Use Newport's float image");
+  assert.equal(pricingOffers[5].imageAlt, "Dry float recovery at Zivel Newport");
   assert.equal(pricingOffers[5].purchaseUrl, undefined);
   assert.equal(pricingOffers[5].price, "$199");
   assert.deepEqual(pricingOffers.slice(6, 9).map(o => o.title),
@@ -524,7 +526,7 @@ test("Newport restores its saved grouped holiday pages without changing regular 
     assert(!offers.text.includes("Riverton"));
     if (file === pricingFile) {
       assert.deepEqual(offers.querySelectorAll(".groupHeading").map(h => h.text),
-        ["Gift Cards", "Service Specials"]);
+        ["Gift Cards", "Service Specials", "EARLY BLACK FRIDAY SPECIALS: Offer ends on 11/30"]);
       assert(!offers.text.includes("Membership Specials"));
       assert.equal(offers.querySelector(".groupDescription"), null);
       for (const id of ["memberships", "services", "packages"]) {
