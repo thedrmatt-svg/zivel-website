@@ -185,6 +185,13 @@
   display: block;
 }
 
+.giftCardUsage {
+  margin: .25rem 0 1rem;
+  color: #fff8eb;
+  font-size: .8rem;
+  line-height: 1.4;
+}
+
 .card[data-offer-id="riverton-body-contouring-five-pack"] .description {
   width: 100%;
   border-top: 1px solid rgba(230, 190, 108, .38);

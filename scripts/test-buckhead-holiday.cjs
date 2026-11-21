@@ -479,6 +479,32 @@ test("Fayetteville stages the standard holiday layout without unapproved prices 
   assert.equal(pricing.querySelector("#pg-firstName"), null);
 });
 
+test("All holiday gift cards show usage copy without replacing existing descriptions", async () => {
+  const r = renderer();
+  const { locations } = r.source("src/lib/data/locations");
+  const { isHolidayLocation } = r.source("src/components/location/holiday/holiday-location-config");
+  const data = r.source("src/components/location/holiday/holiday-offers");
+  let count = 0;
+  for (const { stateSlug: state, citySlug: city } of locations) {
+    if (!isHolidayLocation(state, city)) continue;
+    const page = await r.render(pricingFile, { state, city, locale: "en" });
+    const cards = page.querySelector('section[aria-label="Holiday offers"]').querySelectorAll("article");
+    for (const offer of data.getHolidayPricingOffers(state, city)) {
+      const card = cards.find(c => c.getAttribute("data-offer-id") === offer.id);
+      const usage = card.querySelector(".giftCardUsage");
+      if (offer.title.toLowerCase() !== "gift card") {
+        assert(!usage, offer.id);
+        continue;
+      }
+      assert.equal(usage?.text, "For any Recovery or Premium service or package.", offer.id);
+      if (offer.description) assert(card.querySelector(".description").text.includes(offer.description));
+      if (offer.additionalDescription) assert(card.querySelector(".description").text.includes(offer.additionalDescription));
+      count++;
+    }
+  }
+  assert.equal(count, 36);
+});
+
 test("Holiday financing appears only on eligible facial and slimming packages", async () => {
   const r = renderer();
   const { locations } = r.source("src/lib/data/locations");

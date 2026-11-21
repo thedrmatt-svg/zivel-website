@@ -71,6 +71,9 @@ export default function HolidayOfferCards({
                     : offer.description}
                 </p>
               )}
+              {offer.title.toLowerCase() === "gift card" && (
+                <p className={styles.giftCardUsage}>For any Recovery or Premium service or package.</p>
+              )}
               {offer.purchaseUrl ? <a
                 href={offer.purchaseUrl}
                 target={offer.purchaseUrl.startsWith("/") ? undefined : "_blank"}
