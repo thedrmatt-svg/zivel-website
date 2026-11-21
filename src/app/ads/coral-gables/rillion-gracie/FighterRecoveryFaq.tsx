@@ -11,6 +11,16 @@ const QUESTIONS = [
       "The studio offers options including cryotherapy, red light therapy, infrared sauna, compression therapy, float therapy, and more. A team member can help you choose based on your preferences and schedule.",
   },
   {
+    question: "How often should I come in for recovery?",
+    answer:
+      "Come in as needed, depending on how you feel and how intensely you train. We recommend starting with 2–3 visits per week and adjusting from there. The Coral Gables team can help you choose services and a schedule suited to your training routine and individual needs.",
+  },
+  {
+    question: "When should I start recovery services if I just started BJJ?",
+    answer:
+      "You can consider a first recovery visit within 24–48 hours of your first training session to start building recovery into your routine as your body adjusts to BJJ. Talk with the Coral Gables team about which services may be appropriate for you. Recovery services do not replace rest or medical care; if you have an injury or persistent pain or swelling, seek advice from a qualified health professional.",
+  },
+  {
     question: "Can recovery services replace rest or medical care?",
     answer:
       "No. Recovery services are intended to complement sensible training, rest, and guidance from your qualified health professional. They are not medical treatment, and individual experiences vary.",
