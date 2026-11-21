@@ -72,6 +72,14 @@ test("Coral Gables rejects missing or cross-studio campaign selections", async (
   }
 });
 
+test("Coral Gables day pass accepts two recovery services and rejects the old offer", async () => {
+  const action = loadAction();
+  const offer = "B — $49 day pass, two recovery services, same day";
+  assert.equal((await action.submit(form({ offer }))).status, "success");
+  assert(action.sent[0].html.includes(offer));
+  assert.equal((await action.submit(form({ offer: "B — $49 day pass, three standard services, same day" }))).status, "error");
+});
+
 test("Existing Buckhead and Riverton campaign delivery remains unchanged", async () => {
   for (const [source, referrer, recipients] of [
     ["Buckhead Fighter Ad", "Cunha MMA", ["buckhead@zivel.com", "flanagan@zivel.com"]],
@@ -117,6 +125,11 @@ test("Landing page has scoped branding, working form configuration and local lin
   assert(page.text.includes("Rilion Gracie"));
   assert(page.text.includes("Zivel Coral Gables"));
   assert(page.text.includes("348 Minorca Ave"));
+  assert(page.text.includes("Two-Service Day Pass"));
+  assert(page.text.includes("Two recovery services"));
+  assert(page.text.includes("Use both on the same day"));
+  assert(!/\bthree\b/i.test(page.text), "No outdated three-service day-pass mentions remain");
+  assert(page.querySelector('option[value="B — $49 day pass, two recovery services, same day"]'));
   assert(page.text.includes("14 recovery services per month"));
   assert(page.text.includes('Use code: "rillion" for first month discount'));
   assert(page.text.includes("Over 50% discount"));

@@ -30,7 +30,7 @@ const SERVICES = [
 const REFERRERS = ["Rilion Gracie"];
 const OFFERS = [
   "A — First recovery session free",
-  "B — $49 day pass, three standard services, same day",
+  "B — $49 day pass, two recovery services, same day",
   "C — Fighter membership, $69 then $139",
 ];
 const RECOVERY_SERVICES = [
@@ -53,10 +53,10 @@ const OFFERS_SECTION = [
   },
   {
     label: "One-day recovery stack",
-    name: "Three-Service Day Pass",
+    name: "Two-Service Day Pass",
     price: "$49",
-    description: "Pair three standard recovery services in one visit after a demanding training day.",
-    benefits: ["Three standard services", "Use all three on the same day", "More ways to reset in one visit"],
+    description: "Pair two recovery services in one visit after a demanding training day.",
+    benefits: ["Two recovery services", "Use both on the same day", "More ways to reset in one visit"],
   },
   {
     label: "Most Popular",
@@ -188,7 +188,7 @@ export default function RilionGraciePage() {
             <div className={styles.offersHead}>
               <p className={styles.kicker}>A place to start</p>
               <h2 id="offers-heading" className={styles.sectionTitle}>Pick your pace.<br /><span>Keep your focus.</span></h2>
-              <p className={styles.lede}>Start with a session, build a day around three services, or make monthly recovery part of your routine.</p>
+              <p className={styles.lede}>Start with a session, build a day around two recovery services, or make monthly recovery part of your routine.</p>
             </div>
             <div className={styles.offerGrid}>
               {OFFERS_SECTION.map((offer, index) => (

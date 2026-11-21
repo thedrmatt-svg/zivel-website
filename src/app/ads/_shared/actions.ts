@@ -59,7 +59,7 @@ const ALLOWED_REFERRERS: ReadonlySet<string> = new Set([
 
 const ALLOWED_OFFERS: ReadonlySet<string> = new Set([
   "A — First recovery session free",
-  "B — $49 day pass, three standard services, same day",
+  "B — $49 day pass, two recovery services, same day",
   "C — Fighter membership, $69 then $139",
 ]);
 
