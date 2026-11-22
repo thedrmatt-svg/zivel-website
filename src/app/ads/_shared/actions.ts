@@ -25,6 +25,7 @@ const ALLOWED_SOURCES: ReadonlySet<string> = new Set([
   "FanX Google Ads",
   "Buckhead Fighter Ad",
   "Coral Gables Rilion Gracie Ad",
+  "Coral Gables Beautiful Violence Muay Thai Ad",
 ]);
 
 /** Allowlist — must match the <option> values in AdsLeadForm. */
@@ -61,6 +62,13 @@ const ALLOWED_OFFERS: ReadonlySet<string> = new Set([
   "A — First recovery session free",
   "B — $49 day pass, two recovery services, same day",
   "C — Fighter membership, $69 then $139",
+]);
+
+const MUAY_THAI_SOURCE = "Coral Gables Beautiful Violence Muay Thai Ad";
+const MUAY_THAI_OFFERS: ReadonlySet<string> = new Set([
+  "Recovery session",
+  "Recovery day pass",
+  "Fighter membership",
 ]);
 
 /** Loose email check — just blocks obviously malformed values. */
@@ -121,7 +129,7 @@ function buildLeadHtml({
   const safeReferrer = escapeHtml(referrer);
   const safeOffer    = escapeHtml(offer);
   const safeSource  = escapeHtml(source);
-  const sourceDescription = source === "Buckhead Fighter Ad" || source === "Coral Gables Rilion Gracie Ad"
+  const sourceDescription = source === "Buckhead Fighter Ad" || source === "Coral Gables Rilion Gracie Ad" || source === MUAY_THAI_SOURCE
     ? safeSource
     : "Google Ads Landing Page";
   const telHref     = toTelHref(phone);        // digits + '+' only
@@ -227,7 +235,7 @@ const BUCKHEAD_FIGHTER_TO_ADDRESSES = ["buckhead@zivel.com", "flanagan@zivel.com
 const CORAL_GABLES_FIGHTER_TO_ADDRESSES = ["coralgables@zivel.com", "mikeaguirre@zivel.com"];
 
 export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
-  const fallbackPhone = formData.get("source") === "Coral Gables Rilion Gracie Ad"
+  const fallbackPhone = formData.get("source") === "Coral Gables Rilion Gracie Ad" || formData.get("source") === MUAY_THAI_SOURCE
     ? "(786) 527-0842" : "(385) 443-8778";
   // ── Honeypot — bots fill this; real users leave it empty ──────────────────
   const honeypot = (formData.get("website") as string ?? "").trim();
@@ -278,12 +286,15 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
   const safeService = ALLOWED_SERVICES.has(service) ? service : "General information";
   const isBuckheadFighterLead = source === "Buckhead Fighter Ad";
   const isCoralGablesFighterLead = source === "Coral Gables Rilion Gracie Ad";
-  const safeReferrer = isCoralGablesFighterLead
+  const isMuayThaiLead = source === MUAY_THAI_SOURCE;
+  const safeReferrer = isMuayThaiLead
+    ? (referrer === "Beautiful Violence Muay Thai" ? referrer : "")
+    : isCoralGablesFighterLead
     ? (referrer === "Rilion Gracie" ? referrer : "")
     : (ALLOWED_REFERRERS.has(referrer) ? referrer : "");
-  const safeOffer = ALLOWED_OFFERS.has(offer) ? offer : "";
+  const safeOffer = (isMuayThaiLead ? MUAY_THAI_OFFERS : ALLOWED_OFFERS).has(offer) ? offer : "";
 
-  if ((isBuckheadFighterLead || isCoralGablesFighterLead) && (!safeReferrer || !safeOffer || !ALLOWED_SERVICES.has(service))) {
+  if ((isBuckheadFighterLead || isCoralGablesFighterLead || isMuayThaiLead) && (!safeReferrer || !safeOffer || !ALLOWED_SERVICES.has(service))) {
     return { status: "error", message: "Please select a referral source, training offer, and service." };
   }
 
@@ -315,7 +326,7 @@ export async function submitAdsLead(formData: FormData): Promise<AdsLeadState> {
     const recipients =
       safeSource === "Buckhead Fighter Ad"
         ? BUCKHEAD_FIGHTER_TO_ADDRESSES
-        : safeSource === "Coral Gables Rilion Gracie Ad"
+        : safeSource === "Coral Gables Rilion Gracie Ad" || safeSource === MUAY_THAI_SOURCE
           ? CORAL_GABLES_FIGHTER_TO_ADDRESSES
         : TO_ADDRESSES;
     const { error } = await resend.emails.send({

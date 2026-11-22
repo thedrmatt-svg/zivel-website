@@ -80,6 +80,44 @@ test("Coral Gables day pass accepts two recovery services and rejects the old of
   assert.equal((await action.submit(form({ offer: "B — $49 day pass, three standard services, same day" }))).status, "error");
 });
 
+test("Beautiful Violence inquiries use their own selections and Coral Gables recipients", async () => {
+  for (const offer of ["Recovery session", "Recovery day pass", "Fighter membership"]) {
+    const action = loadAction();
+    const result = await action.submit(form({
+      source: "Coral Gables Beautiful Violence Muay Thai Ad",
+      referrer: "Beautiful Violence Muay Thai",
+      offer,
+    }));
+    assert.equal(result.status, "success");
+    assert.equal(action.sent.length, 1);
+    assert.deepEqual(Array.from(action.sent[0].to), ["coralgables@zivel.com", "mikeaguirre@zivel.com"]);
+    assert(action.sent[0].subject.includes("Beautiful Violence Muay Thai"));
+    assert(action.sent[0].html.includes(offer));
+    assert(!action.sent[0].html.includes("Rilion Gracie"));
+  }
+});
+
+test("Beautiful Violence rejects inherited offers and referrals and uses the local error phone", async () => {
+  const values = {
+    source: "Coral Gables Beautiful Violence Muay Thai Ad",
+    referrer: "Beautiful Violence Muay Thai",
+    offer: "Fighter membership",
+  };
+  for (const overrides of [
+    { referrer: "Rilion Gracie" }, { referrer: "Cunha MMA" }, { referrer: "" },
+    { offer: "C — Fighter membership, $69 then $139" }, { offer: "" },
+    { service: "Not a service" },
+  ]) {
+    const action = loadAction();
+    assert.equal((await action.submit(form({ ...values, ...overrides }))).status, "error");
+    assert.equal(action.sent.length, 0);
+  }
+  const action = loadAction({ sendError: { message: "simulated failure" } });
+  const result = await action.submit(form(values));
+  assert.equal(result.status, "error");
+  assert(result.message.includes("(786) 527-0842"));
+});
+
 test("Existing Buckhead and Riverton campaign delivery remains unchanged", async () => {
   for (const [source, referrer, recipients] of [
     ["Buckhead Fighter Ad", "Cunha MMA", ["buckhead@zivel.com", "flanagan@zivel.com"]],
@@ -194,4 +232,46 @@ test("Thank-you booking and contact actions belong to Coral Gables only", async 
   }
   assert(layout.includes("<CookieConsent />"));
   assert(!layout.includes("next/font/google"));
+});
+
+test("Beautiful Violence pages are isolated, Muay Thai-specific, and ready for offer details", async () => {
+  const root = "src/app/ads/coral-gables/beautiful-violence";
+  const r = pageRenderer();
+  const page = await r.render(`${root}/page`, {});
+  assert(page.text.includes("Beautiful Violence"));
+  assert(page.text.includes("Muay Thai"));
+  assert(!/Rilion|rillion|BJJ|jiu.jitsu|12 minutes|657768|\$69|\$139/.test(page.text));
+  assert(page.querySelector('img[src="/images/ads/coral-gables-muay-thai-athlete.jpg"]'));
+  assert.equal(page.querySelector('input[name="source"]').getAttribute("value"), "Coral Gables Beautiful Violence Muay Thai Ad");
+  assert.deepEqual(page.querySelectorAll('select[name="referrer"] option').slice(1).map(o => o.text), ["Beautiful Violence Muay Thai"]);
+  assert.deepEqual(page.querySelectorAll('select[name="offer"] option').slice(1).map(o => o.getAttribute("value")), ["Recovery session", "Recovery day pass", "Fighter membership"]);
+  assert(page.querySelector('a[href="tel:+17865270842"]'));
+  assert(page.querySelector('iframe[title]'));
+  const directions = new URL(page.querySelector('a[href^="https://www.google.com/maps/dir/"]').getAttribute("href"));
+  assert(directions.searchParams.get("origin").includes("4180"));
+  assert(directions.searchParams.get("destination").includes("348 Minorca Ave"));
+  for (const link of page.querySelectorAll('a[href^="#"]')) {
+    assert(page.querySelector(link.getAttribute("href")), `Anchor ${link.getAttribute("href")} exists`);
+  }
+  for (const image of page.querySelectorAll("img")) {
+    assert(fs.existsSync(`public${image.getAttribute("src")}`));
+    assert(image.getAttribute("alt"));
+  }
+  assert(fs.readFileSync(`${root}/page.tsx`, "utf8").includes('redirectUrl="/ads/coral-gables/beautiful-violence/thank-you"'));
+  assert.equal(r.source(`${root}/page`).metadata.robots.index, false);
+  const thankYou = await r.render(`${root}/thank-you/page`, {});
+  assert(thankYou.querySelector('a[href="https://zivel.myperformanceiq.com/book-appointment?set_location=11432"]'));
+  assert(thankYou.querySelector('a[href="/locations/florida/coral-gables"]'));
+  assert(thankYou.text.includes("Beautiful Violence"));
+  assert.equal(r.source(`${root}/thank-you/page`).metadata.robots.index, false);
+  for (const file of ["page.tsx", "layout.tsx", "thank-you/page.tsx", "FighterRecoveryFaq.tsx"]) {
+    const text = fs.readFileSync(`${root}/${file}`, "utf8");
+    assert(!/Rilion|rillion|BJJ|jiu.jitsu|Buckhead|Riverton|GTM-|fbq|gtag|657768/.test(text), file);
+  }
+  const layout = fs.readFileSync(`${root}/layout.tsx`, "utf8");
+  assert(layout.includes("<CookieConsent />"));
+  assert(!layout.includes("next/font/google"));
+  for (const [, font] of layout.matchAll(/src: "([^"]+)"/g)) {
+    assert(fs.existsSync(path.resolve(root, font)), `Bundled font exists: ${font}`);
+  }
 });
