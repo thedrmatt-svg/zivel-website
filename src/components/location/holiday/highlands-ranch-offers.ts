@@ -2,6 +2,8 @@ import { getLocationServiceImage } from "@/lib/data/location-service-images";
 import type { HolidayOffer } from "./holiday-offers";
 
 const city = "highlands-ranch";
+// Keep this offer off the pricing page until the studio is ready to announce it.
+const SHOW_ADVANCED_SKIN_SERVICES = false;
 const saunaPhoto = {
   image: "/images/locations/highlands-ranch/sauna-card.jpg",
   imageAlt: "Woman relaxing in the infrared sauna at Zivel Highlands Ranch",
@@ -89,7 +91,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     action: "Buy Now",
   },
   HIGHLANDS_RANCH_HOLIDAY_OFFERS[1],
-  {
+  ...(SHOW_ADVANCED_SKIN_SERVICES ? [{
     id: "highlands-ranch-advanced-skin-services",
     title: "Advanced Skin Services",
     description: "BOGO ½ OFF",
@@ -97,7 +99,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     image: "/images/locations/highlands-ranch/facial-card.jpg",
     imageAlt: "Close-up of a CryoLift Facial treatment at Zivel Highlands Ranch",
     action: "Buy Now",
-  },
+  }] : []),
   {
     id: "highlands-ranch-body-contouring-bogo",
     title: "BOGO Body Contouring",
