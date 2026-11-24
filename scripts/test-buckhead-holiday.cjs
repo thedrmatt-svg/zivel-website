@@ -64,6 +64,7 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
   const sootheHref = "https://app.clubready.com/JoinUs/14827/657913";
   const redLightHref = "https://app.clubready.com/JoinUs/14827/657914";
   const facialHref = "https://app.clubready.com/JoinUs/14827/657915";
+  const fiftyGiftCardHref = "https://app.clubready.com/JoinUs/14827/657916";
   const data = r.source("src/components/location/holiday/holiday-offers");
   for (const file of [mainFile, pricingFile]) {
     const isMain = file === mainFile;
@@ -72,9 +73,9 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert(offers);
     assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 9);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 0 : 4);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 0 : 3);
     assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref, facialHref]
-      : [recoveryHref, contouringHref, sootheHref, redLightHref, facialHref]);
+      : [recoveryHref, contouringHref, sootheHref, redLightHref, facialHref, fiftyGiftCardHref]);
     const cards = offers.querySelectorAll("article");
     const recovery = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-recovery-special");
     const facial = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-facial-special");
@@ -114,6 +115,8 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
         card.querySelector(".price").text,
         card.querySelector(".description")?.text,
       ]), [["$50", undefined], ["$100", "Spend $100, receive $25 in credit"], ["$200", "Spend $200, receive $50 in credit"]]);
+      assert.equal(cards[0].querySelector("a").getAttribute("href"), fiftyGiftCardHref);
+      assert(cards[0].querySelector("a").text.includes("Buy Now"));
       const redLight = offers.querySelector('[data-offer-id="highlands-ranch-red-light-five-pack"]');
       assert.equal(redLight.querySelector("h2").text, "Red Light Therapy");
       assert.equal(redLight.querySelector(".price").text, "$145");

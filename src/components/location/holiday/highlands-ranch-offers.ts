@@ -42,7 +42,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
 
 export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   ...[
-    { ...saunaPhoto, price: "$50" },
+    { ...saunaPhoto, price: "$50", purchaseUrl: "https://app.clubready.com/JoinUs/14827/657916" },
     {
       image: getLocationServiceImage(city, "compression-therapy"),
       imageAlt: "Compression therapy session",
