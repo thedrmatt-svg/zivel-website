@@ -1001,6 +1001,7 @@ export default async function LocationPage({
                     cityName={cityName}
                     variant="light"
                     localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
+                    cardImage={s.cardImage}
                     imageAlt={s.imageAlt ? getLocationAltText(location, s.imageAlt) : undefined}
                     comingSoon={s.comingSoon}
                   />
@@ -1027,6 +1028,7 @@ export default async function LocationPage({
                     cityName={cityName}
                     variant="dark"
                     localHref={getLocalServiceHref(location.stateSlug, location.citySlug, s.slug)}
+                    cardImage={s.cardImage}
                     imageAlt={s.imageAlt ? getLocationAltText(location, s.imageAlt) : undefined}
                     comingSoon={s.comingSoon}
                   />

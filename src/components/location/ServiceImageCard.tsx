@@ -13,6 +13,7 @@ type ServiceImageCardProps = {
   cityName: string;
   variant: "light" | "dark";
   localHref?: string;
+  cardImage?: string;
   imageAlt?: string;
   comingSoon?: boolean;
 };
@@ -25,11 +26,12 @@ export default function ServiceImageCard({
   cityName,
   variant,
   localHref,
+  cardImage,
   imageAlt,
   comingSoon,
 }: ServiceImageCardProps) {
   const nationalSrc = getNationalServiceImage(slug);
-  const [src, setSrc] = useState(() => getLocationServiceImage(citySlug, slug));
+  const [src, setSrc] = useState(() => cardImage ?? getLocationServiceImage(citySlug, slug));
 
   const isDark = variant === "dark";
   const href = localHref ?? `/services/${slug}`;

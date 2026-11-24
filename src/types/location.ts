@@ -73,6 +73,7 @@ export type Location = {
     slug: string;
     name: string;
     description?: string;
+    cardImage?: string;
     imageAlt?: string;
     comingSoon?: boolean;
   }[];

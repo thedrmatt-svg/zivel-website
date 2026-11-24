@@ -51,6 +51,7 @@ export const zivel_highlands_ranch_location: Location = {
   {
     "name": "Infrared Sauna w/ Red Light",
     "slug": "infrared-sauna",
+    "cardImage": "/images/locations/highlands-ranch/sauna-card.jpg",
     "imageAlt": "Woman relaxing in an infrared sauna with red light at Zivel Highlands Ranch"
   },
   {
@@ -70,6 +71,7 @@ export const zivel_highlands_ranch_location: Location = {
   {
     "name": "CryoLift Facial",
     "slug": "cryo-lift-facial",
+    "cardImage": "/images/locations/highlands-ranch/facial-card.jpg",
     "imageAlt": "CryoLift Facial treatment close-up at Zivel Highlands Ranch"
   },
   {

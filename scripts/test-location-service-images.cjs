@@ -69,7 +69,7 @@ test("all service cards outside the three excluded studios start with an existin
       const card = parse(renderToStaticMarkup(React.createElement(Card, props)));
       const image = card.querySelector("img");
       const src = image.getAttribute("src");
-      assert.equal(src, getLocationServiceImage(location.citySlug, service.slug));
+      assert.equal(src, service.cardImage ?? getLocationServiceImage(location.citySlug, service.slug));
       assert.equal(image.getAttribute("alt"), service.imageAlt ?? `Zivel ${service.name} at ${location.city} Location`);
       assert.equal(card.querySelector("a").getAttribute("href"), props.localHref);
       if (excluded.has(location.citySlug)) {
@@ -83,6 +83,20 @@ test("all service cards outside the three excluded studios start with an existin
     }
   }
   console.log(`Verified ${checked} service cards across 16 eligible studios; ${preserved} cards in the three excluded studios keep their original image lookup.`);
+});
+
+test("Highlands Ranch uses the new Sauna and Facial photos only on its main page cards", () => {
+  const overrides = locations.flatMap(location => location.services
+    .filter(service => service.cardImage)
+    .map(service => [location.citySlug, service.slug, service.cardImage]));
+
+  assert.deepEqual(overrides, [
+    ["highlands-ranch", "infrared-sauna", "/images/locations/highlands-ranch/sauna-card.jpg"],
+    ["highlands-ranch", "cryo-lift-facial", "/images/locations/highlands-ranch/facial-card.jpg"],
+  ]);
+  for (const [city, slug] of overrides) {
+    assert.equal(getLocationServiceImage(city, slug), `/locations/${city}/services/${slug}.jpg`);
+  }
 });
 
 test("all existing custom service photos stay in use and new uploads require registration", () => {
