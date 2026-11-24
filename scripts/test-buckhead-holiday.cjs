@@ -66,8 +66,8 @@ test("Highlands Ranch shows approved holiday prices and credits without checkout
     const configured = (isMain ? data.getHolidayOffers : data.getHolidayPricingOffers)(p.state, p.city);
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert(offers);
-    assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 6);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 2 : 6);
+    assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 8);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 2 : 8);
     assert.deepEqual(links(offers), isMain ? [localHref] : []);
     const cards = offers.querySelectorAll("article");
     const recovery = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-recovery-special");
@@ -100,8 +100,21 @@ test("Highlands Ranch shows approved holiday prices and credits without checkout
       assert.deepEqual(cards.slice(0, 3).map(card => [
         card.querySelector(".price").text,
         card.querySelector(".description")?.text,
-      ]), [["$50", undefined], ["$100", "Get $25 in credit"], ["$200", "Get $50 in credit"]]);
-      assert.equal(cards.at(-1).querySelector(".price"), null);
+      ]), [["$50", undefined], ["$100", "Spend $100, receive $25 in credit"], ["$200", "Spend $200, receive $50 in credit"]]);
+      const soothe = offers.querySelector('[data-offer-id="highlands-ranch-cryo-soothe-two-pack"]');
+      assert.equal(soothe.querySelector(".price").text, "$69");
+      assert.equal(soothe.querySelector(".description").text, "2 CryoSoothe Sessions");
+      const skin = offers.querySelector('[data-offer-id="highlands-ranch-advanced-skin-services"]');
+      assert.equal(skin.querySelector("h2").text, "Advanced Skin Services");
+      assert.equal(skin.querySelector(".description span").text, "BOGO ½ OFF");
+      for (const service of ["Microneedling", "Dermaplane", "HydoDiamon", "Circadia Switch", "Prodigy Peel", "CryoFacial"]) {
+        assert(skin.querySelector(".description").text.includes(service));
+      }
+      const contouring = offers.querySelector('[data-offer-id="highlands-ranch-body-contouring-bogo"]');
+      assert.equal(contouring.querySelector("h2").text, "BOGO Body Contouring");
+      assert.equal(contouring.querySelector(".description").text, "CryoSlimming • CryoToning • CryoShape");
+      assert.equal(skin.querySelector(".price"), null);
+      assert.equal(contouring.querySelector(".price"), null);
       assert.deepEqual(links(page.querySelector('nav[aria-label="Pricing sections"]')),
         ["#memberships", "#packages", "#services", "#specials"]);
       assert(page.toString().indexOf('id="specials"') < page.toString().indexOf('id="memberships"'));
