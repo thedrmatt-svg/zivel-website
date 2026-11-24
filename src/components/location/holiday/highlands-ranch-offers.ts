@@ -7,7 +7,7 @@ const saunaPhoto = {
   imageAlt: "Woman relaxing in the infrared sauna at Zivel Highlands Ranch",
 };
 
-// Prices and credits are confirmed; checkout links are still pending.
+// Leave checkout disabled for offers that do not yet have an approved link.
 export const HIGHLANDS_RANCH_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "highlands-ranch-recovery-special",
@@ -16,6 +16,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     price: "$99",
     image: getLocationServiceImage(city, "red-light-therapy"),
     imageAlt: "Person lying in a red light therapy bed",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14827/657911",
     action: "Buy Now",
   },
   {
@@ -60,6 +61,15 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     action: "Buy Now",
   })),
   ...HIGHLANDS_RANCH_HOLIDAY_OFFERS.slice(0, 2),
+  {
+    id: "highlands-ranch-red-light-five-pack",
+    title: "Red Light Therapy",
+    description: "5 Red Light Sessions",
+    price: "$145",
+    image: getLocationServiceImage(city, "red-light-therapy"),
+    imageAlt: "Person lying in a red light therapy bed",
+    action: "Buy Now",
+  },
   {
     id: "highlands-ranch-cryo-soothe-two-pack",
     title: "CryoSoothe",

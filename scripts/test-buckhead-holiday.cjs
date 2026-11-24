@@ -55,10 +55,11 @@ test("only the approved studios are holiday-enabled; other studios stay standard
   }
 });
 
-test("Highlands Ranch shows approved holiday prices and credits without checkout links", async () => {
+test("Highlands Ranch shows approved holiday prices, credits, and Recovery checkout", async () => {
   const r = renderer(), standard = renderer(true);
   const p = { state: "colorado", city: "highlands-ranch", locale: "en" };
   const localHref = "/locations/colorado/highlands-ranch/pricing";
+  const recoveryHref = "https://app.clubready.com/JoinUs/14827/657911";
   const data = r.source("src/components/location/holiday/holiday-offers");
   for (const file of [mainFile, pricingFile]) {
     const isMain = file === mainFile;
@@ -66,15 +67,17 @@ test("Highlands Ranch shows approved holiday prices and credits without checkout
     const configured = (isMain ? data.getHolidayOffers : data.getHolidayPricingOffers)(p.state, p.city);
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert(offers);
-    assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 8);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 2 : 8);
-    assert.deepEqual(links(offers), isMain ? [localHref] : []);
+    assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 9);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 1 : 8);
+    assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref] : [recoveryHref]);
     const cards = offers.querySelectorAll("article");
     const recovery = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-recovery-special");
     const facial = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-facial-special");
     assert.equal(recovery.querySelector("h2").text, "Recovery");
     assert.equal(recovery.querySelector(".price").text, "$99");
     assert.equal(recovery.querySelector(".description").text, "6 Recovery Sessions");
+    assert.equal(recovery.querySelector("a").getAttribute("href"), recoveryHref);
+    assert(recovery.querySelector("a").text.includes("Buy Now"));
     assert(recovery.querySelector('img[src="/images/home/service-redlight.jpg"]'));
     assert.equal(facial.querySelector("h2").text, "BOGO CryoFacial");
     assert.equal(facial.querySelector(".price").text, "$199");
@@ -90,6 +93,7 @@ test("Highlands Ranch shows approved holiday prices and credits without checkout
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     if (isMain) {
       assert.equal(page.querySelector("h1").text, "HOLIDAY SPECIALS");
+      assert.equal(offers.querySelector('[data-offer-id="highlands-ranch-red-light-five-pack"]'), null);
       assert.equal(cards[2].querySelector(".price").text, "$50+");
       assert(page.text.includes("9325 Dorchester St ste f121"));
       assert(links(page).includes("tel:+17208276311"));
@@ -101,6 +105,12 @@ test("Highlands Ranch shows approved holiday prices and credits without checkout
         card.querySelector(".price").text,
         card.querySelector(".description")?.text,
       ]), [["$50", undefined], ["$100", "Spend $100, receive $25 in credit"], ["$200", "Spend $200, receive $50 in credit"]]);
+      const redLight = offers.querySelector('[data-offer-id="highlands-ranch-red-light-five-pack"]');
+      assert.equal(redLight.querySelector("h2").text, "Red Light Therapy");
+      assert.equal(redLight.querySelector(".price").text, "$145");
+      assert.equal(redLight.querySelector(".description").text, "5 Red Light Sessions");
+      assert(redLight.querySelector("button[disabled]"));
+      assert(!redLight.text.toLowerCase().includes("coming soon"));
       const soothe = offers.querySelector('[data-offer-id="highlands-ranch-cryo-soothe-two-pack"]');
       assert.equal(soothe.querySelector(".price").text, "$69");
       assert.equal(soothe.querySelector(".description").text, "2 CryoSoothe Sessions");
