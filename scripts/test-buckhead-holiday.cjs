@@ -33,14 +33,14 @@ const schema = page => page.querySelectorAll('script[type="application/ld+json"]
 const links = element => element.querySelectorAll("a")
   .map(a => a.getAttribute("href")).sort();
 
-test("only the twelve approved studios are holiday-enabled; other studios stay standard", async () => {
+test("only the approved studios are holiday-enabled; other studios stay standard", async () => {
   const r = renderer(), standard = renderer(true);
   const { locations } = r.source("src/lib/data/locations");
   const config = r.source("src/components/location/holiday/holiday-location-config");
   for (const location of locations) {
     const enabled = (location.stateSlug === "georgia" && ["buckhead", "windermere"].includes(location.citySlug)) ||
       (location.stateSlug === "florida" && ["coral-gables", "hollywood"].includes(location.citySlug)) ||
-      (location.stateSlug === "colorado" && ["parker", "briargate"].includes(location.citySlug)) ||
+      (location.stateSlug === "colorado" && ["parker", "briargate", "highlands-ranch"].includes(location.citySlug)) ||
       (location.stateSlug === "utah" && location.citySlug === "riverton") ||
       (location.stateSlug === "louisiana" && location.citySlug === "metairie") ||
       (location.stateSlug === "kentucky" && location.citySlug === "newport") ||
@@ -53,6 +53,48 @@ test("only the twelve approved studios are holiday-enabled; other studios stay s
         `${location.name}: holiday switch cannot alter this route`);
     }
   }
+});
+
+test("Highlands Ranch stages the holiday layout with local photos and no unconfirmed prices or checkout links", async () => {
+  const r = renderer(), standard = renderer(true);
+  const p = { state: "colorado", city: "highlands-ranch", locale: "en" };
+  const localHref = "/locations/colorado/highlands-ranch/pricing";
+  const data = r.source("src/components/location/holiday/holiday-offers");
+  for (const file of [mainFile, pricingFile]) {
+    const isMain = file === mainFile;
+    const page = await r.render(file, p), before = await standard.render(file, p);
+    const configured = (isMain ? data.getHolidayOffers : data.getHolidayPricingOffers)(p.state, p.city);
+    const offers = page.querySelector('section[aria-label="Holiday offers"]');
+    assert(offers);
+    assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 6);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 2 : 6);
+    assert.deepEqual(links(offers), isMain ? [localHref] : []);
+    assert(configured.every(offer => !offer.price && !offer.secondaryAction));
+    assert(configured.every(offer => !/dry-float|red-light-therapy/.test(offer.image)));
+    assert(configured.every(offer => fs.existsSync(`public${offer.image}`)));
+    assert(offers.querySelector('img[src="/images/locations/highlands-ranch/sauna-card.jpg"]'));
+    assert(offers.querySelector('img[src="/images/locations/highlands-ranch/facial-card.jpg"]'));
+    assert.deepEqual(schema(page), schema(before));
+    assert.deepEqual(
+      await r.source(file).generateMetadata({ params: Promise.resolve(p) }),
+      await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
+    if (isMain) {
+      assert.equal(page.querySelector("h1").text, "HOLIDAY SPECIALS");
+      assert(page.text.includes("9325 Dorchester St ste f121"));
+      assert(links(page).includes("tel:+17208276311"));
+      const bookingUrl = links(before).find(link => link.includes("11431"));
+      assert(bookingUrl);
+      assert(links(page).includes(bookingUrl));
+    } else {
+      assert.deepEqual(links(page.querySelector('nav[aria-label="Pricing sections"]')),
+        ["#memberships", "#packages", "#services", "#specials"]);
+      assert(page.toString().indexOf('id="specials"') < page.toString().indexOf('id="memberships"'));
+      for (const id of ["memberships", "services", "packages"]) {
+        assert.equal(page.querySelector(`#${id}`).innerHTML, before.querySelector(`#${id}`).innerHTML);
+      }
+    }
+  }
+  assert.deepEqual(r.gates, [{ citySlug: "highlands-ranch", bypass: true }]);
 });
 
 test("Briargate stages holiday pages without inventing offers or changing business data", async () => {
@@ -502,7 +544,7 @@ test("All holiday gift cards show usage copy without replacing existing descript
       count++;
     }
   }
-  assert.equal(count, 36);
+  assert.equal(count, 39);
 });
 
 test("Holiday financing appears only on eligible facial and slimming packages", async () => {
@@ -556,7 +598,7 @@ test("All holiday location overview cards use the approved gifts copy and their 
     assert.equal(card.querySelector("a").getAttribute("href"), `/locations/${location.stateSlug}/${location.citySlug}/pricing`);
     count++;
   }
-  assert.equal(count, 12);
+  assert.equal(count, 13);
 });
 
 test("Newport restores its saved grouped holiday pages without changing regular pricing", async () => {
