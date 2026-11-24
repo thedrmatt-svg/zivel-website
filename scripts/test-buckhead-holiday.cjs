@@ -129,7 +129,7 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
       assert.equal(contouring.querySelector("a").getAttribute("href"), contouringHref);
       assert(contouring.querySelector("a").text.includes("Buy Now"));
       assert.equal(skin.querySelector(".price"), null);
-      assert.equal(contouring.querySelector(".price"), null);
+      assert.equal(contouring.querySelector(".price").text, "$350");
       assert.deepEqual(links(page.querySelector('nav[aria-label="Pricing sections"]')),
         ["#memberships", "#packages", "#services", "#specials"]);
       assert(page.toString().indexOf('id="specials"') < page.toString().indexOf('id="memberships"'));

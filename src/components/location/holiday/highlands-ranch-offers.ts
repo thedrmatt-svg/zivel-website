@@ -97,6 +97,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     id: "highlands-ranch-body-contouring-bogo",
     title: "BOGO Body Contouring",
     description: "CryoSlimming • CryoToning • CryoShape",
+    price: "$350",
     image: getLocationServiceImage(city, "cryo-slimming"),
     imageAlt: "Cryo slimming treatment",
     purchaseUrl: "https://app.clubready.com/JoinUs/14827/657912",
