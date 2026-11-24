@@ -99,6 +99,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     description: "CryoSlimming • CryoToning • CryoShape",
     image: getLocationServiceImage(city, "cryo-slimming"),
     imageAlt: "Cryo slimming treatment",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14827/657912",
     action: "Buy Now",
   },
 ];

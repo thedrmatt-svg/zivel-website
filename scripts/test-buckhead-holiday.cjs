@@ -55,11 +55,12 @@ test("only the approved studios are holiday-enabled; other studios stay standard
   }
 });
 
-test("Highlands Ranch shows approved holiday prices, credits, and Recovery checkout", async () => {
+test("Highlands Ranch shows approved holiday prices, credits, and checkout links", async () => {
   const r = renderer(), standard = renderer(true);
   const p = { state: "colorado", city: "highlands-ranch", locale: "en" };
   const localHref = "/locations/colorado/highlands-ranch/pricing";
   const recoveryHref = "https://app.clubready.com/JoinUs/14827/657911";
+  const contouringHref = "https://app.clubready.com/JoinUs/14827/657912";
   const data = r.source("src/components/location/holiday/holiday-offers");
   for (const file of [mainFile, pricingFile]) {
     const isMain = file === mainFile;
@@ -68,8 +69,8 @@ test("Highlands Ranch shows approved holiday prices, credits, and Recovery check
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert(offers);
     assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 9);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 1 : 8);
-    assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref] : [recoveryHref]);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 1 : 7);
+    assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref] : [recoveryHref, contouringHref]);
     const cards = offers.querySelectorAll("article");
     const recovery = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-recovery-special");
     const facial = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-facial-special");
@@ -125,6 +126,8 @@ test("Highlands Ranch shows approved holiday prices, credits, and Recovery check
       const contouring = offers.querySelector('[data-offer-id="highlands-ranch-body-contouring-bogo"]');
       assert.equal(contouring.querySelector("h2").text, "BOGO Body Contouring");
       assert.equal(contouring.querySelector(".description").text, "CryoSlimming • CryoToning • CryoShape");
+      assert.equal(contouring.querySelector("a").getAttribute("href"), contouringHref);
+      assert(contouring.querySelector("a").text.includes("Buy Now"));
       assert.equal(skin.querySelector(".price"), null);
       assert.equal(contouring.querySelector(".price"), null);
       assert.deepEqual(links(page.querySelector('nav[aria-label="Pricing sections"]')),
