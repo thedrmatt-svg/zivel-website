@@ -120,6 +120,7 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
       assert(cards[0].querySelector("a").text.includes("Buy Now"));
       assert.equal(cards[1].querySelector("a").getAttribute("href"), hundredGiftCardHref);
       assert(cards[1].querySelector("a").text.includes("Buy Now"));
+      assert.equal(cards[2].querySelector("img").getAttribute("src"), "/images/home/service-slimming.jpg");
       const redLight = offers.querySelector('[data-offer-id="highlands-ranch-red-light-five-pack"]');
       assert.equal(redLight.querySelector("h2").text, "Red Light Therapy");
       assert.equal(redLight.querySelector(".price").text, "$145");

@@ -51,8 +51,8 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
       purchaseUrl: "https://app.clubready.com/JoinUs/14827/657917",
     },
     {
-      image: getLocationServiceImage(city, "cryo-soothe"),
-      imageAlt: "Cryo Soothe treatment",
+      image: getLocationServiceImage(city, "cryo-slimming"),
+      imageAlt: "Cryo slimming treatment",
       price: "$200",
       description: "Spend $200, receive $50 in credit",
     },
