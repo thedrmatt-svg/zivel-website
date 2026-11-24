@@ -62,6 +62,7 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
   const recoveryHref = "https://app.clubready.com/JoinUs/14827/657911";
   const contouringHref = "https://app.clubready.com/JoinUs/14827/657912";
   const sootheHref = "https://app.clubready.com/JoinUs/14827/657913";
+  const redLightHref = "https://app.clubready.com/JoinUs/14827/657914";
   const data = r.source("src/components/location/holiday/holiday-offers");
   for (const file of [mainFile, pricingFile]) {
     const isMain = file === mainFile;
@@ -70,8 +71,8 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert(offers);
     assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 9);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 1 : 6);
-    assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref] : [recoveryHref, contouringHref, sootheHref]);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 1 : 5);
+    assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref] : [recoveryHref, contouringHref, sootheHref, redLightHref]);
     const cards = offers.querySelectorAll("article");
     const recovery = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-recovery-special");
     const facial = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-facial-special");
@@ -113,7 +114,8 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
       assert.equal(redLight.querySelector("h2").text, "Red Light Therapy");
       assert.equal(redLight.querySelector(".price").text, "$145");
       assert.equal(redLight.querySelector(".description").text, "5 Red Light Sessions");
-      assert(redLight.querySelector("button[disabled]"));
+      assert.equal(redLight.querySelector("a").getAttribute("href"), redLightHref);
+      assert(redLight.querySelector("a").text.includes("Buy Now"));
       assert(!redLight.text.toLowerCase().includes("coming soon"));
       const soothe = offers.querySelector('[data-offer-id="highlands-ranch-cryo-soothe-two-pack"]');
       assert.equal(soothe.querySelector("h2").text, "BOGO CryoSoothe");

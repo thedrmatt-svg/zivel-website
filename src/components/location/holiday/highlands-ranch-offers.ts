@@ -73,6 +73,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     price: "$145",
     image: getLocationServiceImage(city, "red-light-therapy"),
     imageAlt: "Person lying in a red light therapy bed",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14827/657914",
     action: "Buy Now",
   },
   {
