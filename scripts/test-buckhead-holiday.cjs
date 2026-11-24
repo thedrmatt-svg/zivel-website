@@ -78,7 +78,9 @@ test("Highlands Ranch shows approved holiday prices, credits, and Recovery check
     assert.equal(recovery.querySelector(".description").text, "6 Recovery Sessions");
     assert.equal(recovery.querySelector("a").getAttribute("href"), recoveryHref);
     assert(recovery.querySelector("a").text.includes("Buy Now"));
-    assert(recovery.querySelector('img[src="/images/home/service-redlight.jpg"]'));
+    assert.equal(recovery.querySelector("img").getAttribute("src"), isMain
+      ? "/images/home/service-redlight.jpg"
+      : "/locations/highlands-ranch/services/cryotherapy.jpg");
     assert.equal(facial.querySelector("h2").text, "BOGO CryoFacial");
     assert.equal(facial.querySelector(".price").text, "$199");
     assert.equal(facial.querySelector(".description").text, "Buy One, Get/Give One");

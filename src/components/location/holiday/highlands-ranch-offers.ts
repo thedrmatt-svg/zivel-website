@@ -60,7 +60,12 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
     ...card,
     action: "Buy Now",
   })),
-  ...HIGHLANDS_RANCH_HOLIDAY_OFFERS.slice(0, 2),
+  {
+    ...HIGHLANDS_RANCH_HOLIDAY_OFFERS[0],
+    image: getLocationServiceImage(city, "cryotherapy"),
+    imageAlt: "Person stepping into a cryotherapy chamber at Zivel Highlands Ranch",
+  },
+  HIGHLANDS_RANCH_HOLIDAY_OFFERS[1],
   {
     id: "highlands-ranch-red-light-five-pack",
     title: "Red Light Therapy",
