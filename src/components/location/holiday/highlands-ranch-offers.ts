@@ -26,6 +26,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     price: "$199",
     image: "/images/locations/highlands-ranch/facial-card.jpg",
     imageAlt: "Close-up of a CryoLift Facial treatment at Zivel Highlands Ranch",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14827/657915",
     action: "Buy Now",
   },
   {

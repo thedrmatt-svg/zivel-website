@@ -63,6 +63,7 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
   const contouringHref = "https://app.clubready.com/JoinUs/14827/657912";
   const sootheHref = "https://app.clubready.com/JoinUs/14827/657913";
   const redLightHref = "https://app.clubready.com/JoinUs/14827/657914";
+  const facialHref = "https://app.clubready.com/JoinUs/14827/657915";
   const data = r.source("src/components/location/holiday/holiday-offers");
   for (const file of [mainFile, pricingFile]) {
     const isMain = file === mainFile;
@@ -71,8 +72,9 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert(offers);
     assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 9);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 1 : 5);
-    assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref] : [recoveryHref, contouringHref, sootheHref, redLightHref]);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 0 : 4);
+    assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref, facialHref]
+      : [recoveryHref, contouringHref, sootheHref, redLightHref, facialHref]);
     const cards = offers.querySelectorAll("article");
     const recovery = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-recovery-special");
     const facial = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-facial-special");
@@ -87,6 +89,8 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
     assert.equal(facial.querySelector("h2").text, "BOGO CryoFacial");
     assert.equal(facial.querySelector(".price").text, "$199");
     assert.equal(facial.querySelector(".description").text, "Buy One, Get/Give One");
+    assert.equal(facial.querySelector("a").getAttribute("href"), facialHref);
+    assert(facial.querySelector("a").text.includes("Buy Now"));
     assert(configured.every(offer => !offer.secondaryAction));
     assert(configured.every(offer => !/dry-float|red-light-therapy/.test(offer.image)));
     assert(configured.every(offer => fs.existsSync(`public${offer.image}`)));
