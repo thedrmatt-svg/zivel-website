@@ -55,6 +55,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
       imageAlt: "Cryo slimming treatment",
       price: "$200",
       description: "Spend $200, receive $50 in credit",
+      purchaseUrl: "https://app.clubready.com/JoinUs/14827/657918",
     },
   ].map((card, index): HolidayOffer => ({
     id: `highlands-ranch-gift-card-${index + 1}`,
