@@ -118,6 +118,7 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
       assert(redLight.querySelector("a").text.includes("Buy Now"));
       assert(!redLight.text.toLowerCase().includes("coming soon"));
       const soothe = offers.querySelector('[data-offer-id="highlands-ranch-cryo-soothe-two-pack"]');
+      assert.deepEqual(cards.slice(3, 7), [recovery, soothe, redLight, facial]);
       assert.equal(soothe.querySelector("h2").text, "BOGO CryoSoothe");
       assert.equal(soothe.querySelector(".price").text, "$69");
       assert.equal(soothe.querySelector(".description").text, "Buy One Get/Give One.");
