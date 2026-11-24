@@ -48,6 +48,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
       imageAlt: "Compression therapy session",
       price: "$100",
       description: "Spend $100, receive $25 in credit",
+      purchaseUrl: "https://app.clubready.com/JoinUs/14827/657917",
     },
     {
       image: getLocationServiceImage(city, "cryo-soothe"),
