@@ -156,6 +156,8 @@ export default async function LocationPricingPage({
     (state === "utah" && city === "riverton") ||
     (state === "kentucky" && city === "newport")
   );
+  const compactHolidayPricing = groupedHolidayPricing ||
+    (holidayEnabled && state === "colorado" && (city === "parker" || city === "highlands-ranch"));
   const holidayOffers = getHolidayPricingOffers(location.stateSlug, location.citySlug);
   const holidayMembershipStart = state === "kentucky" && city === "newport" ? 9 : 6;
 
@@ -372,7 +374,7 @@ export default async function LocationPricingPage({
 
       {/* GATED CONTENT */}
       <section
-        className={`zv-bleed ${groupedHolidayPricing || (holidayEnabled && state === "colorado" && city === "parker") ? "pt-6 md:pt-8 pb-16 md:pb-24" : "py-16 md:py-24"} ${holidayEnabled ? holidayPricingStyles.contentSurface : "zv-section-elevated"}`}
+        className={`zv-bleed ${compactHolidayPricing ? "pt-6 md:pt-8 pb-16 md:pb-24" : "py-16 md:py-24"} ${holidayEnabled ? holidayPricingStyles.contentSurface : "zv-section-elevated"}`}
       >
         <div className="mx-auto max-w-6xl px-6">
           <PricingGateModal citySlug={location.citySlug} cityDisplay={cityDisplay} locationEmail={location.contact?.email} bypass={location.citySlug === "windermere" || (holidayEnabled && HOLIDAY_PRICING_SIGNUP_PAUSED)}>

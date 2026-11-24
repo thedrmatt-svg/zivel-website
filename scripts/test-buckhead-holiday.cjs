@@ -139,6 +139,7 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
       assert.equal(soothe.querySelector("a").getAttribute("href"), sootheHref);
       assert(soothe.querySelector("a").text.includes("Buy Now"));
       assert.doesNotMatch(page.toString(), /highlands-ranch-advanced-skin-services|Advanced Skin Services/i);
+      assert.match(page.querySelector("section.contentSurface").getAttribute("class"), /\bpt-6 md:pt-8\b/);
       const contouring = offers.querySelector('[data-offer-id="highlands-ranch-body-contouring-bogo"]');
       assert.equal(contouring.querySelector("h2").text, "BOGO Body Contouring");
       assert.equal(contouring.querySelector(".description").text, "CryoSlimming • CryoToning • CryoShape");
