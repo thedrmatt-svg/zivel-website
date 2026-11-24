@@ -77,11 +77,12 @@ export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   },
   {
     id: "highlands-ranch-cryo-soothe-two-pack",
-    title: "CryoSoothe",
-    description: "2 CryoSoothe Sessions",
+    title: "BOGO CryoSoothe",
+    description: "Buy One Get/Give One.",
     price: "$69",
     image: getLocationServiceImage(city, "cryo-soothe"),
     imageAlt: "Cryo Soothe treatment",
+    purchaseUrl: "https://app.clubready.com/JoinUs/14827/657913",
     action: "Buy Now",
   },
   {

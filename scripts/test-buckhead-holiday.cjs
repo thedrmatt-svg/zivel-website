@@ -61,6 +61,7 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
   const localHref = "/locations/colorado/highlands-ranch/pricing";
   const recoveryHref = "https://app.clubready.com/JoinUs/14827/657911";
   const contouringHref = "https://app.clubready.com/JoinUs/14827/657912";
+  const sootheHref = "https://app.clubready.com/JoinUs/14827/657913";
   const data = r.source("src/components/location/holiday/holiday-offers");
   for (const file of [mainFile, pricingFile]) {
     const isMain = file === mainFile;
@@ -69,8 +70,8 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
     const offers = page.querySelector('section[aria-label="Holiday offers"]');
     assert(offers);
     assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 9);
-    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 1 : 7);
-    assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref] : [recoveryHref, contouringHref]);
+    assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 1 : 6);
+    assert.deepEqual(links(offers), isMain ? [localHref, recoveryHref] : [recoveryHref, contouringHref, sootheHref]);
     const cards = offers.querySelectorAll("article");
     const recovery = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-recovery-special");
     const facial = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-facial-special");
@@ -115,8 +116,11 @@ test("Highlands Ranch shows approved holiday prices, credits, and checkout links
       assert(redLight.querySelector("button[disabled]"));
       assert(!redLight.text.toLowerCase().includes("coming soon"));
       const soothe = offers.querySelector('[data-offer-id="highlands-ranch-cryo-soothe-two-pack"]');
+      assert.equal(soothe.querySelector("h2").text, "BOGO CryoSoothe");
       assert.equal(soothe.querySelector(".price").text, "$69");
-      assert.equal(soothe.querySelector(".description").text, "2 CryoSoothe Sessions");
+      assert.equal(soothe.querySelector(".description").text, "Buy One Get/Give One.");
+      assert.equal(soothe.querySelector("a").getAttribute("href"), sootheHref);
+      assert(soothe.querySelector("a").text.includes("Buy Now"));
       const skin = offers.querySelector('[data-offer-id="highlands-ranch-advanced-skin-services"]');
       assert.equal(skin.querySelector("h2").text, "Advanced Skin Services");
       assert.equal(skin.querySelector(".description span").text, "BOGO ½ OFF");
