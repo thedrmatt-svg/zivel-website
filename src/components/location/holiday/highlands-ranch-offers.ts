@@ -7,18 +7,22 @@ const saunaPhoto = {
   imageAlt: "Woman relaxing in the infrared sauna at Zivel Highlands Ranch",
 };
 
-// Stage the layout without setting unconfirmed prices or checkout destinations.
+// Prices and credits are confirmed; checkout links are still pending.
 export const HIGHLANDS_RANCH_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
   {
     id: "highlands-ranch-recovery-special",
-    title: "Recovery Special",
-    image: getLocationServiceImage(city, "cryotherapy"),
-    imageAlt: "Person stepping into a cryotherapy chamber at Zivel Highlands Ranch",
+    title: "Recovery",
+    description: "6 Recovery Sessions",
+    price: "$99",
+    image: getLocationServiceImage(city, "red-light-therapy"),
+    imageAlt: "Person lying in a red light therapy bed",
     action: "Buy Now",
   },
   {
     id: "highlands-ranch-facial-special",
-    title: "CryoFacial Special",
+    title: "BOGO CryoFacial",
+    description: "Buy One, Get/Give One",
+    price: "$199",
     image: "/images/locations/highlands-ranch/facial-card.jpg",
     imageAlt: "Close-up of a CryoLift Facial treatment at Zivel Highlands Ranch",
     action: "Buy Now",
@@ -27,6 +31,7 @@ export const HIGHLANDS_RANCH_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
     id: "highlands-ranch-gift-cards",
     title: "GIFTS & EXCLUSIVE DEALS",
     description: "Gift Cards • Premium Packages • Holiday Offers",
+    price: "$50+",
     ...saunaPhoto,
     purchaseUrl: "/locations/colorado/highlands-ranch/pricing",
     action: "Explore Holiday Gifts",
@@ -35,13 +40,23 @@ export const HIGHLANDS_RANCH_HOLIDAY_OFFERS: readonly HolidayOffer[] = [
 
 export const HIGHLANDS_RANCH_HOLIDAY_PRICING_OFFERS: readonly HolidayOffer[] = [
   ...[
-    saunaPhoto,
-    { image: getLocationServiceImage(city, "compression-therapy"), imageAlt: "Compression therapy session" },
-    { image: getLocationServiceImage(city, "cryo-soothe"), imageAlt: "Cryo Soothe treatment" },
-  ].map((photo, index): HolidayOffer => ({
+    { ...saunaPhoto, price: "$50" },
+    {
+      image: getLocationServiceImage(city, "compression-therapy"),
+      imageAlt: "Compression therapy session",
+      price: "$100",
+      description: "Get $25 in credit",
+    },
+    {
+      image: getLocationServiceImage(city, "cryo-soothe"),
+      imageAlt: "Cryo Soothe treatment",
+      price: "$200",
+      description: "Get $50 in credit",
+    },
+  ].map((card, index): HolidayOffer => ({
     id: `highlands-ranch-gift-card-${index + 1}`,
     title: "Gift Card",
-    ...photo,
+    ...card,
     action: "Buy Now",
   })),
   ...HIGHLANDS_RANCH_HOLIDAY_OFFERS.slice(0, 2),

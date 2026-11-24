@@ -55,7 +55,7 @@ test("only the approved studios are holiday-enabled; other studios stay standard
   }
 });
 
-test("Highlands Ranch stages the holiday layout with local photos and no unconfirmed prices or checkout links", async () => {
+test("Highlands Ranch shows approved holiday prices and credits without checkout links", async () => {
   const r = renderer(), standard = renderer(true);
   const p = { state: "colorado", city: "highlands-ranch", locale: "en" };
   const localHref = "/locations/colorado/highlands-ranch/pricing";
@@ -69,7 +69,17 @@ test("Highlands Ranch stages the holiday layout with local photos and no unconfi
     assert.equal(offers.querySelectorAll("article").length, isMain ? 3 : 6);
     assert.equal(offers.querySelectorAll("button[disabled]").length, isMain ? 2 : 6);
     assert.deepEqual(links(offers), isMain ? [localHref] : []);
-    assert(configured.every(offer => !offer.price && !offer.secondaryAction));
+    const cards = offers.querySelectorAll("article");
+    const recovery = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-recovery-special");
+    const facial = cards.find(card => card.getAttribute("data-offer-id") === "highlands-ranch-facial-special");
+    assert.equal(recovery.querySelector("h2").text, "Recovery");
+    assert.equal(recovery.querySelector(".price").text, "$99");
+    assert.equal(recovery.querySelector(".description").text, "6 Recovery Sessions");
+    assert(recovery.querySelector('img[src="/images/home/service-redlight.jpg"]'));
+    assert.equal(facial.querySelector("h2").text, "BOGO CryoFacial");
+    assert.equal(facial.querySelector(".price").text, "$199");
+    assert.equal(facial.querySelector(".description").text, "Buy One, Get/Give One");
+    assert(configured.every(offer => !offer.secondaryAction));
     assert(configured.every(offer => !/dry-float|red-light-therapy/.test(offer.image)));
     assert(configured.every(offer => fs.existsSync(`public${offer.image}`)));
     assert(offers.querySelector('img[src="/images/locations/highlands-ranch/sauna-card.jpg"]'));
@@ -80,12 +90,18 @@ test("Highlands Ranch stages the holiday layout with local photos and no unconfi
       await standard.source(file).generateMetadata({ params: Promise.resolve(p) }));
     if (isMain) {
       assert.equal(page.querySelector("h1").text, "HOLIDAY SPECIALS");
+      assert.equal(cards[2].querySelector(".price").text, "$50+");
       assert(page.text.includes("9325 Dorchester St ste f121"));
       assert(links(page).includes("tel:+17208276311"));
       const bookingUrl = links(before).find(link => link.includes("11431"));
       assert(bookingUrl);
       assert(links(page).includes(bookingUrl));
     } else {
+      assert.deepEqual(cards.slice(0, 3).map(card => [
+        card.querySelector(".price").text,
+        card.querySelector(".description")?.text,
+      ]), [["$50", undefined], ["$100", "Get $25 in credit"], ["$200", "Get $50 in credit"]]);
+      assert.equal(cards.at(-1).querySelector(".price"), null);
       assert.deepEqual(links(page.querySelector('nav[aria-label="Pricing sections"]')),
         ["#memberships", "#packages", "#services", "#specials"]);
       assert(page.toString().indexOf('id="specials"') < page.toString().indexOf('id="memberships"'));
