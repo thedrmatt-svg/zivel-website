@@ -15,6 +15,12 @@ function titleCase(slug: string) {
     .join(" ");
 }
 
+// Finder labels are independent of the studio's business name and SEO identity.
+export function getLocationFinderCity(location: Location): string {
+  if (location.stateSlug === "georgia" && location.citySlug === "windermere") return "Cumming";
+  return location.city ?? titleCase(location.citySlug);
+}
+
 export function getLocationNav(options?: { featuredCount?: number }) {
   const featuredCount = options?.featuredCount ?? 4;
 
@@ -22,8 +28,7 @@ export function getLocationNav(options?: { featuredCount?: number }) {
   const cities: LocationNavCity[] = locations
     .map((loc: Location) => {
       const stateSlug = loc.stateSlug.toLowerCase();
-      const citySlug = loc.citySlug.toLowerCase();
-      const cityName = loc.city ?? titleCase(citySlug);
+      const cityName = getLocationFinderCity(loc);
       const stateShort = loc.state ?? stateSlug.toUpperCase();
       return { label: `${cityName}, ${stateShort}`, href: getLocationHref(loc) };
     })
@@ -34,9 +39,8 @@ export function getLocationNav(options?: { featuredCount?: number }) {
     .slice(0, featuredCount)
     .map((loc: Location) => {
       const stateSlug = loc.stateSlug.toLowerCase();
-      const citySlug = loc.citySlug.toLowerCase();
       const stateShort = loc.state ?? stateSlug.toUpperCase();
-      const cityName = loc.city ?? titleCase(citySlug);
+      const cityName = getLocationFinderCity(loc);
 
       return {
         label: `${cityName}${stateShort ? `, ${stateShort}` : ""}`,

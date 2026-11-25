@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { locations } from "@/lib/data/locations";
+import { getLocationFinderCity } from "@/lib/data/locationNav";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 function titleCase(slug: string) {
@@ -52,8 +53,8 @@ export default async function StateLocationsPage({ params }: { params: Promise<{
     .filter((l) => l.stateSlug === state)
     .slice()
     .sort((a, b) => {
-      const ac = a.city ?? a.citySlug ?? "";
-      const bc = b.city ?? b.citySlug ?? "";
+      const ac = getLocationFinderCity(a);
+      const bc = getLocationFinderCity(b);
       return ac.localeCompare(bc);
     });
 
@@ -117,7 +118,7 @@ export default async function StateLocationsPage({ params }: { params: Promise<{
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {stateLocations.map((loc, idx) => {
               const citySlug = loc.citySlug;
-              const cityName = loc.city ?? (citySlug ? titleCase(citySlug) : "Location");
+              const cityName = getLocationFinderCity(loc);
 
               if (!citySlug) return null;
 
@@ -127,7 +128,7 @@ export default async function StateLocationsPage({ params }: { params: Promise<{
                     href={`/locations/${state}/${citySlug}`}
                     className="zv-luxury-card block rounded-2xl p-8 h-full group transition-all duration-300 hover:-translate-y-0.5"
                   >
-                    <div className="font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{cityName}</div>
+                    <div className="font-serif text-xl text-black/85 group-hover:text-[var(--zivel-gold-dark)] transition-colors">{loc.stateSlug === "georgia" && citySlug === "windermere" ? `${cityName}, ${loc.state}` : cityName}</div>
                     <p className="mt-2 text-sm text-black/55">View location details</p>
                     <div className="mt-5 text-sm font-medium text-[var(--zivel-gold-dark)]">
                       View this location →

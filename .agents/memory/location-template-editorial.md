@@ -18,6 +18,13 @@ Fieldhouse is inside the **Gatorade Fieldhouse near Hernando, MS**; keep Hernand
 **How to apply:** Identify the venue separately from the address municipality. Do not invent a Fieldhouse neighborhood of Hernando.
 
 ## Breadcrumb consistency
+### Windermere finder label
+Display Windermere as **Cumming, GA** in the header location finder and Georgia location listing, alphabetized under C. Do not rename the business or change its URL, metadata, or schema.
+
+**Why:** The owner explicitly requested a finder/listing-only label change while preserving the page and schema.
+
+**How to apply:** Keep geographic discovery labels separate from the owner-approved **Zivel Windermere** business name.
+
 Existing visible and BreadcrumbList location names must match the address city. Change the schema name values together with visible labels, preserving URLs and every other schema field.
 
 **Why:** The user explicitly authorized this limited exception to the otherwise frozen non-FAQ/non-service-list JSON-LD.
